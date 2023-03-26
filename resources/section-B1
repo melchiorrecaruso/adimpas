@@ -1,0 +1,115 @@
+implementation
+
+uses
+  Math;
+
+{ TQuantity }
+
+function TQuantity.ToString: string;
+begin
+  result := FloatToStr(Value) + ' ' + U.Symbol;
+end;
+
+function TQuantity.ToVerboseString: string;
+begin
+  result := FloatToStr(Value) + ' ' + U.Name;
+end;
+
+function TQuantity.ToVerboseString(Precision, Digits: longint): string;
+begin
+  result := FloatToStrF(Value, ffGeneral, Precision, Digits)  + ' ' + U.Name;
+end; 
+
+class operator TQuantity.+(const ALeft, ARight: TSelf): TSelf;
+begin
+  result.Value := ALeft.Value + ARight.Value;
+end;
+
+class operator TQuantity.-(const ALeft, ARight: TSelf): TSelf;
+begin
+  result.Value := ALeft.Value - ARight.Value;
+end;
+
+class operator TQuantity.*(const AFactor: double; const AValue: TSelf): TSelf;
+begin
+  result.Value := AFactor * AValue.Value;
+end;
+
+class operator TQuantity.*(const AValue: TSelf; const AFactor: double): TSelf;
+begin
+  result.Value := AValue.Value * AFactor;
+end;
+
+class operator TQuantity./(const AValue: TSelf; const AFactor: double): TSelf;
+begin
+  result.Value := AValue.Value / AFactor;
+end;
+
+class operator TQuantity./(const ALeft, ARight: TSelf): double;
+begin
+  result := ALeft.Value / ARight.Value;
+end;
+
+class operator TQuantity.mod(const ALeft, ARight: TSelf): TSelf;
+begin
+  result.Value := ALeft.Value mod ARight.Value;
+end;
+
+class operator TQuantity.=(const ALeft, ARight: TSelf): boolean;
+begin
+  result := ALeft.Value = ARight.Value;
+end;
+
+class operator TQuantity.<(const ALeft, ARight: TSelf): boolean;
+begin
+  result := ALeft.Value < ARight.Value;
+end;
+
+class operator TQuantity.>(const ALeft, ARight: TSelf): boolean;
+begin
+  result := ALeft.Value > ARight.Value;
+end;
+
+class operator TQuantity.<=(const ALeft, ARight: TSelf): boolean;
+begin
+  result := ALeft.Value <= ARight.Value;
+end;
+
+class operator TQuantity.>=(const ALeft, ARight: TSelf): boolean;
+begin
+  result := ALeft.Value >= ARight.Value;
+end;
+
+{ TQuantityIdentifier }
+
+class function TQuantityIdentifier.From(const AQuantity: TBaseQuantity): TBaseQuantity;
+begin
+  result.Value := AQuantity.Value;
+end;
+
+class operator TQuantityIdentifier.*(const AValue: double; const TheUnit: TSelf): TBaseQuantity;
+begin
+  result.Value := AValue;
+end;
+
+class operator TQuantityIdentifier.*(const TheUnit: TSelf; const AValue: double): TBaseQuantity;
+begin
+  result.Value := AValue;
+end;
+
+{ TFactoredQuantityIdentifier }
+
+class function TFactoredQuantityIdentifier.From(const AQuantity: TBaseQuantity): TBaseFactoredQuantity;
+begin
+  result.Value := AQuantity.Value / U.Factor;
+end;
+
+class operator TFactoredQuantityIdentifier.*(const AValue: double; const TheUnit: TSelf): TBaseQuantity;
+begin
+  result.Value := AValue * U.Factor;
+end;
+
+class operator TFactoredQuantityIdentifier.*(const TheUnit: TSelf; const AValue: double): TBaseQuantity;
+begin
+  result.Value := U.Factor * AValue;
+end;       

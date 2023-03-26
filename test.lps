@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <PathDelim Value="\"/>
+    <Version Value="12"/>
+    <BuildModes Active="Default"/>
+    <Units>
+      <Unit>
+        <Filename Value="test.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Test"/>
+        <IsVisibleTab Value="True"/>
+        <CursorPos X="36" Y="2"/>
+        <UsageCount Value="140"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="dim.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Dim"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="138"/>
+        <CursorPos X="7" Y="153"/>
+        <UsageCount Value="140"/>
+      </Unit>
+      <Unit>
+        <Filename Value="code.inc"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="47"/>
+      </Unit>
+      <Unit>
+        <Filename Value="dimensioned.pas"/>
+        <UnitName Value="Dimensioned"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="85"/>
+        <CursorPos X="5" Y="103"/>
+        <UsageCount Value="7"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\qk2\SpringLIB\src\EN13906.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="744"/>
+        <CursorPos X="35" Y="757"/>
+        <UsageCount Value="8"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\qk2\SpringLIB\src\EN10270.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="81"/>
+        <CursorPos X="56" Y="65"/>
+        <UsageCount Value="7"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\qk\SpringLIB\src\ADim.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="28"/>
+        <UsageCount Value="8"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\qk\SpringLIB\src\EN15800.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="216"/>
+        <CursorPos X="24" Y="166"/>
+        <UsageCount Value="8"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\qk\SpringLIB\src\EN10270.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="206"/>
+        <CursorPos X="32" Y="238"/>
+        <UsageCount Value="8"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\qk\SpringLIB\src\EN13906.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="132"/>
+        <CursorPos X="38" Y="147"/>
+        <UsageCount Value="8"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\FPC\3.2.2\source\rtl\inc\mathh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="89"/>
+        <CursorPos X="14" Y="108"/>
+        <UsageCount Value="9"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\FPC\3.2.2\source\rtl\objpas\sysutils\syshelph.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="89"/>
+        <CursorPos X="14" Y="107"/>
+        <UsageCount Value="9"/>
+      </Unit>
+      <Unit>
+        <Filename Value="ADim.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1275"/>
+        <CursorPos X="3" Y="1288"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\FPC\3.2.2\source\rtl\objpas\math.pp"/>
+        <UnitName Value="Math"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="332"/>
+        <CursorPos X="10" Y="361"/>
+        <UsageCount Value="9"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\qk\SpringLIB\src\UtilsBase.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="286"/>
+        <CursorPos X="63" Y="308"/>
+        <UsageCount Value="9"/>
+      </Unit>
+    </Units>
+    <JumpHistory HistoryIndex="24">
+      <Position>
+        <Filename Value="test.pas"/>
+        <Caret Line="384" Column="25" TopLine="365"/>
+      </Position>
+      <Position>
+        <Filename Value="test.pas"/>
+        <Caret Line="74" Column="3" TopLine="55"/>
+      </Position>
+      <Position>
+        <Filename Value="test.pas"/>
+        <Caret Line="385" Column="47" TopLine="365"/>
+      </Position>
+      <Position>
+        <Filename Value="test.pas"/>
+        <Caret Line="385" Column="25" TopLine="371"/>
+      </Position>
+      <Position>
+        <Filename Value="test.pas"/>
+        <Caret Line="389" Column="3" TopLine="375"/>
+      </Position>
+      <Position>
+        <Filename Value="test.pas"/>
+        <Caret Line="79" Column="15" TopLine="72"/>
+      </Position>
+      <Position>
+        <Filename Value="test.pas"/>
+        <Caret Line="398" Column="41" TopLine="384"/>
+      </Position>
+      <Position>
+        <Filename Value="test.pas"/>
+        <Caret Line="143" Column="26" TopLine="126"/>
+      </Position>
+      <Position>
+        <Filename Value="test.pas"/>
+        <Caret Line="399" Column="39" TopLine="385"/>
+      </Position>
+      <Position>
+        <Filename Value="test.pas"/>
+        <Caret Line="82" Column="20" TopLine="72"/>
+      </Position>
+      <Position>
+        <Filename Value="test.pas"/>
+        <Caret Line="145" Column="29" TopLine="131"/>
+      </Position>
+      <Position>
+        <Filename Value="test.pas"/>
+        <Caret Line="420" Column="39" TopLine="412"/>
+      </Position>
+      <Position>
+        <Filename Value="test.pas"/>
+        <Caret Line="433" Column="3" TopLine="414"/>
+      </Position>
+      <Position>
+        <Filename Value="test.pas"/>
+        <Caret Line="84" Column="25" TopLine="70"/>
+      </Position>
+      <Position>
+        <Filename Value="test.pas"/>
+        <Caret Line="89" Column="22" TopLine="80"/>
+      </Position>
+      <Position>
+        <Filename Value="test.pas"/>
+        <Caret Line="92" Column="27" TopLine="77"/>
+      </Position>
+      <Position>
+        <Filename Value="test.pas"/>
+        <Caret Line="102" Column="15" TopLine="78"/>
+      </Position>
+      <Position>
+        <Filename Value="test.pas"/>
+        <Caret Line="104" Column="18" TopLine="90"/>
+      </Position>
+      <Position>
+        <Filename Value="test.pas"/>
+        <Caret Line="104" Column="29" TopLine="90"/>
+      </Position>
+      <Position>
+        <Filename Value="test.pas"/>
+        <Caret Line="91" Column="38" TopLine="77"/>
+      </Position>
+      <Position>
+        <Filename Value="test.pas"/>
+        <Caret Line="102" Column="29" TopLine="87"/>
+      </Position>
+      <Position>
+        <Filename Value="test.pas"/>
+        <Caret Line="472" Column="43" TopLine="452"/>
+      </Position>
+      <Position>
+        <Filename Value="test.pas"/>
+        <Caret Line="104" Column="3" TopLine="90"/>
+      </Position>
+      <Position>
+        <Filename Value="test.pas"/>
+        <Caret Line="472" Column="45" TopLine="452"/>
+      </Position>
+      <Position>
+        <Filename Value="test.pas"/>
+        <Caret Line="472" Column="39" TopLine="452"/>
+      </Position>
+    </JumpHistory>
+    <RunParams>
+      <FormatVersion Value="2"/>
+      <Modes ActiveMode=""/>
+    </RunParams>
+  </ProjectSession>
+</CONFIG>

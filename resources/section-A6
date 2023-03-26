@@ -1,0 +1,13 @@
+{ Trigonometric functions } 
+
+function Cos(const AQuantity: TRadians): double;
+function Sin(const AQuantity: TRadians): double;
+function Tan(const AQuantity: TRadians): double;
+function Cotan(const AQuantity: TRadians): double;
+function Secant(const AQuantity: TRadians): double;
+function Cosecant(const AQuantity: TRadians): double;
+
+function ArcCos(const AValue: double): TRadians;
+function ArcSin(const AValue: double): TRadians;
+function ArcTan(const AValue: double): TRadians;
+function ArcTan2(const x, y: double): TRadians;

@@ -1,0 +1,51 @@
+{ Trigonometric functions } 
+
+function Cos(const AQuantity: TRadians): double;
+begin
+  result := System.Cos(AQuantity.Value);
+end;
+
+function Sin(const AQuantity: TRadians): double;
+begin
+  result := System.Sin(AQuantity.Value);
+end;
+
+function Tan(const AQuantity: TRadians): double;
+begin
+  result := Math.Tan(AQuantity.Value);
+end;
+
+function Cotan(const AQuantity: TRadians): double;
+begin
+  result := Math.Cotan(AQuantity.Value);
+end;
+
+function Secant(const AQuantity: TRadians): double;
+begin
+  result := Math.Secant(AQuantity.Value);
+end;
+
+function Cosecant(const AQuantity: TRadians): double;
+begin
+  result := Math.Cosecant(AQuantity.Value);
+end;
+
+function ArcCos(const AValue: double): TRadians;
+begin
+  result.Value := Math.ArcCos(AValue);
+end;
+
+function ArcSin(const AValue: double): TRadians;
+begin
+  result.Value := Math.ArcSin(AValue);
+end;
+
+function ArcTan(const AValue: double): TRadians;
+begin
+  result.Value := System.ArcTan(AValue);
+end;
+
+function ArcTan2(const x, y: double): TRadians;
+begin
+  result.Value := Math.ArcTan2(x, y);
+end;

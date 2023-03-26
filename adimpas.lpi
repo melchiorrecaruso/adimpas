@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectOptions>
+    <Version Value="12"/>
+    <PathDelim Value="\"/>
+    <General>
+      <Title Value="ADimPas Toolkit"/>
+      <Scaled Value="True"/>
+      <ResourceType Value="res"/>
+      <UseXPManifest Value="True"/>
+      <XPManifest>
+        <DpiAware Value="True"/>
+      </XPManifest>
+      <Icon Value="0"/>
+      <Resources Count="5">
+        <Resource_0 FileName="resources\section-A0" Type="RCDATA" ResourceName="SECTION-A0"/>
+        <Resource_1 FileName="resources\section-A1" Type="RCDATA" ResourceName="SECTION-A1"/>
+        <Resource_2 FileName="resources\section-A6" Type="RCDATA" ResourceName="SECTION-A6"/>
+        <Resource_3 FileName="resources\section-B1" Type="RCDATA" ResourceName="SECTION-B1"/>
+        <Resource_4 FileName="resources\section-B6" Type="RCDATA" ResourceName="SECTION-B6"/>
+      </Resources>
+    </General>
+    <BuildModes Active="Default">
+      <Item Name="Default" Default="True"/>
+    </BuildModes>
+    <PublishOptions>
+      <Version Value="2"/>
+      <UseFileFilters Value="True"/>
+    </PublishOptions>
+    <RunParams>
+      <FormatVersion Value="2"/>
+    </RunParams>
+    <RequiredPackages>
+      <Item>
+        <PackageName Value="laz_fpspreadsheet_visual"/>
+      </Item>
+      <Item>
+        <PackageName Value="SynEditDsgn"/>
+      </Item>
+      <Item>
+        <PackageName Value="SynEdit"/>
+      </Item>
+      <Item>
+        <PackageName Value="LCL"/>
+      </Item>
+    </RequiredPackages>
+    <Units>
+      <Unit>
+        <Filename Value="adimpas.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ADimPas"/>
+        <TopLine Value="11"/>
+        <CursorPos X="3" Y="33"/>
+        <UsageCount Value="94"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="mainfrm.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="MainForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="MainFrm"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="615"/>
+        <CursorPos X="20" Y="630"/>
+        <FoldState Value=" T3jK07433 pkDpK052 PHL0H"/>
+        <UsageCount Value="94"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uform2.pas"/>
+        <ComponentName Value="Form2"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="24"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\lazarus\lcl\grids.pas"/>
+        <UnitName Value="Grids"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="119"/>
+        <CursorPos X="11" Y="131"/>
+        <UsageCount Value="9"/>
+      </Unit>
+      <Unit>
+        <Filename Value="src\UUnits.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="44"/>
+        <CursorPos X="85" Y="60"/>
+        <UsageCount Value="12"/>
+      </Unit>
+      <Unit>
+        <Filename Value="src\UnitOfMeasurement.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="649"/>
+        <CursorPos X="42" Y="665"/>
+        <UsageCount Value="9"/>
+      </Unit>
+      <Unit>
+        <Filename Value="src\EN13906.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="262"/>
+        <CursorPos X="29" Y="277"/>
+        <UsageCount Value="9"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\qk\SpringLIB\src\UnitOfMeasurement.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1307"/>
+        <CursorPos X="6" Y="1346"/>
+        <UsageCount Value="9"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\qk\SpringLIB\src\EN13906.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="638"/>
+        <CursorPos X="59" Y="755"/>
+        <UsageCount Value="9"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\lazarus\lcl\grids.pas"/>
+        <UnitName Value="Grids"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="592"/>
+        <CursorPos X="14" Y="610"/>
+        <UsageCount Value="9"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\FPC\3.2.2\source\packages\fcl-base\src\inifiles.pp"/>
+        <UnitName Value="IniFiles"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="126"/>
+        <CursorPos X="3" Y="145"/>
+        <UsageCount Value="9"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\FPC\3.2.2\source\rtl\objpas\sysutils\sysstrh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="97"/>
+        <CursorPos X="10" Y="115"/>
+        <UsageCount Value="9"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\FPC\3.2.2\source\rtl\objpas\classes\classesh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="698"/>
+        <CursorPos X="15" Y="716"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\qk\SpringLIB\src\ADim.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="2145"/>
+        <CursorPos X="38" Y="2162"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="SimulatedAnnealing.pas"/>
+        <UnitName Value="simulatedannealing"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="29"/>
+        <CursorPos X="56" Y="51"/>
+        <UsageCount Value="11"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\FPC\3.2.2\source\rtl\inc\objpash.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="187"/>
+        <CursorPos X="23" Y="206"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\qk\SpringLIB\src\UtilsBase.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="90"/>
+        <CursorPos X="36" Y="116"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\lazarus\lcl\dialogs.pp"/>
+        <UnitName Value="Dialogs"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="23"/>
+        <CursorPos X="3" Y="42"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\..\AppData\Local\lazarus\onlinepackagemanager\packages\fpspreadsheet\source\visual\fpspreadsheetgrid.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="317"/>
+        <CursorPos X="22" Y="307"/>
+        <UsageCount Value="11"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\..\AppData\Local\lazarus\onlinepackagemanager\packages\fpspreadsheet\source\common\fpstypes.pas"/>
+        <UnitName Value="fpsTypes"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="30"/>
+        <CursorPos X="66" Y="48"/>
+        <UsageCount Value="10"/>
+      </Unit>
+    </Units>
+    <JumpHistory HistoryIndex="29">
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="390" Column="16" TopLine="371"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="389" Column="16" TopLine="370"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="388" Column="16" TopLine="369"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="387" Column="16" TopLine="368"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="386" Column="16" TopLine="367"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="378" Column="5" TopLine="376"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="379" TopLine="367"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="391" Column="5" TopLine="379"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="468" Column="27" TopLine="4"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="386" Column="19" TopLine="365"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="465" Column="23" TopLine="444"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="471" Column="25" TopLine="451"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="485" Column="23" TopLine="471"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="29" Column="26" TopLine="12"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="471" Column="89" TopLine="459"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="483" Column="75" TopLine="455"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="372" Column="42" TopLine="355"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="470" TopLine="453"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="482" Column="46" TopLine="450"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="461" Column="41" TopLine="442"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="17" Column="5"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="460" Column="67" TopLine="454"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="493" Column="67" TopLine="475"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="127" Column="41" TopLine="103"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="294" Column="40" TopLine="291"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="53" Column="24" TopLine="39"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="174" Column="36" TopLine="156"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="291" Column="13" TopLine="261"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="119" Column="16" TopLine="81"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="461" Column="11" TopLine="442"/>
+      </Position>
+    </JumpHistory>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="11"/>
+    <PathDelim Value="\"/>
+    <Target>
+      <Filename Value="build\ADimPas"/>
+    </Target>
+    <SearchPaths>
+      <IncludeFiles Value="$(ProjOutDir)"/>
+      <UnitOutputDirectory Value="build\lib"/>
+    </SearchPaths>
+    <CodeGeneration>
+      <SmartLinkUnit Value="True"/>
+      <Optimizations>
+        <OptimizationLevel Value="3"/>
+      </Optimizations>
+    </CodeGeneration>
+    <Linking>
+      <Debugging>
+        <GenerateDebugInfo Value="False"/>
+        <DebugInfoType Value="dsDwarf3"/>
+        <UseLineInfoUnit Value="False"/>
+      </Debugging>
+      <LinkSmart Value="True"/>
+      <Options>
+        <Win32>
+          <GraphicApplication Value="True"/>
+        </Win32>
+      </Options>
+    </Linking>
+  </CompilerOptions>
+  <Debugging>
+    <Exceptions>
+      <Item>
+        <Name Value="EAbort"/>
+      </Item>
+      <Item>
+        <Name Value="ECodetoolError"/>
+      </Item>
+      <Item>
+        <Name Value="EFOpenError"/>
+      </Item>
+      <Item>
+        <Name Value="EXMLReadError"/>
+      </Item>
+    </Exceptions>
+  </Debugging>
+</CONFIG>
