@@ -224,6 +224,7 @@ begin
   begin
     ClassList.Append(GetNM(AClassName));
 
+    SectionA1.Add('');
     SectionA1.Add('{ Unit of ' + GetNM(AClassName) + ' }');
     SectionA1.Add('');
     SectionA1.Append('type');

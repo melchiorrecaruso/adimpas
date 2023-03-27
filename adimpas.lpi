@@ -63,9 +63,9 @@
         <UnitName Value="MainFrm"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="615"/>
-        <CursorPos X="20" Y="630"/>
-        <FoldState Value=" T3jK07433 pkDpK052 PHL0H"/>
+        <TopLine Value="209"/>
+        <CursorPos X="25" Y="227"/>
+        <FoldState Value=" T3jK07433 pkDpL052 PHL0N"/>
         <UsageCount Value="94"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -202,6 +202,31 @@
         <TopLine Value="30"/>
         <CursorPos X="66" Y="48"/>
         <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="resources\section-A1"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="None"/>
+      </Unit>
+      <Unit>
+        <Filename Value="resources\section-A6"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="None"/>
+      </Unit>
+      <Unit>
+        <Filename Value="resources\section-B1"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="22" Y="13"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="None"/>
+      </Unit>
+      <Unit>
+        <Filename Value="resources\section-B6"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">

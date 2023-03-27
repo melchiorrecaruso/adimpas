@@ -10,6 +10,11 @@ begin
   result := FloatToStr(Value) + ' ' + U.Symbol;
 end;
 
+function TQuantity.ToString(Precision, Digits: longint): string;
+begin
+  result := FloatToStrF(Value, ffGeneral, Precision, Digits)  + ' ' + U.Symbol;
+end;
+
 function TQuantity.ToVerboseString: string;
 begin
   result := FloatToStr(Value) + ' ' + U.Name;

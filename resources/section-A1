@@ -29,6 +29,7 @@ type
   public
     Value: double;
     function ToString: string;
+    function ToString(Precision, Digits: longint): string;
     function ToVerboseString: string;
     function ToVerboseString(Precision, Digits: longint): string;      
     class operator +  (const ALeft, ARight: TSelf): TSelf;
@@ -66,5 +67,4 @@ type
     class function From(const AQuantity: TBaseQuantity): TBaseFactoredQuantity; inline; static;
     class operator *(const AValue: double; const {%H-}TheUnit: TSelf): TBaseQuantity;
     class operator *(const {%H-}TheUnit: TSelf; const AValue: double): TBaseQuantity;
-  end; 
- 
+  end;

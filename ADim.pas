@@ -48,6 +48,7 @@ type
   public
     Value: double;
     function ToString: string;
+    function ToString(Precision, Digits: longint): string;
     function ToVerboseString: string;
     function ToVerboseString(Precision, Digits: longint): string;
     class operator +  (const ALeft, ARight: TSelf): TSelf;
@@ -4261,6 +4262,11 @@ uses
 function TQuantity.ToString: string;
 begin
   result := FloatToStr(Value) + ' ' + U.Symbol;
+end;
+
+function TQuantity.ToString(Precision, Digits: longint): string;
+begin
+  result := FloatToStrF(Value, ffGeneral, Precision, Digits)  + ' ' + U.Symbol;
 end;
 
 function TQuantity.ToVerboseString: string;
