@@ -10,8 +10,8 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="Test"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="232"/>
-        <CursorPos X="45" Y="246"/>
+        <TopLine Value="224"/>
+        <CursorPos X="44" Y="247"/>
         <UsageCount Value="146"/>
         <Loaded Value="True"/>
       </Unit>
@@ -114,24 +114,38 @@
         <CursorPos X="63" Y="308"/>
         <UsageCount Value="9"/>
       </Unit>
+      <Unit>
+        <Filename Value="resources\section-A1"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="7" Y="70"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="None"/>
+      </Unit>
+      <Unit>
+        <Filename Value="resources\section-A6"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="50" Y="13"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="None"/>
+      </Unit>
+      <Unit>
+        <Filename Value="resources\section-B1"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="86"/>
+        <CursorPos X="17" Y="6"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="None"/>
+      </Unit>
+      <Unit>
+        <Filename Value="resources\section-B6"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="17"/>
+        <CursorPos X="21" Y="20"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="None"/>
+      </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="test.pas"/>
-        <Caret Line="102" Column="29" TopLine="87"/>
-      </Position>
-      <Position>
-        <Filename Value="test.pas"/>
-        <Caret Line="472" Column="43" TopLine="452"/>
-      </Position>
-      <Position>
-        <Filename Value="test.pas"/>
-        <Caret Line="104" Column="3" TopLine="90"/>
-      </Position>
-      <Position>
-        <Filename Value="test.pas"/>
-        <Caret Line="472" Column="45" TopLine="452"/>
-      </Position>
       <Position>
         <Filename Value="test.pas"/>
         <Caret Line="472" Column="39" TopLine="452"/>
@@ -235,6 +249,22 @@
       <Position>
         <Filename Value="test.pas"/>
         <Caret Line="650" Column="38" TopLine="635"/>
+      </Position>
+      <Position>
+        <Filename Value="test.pas"/>
+        <Caret Line="68" Column="15" TopLine="51"/>
+      </Position>
+      <Position>
+        <Filename Value="test.pas"/>
+        <Caret Line="44" Column="19" TopLine="25"/>
+      </Position>
+      <Position>
+        <Filename Value="test.pas"/>
+        <Caret Line="232" Column="33" TopLine="218"/>
+      </Position>
+      <Position>
+        <Filename Value="test.pas"/>
+        <Caret Line="44" Column="3" TopLine="27"/>
       </Position>
     </JumpHistory>
     <RunParams>

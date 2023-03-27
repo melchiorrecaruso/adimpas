@@ -41,6 +41,7 @@ var
   specificw: TNewtonsPerCubicMeter;
   force, normal: TNewtons;
 
+  torque: TNewtonsMeter;
   work: TJoules;
   power: TWatts;
 
@@ -174,7 +175,7 @@ begin
   time     := distance/speed;
   distance := speed*time;
 
-  writeln('*** Speed: v = s / t');
+  writeln('*** Speed: v = distance / time');
   writeln('The distance is: ', distance.ToString);
   writeln('The time is: ', hr.From(time).ToString);
   writeln('The speed is: ', (km/hr).From(speed).ToString);
@@ -187,7 +188,7 @@ begin
   time         := speed/acceleration;
   speed        := acceleration*time;
 
-  writeln('*** Acceleration: a = v / t');
+  writeln('*** Acceleration: a = speed / time');
   writeln('The speed is: ', (km/hr).From(speed).ToString);
   writeln('The time is: ', time.ToString);
   writeln('The acceleration is: ', (km/hr/s).From(acceleration).ToString);
@@ -200,7 +201,7 @@ begin
   mass         := force/acceleration;
   acceleration := force/mass;
 
-  writeln('*** Force: F = m * a');
+  writeln('*** Force: F = mass * acceleration');
   writeln('The mass is: ', mass.ToString);
   writeln('The acceleration is: ', acceleration.ToString);
   writeln('The force is: ', force.ToString);
@@ -211,7 +212,7 @@ begin
   area     := 5*m2;
   pressure := force/area;
 
-  writeln('*** Pressure: P = F / A');
+  writeln('*** Pressure: P = force / area');
   writeln('The force is: ', force.ToString);
   writeln('The area: ', area.ToString);
   writeln('The pressure: ', pressure.ToString);
@@ -222,7 +223,7 @@ begin
   distance     := 5*m;
   work         := force*distance;
 
-  writeln('*** Work: W = F * s');
+  writeln('*** Work: W = force * distance');
   writeln('The force is: ', force.ToVerboseString);
   writeln('The distance is: ', distance.ToVerboseString);
   writeln('The work is: ', work.ToVerboseString);
@@ -232,10 +233,21 @@ begin
   work  := 50*J;
   time  := 10*s;
   power := work/time;
-  writeln('*** Power: P = W / t');
+  writeln('*** Power: P = work / time');
   writeln('The work is: ', work.ToVerboseString);
   writeln('The time is: ', time.ToVerboseString);
   writeln('The power is: ', power.ToVerboseString);
+  writeln;
+
+  // power
+  torque       := 10*(N*m);
+  angularspeed := 2*pi*(rad/s);
+  power        := torque*angularspeed;
+
+  writeln('*** Power: P = torque * angular speed');
+  writeln('The torque is: ', torque.ToString(4, 0));
+  writeln('The angular speed is: ', angularspeed.ToString(4, 0));
+  writeln('The power is: ', power.ToString(4, 0));
   writeln;
 
   // volt (J/C)
