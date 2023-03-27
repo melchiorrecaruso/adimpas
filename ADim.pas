@@ -694,6 +694,19 @@ type
   TReciprocalOhmIdentifier = specialize TQuantityIdentifier<TReciprocalOhmUnit>;
   TReciprocalOhms = specialize TQuantity<TReciprocalOhmUnit>;
 
+{ Unit of NewtonMeter }
+
+type
+  TNewtonMeterUnit = class(TUnit)
+    class function Name: string; override;
+    class function Symbol: string; override;
+  end;
+  TNewtonMeterIdentifier = specialize TQuantityIdentifier<TNewtonMeterUnit>;
+  TNewtonsMeter = specialize TQuantity<TNewtonMeterUnit>;
+
+var
+  Nm: TNewtonMeterIdentifier;
+
 { Unit of NewtonPerMeter }
 
 type
@@ -2739,6 +2752,12 @@ operator /(const {%H-}ALeft: TJouleIdentifier; const {%H-}ARight: TWattIdentifie
 operator *(const {%H-}ALeft: TWattIdentifier; const {%H-}ARight: TSecondIdentifier): TJouleIdentifier; inline;
 operator *(const {%H-}ALeft: TSecondIdentifier; const {%H-}ARight: TWattIdentifier): TJouleIdentifier; inline;
 
+// alternative definition [ W ] = [ J ] * [ Hz ]
+operator *(const {%H-}ALeft: TJouleIdentifier; const {%H-}ARight: THertzIdentifier): TWattIdentifier; inline;
+operator /(const {%H-}ALeft: TWattIdentifier; const {%H-}ARight: TJouleIdentifier): THertzIdentifier; inline;
+operator *(const {%H-}ALeft: THertzIdentifier; const {%H-}ARight: TJouleIdentifier): TWattIdentifier; inline;
+operator /(const {%H-}ALeft: TWattIdentifier; const {%H-}ARight: THertzIdentifier): TJouleIdentifier; inline;
+
 // alternative definition [ W ] = [ A2 ] * [ Ω ]
 operator *(const {%H-}ALeft: TSquareAmpereIdentifier; const {%H-}ARight: TOhmIdentifier): TWattIdentifier; inline;
 operator /(const {%H-}ALeft: TWattIdentifier; const {%H-}ARight: TSquareAmpereIdentifier): TOhmIdentifier; inline;
@@ -3552,6 +3571,12 @@ operator /(const ALeft: TJoules; const ARight: TWatts): TSeconds; inline;
 operator *(const ALeft: TWatts; const ARight: TSeconds): TJoules; inline;
 operator *(const ALeft: TSeconds; const ARight: TWatts): TJoules; inline;
 
+// alternative definition [ W ] = [ J ] * [ Hz ]
+operator *(const ALeft: TJoules; const ARight: THertz): TWatts; inline;
+operator /(const ALeft: TWatts; const ARight: TJoules): THertz; inline;
+operator *(const ALeft: THertz; const ARight: TJoules): TWatts; inline;
+operator /(const ALeft: TWatts; const ARight: THertz): TJoules; inline;
+
 // alternative definition [ W ] = [ A2 ] * [ Ω ]
 operator *(const ALeft: TSquareAmperes; const ARight: TOhms): TWatts; inline;
 operator /(const ALeft: TWatts; const ARight: TSquareAmperes): TOhms; inline;
@@ -4205,6 +4230,8 @@ operator := (AQuantity: TJoulesPerKilogram): TSieverts; inline;
 operator := (AQuantity: TSieverts): TJoulesPerKilogram; inline;
 operator := (AQuantity: TJoulesPerKilogram): TGrays; inline;
 operator := (AQuantity: TGrays): TJoulesPerKilogram; inline;
+operator := (AQuantity: TJoules): TNewtonsMeter; inline;
+operator := (AQuantity: TNewtonsMeter): TJoules; inline;
 operator := (AQuantity: TKilogramsMeterPerSecond): TNewtonsSecond; inline;
 operator := (AQuantity: TNewtonsSecond): TKilogramsMeterPerSecond; inline;
 operator := (AQuantity: TJoulesPerKilogram): TSquareMetersPerSquareSecond; inline;
@@ -4925,6 +4952,18 @@ end;
 class function TReciprocalOhmUnit.Name: string;
 begin
   result := 'reciprocal ohm';
+end;
+
+{ Unit of TNewtonMeterUnit }
+
+class function TNewtonMeterUnit.Symbol: string;
+begin
+  result := 'N·m';
+end;
+
+class function TNewtonMeterUnit.Name: string;
+begin
+  result := 'newton meter';
 end;
 
 { Unit of TNewtonPerMeterUnit }
@@ -7735,6 +7774,19 @@ begin end;
 operator *(const ALeft: TSecondIdentifier; const ARight: TWattIdentifier): TJouleIdentifier;
 begin end;
 
+// alternative definition [ W ] = [ J ] * [ Hz ]
+operator *(const ALeft: TJouleIdentifier; const ARight: THertzIdentifier): TWattIdentifier;
+begin end;
+
+operator /(const ALeft: TWattIdentifier; const ARight: TJouleIdentifier): THertzIdentifier;
+begin end;
+
+operator *(const ALeft: THertzIdentifier; const ARight: TJouleIdentifier): TWattIdentifier;
+begin end;
+
+operator /(const ALeft: TWattIdentifier; const ARight: THertzIdentifier): TJouleIdentifier;
+begin end;
+
 // alternative definition [ W ] = [ A2 ] * [ Ω ]
 operator *(const ALeft: TSquareAmpereIdentifier; const ARight: TOhmIdentifier): TWattIdentifier;
 begin end;
@@ -9624,6 +9676,27 @@ end;
 operator *(const ALeft: TSeconds; const ARight: TWatts): TJoules;
 begin
   result.Value := ALeft.Value * ARight.Value;
+end;
+
+// alternative definition [ W ] = [ J ] * [ Hz ]
+operator *(const ALeft: TJoules; const ARight: THertz): TWatts;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator /(const ALeft: TWatts; const ARight: TJoules): THertz;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator *(const ALeft: THertz; const ARight: TJoules): TWatts;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator /(const ALeft: TWatts; const ARight: THertz): TJoules;
+begin
+  result.Value := ALeft.Value / ARight.Value;
 end;
 
 // alternative definition [ W ] = [ A2 ] * [ Ω ]
@@ -11948,6 +12021,16 @@ begin
 end;
 
 operator := (AQuantity: TGrays): TJoulesPerKilogram;
+begin
+  result.Value := AQuantity.Value;
+end;
+
+operator := (AQuantity: TJoules): TNewtonsMeter;
+begin
+  result.Value := AQuantity.Value;
+end;
+
+operator := (AQuantity: TNewtonsMeter): TJoules;
 begin
   result.Value := AQuantity.Value;
 end;
