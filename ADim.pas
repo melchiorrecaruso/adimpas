@@ -665,6 +665,16 @@ type
 var
   kat: TKatalIdentifier;
 
+{ Unit of JoulePerRadian }
+
+type
+  TJoulePerRadianUnit = class(TUnit)
+    class function Name: string; override;
+    class function Symbol: string; override;
+  end;
+  TJoulePerRadianIdentifier = specialize TQuantityIdentifier<TJoulePerRadianUnit>;
+  TJoulesPerRadian = specialize TQuantity<TJoulePerRadianUnit>;
+
 { Unit of JoulePerKilogram }
 
 type
@@ -707,6 +717,16 @@ type
 
 var
   Nm: TNewtonMeterIdentifier;
+
+{ Unit of NewtonMeterPerRadian }
+
+type
+  TNewtonMeterPerRadianUnit = class(TUnit)
+    class function Name: string; override;
+    class function Symbol: string; override;
+  end;
+  TNewtonMeterPerRadianIdentifier = specialize TQuantityIdentifier<TNewtonMeterPerRadianUnit>;
+  TNewtonsMeterPerRadian = specialize TQuantity<TNewtonMeterPerRadianUnit>;
 
 { Unit of NewtonPerMeter }
 
@@ -2505,6 +2525,49 @@ type
 var
   picoohm: TPicoohmIdentifier;
 
+{ Unit of NewtonMillimeter }
+
+type
+  TNewtonMillimeterUnit = class(TFactoredUnit)
+    class function Name: string; override;
+    class function Symbol: string; override;
+    class function Factor: double; override;
+  end;
+  TNewtonMillimeterIdentifier = specialize TFactoredQuantityIdentifier<TNewtonMeterUnit, TNewtonMillimeterUnit>;
+
+var
+  Nmm: TNewtonMillimeterIdentifier;
+
+{ Unit of NewtonMillimeterPerRadian }
+
+type
+  TNewtonMillimeterPerRadianUnit = class(TFactoredUnit)
+    class function Name: string; override;
+    class function Symbol: string; override;
+    class function Factor: double; override;
+  end;
+  TNewtonMillimeterPerRadianIdentifier = specialize TFactoredQuantityIdentifier<TNewtonMeterPerRadianUnit, TNewtonMillimeterPerRadianUnit>;
+
+{ Unit of NewtonMeterPerDegree }
+
+type
+  TNewtonMeterPerDegreeUnit = class(TFactoredUnit)
+    class function Name: string; override;
+    class function Symbol: string; override;
+    class function Factor: double; override;
+  end;
+  TNewtonMeterPerDegreeIdentifier = specialize TFactoredQuantityIdentifier<TNewtonMeterPerRadianUnit, TNewtonMeterPerDegreeUnit>;
+
+{ Unit of NewtonMillimeterPerDegree }
+
+type
+  TNewtonMillimeterPerDegreeUnit = class(TFactoredUnit)
+    class function Name: string; override;
+    class function Symbol: string; override;
+    class function Factor: double; override;
+  end;
+  TNewtonMillimeterPerDegreeIdentifier = specialize TFactoredQuantityIdentifier<TNewtonMeterPerRadianUnit, TNewtonMillimeterPerDegreeUnit>;
+
 { Unit of NewtonPerDecimeter }
 
 type
@@ -2863,6 +2926,12 @@ operator /(const {%H-}ALeft: TMoleIdentifier; const {%H-}ARight: TKatalIdentifie
 operator *(const {%H-}ALeft: TKatalIdentifier; const {%H-}ARight: TSecondIdentifier): TMoleIdentifier; inline;
 operator *(const {%H-}ALeft: TSecondIdentifier; const {%H-}ARight: TKatalIdentifier): TMoleIdentifier; inline;
 
+// main definition [ J/rad ] = [ J ] / [ rad ]
+operator /(const {%H-}ALeft: TJouleIdentifier; const {%H-}ARight: TRadianIdentifier): TJoulePerRadianIdentifier; inline;
+operator /(const {%H-}ALeft: TJouleIdentifier; const {%H-}ARight: TJoulePerRadianIdentifier): TRadianIdentifier; inline;
+operator *(const {%H-}ALeft: TJoulePerRadianIdentifier; const {%H-}ARight: TRadianIdentifier): TJouleIdentifier; inline;
+operator *(const {%H-}ALeft: TRadianIdentifier; const {%H-}ARight: TJoulePerRadianIdentifier): TJouleIdentifier; inline;
+
 // main definition [ J/kg ] = [ J ] / [ kg ]
 operator /(const {%H-}ALeft: TJouleIdentifier; const {%H-}ARight: TKilogramIdentifier): TJoulePerKilogramIdentifier; inline;
 operator /(const {%H-}ALeft: TJouleIdentifier; const {%H-}ARight: TJoulePerKilogramIdentifier): TKilogramIdentifier; inline;
@@ -2880,6 +2949,12 @@ operator /(const {%H-}ALeft: double; const {%H-}ARight: TOhmIdentifier): TRecipr
 operator /(const {%H-}ALeft: double; const {%H-}ARight: TReciprocalOhmIdentifier): TOhmIdentifier; inline;
 operator *(const {%H-}ALeft: TReciprocalOhmIdentifier; const {%H-}ARight: TOhmIdentifier): double; inline;
 operator *(const {%H-}ALeft: TOhmIdentifier; const {%H-}ARight: TReciprocalOhmIdentifier): double; inline;
+
+// main definition [ N*m/rad ] = [ N*m ] / [ rad ]
+operator /(const {%H-}ALeft: TNewtonMeterIdentifier; const {%H-}ARight: TRadianIdentifier): TNewtonMeterPerRadianIdentifier; inline;
+operator /(const {%H-}ALeft: TNewtonMeterIdentifier; const {%H-}ARight: TNewtonMeterPerRadianIdentifier): TRadianIdentifier; inline;
+operator *(const {%H-}ALeft: TNewtonMeterPerRadianIdentifier; const {%H-}ARight: TRadianIdentifier): TNewtonMeterIdentifier; inline;
+operator *(const {%H-}ALeft: TRadianIdentifier; const {%H-}ARight: TNewtonMeterPerRadianIdentifier): TNewtonMeterIdentifier; inline;
 
 // main definition [ N/m ] = [ N ] / [ m ]
 operator /(const {%H-}ALeft: TNewtonIdentifier; const {%H-}ARight: TMeterIdentifier): TNewtonPerMeterIdentifier; inline;
@@ -3387,6 +3462,15 @@ operator /(const {%H-}ALeft: TCentimeterIdentifier; const {%H-}ARight: TSquareSe
 // main definition [ mm/s2 ] = [ mm ] / [ s2 ]
 operator /(const {%H-}ALeft: TMillimeterIdentifier; const {%H-}ARight: TSquareSecondIdentifier): TMillimeterPerSquareSecondIdentifier; inline;
 
+// main definition [ N*mm/rad ] = [ N*mm ] / [ rad ]
+operator /(const {%H-}ALeft: TNewtonMillimeterIdentifier; const {%H-}ARight: TRadianIdentifier): TNewtonMillimeterPerRadianIdentifier; inline;
+
+// main definition [ N*m/deg ] = [ N*m ] / [ deg ]
+operator /(const {%H-}ALeft: TNewtonMeterIdentifier; const {%H-}ARight: TDegreeIdentifier): TNewtonMeterPerDegreeIdentifier; inline;
+
+// main definition [ N*mm/deg ] = [ N*mm ] / [ deg ]
+operator /(const {%H-}ALeft: TNewtonMillimeterIdentifier; const {%H-}ARight: TDegreeIdentifier): TNewtonMillimeterPerDegreeIdentifier; inline;
+
 // main definition [ N/dm ] = [ N ] / [ dm ]
 operator /(const {%H-}ALeft: TNewtonIdentifier; const {%H-}ARight: TDecimeterIdentifier): TNewtonPerDecimeterIdentifier; inline;
 
@@ -3682,6 +3766,12 @@ operator /(const ALeft: TMoles; const ARight: TKatals): TSeconds; inline;
 operator *(const ALeft: TKatals; const ARight: TSeconds): TMoles; inline;
 operator *(const ALeft: TSeconds; const ARight: TKatals): TMoles; inline;
 
+// main definition [ J/rad ] = [ J ] / [ rad ]
+operator /(const ALeft: TJoules; const ARight: TRadians): TJoulesPerRadian; inline;
+operator /(const ALeft: TJoules; const ARight: TJoulesPerRadian): TRadians; inline;
+operator *(const ALeft: TJoulesPerRadian; const ARight: TRadians): TJoules; inline;
+operator *(const ALeft: TRadians; const ARight: TJoulesPerRadian): TJoules; inline;
+
 // main definition [ J/kg ] = [ J ] / [ kg ]
 operator /(const ALeft: TJoules; const ARight: TKilograms): TJoulesPerKilogram; inline;
 operator /(const ALeft: TJoules; const ARight: TJoulesPerKilogram): TKilograms; inline;
@@ -3699,6 +3789,12 @@ operator /(const ALeft: double; const ARight: TOhms): TReciprocalOhms; inline;
 operator /(const ALeft: double; const ARight: TReciprocalOhms): TOhms; inline;
 operator *(const ALeft: TReciprocalOhms; const ARight: TOhms): double; inline;
 operator *(const ALeft: TOhms; const ARight: TReciprocalOhms): double; inline;
+
+// main definition [ N*m/rad ] = [ N*m ] / [ rad ]
+operator /(const ALeft: TNewtonsMeter; const ARight: TRadians): TNewtonsMeterPerRadian; inline;
+operator /(const ALeft: TNewtonsMeter; const ARight: TNewtonsMeterPerRadian): TRadians; inline;
+operator *(const ALeft: TNewtonsMeterPerRadian; const ARight: TRadians): TNewtonsMeter; inline;
+operator *(const ALeft: TRadians; const ARight: TNewtonsMeterPerRadian): TNewtonsMeter; inline;
 
 // main definition [ N/m ] = [ N ] / [ m ]
 operator /(const ALeft: TNewtons; const ARight: TMeters): TNewtonsPerMeter; inline;
@@ -4221,6 +4317,8 @@ function SquareRoot(AQuantity: TSquareMetersPerSquareSecond): TMetersPerSecond;
 
 { Equivalences }
 
+operator := (AQuantity: double): TRadians; inline;
+operator := (AQuantity: TRadians): double; inline;
 operator := (AQuantity: THertz): TRadiansPerSecond; inline;
 operator := (AQuantity: TRadiansPerSecond): THertz; inline;
 operator := (AQuantity: TReciprocalOhms): TSiemens; inline;
@@ -4233,6 +4331,8 @@ operator := (AQuantity: TJoulesPerKilogram): TGrays; inline;
 operator := (AQuantity: TGrays): TJoulesPerKilogram; inline;
 operator := (AQuantity: TJoules): TNewtonsMeter; inline;
 operator := (AQuantity: TNewtonsMeter): TJoules; inline;
+operator := (AQuantity: TJoulesPerRadian): TNewtonsMeterPerRadian; inline;
+operator := (AQuantity: TNewtonsMeterPerRadian): TJoulesPerRadian; inline;
 operator := (AQuantity: TKilogramsMeterPerSecond): TNewtonsSecond; inline;
 operator := (AQuantity: TNewtonsSecond): TKilogramsMeterPerSecond; inline;
 operator := (AQuantity: TJoulesPerKilogram): TSquareMetersPerSquareSecond; inline;
@@ -4924,6 +5024,18 @@ begin
   result := 'katal';
 end;
 
+{ Unit of TJoulePerRadianUnit }
+
+class function TJoulePerRadianUnit.Symbol: string;
+begin
+  result := 'J/rad';
+end;
+
+class function TJoulePerRadianUnit.Name: string;
+begin
+  result := 'joule per radian';
+end;
+
 { Unit of TJoulePerKilogramUnit }
 
 class function TJoulePerKilogramUnit.Symbol: string;
@@ -4970,6 +5082,18 @@ end;
 class function TNewtonMeterUnit.Name: string;
 begin
   result := 'newton meter';
+end;
+
+{ Unit of TNewtonMeterPerRadianUnit }
+
+class function TNewtonMeterPerRadianUnit.Symbol: string;
+begin
+  result := 'N·m/rad';
+end;
+
+class function TNewtonMeterPerRadianUnit.Name: string;
+begin
+  result := 'newton meter per radian';
 end;
 
 { Unit of TNewtonPerMeterUnit }
@@ -7302,6 +7426,74 @@ begin
   result := 1E-12;
 end;
 
+{ Unit of TNewtonMillimeterUnit }
+
+class function TNewtonMillimeterUnit.Symbol: string;
+begin
+  result := 'N·mm';
+end;
+
+class function TNewtonMillimeterUnit.Name: string;
+begin
+  result := 'newton millimeter';
+end;
+
+class function TNewtonMillimeterUnit.Factor: double;
+begin
+  result := 1E-03;
+end;
+
+{ Unit of TNewtonMillimeterPerRadianUnit }
+
+class function TNewtonMillimeterPerRadianUnit.Symbol: string;
+begin
+  result := 'N·mm/rad';
+end;
+
+class function TNewtonMillimeterPerRadianUnit.Name: string;
+begin
+  result := 'newton millimeter per radian';
+end;
+
+class function TNewtonMillimeterPerRadianUnit.Factor: double;
+begin
+  result := 1E-03;
+end;
+
+{ Unit of TNewtonMeterPerDegreeUnit }
+
+class function TNewtonMeterPerDegreeUnit.Symbol: string;
+begin
+  result := 'N·m/deg';
+end;
+
+class function TNewtonMeterPerDegreeUnit.Name: string;
+begin
+  result := 'newton meter per degree';
+end;
+
+class function TNewtonMeterPerDegreeUnit.Factor: double;
+begin
+  result := 180/Pi;
+end;
+
+{ Unit of TNewtonMillimeterPerDegreeUnit }
+
+class function TNewtonMillimeterPerDegreeUnit.Symbol: string;
+begin
+  result := 'N·mm/deg';
+end;
+
+class function TNewtonMillimeterPerDegreeUnit.Name: string;
+begin
+  result := 'newton millimeter per degree';
+end;
+
+class function TNewtonMillimeterPerDegreeUnit.Factor: double;
+begin
+  result := 9/50/Pi;
+end;
+
 { Unit of TNewtonPerDecimeterUnit }
 
 class function TNewtonPerDecimeterUnit.Symbol: string;
@@ -8015,6 +8207,19 @@ begin end;
 operator *(const ALeft: TSecondIdentifier; const ARight: TKatalIdentifier): TMoleIdentifier;
 begin end;
 
+// main definition [ J/rad ] = [ J ] / [ rad ]
+operator /(const ALeft: TJouleIdentifier; const ARight: TRadianIdentifier): TJoulePerRadianIdentifier;
+begin end;
+
+operator /(const ALeft: TJouleIdentifier; const ARight: TJoulePerRadianIdentifier): TRadianIdentifier;
+begin end;
+
+operator *(const ALeft: TJoulePerRadianIdentifier; const ARight: TRadianIdentifier): TJouleIdentifier;
+begin end;
+
+operator *(const ALeft: TRadianIdentifier; const ARight: TJoulePerRadianIdentifier): TJouleIdentifier;
+begin end;
+
 // main definition [ J/kg ] = [ J ] / [ kg ]
 operator /(const ALeft: TJouleIdentifier; const ARight: TKilogramIdentifier): TJoulePerKilogramIdentifier;
 begin end;
@@ -8052,6 +8257,19 @@ operator *(const ALeft: TReciprocalOhmIdentifier; const ARight: TOhmIdentifier):
 begin end;
 
 operator *(const ALeft: TOhmIdentifier; const ARight: TReciprocalOhmIdentifier): double;
+begin end;
+
+// main definition [ N*m/rad ] = [ N*m ] / [ rad ]
+operator /(const ALeft: TNewtonMeterIdentifier; const ARight: TRadianIdentifier): TNewtonMeterPerRadianIdentifier;
+begin end;
+
+operator /(const ALeft: TNewtonMeterIdentifier; const ARight: TNewtonMeterPerRadianIdentifier): TRadianIdentifier;
+begin end;
+
+operator *(const ALeft: TNewtonMeterPerRadianIdentifier; const ARight: TRadianIdentifier): TNewtonMeterIdentifier;
+begin end;
+
+operator *(const ALeft: TRadianIdentifier; const ARight: TNewtonMeterPerRadianIdentifier): TNewtonMeterIdentifier;
 begin end;
 
 // main definition [ N/m ] = [ N ] / [ m ]
@@ -9127,6 +9345,18 @@ begin end;
 operator /(const ALeft: TMillimeterIdentifier; const ARight: TSquareSecondIdentifier): TMillimeterPerSquareSecondIdentifier;
 begin end;
 
+// main definition [ N*mm/rad ] = [ N*mm ] / [ rad ]
+operator /(const ALeft: TNewtonMillimeterIdentifier; const ARight: TRadianIdentifier): TNewtonMillimeterPerRadianIdentifier;
+begin end;
+
+// main definition [ N*m/deg ] = [ N*m ] / [ deg ]
+operator /(const ALeft: TNewtonMeterIdentifier; const ARight: TDegreeIdentifier): TNewtonMeterPerDegreeIdentifier;
+begin end;
+
+// main definition [ N*mm/deg ] = [ N*mm ] / [ deg ]
+operator /(const ALeft: TNewtonMillimeterIdentifier; const ARight: TDegreeIdentifier): TNewtonMillimeterPerDegreeIdentifier;
+begin end;
+
 // main definition [ N/dm ] = [ N ] / [ dm ]
 operator /(const ALeft: TNewtonIdentifier; const ARight: TDecimeterIdentifier): TNewtonPerDecimeterIdentifier;
 begin end;
@@ -10063,6 +10293,27 @@ begin
   result.Value := ALeft.Value * ARight.Value;
 end;
 
+// main definition [ J/rad ] = [ J ] / [ rad ]
+operator /(const ALeft: TJoules; const ARight: TRadians): TJoulesPerRadian;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator /(const ALeft: TJoules; const ARight: TJoulesPerRadian): TRadians;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator *(const ALeft: TJoulesPerRadian; const ARight: TRadians): TJoules;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator *(const ALeft: TRadians; const ARight: TJoulesPerRadian): TJoules;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
 // main definition [ J/kg ] = [ J ] / [ kg ]
 operator /(const ALeft: TJoules; const ARight: TKilograms): TJoulesPerKilogram;
 begin
@@ -10124,6 +10375,27 @@ end;
 operator *(const ALeft: TOhms; const ARight: TReciprocalOhms): double;
 begin
   result := ALeft.Value * ARight.Value;
+end;
+
+// main definition [ N*m/rad ] = [ N*m ] / [ rad ]
+operator /(const ALeft: TNewtonsMeter; const ARight: TRadians): TNewtonsMeterPerRadian;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator /(const ALeft: TNewtonsMeter; const ARight: TNewtonsMeterPerRadian): TRadians;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator *(const ALeft: TNewtonsMeterPerRadian; const ARight: TRadians): TNewtonsMeter;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator *(const ALeft: TRadians; const ARight: TNewtonsMeterPerRadian): TNewtonsMeter;
+begin
+  result.Value := ALeft.Value * ARight.Value;
 end;
 
 // main definition [ N/m ] = [ N ] / [ m ]
@@ -11981,6 +12253,16 @@ end;
 
 { Equivalences }
 
+operator := (AQuantity: double): TRadians;
+begin
+  result.Value := AQuantity;
+end;
+
+operator := (AQuantity: TRadians): double;
+begin
+  result := AQuantity.Value;
+end;
+
 operator := (AQuantity: THertz): TRadiansPerSecond;
 begin
   result.Value := AQuantity.Value;
@@ -12037,6 +12319,16 @@ begin
 end;
 
 operator := (AQuantity: TNewtonsMeter): TJoules;
+begin
+  result.Value := AQuantity.Value;
+end;
+
+operator := (AQuantity: TJoulesPerRadian): TNewtonsMeterPerRadian;
+begin
+  result.Value := AQuantity.Value;
+end;
+
+operator := (AQuantity: TNewtonsMeterPerRadian): TJoulesPerRadian;
 begin
   result.Value := AQuantity.Value;
 end;
