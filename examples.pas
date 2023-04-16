@@ -17,9 +17,11 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 }
 
-program Test;
+program examples;
 
-uses ADim;
+uses
+  Windows,
+  ADim;
 
 var
   side1, side2, side3, side4: TMeters;
@@ -101,13 +103,12 @@ var
 
   flowrate: TCubicMetersPerSecond;
 
-
   lambda: TReciprocalKelvins;
   deltadist: TMeters;
   deltatemp: TKelvins;
 
-  heatcapacity: TJoulesPerKilogramPerKelvin;
-  thermalcapacity: TJoulesPerKelvin;
+  specificheatcapacity: TJoulesPerKilogramPerKelvin;
+  heatcapacity: TJoulesPerKelvin;
 
   _m1: TKilograms;
   _m2: TKilograms;
@@ -120,6 +121,8 @@ var
   lambda2: TWattsPerMeterPerKelvin;
 
 begin
+  SetConsoleOutputCP(CP_UTF8);
+
   // area
   side1 := 10*m;
   side2 := 5*m;
@@ -266,7 +269,7 @@ begin
   current   := 5*A;
   potential := power/current;
 
-  writeln('*** Volt (W/A): V = P / i');
+  writeln('*** Volt (W/A): V = power / current');
   writeln('The power is: ', power.ToVerboseString);
   writeln('The current is: ', current.ToVerboseString);
   writeln('The potential is: ', potential.ToVerboseString);
@@ -277,7 +280,7 @@ begin
   resistance := 50*Ohm;
   squarevolt := power*resistance;
 
-  writeln('*** Volt ((W*Ω)^0.5):');
+  writeln('*** Volt ((W*Ω)^0.5): V = square root (power / resistance)');
   writeln('The power is: ', power.ToVerboseString);
   writeln('The resistance is: ', resistance.ToVerboseString);
   writeln('The potential is: ', SquareRoot(squarevolt).ToString);
@@ -677,19 +680,19 @@ begin
   writeln('*** Linear thermal expansion:');
   writeln('The L0 is: ', distance.ToVerboseString);
   writeln('The lambda is: ', lambda.ToVerboseString);
-  writeln('The DT is: ', deltatemp.ToVerboseString);
+  writeln('The dT is: ', deltatemp.ToVerboseString);
   writeln('The DL is: ', deltadist.ToVerboseString);
   writeln;
 
-  // heat transfer
-  mass            := 10*kg;
-  heatcapacity    := 7.5*(J/kg/K);
-  thermalcapacity := mass*heatcapacity;
+  // heat capacity
+  mass                 := 10*kg;
+  specificheatcapacity := 7.5*(J/kg/K);
+  heatcapacity         := mass*specificheatcapacity;
 
   writeln('*** Heat transfer:');
   writeln('The mass is: ', mass.ToVerboseString);
-  writeln('The specific heat capacity is: ', heatcapacity.ToVerboseString);
-  writeln('The thermal capacity is: ', thermalcapacity.ToVerboseString);
+  writeln('The specific heat capacity is: ', specificheatcapacity.ToVerboseString);
+  writeln('The thermal capacity is: ', heatcapacity.ToVerboseString);
   writeln;
 
   // calorimeter
