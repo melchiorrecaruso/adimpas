@@ -828,9 +828,6 @@ type
   TNewtonSecondIdentifier = specialize TQuantityIdentifier<TNewtonSecondUnit>;
   TNewtonsSecond = specialize TQuantity<TNewtonSecondUnit>;
 
-var
-  newtonsecond: TNewtonSecondIdentifier;
-
 { Unit of KilogramSquareMeterPerSecond }
 
 type
@@ -840,6 +837,16 @@ type
   end;
   TKilogramSquareMeterPerSecondIdentifier = specialize TQuantityIdentifier<TKilogramSquareMeterPerSecondUnit>;
   TKilogramsSquareMeterPerSecond = specialize TQuantity<TKilogramSquareMeterPerSecondUnit>;
+
+{ Unit of NewtonMeterSecond }
+
+type
+  TNewtonMeterSecondUnit = class(TUnit)
+    class function Name: string; override;
+    class function Symbol: string; override;
+  end;
+  TNewtonMeterSecondIdentifier = specialize TQuantityIdentifier<TNewtonMeterSecondUnit>;
+  TNewtonsMeterSecond = specialize TQuantity<TNewtonMeterSecondUnit>;
 
 { Unit of PascalSecond }
 
@@ -3114,6 +3121,12 @@ operator /(const {%H-}ALeft: TKilogramSquareMeterPerSecondIdentifier; const {%H-
 operator *(const {%H-}ALeft: TRadianPerSecondIdentifier; const {%H-}ARight: TKilogramSquareMeterIdentifier): TKilogramSquareMeterPerSecondIdentifier; inline;
 operator /(const {%H-}ALeft: TKilogramSquareMeterPerSecondIdentifier; const {%H-}ARight: TRadianPerSecondIdentifier): TKilogramSquareMeterIdentifier; inline;
 
+// main definition [ N*m*s ] = [ N*m ] * [ s ]
+operator *(const {%H-}ALeft: TNewtonMeterIdentifier; const {%H-}ARight: TSecondsIdentifier): TNewtonMeterSecondIdentifier; inline;
+operator /(const {%H-}ALeft: TNewtonMeterSecondIdentifier; const {%H-}ARight: TNewtonMeterIdentifier): TSecondsIdentifier; inline;
+operator *(const {%H-}ALeft: TSecondsIdentifier; const {%H-}ARight: TNewtonMeterIdentifier): TNewtonMeterSecondIdentifier; inline;
+operator /(const {%H-}ALeft: TNewtonMeterSecondIdentifier; const {%H-}ARight: TSecondsIdentifier): TNewtonMeterIdentifier; inline;
+
 // main definition [ Pa*s ] = [ Pa ] * [ s ]
 operator *(const {%H-}ALeft: TPascalIdentifier; const {%H-}ARight: TSecondIdentifier): TPascalSecondIdentifier; inline;
 operator /(const {%H-}ALeft: TPascalSecondIdentifier; const {%H-}ARight: TPascalIdentifier): TSecondIdentifier; inline;
@@ -3996,6 +4009,12 @@ operator /(const ALeft: TKilogramsSquareMeterPerSecond; const ARight: TKilograms
 operator *(const ALeft: TRadiansPerSecond; const ARight: TKilogramsSquareMeter): TKilogramsSquareMeterPerSecond; inline;
 operator /(const ALeft: TKilogramsSquareMeterPerSecond; const ARight: TRadiansPerSecond): TKilogramsSquareMeter; inline;
 
+// main definition [ N*m*s ] = [ N*m ] * [ s ]
+operator *(const ALeft: TNewtonsMeter; const ARight: TSecondss): TNewtonsMeterSecond; inline;
+operator /(const ALeft: TNewtonsMeterSecond; const ARight: TNewtonsMeter): TSecondss; inline;
+operator *(const ALeft: TSecondss; const ARight: TNewtonsMeter): TNewtonsMeterSecond; inline;
+operator /(const ALeft: TNewtonsMeterSecond; const ARight: TSecondss): TNewtonsMeter; inline;
+
 // main definition [ Pa*s ] = [ Pa ] * [ s ]
 operator *(const ALeft: TPascals; const ARight: TSeconds): TPascalsSecond; inline;
 operator /(const ALeft: TPascalsSecond; const ARight: TPascals): TSeconds; inline;
@@ -4451,6 +4470,8 @@ operator := (AQuantity: TJoulesPerRadian): TNewtonsMeterPerRadian; inline;
 operator := (AQuantity: TNewtonsMeterPerRadian): TJoulesPerRadian; inline;
 operator := (AQuantity: TKilogramsMeterPerSecond): TNewtonsSecond; inline;
 operator := (AQuantity: TNewtonsSecond): TKilogramsMeterPerSecond; inline;
+operator := (AQuantity: TKilogramsSquareMeterPerSecond): TNewtonsMeterSecond; inline;
+operator := (AQuantity: TNewtonsMeterSecond): TKilogramsSquareMeterPerSecond; inline;
 
 { Trigonometric functions }
 
@@ -5340,6 +5361,18 @@ end;
 class function TKilogramSquareMeterPerSecondUnit.Name: string;
 begin
   result := 'kilogram square meter per second';
+end;
+
+{ Unit of TNewtonMeterSecondUnit }
+
+class function TNewtonMeterSecondUnit.Symbol: string;
+begin
+  result := 'N·m·s';
+end;
+
+class function TNewtonMeterSecondUnit.Name: string;
+begin
+  result := 'newton meter second';
 end;
 
 { Unit of TPascalSecondUnit }
@@ -8696,6 +8729,19 @@ begin end;
 operator /(const ALeft: TKilogramSquareMeterPerSecondIdentifier; const ARight: TRadianPerSecondIdentifier): TKilogramSquareMeterIdentifier;
 begin end;
 
+// main definition [ N*m*s ] = [ N*m ] * [ s ]
+operator *(const ALeft: TNewtonMeterIdentifier; const ARight: TSecondsIdentifier): TNewtonMeterSecondIdentifier;
+begin end;
+
+operator /(const ALeft: TNewtonMeterSecondIdentifier; const ARight: TNewtonMeterIdentifier): TSecondsIdentifier;
+begin end;
+
+operator *(const ALeft: TSecondsIdentifier; const ARight: TNewtonMeterIdentifier): TNewtonMeterSecondIdentifier;
+begin end;
+
+operator /(const ALeft: TNewtonMeterSecondIdentifier; const ARight: TSecondsIdentifier): TNewtonMeterIdentifier;
+begin end;
+
 // main definition [ Pa*s ] = [ Pa ] * [ s ]
 operator *(const ALeft: TPascalIdentifier; const ARight: TSecondIdentifier): TPascalSecondIdentifier;
 begin end;
@@ -11081,6 +11127,27 @@ begin
   result.Value := ALeft.Value / ARight.Value;
 end;
 
+// main definition [ N*m*s ] = [ N*m ] * [ s ]
+operator *(const ALeft: TNewtonsMeter; const ARight: TSecondss): TNewtonsMeterSecond;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator /(const ALeft: TNewtonsMeterSecond; const ARight: TNewtonsMeter): TSecondss;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator *(const ALeft: TSecondss; const ARight: TNewtonsMeter): TNewtonsMeterSecond;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator /(const ALeft: TNewtonsMeterSecond; const ARight: TSecondss): TNewtonsMeter;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
 // main definition [ Pa*s ] = [ Pa ] * [ s ]
 operator *(const ALeft: TPascals; const ARight: TSeconds): TPascalsSecond;
 begin
@@ -12737,6 +12804,16 @@ begin
 end;
 
 operator := (AQuantity: TNewtonsSecond): TKilogramsMeterPerSecond;
+begin
+  result.Value := AQuantity.Value;
+end;
+
+operator := (AQuantity: TKilogramsSquareMeterPerSecond): TNewtonsMeterSecond;
+begin
+  result.Value := AQuantity.Value;
+end;
+
+operator := (AQuantity: TNewtonsMeterSecond): TKilogramsSquareMeterPerSecond;
 begin
   result.Value := AQuantity.Value;
 end;

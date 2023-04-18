@@ -275,12 +275,22 @@ where
 
 ### Impulse
 
-$J = F·Δt$ ,
+$Δp = F·Δt$ ,
 
 where
 
-- $J$ is impulse, $[N·s]$,
+- $Δp$ is the momentum change, $[kg·m/s]$,
 - $F$ is the applied force, $[N]$, 
+- $Δt$ is time interval, $[s]$.
+
+### Angular impulse
+
+$ΔL = M·Δt$ ,
+
+where
+
+- $ΔL$ is the angular momentum change, $[kg·m^2/s]$,
+- $M$ is the applied torque, $[N·m]$,
 - $Δt$ is time interval, $[s]$.
 
 ### Kinetic energy
@@ -291,12 +301,12 @@ where
 
 - $m$ is the mass of the body, $[kg]$,
 - $v$ is the velocity of the body, $[m/s]$,
-- $I$ is the moment of inertia of the body, $[kg·m2]$,
+- $I$ is the moment of inertia of the body, $[kg·m^2]$,
 - $ω$ is the angular velocity, $[rad/s]$.
 
 ### Linear thermal expansion
 
-$ΔL = L_0·(λ·ΔT$)$ ,
+$ΔL = L_0·(λ·ΔT$) ,
 
 where
 
@@ -319,6 +329,8 @@ where
 $L = I·ω$ ,
 
 where
+
+- $L$ is the angular momentum, $[kg·m^2/s]$,
 - $I$ is the moment of inertia, $[kg·m^2]$,
 - $ω$ is the angular velocity, $[rad/s]$
 
