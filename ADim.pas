@@ -3122,10 +3122,10 @@ operator *(const {%H-}ALeft: TRadianPerSecondIdentifier; const {%H-}ARight: TKil
 operator /(const {%H-}ALeft: TKilogramSquareMeterPerSecondIdentifier; const {%H-}ARight: TRadianPerSecondIdentifier): TKilogramSquareMeterIdentifier; inline;
 
 // main definition [ N*m*s ] = [ N*m ] * [ s ]
-operator *(const {%H-}ALeft: TNewtonMeterIdentifier; const {%H-}ARight: TSecondsIdentifier): TNewtonMeterSecondIdentifier; inline;
-operator /(const {%H-}ALeft: TNewtonMeterSecondIdentifier; const {%H-}ARight: TNewtonMeterIdentifier): TSecondsIdentifier; inline;
-operator *(const {%H-}ALeft: TSecondsIdentifier; const {%H-}ARight: TNewtonMeterIdentifier): TNewtonMeterSecondIdentifier; inline;
-operator /(const {%H-}ALeft: TNewtonMeterSecondIdentifier; const {%H-}ARight: TSecondsIdentifier): TNewtonMeterIdentifier; inline;
+operator *(const {%H-}ALeft: TNewtonMeterIdentifier; const {%H-}ARight: TSecondIdentifier): TNewtonMeterSecondIdentifier; inline;
+operator /(const {%H-}ALeft: TNewtonMeterSecondIdentifier; const {%H-}ARight: TNewtonMeterIdentifier): TSecondIdentifier; inline;
+operator *(const {%H-}ALeft: TSecondIdentifier; const {%H-}ARight: TNewtonMeterIdentifier): TNewtonMeterSecondIdentifier; inline;
+operator /(const {%H-}ALeft: TNewtonMeterSecondIdentifier; const {%H-}ARight: TSecondIdentifier): TNewtonMeterIdentifier; inline;
 
 // main definition [ Pa*s ] = [ Pa ] * [ s ]
 operator *(const {%H-}ALeft: TPascalIdentifier; const {%H-}ARight: TSecondIdentifier): TPascalSecondIdentifier; inline;
@@ -4010,10 +4010,10 @@ operator *(const ALeft: TRadiansPerSecond; const ARight: TKilogramsSquareMeter):
 operator /(const ALeft: TKilogramsSquareMeterPerSecond; const ARight: TRadiansPerSecond): TKilogramsSquareMeter; inline;
 
 // main definition [ N*m*s ] = [ N*m ] * [ s ]
-operator *(const ALeft: TNewtonsMeter; const ARight: TSecondss): TNewtonsMeterSecond; inline;
-operator /(const ALeft: TNewtonsMeterSecond; const ARight: TNewtonsMeter): TSecondss; inline;
-operator *(const ALeft: TSecondss; const ARight: TNewtonsMeter): TNewtonsMeterSecond; inline;
-operator /(const ALeft: TNewtonsMeterSecond; const ARight: TSecondss): TNewtonsMeter; inline;
+operator *(const ALeft: TNewtonsMeter; const ARight: TSeconds): TNewtonsMeterSecond; inline;
+operator /(const ALeft: TNewtonsMeterSecond; const ARight: TNewtonsMeter): TSeconds; inline;
+operator *(const ALeft: TSeconds; const ARight: TNewtonsMeter): TNewtonsMeterSecond; inline;
+operator /(const ALeft: TNewtonsMeterSecond; const ARight: TSeconds): TNewtonsMeter; inline;
 
 // main definition [ Pa*s ] = [ Pa ] * [ s ]
 operator *(const ALeft: TPascals; const ARight: TSeconds): TPascalsSecond; inline;
@@ -8730,16 +8730,16 @@ operator /(const ALeft: TKilogramSquareMeterPerSecondIdentifier; const ARight: T
 begin end;
 
 // main definition [ N*m*s ] = [ N*m ] * [ s ]
-operator *(const ALeft: TNewtonMeterIdentifier; const ARight: TSecondsIdentifier): TNewtonMeterSecondIdentifier;
+operator *(const ALeft: TNewtonMeterIdentifier; const ARight: TSecondIdentifier): TNewtonMeterSecondIdentifier;
 begin end;
 
-operator /(const ALeft: TNewtonMeterSecondIdentifier; const ARight: TNewtonMeterIdentifier): TSecondsIdentifier;
+operator /(const ALeft: TNewtonMeterSecondIdentifier; const ARight: TNewtonMeterIdentifier): TSecondIdentifier;
 begin end;
 
-operator *(const ALeft: TSecondsIdentifier; const ARight: TNewtonMeterIdentifier): TNewtonMeterSecondIdentifier;
+operator *(const ALeft: TSecondIdentifier; const ARight: TNewtonMeterIdentifier): TNewtonMeterSecondIdentifier;
 begin end;
 
-operator /(const ALeft: TNewtonMeterSecondIdentifier; const ARight: TSecondsIdentifier): TNewtonMeterIdentifier;
+operator /(const ALeft: TNewtonMeterSecondIdentifier; const ARight: TSecondIdentifier): TNewtonMeterIdentifier;
 begin end;
 
 // main definition [ Pa*s ] = [ Pa ] * [ s ]
@@ -11128,22 +11128,22 @@ begin
 end;
 
 // main definition [ N*m*s ] = [ N*m ] * [ s ]
-operator *(const ALeft: TNewtonsMeter; const ARight: TSecondss): TNewtonsMeterSecond;
+operator *(const ALeft: TNewtonsMeter; const ARight: TSeconds): TNewtonsMeterSecond;
 begin
   result.Value := ALeft.Value * ARight.Value;
 end;
 
-operator /(const ALeft: TNewtonsMeterSecond; const ARight: TNewtonsMeter): TSecondss;
+operator /(const ALeft: TNewtonsMeterSecond; const ARight: TNewtonsMeter): TSeconds;
 begin
   result.Value := ALeft.Value / ARight.Value;
 end;
 
-operator *(const ALeft: TSecondss; const ARight: TNewtonsMeter): TNewtonsMeterSecond;
+operator *(const ALeft: TSeconds; const ARight: TNewtonsMeter): TNewtonsMeterSecond;
 begin
   result.Value := ALeft.Value * ARight.Value;
 end;
 
-operator /(const ALeft: TNewtonsMeterSecond; const ARight: TSecondss): TNewtonsMeter;
+operator /(const ALeft: TNewtonsMeterSecond; const ARight: TSeconds): TNewtonsMeter;
 begin
   result.Value := ALeft.Value / ARight.Value;
 end;
