@@ -28,8 +28,10 @@ Another unit for type checking of dimensioned quantities at compile time in Free
 - kelvin per meter $[K/m]$
 - kilogram $[kg]$
 - kilogram kelvin $[kg·K]$
+- kilogram meter $[kg·m]$
 - kilogram meter per second $[kg·m/s]$
 - kilogram per cubic meter $[kg/m^3]$
+- kilogram square meter $[kg·m2]$
 - lumen $[lm]$
 - meter $[m]$
 - meter kelvin $[m·K]$
@@ -112,6 +114,7 @@ Another unit for type checking of dimensioned quantities at compile time in Free
 $F_a = ρ·g·V$ ,
 
 where
+
 - $F_a$ denotes the buoyant force applied onto the submerged object, $[N]$,
 - $ρ$ is the the density of the fluid, $[kg/m^3]$,
 - $g$ is the acceleration due to gravity, $[m/s^2]$,
@@ -122,6 +125,7 @@ where
 $p + ρ·g·h + 1/2·ρ·v² = costant$ ,
 
 where 
+
 - $p$ is the pressure at the chosen point, $[Pa]$,
 - $ρ$ is the density of the fluid at all points in the fluid, $[kg/m^3]$,
 - $g$ is the acceleration due to gravity, $[m/s^2]$,
@@ -133,6 +137,7 @@ where
 $m_1·c_1·(T_e-T_1) = m_2·c_2·(T_2-T_e)$ ,
 
 where
+
 - $m_1$ is the mass of body 1, $[kg]$,
 - $m_2$ is the mass of body 2, $[kg]$,
 - $c_1$ is specific heat capacity of body 1, $[J/(kg·K)]$,
@@ -146,6 +151,7 @@ where
 $q = V/t=A·v$ ,
 
 where
+
 - $q$ is the volumetric flow rate, $[m^3/s]$,
 - $V$ is then volume of fluid, $[m^3]$,
 - $t$ is the unit of time, $[s]$,
@@ -157,6 +163,7 @@ where
 $F = 1/2·(ρ·v^2)·C_d·A$ ,
 
 where 
+
 - $ρ$ is the the density of the fluid, $[kg/m^3]$,
 - $v$ is the speed of the object relative to the fluid, $[m/s]$,
 - $A$ is the cross sectional area, $[m^2]$,
@@ -167,6 +174,7 @@ where
 $σ = 1/ρ$ ,  
 
 where 
+
 - $ρ$ is the electrical resistivity, $[Ω·m]$.
 
 ### Electrical resistivity
@@ -174,6 +182,7 @@ where
 $ρ = R·(A/L)$ ,
 
 where 
+
 - $R$ is the electrical resistance, $[Ω]$,
 - $L$ is the length of the specimen, $[m]$,
 - $A$ is the cross-sectional area of the specimen, $[m^2]$.
@@ -183,6 +192,7 @@ where
 $F_e = k_e·(q_1·q_2)/r^2$ ,
 
 where 
+
 - $k_e$ is the Coulomb constant, $k_e ≈ 8.988×10^9$ $[N⋅m^2/C^2]$,
 - $q_1$ is the charge 1, $[C]$,
 - $q_2$ is the charge 2, $[C]$,
@@ -193,6 +203,7 @@ where
 $U_e = k_e·(q_1·q_2)/r$ ,
 
 where
+
 - $k_e$ is the Coulomb constant, $k_e ≈ 8.988×10^9$ $[N⋅m^2/C^2]$,
 - $q_1$ is the charge 1, $[C]$,
 - $q_2$ is the charge 2, $[C]$,
@@ -203,6 +214,7 @@ where
 $U_e = 1/2·k_e·Δx^2$ ,
 
 where
+
 - $k_e$ is elastic costant, $[N/m]$,
 - $x$ is the defomation, $[m]$.
 
@@ -211,6 +223,7 @@ where
 $U_g = G·[(m_1·m_2)/r]$ ,
 
 where
+
 - $m_1$ is the mass of the particle 1, $[kg]$,
 - $m_2$ is the mass of the particle 2, $[kg]$,
 - $G$ is the gravitational constant, $[m^3/(kg⋅s^2)]$,
@@ -221,6 +234,7 @@ where
 $Q = (m·c)·ΔT$ ,
 
 where 
+
 - $m$ is the mass of body, $[kg]$,
 - $c$ is the specific heat capacity, $[J/(kg·K)]$,
 - $ΔT$ is the change in temperature, $[K]$.
@@ -230,6 +244,7 @@ where
 $Q̇ = [k·(ΔT/L)]·A$ ,
 
 where 
+
 - $k$ is the material's conductivity, $[W/(m·K)]$,
 - $ΔT$ is the temperature difference between the ends, $[K]$,
 - $L$  is the distance between the ends, $[m]$,
@@ -240,6 +255,7 @@ where
 $Q̇ = [h·(T-T_f)]·A$ , 
 
 where
+
 - $h$ is the heat transfer coefficient, $[W/(m^2·K)]$,
 - $T$ T is the object's surface temperature, $[K]$,
 - $T_f$ T is the fluid temperature, $[K]$,
@@ -250,6 +266,7 @@ where
 $p·V = (n·R)·T$ , 
 
 where
+
 - $p$ is the pressure, $[Pa]$,
 - $V$ is the volume, $[m^3]$,
 - $n$ is the amount of substance, $[mol]$,
@@ -261,23 +278,28 @@ where
 $J = F·Δt$ ,
 
 where
+
 - $J$ is impulse, $[N·s]$,
 - $F$ is the applied force, $[N]$, 
 - $Δt$ is time interval, $[s]$.
 
 ### Kinetic energy
 
-$E_c = 1/2·m·v^2$ ,
+$E_c = 1/2·m·v^2 + 1/2·I·ω^2$ ,
 
 where
+
 - $m$ is the mass of the body, $[kg]$,
-- $v$ is the velocity of the body, $[m/s]$.
+- $v$ is the velocity of the body, $[m/s]$,
+- $I$ is the moment of inertia of the body, $[kg·m2]$,
+- $ω$ is the angular velocity, $[rad/s]$.
 
 ### Linear thermal expansion
 
 $ΔL = L_0·(λ·ΔT$)$ ,
 
 where
+
 - $L_0$ is the initial length, $[m]$, 
 - $λ$ is the lienar coefficient of thermal expansion, $[1/K]$, 
 - $ΔT$ is the difference of the temperature between the two recorded strains, $[K]$.
@@ -287,15 +309,25 @@ where
 $p = m·v$ ,
 
 where
+
 - $p$ is the momentum, $[kg·m/s]$,
 - $m$ is the mass of the body, $[kg]$,
 - $v$ is the speed of the body, $[m/s]$.
+
+### Angular momentum
+
+$L = I·ω$ ,
+
+where
+- $I$ is the moment of inertia, $[kg·m^2]$,
+- $ω$ is the angular velocity, $[rad/s]$
 
 ### Stevino's law
 
 $p = p_0 + ρ·g·h$ ,
 
 where
+
 - $p_0$ is the initial pressure, $[Pa]$,
 - $ρ$ is the density of the flow, $[kg/m^3]$,
 - $g$ is the acceleration due to gravity, $[m/s^2]$,
@@ -306,6 +338,7 @@ where
 $Q = (ε·σ·T^4)·A$ ,
 
 where 
+
 - $ε$ is the surcafe emissivity factor, a dimensionless number,
 - $σ$ is the Stefan–Boltzmann constant, $[W/(m^2·K^4)]$,
 - $T$ is the absolute temperature of the body, $[K]$, 
@@ -316,6 +349,7 @@ where
 $F_g = G·[(m_1·m_2)/r^2]$ ,
 
 where 
+
 - $G$ is the gravitational constant, $[m^3/(kg⋅s^2)]$,
 - $m_1$ is the mass of the particle 1, $[kg]$,
 - $m_2$ is the mass of the particle 2, $[kg]$,
@@ -326,6 +360,7 @@ where
 $ε_0 = 1/(4⋅π⋅k_e)$ ,
 
 where
+
 - $k_e$ is the Coulomb constant, $k_e ≈ 8.988×10^9$ $[N⋅m^2/C^2]$.
 
 ### Viscous friction (laminar flow)
@@ -333,6 +368,7 @@ where
 $F/A = μ·(u/y)$ ,
 
 where 
+
 - $μ$ is the dynamic viscosity of the fluid, $[Pa⋅s]$,
 - $u/y$ is the rate of shear deformation or shear velocity, $[1/s]$,
 - $A$ is the area of each plate, $[m^2]$.
@@ -342,6 +378,7 @@ where
 $ν = μ/ρ$ ,
 
 where
+
 - $μ$ is the dynamic viscosity of the fluid, $[Pa⋅s]$,
 - $ρ$ is the the density of the fluid, $[kg/m^3]$.
 
