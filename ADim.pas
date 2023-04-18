@@ -218,29 +218,6 @@ type
 var
   kg2: TSquareKilogramIdentifier;
 
-{ Unit of Hertz }
-
-type
-  THertzUnit = class(TUnit)
-    class function Name: string; override;
-    class function Symbol: string; override;
-  end;
-  THertzIdentifier = specialize TQuantityIdentifier<THertzUnit>;
-  THertz = specialize TQuantity<THertzUnit>;
-
-var
-  Hz: THertzIdentifier;
-
-{ Unit of SquareHertz }
-
-type
-  TSquareHertzUnit = class(TUnit)
-    class function Name: string; override;
-    class function Symbol: string; override;
-  end;
-  TSquareHertzIdentifier = specialize TQuantityIdentifier<TSquareHertzUnit>;
-  TSquareHertz = specialize TQuantity<TSquareHertzUnit>;
-
 { Unit of SquareMeter }
 
 type
@@ -279,16 +256,6 @@ type
 
 var
   m4: TQuarticMeterIdentifier;
-
-{ Unit of ReciprocalMeter }
-
-type
-  TReciprocalMeterUnit = class(TUnit)
-    class function Name: string; override;
-    class function Symbol: string; override;
-  end;
-  TReciprocalMeterIdentifier = specialize TQuantityIdentifier<TReciprocalMeterUnit>;
-  TReciprocalMeters = specialize TQuantity<TReciprocalMeterUnit>;
 
 { Unit of SquareSecond }
 
@@ -355,6 +322,16 @@ type
 var
   K4: TQuarticKelvinIdentifier;
 
+{ Unit of ReciprocalMeter }
+
+type
+  TReciprocalMeterUnit = class(TUnit)
+    class function Name: string; override;
+    class function Symbol: string; override;
+  end;
+  TReciprocalMeterIdentifier = specialize TQuantityIdentifier<TReciprocalMeterUnit>;
+  TReciprocalMeters = specialize TQuantity<TReciprocalMeterUnit>;
+
 { Unit of ReciprocalKelvin }
 
 type
@@ -364,6 +341,29 @@ type
   end;
   TReciprocalKelvinIdentifier = specialize TQuantityIdentifier<TReciprocalKelvinUnit>;
   TReciprocalKelvins = specialize TQuantity<TReciprocalKelvinUnit>;
+
+{ Unit of Hertz }
+
+type
+  THertzUnit = class(TUnit)
+    class function Name: string; override;
+    class function Symbol: string; override;
+  end;
+  THertzIdentifier = specialize TQuantityIdentifier<THertzUnit>;
+  THertz = specialize TQuantity<THertzUnit>;
+
+var
+  Hz: THertzIdentifier;
+
+{ Unit of SquareHertz }
+
+type
+  TSquareHertzUnit = class(TUnit)
+    class function Name: string; override;
+    class function Symbol: string; override;
+  end;
+  TSquareHertzIdentifier = specialize TQuantityIdentifier<TSquareHertzUnit>;
+  TSquareHertz = specialize TQuantity<TSquareHertzUnit>;
 
 { Unit of RadianPerSecond }
 
@@ -665,6 +665,26 @@ type
 var
   kat: TKatalIdentifier;
 
+{ Unit of SquareMeterPerSquareSecond }
+
+type
+  TSquareMeterPerSquareSecondUnit = class(TUnit)
+    class function Name: string; override;
+    class function Symbol: string; override;
+  end;
+  TSquareMeterPerSquareSecondIdentifier = specialize TQuantityIdentifier<TSquareMeterPerSquareSecondUnit>;
+  TSquareMetersPerSquareSecond = specialize TQuantity<TSquareMeterPerSquareSecondUnit>;
+
+{ Unit of SquareRadianPerSquareSecond }
+
+type
+  TSquareRadianPerSquareSecondUnit = class(TUnit)
+    class function Name: string; override;
+    class function Symbol: string; override;
+  end;
+  TSquareRadianPerSquareSecondIdentifier = specialize TQuantityIdentifier<TSquareRadianPerSquareSecondUnit>;
+  TSquareRadiansPerSquareSecond = specialize TQuantity<TSquareRadianPerSquareSecondUnit>;
+
 { Unit of KilogramMeter }
 
 type
@@ -694,26 +714,6 @@ type
   end;
   TKilogramPerCubicMeterIdentifier = specialize TQuantityIdentifier<TKilogramPerCubicMeterUnit>;
   TKilogramsPerCubicMeter = specialize TQuantity<TKilogramPerCubicMeterUnit>;
-
-{ Unit of SquareMeterPerSquareSecond }
-
-type
-  TSquareMeterPerSquareSecondUnit = class(TUnit)
-    class function Name: string; override;
-    class function Symbol: string; override;
-  end;
-  TSquareMeterPerSquareSecondIdentifier = specialize TQuantityIdentifier<TSquareMeterPerSquareSecondUnit>;
-  TSquareMetersPerSquareSecond = specialize TQuantity<TSquareMeterPerSquareSecondUnit>;
-
-{ Unit of SquareRadianPerSquareSecond }
-
-type
-  TSquareRadianPerSquareSecondUnit = class(TUnit)
-    class function Name: string; override;
-    class function Symbol: string; override;
-  end;
-  TSquareRadianPerSquareSecondIdentifier = specialize TQuantityIdentifier<TSquareRadianPerSquareSecondUnit>;
-  TSquareRadiansPerSquareSecond = specialize TQuantity<TSquareRadianPerSquareSecondUnit>;
 
 { Unit of ReciprocalCoulomb }
 
@@ -1682,45 +1682,6 @@ type
 var
   deg: TDegreeIdentifier;
 
-{ Unit of Gigahertz }
-
-type
-  TGigahertzUnit = class(TFactoredUnit)
-    class function Name: string; override;
-    class function Symbol: string; override;
-    class function Factor: double; override;
-  end;
-  TGigahertzIdentifier = specialize TFactoredQuantityIdentifier<THertzUnit, TGigahertzUnit>;
-
-var
-  GHz: TGigahertzIdentifier;
-
-{ Unit of Megahertz }
-
-type
-  TMegahertzUnit = class(TFactoredUnit)
-    class function Name: string; override;
-    class function Symbol: string; override;
-    class function Factor: double; override;
-  end;
-  TMegahertzIdentifier = specialize TFactoredQuantityIdentifier<THertzUnit, TMegahertzUnit>;
-
-var
-  MHz: TMegahertzIdentifier;
-
-{ Unit of Kilohertz }
-
-type
-  TKilohertzUnit = class(TFactoredUnit)
-    class function Name: string; override;
-    class function Symbol: string; override;
-    class function Factor: double; override;
-  end;
-  TKilohertzIdentifier = specialize TFactoredQuantityIdentifier<THertzUnit, TKilohertzUnit>;
-
-var
-  kHz: TKilohertzIdentifier;
-
 { Unit of SquareKilometer }
 
 type
@@ -1967,6 +1928,45 @@ type
 
 var
   mA2: TSquareMilliampereIdentifier;
+
+{ Unit of Gigahertz }
+
+type
+  TGigahertzUnit = class(TFactoredUnit)
+    class function Name: string; override;
+    class function Symbol: string; override;
+    class function Factor: double; override;
+  end;
+  TGigahertzIdentifier = specialize TFactoredQuantityIdentifier<THertzUnit, TGigahertzUnit>;
+
+var
+  GHz: TGigahertzIdentifier;
+
+{ Unit of Megahertz }
+
+type
+  TMegahertzUnit = class(TFactoredUnit)
+    class function Name: string; override;
+    class function Symbol: string; override;
+    class function Factor: double; override;
+  end;
+  TMegahertzIdentifier = specialize TFactoredQuantityIdentifier<THertzUnit, TMegahertzUnit>;
+
+var
+  MHz: TMegahertzIdentifier;
+
+{ Unit of Kilohertz }
+
+type
+  TKilohertzUnit = class(TFactoredUnit)
+    class function Name: string; override;
+    class function Symbol: string; override;
+    class function Factor: double; override;
+  end;
+  TKilohertzIdentifier = specialize TFactoredQuantityIdentifier<THertzUnit, TKilohertzUnit>;
+
+var
+  kHz: TKilohertzIdentifier;
 
 { Unit of KilometerPerHour }
 
@@ -2698,16 +2698,6 @@ operator /(const {%H-}ALeft: TSteradianIdentifier; const {%H-}ARight: TRadianIde
 operator *(const {%H-}ALeft: TKilogramIdentifier; const {%H-}ARight: TKilogramIdentifier): TSquareKilogramIdentifier; inline;
 operator /(const {%H-}ALeft: TSquareKilogramIdentifier; const {%H-}ARight: TKilogramIdentifier): TKilogramIdentifier; inline;
 
-// main definition [ Hz ]
-operator /(const {%H-}ALeft: double; const {%H-}ARight: TSecondIdentifier): THertzIdentifier; inline;
-operator /(const {%H-}ALeft: double; const {%H-}ARight: THertzIdentifier): TSecondIdentifier; inline;
-operator *(const {%H-}ALeft: THertzIdentifier; const {%H-}ARight: TSecondIdentifier): double; inline;
-operator *(const {%H-}ALeft: TSecondIdentifier; const {%H-}ARight: THertzIdentifier): double; inline;
-
-// main definition [ Hz2 ]
-operator *(const {%H-}ALeft: THertzIdentifier; const {%H-}ARight: THertzIdentifier): TSquareHertzIdentifier; inline;
-operator /(const {%H-}ALeft: TSquareHertzIdentifier; const {%H-}ARight: THertzIdentifier): THertzIdentifier; inline;
-
 // main definition [ m2 ]
 operator *(const {%H-}ALeft: TMeterIdentifier; const {%H-}ARight: TMeterIdentifier): TSquareMeterIdentifier; inline;
 operator /(const {%H-}ALeft: TSquareMeterIdentifier; const {%H-}ARight: TMeterIdentifier): TMeterIdentifier; inline;
@@ -2727,18 +2717,6 @@ operator /(const {%H-}ALeft: TQuarticMeterIdentifier; const {%H-}ARight: TMeterI
 //
 operator *(const {%H-}ALeft: TSquareMeterIdentifier; const {%H-}ARight: TSquareMeterIdentifier): TQuarticMeterIdentifier; inline;
 operator /(const {%H-}ALeft: TQuarticMeterIdentifier; const {%H-}ARight: TSquareMeterIdentifier): TSquareMeterIdentifier; inline;
-
-// main definition [ 1/m ] = 1 / [ m ]
-operator /(const {%H-}ALeft: double; const {%H-}ARight: TMeterIdentifier): TReciprocalMeterIdentifier; inline;
-operator /(const {%H-}ALeft: double; const {%H-}ARight: TReciprocalMeterIdentifier): TMeterIdentifier; inline;
-operator *(const {%H-}ALeft: TReciprocalMeterIdentifier; const {%H-}ARight: TMeterIdentifier): double; inline;
-operator *(const {%H-}ALeft: TMeterIdentifier; const {%H-}ARight: TReciprocalMeterIdentifier): double; inline;
-
-// alternative definition [ 1/m ] = [ m ] / [ m2 ]
-operator /(const {%H-}ALeft: TMeterIdentifier; const {%H-}ARight: TSquareMeterIdentifier): TReciprocalMeterIdentifier; inline;
-operator /(const {%H-}ALeft: TMeterIdentifier; const {%H-}ARight: TReciprocalMeterIdentifier): TSquareMeterIdentifier; inline;
-operator *(const {%H-}ALeft: TReciprocalMeterIdentifier; const {%H-}ARight: TSquareMeterIdentifier): TMeterIdentifier; inline;
-operator *(const {%H-}ALeft: TSquareMeterIdentifier; const {%H-}ARight: TReciprocalMeterIdentifier): TMeterIdentifier; inline;
 
 // main definition [ s2 ] = [ s ] * [ s ]
 operator *(const {%H-}ALeft: TSecondIdentifier; const {%H-}ARight: TSecondIdentifier): TSquareSecondIdentifier; inline;
@@ -2768,11 +2746,33 @@ operator /(const {%H-}ALeft: TQuarticKelvinIdentifier; const {%H-}ARight: TKelvi
 operator *(const {%H-}ALeft: TSquareKelvinIdentifier; const {%H-}ARight: TSquareKelvinIdentifier): TQuarticKelvinIdentifier; inline;
 operator /(const {%H-}ALeft: TQuarticKelvinIdentifier; const {%H-}ARight: TSquareKelvinIdentifier): TSquareKelvinIdentifier; inline;
 
+// main definition [ 1/m ] = 1 / [ m ]
+operator /(const {%H-}ALeft: double; const {%H-}ARight: TMeterIdentifier): TReciprocalMeterIdentifier; inline;
+operator /(const {%H-}ALeft: double; const {%H-}ARight: TReciprocalMeterIdentifier): TMeterIdentifier; inline;
+operator *(const {%H-}ALeft: TReciprocalMeterIdentifier; const {%H-}ARight: TMeterIdentifier): double; inline;
+operator *(const {%H-}ALeft: TMeterIdentifier; const {%H-}ARight: TReciprocalMeterIdentifier): double; inline;
+
+// alternative definition [ 1/m ] = [ m ] / [ m2 ]
+operator /(const {%H-}ALeft: TMeterIdentifier; const {%H-}ARight: TSquareMeterIdentifier): TReciprocalMeterIdentifier; inline;
+operator /(const {%H-}ALeft: TMeterIdentifier; const {%H-}ARight: TReciprocalMeterIdentifier): TSquareMeterIdentifier; inline;
+operator *(const {%H-}ALeft: TReciprocalMeterIdentifier; const {%H-}ARight: TSquareMeterIdentifier): TMeterIdentifier; inline;
+operator *(const {%H-}ALeft: TSquareMeterIdentifier; const {%H-}ARight: TReciprocalMeterIdentifier): TMeterIdentifier; inline;
+
 // main definition [ 1/K ] = 1 / [ K ]
 operator /(const {%H-}ALeft: double; const {%H-}ARight: TKelvinIdentifier): TReciprocalKelvinIdentifier; inline;
 operator /(const {%H-}ALeft: double; const {%H-}ARight: TReciprocalKelvinIdentifier): TKelvinIdentifier; inline;
 operator *(const {%H-}ALeft: TReciprocalKelvinIdentifier; const {%H-}ARight: TKelvinIdentifier): double; inline;
 operator *(const {%H-}ALeft: TKelvinIdentifier; const {%H-}ARight: TReciprocalKelvinIdentifier): double; inline;
+
+// main definition [ Hz ]
+operator /(const {%H-}ALeft: double; const {%H-}ARight: TSecondIdentifier): THertzIdentifier; inline;
+operator /(const {%H-}ALeft: double; const {%H-}ARight: THertzIdentifier): TSecondIdentifier; inline;
+operator *(const {%H-}ALeft: THertzIdentifier; const {%H-}ARight: TSecondIdentifier): double; inline;
+operator *(const {%H-}ALeft: TSecondIdentifier; const {%H-}ARight: THertzIdentifier): double; inline;
+
+// main definition [ Hz2 ]
+operator *(const {%H-}ALeft: THertzIdentifier; const {%H-}ARight: THertzIdentifier): TSquareHertzIdentifier; inline;
+operator /(const {%H-}ALeft: TSquareHertzIdentifier; const {%H-}ARight: THertzIdentifier): THertzIdentifier; inline;
 
 // main definition [ rad/s ] = [ rad ] / [ s ]
 operator /(const {%H-}ALeft: TRadianIdentifier; const {%H-}ARight: TSecondIdentifier): TRadianPerSecondIdentifier; inline;
@@ -2956,6 +2956,32 @@ operator /(const {%H-}ALeft: TMoleIdentifier; const {%H-}ARight: TKatalIdentifie
 operator *(const {%H-}ALeft: TKatalIdentifier; const {%H-}ARight: TSecondIdentifier): TMoleIdentifier; inline;
 operator *(const {%H-}ALeft: TSecondIdentifier; const {%H-}ARight: TKatalIdentifier): TMoleIdentifier; inline;
 
+// main definition [ m2/s2 ] = [ m2 ] / [ s2 ]
+operator /(const {%H-}ALeft: TSquareMeterIdentifier; const {%H-}ARight: TSquareSecondIdentifier): TSquareMeterPerSquareSecondIdentifier; inline;
+operator /(const {%H-}ALeft: TSquareMeterIdentifier; const {%H-}ARight: TSquareMeterPerSquareSecondIdentifier): TSquareSecondIdentifier; inline;
+operator *(const {%H-}ALeft: TSquareMeterPerSquareSecondIdentifier; const {%H-}ARight: TSquareSecondIdentifier): TSquareMeterIdentifier; inline;
+operator *(const {%H-}ALeft: TSquareSecondIdentifier; const {%H-}ARight: TSquareMeterPerSquareSecondIdentifier): TSquareMeterIdentifier; inline;
+
+// alternative definition [ m2/s2 ] = [ m/s ] / [ m/s ]
+operator *(const {%H-}ALeft: TMeterPerSecondIdentifier; const {%H-}ARight: TMeterPerSecondIdentifier): TSquareMeterPerSquareSecondIdentifier; inline;
+operator /(const {%H-}ALeft: TSquareMeterPerSquareSecondIdentifier; const {%H-}ARight: TMeterPerSecondIdentifier): TMeterPerSecondIdentifier; inline;
+
+// alternative definition [ m2/s2 ] = [ m/s2 ] * [ m ]
+operator *(const {%H-}ALeft: TMeterPerSquareSecondIdentifier; const {%H-}ARight: TMeterIdentifier): TSquareMeterPerSquareSecondIdentifier; inline;
+operator /(const {%H-}ALeft: TSquareMeterPerSquareSecondIdentifier; const {%H-}ARight: TMeterPerSquareSecondIdentifier): TMeterIdentifier; inline;
+operator *(const {%H-}ALeft: TMeterIdentifier; const {%H-}ARight: TMeterPerSquareSecondIdentifier): TSquareMeterPerSquareSecondIdentifier; inline;
+operator /(const {%H-}ALeft: TSquareMeterPerSquareSecondIdentifier; const {%H-}ARight: TMeterIdentifier): TMeterPerSquareSecondIdentifier; inline;
+
+// main definition [ rad2/s2 ] = [ rad/s ] * [ rad/s ]
+operator *(const {%H-}ALeft: TRadianPerSecondIdentifier; const {%H-}ARight: TRadianPerSecondIdentifier): TSquareRadianPerSquareSecondIdentifier; inline;
+operator /(const {%H-}ALeft: TSquareRadianPerSquareSecondIdentifier; const {%H-}ARight: TRadianPerSecondIdentifier): TRadianPerSecondIdentifier; inline;
+
+// alternative definition [ rad2/s2 ] = [ m/s2 ] / [ m ]
+operator /(const {%H-}ALeft: TMeterPerSquareSecondIdentifier; const {%H-}ARight: TMeterIdentifier): TSquareRadianPerSquareSecondIdentifier; inline;
+operator /(const {%H-}ALeft: TMeterPerSquareSecondIdentifier; const {%H-}ARight: TSquareRadianPerSquareSecondIdentifier): TMeterIdentifier; inline;
+operator *(const {%H-}ALeft: TSquareRadianPerSquareSecondIdentifier; const {%H-}ARight: TMeterIdentifier): TMeterPerSquareSecondIdentifier; inline;
+operator *(const {%H-}ALeft: TMeterIdentifier; const {%H-}ARight: TSquareRadianPerSquareSecondIdentifier): TMeterPerSquareSecondIdentifier; inline;
+
 // main definition [ kg*m ] = [ kg ] * [ m ]
 operator *(const {%H-}ALeft: TKilogramIdentifier; const {%H-}ARight: TMeterIdentifier): TKilogramMeterIdentifier; inline;
 operator /(const {%H-}ALeft: TKilogramMeterIdentifier; const {%H-}ARight: TKilogramIdentifier): TMeterIdentifier; inline;
@@ -2974,37 +3000,17 @@ operator /(const {%H-}ALeft: TKilogramSquareMeterIdentifier; const {%H-}ARight: 
 operator *(const {%H-}ALeft: TMeterIdentifier; const {%H-}ARight: TKilogramMeterIdentifier): TKilogramSquareMeterIdentifier; inline;
 operator /(const {%H-}ALeft: TKilogramSquareMeterIdentifier; const {%H-}ARight: TMeterIdentifier): TKilogramMeterIdentifier; inline;
 
+// alternative definition [ kg*m2 ] = [ J ] / [ rad2/s2 ]
+operator /(const {%H-}ALeft: TJouleIdentifier; const {%H-}ARight: TSquareRadianPerSquareSecondIdentifier): TKilogramSquareMeterIdentifier; inline;
+operator /(const {%H-}ALeft: TJouleIdentifier; const {%H-}ARight: TKilogramSquareMeterIdentifier): TSquareRadianPerSquareSecondIdentifier; inline;
+operator *(const {%H-}ALeft: TKilogramSquareMeterIdentifier; const {%H-}ARight: TSquareRadianPerSquareSecondIdentifier): TJouleIdentifier; inline;
+operator *(const {%H-}ALeft: TSquareRadianPerSquareSecondIdentifier; const {%H-}ARight: TKilogramSquareMeterIdentifier): TJouleIdentifier; inline;
+
 // main definition [ kg/m3 ] = [ kg ] / [ m3 ]
 operator /(const {%H-}ALeft: TKilogramIdentifier; const {%H-}ARight: TCubicMeterIdentifier): TKilogramPerCubicMeterIdentifier; inline;
 operator /(const {%H-}ALeft: TKilogramIdentifier; const {%H-}ARight: TKilogramPerCubicMeterIdentifier): TCubicMeterIdentifier; inline;
 operator *(const {%H-}ALeft: TKilogramPerCubicMeterIdentifier; const {%H-}ARight: TCubicMeterIdentifier): TKilogramIdentifier; inline;
 operator *(const {%H-}ALeft: TCubicMeterIdentifier; const {%H-}ARight: TKilogramPerCubicMeterIdentifier): TKilogramIdentifier; inline;
-
-// main definition [ m2/s2 ] = [ m2 ] / [ s2 ]
-operator /(const {%H-}ALeft: TSquareMeterIdentifier; const {%H-}ARight: TSquareSecondIdentifier): TSquareMeterPerSquareSecondIdentifier; inline;
-operator /(const {%H-}ALeft: TSquareMeterIdentifier; const {%H-}ARight: TSquareMeterPerSquareSecondIdentifier): TSquareSecondIdentifier; inline;
-operator *(const {%H-}ALeft: TSquareMeterPerSquareSecondIdentifier; const {%H-}ARight: TSquareSecondIdentifier): TSquareMeterIdentifier; inline;
-operator *(const {%H-}ALeft: TSquareSecondIdentifier; const {%H-}ARight: TSquareMeterPerSquareSecondIdentifier): TSquareMeterIdentifier; inline;
-
-// alternative definition [ m2/s2 ] = [ m/s ] / [ m/s ]
-operator *(const {%H-}ALeft: TMeterPerSecondIdentifier; const {%H-}ARight: TMeterPerSecondIdentifier): TSquareMeterPerSquareSecondIdentifier; inline;
-operator /(const {%H-}ALeft: TSquareMeterPerSquareSecondIdentifier; const {%H-}ARight: TMeterPerSecondIdentifier): TMeterPerSecondIdentifier; inline;
-
-// alternative definition [ m2/s2 ] = [ m/s2 ] * [ m ]
-operator *(const {%H-}ALeft: TMeterPerSquareSecondIdentifier; const {%H-}ARight: TMeterIdentifier): TSquareMeterPerSquareSecondIdentifier; inline;
-operator /(const {%H-}ALeft: TSquareMeterPerSquareSecondIdentifier; const {%H-}ARight: TMeterPerSquareSecondIdentifier): TMeterIdentifier; inline;
-operator *(const {%H-}ALeft: TMeterIdentifier; const {%H-}ARight: TMeterPerSquareSecondIdentifier): TSquareMeterPerSquareSecondIdentifier; inline;
-operator /(const {%H-}ALeft: TSquareMeterPerSquareSecondIdentifier; const {%H-}ARight: TMeterIdentifier): TMeterPerSquareSecondIdentifier; inline;
-
-// alternative definition [ rad2/s2 ] = [ m/s2 ] / [ m ]
-operator /(const {%H-}ALeft: TMeterPerSquareSecondIdentifier; const {%H-}ARight: TMeterIdentifier): TSquareRadianPerSquareSecondIdentifier; inline;
-operator /(const {%H-}ALeft: TMeterPerSquareSecondIdentifier; const {%H-}ARight: TSquareRadianPerSquareSecondIdentifier): TMeterIdentifier; inline;
-operator *(const {%H-}ALeft: TSquareRadianPerSquareSecondIdentifier; const {%H-}ARight: TMeterIdentifier): TMeterPerSquareSecondIdentifier; inline;
-operator *(const {%H-}ALeft: TMeterIdentifier; const {%H-}ARight: TSquareRadianPerSquareSecondIdentifier): TMeterPerSquareSecondIdentifier; inline;
-
-// main definition [ rad2/s2 ] = [ rad/s ] * [ rad/s ]
-operator *(const {%H-}ALeft: TRadianPerSecondIdentifier; const {%H-}ARight: TRadianPerSecondIdentifier): TSquareRadianPerSquareSecondIdentifier; inline;
-operator /(const {%H-}ALeft: TSquareRadianPerSquareSecondIdentifier; const {%H-}ARight: TRadianPerSecondIdentifier): TRadianPerSecondIdentifier; inline;
 
 // main definition [ 1/C ] = 1 / [ C ]
 operator /(const {%H-}ALeft: double; const {%H-}ARight: TCoulombIdentifier): TReciprocalCoulombIdentifier; inline;
@@ -3096,7 +3102,7 @@ operator /(const {%H-}ALeft: TNewtonSecondIdentifier; const {%H-}ARight: TNewton
 operator *(const {%H-}ALeft: TSecondIdentifier; const {%H-}ARight: TNewtonIdentifier): TNewtonSecondIdentifier; inline;
 operator /(const {%H-}ALeft: TNewtonSecondIdentifier; const {%H-}ARight: TSecondIdentifier): TNewtonIdentifier; inline;
 
-// main definition [ kg*m2/s ] = [ kg*m/2 ] * [ m ]
+// main definition [ kg*m2/s ] = [ kg*m/s ] * [ m ]
 operator *(const {%H-}ALeft: TKilogramMeterPerSecondIdentifier; const {%H-}ARight: TMeterIdentifier): TKilogramSquareMeterPerSecondIdentifier; inline;
 operator /(const {%H-}ALeft: TKilogramSquareMeterPerSecondIdentifier; const {%H-}ARight: TKilogramMeterPerSecondIdentifier): TMeterIdentifier; inline;
 operator *(const {%H-}ALeft: TMeterIdentifier; const {%H-}ARight: TKilogramMeterPerSecondIdentifier): TKilogramSquareMeterPerSecondIdentifier; inline;
@@ -3107,12 +3113,6 @@ operator *(const {%H-}ALeft: TKilogramSquareMeterIdentifier; const {%H-}ARight: 
 operator /(const {%H-}ALeft: TKilogramSquareMeterPerSecondIdentifier; const {%H-}ARight: TKilogramSquareMeterIdentifier): TRadianPerSecondIdentifier; inline;
 operator *(const {%H-}ALeft: TRadianPerSecondIdentifier; const {%H-}ARight: TKilogramSquareMeterIdentifier): TKilogramSquareMeterPerSecondIdentifier; inline;
 operator /(const {%H-}ALeft: TKilogramSquareMeterPerSecondIdentifier; const {%H-}ARight: TRadianPerSecondIdentifier): TKilogramSquareMeterIdentifier; inline;
-
-// alternative definition [ kg*m2/s ] = [ J ] / [ rad2/s2 ]
-operator /(const {%H-}ALeft: TJouleIdentifier; const {%H-}ARight: TSquareRadianPerSquareSecondIdentifier): TKilogramSquareMeterPerSecondIdentifier; inline;
-operator /(const {%H-}ALeft: TJouleIdentifier; const {%H-}ARight: TKilogramSquareMeterPerSecondIdentifier): TSquareRadianPerSquareSecondIdentifier; inline;
-operator *(const {%H-}ALeft: TKilogramSquareMeterPerSecondIdentifier; const {%H-}ARight: TSquareRadianPerSquareSecondIdentifier): TJouleIdentifier; inline;
-operator *(const {%H-}ALeft: TSquareRadianPerSquareSecondIdentifier; const {%H-}ARight: TKilogramSquareMeterPerSecondIdentifier): TJouleIdentifier; inline;
 
 // main definition [ Pa*s ] = [ Pa ] * [ s ]
 operator *(const {%H-}ALeft: TPascalIdentifier; const {%H-}ARight: TSecondIdentifier): TPascalSecondIdentifier; inline;
@@ -3580,16 +3580,6 @@ operator /(const ALeft: TSteradians; const ARight: TRadians): TRadians; inline;
 operator *(const ALeft: TKilograms; const ARight: TKilograms): TSquareKilograms; inline;
 operator /(const ALeft: TSquareKilograms; const ARight: TKilograms): TKilograms; inline;
 
-// main definition [ Hz ]
-operator /(const ALeft: double; const ARight: TSeconds): THertz; inline;
-operator /(const ALeft: double; const ARight: THertz): TSeconds; inline;
-operator *(const ALeft: THertz; const ARight: TSeconds): double; inline;
-operator *(const ALeft: TSeconds; const ARight: THertz): double; inline;
-
-// main definition [ Hz2 ]
-operator *(const ALeft: THertz; const ARight: THertz): TSquareHertz; inline;
-operator /(const ALeft: TSquareHertz; const ARight: THertz): THertz; inline;
-
 // main definition [ m2 ]
 operator *(const ALeft: TMeters; const ARight: TMeters): TSquareMeters; inline;
 operator /(const ALeft: TSquareMeters; const ARight: TMeters): TMeters; inline;
@@ -3609,18 +3599,6 @@ operator /(const ALeft: TQuarticMeters; const ARight: TMeters): TCubicMeters; in
 //
 operator *(const ALeft: TSquareMeters; const ARight: TSquareMeters): TQuarticMeters; inline;
 operator /(const ALeft: TQuarticMeters; const ARight: TSquareMeters): TSquareMeters; inline;
-
-// main definition [ 1/m ] = 1 / [ m ]
-operator /(const ALeft: double; const ARight: TMeters): TReciprocalMeters; inline;
-operator /(const ALeft: double; const ARight: TReciprocalMeters): TMeters; inline;
-operator *(const ALeft: TReciprocalMeters; const ARight: TMeters): double; inline;
-operator *(const ALeft: TMeters; const ARight: TReciprocalMeters): double; inline;
-
-// alternative definition [ 1/m ] = [ m ] / [ m2 ]
-operator /(const ALeft: TMeters; const ARight: TSquareMeters): TReciprocalMeters; inline;
-operator /(const ALeft: TMeters; const ARight: TReciprocalMeters): TSquareMeters; inline;
-operator *(const ALeft: TReciprocalMeters; const ARight: TSquareMeters): TMeters; inline;
-operator *(const ALeft: TSquareMeters; const ARight: TReciprocalMeters): TMeters; inline;
 
 // main definition [ s2 ] = [ s ] * [ s ]
 operator *(const ALeft: TSeconds; const ARight: TSeconds): TSquareSeconds; inline;
@@ -3650,11 +3628,33 @@ operator /(const ALeft: TQuarticKelvins; const ARight: TKelvins): TCubicKelvins;
 operator *(const ALeft: TSquareKelvins; const ARight: TSquareKelvins): TQuarticKelvins; inline;
 operator /(const ALeft: TQuarticKelvins; const ARight: TSquareKelvins): TSquareKelvins; inline;
 
+// main definition [ 1/m ] = 1 / [ m ]
+operator /(const ALeft: double; const ARight: TMeters): TReciprocalMeters; inline;
+operator /(const ALeft: double; const ARight: TReciprocalMeters): TMeters; inline;
+operator *(const ALeft: TReciprocalMeters; const ARight: TMeters): double; inline;
+operator *(const ALeft: TMeters; const ARight: TReciprocalMeters): double; inline;
+
+// alternative definition [ 1/m ] = [ m ] / [ m2 ]
+operator /(const ALeft: TMeters; const ARight: TSquareMeters): TReciprocalMeters; inline;
+operator /(const ALeft: TMeters; const ARight: TReciprocalMeters): TSquareMeters; inline;
+operator *(const ALeft: TReciprocalMeters; const ARight: TSquareMeters): TMeters; inline;
+operator *(const ALeft: TSquareMeters; const ARight: TReciprocalMeters): TMeters; inline;
+
 // main definition [ 1/K ] = 1 / [ K ]
 operator /(const ALeft: double; const ARight: TKelvins): TReciprocalKelvins; inline;
 operator /(const ALeft: double; const ARight: TReciprocalKelvins): TKelvins; inline;
 operator *(const ALeft: TReciprocalKelvins; const ARight: TKelvins): double; inline;
 operator *(const ALeft: TKelvins; const ARight: TReciprocalKelvins): double; inline;
+
+// main definition [ Hz ]
+operator /(const ALeft: double; const ARight: TSeconds): THertz; inline;
+operator /(const ALeft: double; const ARight: THertz): TSeconds; inline;
+operator *(const ALeft: THertz; const ARight: TSeconds): double; inline;
+operator *(const ALeft: TSeconds; const ARight: THertz): double; inline;
+
+// main definition [ Hz2 ]
+operator *(const ALeft: THertz; const ARight: THertz): TSquareHertz; inline;
+operator /(const ALeft: TSquareHertz; const ARight: THertz): THertz; inline;
 
 // main definition [ rad/s ] = [ rad ] / [ s ]
 operator /(const ALeft: TRadians; const ARight: TSeconds): TRadiansPerSecond; inline;
@@ -3838,6 +3838,32 @@ operator /(const ALeft: TMoles; const ARight: TKatals): TSeconds; inline;
 operator *(const ALeft: TKatals; const ARight: TSeconds): TMoles; inline;
 operator *(const ALeft: TSeconds; const ARight: TKatals): TMoles; inline;
 
+// main definition [ m2/s2 ] = [ m2 ] / [ s2 ]
+operator /(const ALeft: TSquareMeters; const ARight: TSquareSeconds): TSquareMetersPerSquareSecond; inline;
+operator /(const ALeft: TSquareMeters; const ARight: TSquareMetersPerSquareSecond): TSquareSeconds; inline;
+operator *(const ALeft: TSquareMetersPerSquareSecond; const ARight: TSquareSeconds): TSquareMeters; inline;
+operator *(const ALeft: TSquareSeconds; const ARight: TSquareMetersPerSquareSecond): TSquareMeters; inline;
+
+// alternative definition [ m2/s2 ] = [ m/s ] / [ m/s ]
+operator *(const ALeft: TMetersPerSecond; const ARight: TMetersPerSecond): TSquareMetersPerSquareSecond; inline;
+operator /(const ALeft: TSquareMetersPerSquareSecond; const ARight: TMetersPerSecond): TMetersPerSecond; inline;
+
+// alternative definition [ m2/s2 ] = [ m/s2 ] * [ m ]
+operator *(const ALeft: TMetersPerSquareSecond; const ARight: TMeters): TSquareMetersPerSquareSecond; inline;
+operator /(const ALeft: TSquareMetersPerSquareSecond; const ARight: TMetersPerSquareSecond): TMeters; inline;
+operator *(const ALeft: TMeters; const ARight: TMetersPerSquareSecond): TSquareMetersPerSquareSecond; inline;
+operator /(const ALeft: TSquareMetersPerSquareSecond; const ARight: TMeters): TMetersPerSquareSecond; inline;
+
+// main definition [ rad2/s2 ] = [ rad/s ] * [ rad/s ]
+operator *(const ALeft: TRadiansPerSecond; const ARight: TRadiansPerSecond): TSquareRadiansPerSquareSecond; inline;
+operator /(const ALeft: TSquareRadiansPerSquareSecond; const ARight: TRadiansPerSecond): TRadiansPerSecond; inline;
+
+// alternative definition [ rad2/s2 ] = [ m/s2 ] / [ m ]
+operator /(const ALeft: TMetersPerSquareSecond; const ARight: TMeters): TSquareRadiansPerSquareSecond; inline;
+operator /(const ALeft: TMetersPerSquareSecond; const ARight: TSquareRadiansPerSquareSecond): TMeters; inline;
+operator *(const ALeft: TSquareRadiansPerSquareSecond; const ARight: TMeters): TMetersPerSquareSecond; inline;
+operator *(const ALeft: TMeters; const ARight: TSquareRadiansPerSquareSecond): TMetersPerSquareSecond; inline;
+
 // main definition [ kg*m ] = [ kg ] * [ m ]
 operator *(const ALeft: TKilograms; const ARight: TMeters): TKilogramsMeter; inline;
 operator /(const ALeft: TKilogramsMeter; const ARight: TKilograms): TMeters; inline;
@@ -3856,37 +3882,17 @@ operator /(const ALeft: TKilogramsSquareMeter; const ARight: TKilogramsMeter): T
 operator *(const ALeft: TMeters; const ARight: TKilogramsMeter): TKilogramsSquareMeter; inline;
 operator /(const ALeft: TKilogramsSquareMeter; const ARight: TMeters): TKilogramsMeter; inline;
 
+// alternative definition [ kg*m2 ] = [ J ] / [ rad2/s2 ]
+operator /(const ALeft: TJoules; const ARight: TSquareRadiansPerSquareSecond): TKilogramsSquareMeter; inline;
+operator /(const ALeft: TJoules; const ARight: TKilogramsSquareMeter): TSquareRadiansPerSquareSecond; inline;
+operator *(const ALeft: TKilogramsSquareMeter; const ARight: TSquareRadiansPerSquareSecond): TJoules; inline;
+operator *(const ALeft: TSquareRadiansPerSquareSecond; const ARight: TKilogramsSquareMeter): TJoules; inline;
+
 // main definition [ kg/m3 ] = [ kg ] / [ m3 ]
 operator /(const ALeft: TKilograms; const ARight: TCubicMeters): TKilogramsPerCubicMeter; inline;
 operator /(const ALeft: TKilograms; const ARight: TKilogramsPerCubicMeter): TCubicMeters; inline;
 operator *(const ALeft: TKilogramsPerCubicMeter; const ARight: TCubicMeters): TKilograms; inline;
 operator *(const ALeft: TCubicMeters; const ARight: TKilogramsPerCubicMeter): TKilograms; inline;
-
-// main definition [ m2/s2 ] = [ m2 ] / [ s2 ]
-operator /(const ALeft: TSquareMeters; const ARight: TSquareSeconds): TSquareMetersPerSquareSecond; inline;
-operator /(const ALeft: TSquareMeters; const ARight: TSquareMetersPerSquareSecond): TSquareSeconds; inline;
-operator *(const ALeft: TSquareMetersPerSquareSecond; const ARight: TSquareSeconds): TSquareMeters; inline;
-operator *(const ALeft: TSquareSeconds; const ARight: TSquareMetersPerSquareSecond): TSquareMeters; inline;
-
-// alternative definition [ m2/s2 ] = [ m/s ] / [ m/s ]
-operator *(const ALeft: TMetersPerSecond; const ARight: TMetersPerSecond): TSquareMetersPerSquareSecond; inline;
-operator /(const ALeft: TSquareMetersPerSquareSecond; const ARight: TMetersPerSecond): TMetersPerSecond; inline;
-
-// alternative definition [ m2/s2 ] = [ m/s2 ] * [ m ]
-operator *(const ALeft: TMetersPerSquareSecond; const ARight: TMeters): TSquareMetersPerSquareSecond; inline;
-operator /(const ALeft: TSquareMetersPerSquareSecond; const ARight: TMetersPerSquareSecond): TMeters; inline;
-operator *(const ALeft: TMeters; const ARight: TMetersPerSquareSecond): TSquareMetersPerSquareSecond; inline;
-operator /(const ALeft: TSquareMetersPerSquareSecond; const ARight: TMeters): TMetersPerSquareSecond; inline;
-
-// alternative definition [ rad2/s2 ] = [ m/s2 ] / [ m ]
-operator /(const ALeft: TMetersPerSquareSecond; const ARight: TMeters): TSquareRadiansPerSquareSecond; inline;
-operator /(const ALeft: TMetersPerSquareSecond; const ARight: TSquareRadiansPerSquareSecond): TMeters; inline;
-operator *(const ALeft: TSquareRadiansPerSquareSecond; const ARight: TMeters): TMetersPerSquareSecond; inline;
-operator *(const ALeft: TMeters; const ARight: TSquareRadiansPerSquareSecond): TMetersPerSquareSecond; inline;
-
-// main definition [ rad2/s2 ] = [ rad/s ] * [ rad/s ]
-operator *(const ALeft: TRadiansPerSecond; const ARight: TRadiansPerSecond): TSquareRadiansPerSquareSecond; inline;
-operator /(const ALeft: TSquareRadiansPerSquareSecond; const ARight: TRadiansPerSecond): TRadiansPerSecond; inline;
 
 // main definition [ 1/C ] = 1 / [ C ]
 operator /(const ALeft: double; const ARight: TCoulombs): TReciprocalCoulombs; inline;
@@ -3978,7 +3984,7 @@ operator /(const ALeft: TNewtonsSecond; const ARight: TNewtons): TSeconds; inlin
 operator *(const ALeft: TSeconds; const ARight: TNewtons): TNewtonsSecond; inline;
 operator /(const ALeft: TNewtonsSecond; const ARight: TSeconds): TNewtons; inline;
 
-// main definition [ kg*m2/s ] = [ kg*m/2 ] * [ m ]
+// main definition [ kg*m2/s ] = [ kg*m/s ] * [ m ]
 operator *(const ALeft: TKilogramsMeterPerSecond; const ARight: TMeters): TKilogramsSquareMeterPerSecond; inline;
 operator /(const ALeft: TKilogramsSquareMeterPerSecond; const ARight: TKilogramsMeterPerSecond): TMeters; inline;
 operator *(const ALeft: TMeters; const ARight: TKilogramsMeterPerSecond): TKilogramsSquareMeterPerSecond; inline;
@@ -3989,12 +3995,6 @@ operator *(const ALeft: TKilogramsSquareMeter; const ARight: TRadiansPerSecond):
 operator /(const ALeft: TKilogramsSquareMeterPerSecond; const ARight: TKilogramsSquareMeter): TRadiansPerSecond; inline;
 operator *(const ALeft: TRadiansPerSecond; const ARight: TKilogramsSquareMeter): TKilogramsSquareMeterPerSecond; inline;
 operator /(const ALeft: TKilogramsSquareMeterPerSecond; const ARight: TRadiansPerSecond): TKilogramsSquareMeter; inline;
-
-// alternative definition [ kg*m2/s ] = [ J ] / [ rad2/s2 ]
-operator /(const ALeft: TJoules; const ARight: TSquareRadiansPerSquareSecond): TKilogramsSquareMeterPerSecond; inline;
-operator /(const ALeft: TJoules; const ARight: TKilogramsSquareMeterPerSecond): TSquareRadiansPerSquareSecond; inline;
-operator *(const ALeft: TKilogramsSquareMeterPerSecond; const ARight: TSquareRadiansPerSquareSecond): TJoules; inline;
-operator *(const ALeft: TSquareRadiansPerSquareSecond; const ARight: TKilogramsSquareMeterPerSecond): TJoules; inline;
 
 // main definition [ Pa*s ] = [ Pa ] * [ s ]
 operator *(const ALeft: TPascals; const ARight: TSeconds): TPascalsSecond; inline;
@@ -4398,8 +4398,6 @@ function SquarePower(AQuantity: TRadians): TSteradians;
 function SquareRoot(AQuantity: TSteradians): TRadians;
 function SquarePower(AQuantity: TKilograms): TSquareKilograms;
 function SquareRoot(AQuantity: TSquareKilograms): TKilograms;
-function SquarePower(AQuantity: THertz): TSquareHertz;
-function SquareRoot(AQuantity: TSquareHertz): THertz;
 function SquarePower(AQuantity: TMeters): TSquareMeters;
 function SquareRoot(AQuantity: TSquareMeters): TMeters;
 function CubicPower(AQuantity: TMeters): TCubicMeters;
@@ -4420,6 +4418,8 @@ function SquarePower(AQuantity: TSquareKelvins): TQuarticKelvins;
 function SquareRoot(AQuantity: TQuarticKelvins): TSquareKelvins;
 function QuarticPower(AQuantity: TKelvins): TQuarticKelvins;
 function QuarticRoot(AQuantity: TQuarticKelvins): TKelvins;
+function SquarePower(AQuantity: THertz): TSquareHertz;
+function SquareRoot(AQuantity: TSquareHertz): THertz;
 function SquarePower(AQuantity: TCoulombs): TSquareCoulombs;
 function SquareRoot(AQuantity: TSquareCoulombs): TCoulombs;
 function SquarePower(AQuantity: TVolts): TSquareVolts;
@@ -4706,30 +4706,6 @@ begin
   result := 'square kilogram';
 end;
 
-{ Unit of THertzUnit }
-
-class function THertzUnit.Symbol: string;
-begin
-  result := 'Hz';
-end;
-
-class function THertzUnit.Name: string;
-begin
-  result := 'hertz';
-end;
-
-{ Unit of TSquareHertzUnit }
-
-class function TSquareHertzUnit.Symbol: string;
-begin
-  result := 'Hz2';
-end;
-
-class function TSquareHertzUnit.Name: string;
-begin
-  result := 'square hertz';
-end;
-
 { Unit of TSquareMeterUnit }
 
 class function TSquareMeterUnit.Symbol: string;
@@ -4764,18 +4740,6 @@ end;
 class function TQuarticMeterUnit.Name: string;
 begin
   result := 'quartic meter';
-end;
-
-{ Unit of TReciprocalMeterUnit }
-
-class function TReciprocalMeterUnit.Symbol: string;
-begin
-  result := '1/m';
-end;
-
-class function TReciprocalMeterUnit.Name: string;
-begin
-  result := 'reciprocal meter';
 end;
 
 { Unit of TSquareSecondUnit }
@@ -4838,6 +4802,18 @@ begin
   result := 'quartic kelvin';
 end;
 
+{ Unit of TReciprocalMeterUnit }
+
+class function TReciprocalMeterUnit.Symbol: string;
+begin
+  result := '1/m';
+end;
+
+class function TReciprocalMeterUnit.Name: string;
+begin
+  result := 'reciprocal meter';
+end;
+
 { Unit of TReciprocalKelvinUnit }
 
 class function TReciprocalKelvinUnit.Symbol: string;
@@ -4848,6 +4824,30 @@ end;
 class function TReciprocalKelvinUnit.Name: string;
 begin
   result := 'reciprocal kelvin';
+end;
+
+{ Unit of THertzUnit }
+
+class function THertzUnit.Symbol: string;
+begin
+  result := 'Hz';
+end;
+
+class function THertzUnit.Name: string;
+begin
+  result := 'hertz';
+end;
+
+{ Unit of TSquareHertzUnit }
+
+class function TSquareHertzUnit.Symbol: string;
+begin
+  result := 'Hz2';
+end;
+
+class function TSquareHertzUnit.Name: string;
+begin
+  result := 'square hertz';
 end;
 
 { Unit of TRadianPerSecondUnit }
@@ -5138,6 +5138,30 @@ begin
   result := 'katal';
 end;
 
+{ Unit of TSquareMeterPerSquareSecondUnit }
+
+class function TSquareMeterPerSquareSecondUnit.Symbol: string;
+begin
+  result := 'm2/s2';
+end;
+
+class function TSquareMeterPerSquareSecondUnit.Name: string;
+begin
+  result := 'square meter per square second';
+end;
+
+{ Unit of TSquareRadianPerSquareSecondUnit }
+
+class function TSquareRadianPerSquareSecondUnit.Symbol: string;
+begin
+  result := 'rad2/s2';
+end;
+
+class function TSquareRadianPerSquareSecondUnit.Name: string;
+begin
+  result := 'square rad per square second';
+end;
+
 { Unit of TKilogramMeterUnit }
 
 class function TKilogramMeterUnit.Symbol: string;
@@ -5172,30 +5196,6 @@ end;
 class function TKilogramPerCubicMeterUnit.Name: string;
 begin
   result := 'kilogram per cubic meter';
-end;
-
-{ Unit of TSquareMeterPerSquareSecondUnit }
-
-class function TSquareMeterPerSquareSecondUnit.Symbol: string;
-begin
-  result := 'm2/s2';
-end;
-
-class function TSquareMeterPerSquareSecondUnit.Name: string;
-begin
-  result := 'square meter per square second';
-end;
-
-{ Unit of TSquareRadianPerSquareSecondUnit }
-
-class function TSquareRadianPerSquareSecondUnit.Symbol: string;
-begin
-  result := '';
-end;
-
-class function TSquareRadianPerSquareSecondUnit.Name: string;
-begin
-  result := '';
 end;
 
 { Unit of TReciprocalCoulombUnit }
@@ -6403,57 +6403,6 @@ begin
   result := Pi/180;
 end;
 
-{ Unit of TGigahertzUnit }
-
-class function TGigahertzUnit.Symbol: string;
-begin
-  result := 'GHz';
-end;
-
-class function TGigahertzUnit.Name: string;
-begin
-  result := 'gigahertz';
-end;
-
-class function TGigahertzUnit.Factor: double;
-begin
-  result := 1E+09;
-end;
-
-{ Unit of TMegahertzUnit }
-
-class function TMegahertzUnit.Symbol: string;
-begin
-  result := 'MHz';
-end;
-
-class function TMegahertzUnit.Name: string;
-begin
-  result := 'megahertz';
-end;
-
-class function TMegahertzUnit.Factor: double;
-begin
-  result := 1E+06;
-end;
-
-{ Unit of TKilohertzUnit }
-
-class function TKilohertzUnit.Symbol: string;
-begin
-  result := 'kHz';
-end;
-
-class function TKilohertzUnit.Name: string;
-begin
-  result := 'kilohertz';
-end;
-
-class function TKilohertzUnit.Factor: double;
-begin
-  result := 1E+03;
-end;
-
 { Unit of TSquareKilometerUnit }
 
 class function TSquareKilometerUnit.Symbol: string;
@@ -6775,6 +6724,57 @@ end;
 class function TSquareMilliampereUnit.Factor: double;
 begin
   result := 1E-06;
+end;
+
+{ Unit of TGigahertzUnit }
+
+class function TGigahertzUnit.Symbol: string;
+begin
+  result := 'GHz';
+end;
+
+class function TGigahertzUnit.Name: string;
+begin
+  result := 'gigahertz';
+end;
+
+class function TGigahertzUnit.Factor: double;
+begin
+  result := 1E+09;
+end;
+
+{ Unit of TMegahertzUnit }
+
+class function TMegahertzUnit.Symbol: string;
+begin
+  result := 'MHz';
+end;
+
+class function TMegahertzUnit.Name: string;
+begin
+  result := 'megahertz';
+end;
+
+class function TMegahertzUnit.Factor: double;
+begin
+  result := 1E+06;
+end;
+
+{ Unit of TKilohertzUnit }
+
+class function TKilohertzUnit.Symbol: string;
+begin
+  result := 'kHz';
+end;
+
+class function TKilohertzUnit.Name: string;
+begin
+  result := 'kilohertz';
+end;
+
+class function TKilohertzUnit.Factor: double;
+begin
+  result := 1E+03;
 end;
 
 { Unit of TKilometerPerHourUnit }
@@ -7813,26 +7813,6 @@ begin end;
 operator /(const ALeft: TSquareKilogramIdentifier; const ARight: TKilogramIdentifier): TKilogramIdentifier;
 begin end;
 
-// main definition [ Hz ]
-operator /(const ALeft: double; const ARight: TSecondIdentifier): THertzIdentifier;
-begin end;
-
-operator /(const ALeft: double; const ARight: THertzIdentifier): TSecondIdentifier;
-begin end;
-
-operator *(const ALeft: THertzIdentifier; const ARight: TSecondIdentifier): double;
-begin end;
-
-operator *(const ALeft: TSecondIdentifier; const ARight: THertzIdentifier): double;
-begin end;
-
-// main definition [ Hz2 ]
-operator *(const ALeft: THertzIdentifier; const ARight: THertzIdentifier): TSquareHertzIdentifier;
-begin end;
-
-operator /(const ALeft: TSquareHertzIdentifier; const ARight: THertzIdentifier): THertzIdentifier;
-begin end;
-
 // main definition [ m2 ]
 operator *(const ALeft: TMeterIdentifier; const ARight: TMeterIdentifier): TSquareMeterIdentifier;
 begin end;
@@ -7871,32 +7851,6 @@ operator *(const ALeft: TSquareMeterIdentifier; const ARight: TSquareMeterIdenti
 begin end;
 
 operator /(const ALeft: TQuarticMeterIdentifier; const ARight: TSquareMeterIdentifier): TSquareMeterIdentifier;
-begin end;
-
-// main definition [ 1/m ] = 1 / [ m ]
-operator /(const ALeft: double; const ARight: TMeterIdentifier): TReciprocalMeterIdentifier;
-begin end;
-
-operator /(const ALeft: double; const ARight: TReciprocalMeterIdentifier): TMeterIdentifier;
-begin end;
-
-operator *(const ALeft: TReciprocalMeterIdentifier; const ARight: TMeterIdentifier): double;
-begin end;
-
-operator *(const ALeft: TMeterIdentifier; const ARight: TReciprocalMeterIdentifier): double;
-begin end;
-
-// alternative definition [ 1/m ] = [ m ] / [ m2 ]
-operator /(const ALeft: TMeterIdentifier; const ARight: TSquareMeterIdentifier): TReciprocalMeterIdentifier;
-begin end;
-
-operator /(const ALeft: TMeterIdentifier; const ARight: TReciprocalMeterIdentifier): TSquareMeterIdentifier;
-begin end;
-
-operator *(const ALeft: TReciprocalMeterIdentifier; const ARight: TSquareMeterIdentifier): TMeterIdentifier;
-begin end;
-
-operator *(const ALeft: TSquareMeterIdentifier; const ARight: TReciprocalMeterIdentifier): TMeterIdentifier;
 begin end;
 
 // main definition [ s2 ] = [ s ] * [ s ]
@@ -7953,6 +7907,32 @@ begin end;
 operator /(const ALeft: TQuarticKelvinIdentifier; const ARight: TSquareKelvinIdentifier): TSquareKelvinIdentifier;
 begin end;
 
+// main definition [ 1/m ] = 1 / [ m ]
+operator /(const ALeft: double; const ARight: TMeterIdentifier): TReciprocalMeterIdentifier;
+begin end;
+
+operator /(const ALeft: double; const ARight: TReciprocalMeterIdentifier): TMeterIdentifier;
+begin end;
+
+operator *(const ALeft: TReciprocalMeterIdentifier; const ARight: TMeterIdentifier): double;
+begin end;
+
+operator *(const ALeft: TMeterIdentifier; const ARight: TReciprocalMeterIdentifier): double;
+begin end;
+
+// alternative definition [ 1/m ] = [ m ] / [ m2 ]
+operator /(const ALeft: TMeterIdentifier; const ARight: TSquareMeterIdentifier): TReciprocalMeterIdentifier;
+begin end;
+
+operator /(const ALeft: TMeterIdentifier; const ARight: TReciprocalMeterIdentifier): TSquareMeterIdentifier;
+begin end;
+
+operator *(const ALeft: TReciprocalMeterIdentifier; const ARight: TSquareMeterIdentifier): TMeterIdentifier;
+begin end;
+
+operator *(const ALeft: TSquareMeterIdentifier; const ARight: TReciprocalMeterIdentifier): TMeterIdentifier;
+begin end;
+
 // main definition [ 1/K ] = 1 / [ K ]
 operator /(const ALeft: double; const ARight: TKelvinIdentifier): TReciprocalKelvinIdentifier;
 begin end;
@@ -7964,6 +7944,26 @@ operator *(const ALeft: TReciprocalKelvinIdentifier; const ARight: TKelvinIdenti
 begin end;
 
 operator *(const ALeft: TKelvinIdentifier; const ARight: TReciprocalKelvinIdentifier): double;
+begin end;
+
+// main definition [ Hz ]
+operator /(const ALeft: double; const ARight: TSecondIdentifier): THertzIdentifier;
+begin end;
+
+operator /(const ALeft: double; const ARight: THertzIdentifier): TSecondIdentifier;
+begin end;
+
+operator *(const ALeft: THertzIdentifier; const ARight: TSecondIdentifier): double;
+begin end;
+
+operator *(const ALeft: TSecondIdentifier; const ARight: THertzIdentifier): double;
+begin end;
+
+// main definition [ Hz2 ]
+operator *(const ALeft: THertzIdentifier; const ARight: THertzIdentifier): TSquareHertzIdentifier;
+begin end;
+
+operator /(const ALeft: TSquareHertzIdentifier; const ARight: THertzIdentifier): THertzIdentifier;
 begin end;
 
 // main definition [ rad/s ] = [ rad ] / [ s ]
@@ -8357,6 +8357,59 @@ begin end;
 operator *(const ALeft: TSecondIdentifier; const ARight: TKatalIdentifier): TMoleIdentifier;
 begin end;
 
+// main definition [ m2/s2 ] = [ m2 ] / [ s2 ]
+operator /(const ALeft: TSquareMeterIdentifier; const ARight: TSquareSecondIdentifier): TSquareMeterPerSquareSecondIdentifier;
+begin end;
+
+operator /(const ALeft: TSquareMeterIdentifier; const ARight: TSquareMeterPerSquareSecondIdentifier): TSquareSecondIdentifier;
+begin end;
+
+operator *(const ALeft: TSquareMeterPerSquareSecondIdentifier; const ARight: TSquareSecondIdentifier): TSquareMeterIdentifier;
+begin end;
+
+operator *(const ALeft: TSquareSecondIdentifier; const ARight: TSquareMeterPerSquareSecondIdentifier): TSquareMeterIdentifier;
+begin end;
+
+// alternative definition [ m2/s2 ] = [ m/s ] / [ m/s ]
+operator *(const ALeft: TMeterPerSecondIdentifier; const ARight: TMeterPerSecondIdentifier): TSquareMeterPerSquareSecondIdentifier;
+begin end;
+
+operator /(const ALeft: TSquareMeterPerSquareSecondIdentifier; const ARight: TMeterPerSecondIdentifier): TMeterPerSecondIdentifier;
+begin end;
+
+// alternative definition [ m2/s2 ] = [ m/s2 ] * [ m ]
+operator *(const ALeft: TMeterPerSquareSecondIdentifier; const ARight: TMeterIdentifier): TSquareMeterPerSquareSecondIdentifier;
+begin end;
+
+operator /(const ALeft: TSquareMeterPerSquareSecondIdentifier; const ARight: TMeterPerSquareSecondIdentifier): TMeterIdentifier;
+begin end;
+
+operator *(const ALeft: TMeterIdentifier; const ARight: TMeterPerSquareSecondIdentifier): TSquareMeterPerSquareSecondIdentifier;
+begin end;
+
+operator /(const ALeft: TSquareMeterPerSquareSecondIdentifier; const ARight: TMeterIdentifier): TMeterPerSquareSecondIdentifier;
+begin end;
+
+// main definition [ rad2/s2 ] = [ rad/s ] * [ rad/s ]
+operator *(const ALeft: TRadianPerSecondIdentifier; const ARight: TRadianPerSecondIdentifier): TSquareRadianPerSquareSecondIdentifier;
+begin end;
+
+operator /(const ALeft: TSquareRadianPerSquareSecondIdentifier; const ARight: TRadianPerSecondIdentifier): TRadianPerSecondIdentifier;
+begin end;
+
+// alternative definition [ rad2/s2 ] = [ m/s2 ] / [ m ]
+operator /(const ALeft: TMeterPerSquareSecondIdentifier; const ARight: TMeterIdentifier): TSquareRadianPerSquareSecondIdentifier;
+begin end;
+
+operator /(const ALeft: TMeterPerSquareSecondIdentifier; const ARight: TSquareRadianPerSquareSecondIdentifier): TMeterIdentifier;
+begin end;
+
+operator *(const ALeft: TSquareRadianPerSquareSecondIdentifier; const ARight: TMeterIdentifier): TMeterPerSquareSecondIdentifier;
+begin end;
+
+operator *(const ALeft: TMeterIdentifier; const ARight: TSquareRadianPerSquareSecondIdentifier): TMeterPerSquareSecondIdentifier;
+begin end;
+
 // main definition [ kg*m ] = [ kg ] * [ m ]
 operator *(const ALeft: TKilogramIdentifier; const ARight: TMeterIdentifier): TKilogramMeterIdentifier;
 begin end;
@@ -8396,6 +8449,19 @@ begin end;
 operator /(const ALeft: TKilogramSquareMeterIdentifier; const ARight: TMeterIdentifier): TKilogramMeterIdentifier;
 begin end;
 
+// alternative definition [ kg*m2 ] = [ J ] / [ rad2/s2 ]
+operator /(const ALeft: TJouleIdentifier; const ARight: TSquareRadianPerSquareSecondIdentifier): TKilogramSquareMeterIdentifier;
+begin end;
+
+operator /(const ALeft: TJouleIdentifier; const ARight: TKilogramSquareMeterIdentifier): TSquareRadianPerSquareSecondIdentifier;
+begin end;
+
+operator *(const ALeft: TKilogramSquareMeterIdentifier; const ARight: TSquareRadianPerSquareSecondIdentifier): TJouleIdentifier;
+begin end;
+
+operator *(const ALeft: TSquareRadianPerSquareSecondIdentifier; const ARight: TKilogramSquareMeterIdentifier): TJouleIdentifier;
+begin end;
+
 // main definition [ kg/m3 ] = [ kg ] / [ m3 ]
 operator /(const ALeft: TKilogramIdentifier; const ARight: TCubicMeterIdentifier): TKilogramPerCubicMeterIdentifier;
 begin end;
@@ -8407,59 +8473,6 @@ operator *(const ALeft: TKilogramPerCubicMeterIdentifier; const ARight: TCubicMe
 begin end;
 
 operator *(const ALeft: TCubicMeterIdentifier; const ARight: TKilogramPerCubicMeterIdentifier): TKilogramIdentifier;
-begin end;
-
-// main definition [ m2/s2 ] = [ m2 ] / [ s2 ]
-operator /(const ALeft: TSquareMeterIdentifier; const ARight: TSquareSecondIdentifier): TSquareMeterPerSquareSecondIdentifier;
-begin end;
-
-operator /(const ALeft: TSquareMeterIdentifier; const ARight: TSquareMeterPerSquareSecondIdentifier): TSquareSecondIdentifier;
-begin end;
-
-operator *(const ALeft: TSquareMeterPerSquareSecondIdentifier; const ARight: TSquareSecondIdentifier): TSquareMeterIdentifier;
-begin end;
-
-operator *(const ALeft: TSquareSecondIdentifier; const ARight: TSquareMeterPerSquareSecondIdentifier): TSquareMeterIdentifier;
-begin end;
-
-// alternative definition [ m2/s2 ] = [ m/s ] / [ m/s ]
-operator *(const ALeft: TMeterPerSecondIdentifier; const ARight: TMeterPerSecondIdentifier): TSquareMeterPerSquareSecondIdentifier;
-begin end;
-
-operator /(const ALeft: TSquareMeterPerSquareSecondIdentifier; const ARight: TMeterPerSecondIdentifier): TMeterPerSecondIdentifier;
-begin end;
-
-// alternative definition [ m2/s2 ] = [ m/s2 ] * [ m ]
-operator *(const ALeft: TMeterPerSquareSecondIdentifier; const ARight: TMeterIdentifier): TSquareMeterPerSquareSecondIdentifier;
-begin end;
-
-operator /(const ALeft: TSquareMeterPerSquareSecondIdentifier; const ARight: TMeterPerSquareSecondIdentifier): TMeterIdentifier;
-begin end;
-
-operator *(const ALeft: TMeterIdentifier; const ARight: TMeterPerSquareSecondIdentifier): TSquareMeterPerSquareSecondIdentifier;
-begin end;
-
-operator /(const ALeft: TSquareMeterPerSquareSecondIdentifier; const ARight: TMeterIdentifier): TMeterPerSquareSecondIdentifier;
-begin end;
-
-// alternative definition [ rad2/s2 ] = [ m/s2 ] / [ m ]
-operator /(const ALeft: TMeterPerSquareSecondIdentifier; const ARight: TMeterIdentifier): TSquareRadianPerSquareSecondIdentifier;
-begin end;
-
-operator /(const ALeft: TMeterPerSquareSecondIdentifier; const ARight: TSquareRadianPerSquareSecondIdentifier): TMeterIdentifier;
-begin end;
-
-operator *(const ALeft: TSquareRadianPerSquareSecondIdentifier; const ARight: TMeterIdentifier): TMeterPerSquareSecondIdentifier;
-begin end;
-
-operator *(const ALeft: TMeterIdentifier; const ARight: TSquareRadianPerSquareSecondIdentifier): TMeterPerSquareSecondIdentifier;
-begin end;
-
-// main definition [ rad2/s2 ] = [ rad/s ] * [ rad/s ]
-operator *(const ALeft: TRadianPerSecondIdentifier; const ARight: TRadianPerSecondIdentifier): TSquareRadianPerSquareSecondIdentifier;
-begin end;
-
-operator /(const ALeft: TSquareRadianPerSquareSecondIdentifier; const ARight: TRadianPerSecondIdentifier): TRadianPerSecondIdentifier;
 begin end;
 
 // main definition [ 1/C ] = 1 / [ C ]
@@ -8657,7 +8670,7 @@ begin end;
 operator /(const ALeft: TNewtonSecondIdentifier; const ARight: TSecondIdentifier): TNewtonIdentifier;
 begin end;
 
-// main definition [ kg*m2/s ] = [ kg*m/2 ] * [ m ]
+// main definition [ kg*m2/s ] = [ kg*m/s ] * [ m ]
 operator *(const ALeft: TKilogramMeterPerSecondIdentifier; const ARight: TMeterIdentifier): TKilogramSquareMeterPerSecondIdentifier;
 begin end;
 
@@ -8681,19 +8694,6 @@ operator *(const ALeft: TRadianPerSecondIdentifier; const ARight: TKilogramSquar
 begin end;
 
 operator /(const ALeft: TKilogramSquareMeterPerSecondIdentifier; const ARight: TRadianPerSecondIdentifier): TKilogramSquareMeterIdentifier;
-begin end;
-
-// alternative definition [ kg*m2/s ] = [ J ] / [ rad2/s2 ]
-operator /(const ALeft: TJouleIdentifier; const ARight: TSquareRadianPerSquareSecondIdentifier): TKilogramSquareMeterPerSecondIdentifier;
-begin end;
-
-operator /(const ALeft: TJouleIdentifier; const ARight: TKilogramSquareMeterPerSecondIdentifier): TSquareRadianPerSquareSecondIdentifier;
-begin end;
-
-operator *(const ALeft: TKilogramSquareMeterPerSecondIdentifier; const ARight: TSquareRadianPerSquareSecondIdentifier): TJouleIdentifier;
-begin end;
-
-operator *(const ALeft: TSquareRadianPerSquareSecondIdentifier; const ARight: TKilogramSquareMeterPerSecondIdentifier): TJouleIdentifier;
 begin end;
 
 // main definition [ Pa*s ] = [ Pa ] * [ s ]
@@ -9658,38 +9658,6 @@ begin
   result.Value := ALeft.Value / ARight.Value;
 end;
 
-// main definition [ Hz ]
-operator /(const ALeft: double; const ARight: TSeconds): THertz;
-begin
-  result.Value := ALeft / ARight.Value;
-end;
-
-operator /(const ALeft: double; const ARight: THertz): TSeconds;
-begin
-  result.Value := ALeft / ARight.Value;
-end;
-
-operator *(const ALeft: THertz; const ARight: TSeconds): double;
-begin
-  result := ALeft.Value * ARight.Value;
-end;
-
-operator *(const ALeft: TSeconds; const ARight: THertz): double;
-begin
-  result := ALeft.Value * ARight.Value;
-end;
-
-// main definition [ Hz2 ]
-operator *(const ALeft: THertz; const ARight: THertz): TSquareHertz;
-begin
-  result.Value := ALeft.Value * ARight.Value;
-end;
-
-operator /(const ALeft: TSquareHertz; const ARight: THertz): THertz;
-begin
-  result.Value := ALeft.Value / ARight.Value;
-end;
-
 // main definition [ m2 ]
 operator *(const ALeft: TMeters; const ARight: TMeters): TSquareMeters;
 begin
@@ -9752,48 +9720,6 @@ end;
 operator /(const ALeft: TQuarticMeters; const ARight: TSquareMeters): TSquareMeters;
 begin
   result.Value := ALeft.Value / ARight.Value;
-end;
-
-// main definition [ 1/m ] = 1 / [ m ]
-operator /(const ALeft: double; const ARight: TMeters): TReciprocalMeters;
-begin
-  result.Value := ALeft / ARight.Value;
-end;
-
-operator /(const ALeft: double; const ARight: TReciprocalMeters): TMeters;
-begin
-  result.Value := ALeft / ARight.Value;
-end;
-
-operator *(const ALeft: TReciprocalMeters; const ARight: TMeters): double;
-begin
-  result := ALeft.Value * ARight.Value;
-end;
-
-operator *(const ALeft: TMeters; const ARight: TReciprocalMeters): double;
-begin
-  result := ALeft.Value * ARight.Value;
-end;
-
-// alternative definition [ 1/m ] = [ m ] / [ m2 ]
-operator /(const ALeft: TMeters; const ARight: TSquareMeters): TReciprocalMeters;
-begin
-  result.Value := ALeft.Value / ARight.Value;
-end;
-
-operator /(const ALeft: TMeters; const ARight: TReciprocalMeters): TSquareMeters;
-begin
-  result.Value := ALeft.Value / ARight.Value;
-end;
-
-operator *(const ALeft: TReciprocalMeters; const ARight: TSquareMeters): TMeters;
-begin
-  result.Value := ALeft.Value * ARight.Value;
-end;
-
-operator *(const ALeft: TSquareMeters; const ARight: TReciprocalMeters): TMeters;
-begin
-  result.Value := ALeft.Value * ARight.Value;
 end;
 
 // main definition [ s2 ] = [ s ] * [ s ]
@@ -9882,6 +9808,48 @@ begin
   result.Value := ALeft.Value / ARight.Value;
 end;
 
+// main definition [ 1/m ] = 1 / [ m ]
+operator /(const ALeft: double; const ARight: TMeters): TReciprocalMeters;
+begin
+  result.Value := ALeft / ARight.Value;
+end;
+
+operator /(const ALeft: double; const ARight: TReciprocalMeters): TMeters;
+begin
+  result.Value := ALeft / ARight.Value;
+end;
+
+operator *(const ALeft: TReciprocalMeters; const ARight: TMeters): double;
+begin
+  result := ALeft.Value * ARight.Value;
+end;
+
+operator *(const ALeft: TMeters; const ARight: TReciprocalMeters): double;
+begin
+  result := ALeft.Value * ARight.Value;
+end;
+
+// alternative definition [ 1/m ] = [ m ] / [ m2 ]
+operator /(const ALeft: TMeters; const ARight: TSquareMeters): TReciprocalMeters;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator /(const ALeft: TMeters; const ARight: TReciprocalMeters): TSquareMeters;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator *(const ALeft: TReciprocalMeters; const ARight: TSquareMeters): TMeters;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator *(const ALeft: TSquareMeters; const ARight: TReciprocalMeters): TMeters;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
 // main definition [ 1/K ] = 1 / [ K ]
 operator /(const ALeft: double; const ARight: TKelvins): TReciprocalKelvins;
 begin
@@ -9901,6 +9869,38 @@ end;
 operator *(const ALeft: TKelvins; const ARight: TReciprocalKelvins): double;
 begin
   result := ALeft.Value * ARight.Value;
+end;
+
+// main definition [ Hz ]
+operator /(const ALeft: double; const ARight: TSeconds): THertz;
+begin
+  result.Value := ALeft / ARight.Value;
+end;
+
+operator /(const ALeft: double; const ARight: THertz): TSeconds;
+begin
+  result.Value := ALeft / ARight.Value;
+end;
+
+operator *(const ALeft: THertz; const ARight: TSeconds): double;
+begin
+  result := ALeft.Value * ARight.Value;
+end;
+
+operator *(const ALeft: TSeconds; const ARight: THertz): double;
+begin
+  result := ALeft.Value * ARight.Value;
+end;
+
+// main definition [ Hz2 ]
+operator *(const ALeft: THertz; const ARight: THertz): TSquareHertz;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator /(const ALeft: TSquareHertz; const ARight: THertz): THertz;
+begin
+  result.Value := ALeft.Value / ARight.Value;
 end;
 
 // main definition [ rad/s ] = [ rad ] / [ s ]
@@ -10534,6 +10534,91 @@ begin
   result.Value := ALeft.Value * ARight.Value;
 end;
 
+// main definition [ m2/s2 ] = [ m2 ] / [ s2 ]
+operator /(const ALeft: TSquareMeters; const ARight: TSquareSeconds): TSquareMetersPerSquareSecond;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator /(const ALeft: TSquareMeters; const ARight: TSquareMetersPerSquareSecond): TSquareSeconds;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator *(const ALeft: TSquareMetersPerSquareSecond; const ARight: TSquareSeconds): TSquareMeters;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator *(const ALeft: TSquareSeconds; const ARight: TSquareMetersPerSquareSecond): TSquareMeters;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+// alternative definition [ m2/s2 ] = [ m/s ] / [ m/s ]
+operator *(const ALeft: TMetersPerSecond; const ARight: TMetersPerSecond): TSquareMetersPerSquareSecond;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator /(const ALeft: TSquareMetersPerSquareSecond; const ARight: TMetersPerSecond): TMetersPerSecond;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+// alternative definition [ m2/s2 ] = [ m/s2 ] * [ m ]
+operator *(const ALeft: TMetersPerSquareSecond; const ARight: TMeters): TSquareMetersPerSquareSecond;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator /(const ALeft: TSquareMetersPerSquareSecond; const ARight: TMetersPerSquareSecond): TMeters;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator *(const ALeft: TMeters; const ARight: TMetersPerSquareSecond): TSquareMetersPerSquareSecond;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator /(const ALeft: TSquareMetersPerSquareSecond; const ARight: TMeters): TMetersPerSquareSecond;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+// main definition [ rad2/s2 ] = [ rad/s ] * [ rad/s ]
+operator *(const ALeft: TRadiansPerSecond; const ARight: TRadiansPerSecond): TSquareRadiansPerSquareSecond;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator /(const ALeft: TSquareRadiansPerSquareSecond; const ARight: TRadiansPerSecond): TRadiansPerSecond;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+// alternative definition [ rad2/s2 ] = [ m/s2 ] / [ m ]
+operator /(const ALeft: TMetersPerSquareSecond; const ARight: TMeters): TSquareRadiansPerSquareSecond;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator /(const ALeft: TMetersPerSquareSecond; const ARight: TSquareRadiansPerSquareSecond): TMeters;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator *(const ALeft: TSquareRadiansPerSquareSecond; const ARight: TMeters): TMetersPerSquareSecond;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator *(const ALeft: TMeters; const ARight: TSquareRadiansPerSquareSecond): TMetersPerSquareSecond;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
 // main definition [ kg*m ] = [ kg ] * [ m ]
 operator *(const ALeft: TKilograms; const ARight: TMeters): TKilogramsMeter;
 begin
@@ -10597,6 +10682,27 @@ begin
   result.Value := ALeft.Value / ARight.Value;
 end;
 
+// alternative definition [ kg*m2 ] = [ J ] / [ rad2/s2 ]
+operator /(const ALeft: TJoules; const ARight: TSquareRadiansPerSquareSecond): TKilogramsSquareMeter;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator /(const ALeft: TJoules; const ARight: TKilogramsSquareMeter): TSquareRadiansPerSquareSecond;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator *(const ALeft: TKilogramsSquareMeter; const ARight: TSquareRadiansPerSquareSecond): TJoules;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator *(const ALeft: TSquareRadiansPerSquareSecond; const ARight: TKilogramsSquareMeter): TJoules;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
 // main definition [ kg/m3 ] = [ kg ] / [ m3 ]
 operator /(const ALeft: TKilograms; const ARight: TCubicMeters): TKilogramsPerCubicMeter;
 begin
@@ -10616,91 +10722,6 @@ end;
 operator *(const ALeft: TCubicMeters; const ARight: TKilogramsPerCubicMeter): TKilograms;
 begin
   result.Value := ALeft.Value * ARight.Value;
-end;
-
-// main definition [ m2/s2 ] = [ m2 ] / [ s2 ]
-operator /(const ALeft: TSquareMeters; const ARight: TSquareSeconds): TSquareMetersPerSquareSecond;
-begin
-  result.Value := ALeft.Value / ARight.Value;
-end;
-
-operator /(const ALeft: TSquareMeters; const ARight: TSquareMetersPerSquareSecond): TSquareSeconds;
-begin
-  result.Value := ALeft.Value / ARight.Value;
-end;
-
-operator *(const ALeft: TSquareMetersPerSquareSecond; const ARight: TSquareSeconds): TSquareMeters;
-begin
-  result.Value := ALeft.Value * ARight.Value;
-end;
-
-operator *(const ALeft: TSquareSeconds; const ARight: TSquareMetersPerSquareSecond): TSquareMeters;
-begin
-  result.Value := ALeft.Value * ARight.Value;
-end;
-
-// alternative definition [ m2/s2 ] = [ m/s ] / [ m/s ]
-operator *(const ALeft: TMetersPerSecond; const ARight: TMetersPerSecond): TSquareMetersPerSquareSecond;
-begin
-  result.Value := ALeft.Value * ARight.Value;
-end;
-
-operator /(const ALeft: TSquareMetersPerSquareSecond; const ARight: TMetersPerSecond): TMetersPerSecond;
-begin
-  result.Value := ALeft.Value / ARight.Value;
-end;
-
-// alternative definition [ m2/s2 ] = [ m/s2 ] * [ m ]
-operator *(const ALeft: TMetersPerSquareSecond; const ARight: TMeters): TSquareMetersPerSquareSecond;
-begin
-  result.Value := ALeft.Value * ARight.Value;
-end;
-
-operator /(const ALeft: TSquareMetersPerSquareSecond; const ARight: TMetersPerSquareSecond): TMeters;
-begin
-  result.Value := ALeft.Value / ARight.Value;
-end;
-
-operator *(const ALeft: TMeters; const ARight: TMetersPerSquareSecond): TSquareMetersPerSquareSecond;
-begin
-  result.Value := ALeft.Value * ARight.Value;
-end;
-
-operator /(const ALeft: TSquareMetersPerSquareSecond; const ARight: TMeters): TMetersPerSquareSecond;
-begin
-  result.Value := ALeft.Value / ARight.Value;
-end;
-
-// alternative definition [ rad2/s2 ] = [ m/s2 ] / [ m ]
-operator /(const ALeft: TMetersPerSquareSecond; const ARight: TMeters): TSquareRadiansPerSquareSecond;
-begin
-  result.Value := ALeft.Value / ARight.Value;
-end;
-
-operator /(const ALeft: TMetersPerSquareSecond; const ARight: TSquareRadiansPerSquareSecond): TMeters;
-begin
-  result.Value := ALeft.Value / ARight.Value;
-end;
-
-operator *(const ALeft: TSquareRadiansPerSquareSecond; const ARight: TMeters): TMetersPerSquareSecond;
-begin
-  result.Value := ALeft.Value * ARight.Value;
-end;
-
-operator *(const ALeft: TMeters; const ARight: TSquareRadiansPerSquareSecond): TMetersPerSquareSecond;
-begin
-  result.Value := ALeft.Value * ARight.Value;
-end;
-
-// main definition [ rad2/s2 ] = [ rad/s ] * [ rad/s ]
-operator *(const ALeft: TRadiansPerSecond; const ARight: TRadiansPerSecond): TSquareRadiansPerSquareSecond;
-begin
-  result.Value := ALeft.Value * ARight.Value;
-end;
-
-operator /(const ALeft: TSquareRadiansPerSquareSecond; const ARight: TRadiansPerSecond): TRadiansPerSecond;
-begin
-  result.Value := ALeft.Value / ARight.Value;
 end;
 
 // main definition [ 1/C ] = 1 / [ C ]
@@ -11018,7 +11039,7 @@ begin
   result.Value := ALeft.Value / ARight.Value;
 end;
 
-// main definition [ kg*m2/s ] = [ kg*m/2 ] * [ m ]
+// main definition [ kg*m2/s ] = [ kg*m/s ] * [ m ]
 operator *(const ALeft: TKilogramsMeterPerSecond; const ARight: TMeters): TKilogramsSquareMeterPerSecond;
 begin
   result.Value := ALeft.Value * ARight.Value;
@@ -11058,27 +11079,6 @@ end;
 operator /(const ALeft: TKilogramsSquareMeterPerSecond; const ARight: TRadiansPerSecond): TKilogramsSquareMeter;
 begin
   result.Value := ALeft.Value / ARight.Value;
-end;
-
-// alternative definition [ kg*m2/s ] = [ J ] / [ rad2/s2 ]
-operator /(const ALeft: TJoules; const ARight: TSquareRadiansPerSquareSecond): TKilogramsSquareMeterPerSecond;
-begin
-  result.Value := ALeft.Value / ARight.Value;
-end;
-
-operator /(const ALeft: TJoules; const ARight: TKilogramsSquareMeterPerSecond): TSquareRadiansPerSquareSecond;
-begin
-  result.Value := ALeft.Value / ARight.Value;
-end;
-
-operator *(const ALeft: TKilogramsSquareMeterPerSecond; const ARight: TSquareRadiansPerSquareSecond): TJoules;
-begin
-  result.Value := ALeft.Value * ARight.Value;
-end;
-
-operator *(const ALeft: TSquareRadiansPerSquareSecond; const ARight: TKilogramsSquareMeterPerSecond): TJoules;
-begin
-  result.Value := ALeft.Value * ARight.Value;
 end;
 
 // main definition [ Pa*s ] = [ Pa ] * [ s ]
@@ -12489,16 +12489,6 @@ begin
   result.Value := Power(AQuantity.Value, 1/2);
 end;
 
-function SquarePower(AQuantity: THertz): TSquareHertz;
-begin
-  result.Value := Power(AQuantity.Value, 2);
-end;
-
-function SquareRoot(AQuantity: TSquareHertz): THertz;
-begin
-  result.Value := Power(AQuantity.Value, 1/2);
-end;
-
 function SquarePower(AQuantity: TMeters): TSquareMeters;
 begin
   result.Value := Power(AQuantity.Value, 2);
@@ -12597,6 +12587,16 @@ end;
 function QuarticRoot(AQuantity: TQuarticKelvins): TKelvins;
 begin
   result.Value := Power(AQuantity.Value, 1/4);
+end;
+
+function SquarePower(AQuantity: THertz): TSquareHertz;
+begin
+  result.Value := Power(AQuantity.Value, 2);
+end;
+
+function SquareRoot(AQuantity: TSquareHertz): THertz;
+begin
+  result.Value := Power(AQuantity.Value, 1/2);
 end;
 
 function SquarePower(AQuantity: TCoulombs): TSquareCoulombs;
