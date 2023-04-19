@@ -1208,6 +1208,26 @@ type
   TSiemensPerMeterIdentifier = specialize TQuantityIdentifier<TSiemensPerMeterUnit>;
   TSiemensPerMeter = specialize TQuantity<TSiemensPerMeterUnit>;
 
+{ Unit of NewtonPerCoulomb }
+
+type
+  TNewtonPerCoulombUnit = class(TUnit)
+    class function Name: string; override;
+    class function Symbol: string; override;
+  end;
+  TNewtonPerCoulombIdentifier = specialize TQuantityIdentifier<TNewtonPerCoulombUnit>;
+  TNewtonsPerCoulomb = specialize TQuantity<TNewtonPerCoulombUnit>;
+
+{ Unit of VoltPerMeter }
+
+type
+  TVoltPerMeterUnit = class(TUnit)
+    class function Name: string; override;
+    class function Symbol: string; override;
+  end;
+  TVoltPerMeterIdentifier = specialize TQuantityIdentifier<TVoltPerMeterUnit>;
+  TVoltsPerMeter = specialize TQuantity<TVoltPerMeterUnit>;
+
 { Unit of Hectogram }
 
 type
@@ -3523,6 +3543,24 @@ operator /(const {%H-}ALeft: double; const {%H-}ARight: TSiemensPerMeterIdentifi
 operator *(const {%H-}ALeft: TSiemensPerMeterIdentifier; const {%H-}ARight: TOhmMeterIdentifier): double; inline;
 operator *(const {%H-}ALeft: TOhmMeterIdentifier; const {%H-}ARight: TSiemensPerMeterIdentifier): double; inline;
 
+// main definition [ N/C ] = [ N ] / [ C ]
+operator /(const {%H-}ALeft: TNewtonIdentifier; const {%H-}ARight: TCoulombIdentifier): TNewtonPerCoulombIdentifier; inline;
+operator /(const {%H-}ALeft: TNewtonIdentifier; const {%H-}ARight: TNewtonPerCoulombIdentifier): TCoulombIdentifier; inline;
+operator *(const {%H-}ALeft: TNewtonPerCoulombIdentifier; const {%H-}ARight: TCoulombIdentifier): TNewtonIdentifier; inline;
+operator *(const {%H-}ALeft: TCoulombIdentifier; const {%H-}ARight: TNewtonPerCoulombIdentifier): TNewtonIdentifier; inline;
+
+// alternative definition [ N/C ] = [ m/s ] * [ B ]
+operator *(const {%H-}ALeft: TMeterPerSecondIdentifier; const {%H-}ARight: TTeslaIdentifier): TNewtonPerCoulombIdentifier; inline;
+operator /(const {%H-}ALeft: TNewtonPerCoulombIdentifier; const {%H-}ARight: TMeterPerSecondIdentifier): TTeslaIdentifier; inline;
+operator *(const {%H-}ALeft: TTeslaIdentifier; const {%H-}ARight: TMeterPerSecondIdentifier): TNewtonPerCoulombIdentifier; inline;
+operator /(const {%H-}ALeft: TNewtonPerCoulombIdentifier; const {%H-}ARight: TTeslaIdentifier): TMeterPerSecondIdentifier; inline;
+
+// main definition [ V/m ] = [ V ] / [ m ]
+operator /(const {%H-}ALeft: TVoltIdentifier; const {%H-}ARight: TMeterIdentifier): TVoltPerMeterIdentifier; inline;
+operator /(const {%H-}ALeft: TVoltIdentifier; const {%H-}ARight: TVoltPerMeterIdentifier): TMeterIdentifier; inline;
+operator *(const {%H-}ALeft: TVoltPerMeterIdentifier; const {%H-}ARight: TMeterIdentifier): TVoltIdentifier; inline;
+operator *(const {%H-}ALeft: TMeterIdentifier; const {%H-}ARight: TVoltPerMeterIdentifier): TVoltIdentifier; inline;
+
 // main definition [ km/h ] = [ km ] / [ h ]
 operator /(const {%H-}ALeft: TKilometerIdentifier; const {%H-}ARight: THourIdentifier): TKilometerPerHourIdentifier; inline;
 
@@ -4411,6 +4449,24 @@ operator /(const ALeft: double; const ARight: TSiemensPerMeter): TOhmsMeter; inl
 operator *(const ALeft: TSiemensPerMeter; const ARight: TOhmsMeter): double; inline;
 operator *(const ALeft: TOhmsMeter; const ARight: TSiemensPerMeter): double; inline;
 
+// main definition [ N/C ] = [ N ] / [ C ]
+operator /(const ALeft: TNewtons; const ARight: TCoulombs): TNewtonsPerCoulomb; inline;
+operator /(const ALeft: TNewtons; const ARight: TNewtonsPerCoulomb): TCoulombs; inline;
+operator *(const ALeft: TNewtonsPerCoulomb; const ARight: TCoulombs): TNewtons; inline;
+operator *(const ALeft: TCoulombs; const ARight: TNewtonsPerCoulomb): TNewtons; inline;
+
+// alternative definition [ N/C ] = [ m/s ] * [ B ]
+operator *(const ALeft: TMetersPerSecond; const ARight: TTeslas): TNewtonsPerCoulomb; inline;
+operator /(const ALeft: TNewtonsPerCoulomb; const ARight: TMetersPerSecond): TTeslas; inline;
+operator *(const ALeft: TTeslas; const ARight: TMetersPerSecond): TNewtonsPerCoulomb; inline;
+operator /(const ALeft: TNewtonsPerCoulomb; const ARight: TTeslas): TMetersPerSecond; inline;
+
+// main definition [ V/m ] = [ V ] / [ m ]
+operator /(const ALeft: TVolts; const ARight: TMeters): TVoltsPerMeter; inline;
+operator /(const ALeft: TVolts; const ARight: TVoltsPerMeter): TMeters; inline;
+operator *(const ALeft: TVoltsPerMeter; const ARight: TMeters): TVolts; inline;
+operator *(const ALeft: TMeters; const ARight: TVoltsPerMeter): TVolts; inline;
+
 { Power units }
 
 function SquarePower(AQuantity: TRadians): TSteradians;
@@ -4472,6 +4528,8 @@ operator := (AQuantity: TKilogramsMeterPerSecond): TNewtonsSecond; inline;
 operator := (AQuantity: TNewtonsSecond): TKilogramsMeterPerSecond; inline;
 operator := (AQuantity: TKilogramsSquareMeterPerSecond): TNewtonsMeterSecond; inline;
 operator := (AQuantity: TNewtonsMeterSecond): TKilogramsSquareMeterPerSecond; inline;
+operator := (AQuantity: TNewtonsPerCoulomb): TVoltsPerMeter; inline;
+operator := (AQuantity: TVoltsPerMeter): TNewtonsPerCoulomb; inline;
 
 { Trigonometric functions }
 
@@ -5805,6 +5863,30 @@ end;
 class function TSiemensPerMeterUnit.Name: string;
 begin
   result := 'siemens per meter';
+end;
+
+{ Unit of TNewtonPerCoulombUnit }
+
+class function TNewtonPerCoulombUnit.Symbol: string;
+begin
+  result := 'N/C';
+end;
+
+class function TNewtonPerCoulombUnit.Name: string;
+begin
+  result := 'newton per coulomb';
+end;
+
+{ Unit of TVoltPerMeterUnit }
+
+class function TVoltPerMeterUnit.Symbol: string;
+begin
+  result := 'V/m';
+end;
+
+class function TVoltPerMeterUnit.Name: string;
+begin
+  result := 'volt per meter';
 end;
 
 { Unit of THectogramUnit }
@@ -9600,6 +9682,45 @@ begin end;
 operator *(const ALeft: TOhmMeterIdentifier; const ARight: TSiemensPerMeterIdentifier): double;
 begin end;
 
+// main definition [ N/C ] = [ N ] / [ C ]
+operator /(const ALeft: TNewtonIdentifier; const ARight: TCoulombIdentifier): TNewtonPerCoulombIdentifier;
+begin end;
+
+operator /(const ALeft: TNewtonIdentifier; const ARight: TNewtonPerCoulombIdentifier): TCoulombIdentifier;
+begin end;
+
+operator *(const ALeft: TNewtonPerCoulombIdentifier; const ARight: TCoulombIdentifier): TNewtonIdentifier;
+begin end;
+
+operator *(const ALeft: TCoulombIdentifier; const ARight: TNewtonPerCoulombIdentifier): TNewtonIdentifier;
+begin end;
+
+// alternative definition [ N/C ] = [ m/s ] * [ B ]
+operator *(const ALeft: TMeterPerSecondIdentifier; const ARight: TTeslaIdentifier): TNewtonPerCoulombIdentifier;
+begin end;
+
+operator /(const ALeft: TNewtonPerCoulombIdentifier; const ARight: TMeterPerSecondIdentifier): TTeslaIdentifier;
+begin end;
+
+operator *(const ALeft: TTeslaIdentifier; const ARight: TMeterPerSecondIdentifier): TNewtonPerCoulombIdentifier;
+begin end;
+
+operator /(const ALeft: TNewtonPerCoulombIdentifier; const ARight: TTeslaIdentifier): TMeterPerSecondIdentifier;
+begin end;
+
+// main definition [ V/m ] = [ V ] / [ m ]
+operator /(const ALeft: TVoltIdentifier; const ARight: TMeterIdentifier): TVoltPerMeterIdentifier;
+begin end;
+
+operator /(const ALeft: TVoltIdentifier; const ARight: TVoltPerMeterIdentifier): TMeterIdentifier;
+begin end;
+
+operator *(const ALeft: TVoltPerMeterIdentifier; const ARight: TMeterIdentifier): TVoltIdentifier;
+begin end;
+
+operator *(const ALeft: TMeterIdentifier; const ARight: TVoltPerMeterIdentifier): TVoltIdentifier;
+begin end;
+
 // main definition [ km/h ] = [ km ] / [ h ]
 operator /(const ALeft: TKilometerIdentifier; const ARight: THourIdentifier): TKilometerPerHourIdentifier;
 begin end;
@@ -12534,6 +12655,69 @@ begin
   result := ALeft.Value * ARight.Value;
 end;
 
+// main definition [ N/C ] = [ N ] / [ C ]
+operator /(const ALeft: TNewtons; const ARight: TCoulombs): TNewtonsPerCoulomb;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator /(const ALeft: TNewtons; const ARight: TNewtonsPerCoulomb): TCoulombs;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator *(const ALeft: TNewtonsPerCoulomb; const ARight: TCoulombs): TNewtons;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator *(const ALeft: TCoulombs; const ARight: TNewtonsPerCoulomb): TNewtons;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+// alternative definition [ N/C ] = [ m/s ] * [ B ]
+operator *(const ALeft: TMetersPerSecond; const ARight: TTeslas): TNewtonsPerCoulomb;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator /(const ALeft: TNewtonsPerCoulomb; const ARight: TMetersPerSecond): TTeslas;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator *(const ALeft: TTeslas; const ARight: TMetersPerSecond): TNewtonsPerCoulomb;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator /(const ALeft: TNewtonsPerCoulomb; const ARight: TTeslas): TMetersPerSecond;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+// main definition [ V/m ] = [ V ] / [ m ]
+operator /(const ALeft: TVolts; const ARight: TMeters): TVoltsPerMeter;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator /(const ALeft: TVolts; const ARight: TVoltsPerMeter): TMeters;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator *(const ALeft: TVoltsPerMeter; const ARight: TMeters): TVolts;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator *(const ALeft: TMeters; const ARight: TVoltsPerMeter): TVolts;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
 { Power quantities }
 
 function SquarePower(AQuantity: TRadians): TSteradians;
@@ -12814,6 +12998,16 @@ begin
 end;
 
 operator := (AQuantity: TNewtonsMeterSecond): TKilogramsSquareMeterPerSecond;
+begin
+  result.Value := AQuantity.Value;
+end;
+
+operator := (AQuantity: TNewtonsPerCoulomb): TVoltsPerMeter;
+begin
+  result.Value := AQuantity.Value;
+end;
+
+operator := (AQuantity: TVoltsPerMeter): TNewtonsPerCoulomb;
 begin
   result.Value := AQuantity.Value;
 end;

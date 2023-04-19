@@ -31,7 +31,7 @@ Another unit for type checking of dimensioned quantities at compile time in Free
 - kilogram meter $[kg·m]$
 - kilogram meter per second $[kg·m/s]$
 - kilogram per cubic meter $[kg/m^3]$
-- kilogram square meter $[kg·m2]$
+- kilogram square meter $[kg·m^2]$
 - lumen $[lm]$
 - meter $[m]$
 - meter kelvin $[m·K]$
@@ -41,6 +41,7 @@ Another unit for type checking of dimensioned quantities at compile time in Free
 - newton $[N]$
 - newton meter $[N·m]$
 - newton meter per radian $[N·m/rad]$
+- newton per coulomb $[N/C]$
 - newton per cubic meter $[N/m^3]$
 - newton per meter $[N/m]$
 - newton per square coulomb $[N/C^2]$
@@ -81,6 +82,7 @@ Another unit for type checking of dimensioned quantities at compile time in Free
 - steradian $[sr]$
 - tesla $[T]$
 - volt $[V]$
+- volt per meter $[V/m]$
 - watt $[W]$
 - watt per kelvin $[W/K]$
 - watt per meter $[W/m]$
@@ -279,7 +281,7 @@ $Δp = F·Δt$ ,
 
 where
 
-- $Δp$ is the momentum change, $[kg·m/s]$,
+- $Δp$ is the momentum change, $[N·s]$,
 - $F$ is the applied force, $[N]$, 
 - $Δt$ is time interval, $[s]$.
 
@@ -299,6 +301,7 @@ $E_c = 1/2·m·v^2 + 1/2·I·ω^2$ ,
 
 where
 
+- $E_c$ is the kinetic energy, $[J]$,
 - $m$ is the mass of the body, $[kg]$,
 - $v$ is the velocity of the body, $[m/s]$,
 - $I$ is the moment of inertia of the body, $[kg·m^2]$,
@@ -393,6 +396,18 @@ where
 
 - $μ$ is the dynamic viscosity of the fluid, $[Pa⋅s]$,
 - $ρ$ is the the density of the fluid, $[kg/m^3]$.
+
+### Lorentz force
+
+$F = q⋅[v⋅B⋅sin(α)]$ ,
+
+where
+
+- $F$ is the module of Lorentz force, $[N]$,
+- $q$ is the charge of particle $q$, $[C]$,
+- $v$ is the velocity of the charge, $[m/s]$,
+- $B$ is the magnetic field, $[T]$,
+- $α$ is the angle between $v$ and $B$, $[rad]$.
 
 ## LICENSE
 
