@@ -148,6 +148,18 @@ where
 - $T_2$ is the initial temperature of body 2, $[K]$,
 - $T_e$ is the final temperature of bodies, $[K]$.
 
+### Centripetal force
+
+$F_c = m·(ω^2·r) = m·(v^2/r)$ ,
+
+where
+
+- $F_c$ is the centripetal force, $[N]$,
+- $m$ is the mass of object, $[kg]$,
+- $ω$, is the angular velocity, $[rad/s]$,
+- $r$, is the radius, $[m]$,
+- $v$ is the tangential velocity, $[m/s]$.
+
 ### Continuity equation (fluid)
 
 $q = V/t=A·v$ ,

@@ -27,9 +27,9 @@
         <Filename Value="examples.pas"/>
         <IsPartOfProject Value="True"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="698"/>
-        <CursorPos X="3" Y="24"/>
-        <UsageCount Value="149"/>
+        <TopLine Value="722"/>
+        <CursorPos X="33" Y="750"/>
+        <UsageCount Value="150"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -39,7 +39,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="138"/>
         <CursorPos X="7" Y="153"/>
-        <UsageCount Value="149"/>
+        <UsageCount Value="150"/>
       </Unit>
       <Unit>
         <Filename Value="code.inc"/>
@@ -111,10 +111,11 @@
       </Unit>
       <Unit>
         <Filename Value="ADim.pas"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="1804"/>
-        <CursorPos X="3" Y="1814"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="1691"/>
+        <CursorPos X="3" Y="1710"/>
         <UsageCount Value="11"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../../../../../FPC/3.2.2/source/rtl/objpas/math.pp"/>
@@ -169,10 +170,26 @@
         <UsageCount Value="10"/>
       </Unit>
     </Units>
-    <JumpHistory>
+    <JumpHistory HistoryIndex="4">
       <Position>
         <Filename Value="examples.pas"/>
         <Caret Line="690" Column="23"/>
+      </Position>
+      <Position>
+        <Filename Value="examples.pas"/>
+        <Caret Line="736" Column="24" TopLine="702"/>
+      </Position>
+      <Position>
+        <Filename Value="examples.pas"/>
+        <Caret Line="738" Column="50" TopLine="711"/>
+      </Position>
+      <Position>
+        <Filename Value="examples.pas"/>
+        <Caret Line="737" Column="39" TopLine="711"/>
+      </Position>
+      <Position>
+        <Filename Value="examples.pas"/>
+        <Caret Line="739" Column="56" TopLine="716"/>
       </Position>
     </JumpHistory>
   </ProjectOptions>

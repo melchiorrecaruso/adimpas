@@ -731,5 +731,22 @@ begin
   writeln('The power is: ', power.ToVerboseString);
   writeln;
 
+  // centripetal force
+  mass         := 10*kg;
+  radius       := 1*m;
+  angularspeed := 2*pi*(rad/s);
+  speed        := angularspeed*radius;
+  force        := mass*(SquarePower(angularspeed)*radius);
+  force        := mass*(SquarePower(speed)/radius);
+
+  writeln('*** Centripetal force:');
+  writeln('The mass is: ', mass.ToString(4, 4));
+  writeln('The radius is: ', radius.ToString(4, 4));
+  writeln('The angularspeed is: ', angularspeed.ToString(4, 4));
+  writeln('The speed is: ', speed.ToString(4, 4));
+  writeln('The force is: ', force.ToString(4, 4));
+
+  writeln;
+  writeln('Press ENTER to exit.');
   readln;
 end.
