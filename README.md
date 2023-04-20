@@ -113,7 +113,7 @@ Another unit for type checking of dimensioned quantities at compile time in Free
 
 ### Archimede's principle
 
-$F_a = ρ·g·V$ ,
+$F_a = (ρ·g)·V$ ,
 
 where
 
@@ -124,7 +124,7 @@ where
 
 ### Bernoulli's law
 
-$p + ρ·g·h + 1/2·ρ·v² = costant$ ,
+$p + (ρ·g)·h + 1/2·ρ·v² = costant$ ,
 
 where 
 
@@ -409,7 +409,7 @@ where
 - $μ$ is the dynamic viscosity of the fluid, $[Pa⋅s]$,
 - $ρ$ is the the density of the fluid, $[kg/m^3]$.
 
-### Lorentz force
+### Lorentz force (electric charge)
 
 $F = q⋅[v⋅B⋅sin(α)]$ ,
 
@@ -420,6 +420,18 @@ where
 - $v$ is the velocity of the charge, $[m/s]$,
 - $B$ is the magnetic field, $[T]$,
 - $α$ is the angle between $v$ and $B$, $[rad]$.
+
+### Lorentz force (electric current)
+
+$F = i⋅[l⋅B⋅sin(α)]$ ,
+
+where
+
+- $F$ is the module of magnetic force, $[N]$,
+- $i$ is the value of electric current, $[A]$,
+- $l$ is the length of the line, $[m]$,
+- $B$ is the magnetic field, $[T]$,
+- $α$ is the angle between $l$ and $B$, $[rad]$.
 
 ## LICENSE
 
