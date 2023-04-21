@@ -120,6 +120,9 @@ var
 
   lambda2: TWattsPerMeterPerKelvin;
 
+  B: TTeslas;
+  len: TMeters;
+
 begin
   SetConsoleOutputCP(CP_UTF8);
 
@@ -745,6 +748,21 @@ begin
   writeln('The angularspeed is: ', angularspeed.ToString(4, 4));
   writeln('The speed is: ', speed.ToString(4, 4));
   writeln('The force is: ', force.ToString(4, 4));
+  writeln;
+
+  // magnetic force
+  mass      := 100*ADim.g;
+  g         := 9.81*(m/s2);
+  len       := 20*cm;
+  B         := 2.0*T;
+  current   := (mass*g)/(len*B*Sin(90*deg));
+
+  writeln('*** Magnetic force:');
+  writeln('The mass is: ', mass.ToString(4, 4));
+  writeln('The wire length is: ', len.ToString(4, 4));
+  writeln('The magnetic field B is: ', B.ToString(4, 4));
+  writeln('The electric current is: ', current.ToString(2, 4));
+  writeln;
 
   writeln;
   writeln('Press ENTER to exit.');
