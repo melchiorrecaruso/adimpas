@@ -382,7 +382,19 @@ begin
         S1 := 'Quartic';
         S2 := '4';
         S3 := '1/4';
-      end;
+      end else
+        if ('quinticpower' = LowerCase(AOperator)) then
+        begin
+          S1 := 'Quintic';
+          S2 := '5';
+          S3 := '1/5';
+        end else
+          if ('sexticpower' = LowerCase(AOperator)) then
+          begin
+            S1 := 'Sextic';
+            S2 := '6';
+            S3 := '1/6';
+          end;
 
   AQuantity := GetQT(AQuantity);
   AResult   := GetQT(AResult);
