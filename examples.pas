@@ -127,6 +127,8 @@ var
   z: TMeters;
   loops: longint;
 
+  i1, i2: TAmperes;
+
 begin
   SetConsoleOutputCP(CP_UTF8);
 
@@ -787,15 +789,32 @@ begin
   m0       := 4*pi*1E-7*(T*m/A);
   current  := 1600*A;
   loops    := 2000;
-  len      := 2*m;
+  len      := 2.0*m;
   B        := m0*loops*(current/len);
 
   writeln('*** Magnetic field produced by a current-carrying solenoid:');
   writeln('The vacuum magnetic permeability is: ', m0.ToString(4, 4));
   writeln('The electric current is: ', current.ToString(4, 4));
-  writeln('The solenoid has : ', loops, ' loops');
-  writeln('The solenoid length is : ', len.ToString(4, 4));
+  writeln('The solenoid has: ', loops, ' loops');
+  writeln('The solenoid length is: ', len.ToString(4, 4));
   writeln('The magnetic field B is: ', B.ToVerboseString(3, 4));
+  writeln;
+
+  // Forces between parallel conductors
+  m0       := 4*pi*1E-7*(T*m/A);
+  i1       := 2.5*A;
+  i2       := 1.5*A;
+  r        := 4*cm;
+  len      := 1*m;
+  force    := (m0/(2*pi)*(i1*i2/r)) * len;
+
+  writeln('*** Forces between parallel conductors:');
+  writeln('The vacuum magnetic permeability is: ', m0.ToString(4, 4));
+  writeln('The electric current 1 is: ', i1.ToString(4, 4));
+  writeln('The electric current 2 is: ', i2.ToString(4, 4));
+  writeln('The distance separating the conductors is: ', r.ToString(4, 4));
+  writeln('The length of conductors is: ', len.ToString(4, 4));
+  writeln('The forces between conductors is: ', force.ToString(4, 4));
 
 
   writeln;
