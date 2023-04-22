@@ -409,7 +409,7 @@ where
 - $μ$ is the dynamic viscosity of the fluid, $[Pa⋅s]$,
 - $ρ$ is the the density of the fluid, $[kg/m^3]$.
 
-### Lorentz force (electric charge)
+### Lorentz force: electric charge
 
 $F = q⋅[v⋅B⋅sin(α)]$ ,
 
@@ -421,7 +421,7 @@ where
 - $B$ is the magnetic field, $[T]$,
 - $α$ is the angle between $v$ and $B$, $[rad]$.
 
-### Lorentz force (electric current)
+### Lorentz force: electric current
 
 $F = i⋅[l⋅B⋅sin(α)]$ ,
 
@@ -432,6 +432,41 @@ where
 - $l$ is the length of the line, $[m]$,
 - $B$ is the magnetic field, $[T]$,
 - $α$ is the angle between $l$ and $B$, $[rad]$.
+
+### Biot-Savart law: magnetic field created by a long straight current-carrying wire
+
+$B = \displaystyle\frac{μ_0}{2π}⋅\left(\frac{I}{r}\right)$ ,
+
+where
+
+- $B$ is the magnetic field, $[T]$,
+- $μ_0$ is the vacuum magnetic permeability, $μ_0=4π⋅10^{-7}$ $[T⋅m/A]$,
+- $I$ is the current intensity flowing in the long wire, $[A]$,
+- $r$ is the distance of the magnetic field from the wire, $[m]$.
+
+### Biot-Savart law: magnetic field produced by a current-carrying circular loop
+
+$B = \displaystyle\frac{μ_0}{2}⋅\left\{I⋅\left[\frac{R^2}{(z^2+R^2)^{3/2}}\right]\right\}$ ,
+
+where
+
+- $B$ is the magnetic field, $[T]$,
+- $μ_0$ is the vacuum magnetic permeability, $μ_0=4π⋅10^{-7}$ $[T⋅m/A]$,
+- $I$ is the current intensity flowing in the circular loop, $[A]$,
+- $R$ is the radius of circular loop, $[m]$,
+- $z$ is the distance along circular loop axis from center, $[m]$.
+
+### Biot-Savart law: magnetic field produced by a current-carrying solenoid
+
+$B = \displaystyle\ {μ_0}⋅{N}⋅\left(\frac{I}{L}\right)$ ,
+
+where
+
+- $B$ is the magnetic field strength inside a solenoid, $[T]$,
+- $μ_0$ is the vacuum magnetic permeability, $μ_0=4π⋅10^{-7}$ $[T⋅m/A]$,
+- $N$ is the number of loops, a dimensionless number,
+- $I$ is the current intensity flowing in the solenoid, $[A]$,
+- $L$ is the length of the solenoid, $[m]$.
 
 ## LICENSE
 

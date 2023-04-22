@@ -120,8 +120,12 @@ var
 
   lambda2: TWattsPerMeterPerKelvin;
 
+  m0: TTeslasMeterPerAmpere;
   B: TTeslas;
   len: TMeters;
+  R: TMeters;
+  z: TMeters;
+  loops: longint;
 
 begin
   SetConsoleOutputCP(CP_UTF8);
@@ -750,19 +754,49 @@ begin
   writeln('The force is: ', force.ToString(4, 4));
   writeln;
 
-  // magnetic force
+  // magnetic force for lifting a object
   mass      := 100*ADim.g;
   g         := 9.81*(m/s2);
   len       := 20*cm;
   B         := 2.0*T;
   current   := (mass*g)/(len*B*Sin(90*deg));
 
-  writeln('*** Magnetic force:');
+  writeln('*** Magnetic force for lifting a object:');
   writeln('The mass is: ', mass.ToString(4, 4));
   writeln('The wire length is: ', len.ToString(4, 4));
   writeln('The magnetic field B is: ', B.ToString(4, 4));
-  writeln('The electric current is: ', current.ToString(2, 4));
+  writeln('The needed magnetic force is: ', (mass*g).ToString(2, 4));
+  writeln('The needed electric current is: ', current.ToString(2, 4));
   writeln;
+
+  // magnetic field due to straight wire
+  m0       := 4*pi*1E-7*(T*m/A);
+  current  := 3.0*A;
+  R        := 50*cm;
+  z        := 0*cm;
+  B        := m0/(2*pi) * (current * (SquarePower(R)/ SquareRoot(CubicPower(SquarePower(z)+SquarePower(R))) ));
+
+  writeln('*** Magnetic field due to straight wire:');
+  writeln('The vacuum magnetic permeability is: ', m0.ToString(4, 4));
+  writeln('The electric current is: ', current.ToString(4, 4));
+  writeln('The distance of the magnetic field from the wire is: ', distance.ToString(4, 4));
+  writeln('The magnetic field B is: ', B.ToVerboseString(4, 4));
+  writeln;
+
+  // magnetic field produced by a current-carrying solenoid
+  m0       := 4*pi*1E-7*(T*m/A);
+  current  := 1600*A;
+  loops    := 2000;
+  len      := 2*m;
+  B        := m0*loops*(current/len);
+
+  writeln('*** Magnetic field produced by a current-carrying solenoid:');
+  writeln('The vacuum magnetic permeability is: ', m0.ToString(4, 4));
+  writeln('The electric current is: ', current.ToString(4, 4));
+  writeln('The solenoid has : ', loops, ' loops');
+  writeln('The solenoid length is : ', len.ToString(4, 4));
+  writeln('The magnetic field B is: ', B.ToVerboseString(3, 4));
+
 
   writeln;
   writeln('Press ENTER to exit.');
