@@ -257,6 +257,32 @@ type
 var
   m4: TQuarticMeterIdentifier;
 
+{ Unit of QuinticMeter }
+
+type
+  TQuinticMeterUnit = class(TUnit)
+    class function Name: string; override;
+    class function Symbol: string; override;
+  end;
+  TQuinticMeterIdentifier = specialize TQuantityIdentifier<TQuinticMeterUnit>;
+  TQuinticMeters = specialize TQuantity<TQuinticMeterUnit>;
+
+var
+  m5: TQuinticMeterIdentifier;
+
+{ Unit of SexticMeter }
+
+type
+  TSexticMeterUnit = class(TUnit)
+    class function Name: string; override;
+    class function Symbol: string; override;
+  end;
+  TSexticMeterIdentifier = specialize TQuantityIdentifier<TSexticMeterUnit>;
+  TSexticMeters = specialize TQuantity<TSexticMeterUnit>;
+
+var
+  m6: TSexticMeterIdentifier;
+
 { Unit of SquareSecond }
 
 type
@@ -1247,6 +1273,72 @@ type
   end;
   TAmpereSquareMeterIdentifier = specialize TQuantityIdentifier<TAmpereSquareMeterUnit>;
   TAmperesSquareMeter = specialize TQuantity<TAmpereSquareMeterUnit>;
+
+var
+  Am2: TAmpereSquareMeterIdentifier;
+
+{ Unit of TeslaMeter }
+
+type
+  TTeslaMeterUnit = class(TUnit)
+    class function Name: string; override;
+    class function Symbol: string; override;
+  end;
+  TTeslaMeterIdentifier = specialize TQuantityIdentifier<TTeslaMeterUnit>;
+  TTeslasMeter = specialize TQuantity<TTeslaMeterUnit>;
+
+var
+  Tm: TTeslaMeterIdentifier;
+
+{ Unit of TeslaPerAmpere }
+
+type
+  TTeslaPerAmpereUnit = class(TUnit)
+    class function Name: string; override;
+    class function Symbol: string; override;
+  end;
+  TTeslaPerAmpereIdentifier = specialize TQuantityIdentifier<TTeslaPerAmpereUnit>;
+  TTeslasPerAmpere = specialize TQuantity<TTeslaPerAmpereUnit>;
+
+{ Unit of MeterPerAmpere }
+
+type
+  TMeterPerAmpereUnit = class(TUnit)
+    class function Name: string; override;
+    class function Symbol: string; override;
+  end;
+  TMeterPerAmpereIdentifier = specialize TQuantityIdentifier<TMeterPerAmpereUnit>;
+  TMetersPerAmpere = specialize TQuantity<TMeterPerAmpereUnit>;
+
+{ Unit of AmperePerMeter }
+
+type
+  TAmperePerMeterUnit = class(TUnit)
+    class function Name: string; override;
+    class function Symbol: string; override;
+  end;
+  TAmperePerMeterIdentifier = specialize TQuantityIdentifier<TAmperePerMeterUnit>;
+  TAmperesPerMeter = specialize TQuantity<TAmperePerMeterUnit>;
+
+{ Unit of TeslaMeterPerAmpere }
+
+type
+  TTeslaMeterPerAmpereUnit = class(TUnit)
+    class function Name: string; override;
+    class function Symbol: string; override;
+  end;
+  TTeslaMeterPerAmpereIdentifier = specialize TQuantityIdentifier<TTeslaMeterPerAmpereUnit>;
+  TTeslasMeterPerAmpere = specialize TQuantity<TTeslaMeterPerAmpereUnit>;
+
+{ Unit of HenryPerMeter }
+
+type
+  THenryPerMeterUnit = class(TUnit)
+    class function Name: string; override;
+    class function Symbol: string; override;
+  end;
+  THenryPerMeterIdentifier = specialize TQuantityIdentifier<THenryPerMeterUnit>;
+  THenrysPerMeter = specialize TQuantity<THenryPerMeterUnit>;
 
 { Unit of Hectogram }
 
@@ -2765,6 +2857,34 @@ operator /(const {%H-}ALeft: TQuarticMeterIdentifier; const {%H-}ARight: TMeterI
 operator *(const {%H-}ALeft: TSquareMeterIdentifier; const {%H-}ARight: TSquareMeterIdentifier): TQuarticMeterIdentifier; inline;
 operator /(const {%H-}ALeft: TQuarticMeterIdentifier; const {%H-}ARight: TSquareMeterIdentifier): TSquareMeterIdentifier; inline;
 
+// main definition [ m5 ]
+operator *(const {%H-}ALeft: TQuarticMeterIdentifier; const {%H-}ARight: TMeterIdentifier): TQuinticMeterIdentifier; inline;
+operator /(const {%H-}ALeft: TQuinticMeterIdentifier; const {%H-}ARight: TQuarticMeterIdentifier): TMeterIdentifier; inline;
+operator *(const {%H-}ALeft: TMeterIdentifier; const {%H-}ARight: TQuarticMeterIdentifier): TQuinticMeterIdentifier; inline;
+operator /(const {%H-}ALeft: TQuinticMeterIdentifier; const {%H-}ARight: TMeterIdentifier): TQuarticMeterIdentifier; inline;
+
+//
+operator *(const {%H-}ALeft: TCubicMeterIdentifier; const {%H-}ARight: TSquareMeterIdentifier): TQuinticMeterIdentifier; inline;
+operator /(const {%H-}ALeft: TQuinticMeterIdentifier; const {%H-}ARight: TCubicMeterIdentifier): TSquareMeterIdentifier; inline;
+operator *(const {%H-}ALeft: TSquareMeterIdentifier; const {%H-}ARight: TCubicMeterIdentifier): TQuinticMeterIdentifier; inline;
+operator /(const {%H-}ALeft: TQuinticMeterIdentifier; const {%H-}ARight: TSquareMeterIdentifier): TCubicMeterIdentifier; inline;
+
+// main definition [ m6 ]
+operator *(const {%H-}ALeft: TQuinticMeterIdentifier; const {%H-}ARight: TMeterIdentifier): TSexticMeterIdentifier; inline;
+operator /(const {%H-}ALeft: TSexticMeterIdentifier; const {%H-}ARight: TQuinticMeterIdentifier): TMeterIdentifier; inline;
+operator *(const {%H-}ALeft: TMeterIdentifier; const {%H-}ARight: TQuinticMeterIdentifier): TSexticMeterIdentifier; inline;
+operator /(const {%H-}ALeft: TSexticMeterIdentifier; const {%H-}ARight: TMeterIdentifier): TQuinticMeterIdentifier; inline;
+
+//
+operator *(const {%H-}ALeft: TQuarticMeterIdentifier; const {%H-}ARight: TSquareMeterIdentifier): TSexticMeterIdentifier; inline;
+operator /(const {%H-}ALeft: TSexticMeterIdentifier; const {%H-}ARight: TQuarticMeterIdentifier): TSquareMeterIdentifier; inline;
+operator *(const {%H-}ALeft: TSquareMeterIdentifier; const {%H-}ARight: TQuarticMeterIdentifier): TSexticMeterIdentifier; inline;
+operator /(const {%H-}ALeft: TSexticMeterIdentifier; const {%H-}ARight: TSquareMeterIdentifier): TQuarticMeterIdentifier; inline;
+
+//
+operator *(const {%H-}ALeft: TCubicMeterIdentifier; const {%H-}ARight: TCubicMeterIdentifier): TSexticMeterIdentifier; inline;
+operator /(const {%H-}ALeft: TSexticMeterIdentifier; const {%H-}ARight: TCubicMeterIdentifier): TCubicMeterIdentifier; inline;
+
 // main definition [ s2 ] = [ s ] * [ s ]
 operator *(const {%H-}ALeft: TSecondIdentifier; const {%H-}ARight: TSecondIdentifier): TSquareSecondIdentifier; inline;
 operator /(const {%H-}ALeft: TSquareSecondIdentifier; const {%H-}ARight: TSecondIdentifier): TSecondIdentifier; inline;
@@ -2804,6 +2924,30 @@ operator /(const {%H-}ALeft: TMeterIdentifier; const {%H-}ARight: TSquareMeterId
 operator /(const {%H-}ALeft: TMeterIdentifier; const {%H-}ARight: TReciprocalMeterIdentifier): TSquareMeterIdentifier; inline;
 operator *(const {%H-}ALeft: TReciprocalMeterIdentifier; const {%H-}ARight: TSquareMeterIdentifier): TMeterIdentifier; inline;
 operator *(const {%H-}ALeft: TSquareMeterIdentifier; const {%H-}ARight: TReciprocalMeterIdentifier): TMeterIdentifier; inline;
+
+// alternative definition [ 1/m ] = [ m2 ] / [ m3 ]
+operator /(const {%H-}ALeft: TSquareMeterIdentifier; const {%H-}ARight: TCubicMeterIdentifier): TReciprocalMeterIdentifier; inline;
+operator /(const {%H-}ALeft: TSquareMeterIdentifier; const {%H-}ARight: TReciprocalMeterIdentifier): TCubicMeterIdentifier; inline;
+operator *(const {%H-}ALeft: TReciprocalMeterIdentifier; const {%H-}ARight: TCubicMeterIdentifier): TSquareMeterIdentifier; inline;
+operator *(const {%H-}ALeft: TCubicMeterIdentifier; const {%H-}ARight: TReciprocalMeterIdentifier): TSquareMeterIdentifier; inline;
+
+// alternative definition [ 1/m ] = [ m3 ] / [ m4 ]
+operator /(const {%H-}ALeft: TCubicMeterIdentifier; const {%H-}ARight: TQuarticMeterIdentifier): TReciprocalMeterIdentifier; inline;
+operator /(const {%H-}ALeft: TCubicMeterIdentifier; const {%H-}ARight: TReciprocalMeterIdentifier): TQuarticMeterIdentifier; inline;
+operator *(const {%H-}ALeft: TReciprocalMeterIdentifier; const {%H-}ARight: TQuarticMeterIdentifier): TCubicMeterIdentifier; inline;
+operator *(const {%H-}ALeft: TQuarticMeterIdentifier; const {%H-}ARight: TReciprocalMeterIdentifier): TCubicMeterIdentifier; inline;
+
+// alternative definition [ 1/m ] = [ m4 ] / [ m5 ]
+operator /(const {%H-}ALeft: TQuarticMeterIdentifier; const {%H-}ARight: TQuinticMeterIdentifier): TReciprocalMeterIdentifier; inline;
+operator /(const {%H-}ALeft: TQuarticMeterIdentifier; const {%H-}ARight: TReciprocalMeterIdentifier): TQuinticMeterIdentifier; inline;
+operator *(const {%H-}ALeft: TReciprocalMeterIdentifier; const {%H-}ARight: TQuinticMeterIdentifier): TQuarticMeterIdentifier; inline;
+operator *(const {%H-}ALeft: TQuinticMeterIdentifier; const {%H-}ARight: TReciprocalMeterIdentifier): TQuarticMeterIdentifier; inline;
+
+// alternative definition [ 1/m ] = [ m5 ] / [ m6 ]
+operator /(const {%H-}ALeft: TQuinticMeterIdentifier; const {%H-}ARight: TSexticMeterIdentifier): TReciprocalMeterIdentifier; inline;
+operator /(const {%H-}ALeft: TQuinticMeterIdentifier; const {%H-}ARight: TReciprocalMeterIdentifier): TSexticMeterIdentifier; inline;
+operator *(const {%H-}ALeft: TReciprocalMeterIdentifier; const {%H-}ARight: TSexticMeterIdentifier): TQuinticMeterIdentifier; inline;
+operator *(const {%H-}ALeft: TSexticMeterIdentifier; const {%H-}ARight: TReciprocalMeterIdentifier): TQuinticMeterIdentifier; inline;
 
 // main definition [ 1/K ] = 1 / [ K ]
 operator /(const {%H-}ALeft: double; const {%H-}ARight: TKelvinIdentifier): TReciprocalKelvinIdentifier; inline;
@@ -3587,12 +3731,6 @@ operator /(const {%H-}ALeft: TNewtonIdentifier; const {%H-}ARight: TNewtonPerAmp
 operator *(const {%H-}ALeft: TNewtonPerAmpereIdentifier; const {%H-}ARight: TAmpereIdentifier): TNewtonIdentifier; inline;
 operator *(const {%H-}ALeft: TAmpereIdentifier; const {%H-}ARight: TNewtonPerAmpereIdentifier): TNewtonIdentifier; inline;
 
-// alternative definition [ N/A ] = [ m ] * [ T ]
-operator *(const {%H-}ALeft: TMeterIdentifier; const {%H-}ARight: TTeslaIdentifier): TNewtonPerAmpereIdentifier; inline;
-operator /(const {%H-}ALeft: TNewtonPerAmpereIdentifier; const {%H-}ARight: TMeterIdentifier): TTeslaIdentifier; inline;
-operator *(const {%H-}ALeft: TTeslaIdentifier; const {%H-}ARight: TMeterIdentifier): TNewtonPerAmpereIdentifier; inline;
-operator /(const {%H-}ALeft: TNewtonPerAmpereIdentifier; const {%H-}ARight: TTeslaIdentifier): TMeterIdentifier; inline;
-
 // main definition [ A*m2 ] = [ A ] * [ m2 ]
 operator *(const {%H-}ALeft: TAmpereIdentifier; const {%H-}ARight: TSquareMeterIdentifier): TAmpereSquareMeterIdentifier; inline;
 operator /(const {%H-}ALeft: TAmpereSquareMeterIdentifier; const {%H-}ARight: TAmpereIdentifier): TSquareMeterIdentifier; inline;
@@ -3604,6 +3742,66 @@ operator /(const {%H-}ALeft: TNewtonMeterIdentifier; const {%H-}ARight: TTeslaId
 operator /(const {%H-}ALeft: TNewtonMeterIdentifier; const {%H-}ARight: TAmpereSquareMeterIdentifier): TTeslaIdentifier; inline;
 operator *(const {%H-}ALeft: TAmpereSquareMeterIdentifier; const {%H-}ARight: TTeslaIdentifier): TNewtonMeterIdentifier; inline;
 operator *(const {%H-}ALeft: TTeslaIdentifier; const {%H-}ARight: TAmpereSquareMeterIdentifier): TNewtonMeterIdentifier; inline;
+
+// main definition [ T*m ] = [ T ] * [ m ]
+operator *(const {%H-}ALeft: TTeslaIdentifier; const {%H-}ARight: TMeterIdentifier): TTeslaMeterIdentifier; inline;
+operator /(const {%H-}ALeft: TTeslaMeterIdentifier; const {%H-}ARight: TTeslaIdentifier): TMeterIdentifier; inline;
+operator *(const {%H-}ALeft: TMeterIdentifier; const {%H-}ARight: TTeslaIdentifier): TTeslaMeterIdentifier; inline;
+operator /(const {%H-}ALeft: TTeslaMeterIdentifier; const {%H-}ARight: TMeterIdentifier): TTeslaIdentifier; inline;
+
+// main definition [ T/A ] = [ T ] / [ A ]
+operator /(const {%H-}ALeft: TTeslaIdentifier; const {%H-}ARight: TAmpereIdentifier): TTeslaPerAmpereIdentifier; inline;
+operator /(const {%H-}ALeft: TTeslaIdentifier; const {%H-}ARight: TTeslaPerAmpereIdentifier): TAmpereIdentifier; inline;
+operator *(const {%H-}ALeft: TTeslaPerAmpereIdentifier; const {%H-}ARight: TAmpereIdentifier): TTeslaIdentifier; inline;
+operator *(const {%H-}ALeft: TAmpereIdentifier; const {%H-}ARight: TTeslaPerAmpereIdentifier): TTeslaIdentifier; inline;
+
+// main definition [ m/A ] = [ m ] / [ A ]
+operator /(const {%H-}ALeft: TMeterIdentifier; const {%H-}ARight: TAmpereIdentifier): TMeterPerAmpereIdentifier; inline;
+operator /(const {%H-}ALeft: TMeterIdentifier; const {%H-}ARight: TMeterPerAmpereIdentifier): TAmpereIdentifier; inline;
+operator *(const {%H-}ALeft: TMeterPerAmpereIdentifier; const {%H-}ARight: TAmpereIdentifier): TMeterIdentifier; inline;
+operator *(const {%H-}ALeft: TAmpereIdentifier; const {%H-}ARight: TMeterPerAmpereIdentifier): TMeterIdentifier; inline;
+
+// main definition [ A/m ] = [ A ] / [ m ]
+operator /(const {%H-}ALeft: TAmpereIdentifier; const {%H-}ARight: TMeterIdentifier): TAmperePerMeterIdentifier; inline;
+operator /(const {%H-}ALeft: TAmpereIdentifier; const {%H-}ARight: TAmperePerMeterIdentifier): TMeterIdentifier; inline;
+operator *(const {%H-}ALeft: TAmperePerMeterIdentifier; const {%H-}ARight: TMeterIdentifier): TAmpereIdentifier; inline;
+operator *(const {%H-}ALeft: TMeterIdentifier; const {%H-}ARight: TAmperePerMeterIdentifier): TAmpereIdentifier; inline;
+
+// alternative definition [ A/m ] = [ A ] * [ 1/m ]
+operator *(const {%H-}ALeft: TAmpereIdentifier; const {%H-}ARight: TReciprocalMeterIdentifier): TAmperePerMeterIdentifier; inline;
+operator /(const {%H-}ALeft: TAmperePerMeterIdentifier; const {%H-}ARight: TAmpereIdentifier): TReciprocalMeterIdentifier; inline;
+operator *(const {%H-}ALeft: TReciprocalMeterIdentifier; const {%H-}ARight: TAmpereIdentifier): TAmperePerMeterIdentifier; inline;
+operator /(const {%H-}ALeft: TAmperePerMeterIdentifier; const {%H-}ARight: TReciprocalMeterIdentifier): TAmpereIdentifier; inline;
+
+// main definition [ T*m/A ] = [ T*m ] / [ A ]
+operator /(const {%H-}ALeft: TTeslaMeterIdentifier; const {%H-}ARight: TAmpereIdentifier): TTeslaMeterPerAmpereIdentifier; inline;
+operator /(const {%H-}ALeft: TTeslaMeterIdentifier; const {%H-}ARight: TTeslaMeterPerAmpereIdentifier): TAmpereIdentifier; inline;
+operator *(const {%H-}ALeft: TTeslaMeterPerAmpereIdentifier; const {%H-}ARight: TAmpereIdentifier): TTeslaMeterIdentifier; inline;
+operator *(const {%H-}ALeft: TAmpereIdentifier; const {%H-}ARight: TTeslaMeterPerAmpereIdentifier): TTeslaMeterIdentifier; inline;
+
+// alternative definition [ T*m/A ] = [ T/A ] * [ m ]
+operator *(const {%H-}ALeft: TTeslaPerAmpereIdentifier; const {%H-}ARight: TMeterIdentifier): TTeslaMeterPerAmpereIdentifier; inline;
+operator /(const {%H-}ALeft: TTeslaMeterPerAmpereIdentifier; const {%H-}ARight: TTeslaPerAmpereIdentifier): TMeterIdentifier; inline;
+operator *(const {%H-}ALeft: TMeterIdentifier; const {%H-}ARight: TTeslaPerAmpereIdentifier): TTeslaMeterPerAmpereIdentifier; inline;
+operator /(const {%H-}ALeft: TTeslaMeterPerAmpereIdentifier; const {%H-}ARight: TMeterIdentifier): TTeslaPerAmpereIdentifier; inline;
+
+// alternative definition [ T*m/A ] = [ T ] * [ m/A ]
+operator *(const {%H-}ALeft: TTeslaIdentifier; const {%H-}ARight: TMeterPerAmpereIdentifier): TTeslaMeterPerAmpereIdentifier; inline;
+operator /(const {%H-}ALeft: TTeslaMeterPerAmpereIdentifier; const {%H-}ARight: TTeslaIdentifier): TMeterPerAmpereIdentifier; inline;
+operator *(const {%H-}ALeft: TMeterPerAmpereIdentifier; const {%H-}ARight: TTeslaIdentifier): TTeslaMeterPerAmpereIdentifier; inline;
+operator /(const {%H-}ALeft: TTeslaMeterPerAmpereIdentifier; const {%H-}ARight: TMeterPerAmpereIdentifier): TTeslaIdentifier; inline;
+
+// alternative definition [ T*m/A ] = [ T ] / [ A/m ]
+operator /(const {%H-}ALeft: TTeslaIdentifier; const {%H-}ARight: TAmperePerMeterIdentifier): TTeslaMeterPerAmpereIdentifier; inline;
+operator /(const {%H-}ALeft: TTeslaIdentifier; const {%H-}ARight: TTeslaMeterPerAmpereIdentifier): TAmperePerMeterIdentifier; inline;
+operator *(const {%H-}ALeft: TTeslaMeterPerAmpereIdentifier; const {%H-}ARight: TAmperePerMeterIdentifier): TTeslaIdentifier; inline;
+operator *(const {%H-}ALeft: TAmperePerMeterIdentifier; const {%H-}ARight: TTeslaMeterPerAmpereIdentifier): TTeslaIdentifier; inline;
+
+// main definition [ H/m ] = [ H ] / [ m ]
+operator /(const {%H-}ALeft: THenryIdentifier; const {%H-}ARight: TMeterIdentifier): THenryPerMeterIdentifier; inline;
+operator /(const {%H-}ALeft: THenryIdentifier; const {%H-}ARight: THenryPerMeterIdentifier): TMeterIdentifier; inline;
+operator *(const {%H-}ALeft: THenryPerMeterIdentifier; const {%H-}ARight: TMeterIdentifier): THenryIdentifier; inline;
+operator *(const {%H-}ALeft: TMeterIdentifier; const {%H-}ARight: THenryPerMeterIdentifier): THenryIdentifier; inline;
 
 // main definition [ km/h ] = [ km ] / [ h ]
 operator /(const {%H-}ALeft: TKilometerIdentifier; const {%H-}ARight: THourIdentifier): TKilometerPerHourIdentifier; inline;
@@ -3695,6 +3893,34 @@ operator /(const ALeft: TQuarticMeters; const ARight: TMeters): TCubicMeters; in
 operator *(const ALeft: TSquareMeters; const ARight: TSquareMeters): TQuarticMeters; inline;
 operator /(const ALeft: TQuarticMeters; const ARight: TSquareMeters): TSquareMeters; inline;
 
+// main definition [ m5 ]
+operator *(const ALeft: TQuarticMeters; const ARight: TMeters): TQuinticMeters; inline;
+operator /(const ALeft: TQuinticMeters; const ARight: TQuarticMeters): TMeters; inline;
+operator *(const ALeft: TMeters; const ARight: TQuarticMeters): TQuinticMeters; inline;
+operator /(const ALeft: TQuinticMeters; const ARight: TMeters): TQuarticMeters; inline;
+
+//
+operator *(const ALeft: TCubicMeters; const ARight: TSquareMeters): TQuinticMeters; inline;
+operator /(const ALeft: TQuinticMeters; const ARight: TCubicMeters): TSquareMeters; inline;
+operator *(const ALeft: TSquareMeters; const ARight: TCubicMeters): TQuinticMeters; inline;
+operator /(const ALeft: TQuinticMeters; const ARight: TSquareMeters): TCubicMeters; inline;
+
+// main definition [ m6 ]
+operator *(const ALeft: TQuinticMeters; const ARight: TMeters): TSexticMeters; inline;
+operator /(const ALeft: TSexticMeters; const ARight: TQuinticMeters): TMeters; inline;
+operator *(const ALeft: TMeters; const ARight: TQuinticMeters): TSexticMeters; inline;
+operator /(const ALeft: TSexticMeters; const ARight: TMeters): TQuinticMeters; inline;
+
+//
+operator *(const ALeft: TQuarticMeters; const ARight: TSquareMeters): TSexticMeters; inline;
+operator /(const ALeft: TSexticMeters; const ARight: TQuarticMeters): TSquareMeters; inline;
+operator *(const ALeft: TSquareMeters; const ARight: TQuarticMeters): TSexticMeters; inline;
+operator /(const ALeft: TSexticMeters; const ARight: TSquareMeters): TQuarticMeters; inline;
+
+//
+operator *(const ALeft: TCubicMeters; const ARight: TCubicMeters): TSexticMeters; inline;
+operator /(const ALeft: TSexticMeters; const ARight: TCubicMeters): TCubicMeters; inline;
+
 // main definition [ s2 ] = [ s ] * [ s ]
 operator *(const ALeft: TSeconds; const ARight: TSeconds): TSquareSeconds; inline;
 operator /(const ALeft: TSquareSeconds; const ARight: TSeconds): TSeconds; inline;
@@ -3734,6 +3960,30 @@ operator /(const ALeft: TMeters; const ARight: TSquareMeters): TReciprocalMeters
 operator /(const ALeft: TMeters; const ARight: TReciprocalMeters): TSquareMeters; inline;
 operator *(const ALeft: TReciprocalMeters; const ARight: TSquareMeters): TMeters; inline;
 operator *(const ALeft: TSquareMeters; const ARight: TReciprocalMeters): TMeters; inline;
+
+// alternative definition [ 1/m ] = [ m2 ] / [ m3 ]
+operator /(const ALeft: TSquareMeters; const ARight: TCubicMeters): TReciprocalMeters; inline;
+operator /(const ALeft: TSquareMeters; const ARight: TReciprocalMeters): TCubicMeters; inline;
+operator *(const ALeft: TReciprocalMeters; const ARight: TCubicMeters): TSquareMeters; inline;
+operator *(const ALeft: TCubicMeters; const ARight: TReciprocalMeters): TSquareMeters; inline;
+
+// alternative definition [ 1/m ] = [ m3 ] / [ m4 ]
+operator /(const ALeft: TCubicMeters; const ARight: TQuarticMeters): TReciprocalMeters; inline;
+operator /(const ALeft: TCubicMeters; const ARight: TReciprocalMeters): TQuarticMeters; inline;
+operator *(const ALeft: TReciprocalMeters; const ARight: TQuarticMeters): TCubicMeters; inline;
+operator *(const ALeft: TQuarticMeters; const ARight: TReciprocalMeters): TCubicMeters; inline;
+
+// alternative definition [ 1/m ] = [ m4 ] / [ m5 ]
+operator /(const ALeft: TQuarticMeters; const ARight: TQuinticMeters): TReciprocalMeters; inline;
+operator /(const ALeft: TQuarticMeters; const ARight: TReciprocalMeters): TQuinticMeters; inline;
+operator *(const ALeft: TReciprocalMeters; const ARight: TQuinticMeters): TQuarticMeters; inline;
+operator *(const ALeft: TQuinticMeters; const ARight: TReciprocalMeters): TQuarticMeters; inline;
+
+// alternative definition [ 1/m ] = [ m5 ] / [ m6 ]
+operator /(const ALeft: TQuinticMeters; const ARight: TSexticMeters): TReciprocalMeters; inline;
+operator /(const ALeft: TQuinticMeters; const ARight: TReciprocalMeters): TSexticMeters; inline;
+operator *(const ALeft: TReciprocalMeters; const ARight: TSexticMeters): TQuinticMeters; inline;
+operator *(const ALeft: TSexticMeters; const ARight: TReciprocalMeters): TQuinticMeters; inline;
 
 // main definition [ 1/K ] = 1 / [ K ]
 operator /(const ALeft: double; const ARight: TKelvins): TReciprocalKelvins; inline;
@@ -4517,12 +4767,6 @@ operator /(const ALeft: TNewtons; const ARight: TNewtonsPerAmpere): TAmperes; in
 operator *(const ALeft: TNewtonsPerAmpere; const ARight: TAmperes): TNewtons; inline;
 operator *(const ALeft: TAmperes; const ARight: TNewtonsPerAmpere): TNewtons; inline;
 
-// alternative definition [ N/A ] = [ m ] * [ T ]
-operator *(const ALeft: TMeters; const ARight: TTeslas): TNewtonsPerAmpere; inline;
-operator /(const ALeft: TNewtonsPerAmpere; const ARight: TMeters): TTeslas; inline;
-operator *(const ALeft: TTeslas; const ARight: TMeters): TNewtonsPerAmpere; inline;
-operator /(const ALeft: TNewtonsPerAmpere; const ARight: TTeslas): TMeters; inline;
-
 // main definition [ A*m2 ] = [ A ] * [ m2 ]
 operator *(const ALeft: TAmperes; const ARight: TSquareMeters): TAmperesSquareMeter; inline;
 operator /(const ALeft: TAmperesSquareMeter; const ARight: TAmperes): TSquareMeters; inline;
@@ -4534,6 +4778,66 @@ operator /(const ALeft: TNewtonsMeter; const ARight: TTeslas): TAmperesSquareMet
 operator /(const ALeft: TNewtonsMeter; const ARight: TAmperesSquareMeter): TTeslas; inline;
 operator *(const ALeft: TAmperesSquareMeter; const ARight: TTeslas): TNewtonsMeter; inline;
 operator *(const ALeft: TTeslas; const ARight: TAmperesSquareMeter): TNewtonsMeter; inline;
+
+// main definition [ T*m ] = [ T ] * [ m ]
+operator *(const ALeft: TTeslas; const ARight: TMeters): TTeslasMeter; inline;
+operator /(const ALeft: TTeslasMeter; const ARight: TTeslas): TMeters; inline;
+operator *(const ALeft: TMeters; const ARight: TTeslas): TTeslasMeter; inline;
+operator /(const ALeft: TTeslasMeter; const ARight: TMeters): TTeslas; inline;
+
+// main definition [ T/A ] = [ T ] / [ A ]
+operator /(const ALeft: TTeslas; const ARight: TAmperes): TTeslasPerAmpere; inline;
+operator /(const ALeft: TTeslas; const ARight: TTeslasPerAmpere): TAmperes; inline;
+operator *(const ALeft: TTeslasPerAmpere; const ARight: TAmperes): TTeslas; inline;
+operator *(const ALeft: TAmperes; const ARight: TTeslasPerAmpere): TTeslas; inline;
+
+// main definition [ m/A ] = [ m ] / [ A ]
+operator /(const ALeft: TMeters; const ARight: TAmperes): TMetersPerAmpere; inline;
+operator /(const ALeft: TMeters; const ARight: TMetersPerAmpere): TAmperes; inline;
+operator *(const ALeft: TMetersPerAmpere; const ARight: TAmperes): TMeters; inline;
+operator *(const ALeft: TAmperes; const ARight: TMetersPerAmpere): TMeters; inline;
+
+// main definition [ A/m ] = [ A ] / [ m ]
+operator /(const ALeft: TAmperes; const ARight: TMeters): TAmperesPerMeter; inline;
+operator /(const ALeft: TAmperes; const ARight: TAmperesPerMeter): TMeters; inline;
+operator *(const ALeft: TAmperesPerMeter; const ARight: TMeters): TAmperes; inline;
+operator *(const ALeft: TMeters; const ARight: TAmperesPerMeter): TAmperes; inline;
+
+// alternative definition [ A/m ] = [ A ] * [ 1/m ]
+operator *(const ALeft: TAmperes; const ARight: TReciprocalMeters): TAmperesPerMeter; inline;
+operator /(const ALeft: TAmperesPerMeter; const ARight: TAmperes): TReciprocalMeters; inline;
+operator *(const ALeft: TReciprocalMeters; const ARight: TAmperes): TAmperesPerMeter; inline;
+operator /(const ALeft: TAmperesPerMeter; const ARight: TReciprocalMeters): TAmperes; inline;
+
+// main definition [ T*m/A ] = [ T*m ] / [ A ]
+operator /(const ALeft: TTeslasMeter; const ARight: TAmperes): TTeslasMeterPerAmpere; inline;
+operator /(const ALeft: TTeslasMeter; const ARight: TTeslasMeterPerAmpere): TAmperes; inline;
+operator *(const ALeft: TTeslasMeterPerAmpere; const ARight: TAmperes): TTeslasMeter; inline;
+operator *(const ALeft: TAmperes; const ARight: TTeslasMeterPerAmpere): TTeslasMeter; inline;
+
+// alternative definition [ T*m/A ] = [ T/A ] * [ m ]
+operator *(const ALeft: TTeslasPerAmpere; const ARight: TMeters): TTeslasMeterPerAmpere; inline;
+operator /(const ALeft: TTeslasMeterPerAmpere; const ARight: TTeslasPerAmpere): TMeters; inline;
+operator *(const ALeft: TMeters; const ARight: TTeslasPerAmpere): TTeslasMeterPerAmpere; inline;
+operator /(const ALeft: TTeslasMeterPerAmpere; const ARight: TMeters): TTeslasPerAmpere; inline;
+
+// alternative definition [ T*m/A ] = [ T ] * [ m/A ]
+operator *(const ALeft: TTeslas; const ARight: TMetersPerAmpere): TTeslasMeterPerAmpere; inline;
+operator /(const ALeft: TTeslasMeterPerAmpere; const ARight: TTeslas): TMetersPerAmpere; inline;
+operator *(const ALeft: TMetersPerAmpere; const ARight: TTeslas): TTeslasMeterPerAmpere; inline;
+operator /(const ALeft: TTeslasMeterPerAmpere; const ARight: TMetersPerAmpere): TTeslas; inline;
+
+// alternative definition [ T*m/A ] = [ T ] / [ A/m ]
+operator /(const ALeft: TTeslas; const ARight: TAmperesPerMeter): TTeslasMeterPerAmpere; inline;
+operator /(const ALeft: TTeslas; const ARight: TTeslasMeterPerAmpere): TAmperesPerMeter; inline;
+operator *(const ALeft: TTeslasMeterPerAmpere; const ARight: TAmperesPerMeter): TTeslas; inline;
+operator *(const ALeft: TAmperesPerMeter; const ARight: TTeslasMeterPerAmpere): TTeslas; inline;
+
+// main definition [ H/m ] = [ H ] / [ m ]
+operator /(const ALeft: THenrys; const ARight: TMeters): THenrysPerMeter; inline;
+operator /(const ALeft: THenrys; const ARight: THenrysPerMeter): TMeters; inline;
+operator *(const ALeft: THenrysPerMeter; const ARight: TMeters): THenrys; inline;
+operator *(const ALeft: TMeters; const ARight: THenrysPerMeter): THenrys; inline;
 
 { Power units }
 
@@ -4549,6 +4853,14 @@ function SquarePower(AQuantity: TSquareMeters): TQuarticMeters;
 function SquareRoot(AQuantity: TQuarticMeters): TSquareMeters;
 function QuarticPower(AQuantity: TMeters): TQuarticMeters;
 function QuarticRoot(AQuantity: TQuarticMeters): TMeters;
+function QuinticPower(AQuantity: TMeters): TQuinticMeters;
+function QuinticRoot(AQuantity: TQuinticMeters): TMeters;
+function SquarePower(AQuantity: TCubicMeters): TSexticMeters;
+function SquareRoot(AQuantity: TSexticMeters): TCubicMeters;
+function CubicPower(AQuantity: TSquareMeters): TSexticMeters;
+function CubicRoot(AQuantity: TSexticMeters): TSquareMeters;
+function SexticPower(AQuantity: TMeters): TSexticMeters;
+function SexticRoot(AQuantity: TSexticMeters): TMeters;
 function SquarePower(AQuantity: TSeconds): TSquareSeconds;
 function SquareRoot(AQuantity: TSquareSeconds): TSeconds;
 function SquarePower(AQuantity: TAmperes): TSquareAmperes;
@@ -4598,6 +4910,10 @@ operator := (AQuantity: TKilogramsSquareMeterPerSecond): TNewtonsMeterSecond; in
 operator := (AQuantity: TNewtonsMeterSecond): TKilogramsSquareMeterPerSecond; inline;
 operator := (AQuantity: TNewtonsPerCoulomb): TVoltsPerMeter; inline;
 operator := (AQuantity: TVoltsPerMeter): TNewtonsPerCoulomb; inline;
+operator := (AQuantity: TNewtonsPerAmpere): TTeslasMeter; inline;
+operator := (AQuantity: TTeslasMeter): TNewtonsPerAmpere; inline;
+operator := (AQuantity: TTeslasMeterPerAmpere): THenrysPerMeter; inline;
+operator := (AQuantity: THenrysPerMeter): TTeslasMeterPerAmpere; inline;
 
 { Trigonometric functions }
 
@@ -4887,6 +5203,30 @@ end;
 class function TQuarticMeterUnit.Name: string;
 begin
   result := 'quartic meter';
+end;
+
+{ Unit of TQuinticMeterUnit }
+
+class function TQuinticMeterUnit.Symbol: string;
+begin
+  result := 'm5';
+end;
+
+class function TQuinticMeterUnit.Name: string;
+begin
+  result := 'quintic meter';
+end;
+
+{ Unit of TSexticMeterUnit }
+
+class function TSexticMeterUnit.Symbol: string;
+begin
+  result := 'm6';
+end;
+
+class function TSexticMeterUnit.Name: string;
+begin
+  result := 'sextic meter';
 end;
 
 { Unit of TSquareSecondUnit }
@@ -5979,6 +6319,78 @@ end;
 class function TAmpereSquareMeterUnit.Name: string;
 begin
   result := 'ampere square meter';
+end;
+
+{ Unit of TTeslaMeterUnit }
+
+class function TTeslaMeterUnit.Symbol: string;
+begin
+  result := 'T·m';
+end;
+
+class function TTeslaMeterUnit.Name: string;
+begin
+  result := 'tesla meter';
+end;
+
+{ Unit of TTeslaPerAmpereUnit }
+
+class function TTeslaPerAmpereUnit.Symbol: string;
+begin
+  result := 'T/A';
+end;
+
+class function TTeslaPerAmpereUnit.Name: string;
+begin
+  result := 'tesla per ampere';
+end;
+
+{ Unit of TMeterPerAmpereUnit }
+
+class function TMeterPerAmpereUnit.Symbol: string;
+begin
+  result := 'm/A';
+end;
+
+class function TMeterPerAmpereUnit.Name: string;
+begin
+  result := 'meter per ampere';
+end;
+
+{ Unit of TAmperePerMeterUnit }
+
+class function TAmperePerMeterUnit.Symbol: string;
+begin
+  result := 'A/m';
+end;
+
+class function TAmperePerMeterUnit.Name: string;
+begin
+  result := 'ampere per meter';
+end;
+
+{ Unit of TTeslaMeterPerAmpereUnit }
+
+class function TTeslaMeterPerAmpereUnit.Symbol: string;
+begin
+  result := 'T·m/A';
+end;
+
+class function TTeslaMeterPerAmpereUnit.Name: string;
+begin
+  result := 'tesla meter per ampere';
+end;
+
+{ Unit of THenryPerMeterUnit }
+
+class function THenryPerMeterUnit.Symbol: string;
+begin
+  result := 'H/m';
+end;
+
+class function THenryPerMeterUnit.Name: string;
+begin
+  result := 'henry per meter';
 end;
 
 { Unit of THectogramUnit }
@@ -8060,6 +8472,65 @@ begin end;
 operator /(const ALeft: TQuarticMeterIdentifier; const ARight: TSquareMeterIdentifier): TSquareMeterIdentifier;
 begin end;
 
+// main definition [ m5 ]
+operator *(const ALeft: TQuarticMeterIdentifier; const ARight: TMeterIdentifier): TQuinticMeterIdentifier;
+begin end;
+
+operator /(const ALeft: TQuinticMeterIdentifier; const ARight: TQuarticMeterIdentifier): TMeterIdentifier;
+begin end;
+
+operator *(const ALeft: TMeterIdentifier; const ARight: TQuarticMeterIdentifier): TQuinticMeterIdentifier;
+begin end;
+
+operator /(const ALeft: TQuinticMeterIdentifier; const ARight: TMeterIdentifier): TQuarticMeterIdentifier;
+begin end;
+
+//
+operator *(const ALeft: TCubicMeterIdentifier; const ARight: TSquareMeterIdentifier): TQuinticMeterIdentifier;
+begin end;
+
+operator /(const ALeft: TQuinticMeterIdentifier; const ARight: TCubicMeterIdentifier): TSquareMeterIdentifier;
+begin end;
+
+operator *(const ALeft: TSquareMeterIdentifier; const ARight: TCubicMeterIdentifier): TQuinticMeterIdentifier;
+begin end;
+
+operator /(const ALeft: TQuinticMeterIdentifier; const ARight: TSquareMeterIdentifier): TCubicMeterIdentifier;
+begin end;
+
+// main definition [ m6 ]
+operator *(const ALeft: TQuinticMeterIdentifier; const ARight: TMeterIdentifier): TSexticMeterIdentifier;
+begin end;
+
+operator /(const ALeft: TSexticMeterIdentifier; const ARight: TQuinticMeterIdentifier): TMeterIdentifier;
+begin end;
+
+operator *(const ALeft: TMeterIdentifier; const ARight: TQuinticMeterIdentifier): TSexticMeterIdentifier;
+begin end;
+
+operator /(const ALeft: TSexticMeterIdentifier; const ARight: TMeterIdentifier): TQuinticMeterIdentifier;
+begin end;
+
+//
+operator *(const ALeft: TQuarticMeterIdentifier; const ARight: TSquareMeterIdentifier): TSexticMeterIdentifier;
+begin end;
+
+operator /(const ALeft: TSexticMeterIdentifier; const ARight: TQuarticMeterIdentifier): TSquareMeterIdentifier;
+begin end;
+
+operator *(const ALeft: TSquareMeterIdentifier; const ARight: TQuarticMeterIdentifier): TSexticMeterIdentifier;
+begin end;
+
+operator /(const ALeft: TSexticMeterIdentifier; const ARight: TSquareMeterIdentifier): TQuarticMeterIdentifier;
+begin end;
+
+//
+operator *(const ALeft: TCubicMeterIdentifier; const ARight: TCubicMeterIdentifier): TSexticMeterIdentifier;
+begin end;
+
+operator /(const ALeft: TSexticMeterIdentifier; const ARight: TCubicMeterIdentifier): TCubicMeterIdentifier;
+begin end;
+
 // main definition [ s2 ] = [ s ] * [ s ]
 operator *(const ALeft: TSecondIdentifier; const ARight: TSecondIdentifier): TSquareSecondIdentifier;
 begin end;
@@ -8138,6 +8609,58 @@ operator *(const ALeft: TReciprocalMeterIdentifier; const ARight: TSquareMeterId
 begin end;
 
 operator *(const ALeft: TSquareMeterIdentifier; const ARight: TReciprocalMeterIdentifier): TMeterIdentifier;
+begin end;
+
+// alternative definition [ 1/m ] = [ m2 ] / [ m3 ]
+operator /(const ALeft: TSquareMeterIdentifier; const ARight: TCubicMeterIdentifier): TReciprocalMeterIdentifier;
+begin end;
+
+operator /(const ALeft: TSquareMeterIdentifier; const ARight: TReciprocalMeterIdentifier): TCubicMeterIdentifier;
+begin end;
+
+operator *(const ALeft: TReciprocalMeterIdentifier; const ARight: TCubicMeterIdentifier): TSquareMeterIdentifier;
+begin end;
+
+operator *(const ALeft: TCubicMeterIdentifier; const ARight: TReciprocalMeterIdentifier): TSquareMeterIdentifier;
+begin end;
+
+// alternative definition [ 1/m ] = [ m3 ] / [ m4 ]
+operator /(const ALeft: TCubicMeterIdentifier; const ARight: TQuarticMeterIdentifier): TReciprocalMeterIdentifier;
+begin end;
+
+operator /(const ALeft: TCubicMeterIdentifier; const ARight: TReciprocalMeterIdentifier): TQuarticMeterIdentifier;
+begin end;
+
+operator *(const ALeft: TReciprocalMeterIdentifier; const ARight: TQuarticMeterIdentifier): TCubicMeterIdentifier;
+begin end;
+
+operator *(const ALeft: TQuarticMeterIdentifier; const ARight: TReciprocalMeterIdentifier): TCubicMeterIdentifier;
+begin end;
+
+// alternative definition [ 1/m ] = [ m4 ] / [ m5 ]
+operator /(const ALeft: TQuarticMeterIdentifier; const ARight: TQuinticMeterIdentifier): TReciprocalMeterIdentifier;
+begin end;
+
+operator /(const ALeft: TQuarticMeterIdentifier; const ARight: TReciprocalMeterIdentifier): TQuinticMeterIdentifier;
+begin end;
+
+operator *(const ALeft: TReciprocalMeterIdentifier; const ARight: TQuinticMeterIdentifier): TQuarticMeterIdentifier;
+begin end;
+
+operator *(const ALeft: TQuinticMeterIdentifier; const ARight: TReciprocalMeterIdentifier): TQuarticMeterIdentifier;
+begin end;
+
+// alternative definition [ 1/m ] = [ m5 ] / [ m6 ]
+operator /(const ALeft: TQuinticMeterIdentifier; const ARight: TSexticMeterIdentifier): TReciprocalMeterIdentifier;
+begin end;
+
+operator /(const ALeft: TQuinticMeterIdentifier; const ARight: TReciprocalMeterIdentifier): TSexticMeterIdentifier;
+begin end;
+
+operator *(const ALeft: TReciprocalMeterIdentifier; const ARight: TSexticMeterIdentifier): TQuinticMeterIdentifier;
+begin end;
+
+operator *(const ALeft: TSexticMeterIdentifier; const ARight: TReciprocalMeterIdentifier): TQuinticMeterIdentifier;
 begin end;
 
 // main definition [ 1/K ] = 1 / [ K ]
@@ -9826,19 +10349,6 @@ begin end;
 operator *(const ALeft: TAmpereIdentifier; const ARight: TNewtonPerAmpereIdentifier): TNewtonIdentifier;
 begin end;
 
-// alternative definition [ N/A ] = [ m ] * [ T ]
-operator *(const ALeft: TMeterIdentifier; const ARight: TTeslaIdentifier): TNewtonPerAmpereIdentifier;
-begin end;
-
-operator /(const ALeft: TNewtonPerAmpereIdentifier; const ARight: TMeterIdentifier): TTeslaIdentifier;
-begin end;
-
-operator *(const ALeft: TTeslaIdentifier; const ARight: TMeterIdentifier): TNewtonPerAmpereIdentifier;
-begin end;
-
-operator /(const ALeft: TNewtonPerAmpereIdentifier; const ARight: TTeslaIdentifier): TMeterIdentifier;
-begin end;
-
 // main definition [ A*m2 ] = [ A ] * [ m2 ]
 operator *(const ALeft: TAmpereIdentifier; const ARight: TSquareMeterIdentifier): TAmpereSquareMeterIdentifier;
 begin end;
@@ -9863,6 +10373,136 @@ operator *(const ALeft: TAmpereSquareMeterIdentifier; const ARight: TTeslaIdenti
 begin end;
 
 operator *(const ALeft: TTeslaIdentifier; const ARight: TAmpereSquareMeterIdentifier): TNewtonMeterIdentifier;
+begin end;
+
+// main definition [ T*m ] = [ T ] * [ m ]
+operator *(const ALeft: TTeslaIdentifier; const ARight: TMeterIdentifier): TTeslaMeterIdentifier;
+begin end;
+
+operator /(const ALeft: TTeslaMeterIdentifier; const ARight: TTeslaIdentifier): TMeterIdentifier;
+begin end;
+
+operator *(const ALeft: TMeterIdentifier; const ARight: TTeslaIdentifier): TTeslaMeterIdentifier;
+begin end;
+
+operator /(const ALeft: TTeslaMeterIdentifier; const ARight: TMeterIdentifier): TTeslaIdentifier;
+begin end;
+
+// main definition [ T/A ] = [ T ] / [ A ]
+operator /(const ALeft: TTeslaIdentifier; const ARight: TAmpereIdentifier): TTeslaPerAmpereIdentifier;
+begin end;
+
+operator /(const ALeft: TTeslaIdentifier; const ARight: TTeslaPerAmpereIdentifier): TAmpereIdentifier;
+begin end;
+
+operator *(const ALeft: TTeslaPerAmpereIdentifier; const ARight: TAmpereIdentifier): TTeslaIdentifier;
+begin end;
+
+operator *(const ALeft: TAmpereIdentifier; const ARight: TTeslaPerAmpereIdentifier): TTeslaIdentifier;
+begin end;
+
+// main definition [ m/A ] = [ m ] / [ A ]
+operator /(const ALeft: TMeterIdentifier; const ARight: TAmpereIdentifier): TMeterPerAmpereIdentifier;
+begin end;
+
+operator /(const ALeft: TMeterIdentifier; const ARight: TMeterPerAmpereIdentifier): TAmpereIdentifier;
+begin end;
+
+operator *(const ALeft: TMeterPerAmpereIdentifier; const ARight: TAmpereIdentifier): TMeterIdentifier;
+begin end;
+
+operator *(const ALeft: TAmpereIdentifier; const ARight: TMeterPerAmpereIdentifier): TMeterIdentifier;
+begin end;
+
+// main definition [ A/m ] = [ A ] / [ m ]
+operator /(const ALeft: TAmpereIdentifier; const ARight: TMeterIdentifier): TAmperePerMeterIdentifier;
+begin end;
+
+operator /(const ALeft: TAmpereIdentifier; const ARight: TAmperePerMeterIdentifier): TMeterIdentifier;
+begin end;
+
+operator *(const ALeft: TAmperePerMeterIdentifier; const ARight: TMeterIdentifier): TAmpereIdentifier;
+begin end;
+
+operator *(const ALeft: TMeterIdentifier; const ARight: TAmperePerMeterIdentifier): TAmpereIdentifier;
+begin end;
+
+// alternative definition [ A/m ] = [ A ] * [ 1/m ]
+operator *(const ALeft: TAmpereIdentifier; const ARight: TReciprocalMeterIdentifier): TAmperePerMeterIdentifier;
+begin end;
+
+operator /(const ALeft: TAmperePerMeterIdentifier; const ARight: TAmpereIdentifier): TReciprocalMeterIdentifier;
+begin end;
+
+operator *(const ALeft: TReciprocalMeterIdentifier; const ARight: TAmpereIdentifier): TAmperePerMeterIdentifier;
+begin end;
+
+operator /(const ALeft: TAmperePerMeterIdentifier; const ARight: TReciprocalMeterIdentifier): TAmpereIdentifier;
+begin end;
+
+// main definition [ T*m/A ] = [ T*m ] / [ A ]
+operator /(const ALeft: TTeslaMeterIdentifier; const ARight: TAmpereIdentifier): TTeslaMeterPerAmpereIdentifier;
+begin end;
+
+operator /(const ALeft: TTeslaMeterIdentifier; const ARight: TTeslaMeterPerAmpereIdentifier): TAmpereIdentifier;
+begin end;
+
+operator *(const ALeft: TTeslaMeterPerAmpereIdentifier; const ARight: TAmpereIdentifier): TTeslaMeterIdentifier;
+begin end;
+
+operator *(const ALeft: TAmpereIdentifier; const ARight: TTeslaMeterPerAmpereIdentifier): TTeslaMeterIdentifier;
+begin end;
+
+// alternative definition [ T*m/A ] = [ T/A ] * [ m ]
+operator *(const ALeft: TTeslaPerAmpereIdentifier; const ARight: TMeterIdentifier): TTeslaMeterPerAmpereIdentifier;
+begin end;
+
+operator /(const ALeft: TTeslaMeterPerAmpereIdentifier; const ARight: TTeslaPerAmpereIdentifier): TMeterIdentifier;
+begin end;
+
+operator *(const ALeft: TMeterIdentifier; const ARight: TTeslaPerAmpereIdentifier): TTeslaMeterPerAmpereIdentifier;
+begin end;
+
+operator /(const ALeft: TTeslaMeterPerAmpereIdentifier; const ARight: TMeterIdentifier): TTeslaPerAmpereIdentifier;
+begin end;
+
+// alternative definition [ T*m/A ] = [ T ] * [ m/A ]
+operator *(const ALeft: TTeslaIdentifier; const ARight: TMeterPerAmpereIdentifier): TTeslaMeterPerAmpereIdentifier;
+begin end;
+
+operator /(const ALeft: TTeslaMeterPerAmpereIdentifier; const ARight: TTeslaIdentifier): TMeterPerAmpereIdentifier;
+begin end;
+
+operator *(const ALeft: TMeterPerAmpereIdentifier; const ARight: TTeslaIdentifier): TTeslaMeterPerAmpereIdentifier;
+begin end;
+
+operator /(const ALeft: TTeslaMeterPerAmpereIdentifier; const ARight: TMeterPerAmpereIdentifier): TTeslaIdentifier;
+begin end;
+
+// alternative definition [ T*m/A ] = [ T ] / [ A/m ]
+operator /(const ALeft: TTeslaIdentifier; const ARight: TAmperePerMeterIdentifier): TTeslaMeterPerAmpereIdentifier;
+begin end;
+
+operator /(const ALeft: TTeslaIdentifier; const ARight: TTeslaMeterPerAmpereIdentifier): TAmperePerMeterIdentifier;
+begin end;
+
+operator *(const ALeft: TTeslaMeterPerAmpereIdentifier; const ARight: TAmperePerMeterIdentifier): TTeslaIdentifier;
+begin end;
+
+operator *(const ALeft: TAmperePerMeterIdentifier; const ARight: TTeslaMeterPerAmpereIdentifier): TTeslaIdentifier;
+begin end;
+
+// main definition [ H/m ] = [ H ] / [ m ]
+operator /(const ALeft: THenryIdentifier; const ARight: TMeterIdentifier): THenryPerMeterIdentifier;
+begin end;
+
+operator /(const ALeft: THenryIdentifier; const ARight: THenryPerMeterIdentifier): TMeterIdentifier;
+begin end;
+
+operator *(const ALeft: THenryPerMeterIdentifier; const ARight: TMeterIdentifier): THenryIdentifier;
+begin end;
+
+operator *(const ALeft: TMeterIdentifier; const ARight: THenryPerMeterIdentifier): THenryIdentifier;
 begin end;
 
 // main definition [ km/h ] = [ km ] / [ h ]
@@ -10033,6 +10673,101 @@ begin
   result.Value := ALeft.Value / ARight.Value;
 end;
 
+// main definition [ m5 ]
+operator *(const ALeft: TQuarticMeters; const ARight: TMeters): TQuinticMeters;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator /(const ALeft: TQuinticMeters; const ARight: TQuarticMeters): TMeters;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator *(const ALeft: TMeters; const ARight: TQuarticMeters): TQuinticMeters;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator /(const ALeft: TQuinticMeters; const ARight: TMeters): TQuarticMeters;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+//
+operator *(const ALeft: TCubicMeters; const ARight: TSquareMeters): TQuinticMeters;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator /(const ALeft: TQuinticMeters; const ARight: TCubicMeters): TSquareMeters;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator *(const ALeft: TSquareMeters; const ARight: TCubicMeters): TQuinticMeters;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator /(const ALeft: TQuinticMeters; const ARight: TSquareMeters): TCubicMeters;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+// main definition [ m6 ]
+operator *(const ALeft: TQuinticMeters; const ARight: TMeters): TSexticMeters;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator /(const ALeft: TSexticMeters; const ARight: TQuinticMeters): TMeters;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator *(const ALeft: TMeters; const ARight: TQuinticMeters): TSexticMeters;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator /(const ALeft: TSexticMeters; const ARight: TMeters): TQuinticMeters;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+//
+operator *(const ALeft: TQuarticMeters; const ARight: TSquareMeters): TSexticMeters;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator /(const ALeft: TSexticMeters; const ARight: TQuarticMeters): TSquareMeters;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator *(const ALeft: TSquareMeters; const ARight: TQuarticMeters): TSexticMeters;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator /(const ALeft: TSexticMeters; const ARight: TSquareMeters): TQuarticMeters;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+//
+operator *(const ALeft: TCubicMeters; const ARight: TCubicMeters): TSexticMeters;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator /(const ALeft: TSexticMeters; const ARight: TCubicMeters): TCubicMeters;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
 // main definition [ s2 ] = [ s ] * [ s ]
 operator *(const ALeft: TSeconds; const ARight: TSeconds): TSquareSeconds;
 begin
@@ -10157,6 +10892,90 @@ begin
 end;
 
 operator *(const ALeft: TSquareMeters; const ARight: TReciprocalMeters): TMeters;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+// alternative definition [ 1/m ] = [ m2 ] / [ m3 ]
+operator /(const ALeft: TSquareMeters; const ARight: TCubicMeters): TReciprocalMeters;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator /(const ALeft: TSquareMeters; const ARight: TReciprocalMeters): TCubicMeters;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator *(const ALeft: TReciprocalMeters; const ARight: TCubicMeters): TSquareMeters;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator *(const ALeft: TCubicMeters; const ARight: TReciprocalMeters): TSquareMeters;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+// alternative definition [ 1/m ] = [ m3 ] / [ m4 ]
+operator /(const ALeft: TCubicMeters; const ARight: TQuarticMeters): TReciprocalMeters;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator /(const ALeft: TCubicMeters; const ARight: TReciprocalMeters): TQuarticMeters;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator *(const ALeft: TReciprocalMeters; const ARight: TQuarticMeters): TCubicMeters;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator *(const ALeft: TQuarticMeters; const ARight: TReciprocalMeters): TCubicMeters;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+// alternative definition [ 1/m ] = [ m4 ] / [ m5 ]
+operator /(const ALeft: TQuarticMeters; const ARight: TQuinticMeters): TReciprocalMeters;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator /(const ALeft: TQuarticMeters; const ARight: TReciprocalMeters): TQuinticMeters;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator *(const ALeft: TReciprocalMeters; const ARight: TQuinticMeters): TQuarticMeters;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator *(const ALeft: TQuinticMeters; const ARight: TReciprocalMeters): TQuarticMeters;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+// alternative definition [ 1/m ] = [ m5 ] / [ m6 ]
+operator /(const ALeft: TQuinticMeters; const ARight: TSexticMeters): TReciprocalMeters;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator /(const ALeft: TQuinticMeters; const ARight: TReciprocalMeters): TSexticMeters;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator *(const ALeft: TReciprocalMeters; const ARight: TSexticMeters): TQuinticMeters;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator *(const ALeft: TSexticMeters; const ARight: TReciprocalMeters): TQuinticMeters;
 begin
   result.Value := ALeft.Value * ARight.Value;
 end;
@@ -12883,27 +13702,6 @@ begin
   result.Value := ALeft.Value * ARight.Value;
 end;
 
-// alternative definition [ N/A ] = [ m ] * [ T ]
-operator *(const ALeft: TMeters; const ARight: TTeslas): TNewtonsPerAmpere;
-begin
-  result.Value := ALeft.Value * ARight.Value;
-end;
-
-operator /(const ALeft: TNewtonsPerAmpere; const ARight: TMeters): TTeslas;
-begin
-  result.Value := ALeft.Value / ARight.Value;
-end;
-
-operator *(const ALeft: TTeslas; const ARight: TMeters): TNewtonsPerAmpere;
-begin
-  result.Value := ALeft.Value * ARight.Value;
-end;
-
-operator /(const ALeft: TNewtonsPerAmpere; const ARight: TTeslas): TMeters;
-begin
-  result.Value := ALeft.Value / ARight.Value;
-end;
-
 // main definition [ A*m2 ] = [ A ] * [ m2 ]
 operator *(const ALeft: TAmperes; const ARight: TSquareMeters): TAmperesSquareMeter;
 begin
@@ -12942,6 +13740,216 @@ begin
 end;
 
 operator *(const ALeft: TTeslas; const ARight: TAmperesSquareMeter): TNewtonsMeter;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+// main definition [ T*m ] = [ T ] * [ m ]
+operator *(const ALeft: TTeslas; const ARight: TMeters): TTeslasMeter;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator /(const ALeft: TTeslasMeter; const ARight: TTeslas): TMeters;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator *(const ALeft: TMeters; const ARight: TTeslas): TTeslasMeter;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator /(const ALeft: TTeslasMeter; const ARight: TMeters): TTeslas;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+// main definition [ T/A ] = [ T ] / [ A ]
+operator /(const ALeft: TTeslas; const ARight: TAmperes): TTeslasPerAmpere;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator /(const ALeft: TTeslas; const ARight: TTeslasPerAmpere): TAmperes;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator *(const ALeft: TTeslasPerAmpere; const ARight: TAmperes): TTeslas;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator *(const ALeft: TAmperes; const ARight: TTeslasPerAmpere): TTeslas;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+// main definition [ m/A ] = [ m ] / [ A ]
+operator /(const ALeft: TMeters; const ARight: TAmperes): TMetersPerAmpere;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator /(const ALeft: TMeters; const ARight: TMetersPerAmpere): TAmperes;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator *(const ALeft: TMetersPerAmpere; const ARight: TAmperes): TMeters;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator *(const ALeft: TAmperes; const ARight: TMetersPerAmpere): TMeters;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+// main definition [ A/m ] = [ A ] / [ m ]
+operator /(const ALeft: TAmperes; const ARight: TMeters): TAmperesPerMeter;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator /(const ALeft: TAmperes; const ARight: TAmperesPerMeter): TMeters;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator *(const ALeft: TAmperesPerMeter; const ARight: TMeters): TAmperes;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator *(const ALeft: TMeters; const ARight: TAmperesPerMeter): TAmperes;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+// alternative definition [ A/m ] = [ A ] * [ 1/m ]
+operator *(const ALeft: TAmperes; const ARight: TReciprocalMeters): TAmperesPerMeter;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator /(const ALeft: TAmperesPerMeter; const ARight: TAmperes): TReciprocalMeters;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator *(const ALeft: TReciprocalMeters; const ARight: TAmperes): TAmperesPerMeter;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator /(const ALeft: TAmperesPerMeter; const ARight: TReciprocalMeters): TAmperes;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+// main definition [ T*m/A ] = [ T*m ] / [ A ]
+operator /(const ALeft: TTeslasMeter; const ARight: TAmperes): TTeslasMeterPerAmpere;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator /(const ALeft: TTeslasMeter; const ARight: TTeslasMeterPerAmpere): TAmperes;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator *(const ALeft: TTeslasMeterPerAmpere; const ARight: TAmperes): TTeslasMeter;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator *(const ALeft: TAmperes; const ARight: TTeslasMeterPerAmpere): TTeslasMeter;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+// alternative definition [ T*m/A ] = [ T/A ] * [ m ]
+operator *(const ALeft: TTeslasPerAmpere; const ARight: TMeters): TTeslasMeterPerAmpere;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator /(const ALeft: TTeslasMeterPerAmpere; const ARight: TTeslasPerAmpere): TMeters;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator *(const ALeft: TMeters; const ARight: TTeslasPerAmpere): TTeslasMeterPerAmpere;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator /(const ALeft: TTeslasMeterPerAmpere; const ARight: TMeters): TTeslasPerAmpere;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+// alternative definition [ T*m/A ] = [ T ] * [ m/A ]
+operator *(const ALeft: TTeslas; const ARight: TMetersPerAmpere): TTeslasMeterPerAmpere;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator /(const ALeft: TTeslasMeterPerAmpere; const ARight: TTeslas): TMetersPerAmpere;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator *(const ALeft: TMetersPerAmpere; const ARight: TTeslas): TTeslasMeterPerAmpere;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator /(const ALeft: TTeslasMeterPerAmpere; const ARight: TMetersPerAmpere): TTeslas;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+// alternative definition [ T*m/A ] = [ T ] / [ A/m ]
+operator /(const ALeft: TTeslas; const ARight: TAmperesPerMeter): TTeslasMeterPerAmpere;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator /(const ALeft: TTeslas; const ARight: TTeslasMeterPerAmpere): TAmperesPerMeter;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator *(const ALeft: TTeslasMeterPerAmpere; const ARight: TAmperesPerMeter): TTeslas;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator *(const ALeft: TAmperesPerMeter; const ARight: TTeslasMeterPerAmpere): TTeslas;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+// main definition [ H/m ] = [ H ] / [ m ]
+operator /(const ALeft: THenrys; const ARight: TMeters): THenrysPerMeter;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator /(const ALeft: THenrys; const ARight: THenrysPerMeter): TMeters;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator *(const ALeft: THenrysPerMeter; const ARight: TMeters): THenrys;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator *(const ALeft: TMeters; const ARight: THenrysPerMeter): THenrys;
 begin
   result.Value := ALeft.Value * ARight.Value;
 end;
@@ -13006,6 +14014,46 @@ end;
 function QuarticRoot(AQuantity: TQuarticMeters): TMeters;
 begin
   result.Value := Power(AQuantity.Value, 1/4);
+end;
+
+function QuinticPower(AQuantity: TMeters): TQuinticMeters;
+begin
+  result.Value := Power(AQuantity.Value, 5);
+end;
+
+function QuinticRoot(AQuantity: TQuinticMeters): TMeters;
+begin
+  result.Value := Power(AQuantity.Value, 1/5);
+end;
+
+function SquarePower(AQuantity: TCubicMeters): TSexticMeters;
+begin
+  result.Value := Power(AQuantity.Value, 2);
+end;
+
+function SquareRoot(AQuantity: TSexticMeters): TCubicMeters;
+begin
+  result.Value := Power(AQuantity.Value, 1/2);
+end;
+
+function CubicPower(AQuantity: TSquareMeters): TSexticMeters;
+begin
+  result.Value := Power(AQuantity.Value, 3);
+end;
+
+function CubicRoot(AQuantity: TSexticMeters): TSquareMeters;
+begin
+  result.Value := Power(AQuantity.Value, 1/3);
+end;
+
+function SexticPower(AQuantity: TMeters): TSexticMeters;
+begin
+  result.Value := Power(AQuantity.Value, 6);
+end;
+
+function SexticRoot(AQuantity: TSexticMeters): TMeters;
+begin
+  result.Value := Power(AQuantity.Value, 1/6);
 end;
 
 function SquarePower(AQuantity: TSeconds): TSquareSeconds;
@@ -13236,6 +14284,26 @@ begin
 end;
 
 operator := (AQuantity: TVoltsPerMeter): TNewtonsPerCoulomb;
+begin
+  result.Value := AQuantity.Value;
+end;
+
+operator := (AQuantity: TNewtonsPerAmpere): TTeslasMeter;
+begin
+  result.Value := AQuantity.Value;
+end;
+
+operator := (AQuantity: TTeslasMeter): TNewtonsPerAmpere;
+begin
+  result.Value := AQuantity.Value;
+end;
+
+operator := (AQuantity: TTeslasMeterPerAmpere): THenrysPerMeter;
+begin
+  result.Value := AQuantity.Value;
+end;
+
+operator := (AQuantity: THenrysPerMeter): TTeslasMeterPerAmpere;
 begin
   result.Value := AQuantity.Value;
 end;
