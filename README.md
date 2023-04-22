@@ -468,6 +468,19 @@ where
 - $I$ is the current intensity flowing in the solenoid, $[A]$,
 - $L$ is the length of the solenoid, $[m]$.
 
+### Forces between parallel conductors
+
+$F = \displaystyle\left[ \frac{μ_0}{2\pi}⋅\left(\frac{i_1⋅i_2}{r}\right)\right]⋅L$ ,
+
+where
+
+- $F$ is the force between the conductors, $[N]$,
+- $μ_0$ is the vacuum magnetic permeability, $μ_0=4π⋅10^{-7}$ $[T⋅m/A]$,
+- $i_1$ is the current in wire 1, $[A]$,
+- $i_2$ is the current in wire 2, $[A]$,
+- $r$ is the distance separating the conductors, $[m]$,
+- $L$ is the length of the conductors, $[m]$.
+
 ## LICENSE
 
 [GNU Lesser General Public License v3.0](https://github.com/melchiorrecaruso/ADimPas/blob/main/LICENSE)
