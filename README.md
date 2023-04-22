@@ -446,7 +446,7 @@ where
 
 ### Biot-Savart law: magnetic field produced by a current-carrying circular loop
 
-$B = \displaystyle\frac{μ_0}{2}⋅\left\{I⋅\left[\frac{R^2}{(z^2+R^2)^{3/2}}\right]\right\}$ ,
+$B = \displaystyle\frac{μ_0}{2}⋅\left[I⋅\left[\frac{R^2}{(z^2+R^2)^{3/2}}\right]\right]$ ,
 
 where
 
