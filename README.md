@@ -481,6 +481,25 @@ where
 - $r$ is the distance separating the conductors, $[m]$,
 - $L$ is the length of the conductors, $[m]$.
 
+### Magnetic flux
+
+$\Phi_b = B⋅S⋅cos(\alpha)$ ,
+
+- $B$ is the magnitude of the magnetic field, $[T]$,
+- $S$ is the area of the surface, $[m^2]$,
+- $\alpha$ is the angle between the magnetic field lines and the normal to $S$, $[rad]$.
+
+### Faraday's law of induction and Lenz's law
+
+$\epsilon = -\displaystyle\frac{\Delta\Phi_B}{\Delta t}⋅N$ ,
+
+where
+
+- $\epsilon$ is the induced electromotive force, $[V]$,
+- $\Delta\Phi_B$ is the in change magnetic flux, $[W_b]$,
+- $\Delta t$ is the change in time, $[t]$,
+- $N$ is the number of turns in a coil, a dimensionless number.
+
 ## LICENSE
 
 [GNU Lesser General Public License v3.0](https://github.com/melchiorrecaruso/ADimPas/blob/main/LICENSE)

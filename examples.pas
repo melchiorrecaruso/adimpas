@@ -129,6 +129,8 @@ var
 
   i1, i2: TAmperes;
 
+  magneticflux: TWebers;
+
 begin
   SetConsoleOutputCP(CP_UTF8);
 
@@ -301,9 +303,9 @@ begin
   squareamp  := power/resistance;
 
   Writeln('*** Ampere ((W/Ω)^0.5):');
-  writeln('The power is: ', power.ToVerboseString);
-  writeln('The resistance is: ', resistance.ToVerboseString);
-  writeln('The current is: ', SquareRoot(squareamp).ToVerboseString);
+  writeln('The power is: ', power.ToVerboseString(4, 4));
+  writeln('The resistance is: ', resistance.ToVerboseString(4, 4));
+  writeln('The current is: ', SquareRoot(squareamp).ToVerboseString(4, 4));
   writeln;
 
   // farad (C2/J)
@@ -797,7 +799,7 @@ begin
   writeln('The electric current is: ', current.ToString(4, 4));
   writeln('The solenoid has: ', loops, ' loops');
   writeln('The solenoid length is: ', len.ToString(4, 4));
-  writeln('The magnetic field B is: ', B.ToVerboseString(3, 4));
+  writeln('The magnetic field B magnitude is: ', B.ToVerboseString(3, 4));
   writeln;
 
   // Forces between parallel conductors
@@ -805,7 +807,7 @@ begin
   i1       := 2.5*A;
   i2       := 1.5*A;
   r        := 4*cm;
-  len      := 1*m;
+  len      := 1.0*m;
   force    := (m0/(2*pi)*(i1*i2/r)) * len;
 
   writeln('*** Forces between parallel conductors:');
@@ -815,6 +817,30 @@ begin
   writeln('The distance separating the conductors is: ', r.ToString(4, 4));
   writeln('The length of conductors is: ', len.ToString(4, 4));
   writeln('The forces between conductors is: ', force.ToString(4, 4));
+  writeln;
+
+  // magnetic flux
+  B            := 0.4*T;
+  Area         := 100*cm2;
+  angle        := 70*deg;
+  magneticflux := B*Area*cos(angle);
+
+  writeln('*** Magnetic flux:');
+  writeln('The magnetic field B magnitude is: ', B.ToVerboseString(4, 4));
+  writeln('The surface is: ', Area.ToVerboseString(3, 4));
+  writeln('The magnetic flux is: ', magneticflux.ToVerboseString(4, 4));
+  writeln;
+
+  // electromagnetic induction
+  magneticflux := 6*1E-5*Wb;
+  time         := 0.1*s;
+  potential    := magneticflux/time;
+
+  writeln('*** Electromagnetic induction:');
+  writeln('The magnetic flux change is: ', magneticflux.ToVerboseString(4, 4));
+  writeln('The time is: ', ms.From(time).ToVerboseString(4, 4));
+  writeln('The emf  is: ', potential.ToVerboseString (4, 4));
+  writeln;
 
 
   writeln;
