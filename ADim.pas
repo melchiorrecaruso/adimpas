@@ -1034,6 +1034,26 @@ type
   TJoulePerKilogramPerKelvinIdentifier = specialize TQuantityIdentifier<TJoulePerKilogramPerKelvinUnit>;
   TJoulesPerKilogramPerKelvin = specialize TQuantity<TJoulePerKilogramPerKelvinUnit>;
 
+{ Unit of CoulombPerMeter }
+
+type
+  TCoulombPerMeterUnit = class(TUnit)
+    class function Name: string; override;
+    class function Symbol: string; override;
+  end;
+  TCoulombPerMeterIdentifier = specialize TQuantityIdentifier<TCoulombPerMeterUnit>;
+  TCoulombsPerMeter = specialize TQuantity<TCoulombPerMeterUnit>;
+
+{ Unit of CoulombPerSquareMeter }
+
+type
+  TCoulombPerSquareMeterUnit = class(TUnit)
+    class function Name: string; override;
+    class function Symbol: string; override;
+  end;
+  TCoulombPerSquareMeterIdentifier = specialize TQuantityIdentifier<TCoulombPerSquareMeterUnit>;
+  TCoulombsPerSquareMeter = specialize TQuantity<TCoulombPerSquareMeterUnit>;
+
 { Unit of SquareCoulombPerSquareMeter }
 
 type
@@ -3505,6 +3525,24 @@ operator /(const {%H-}ALeft: TJouleIdentifier; const {%H-}ARight: TNewtonPerMete
 operator *(const {%H-}ALeft: TSquareMeterIdentifier; const {%H-}ARight: TNewtonPerMeterIdentifier): TJouleIdentifier; inline;
 operator /(const {%H-}ALeft: TJouleIdentifier; const {%H-}ARight: TSquareMeterIdentifier): TNewtonPerMeterIdentifier; inline;
 
+// main definition [ C/m ] = [ C ] / [ m ]
+operator /(const {%H-}ALeft: TCoulombIdentifier; const {%H-}ARight: TMeterIdentifier): TCoulombPerMeterIdentifier; inline;
+operator /(const {%H-}ALeft: TCoulombIdentifier; const {%H-}ARight: TCoulombPerMeterIdentifier): TMeterIdentifier; inline;
+operator *(const {%H-}ALeft: TCoulombPerMeterIdentifier; const {%H-}ARight: TMeterIdentifier): TCoulombIdentifier; inline;
+operator *(const {%H-}ALeft: TMeterIdentifier; const {%H-}ARight: TCoulombPerMeterIdentifier): TCoulombIdentifier; inline;
+
+// main definition [ C/m2 ] = [ C ] / [ m2 ]
+operator /(const {%H-}ALeft: TCoulombIdentifier; const {%H-}ARight: TSquareMeterIdentifier): TCoulombPerSquareMeterIdentifier; inline;
+operator /(const {%H-}ALeft: TCoulombIdentifier; const {%H-}ARight: TCoulombPerSquareMeterIdentifier): TSquareMeterIdentifier; inline;
+operator *(const {%H-}ALeft: TCoulombPerSquareMeterIdentifier; const {%H-}ARight: TSquareMeterIdentifier): TCoulombIdentifier; inline;
+operator *(const {%H-}ALeft: TSquareMeterIdentifier; const {%H-}ARight: TCoulombPerSquareMeterIdentifier): TCoulombIdentifier; inline;
+
+// alternative definition [ C/m2 ] = [ C/m ] / [ m ]
+operator /(const {%H-}ALeft: TCoulombPerMeterIdentifier; const {%H-}ARight: TMeterIdentifier): TCoulombPerSquareMeterIdentifier; inline;
+operator /(const {%H-}ALeft: TCoulombPerMeterIdentifier; const {%H-}ARight: TCoulombPerSquareMeterIdentifier): TMeterIdentifier; inline;
+operator *(const {%H-}ALeft: TCoulombPerSquareMeterIdentifier; const {%H-}ARight: TMeterIdentifier): TCoulombPerMeterIdentifier; inline;
+operator *(const {%H-}ALeft: TMeterIdentifier; const {%H-}ARight: TCoulombPerSquareMeterIdentifier): TCoulombPerMeterIdentifier; inline;
+
 // main definition [ C2/m2 ] = [ C2 ] / [ m2 ]
 operator /(const {%H-}ALeft: TSquareCoulombIdentifier; const {%H-}ARight: TSquareMeterIdentifier): TSquareCoulombPerSquareMeterIdentifier; inline;
 operator /(const {%H-}ALeft: TSquareCoulombIdentifier; const {%H-}ARight: TSquareCoulombPerSquareMeterIdentifier): TSquareMeterIdentifier; inline;
@@ -3547,6 +3585,12 @@ operator /(const {%H-}ALeft: TNewtonIdentifier; const {%H-}ARight: TNewtonSquare
 operator *(const {%H-}ALeft: TNewtonSquareMeterPerSquareCoulombIdentifier; const {%H-}ARight: TSquareCoulombPerSquareMeterIdentifier): TNewtonIdentifier; inline;
 operator *(const {%H-}ALeft: TSquareCoulombPerSquareMeterIdentifier; const {%H-}ARight: TNewtonSquareMeterPerSquareCoulombIdentifier): TNewtonIdentifier; inline;
 
+// alternative definition [ N*m2/C2 ] = [ N/C ] / [ C/m2 ]
+operator /(const {%H-}ALeft: TNewtonPerCoulombIdentifier; const {%H-}ARight: TCoulombPerSquareMeterIdentifier): TNewtonSquareMeterPerSquareCoulombIdentifier; inline;
+operator /(const {%H-}ALeft: TNewtonPerCoulombIdentifier; const {%H-}ARight: TNewtonSquareMeterPerSquareCoulombIdentifier): TCoulombPerSquareMeterIdentifier; inline;
+operator *(const {%H-}ALeft: TNewtonSquareMeterPerSquareCoulombIdentifier; const {%H-}ARight: TCoulombPerSquareMeterIdentifier): TNewtonPerCoulombIdentifier; inline;
+operator *(const {%H-}ALeft: TCoulombPerSquareMeterIdentifier; const {%H-}ARight: TNewtonSquareMeterPerSquareCoulombIdentifier): TNewtonPerCoulombIdentifier; inline;
+
 // main definition [ C2/N ] = [ C2 ] / [ N ]
 operator /(const {%H-}ALeft: TSquareCoulombIdentifier; const {%H-}ARight: TNewtonIdentifier): TSquareCoulombPerNewtonIdentifier; inline;
 operator /(const {%H-}ALeft: TSquareCoulombIdentifier; const {%H-}ARight: TSquareCoulombPerNewtonIdentifier): TNewtonIdentifier; inline;
@@ -3570,6 +3614,12 @@ operator /(const {%H-}ALeft: TSquareCoulombPerSquareMeterIdentifier; const {%H-}
 operator /(const {%H-}ALeft: TSquareCoulombPerSquareMeterIdentifier; const {%H-}ARight: TSquareCoulombPerNewtonPerSquareMeterIdentifier): TNewtonIdentifier; inline;
 operator *(const {%H-}ALeft: TSquareCoulombPerNewtonPerSquareMeterIdentifier; const {%H-}ARight: TNewtonIdentifier): TSquareCoulombPerSquareMeterIdentifier; inline;
 operator *(const {%H-}ALeft: TNewtonIdentifier; const {%H-}ARight: TSquareCoulombPerNewtonPerSquareMeterIdentifier): TSquareCoulombPerSquareMeterIdentifier; inline;
+
+// alternative definition [ C2/N/m2 ] = [ F ] / [ m ]
+operator /(const {%H-}ALeft: TFaradIdentifier; const {%H-}ARight: TMeterIdentifier): TSquareCoulombPerNewtonPerSquareMeterIdentifier; inline;
+operator /(const {%H-}ALeft: TFaradIdentifier; const {%H-}ARight: TSquareCoulombPerNewtonPerSquareMeterIdentifier): TMeterIdentifier; inline;
+operator *(const {%H-}ALeft: TSquareCoulombPerNewtonPerSquareMeterIdentifier; const {%H-}ARight: TMeterIdentifier): TFaradIdentifier; inline;
+operator *(const {%H-}ALeft: TMeterIdentifier; const {%H-}ARight: TSquareCoulombPerNewtonPerSquareMeterIdentifier): TFaradIdentifier; inline;
 
 // alternative definition [ C2/N/m2 ] = 1 / [ N*m2/C2 ]
 operator /(const {%H-}ALeft: double; const {%H-}ARight: TNewtonSquareMeterPerSquareCoulombIdentifier): TSquareCoulombPerNewtonPerSquareMeterIdentifier; inline;
@@ -4571,6 +4621,24 @@ operator /(const ALeft: TJoules; const ARight: TNewtonsPerMeter): TSquareMeters;
 operator *(const ALeft: TSquareMeters; const ARight: TNewtonsPerMeter): TJoules; inline;
 operator /(const ALeft: TJoules; const ARight: TSquareMeters): TNewtonsPerMeter; inline;
 
+// main definition [ C/m ] = [ C ] / [ m ]
+operator /(const ALeft: TCoulombs; const ARight: TMeters): TCoulombsPerMeter; inline;
+operator /(const ALeft: TCoulombs; const ARight: TCoulombsPerMeter): TMeters; inline;
+operator *(const ALeft: TCoulombsPerMeter; const ARight: TMeters): TCoulombs; inline;
+operator *(const ALeft: TMeters; const ARight: TCoulombsPerMeter): TCoulombs; inline;
+
+// main definition [ C/m2 ] = [ C ] / [ m2 ]
+operator /(const ALeft: TCoulombs; const ARight: TSquareMeters): TCoulombsPerSquareMeter; inline;
+operator /(const ALeft: TCoulombs; const ARight: TCoulombsPerSquareMeter): TSquareMeters; inline;
+operator *(const ALeft: TCoulombsPerSquareMeter; const ARight: TSquareMeters): TCoulombs; inline;
+operator *(const ALeft: TSquareMeters; const ARight: TCoulombsPerSquareMeter): TCoulombs; inline;
+
+// alternative definition [ C/m2 ] = [ C/m ] / [ m ]
+operator /(const ALeft: TCoulombsPerMeter; const ARight: TMeters): TCoulombsPerSquareMeter; inline;
+operator /(const ALeft: TCoulombsPerMeter; const ARight: TCoulombsPerSquareMeter): TMeters; inline;
+operator *(const ALeft: TCoulombsPerSquareMeter; const ARight: TMeters): TCoulombsPerMeter; inline;
+operator *(const ALeft: TMeters; const ARight: TCoulombsPerSquareMeter): TCoulombsPerMeter; inline;
+
 // main definition [ C2/m2 ] = [ C2 ] / [ m2 ]
 operator /(const ALeft: TSquareCoulombs; const ARight: TSquareMeters): TSquareCoulombsPerSquareMeter; inline;
 operator /(const ALeft: TSquareCoulombs; const ARight: TSquareCoulombsPerSquareMeter): TSquareMeters; inline;
@@ -4613,6 +4681,12 @@ operator /(const ALeft: TNewtons; const ARight: TNewtonsSquareMeterPerSquareCoul
 operator *(const ALeft: TNewtonsSquareMeterPerSquareCoulomb; const ARight: TSquareCoulombsPerSquareMeter): TNewtons; inline;
 operator *(const ALeft: TSquareCoulombsPerSquareMeter; const ARight: TNewtonsSquareMeterPerSquareCoulomb): TNewtons; inline;
 
+// alternative definition [ N*m2/C2 ] = [ N/C ] / [ C/m2 ]
+operator /(const ALeft: TNewtonsPerCoulomb; const ARight: TCoulombsPerSquareMeter): TNewtonsSquareMeterPerSquareCoulomb; inline;
+operator /(const ALeft: TNewtonsPerCoulomb; const ARight: TNewtonsSquareMeterPerSquareCoulomb): TCoulombsPerSquareMeter; inline;
+operator *(const ALeft: TNewtonsSquareMeterPerSquareCoulomb; const ARight: TCoulombsPerSquareMeter): TNewtonsPerCoulomb; inline;
+operator *(const ALeft: TCoulombsPerSquareMeter; const ARight: TNewtonsSquareMeterPerSquareCoulomb): TNewtonsPerCoulomb; inline;
+
 // main definition [ C2/N ] = [ C2 ] / [ N ]
 operator /(const ALeft: TSquareCoulombs; const ARight: TNewtons): TSquareCoulombsPerNewton; inline;
 operator /(const ALeft: TSquareCoulombs; const ARight: TSquareCoulombsPerNewton): TNewtons; inline;
@@ -4636,6 +4710,12 @@ operator /(const ALeft: TSquareCoulombsPerSquareMeter; const ARight: TNewtons): 
 operator /(const ALeft: TSquareCoulombsPerSquareMeter; const ARight: TSquareCoulombsPerNewtonPerSquareMeter): TNewtons; inline;
 operator *(const ALeft: TSquareCoulombsPerNewtonPerSquareMeter; const ARight: TNewtons): TSquareCoulombsPerSquareMeter; inline;
 operator *(const ALeft: TNewtons; const ARight: TSquareCoulombsPerNewtonPerSquareMeter): TSquareCoulombsPerSquareMeter; inline;
+
+// alternative definition [ C2/N/m2 ] = [ F ] / [ m ]
+operator /(const ALeft: TFarads; const ARight: TMeters): TSquareCoulombsPerNewtonPerSquareMeter; inline;
+operator /(const ALeft: TFarads; const ARight: TSquareCoulombsPerNewtonPerSquareMeter): TMeters; inline;
+operator *(const ALeft: TSquareCoulombsPerNewtonPerSquareMeter; const ARight: TMeters): TFarads; inline;
+operator *(const ALeft: TMeters; const ARight: TSquareCoulombsPerNewtonPerSquareMeter): TFarads; inline;
 
 // alternative definition [ C2/N/m2 ] = 1 / [ N*m2/C2 ]
 operator /(const ALeft: double; const ARight: TNewtonsSquareMeterPerSquareCoulomb): TSquareCoulombsPerNewtonPerSquareMeter; inline;
@@ -6113,6 +6193,30 @@ end;
 class function TJoulePerKilogramPerKelvinUnit.Name: string;
 begin
   result := 'joule per kilogram kelvin';
+end;
+
+{ Unit of TCoulombPerMeterUnit }
+
+class function TCoulombPerMeterUnit.Symbol: string;
+begin
+  result := 'C/m';
+end;
+
+class function TCoulombPerMeterUnit.Name: string;
+begin
+  result := 'coulomb per meter';
+end;
+
+{ Unit of TCoulombPerSquareMeterUnit }
+
+class function TCoulombPerSquareMeterUnit.Symbol: string;
+begin
+  result := 'C/m2';
+end;
+
+class function TCoulombPerSquareMeterUnit.Name: string;
+begin
+  result := 'coulomb per square meter';
 end;
 
 { Unit of TSquareCoulombPerSquareMeterUnit }
@@ -9922,6 +10026,45 @@ begin end;
 operator /(const ALeft: TJouleIdentifier; const ARight: TSquareMeterIdentifier): TNewtonPerMeterIdentifier;
 begin end;
 
+// main definition [ C/m ] = [ C ] / [ m ]
+operator /(const ALeft: TCoulombIdentifier; const ARight: TMeterIdentifier): TCoulombPerMeterIdentifier;
+begin end;
+
+operator /(const ALeft: TCoulombIdentifier; const ARight: TCoulombPerMeterIdentifier): TMeterIdentifier;
+begin end;
+
+operator *(const ALeft: TCoulombPerMeterIdentifier; const ARight: TMeterIdentifier): TCoulombIdentifier;
+begin end;
+
+operator *(const ALeft: TMeterIdentifier; const ARight: TCoulombPerMeterIdentifier): TCoulombIdentifier;
+begin end;
+
+// main definition [ C/m2 ] = [ C ] / [ m2 ]
+operator /(const ALeft: TCoulombIdentifier; const ARight: TSquareMeterIdentifier): TCoulombPerSquareMeterIdentifier;
+begin end;
+
+operator /(const ALeft: TCoulombIdentifier; const ARight: TCoulombPerSquareMeterIdentifier): TSquareMeterIdentifier;
+begin end;
+
+operator *(const ALeft: TCoulombPerSquareMeterIdentifier; const ARight: TSquareMeterIdentifier): TCoulombIdentifier;
+begin end;
+
+operator *(const ALeft: TSquareMeterIdentifier; const ARight: TCoulombPerSquareMeterIdentifier): TCoulombIdentifier;
+begin end;
+
+// alternative definition [ C/m2 ] = [ C/m ] / [ m ]
+operator /(const ALeft: TCoulombPerMeterIdentifier; const ARight: TMeterIdentifier): TCoulombPerSquareMeterIdentifier;
+begin end;
+
+operator /(const ALeft: TCoulombPerMeterIdentifier; const ARight: TCoulombPerSquareMeterIdentifier): TMeterIdentifier;
+begin end;
+
+operator *(const ALeft: TCoulombPerSquareMeterIdentifier; const ARight: TMeterIdentifier): TCoulombPerMeterIdentifier;
+begin end;
+
+operator *(const ALeft: TMeterIdentifier; const ARight: TCoulombPerSquareMeterIdentifier): TCoulombPerMeterIdentifier;
+begin end;
+
 // main definition [ C2/m2 ] = [ C2 ] / [ m2 ]
 operator /(const ALeft: TSquareCoulombIdentifier; const ARight: TSquareMeterIdentifier): TSquareCoulombPerSquareMeterIdentifier;
 begin end;
@@ -10013,6 +10156,19 @@ begin end;
 operator *(const ALeft: TSquareCoulombPerSquareMeterIdentifier; const ARight: TNewtonSquareMeterPerSquareCoulombIdentifier): TNewtonIdentifier;
 begin end;
 
+// alternative definition [ N*m2/C2 ] = [ N/C ] / [ C/m2 ]
+operator /(const ALeft: TNewtonPerCoulombIdentifier; const ARight: TCoulombPerSquareMeterIdentifier): TNewtonSquareMeterPerSquareCoulombIdentifier;
+begin end;
+
+operator /(const ALeft: TNewtonPerCoulombIdentifier; const ARight: TNewtonSquareMeterPerSquareCoulombIdentifier): TCoulombPerSquareMeterIdentifier;
+begin end;
+
+operator *(const ALeft: TNewtonSquareMeterPerSquareCoulombIdentifier; const ARight: TCoulombPerSquareMeterIdentifier): TNewtonPerCoulombIdentifier;
+begin end;
+
+operator *(const ALeft: TCoulombPerSquareMeterIdentifier; const ARight: TNewtonSquareMeterPerSquareCoulombIdentifier): TNewtonPerCoulombIdentifier;
+begin end;
+
 // main definition [ C2/N ] = [ C2 ] / [ N ]
 operator /(const ALeft: TSquareCoulombIdentifier; const ARight: TNewtonIdentifier): TSquareCoulombPerNewtonIdentifier;
 begin end;
@@ -10063,6 +10219,19 @@ operator *(const ALeft: TSquareCoulombPerNewtonPerSquareMeterIdentifier; const A
 begin end;
 
 operator *(const ALeft: TNewtonIdentifier; const ARight: TSquareCoulombPerNewtonPerSquareMeterIdentifier): TSquareCoulombPerSquareMeterIdentifier;
+begin end;
+
+// alternative definition [ C2/N/m2 ] = [ F ] / [ m ]
+operator /(const ALeft: TFaradIdentifier; const ARight: TMeterIdentifier): TSquareCoulombPerNewtonPerSquareMeterIdentifier;
+begin end;
+
+operator /(const ALeft: TFaradIdentifier; const ARight: TSquareCoulombPerNewtonPerSquareMeterIdentifier): TMeterIdentifier;
+begin end;
+
+operator *(const ALeft: TSquareCoulombPerNewtonPerSquareMeterIdentifier; const ARight: TMeterIdentifier): TFaradIdentifier;
+begin end;
+
+operator *(const ALeft: TMeterIdentifier; const ARight: TSquareCoulombPerNewtonPerSquareMeterIdentifier): TFaradIdentifier;
 begin end;
 
 // alternative definition [ C2/N/m2 ] = 1 / [ N*m2/C2 ]
@@ -13012,6 +13181,69 @@ begin
   result.Value := ALeft.Value / ARight.Value;
 end;
 
+// main definition [ C/m ] = [ C ] / [ m ]
+operator /(const ALeft: TCoulombs; const ARight: TMeters): TCoulombsPerMeter;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator /(const ALeft: TCoulombs; const ARight: TCoulombsPerMeter): TMeters;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator *(const ALeft: TCoulombsPerMeter; const ARight: TMeters): TCoulombs;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator *(const ALeft: TMeters; const ARight: TCoulombsPerMeter): TCoulombs;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+// main definition [ C/m2 ] = [ C ] / [ m2 ]
+operator /(const ALeft: TCoulombs; const ARight: TSquareMeters): TCoulombsPerSquareMeter;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator /(const ALeft: TCoulombs; const ARight: TCoulombsPerSquareMeter): TSquareMeters;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator *(const ALeft: TCoulombsPerSquareMeter; const ARight: TSquareMeters): TCoulombs;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator *(const ALeft: TSquareMeters; const ARight: TCoulombsPerSquareMeter): TCoulombs;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+// alternative definition [ C/m2 ] = [ C/m ] / [ m ]
+operator /(const ALeft: TCoulombsPerMeter; const ARight: TMeters): TCoulombsPerSquareMeter;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator /(const ALeft: TCoulombsPerMeter; const ARight: TCoulombsPerSquareMeter): TMeters;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator *(const ALeft: TCoulombsPerSquareMeter; const ARight: TMeters): TCoulombsPerMeter;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator *(const ALeft: TMeters; const ARight: TCoulombsPerSquareMeter): TCoulombsPerMeter;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
 // main definition [ C2/m2 ] = [ C2 ] / [ m2 ]
 operator /(const ALeft: TSquareCoulombs; const ARight: TSquareMeters): TSquareCoulombsPerSquareMeter;
 begin
@@ -13159,6 +13391,27 @@ begin
   result.Value := ALeft.Value * ARight.Value;
 end;
 
+// alternative definition [ N*m2/C2 ] = [ N/C ] / [ C/m2 ]
+operator /(const ALeft: TNewtonsPerCoulomb; const ARight: TCoulombsPerSquareMeter): TNewtonsSquareMeterPerSquareCoulomb;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator /(const ALeft: TNewtonsPerCoulomb; const ARight: TNewtonsSquareMeterPerSquareCoulomb): TCoulombsPerSquareMeter;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator *(const ALeft: TNewtonsSquareMeterPerSquareCoulomb; const ARight: TCoulombsPerSquareMeter): TNewtonsPerCoulomb;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator *(const ALeft: TCoulombsPerSquareMeter; const ARight: TNewtonsSquareMeterPerSquareCoulomb): TNewtonsPerCoulomb;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
 // main definition [ C2/N ] = [ C2 ] / [ N ]
 operator /(const ALeft: TSquareCoulombs; const ARight: TNewtons): TSquareCoulombsPerNewton;
 begin
@@ -13239,6 +13492,27 @@ begin
 end;
 
 operator *(const ALeft: TNewtons; const ARight: TSquareCoulombsPerNewtonPerSquareMeter): TSquareCoulombsPerSquareMeter;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+// alternative definition [ C2/N/m2 ] = [ F ] / [ m ]
+operator /(const ALeft: TFarads; const ARight: TMeters): TSquareCoulombsPerNewtonPerSquareMeter;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator /(const ALeft: TFarads; const ARight: TSquareCoulombsPerNewtonPerSquareMeter): TMeters;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator *(const ALeft: TSquareCoulombsPerNewtonPerSquareMeter; const ARight: TMeters): TFarads;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator *(const ALeft: TMeters; const ARight: TSquareCoulombsPerNewtonPerSquareMeter): TFarads;
 begin
   result.Value := ALeft.Value * ARight.Value;
 end;
