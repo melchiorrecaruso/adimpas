@@ -91,9 +91,9 @@ var
   g: TMetersPerSquareSecond;
 
   Ue: TJoules;
-  ke: TNewtonsPerMeter;
+  kx: TNewtonsPerMeter;
 
-  kel: TNewtonsSquareMeterPerSquareCoulomb;
+  ke: TNewtonsSquareMeterPerSquareCoulomb;
   q1: TCoulombs;
   q2: TCoulombs;
   Uel: TJoules;
@@ -120,10 +120,17 @@ var
 
   lambda2: TWattsPerMeterPerKelvin;
 
+
+
+  E: TNewtonsPerCoulomb;
+  e0: TSquareCoulombsPerNewtonPerSquareMeter;
+  er: double;
+  sigma: TCoulombsPerSquareMeter;
+
   m0: TTeslasMeterPerAmpere;
   B: TTeslas;
   len: TMeters;
-  R: TMeters;
+  r: TMeters;
   z: TMeters;
   loops: longint;
 
@@ -219,6 +226,52 @@ begin
   writeln('The mass is: ', mass.ToString);
   writeln('The acceleration is: ', acceleration.ToString);
   writeln('The force is: ', force.ToString);
+  writeln;
+
+  // angular speed
+  angle        := 2*pi*rad;
+  time         := 1*s;
+  angularspeed := angle/time;
+  radius       := 2*m;
+  speed        := angularspeed*radius;
+
+  writeln('*** Angular speed:');
+  writeln('The angle is: ', angle.ToVerboseString(4, 0));
+  writeln('The time is: ', time.ToVerboseString(4, 0));
+  writeln('The angular speed is: ', angularspeed.ToVerboseString(4, 0));
+  writeln('The radius is: ', radius.ToVerboseString);
+  writeln('The tangential speed is: ', speed.ToVerboseString(4, 0));
+  writeln;
+
+  // centrifugal force
+  mass         := 1*kg;
+  angularspeed := 2*pi*(rad/s);
+  radius       := 10*m;
+  acceleration := (angularspeed*angularspeed)*radius;
+  force        := mass*acceleration;
+
+  writeln('*** Centrifugal force:');
+  writeln('The mass is: ', mass.ToVerboseString);
+  writeln('The angular speed is: ', angularspeed.ToVerboseString(4, 0));
+  writeln('The radius is: ', radius.ToVerboseString);
+  writeln('The acceleration is: ', acceleration.ToVerboseString(4, 0));
+  writeln('The force is: ', force.ToVerboseString(4, 0));
+  writeln;
+
+  // centripetal force
+  mass         := 10*kg;
+  radius       := 1*m;
+  angularspeed := 2*pi*(rad/s);
+  speed        := angularspeed*radius;
+  force        := mass*(SquarePower(angularspeed)*radius);
+  force        := mass*(SquarePower(speed)/radius);
+
+  writeln('*** Centripetal force:');
+  writeln('The mass is: ', mass.ToString(4, 4));
+  writeln('The radius is: ', radius.ToString(4, 4));
+  writeln('The angularspeed is: ', angularspeed.ToString(4, 4));
+  writeln('The speed is: ', speed.ToString(4, 4));
+  writeln('The force is: ', force.ToString(4, 4));
   writeln;
 
   // pressure
@@ -444,7 +497,7 @@ begin
   writeln('The specific weight is: ', specificw.ToVerboseString);
   writeln;
 
-  // Sliding friction
+  // sliding friction
   normal := 100*N;
   kA     := 0.05;
   force  := kA*normal;
@@ -500,36 +553,6 @@ begin
   writeln('The force is: ', force.ToVerboseString(4, 0));
   writeln;
 
-  // angular speed
-  angle        := 2*pi*rad;
-  time         := 1*s;
-  angularspeed := angle/time;
-  radius       := 2*m;
-  speed        := angularspeed*radius;
-
-  writeln('*** Angular speed:');
-  writeln('The angle is: ', angle.ToVerboseString(4, 0));
-  writeln('The time is: ', time.ToVerboseString(4, 0));
-  writeln('The angular speed is: ', angularspeed.ToVerboseString(4, 0));
-  writeln('The radius is: ', radius.ToVerboseString);
-  writeln('The tangential speed is: ', speed.ToVerboseString(4, 0));
-  writeln;
-
-  // centrifugal force
-  mass         := 1*kg;
-  angularspeed := 2*pi*(rad/s);
-  radius       := 10*m;
-  acceleration := (angularspeed*angularspeed)*radius;
-  force        := mass*acceleration;
-
-  writeln('*** Centrifugal force:');
-  writeln('The mass is: ', mass.ToVerboseString);
-  writeln('The angular speed is: ', angularspeed.ToVerboseString(4, 0));
-  writeln('The radius is: ', radius.ToVerboseString);
-  writeln('The acceleration is: ', acceleration.ToVerboseString(4, 0));
-  writeln('The force is: ', force.ToVerboseString(4, 0));
-  writeln;
-
   // universal gravitation law
   mass1    := 5.972E24*kg;
   mass2    := 7.348E22*kg;
@@ -546,17 +569,6 @@ begin
   writeln('The force is: ', force.ToVerboseString(4, 0));
   writeln;
 
-  // kinematic potential energy
-  mass  := 10*kg;
-  speed := 5*(m/s);
-  Uc    := 1/2*mass*(speed*speed);
-
-  writeln('*** Kinematic potential energy:');
-  writeln('The mass is: ', mass.ToVerboseString);
-  writeln('The speed is: ', speed.ToVerboseString);
-  writeln('The potential energy is: ', Uc.ToVerboseString);
-  writeln;
-
   // gravitational potential energy
   mass     := 10*kg;
   g        := 9.81*(m/s2);
@@ -570,36 +582,26 @@ begin
   writeln('The gravitational potential energy is: ', Ug.ToVerboseString(4, 0));
   writeln;
 
+  // kinematic potential energy
+  mass  := 10*kg;
+  speed := 5*(m/s);
+  Uc    := 1/2*mass*(speed*speed);
+
+  writeln('*** Kinematic potential energy:');
+  writeln('The mass is: ', mass.ToVerboseString);
+  writeln('The speed is: ', speed.ToVerboseString);
+  writeln('The potential energy is: ', Uc.ToVerboseString);
+  writeln;
+
   // elastic potential energy
-  ke       := 10*(N/m);
+  kx       := 10*(N/m);
   distance := 10*m;
-  Ue       := 0.5*ke*(distance*distance);
+  Ue       := 0.5*kx*(distance*distance);
 
   writeln('*** Elastic potential energy:');
   writeln('The ke is: ', ke.ToVerboseString);
   writeln('The distance is: ', distance.ToVerboseString);
   writeln('The Ue is: ', Ue.ToVerboseString);
-  writeln;
-
-  // electrostatic force
-  kel      := 9E9*(N*m2/C2);
-  q1       := 6E-6*C;
-  q2       := 9E-6*C;
-  distance := 2*m;
-  force    := kel*(q1*q2)/(distance*distance);
-
-  writeln('*** Electrostatic force:');
-  writeln('The K.el is: ', kel.ToVerboseString(4, 0));
-  writeln('The q1 is: ', q1.ToVerboseString);
-  writeln('The q2 is: ', q2.ToVerboseString);
-  writeln('The distance is: ', distance.ToVerboseString);
-  writeln('The force is: ', force.ToVerboseString(4, 0));
-  writeln;
-
-  // electric potential energy
-  Uel      := kel*(q1*q2/distance);
-  writeln('*** Electric potential energy:');
-  writeln('The electric potential energy is: ', Uel.ToVerboseString(4, 0));
   writeln;
 
   // momentum
@@ -742,21 +744,94 @@ begin
   writeln('The power is: ', power.ToVerboseString);
   writeln;
 
-  // centripetal force
-  mass         := 10*kg;
-  radius       := 1*m;
-  angularspeed := 2*pi*(rad/s);
-  speed        := angularspeed*radius;
-  force        := mass*(SquarePower(angularspeed)*radius);
-  force        := mass*(SquarePower(speed)/radius);
+  // electric potential energy
+  ke       := 8.988E9*(N*m2/C2);
+  q1       := 6E-6*C;
+  q2       := 9E-6*C;
+  Uel      := ke*(q1*q2/distance);
 
-  writeln('*** Centripetal force:');
-  writeln('The mass is: ', mass.ToString(4, 4));
-  writeln('The radius is: ', radius.ToString(4, 4));
-  writeln('The angularspeed is: ', angularspeed.ToString(4, 4));
-  writeln('The speed is: ', speed.ToString(4, 4));
+  writeln('*** Electric potential energy:');
+  writeln('The electric potential energy is: ', Uel.ToVerboseString(4, 0));
+  writeln;
+
+  // electrostatic force on a point charge in a electric field
+  E     := 0.0015*(N/C);
+  q1    := 1.602E-19*C;
+  force := E*q1;
+
+  writeln('*** Electrostatic force on a point charge in a electric field:');
+  writeln('The electric field strength is: ', E.ToVerboseString(4, 4));
+  writeln('The charge on the object experiencing the force is: ', q1.ToVerboseString(4, 4));
+  writeln('The the force on the charged particle is: ', force.ToVerboseString(4, 4));
+  writeln;
+
+  // electrostatic force between two point charges
+  ke       := 8.988E9*(N*m2/C2);
+  q1       := 6E-6*C;
+  q2       := 9E-6*C;
+  distance := 2*m;
+  force    := ke*(q1*q2)/(distance*distance);
+
+  writeln('*** Electrostatic force between two point charges:');
+  writeln('The Coulomb constant ke is: ', ke.ToString(4, 4));
+  writeln('The q1 is: ', q1.ToString);
+  writeln('The q2 is: ', q2.ToString);
+  writeln('The distance is: ', distance.ToString);
   writeln('The force is: ', force.ToString(4, 4));
   writeln;
+
+  // electric field of a single point charge
+  e0       := 8.854187817E-12*(C2/N/m2);
+  er       := 1;
+  ke       := 1/(4*pi*e0*er);
+  q1       := 2*C;
+  r        := 5*cm;
+  E        := ke*(q1/SquarePower(r));
+
+  writeln('*** Electric field of a single point charge:');
+  writeln('The vacuum permittivity e0 is: ', e0.ToString(4, 4));
+  writeln('The relative permittivity er is: ', er:0:2);
+  writeln('The Coulomb constant ke is: ', ke.ToString(6, 6));
+  writeln('The single point charge q1 is: ', q1.ToString);
+  writeln('The distance from charge is: ', distance.ToString);
+  writeln('The electric field strength is: ', E.ToString(4, 4));
+  writeln;
+
+  // electric field of uniform charge sphere
+  e0       := 8.854187817E-12*(C2/N/m2);
+  er       := 1;
+  ke       := 1/(4*pi*e0);
+  q1       := 2*C;
+  r        := 10*cm;
+  distance := 5*cm;
+  E        := ke*(q1* (distance/CubicPower(r)) );
+
+  writeln('*** Electric field of uniform charge sphere:');
+  writeln('The vacuum permittivity e0 is: ', e0.ToString(4, 4));
+  writeln('The relative permittivity er is: ', er:0:2);
+  writeln('The Coulomb constant ke is: ', ke.ToString(6, 6));
+  writeln('The sphere charge is: ', q1.ToString);
+  writeln('The sphere radius is: ', r.ToString);
+  writeln('The distance from center of sphere is: ', distance.ToString);
+  writeln('The electric field strength is: ', E.ToString(4, 4));
+  writeln;
+
+  // electric field of parallel conducting plates
+  e0       := 8.854187817E-12*(C2/N/m2);
+  er       := 1;
+  q1       := 2*C;
+  Area     := 4*cm2;
+  sigma    := q1/Area;
+  E        := sigma/e0/er;
+  writeln('*** Electric field of parallel conducting plates:');
+  writeln('The vacuum permittivity e0 is: ', e0.ToString(4, 4));
+  writeln('The relative permittivity er is: ', er:0:2);
+  writeln('The plate charge is: ', q1.ToString(4, 4));
+  writeln('The plate area is: ', Area.ToString(4, 4));
+  writeln('The charge density sigma is: ', sigma.ToString(4, 4));
+  writeln('The electric field strength is: ', E.ToString(4, 4));
+  writeln;
+
 
   // magnetic force for lifting a object
   mass      := 100*ADim.g;
@@ -802,7 +877,7 @@ begin
   writeln('The magnetic field B magnitude is: ', B.ToVerboseString(3, 4));
   writeln;
 
-  // Forces between parallel conductors
+  // forces between parallel conductors
   m0       := 4*pi*1E-7*(T*m/A);
   i1       := 2.5*A;
   i2       := 1.5*A;

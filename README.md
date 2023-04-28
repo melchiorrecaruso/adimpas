@@ -201,15 +201,101 @@ where
 - $L$ is the length of the specimen, $[m]$,
 - $A$ is the cross-sectional area of the specimen, $[m^2]$.
 
-### Electrostatic force
+### Electrostatic force and electric fields
+
+$E = \displaystyle\frac {F}{q}$ ,
+
+where
+
+- $E$ is the electric field strength, $[N/C]$,
+- $F$ is the force on the charged particle, $[N]$,
+- $q$ is the charge on the object experiencing the force, $[C]$.
+
+### Electric field of a point charge
+
+$E = k_e⋅\displaystyle \left(\frac{|Q|}{r^2}\right)$ ,
+
+where
+
+- $k_e$ is the Coulomb constant, $k_e ≈ 8.988×10^9$ $[N⋅m^2/C^2]$,
+- $Q$ is the value of point charge, $[C]$,
+- $r$ is the distance from the point charge, $[m]$.
+
+### Electric field of conducting sphere
+
+The electric field of a conducting sphere with charge $Q$ is, 
+
+$E = k_e⋅\displaystyle \left(\frac{|Q|}{r^2}\right)$ , if $r>R$ ,
+
+$E = 0$ , if $r < R$ 
+
+where
+
+- $k_e$ is the Coulomb constant, $k_e ≈ 8.988×10^9$ $[N⋅m^2/C^2]$,
+- $Q$ is the value of charge, $[C]$,
+- $r$ is the distance from the sphere, $[m]$.
+- $R$ is the sphere radius, $[m]$.
+
+### Electric field of uniform charge sphere:
+
+$E = k_e⋅\displaystyle\left(\frac{|Q|}{r^2}\right)$ 
+
+if $\displaystyle r > R$ , and
+
+$E = k_e⋅\displaystyle\left[|Q|⋅\left(\frac{r}{R^3}\right)\right]$
+
+if $\displaystyle r < R$ 
+
+where
+
+- $k_e$ is the Coulomb constant, $k_e ≈ 8.988×10^9$ $[N⋅m^2/C^2]$,
+- $Q$ is the value of charge, $[C]$,
+- $r$ is the distance from the sphere, $[m]$.
+- $R$ is the sphere radius, $[m]$.
+
+### Electric Field of a single conducting plate
+
+$E = \displaystyle\frac{\sigma}{2⋅\epsilon_0⋅\epsilon_r}   = \left(\frac{1}{2⋅\epsilon_0⋅\epsilon_r}\right)⋅\left(\frac{|Q|}{S}\right)$ ,
+
+where
+
+- $\epsilon_0$ is the vacuum permittivity, $[C^2/N/m^2]$,
+- $\epsilon_r$ is the relative permittivity, a dimensionless number,
+- $Q$ is the value of plate charge, $[C]$,
+- $S$ is the area of plate charge, $[m^2]$.
+
+### Electric field of parallel conducting plates
+
+$E = \displaystyle\frac{\sigma}{\epsilon_0⋅\epsilon_r}   = \left(\frac{1}{\epsilon_0⋅\epsilon_r}\right)⋅\left(\frac{|Q|}{S}\right)$ ,
+
+where
+
+- $\epsilon_0$ is the vacuum permittivity, $[C^2/N/m^2]$,
+- $\epsilon_r$ is the relative permittivity, a dimensionless number,
+- $Q$ is the charge of single plate, $[C]$,
+- $S$ is the area of single plate, $[m^2]$.
+
+### Electric field of line charge
+
+$E = \displaystyle\left(\frac{1}{2⋅\epsilon_0⋅\epsilon_r}\right)⋅\left(\frac{\lambda}{R}\right)=\left(\frac{1}{2⋅\epsilon_0⋅\epsilon_r}\right)⋅\left(\frac{|Q|}{L⋅R}\right)$ ,
+
+where
+
+- $\epsilon_0$ is the vacuum permittivity, $[C^2/N/m^2]$,
+- $\epsilon_r$ is the relative permittivity, a dimensionless number,
+- $Q$ is the line charge, $[C]$,
+- $L$ is the line length, $[m]$,
+- $r$ is the distance from the wire, $[m]$.
+
+### Electrostatic force between two point charges
 
 $F_e = k_e·(q_1·q_2)/r^2$ ,
 
 where 
 
 - $k_e$ is the Coulomb constant, $k_e ≈ 8.988×10^9$ $[N⋅m^2/C^2]$,
-- $q_1$ is the charge 1, $[C]$,
-- $q_2$ is the charge 2, $[C]$,
+- $q_1$ is the point charge 1, $[C]$,
+- $q_2$ is the point charge 2, $[C]$,
 - $r$ is the distance between the charges, $[m]$.
 
 ### Electrostatic potential energy
