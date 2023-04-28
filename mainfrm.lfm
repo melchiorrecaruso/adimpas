@@ -779,6 +779,8 @@ object MainForm: TMainForm
     BorderSpacing.Left = 12
     BorderSpacing.Right = 10
     Caption = 'Add trigonometric functions'
+    Checked = True
+    State = cbChecked
     TabOrder = 4
   end
   object SaveDialog: TSaveDialog
