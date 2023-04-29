@@ -577,14 +577,46 @@ $\Phi_b = B⋅S⋅cos(\alpha)$ ,
 
 ### Faraday's law of induction and Lenz's law
 
-$\epsilon = -\displaystyle\frac{\Delta\Phi_B}{\Delta t}⋅N$ ,
+$\epsilon = -\displaystyle\left(\frac{\Delta\Phi_B}{\Delta t}\right)⋅N$ ,
 
 where
 
 - $\epsilon$ is the induced electromotive force, $[V]$,
 - $\Delta\Phi_B$ is the in change magnetic flux, $[W_b]$,
-- $\Delta t$ is the change in time, $[t]$,
+- $\Delta t$ is the change in time, $[s]$,
 - $N$ is the number of turns in a coil, a dimensionless number.
+
+### Displacement current
+
+$i_d = \epsilon_0⋅\displaystyle\left(\frac{\Delta\Phi_E}{\Delta t}\right)$ ,
+
+where
+
+- $i_d$ is the Maxwell's Displacement current, $[A]$, 
+- $\epsilon_0$ is the vacuum permittivity, $[C^2/N/m^2]$,
+- $\Delta\Phi_E$ is the change in electric flux, $[V⋅m]$
+- $\Delta t$ is the change in time, $[s]$
+
+### Line integral of the magnetic field
+
+$C_L(B) = \sum_{i = 1}^{n} B_i⋅l_i⋅cos(\alpha) $ ,
+
+where
+- $C_L(B)$ is line integral of magnetic field, $[T⋅m]$,
+- $B_i$ is the value of magnetic field on the element length $l_i$, $[T]$,
+- $l_i$ is the length of element $i$
+- $\alpha$ is the angle betweeb $B_i$ and element length $l_i$, $[rad]$.
+
+### Ampère's circuital law (with Maxwell's addition)
+
+$C_L(B) = \displaystyle\mu_0⋅i + \mu_0⋅\left[\epsilon_0⋅\left(\frac{\Delta\Phi_E}{\Delta t}\right)\right]$ ,
+
+where
+- $μ_0$ is the vacuum magnetic permeability, $μ_0=4π⋅10^{-7}$ $[T⋅m/A]$,
+- $i$ is the electric current, $[A]$,
+- $\epsilon_0$ is the vacuum permittivity, $[C^2/N/m^2]$,
+- $\Delta\Phi_E$ is the change in electric flux, $[V⋅m]$
+- $\Delta t$ is the change in time, $[s]$.
 
 ## LICENSE
 

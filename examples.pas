@@ -138,6 +138,8 @@ var
 
   magneticflux: TWebers;
 
+  DeltaE: TNewtonsPerCoulomb;
+
 begin
   SetConsoleOutputCP(CP_UTF8);
 
@@ -915,6 +917,21 @@ begin
   writeln('The magnetic flux change is: ', magneticflux.ToVerboseString(4, 4));
   writeln('The time is: ', ms.From(time).ToVerboseString(4, 4));
   writeln('The emf  is: ', potential.ToVerboseString (4, 4));
+  writeln;
+
+  // displacement current
+  Area     := 100*cm2;
+  e0       := 8.854187817E-12*(C2/N/m2);
+  DeltaE   := 6.0E10*(N/C);
+  time     := 1*s;
+  current  := e0*((DeltaE*Area)/time);
+
+  writeln('*** Displacement current:');
+  writeln('The plates Aare is: ', Area.ToString(4, 4));
+  writeln('The vacuum permittivity e0 is: ', e0.ToString(4, 4));
+  writeln('The change in electric field : ', DeltaE.ToVerboseString(4, 4));
+  writeln('The change in time is: ', time.ToVerboseString (4, 4));
+  writeln('The displacement current is: ', current.ToVerboseString (4, 4));
   writeln;
 
 

@@ -27,9 +27,9 @@
         <Filename Value="examples.pas"/>
         <IsPartOfProject Value="True"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="794"/>
-        <CursorPos X="17" Y="818"/>
-        <UsageCount Value="151"/>
+        <TopLine Value="903"/>
+        <CursorPos X="38" Y="906"/>
+        <UsageCount Value="155"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -39,7 +39,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="138"/>
         <CursorPos X="7" Y="153"/>
-        <UsageCount Value="151"/>
+        <UsageCount Value="155"/>
       </Unit>
       <Unit>
         <Filename Value="code.inc"/>
@@ -169,19 +169,7 @@
         <UsageCount Value="10"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="25">
-      <Position>
-        <Filename Value="examples.pas"/>
-        <Caret Line="690" Column="23"/>
-      </Position>
-      <Position>
-        <Filename Value="examples.pas"/>
-        <Caret Line="736" Column="24" TopLine="702"/>
-      </Position>
-      <Position>
-        <Filename Value="examples.pas"/>
-        <Caret Line="738" Column="50" TopLine="711"/>
-      </Position>
+    <JumpHistory HistoryIndex="29">
       <Position>
         <Filename Value="examples.pas"/>
         <Caret Line="737" Column="39" TopLine="711"/>
@@ -273,6 +261,34 @@
       <Position>
         <Filename Value="examples.pas"/>
         <Caret Line="817" Column="70" TopLine="793"/>
+      </Position>
+      <Position>
+        <Filename Value="examples.pas"/>
+        <Caret Line="141" Column="9" TopLine="118"/>
+      </Position>
+      <Position>
+        <Filename Value="examples.pas"/>
+        <Caret Line="932" Column="40" TopLine="909"/>
+      </Position>
+      <Position>
+        <Filename Value="examples.pas"/>
+        <Caret Line="923" Column="22" TopLine="910"/>
+      </Position>
+      <Position>
+        <Filename Value="examples.pas"/>
+        <Caret Line="932" Column="26" TopLine="911"/>
+      </Position>
+      <Position>
+        <Filename Value="examples.pas"/>
+        <Caret Line="925" Column="18" TopLine="911"/>
+      </Position>
+      <Position>
+        <Filename Value="examples.pas"/>
+        <Caret Line="141" Column="29" TopLine="127"/>
+      </Position>
+      <Position>
+        <Filename Value="examples.pas"/>
+        <Caret Line="932" Column="32" TopLine="911"/>
       </Position>
     </JumpHistory>
   </ProjectOptions>
