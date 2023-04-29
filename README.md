@@ -594,8 +594,8 @@ where
 
 - $i_d$ is the Maxwell's Displacement current, $[A]$, 
 - $\epsilon_0$ is the vacuum permittivity, $[C^2/N/m^2]$,
-- $\Delta\Phi_E$ is the change in electric flux, $[V⋅m]$
-- $\Delta t$ is the change in time, $[s]$
+- $\Delta\Phi_E$ is the change in electric flux, $[V⋅m]$,
+- $\Delta t$ is the change in time, $[s]$.
 
 ### Line integral of the magnetic field
 
@@ -604,7 +604,7 @@ $C_{L}\left(B\right) = \displaystyle\sum_{i=1}^{n} B_i⋅l_i⋅cos(\alpha)$ ,
 where
 - $C_L(B)$ is line integral of magnetic field, $[T⋅m]$,
 - $B_i$ is the value of magnetic field on the element length $l_i$, $[T]$,
-- $l_i$ is the length of element $i$
+- $l_i$ is the length of element $i$,
 - $\alpha$ is the angle betweeb $B_i$ and element length $l_i$, $[rad]$.
 
 ### Ampère's circuital law (with Maxwell's addition)
@@ -615,8 +615,18 @@ where
 - $μ_0$ is the vacuum magnetic permeability, $μ_0=4π⋅10^{-7}$ $[T⋅m/A]$,
 - $i$ is the electric current, $[A]$,
 - $\epsilon_0$ is the vacuum permittivity, $[C^2/N/m^2]$,
-- $\Delta\Phi_E$ is the change in electric flux, $[V⋅m]$
+- $\Delta\Phi_E$ is the change in electric flux, $[V⋅m]$,
 - $\Delta t$ is the change in time, $[s]$.
+
+### Inductance
+
+$L = \displaystyle\frac{\Delta\Phi_B}{\Delta i}$ ,
+
+where
+- $L$ is the inductance, $[H]$,
+- $\Delta\Phi_B$ is the change in magnetic flux, $[T⋅m]$,
+- $\Delta i$ is the change in electric curremt, $[A]$.
+
 
 ## LICENSE
 

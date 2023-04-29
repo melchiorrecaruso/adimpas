@@ -243,7 +243,7 @@ type
   THenrys = specialize TQuantity<THenryUnit>;
 
 var
-  Henry: THenryIdentifier;
+  H: THenryIdentifier;
 
 { Unit of Hertz }
 
@@ -2880,6 +2880,18 @@ operator /(const {%H-}ALeft: TWeberIdentifier; const {%H-}ARight: THenryIdentifi
 operator *(const {%H-}ALeft: THenryIdentifier; const {%H-}ARight: TAmpereIdentifier): TWeberIdentifier; inline;
 operator *(const {%H-}ALeft: TAmpereIdentifier; const {%H-}ARight: THenryIdentifier): TWeberIdentifier; inline;
 
+// alternative definition [ H ] = [ Ω ] * [ s ]
+operator *(const {%H-}ALeft: TOhmIdentifier; const {%H-}ARight: TSecondIdentifier): THenryIdentifier; inline;
+operator /(const {%H-}ALeft: THenryIdentifier; const {%H-}ARight: TOhmIdentifier): TSecondIdentifier; inline;
+operator *(const {%H-}ALeft: TSecondIdentifier; const {%H-}ARight: TOhmIdentifier): THenryIdentifier; inline;
+operator /(const {%H-}ALeft: THenryIdentifier; const {%H-}ARight: TSecondIdentifier): TOhmIdentifier; inline;
+
+// alternative definition [ H ] = [ Ω ] / [ Hz ]
+operator /(const {%H-}ALeft: TOhmIdentifier; const {%H-}ARight: THertzIdentifier): THenryIdentifier; inline;
+operator /(const {%H-}ALeft: TOhmIdentifier; const {%H-}ARight: THenryIdentifier): THertzIdentifier; inline;
+operator *(const {%H-}ALeft: THenryIdentifier; const {%H-}ARight: THertzIdentifier): TOhmIdentifier; inline;
+operator *(const {%H-}ALeft: THertzIdentifier; const {%H-}ARight: THenryIdentifier): TOhmIdentifier; inline;
+
 // main definition [ Hz ] = 1 / [ s ]
 operator /(const {%H-}ALeft: double; const {%H-}ARight: TSecondIdentifier): THertzIdentifier; inline;
 operator /(const {%H-}ALeft: double; const {%H-}ARight: THertzIdentifier): TSecondIdentifier; inline;
@@ -3957,6 +3969,18 @@ operator /(const ALeft: TWebers; const ARight: TAmperes): THenrys; inline;
 operator /(const ALeft: TWebers; const ARight: THenrys): TAmperes; inline;
 operator *(const ALeft: THenrys; const ARight: TAmperes): TWebers; inline;
 operator *(const ALeft: TAmperes; const ARight: THenrys): TWebers; inline;
+
+// alternative definition [ H ] = [ Ω ] * [ s ]
+operator *(const ALeft: TOhms; const ARight: TSeconds): THenrys; inline;
+operator /(const ALeft: THenrys; const ARight: TOhms): TSeconds; inline;
+operator *(const ALeft: TSeconds; const ARight: TOhms): THenrys; inline;
+operator /(const ALeft: THenrys; const ARight: TSeconds): TOhms; inline;
+
+// alternative definition [ H ] = [ Ω ] / [ Hz ]
+operator /(const ALeft: TOhms; const ARight: THertz): THenrys; inline;
+operator /(const ALeft: TOhms; const ARight: THenrys): THertz; inline;
+operator *(const ALeft: THenrys; const ARight: THertz): TOhms; inline;
+operator *(const ALeft: THertz; const ARight: THenrys): TOhms; inline;
 
 // main definition [ Hz ] = 1 / [ s ]
 operator /(const ALeft: double; const ARight: TSeconds): THertz; inline;
@@ -8601,6 +8625,32 @@ begin end;
 operator *(const ALeft: TAmpereIdentifier; const ARight: THenryIdentifier): TWeberIdentifier;
 begin end;
 
+// alternative definition [ H ] = [ Ω ] * [ s ]
+operator *(const ALeft: TOhmIdentifier; const ARight: TSecondIdentifier): THenryIdentifier;
+begin end;
+
+operator /(const ALeft: THenryIdentifier; const ARight: TOhmIdentifier): TSecondIdentifier;
+begin end;
+
+operator *(const ALeft: TSecondIdentifier; const ARight: TOhmIdentifier): THenryIdentifier;
+begin end;
+
+operator /(const ALeft: THenryIdentifier; const ARight: TSecondIdentifier): TOhmIdentifier;
+begin end;
+
+// alternative definition [ H ] = [ Ω ] / [ Hz ]
+operator /(const ALeft: TOhmIdentifier; const ARight: THertzIdentifier): THenryIdentifier;
+begin end;
+
+operator /(const ALeft: TOhmIdentifier; const ARight: THenryIdentifier): THertzIdentifier;
+begin end;
+
+operator *(const ALeft: THenryIdentifier; const ARight: THertzIdentifier): TOhmIdentifier;
+begin end;
+
+operator *(const ALeft: THertzIdentifier; const ARight: THenryIdentifier): TOhmIdentifier;
+begin end;
+
 // main definition [ Hz ] = 1 / [ s ]
 operator /(const ALeft: double; const ARight: TSecondIdentifier): THertzIdentifier;
 begin end;
@@ -10969,6 +11019,48 @@ begin
 end;
 
 operator *(const ALeft: TAmperes; const ARight: THenrys): TWebers;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+// alternative definition [ H ] = [ Ω ] * [ s ]
+operator *(const ALeft: TOhms; const ARight: TSeconds): THenrys;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator /(const ALeft: THenrys; const ARight: TOhms): TSeconds;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator *(const ALeft: TSeconds; const ARight: TOhms): THenrys;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator /(const ALeft: THenrys; const ARight: TSeconds): TOhms;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+// alternative definition [ H ] = [ Ω ] / [ Hz ]
+operator /(const ALeft: TOhms; const ARight: THertz): THenrys;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator /(const ALeft: TOhms; const ARight: THenrys): THertz;
+begin
+  result.Value := ALeft.Value / ARight.Value;
+end;
+
+operator *(const ALeft: THenrys; const ARight: THertz): TOhms;
+begin
+  result.Value := ALeft.Value * ARight.Value;
+end;
+
+operator *(const ALeft: THertz; const ARight: THenrys): TOhms;
 begin
   result.Value := ALeft.Value * ARight.Value;
 end;
