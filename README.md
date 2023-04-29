@@ -599,7 +599,7 @@ where
 
 ### Line integral of the magnetic field
 
-$C_L(B) = \sum_{i = 1}^{n} B_i⋅l_i⋅cos(\alpha) $ ,
+$C_{L}\left(B\right) = \displaystyle\sum_{i=1}^n B_i⋅l_i⋅cos(\alpha) $ ,
 
 where
 - $C_L(B)$ is line integral of magnetic field, $[T⋅m]$,
