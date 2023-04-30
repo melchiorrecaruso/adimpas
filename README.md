@@ -8,11 +8,11 @@ Another unit for type checking of dimensioned quantities at compile time in Free
 
 ## <u>Supported mathematical formulae:<u>
 
-- [Mechanics](doc\mechanics.md)
-- [Fluid Mechanics](doc\fluidmechanics.md)
-- [Electricity and Magnetism](doc\electricityandmagnetism.md)
-- [Heat and Thermodynamics](doc\heatandthermodynamics.md)
-- [Units of measurement](doc\unitsofmeasurement.md)
+- [Mechanics](doc/mechanics.md)
+- [Fluid Mechanics](doc/fluidmechanics.md)
+- [Electricity and Magnetism](doc/electricityandmagnetism.md)
+- [Heat and Thermodynamics](doc/heatandthermodynamics.md)
+- [Units of measurement](doc/unitsofmeasurement.md)
 
 ## References
 
