@@ -1,4 +1,4 @@
-[Go To Home](..\README.md)
+[Go To Home](../README.md)
 
 # Mechanics
 
@@ -218,4 +218,4 @@ where
 - $r$ is the distance between particles, $[m]$.
 
 #
-[Go To Home](..\README.md)
+[Go To Home](../README.md)

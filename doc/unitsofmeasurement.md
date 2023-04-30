@@ -1,4 +1,4 @@
-[Go To Home](..\README.md)
+[Go To Home](../README.md)
 
 # Supported units of measurement
 
@@ -104,4 +104,4 @@
 - newton per millimeter $[N/mm]$
 
 #
-[Go To Home](..\README.md)
+[Go To Home](../README.md)

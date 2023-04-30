@@ -1,4 +1,4 @@
-[Go To Home](..\README.md)
+[Go To Home](../README.md)
 
 # Fluid mechanics
 
@@ -15,4 +15,4 @@ where
 - $v$ is the speed of fluid, $[m/s]$.
 
 #
-[Go To Home](..\README.md)
+[Go To Home](../README.md)

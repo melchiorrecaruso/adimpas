@@ -1,5 +1,5 @@
 
-[Go To Home](..\README.md)
+[Go To Home](../README.md)
 
 # Heat and Thermodynamics
 
@@ -81,4 +81,4 @@ where
 - $\Delta t$ is the change in time, $[s]$.
 
 #
-[Go To Home](..\README.md)
+[Go To Home](../README.md)
