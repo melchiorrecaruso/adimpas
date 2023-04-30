@@ -239,6 +239,17 @@ where
 - $l_i$ is the length of element $i$,
 - $\alpha$ is the angle betweeb $B_i$ and element length $l_i$, $[rad]$.
 
+### Displacement current
+
+$i_d = \epsilon_0⋅\displaystyle\left(\frac{\Delta\Phi_E}{\Delta t}\right)$ ,
+
+where
+
+- $i_d$ is the Maxwell's Displacement current, $[A]$, 
+- $\epsilon_0$ is the vacuum permittivity, $[C^2/N/m^2]$,
+- $\Delta\Phi_E$ is the change in electric flux, $[V⋅m]$,
+- $\Delta t$ is the change in time, $[s]$.
+
 ### Ampère's circuital law (with Maxwell's addition)
 
 $C_L(B) = \displaystyle\mu_0⋅i + \mu_0⋅\left[\epsilon_0⋅\left(\frac{\Delta\Phi_E}{\Delta t}\right)\right]$ ,

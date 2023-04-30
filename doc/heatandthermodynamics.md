@@ -13,7 +13,6 @@ where
 - $λ$ is the lienar coefficient of thermal expansion, $[1/K]$, 
 - $ΔT$ is the difference of the temperature between the two recorded strains, $[K]$.
 
-
 ### Heat capacity
 
 $Q = (m·c)·ΔT$ ,
@@ -23,6 +22,20 @@ where
 - $m$ is the mass of body, $[kg]$,
 - $c$ is the specific heat capacity, $[J/(kg·K)]$,
 - $ΔT$ is the change in temperature, $[K]$.
+
+### Calorimeter equation
+
+$m_1·c_1·(T_e-T_1) = m_2·c_2·(T_2-T_e)$ ,
+
+where
+
+- $m_1$ is the mass of body 1, $[kg]$,
+- $m_2$ is the mass of body 2, $[kg]$,
+- $c_1$ is specific heat capacity of body 1, $[J/(kg·K)]$,
+- $c_2$ is specific heat capacity of body 2, $[J/(kg·K)]$,
+- $T_1$ is the initial temperature of body 1, $[K]$,
+- $T_2$ is the initial temperature of body 2, $[K]$,
+- $T_e$ is the final temperature of bodies, $[K]$.
 
 ### Heat conduction
 
@@ -68,17 +81,6 @@ where
 - $n$ is the amount of substance, $[mol]$,
 - $R$ is the ideal gas constant, $R = 8.314$ $[J/(mol·K)]$,
 - $T$ is the absolute temperature of the gas, $[K]$.
-
-### Displacement current
-
-$i_d = \epsilon_0⋅\displaystyle\left(\frac{\Delta\Phi_E}{\Delta t}\right)$ ,
-
-where
-
-- $i_d$ is the Maxwell's Displacement current, $[A]$, 
-- $\epsilon_0$ is the vacuum permittivity, $[C^2/N/m^2]$,
-- $\Delta\Phi_E$ is the change in electric flux, $[V⋅m]$,
-- $\Delta t$ is the change in time, $[s]$.
 
 #
 [Go To Home](../README.md)
