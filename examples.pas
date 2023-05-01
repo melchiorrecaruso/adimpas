@@ -140,6 +140,13 @@ var
 
   DeltaE: TNewtonsPerCoulomb;
 
+  Ampl: TMeters;
+  Kw: TRadiansPerMeter;
+  Omega: TRadiansPerSecond;
+  phi: TRadians;
+
+
+
 begin
   SetConsoleOutputCP(CP_UTF8);
 
@@ -934,6 +941,19 @@ begin
   writeln('The displacement current is: ', current.ToVerboseString (4, 4));
   writeln;
 
+  // harmonic wave
+  Ampl  := 2*m;
+  Kw    := 0.2*(rad/m);
+  omega := 80*(rad/s);
+  phi   := 0;
+
+  writeln('*** Harmonic wave:');
+  writeln('The wave amplitude A is: ', Ampl.ToString(4, 4));
+  writeln('The wave number K is: ', Kw.ToString(4, 4));
+  writeln('The angular frequency Omega is: ', omega.ToString(4, 4));
+  writeln('The wave phase is: ', phi.ToString(4, 4));
+  writeln('The wave value at position (1m, 0.8s) is: ', (Ampl*sin(Kw*(1*m)-omega*(0.8*s)+phi)).ToString(4, 4));
+  writeln;
 
   writeln;
   writeln('Press ENTER to exit.');

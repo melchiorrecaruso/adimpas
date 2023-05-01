@@ -12,11 +12,13 @@ Another unit for type checking of dimensioned quantities at compile time in Free
 - [Fluid Mechanics](doc/fluidmechanics.md)
 - [Electricity and Magnetism](doc/electricityandmagnetism.md)
 - [Heat and Thermodynamics](doc/heatandthermodynamics.md)
+- [Waves and Hearing](doc/waves.md)
 - [Units of measurement](doc/unitsofmeasurement.md)
 
 ## References
 
-[HyperPhysics](http://hyperphysics.phy-astr.gsu.edu/hbase/hframe.html)
+- [HyperPhysics](http://hyperphysics.phy-astr.gsu.edu/hbase/hframe.html)
+- [University Physics Volume 1](https://pressbooks.online.ucf.edu/osuniversityphysics/)
 
 ## LICENSE
 
