@@ -1,5 +1,5 @@
 
-[Go To Home](../README.md)
+[Go To Home](https://github.com/melchiorrecaruso/ADimPas)
 
 # Heat and Thermodynamics
 
@@ -83,4 +83,4 @@ where
 - $T$ is the absolute temperature of the gas, $[K]$.
 
 #
-[Go To Home](../README.md)
+[Go To Home](https://github.com/melchiorrecaruso/ADimPas)

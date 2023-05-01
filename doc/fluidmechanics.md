@@ -1,4 +1,4 @@
-[Go To Home](../README.md)
+[Go To Home](https://github.com/melchiorrecaruso/ADimPas)
 
 # Fluid mechanics
 
@@ -89,4 +89,4 @@ where
 - $v$ is the fluid flow speed at a point, $[m/s]$.
 
 #
-[Go To Home](../README.md)
+[Go To Home](https://github.com/melchiorrecaruso/ADimPas)
