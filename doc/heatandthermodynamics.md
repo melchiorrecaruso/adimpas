@@ -5,82 +5,124 @@
 
 ### Linear thermal expansion
 
-$ΔL = L_0·(λ·ΔT$) ,
+$ΔL = L_0·(λ·ΔT$)
 
 where
 
-- $L_0$ is the initial length, $[m]$, 
-- $λ$ is the lienar coefficient of thermal expansion, $[1/K]$, 
+- $\Delta L$ is the change in length, $[m]$;
+- $L_0$ is the initial length, $[m]$;
+- $λ$ is the linear coefficient of thermal expansion, $[1/K]$; 
 - $ΔT$ is the difference of the temperature between the two recorded strains, $[K]$.
 
 ### Heat capacity
 
-$Q = (m·c)·ΔT$ ,
+$Q = (m·c)·ΔT$
 
 where 
-
-- $m$ is the mass of body, $[kg]$,
-- $c$ is the specific heat capacity, $[J/(kg·K)]$,
+- $Q$ is the amount of energy released or absorbed during the change of temperature, $[J]$;
+- $m$ is the mass of body, $[kg]$;
+- $c$ is the specific heat capacity, $[J/(kg·K)]$;
 - $ΔT$ is the change in temperature, $[K]$.
 
-### Calorimeter equation
+### Latent heat
 
-$m_1·c_1·(T_e-T_1) = m_2·c_2·(T_2-T_e)$ ,
+$Q = L·m$
 
 where
 
-- $m_1$ is the mass of body 1, $[kg]$,
-- $m_2$ is the mass of body 2, $[kg]$,
-- $c_1$ is specific heat capacity of body 1, $[J/(kg·K)]$,
-- $c_2$ is specific heat capacity of body 2, $[J/(kg·K)]$,
-- $T_1$ is the initial temperature of body 1, $[K]$,
-- $T_2$ is the initial temperature of body 2, $[K]$,
+- $Q$ is the amount of energy released or absorbed during the change of phase of the substance, $[J]$;
+- $L$ is the specific latent heat for a particular substance, $[J/kg]$
+-$m$ is the mass of the substance, $[kg]$;
+
+
+### Calorimeter equation
+
+$m_1·c_1·(T_e-T_1) = m_2·c_2·(T_2-T_e)$
+
+where
+
+- $m_1$ is the mass of body 1, $[kg]$;
+- $m_2$ is the mass of body 2, $[kg]$;
+- $c_1$ is specific heat capacity of body 1, $[J/(kg·K)]$;
+- $c_2$ is specific heat capacity of body 2, $[J/(kg·K)]$;
+- $T_1$ is the initial temperature of body 1, $[K]$;
+- $T_2$ is the initial temperature of body 2, $[K]$;
 - $T_e$ is the final temperature of bodies, $[K]$.
 
 ### Heat conduction
 
-$Q̇ = [k·(ΔT/L)]·A$ ,
+$\displaystyle\frac{Q}{t} = [k·(ΔT/L)]·A$
 
 where 
 
-- $k$ is the material's conductivity, $[W/(m·K)]$,
-- $ΔT$ is the temperature difference between the ends, $[K]$,
-- $L$  is the distance between the ends, $[m]$,
+- $\displaystyle\frac{Q}{t}$ is the rate of heat conduction per unit time, $[W]$;
+- $k$ is the material's conductivity, $[W/(m·K)]$;
+- $ΔT$ is the temperature difference between the ends, $[K]$;
+- $L$  is the distance between the ends, $[m]$;
 - $A$ is the cross-sectional surface area, $[m^2]$.
 
 ### Heat convection
 
-$Q̇ = [h·(T-T_f)]·A$ , 
+$\displaystyle\frac{Q}{t} = [h·(T-T_f)]·A$
 
 where
 
-- $h$ is the heat transfer coefficient, $[W/(m^2·K)]$,
-- $T$ T is the object's surface temperature, $[K]$,
-- $T_f$ T is the fluid temperature, $[K]$,
+- $\displaystyle\frac{Q}{t}$ is the rate of heat conduction per unit time, $[W]$;
+- $h$ is the heat transfer coefficient, $[W/(m^2·K)]$;
+- $T$ T is the object's surface temperature, $[K]$;
+- $T_f$ T is the fluid temperature, $[K]$;
 - $A$ is the area of the object, $[m^2]$.
 
 ### Thermal radiation
 
-$Q = (ε·σ·T^4)·A$ ,
+$\displaystyle\frac{Q}{t} = (ε·σ·T^4)·A$
 
 where 
 
-- $ε$ is the surcafe emissivity factor, a dimensionless number,
-- $σ$ is the Stefan–Boltzmann constant, $[W/(m^2·K^4)]$,
-- $T$ is the absolute temperature of the body, $[K]$, 
+- $\displaystyle\frac{Q}{t}$ is the rate of heat conduction per unit time, $[W]$;
+- $ε$ is the surcafe emissivity factor, a dimensionless number;
+- $σ$ is the Stefan–Boltzmann constant, $[W/(m^2·K^4)]$;
+- $T$ is the absolute temperature of the body, $[K]$;
 - $A$ is the surface area of the body. $[m^2]$.
 
 ### Ideal gas law:
 
-$p·V = (n·R)·T$ , 
+$p·V = (n·R)·T$
+
+or
+
+$p·V =(N·k)·T$ 
 
 where
 
-- $p$ is the pressure, $[Pa]$,
-- $V$ is the volume, $[m^3]$,
-- $n$ is the amount of substance, $[mol]$,
-- $R$ is the ideal gas constant, $R = 8.314$ $[J/(mol·K)]$,
+- $p$ is the pressure, $[Pa]$;
+- $V$ is the volume, $[m^3]$;
+- $n$ is the amount of substance, $[mol]$;
+- $R$ is the ideal gas constant, $R = 8.314$ $[J/(mol·K)]$;
+- $N$ is the number of molecules, a dimensionless number;
+- $k$ is the Boltzmann's constant, $k = 1.380649×10^{−23}$ $[J/K]$;
+- $T$ is the absolute temperature of the gas, $[K]$.
+
+
+### Internal energy for ideal gas 
+
+$U = \displaystyle\frac{f}{2}·(n·R)·T$
+
+or
+
+$U = \displaystyle\frac{f}{2}·(N·k)·T$
+
+where
+
+- $U$ is the internal energy, $[J]$;
+- $f$ is the number of degrees of freedom in the molecular motion;
+- $n$ is the amount of substance, $[mol]$;
+- $R$ is the ideal gas constant, $R = 8.314$ $[J/(mol·K)]$;
+- $N$ is the number of molecules, a dimensionless number;
+- $k$ is the Boltzmann's constant, $k = 1.380649×10^{−23}$ $[J/K]$;
 - $T$ is the absolute temperature of the gas, $[K]$.
 
 #
 [Go To Home](https://github.com/melchiorrecaruso/ADimPas)
+
+
