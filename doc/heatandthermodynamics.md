@@ -199,7 +199,7 @@ $\Delta U = 0 - W$
 
 and
 
-$p_i $·$V_i^{\gamma} = p_{f} $·$ V_f^{\gamma}$
+$p_i · V_i^{\gamma} = p_{f} · V_f^{\gamma}$
 
 where
 
