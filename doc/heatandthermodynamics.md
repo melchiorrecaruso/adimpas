@@ -103,7 +103,6 @@ where
 - $k$ is the Boltzmann's constant, $k = 1.380649×10^{−23}$ $[J/K]$;
 - $T$ is the absolute temperature of the gas, $[K]$.
 
-
 ### Internal energy for ideal gas 
 
 $U = \displaystyle\frac{f}{2}·(n·R)·T$
@@ -121,6 +120,97 @@ where
 - $N$ is the number of molecules, a dimensionless number;
 - $k$ is the Boltzmann's constant, $k = 1.380649×10^{−23}$ $[J/K]$;
 - $T$ is the absolute temperature of the gas, $[K]$.
+
+### First law of thermodynamics 
+
+$\Delta U = Q - W$
+
+where
+
+- $\Delta U$ is the change in internal energy, $[J]$;
+- $Q$ is the heat added to the system, $[J]$;
+- $W$ is the work done by the system, $[J]$.
+
+### Isothermal Process 
+
+$\Delta U = Q - W = 0$
+
+and
+
+$W = \displaystyle \left[(n·R)·T\right]·ln\left(\frac{V_f}{V_i}\right)$
+
+or
+
+$W = \displaystyle \left[(n·R)·T\right]·ln\left(\frac{p_f}{p_i}\right)$
+
+where
+
+- $\Delta U$ is the change in internal energy, $[J]$;
+- $Q$ is the heat added to the system, $[J]$;
+- $W$ is the work done in expanding the gas, $ [J]$;
+- $n$ is the amount of substance, $[mol]$;
+- $R$ is the ideal gas constant, $R = 8.314$ $[J/(mol·K)]$;
+- $T$ is the absolute temperature of the gas, $[K]$;
+- $V_i$ is the initial volume of gas, $[m^3]$;
+- $V_f$ is the final volume of gas, $[m^3]$;
+- $p_i$ is the initial pressure of gas, $[Pa]$;
+- $p_f$ is the final pressure of gas, $[Pa]$.
+
+### Isochoric process
+
+$\Delta U = Q - 0$
+
+and
+
+$Q = (n·C_V)·\Delta T$
+
+or
+
+$Q = \displaystyle \left(\frac{C_V}{R}\right)·V·(p_f - p_i)$
+
+where
+
+- $\Delta U$ is the change in internal energy, $[J]$;
+- $Q$ is the heat added to the system, $[J]$;
+- $n$ is the amount of substance, $[mol]$;
+- $C_V$ is the specific heat at costant volume, $[J/mol/K]$.
+
+### Isobaric process
+
+$\Delta U = Q - W$
+
+and
+
+$Q = (n·C_p)·\Delta T$
+
+$W = p·\Delta V$
+
+where
+
+- $\Delta U$ is the change in internal energy, $[J]$;
+- $Q$ is the heat added to the system, $[J]$;
+- $W$ is the work done in expanding the gas, $ [J]$;
+- $n$ is the amount of substance, $[mol]$;
+- $C_p$ is the specific heat at costant pressure, $[J/mol/K]$.
+
+### Adiabatic Process 
+
+$\Delta U = 0 - W$
+
+and
+
+$p_i $·$V_i^{\gamma} = p_{f} $·$ V_f^{\gamma}$
+
+where
+
+- $\Delta U$ is the change in internal energy, $[J]$;
+- $Q$ is the heat added to the system, $[J]$;
+- $W$ is the work done in expanding the gas, $ [J]$;
+- $p_i$ is the initial pressure of gas, $[Pa]$;
+- $p_f$ is the final pressure of gas, $[Pa]$;
+- $V_i$ is the initial volume of gas, $[m^3]$;
+- $V_f$ is the final volume of gas, $[m^3]$;
+- $\gamma=\frac{C_p}{C_V}$ is the ration of specific heats for the gas.
 
 #
 [Go To Home](https://github.com/melchiorrecaruso/ADimPas)
