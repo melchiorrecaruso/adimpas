@@ -28,6 +28,7 @@ type
     type TSelf = specialize TQuantity<U>;
   public
     Value: double;
+    function Abs: TSelf;
     function ToString: string;
     function ToString(Precision, Digits: longint): string;
     function ToVerboseString: string;

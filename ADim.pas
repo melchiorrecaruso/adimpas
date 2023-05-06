@@ -47,6 +47,7 @@ type
     type TSelf = specialize TQuantity<U>;
   public
     Value: double;
+    function Abs: TSelf;
     function ToString: string;
     function ToString(Precision, Digits: longint): string;
     function ToVerboseString: string;
@@ -5062,6 +5063,11 @@ uses
   Math;
 
 { TQuantity }
+
+function TQuantity.Abs: TSelf;
+begin
+  result.Value := System.Abs(Value);
+end;
 
 function TQuantity.ToString: string;
 begin

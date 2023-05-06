@@ -5,6 +5,11 @@ uses
 
 { TQuantity }
 
+function TQuantity.Abs: TSelf;
+begin
+  result.Value := System.Abs(Value);
+end;
+
 function TQuantity.ToString: string;
 begin
   result := FloatToStr(Value) + ' ' + U.Symbol;
