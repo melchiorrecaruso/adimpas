@@ -2,7 +2,8 @@
 
 # Supported units of measurement
 
-- ampere $[A]$
+<!---
+- ampere $[A]$// 
 - becquerel $[Bq]$
 - coulomb $[C]$
 - cubic meter $[m^3]$
@@ -102,6 +103,7 @@
 - newton per centimeter $[N/cm]$
 - newton per decimeter $[N/dm]$
 - newton per millimeter $[N/mm]$
+--->
 
 #
 [Go To Home](https://github.com/melchiorrecaruso/ADimPas)
