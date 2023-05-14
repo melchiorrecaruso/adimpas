@@ -43,7 +43,7 @@ var
   specificw: TNewtonsPerCubicMeter;
   force, normal: TNewtons;
 
-  torque: TNewtonsMeter;
+  torque: TNewtonMeters;
   work: TJoules;
   power: TWatts;
 
@@ -76,11 +76,11 @@ var
 
 
   mass: TKilograms;
-  eta: TPascalsSecond;
+  eta: TPascalSeconds;
 
   mass1: TKilograms;
   mass2: TKilograms;
-  GN: TNewtonsSquareMeterPerSquareKilogram;
+  GN: TNewtonSquareMetersPerSquareKilogram;
 
 
   Cd: double;
@@ -93,12 +93,12 @@ var
   Ue: TJoules;
   kx: TNewtonsPerMeter;
 
-  ke: TNewtonsSquareMeterPerSquareCoulomb;
+  ke: TNewtonSquareMetersPerSquareCoulomb;
   q1: TCoulombs;
   q2: TCoulombs;
   Uel: TJoules;
 
-  p: TKilogramsMeterPerSecond;
+  p: TKilogramMetersPerSecond;
   impulse: TNewtonsSecond;
 
   flowrate: TCubicMetersPerSecond;
@@ -127,7 +127,7 @@ var
   er: double;
   sigma: TCoulombsPerSquareMeter;
 
-  m0: TTeslasMeterPerAmpere;
+  m0: TTeslaMetersPerAmpere;
   B: TTeslas;
   len: TMeters;
   r: TMeters;
@@ -461,7 +461,7 @@ begin
   dose2 := 5*Gy;
 //dose1 := 10*(m2/s2);
 //dose2 := 10*(m2/s2);
-  dose1 := 10*(j/kg);
+  dose1 := Sv.From(10*(j/kg));
   dose2 := 10*(j/kg);
 
   writeln('*** Sievert and Gray mixing:');
