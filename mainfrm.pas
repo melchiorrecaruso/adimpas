@@ -60,12 +60,15 @@ type
     SectionA4: TStringList;
     SectionA5: TStringList;
     SectionA6: TStringList;
+    SectionA7: TStringList;
+
     SectionB1: TStringList;
     SectionB2: TStringList;
     SectionB3: TStringList;
     SectionB4: TStringList;
     SectionB5: TStringList;
     SectionB6: TStringList;
+    SectionB7: TStringList;
 
     procedure AddIdentifierOperator(AOperator, ALeftParent, ARightParent, AResult: string);
     procedure AddQuantityOperator(AOperator, ALeftParent, ARightParent, AResult: string);
@@ -77,6 +80,8 @@ type
 
     procedure AddIdentifierEquivalence(AClassName, AResult: string);
     procedure AddQuantityEquivalence(AClassName, AResult: string);
+
+    procedure AddHelper(AClassParent1, AClassName: string);
   public
 
   end;
@@ -119,6 +124,14 @@ begin
   while Pos('?', Result) > 0 do
     Delete(Result, Pos('?', Result), 1);
   Result := Result + 'Unit';
+end;
+
+function GetUH(const S: string): string;
+begin
+  Result := S;
+  while Pos('?', Result) > 0 do
+    Delete(Result, Pos('?', Result), 1);
+  Result := Result + 'Helper';
 end;
 
 function GetID(const S: string): string;
@@ -350,10 +363,14 @@ begin
             if ('tradian' = LowerCase(AClassName)) then
             begin
               AddIdentifierEquivalence(AClassParent1, AClassName);
-              AddIdentifierEquivalence(AClassName, AClassParent1);
+            //AddIdentifierEquivalence(AClassName, AClassParent1);
             end;
             AddQuantityEquivalence(AClassParent1, AClassName);
-            AddQuantityEquivalence(AClassName, AClassParent1);
+          //AddQuantityEquivalence(AClassName, AClassParent1);
+          end else
+          if ('helper' = LowerCase(AOperator)) then
+          begin
+            AddHelper(AClassParent1, AClassName);
           end;
   end;
 end;
@@ -479,6 +496,25 @@ begin
     MessageDlg('Duplicate Operator: ',  'Operator := (AQuantity: ' + AClassName + '):' + AResult + '; already esists.', mtError, [mbOk], '');
 end;
 
+procedure TMainForm.AddHelper(AClassParent1, AClassName: string);
+begin
+  SectionA7.Add('{ Helper for ' + GetNM(AClassName) + ' }');
+  SectionA7.Add('');
+  SectionA7.Append('type');
+  SectionA7.Append('  ' + GetUH(AClassName) + ' = record helper for ' + GetID(AClassName));
+  SectionA7.Append('    function From(const AQuantity: ' + GetQT(AClassParent1) + '): ' + GetQT(AClassName) + ';');
+  SectionA7.Append('  end;');
+  SectionA7.Add('');
+
+  SectionB7.Append('{ Helper for ' + GetNM(AClassName) + ' }');
+  SectionB7.Add('');
+  SectionB7.Append('function ' + GetUH(AClassName) + '.From(const AQuantity: ' + GetQT(AClassParent1) + '): ' + GetQT(AClassName) + ';');
+  SectionB7.Append('begin');
+  SectionB7.Append('  result.Value := AQuantity.Value;');
+  SectionB7.Append('end;');
+  SectionB7.Append('');
+end;
+
 { TMainForm }
 
 procedure TMainForm.FormCreate(Sender: TObject);
@@ -526,12 +562,15 @@ begin
   SectionA4    := TStringList.Create;
   SectionA5    := TStringList.Create;
   SectionA6    := TStringList.Create;
+  SectionA7    := TStringList.Create;
+
   SectionB1    := TStringList.Create;
   SectionB2    := TStringList.Create;
   SectionB3    := TStringList.Create;
   SectionB4    := TStringList.Create;
   SectionB5    := TStringList.Create;
   SectionB6    := TStringList.Create;
+  SectionB7    := TStringList.Create;
 
   Stream := TResourceStream.Create(HInstance, 'SECTION-A0', RT_RCDATA);
   SectionA0.LoadFromStream(Stream);
@@ -584,6 +623,12 @@ begin
     Stream.Destroy;
   end;
 
+  SectionA7.Add('');
+  SectionA7.Add('{ Helpers }');
+  SectionA7.Add('');
+  SectionB7.Add('{ Helpers }');
+  SectionB7.Add('');
+
   for I := 0 to WorksheetGrid.Worksheet.GetLastRowIndex do
   begin
     if (WorksheetGrid.Worksheet.ReadAsText(I, _class_name) <> '') and
@@ -633,6 +678,7 @@ begin
   for I := 0 to SectionA4.Count -1 do Document.Append(SectionA4[I]);
   for I := 0 to SectionA5.Count -1 do Document.Append(SectionA5[I]);
   for I := 0 to SectionA6.Count -1 do Document.Append(SectionA6[I]);
+  for I := 0 to SectionA7.Count -1 do Document.Append(SectionA7[I]);
 
   for I := 0 to SectionB1.Count -1 do Document.Append(SectionB1[I]);
   for I := 0 to SectionB2.Count -1 do Document.Append(SectionB2[I]);
@@ -640,6 +686,7 @@ begin
   for I := 0 to SectionB4.Count -1 do Document.Append(SectionB4[I]);
   for I := 0 to SectionB5.Count -1 do Document.Append(SectionB5[I]);
   for I := 0 to SectionB6.Count -1 do Document.Append(SectionB6[I]);
+  for I := 0 to SectionB7.Count -1 do Document.Append(SectionB7[I]);
   Document.Append('');
   Document.Append('end.');
   CleanDocument(Document);
@@ -652,11 +699,16 @@ begin
   end;
   SynEdit.EndUpdate;
 
+  SectionB7.Destroy;
+  SectionB6.Destroy;
   SectionB5.Destroy;
   SectionB4.Destroy;
   SectionB3.Destroy;
   SectionB2.Destroy;
   SectionB1.Destroy;
+
+  SectionA7.Destroy;
+  SectionA6.Destroy;
   SectionA5.Destroy;
   SectionA4.Destroy;
   SectionA3.Destroy;
