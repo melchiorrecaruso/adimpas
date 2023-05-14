@@ -368,10 +368,20 @@ begin
             AddQuantityEquivalence(AClassParent1, AClassName);
           //AddQuantityEquivalence(AClassName, AClassParent1);
           end else
-          if ('helper' = LowerCase(AOperator)) then
-          begin
-            AddHelper(AClassParent1, AClassName);
-          end;
+            if ('=' = LowerCase(AOperator)) then
+            begin
+              if ('tradian' = LowerCase(AClassName)) then
+              begin
+                AddIdentifierEquivalence(AClassParent1, AClassName);
+                AddIdentifierEquivalence(AClassName, AClassParent1);
+              end;
+              AddQuantityEquivalence(AClassParent1, AClassName);
+              AddQuantityEquivalence(AClassName, AClassParent1);
+            end else
+              if ('helper' = LowerCase(AOperator)) then
+              begin
+                AddHelper(AClassParent1, AClassName);
+              end;
   end;
 end;
 
@@ -589,24 +599,28 @@ begin
 
   SectionA2.Add('{ Combining units }');
   SectionA2.Add('');
+  SectionB2.Add('');
   SectionB2.Add('{ Combining units }');
   SectionB2.Add('');
 
   SectionA3.Add('');
   SectionA3.Add('{ Combining quantities }');
   SectionA3.Add('');
+  SectionB3.Add('');
   SectionB3.Add('{ Combining quantities }');
   SectionB3.Add('');
 
   SectionA4.Add('');
   SectionA4.Add('{ Power units }');
   SectionA4.Add('');
+  SectionB4.Add('');
   SectionB4.Add('{ Power quantities }');
   SectionB4.Add('');
 
   SectionA5.Add('');
   SectionA5.Add('{ Equivalences }');
   SectionA5.Add('');
+  SectionB5.Add('');
   SectionB5.Add('{ Equivalences }');
   SectionB5.Add('');
 
@@ -626,6 +640,7 @@ begin
   SectionA7.Add('');
   SectionA7.Add('{ Helpers }');
   SectionA7.Add('');
+  SectionB7.Add('');
   SectionB7.Add('{ Helpers }');
   SectionB7.Add('');
 

@@ -5057,6 +5057,8 @@ function ArcSin(const AValue: double): TRadians;
 function ArcTan(const AValue: double): TRadians;
 function ArcTan2(const x, y: double): TRadians;
 
+{ Helpers }
+
 implementation
 
 uses
@@ -14858,5 +14860,7 @@ function ArcTan2(const x, y: double): TRadians;
 begin
   result.Value := Math.ArcTan2(x, y);
 end;
+
+{ Helpers }
 
 end.
