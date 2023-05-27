@@ -2673,6 +2673,16 @@ type
   end;
   TGramPerCubicMeterIdentifier = specialize TFactoredQuantityIdentifier<TKilogramPerCubicMeterUnit, TGramPerCubicMeterUnit>;
 
+{ Unit of NewtonPerMillimeter }
+
+type
+  TNewtonPerMillimeterUnit = class(TFactoredUnit)
+    class function Name: string; override;
+    class function Symbol: string; override;
+    class function Factor: double; override;
+  end;
+  TNewtonPerMillimeterIdentifier = specialize TFactoredQuantityIdentifier<TNewtonPerMeterUnit, TNewtonPerMillimeterUnit>;
+
 { Combining units }
 
 // main definition [ s2 ] = [ s ] * [ s ]
@@ -3627,6 +3637,9 @@ operator /(const {%H-}ALeft: TDecagramIdentifier; const {%H-}ARight: TCubicMeter
 
 //
 operator /(const {%H-}ALeft: TGramIdentifier; const {%H-}ARight: TCubicMeterIdentifier): TGramPerCubicMeterIdentifier; inline;
+
+//
+operator /(const {%H-}ALeft: TNewtonIdentifier; const {%H-}ARight: TMillimeterIdentifier): TNewtonPerMillimeterIdentifier; inline;
 
 { Combining quantities }
 
@@ -7937,6 +7950,23 @@ begin
   result := 1E-03;
 end;
 
+{ Unit of TNewtonPerMillimeterUnit }
+
+class function TNewtonPerMillimeterUnit.Symbol: string;
+begin
+  result := 'N/mm';
+end;
+
+class function TNewtonPerMillimeterUnit.Name: string;
+begin
+  result := 'newton per millimeter';
+end;
+
+class function TNewtonPerMillimeterUnit.Factor: double;
+begin
+  result := 1E+03;
+end;
+
 { Combining units }
 
 // main definition [ s2 ] = [ s ] * [ s ]
@@ -9941,6 +9971,10 @@ begin end;
 
 //
 operator /(const ALeft: TGramIdentifier; const ARight: TCubicMeterIdentifier): TGramPerCubicMeterIdentifier;
+begin end;
+
+//
+operator /(const ALeft: TNewtonIdentifier; const ARight: TMillimeterIdentifier): TNewtonPerMillimeterIdentifier;
 begin end;
 
 { Combining quantities }
