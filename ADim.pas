@@ -1484,7 +1484,7 @@ type
   TNanometerIdentifier = specialize TFactoredQuantityIdentifier<TMeterUnit, TNanometerUnit>;
 
 var
-  nanometer: TNanometerIdentifier;
+  nm: TNanometerIdentifier;
 
 { Unit of Picometer }
 
