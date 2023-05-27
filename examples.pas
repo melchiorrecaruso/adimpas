@@ -20,10 +20,12 @@
 program examples;
 
 uses
-  Windows,
-  ADim;
+  Math, ADim,
+  Windows;
 
 var
+  test: double;
+
   side1, side2, side3, side4: TMeters;
   area: TSquareMeters;
   volume: TCubicMeters;
@@ -43,7 +45,7 @@ var
   specificw: TNewtonsPerCubicMeter;
   force, normal: TNewtons;
 
-  torque: TNewtonMeters;
+  torque: TJoules;
   work: TJoules;
   power: TWatts;
 
@@ -99,7 +101,7 @@ var
   Uel: TJoules;
 
   p: TKilogramMetersPerSecond;
-  impulse: TNewtonsSecond;
+  impulse: TKilogramMetersPerSecond;
 
   flowrate: TCubicMetersPerSecond;
 
@@ -122,12 +124,12 @@ var
 
 
 
-  E: TNewtonsPerCoulomb;
-  e0: TSquareCoulombsPerNewtonPerSquareMeter;
+  E: TVoltsPerMeter;
+  e0: TFaradsPerMeter;
   er: double;
   sigma: TCoulombsPerSquareMeter;
 
-  m0: TTeslaMetersPerAmpere;
+  m0: THenrysPerMeter;
   B: TTeslas;
   len: TMeters;
   r: TMeters;
@@ -138,7 +140,7 @@ var
 
   magneticflux: TWebers;
 
-  DeltaE: TNewtonsPerCoulomb;
+  DeltaE: TVoltsPerMeter;
 
   Ampl: TMeters;
   Kw: TRadiansPerMeter;
@@ -243,6 +245,8 @@ begin
   angularspeed := angle/time;
   radius       := 2*m;
   speed        := angularspeed*radius;
+  angularspeed := speed/radius;
+
 
   writeln('*** Angular speed:');
   writeln('The angle is: ', angle.ToVerboseString(4, 0));
@@ -462,7 +466,7 @@ begin
 //dose1 := 10*(m2/s2);
 //dose2 := 10*(m2/s2);
   dose1 := Sv.From(10*(j/kg));
-  dose2 := 10*(j/kg);
+  dose2 := Gy.From(10*(j/kg));
 
   writeln('*** Sievert and Gray mixing:');
   writeln('The dose1 is: ', dose1.ToVerboseString);
@@ -536,7 +540,7 @@ begin
   side1  := 1*m;
   area   := 2*pi*radius*side1;
   speed  := 0.5*(m/s);
-  force  := eta*(speed/radius)*area;
+  force  := (eta/(radius/speed))*area;
 
   writeln('*** Viscosity (laminar flow):');
   writeln('The eta coefficent is: ', eta.ToVerboseString);
@@ -790,7 +794,7 @@ begin
   writeln;
 
   // electric field of a single point charge
-  e0       := 8.854187817E-12*(C2/N/m2);
+  e0       := 8.854187817E-12*(F/m);
   er       := 1;
   ke       := 1/(4*pi*e0*er);
   q1       := 2*C;
@@ -807,13 +811,13 @@ begin
   writeln;
 
   // electric field of uniform charge sphere
-  e0       := 8.854187817E-12*(C2/N/m2);
+  e0       := 8.854187817E-12*(F/m);
   er       := 1;
   ke       := 1/(4*pi*e0);
   q1       := 2*C;
   r        := 10*cm;
   distance := 5*cm;
-  E        := ke*(q1* (distance/CubicPower(r)) );
+  E        := ke*(q1/ (CubicPower(r)/distance));
 
   writeln('*** Electric field of uniform charge sphere:');
   writeln('The vacuum permittivity e0 is: ', e0.ToString(4, 4));
@@ -826,7 +830,7 @@ begin
   writeln;
 
   // electric field of parallel conducting plates
-  e0       := 8.854187817E-12*(C2/N/m2);
+  e0       := 8.854187817E-12*(F/m);
   er       := 1;
   q1       := 2*C;
   Area     := 4*cm2;
@@ -862,7 +866,7 @@ begin
   current  := 3.0*A;
   R        := 50*cm;
   z        := 0*cm;
-  B        := m0/(2*pi) * (current * (SquarePower(R)/ SquareRoot(CubicPower(SquarePower(z)+SquarePower(R))) ));
+  B        := m0/(2*pi) * (current / (SquareRoot(CubicPower(SquarePower(z)+SquarePower(R)))/SquarePower(R) ));
 
   writeln('*** Magnetic field due to straight wire:');
   writeln('The vacuum magnetic permeability is: ', m0.ToString(4, 4));
@@ -892,7 +896,7 @@ begin
   i2       := 1.5*A;
   r        := 4*cm;
   len      := 1.0*m;
-  force    := (m0/(2*pi)*(i1*i2/r)) * len;
+  force    := (m0/(2*pi)*(len/r)) * (i1*i2);
 
   writeln('*** Forces between parallel conductors:');
   writeln('The vacuum magnetic permeability is: ', m0.ToString(4, 4));
@@ -928,10 +932,10 @@ begin
 
   // displacement current
   Area     := 100*cm2;
-  e0       := 8.854187817E-12*(C2/N/m2);
+  e0       := 8.854187817E-12*(F/m);
   DeltaE   := 6.0E10*(N/C);
   time     := 1*s;
-  current  := e0*((DeltaE*Area)/time);
+  current  := (e0*DeltaE*Area)/time;
 
   writeln('*** Displacement current:');
   writeln('The plates Aare is: ', Area.ToString(4, 4));
@@ -945,7 +949,7 @@ begin
   Ampl  := 2*m;
   Kw    := 0.2*(rad/m);
   omega := 80*(rad/s);
-  phi   := 0;
+  phi   := 0*rad;
 
   writeln('*** Harmonic wave:');
   writeln('The wave amplitude A is: ', Ampl.ToString(4, 4));
