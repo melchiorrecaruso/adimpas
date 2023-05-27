@@ -147,8 +147,6 @@ var
   Omega: TRadiansPerSecond;
   phi: TRadians;
 
-
-
 begin
   SetConsoleOutputCP(CP_UTF8);
 
@@ -209,21 +207,21 @@ begin
 
   writeln('*** Speed: v = distance / time');
   writeln('The distance is: ', distance.ToString);
-  writeln('The time is: ', hr.From(time).ToString);
-  writeln('The speed is: ', (km/hr).From(speed).ToString);
+  writeln('The time is: ', hour.From(time).ToString);
+  writeln('The speed is: ', (km/hour).From(speed).ToString);
   writeln;
 
   // acceleration
   time         := 5*s;
-  speed        := 100*(km/hr);
+  speed        := 100*(km/hour);
   acceleration := speed/time;
   time         := speed/acceleration;
   speed        := acceleration*time;
 
   writeln('*** Acceleration: a = speed / time');
-  writeln('The speed is: ', (km/hr).From(speed).ToString);
+  writeln('The speed is: ', (km/hour).From(speed).ToString);
   writeln('The time is: ', time.ToString);
-  writeln('The acceleration is: ', (km/hr/s).From(acceleration).ToString);
+  writeln('The acceleration is: ', (km/hour/s).From(acceleration).ToString);
   writeln;
 
   // force
