@@ -1289,7 +1289,7 @@ type
   THourIdentifier = specialize TFactoredQuantityIdentifier<TSecondUnit, THourUnit>;
 
 var
-  hr: THourIdentifier;
+  hour: THourIdentifier;
 
 { Unit of Minute }
 
