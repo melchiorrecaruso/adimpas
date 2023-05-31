@@ -47,25 +47,24 @@ type
     class operator >= (const ALeft, ARight: TSelf): boolean;
   end;
 
-  { TQuantityIdentifier }
+  { TIdentifier }
 
-  generic TQuantityIdentifier<U: TUnit> = record
-    type TSelf = specialize TQuantityIdentifier<U>;
+  generic TIdentifier<U: TUnit> = record
+    type TSelf = specialize TIdentifier<U>;
     type TBaseQuantity = specialize TQuantity<U>;
   public
     class function From(const AQuantity: TBaseQuantity): TBaseQuantity; inline; static;
     class operator *(const AValue: double; const {%H-}TheUnit: TSelf): TBaseQuantity;
-    class operator *(const {%H-}TheUnit: TSelf; const AValue: double): TBaseQuantity;
+
   end;
 
-  { TFactoredQuantityIdentifier }
+  { TFactoredIdentifier }
 
-  generic TFactoredQuantityIdentifier<BaseU: TUnit; U: TFactoredUnit> = record
-    type TSelf = specialize TFactoredQuantityIdentifier<BaseU, U>;
+  generic TFactoredIdentifier<BaseU: TUnit; U: TFactoredUnit> = record
+    type TSelf = specialize TFactoredIdentifier<BaseU, U>;
     type TBaseQuantity = specialize TQuantity<BaseU>;
-    type TBaseFactoredQuantity = specialize TQuantity<U>; 
+    type TFactoredQuantity = specialize TQuantity<U>; 
   public
-    class function From(const AQuantity: TBaseQuantity): TBaseFactoredQuantity; inline; static;
+    class function From(const AQuantity: TBaseQuantity): TFactoredQuantity; inline; static;
     class operator *(const AValue: double; const {%H-}TheUnit: TSelf): TBaseQuantity;
-    class operator *(const {%H-}TheUnit: TSelf; const AValue: double): TBaseQuantity;
   end;

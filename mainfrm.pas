@@ -139,7 +139,7 @@ begin
   Result := S;
   while Pos('?', Result) > 0 do
     Delete(Result, Pos('?', Result), 1);
-  Result := Result + 'Identifier';
+  Result := Result + 'Id';
 end;
 
 function GetQT(const S: string): string;
@@ -249,7 +249,7 @@ begin
       SectionA1.Append('    class function Symbol: string; override;');
       SectionA1.Append('  end;');
 
-      SectionA1.Append('  ' + GetID(AClassName) + ' = specialize TQuantityIdentifier<' + GetUN(AClassName) + '>;');
+      SectionA1.Append('  ' + GetID(AClassName) + ' = specialize TIdentifier<' + GetUN(AClassName) + '>;');
       SectionA1.Append('  ' + GetQT(AClassName) + ' = specialize TQuantity<' + GetUN(AClassName) + '>;');
       SectionA1.Append('');
     end else
@@ -259,7 +259,7 @@ begin
       SectionA1.Append('    class function Symbol: string; override;');
       SectionA1.Append('    class function Factor: double; override;');
       SectionA1.Append('  end;');
-      SectionA1.Append('  ' + GetID(AClassName) + ' = specialize TFactoredQuantityIdentifier<' + GetUN(ABaseClass) + ', ' + GetUN(AClassName) + '>;');
+      SectionA1.Append('  ' + GetID(AClassName) + ' = specialize TFactoredIdentifier<' + GetUN(ABaseClass) + ', ' + GetUN(AClassName) + '>;');
     //SectionA1.Append('  ' + GetQT(AClassName) + ' = specialize TFactoredQuantity<' + GetUN(ABaseClass) + ', ' + GetUN(AClassName) + '>;');
       SectionA1.Append('');
     end;

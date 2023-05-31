@@ -20,12 +20,13 @@
 program examples;
 
 uses
-  Math, ADim,
-  Windows;
+  {$IFDEF WINDOWS}
+  Windows,
+  {$ENDIF}
+  Math,
+  ADim;
 
 var
-  test: double;
-
   side1, side2, side3, side4: TMeters;
   area: TSquareMeters;
   volume: TCubicMeters;
@@ -148,7 +149,9 @@ var
   phi: TRadians;
 
 begin
+  {$IFDEF WINDOWS}
   SetConsoleOutputCP(CP_UTF8);
+  {$ENDIF}
 
   // area
   side1 := 10*m;

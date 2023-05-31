@@ -90,36 +90,26 @@ begin
   result := ALeft.Value >= ARight.Value;
 end;
 
-{ TQuantityIdentifier }
+{ TIdentifier }
 
-class function TQuantityIdentifier.From(const AQuantity: TBaseQuantity): TBaseQuantity;
+class function TIdentifier.From(const AQuantity: TBaseQuantity): TBaseQuantity;
 begin
   result.Value := AQuantity.Value;
 end;
 
-class operator TQuantityIdentifier.*(const AValue: double; const TheUnit: TSelf): TBaseQuantity;
+class operator TIdentifier.*(const AValue: double; const TheUnit: TSelf): TBaseQuantity;
 begin
   result.Value := AValue;
 end;
 
-class operator TQuantityIdentifier.*(const TheUnit: TSelf; const AValue: double): TBaseQuantity;
-begin
-  result.Value := AValue;
-end;
+{ TFactoredIdentifier }
 
-{ TFactoredQuantityIdentifier }
-
-class function TFactoredQuantityIdentifier.From(const AQuantity: TBaseQuantity): TBaseFactoredQuantity;
+class function TFactoredIdentifier.From(const AQuantity: TBaseQuantity): TFactoredQuantity;
 begin
   result.Value := AQuantity.Value / U.Factor;
 end;
 
-class operator TFactoredQuantityIdentifier.*(const AValue: double; const TheUnit: TSelf): TBaseQuantity;
+class operator TFactoredIdentifier.*(const AValue: double; const TheUnit: TSelf): TBaseQuantity;
 begin
   result.Value := AValue * U.Factor;
-end;
-
-class operator TFactoredQuantityIdentifier.*(const TheUnit: TSelf; const AValue: double): TBaseQuantity;
-begin
-  result.Value := U.Factor * AValue;
-end;       
+end;     
