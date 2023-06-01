@@ -202,7 +202,7 @@ and
 $p_i · V_i^{\gamma} = p_{f} · V_f^{\gamma}$
 
 where
-
+r
 - $\Delta U$ is the change in internal energy, $[J]$;
 - $Q$ is the heat added to the system, $[J]$;
 - $W$ is the work done in expanding the gas, $ [J]$;
@@ -211,6 +211,35 @@ where
 - $V_i$ is the initial volume of gas, $[m^3]$;
 - $V_f$ is the final volume of gas, $[m^3]$;
 - $\gamma=\frac{C_p}{C_V}$ is the ration of specific heats for the gas.
+
+### Entropy
+
+$\Delta S_{Universe} = \Delta S_{Environment} + \Delta S_{System} \ge 0$
+
+where
+
+- $\Delta S_{Universe}$ is the entropy of systen and enviroment, $[J/K]$;
+- $\Delta S_{Enviroment}$ is the entropy of enviroment, $[J/K]$;
+- $\Delta S_{System}$ is the entropy of system, $[J/K]$.
+
+### Entropy: Reversible process
+
+$\Delta S_{Universe} = 0$
+
+$\Delta S_{Environment} = - \Delta S_{System}$
+
+$\Delta S_{System} = \displaystyle n·C_p·ln\left(\frac{v_f}{v_i}\right) + n·C_V·ln\left(\frac{p_f}{p_i}\right)$
+
+
+### Entropy: Irreversible process
+
+$\Delta S_{Universe} > 0$
+
+$\Delta S_{Environment} = - \displaystyle \frac{Q_{System}}{T_{Environment}} $ 
+
+$\Delta S_{System} = \displaystyle n·C_p·ln\left(\frac{v_f}{v_i}\right) + n·C_V·ln\left(\frac{p_f}{p_i}\right)$
+
+
 
 #
 [Go To Home](https://github.com/melchiorrecaruso/ADimPas)
