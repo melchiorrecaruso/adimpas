@@ -174,7 +174,7 @@ where
 
 ### Biot-Savart law: magnetic field produced by a current-carrying circular loop
 
-$B = \displaystyle\frac{μ_0}{2}⋅\left[I⋅\left[\frac{R^2}{(z^2+R^2)^{3/2}}\right]\right]$ ,
+$B = \displaystyle\frac{μ_0}{2}⋅\left[I/\left[\frac{(z^2+R^2)^{3/2}}{R^2}\right]\right]$ ,
 
 where
 
@@ -198,7 +198,7 @@ where
 
 ### Forces between parallel conductors
 
-$F = \displaystyle\left[ \frac{μ_0}{2\pi}⋅\left(\frac{i_1⋅i_2}{r}\right)\right]⋅L$ ,
+$F = \displaystyle\left[ \frac{μ_0}{2\pi}⋅\left(\frac{L}{r}\right)\right]⋅(i_1⋅i_2)$ ,
 
 where
 
@@ -241,25 +241,25 @@ where
 
 ### Displacement current
 
-$i_d = \epsilon_0⋅\displaystyle\left(\frac{\Delta\Phi_E}{\Delta t}\right)$ ,
+$i_d = \displaystyle\frac{\epsilon_0⋅\Delta\Phi_E}{\Delta t}$
 
 where
 
-- $i_d$ is the Maxwell's Displacement current, $[A]$, 
-- $\epsilon_0$ is the vacuum permittivity, $[C^2/N/m^2]$,
-- $\Delta\Phi_E$ is the change in electric flux, $[V⋅m]$,
+- $i_d$ is the Maxwell's Displacement current, $[A]$; 
+- $\epsilon_0$ is the vacuum permittivity, $[C^2/N/m^2]$;
+- $\Delta\Phi_E$ is the change in electric flux, $[V⋅m]$;
 - $\Delta t$ is the change in time, $[s]$.
 
 ### Ampère's circuital law (with Maxwell's addition)
 
-$C_L(B) = \displaystyle\mu_0⋅i + \mu_0⋅\left[\epsilon_0⋅\left(\frac{\Delta\Phi_E}{\Delta t}\right)\right]$ ,
+$C_L(B) = \displaystyle\mu_0⋅i + \mu_0⋅\left[\frac{\epsilon_0⋅\Delta\Phi_E}{\Delta t}\right]$
 
 where
 
-- $μ_0$ is the vacuum magnetic permeability, $μ_0=4π⋅10^{-7}$ $[T⋅m/A]$,
-- $i$ is the electric current, $[A]$,
-- $\epsilon_0$ is the vacuum permittivity, $[C^2/N/m^2]$,
-- $\Delta\Phi_E$ is the change in electric flux, $[V⋅m]$,
+- $μ_0$ is the vacuum magnetic permeability, $μ_0=4π⋅10^{-7}$ $[T⋅m/A]$;
+- $i$ is the electric current, $[A]$;
+- $\epsilon_0$ is the vacuum permittivity, $[C^2/N/m^2]$;
+- $\Delta\Phi_E$ is the change in electric flux, $[V⋅m]$;
 - $\Delta t$ is the change in time, $[s]$.
 
 ### Inductance
