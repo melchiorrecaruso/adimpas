@@ -41,7 +41,7 @@ var
   distance: TMeters;
   time: TSeconds;
   speed: TMetersPerSecond;
-  acceleration: TMetersPerSquareSecond;
+  acc: TMetersPerSquareSecond;
   density: TKilogramsPerCubicMeter;
   specificw: TNewtonsPerCubicMeter;
   force, normal: TNewtons;
@@ -86,12 +86,11 @@ var
   GN: TNewtonSquareMetersPerSquareKilogram;
 
 
-  Cd: double;
+  cCd: double;
   angle: TRadians;
 
   Uc: TJoules;
   Ug: TJoules;
-  g: TMetersPerSquareSecond;
 
   Ue: TJoules;
   kx: TNewtonsPerMeter;
@@ -217,26 +216,26 @@ begin
   // acceleration
   time         := 5*s;
   speed        := 100*(km/hour);
-  acceleration := speed/time;
-  time         := speed/acceleration;
-  speed        := acceleration*time;
+  acc          := speed/time;
+  time         := speed/acc;
+  speed        := acc*time;
 
   writeln('*** Acceleration: a = speed / time');
   writeln('The speed is: ', (km/hour).From(speed).ToString);
   writeln('The time is: ', time.ToString);
-  writeln('The acceleration is: ', (km/hour/s).From(acceleration).ToString);
+  writeln('The acceleration is: ', (km/hour/s).From(acc).ToString);
   writeln;
 
   // force
   mass         := 5*kg;
-  acceleration := 10*(m/s2);
-  force        := mass*acceleration;
-  mass         := force/acceleration;
-  acceleration := force/mass;
+  acc          := 10*(m/s2);
+  force        := mass*acc;
+  mass         := force/acc;
+  acc          := force/mass;
 
   writeln('*** Force: F = mass * acceleration');
   writeln('The mass is: ', mass.ToString);
-  writeln('The acceleration is: ', acceleration.ToString);
+  writeln('The acceleration is: ', acc.ToString);
   writeln('The force is: ', force.ToString);
   writeln;
 
@@ -261,14 +260,14 @@ begin
   mass         := 1*kg;
   angularspeed := 2*pi*(rad/s);
   radius       := 10*m;
-  acceleration := (angularspeed*angularspeed)*radius;
-  force        := mass*acceleration;
+  acc          := (angularspeed*angularspeed)*radius;
+  force        := mass*acc;
 
   writeln('*** Centrifugal force:');
   writeln('The mass is: ', mass.ToVerboseString);
   writeln('The angular speed is: ', angularspeed.ToVerboseString(4, 0));
   writeln('The radius is: ', radius.ToVerboseString);
-  writeln('The acceleration is: ', acceleration.ToVerboseString(4, 0));
+  writeln('The acceleration is: ', acc.ToVerboseString(4, 0));
   writeln('The force is: ', force.ToVerboseString(4, 0));
   writeln;
 
@@ -451,7 +450,7 @@ begin
   writeln;
 
   // lumen
-  intensity    := 10*ADim.cd;
+  intensity    := 10*cd;
   solidangle   := 90*sr;
   luminousflux := intensity*solidangle;
 
@@ -495,7 +494,7 @@ begin
   writeln('*** Density:');
   writeln('The mass is: ', mass.ToVerboseString);
   writeln('The volume is: ', volume.ToVerboseString);
-  writeln('The density is: ', (ADim.kg/m3).From(density).ToVerboseString);
+  writeln('The density is: ', (kg/m3).From(density).ToVerboseString);
   writeln;
 
   // specific weight
@@ -553,14 +552,14 @@ begin
   writeln;
 
   // drag force
-  Cd      := 0.47;
+  cCd     := 0.47;
   area    := 1000*mm2;
   speed   := 5*(m/s);
   density := 1.225*(kg/m3);
-  force   := 0.5*Cd*(density*SquarePower(Speed))*area;
+  force   := 0.5*cCd*(density*SquarePower(Speed))*area;
 
   writeln('*** Drag force:');
-  writeln('The Cd coefficent is: ', Cd:0:3);
+  writeln('The Cd coefficent is: ', cCd:0:3);
   writeln('The area is: ', area.ToVerboseString);
   writeln('The speed is: ', speed.ToVerboseString);
   writeln('The density is: ', density.ToVerboseString);
@@ -585,13 +584,13 @@ begin
 
   // gravitational potential energy
   mass     := 10*kg;
-  g        := 9.81*(m/s2);
+  acc      := 9.81*(m/s2);
   distance := 10*m;
-  Ug       := mass*g*distance;
+  Ug       := mass*acc*distance;
 
   writeln('*** Gravitational potential energy:');
   writeln('The mass is: ', mass.ToVerboseString);
-  writeln('The g is: ', g.ToVerboseString(4, 0));
+  writeln('The g is: ', acc.ToVerboseString(4, 0));
   writeln('The heigth is: ', distance.ToVerboseString);
   writeln('The gravitational potential energy is: ', Ug.ToVerboseString(4, 0));
   writeln;
@@ -643,26 +642,26 @@ begin
 
   // Stevino's law
   density      := 10*(kg/m3);
-  acceleration := 9.81*(m/s2);
+  acc          := 9.81*(m/s2);
   distance     := 2*m;
-  pressure     := density*acceleration*distance;
+  pressure     := density*acc*distance;
 
   writeln('*** Stevino''s law:');
   writeln('The density is: ', density.ToVerboseString);
-  writeln('The acceleration is: ', acceleration.ToVerboseString);
+  writeln('The acceleration is: ', acc.ToVerboseString);
   writeln('The distance is: ', distance.ToVerboseString);
   writeln('The pressure is: ', pressure.ToVerboseString);
   writeln;
 
   // Archimede's law
   density      := 0.5*(kg/m3);
-  acceleration := 9.81*(m/s2);
+  acc          := 9.81*(m/s2);
   volume       := 0.5*m3;
-  force        := density*acceleration*volume;
+  force        := density*acc*volume;
 
   writeln('*** Archimede''s law:');
   writeln('The density is: ', density.ToVerboseString);
-  writeln('The acceleration is: ', acceleration.ToVerboseString);
+  writeln('The acceleration is: ', acc.ToVerboseString);
   writeln('The volume is: ', volume.ToVerboseString);
   writeln('The force is: ', force.ToVerboseString);
   writeln;
@@ -689,11 +688,11 @@ begin
   writeln('The pressure is: ', pressure.ToVerboseString);
   writeln;
 
-  acceleration := 9.81*(m/s2);
+  acc         := 9.81*(m/s2);
   distance     := 2*m;
-  pressure     := density*acceleration*distance;
+  pressure     := density*acc*distance;
 
-  writeln('The acceleration is: ', acceleration.ToVerboseString);
+  writeln('The acceleration is: ', acc.ToVerboseString);
   writeln('The distance is: ', distance.ToVerboseString);
   writeln('The pressure is: ', pressure.ToVerboseString);
   writeln;
@@ -848,17 +847,17 @@ begin
 
 
   // magnetic force for lifting a object
-  mass      := 100*ADim.g;
-  g         := 9.81*(m/s2);
+  mass      := 100*g;
+  acc       := 9.81*(m/s2);
   len       := 20*cm;
   B         := 2.0*T;
-  current   := (mass*g)/(len*B*Sin(90*deg));
+  current   := (mass*acc)/(len*B*Sin(90*deg));
 
   writeln('*** Magnetic force for lifting a object:');
   writeln('The mass is: ', mass.ToString(4, 4));
   writeln('The wire length is: ', len.ToString(4, 4));
   writeln('The magnetic field B is: ', B.ToString(4, 4));
-  writeln('The needed magnetic force is: ', (mass*g).ToString(2, 4));
+  writeln('The needed magnetic force is: ', (mass*acc).ToString(2, 4));
   writeln('The needed electric current is: ', current.ToString(2, 4));
   writeln;
 
