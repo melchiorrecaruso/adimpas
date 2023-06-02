@@ -56,7 +56,6 @@ type
     SectionA0: TStringList;
     SectionA1: TStringList;
     SectionA2: TStringList;
-    SectionA3: TStringList;
     SectionA4: TStringList;
     SectionA5: TStringList;
     SectionA6: TStringList;
@@ -64,7 +63,6 @@ type
 
     SectionB1: TStringList;
     SectionB2: TStringList;
-    SectionB3: TStringList;
     SectionB4: TStringList;
     SectionB5: TStringList;
     SectionB6: TStringList;
@@ -77,10 +75,6 @@ type
       AComment, ALongSymbol, AShortSymbol, AIdentifierSymbol, ABaseClass, AFactor: string);
 
     procedure AddPower(AOperator, AQuantity, AResult: string);
-
-    procedure AddIdentifierEquivalence(AClassName, AResult: string);
-    procedure AddQuantityEquivalence(AClassName, AResult: string);
-
     procedure AddHelper(AClassParent1, AClassName: string);
   public
 
@@ -203,10 +197,10 @@ begin
   begin
     OperatorList.Append(ALeftParent + AOperator + ARightParent);
 
-    SectionA3.Append('operator ' + AOperator + '(const ALeft: ' + ALeftParent + '; const ARight: ' + ARightParent + '): ' + AResult  + '; inline;');
+    SectionA2.Append('operator ' + AOperator + '(const ALeft: ' + ALeftParent + '; const ARight: ' + ARightParent + '): ' + AResult  + '; inline;');
 
-    SectionB3.Append('operator ' + AOperator + '(const ALeft: ' + ALeftParent + '; const ARight: ' + ARightParent + '): ' + AResult  + ';');
-    SectionB3.Append('begin');
+    SectionB2.Append('operator ' + AOperator + '(const ALeft: ' + ALeftParent + '; const ARight: ' + ARightParent + '): ' + AResult  + ';');
+    SectionB2.Append('begin');
 
     if AResult = 'double' then
       S := '  result :='
@@ -223,9 +217,9 @@ begin
     else
       S := S + ' ARight.Value;';
 
-    SectionB3.Append(S);
-    SectionB3.Append('end;');
-    SectionB3.Append('');
+    SectionB2.Append(S);
+    SectionB2.Append('end;');
+    SectionB2.Append('');
   end else
     MessageDlg('Duplicate Operator: ',  ALeftParent + AOperator + ARightParent + '=' + AResult + ' already esists.', mtError, [mbOk], '');
 end;
@@ -244,46 +238,22 @@ begin
 
     if (ABaseClass = '') and (AFactor = '') then
     begin
-      SectionA1.Append('  ' + GetUN(AClassName) + ' = class(TUnit)');
-      SectionA1.Append('    class function Name: string; override;');
-      SectionA1.Append('    class function Symbol: string; override;');
+      SectionA1.Append('  ' + GetUN(AClassName) + ' = record');
+      SectionA1.Append('    const Symbol : string = ''' + AShortSymbol + ''';');
+      SectionA1.Append('    const Name   : string = ''' + ALongSymbol + ''';');
       SectionA1.Append('  end;');
-
-      SectionA1.Append('  ' + GetID(AClassName) + ' = specialize TIdentifier<' + GetUN(AClassName) + '>;');
       SectionA1.Append('  ' + GetQT(AClassName) + ' = specialize TQuantity<' + GetUN(AClassName) + '>;');
+      SectionA1.Append('  ' + GetID(AClassName) + ' = specialize TQuantityId<' + GetUN(AClassName) + '>;');
       SectionA1.Append('');
     end else
     begin
-      SectionA1.Append('  ' + GetUN(AClassName) + ' = class(TFactoredUnit)');
-      SectionA1.Append('    class function Name: string; override;');
-      SectionA1.Append('    class function Symbol: string; override;');
-      SectionA1.Append('    class function Factor: double; override;');
+      SectionA1.Append('  ' + GetUN(AClassName) + ' = record');
+      SectionA1.Append('    const Symbol : string = ''' + AShortSymbol + ''';');
+      SectionA1.Append('    const Name   : string = ''' + ALongSymbol  + ''';');
+      SectionA1.Append('    const Factor : double = '   + AFactor      +   ';');
       SectionA1.Append('  end;');
-      SectionA1.Append('  ' + GetID(AClassName) + ' = specialize TFactoredIdentifier<' + GetUN(ABaseClass) + ', ' + GetUN(AClassName) + '>;');
-    //SectionA1.Append('  ' + GetQT(AClassName) + ' = specialize TFactoredQuantity<' + GetUN(ABaseClass) + ', ' + GetUN(AClassName) + '>;');
+      SectionA1.Append('  ' + GetID(AClassName) + ' = specialize TFactoredQuantityId<' + GetUN(ABaseClass) + ', ' + GetUN(AClassName) + '>;');
       SectionA1.Append('');
-    end;
-
-    SectionB1.Append('{ Unit of ' + GetUN(AClassName) + ' }');
-    SectionB1.Append('');
-    SectionB1.Append('class function ' + GetUN(AClassName) + '.Symbol: string;');
-    SectionB1.Append('begin');
-    SectionB1.Append('  result := ''' + AShortSymbol + ''';');
-    SectionB1.Append('end;');
-    SectionB1.Append('');
-    SectionB1.Append('class function ' + GetUN(AClassName) + '.Name: string;');
-    SectionB1.Append('begin');
-    SectionB1.Append('  result := ''' + ALongSymbol + ''';');
-    SectionB1.Append('end;');
-    SectionB1.Append('');
-
-    if (ABaseClass <> '') and (AFactor <> '')  then
-    begin
-      SectionB1.Append('class function ' + GetUN(AClassName) + '.Factor: double;');
-      SectionB1.Append('begin');
-      SectionB1.Append('  result := ' + AFactor + ';');
-      SectionB1.Append('end;');
-      SectionB1.Append('');
     end;
 
     if AIdentifierSymbol <> '' then
@@ -314,19 +284,10 @@ begin
       SectionB2.Add('');
       SectionB2.Add('// ' + AComment);
       AddIdentifierOperator('*', AClassParent1, AClassParent2, AClassName);
-      AddIdentifierOperator('/', AClassName,    AClassParent1, AClassParent2);
-      if AClassParent1 <> AClassParent2 then
-      begin
-        AddIdentifierOperator('*', AClassParent2, AClassParent1, AClassName);
-        AddIdentifierOperator('/', AClassName,    AClassParent2, AClassParent1);
-      end;
-
-      SectionA3.Add('');
-      SectionA3.Add('// ' + AComment);
-      SectionB3.Add('');
-      SectionB3.Add('// ' + AComment);
-      AddQuantityOperator('*', AClassParent1, AClassParent2, AClassName);
-      AddQuantityOperator('/', AClassName,    AClassParent1, AClassParent2);
+      SectionA2.Add('');
+      SectionB2.Add('');
+      AddQuantityOperator  ('*', AClassParent1, AClassParent2, AClassName);
+      AddQuantityOperator  ('/', AClassName,    AClassParent1, AClassParent2);
       if AClassParent1 <> AClassParent2 then
       begin
         AddQuantityOperator('*', AClassParent2, AClassParent1, AClassName);
@@ -341,47 +302,21 @@ begin
         SectionB2.Add('');
         SectionB2.Add('// ' + AComment);
         AddIdentifierOperator('/', AClassParent1, AClassParent2, AClassName);
-        AddIdentifierOperator('/', AClassParent1, AClassName,    AClassParent2);
-        AddIdentifierOperator('*', AClassName,    AClassParent2, AClassParent1);
-        AddIdentifierOperator('*', AClassParent2, AClassName,    AClassParent1);
-
-        SectionA3.Add('');
-        SectionA3.Add('// ' + AComment);
-        SectionB3.Add('');
-        SectionB3.Add('// ' + AComment);
-        AddQuantityOperator('/', AClassParent1, AClassParent2, AClassName);
-        AddQuantityOperator('/', AClassParent1, AClassName,    AClassParent2);
-        AddQuantityOperator('*', AClassName,    AClassParent2, AClassParent1);
-        AddQuantityOperator('*', AClassParent2, AClassName,    AClassParent1);
+        SectionA2.Add('');
+        SectionB2.Add('');
+        AddQuantityOperator  ('/', AClassParent1, AClassParent2, AClassName);
+        AddQuantityOperator  ('/', AClassParent1, AClassName,    AClassParent2);
+        AddQuantityOperator  ('*', AClassName,    AClassParent2, AClassParent1);
+        AddQuantityOperator  ('*', AClassParent2, AClassName,    AClassParent1);
       end else
         if Pos('power', LowerCase(AOperator)) > 0 then
         begin
           AddPower(AOperator, AClassParent1, AClassName);
         end else
-          if (':=' = LowerCase(AOperator)) then
+          if ('helper' = LowerCase(AOperator)) then
           begin
-            if ('tradian' = LowerCase(AClassName)) then
-            begin
-              AddIdentifierEquivalence(AClassParent1, AClassName);
-            //AddIdentifierEquivalence(AClassName, AClassParent1);
-            end;
-            AddQuantityEquivalence(AClassParent1, AClassName);
-          //AddQuantityEquivalence(AClassName, AClassParent1);
-          end else
-            if ('=' = LowerCase(AOperator)) then
-            begin
-              if ('tradian' = LowerCase(AClassName)) then
-              begin
-                AddIdentifierEquivalence(AClassParent1, AClassName);
-                AddIdentifierEquivalence(AClassName, AClassParent1);
-              end;
-              AddQuantityEquivalence(AClassParent1, AClassName);
-              AddQuantityEquivalence(AClassName, AClassParent1);
-            end else
-              if ('helper' = LowerCase(AOperator)) then
-              begin
-                AddHelper(AClassParent1, AClassName);
-              end;
+            AddHelper(AClassParent1, AClassName);
+          end;
   end;
 end;
 
@@ -440,70 +375,6 @@ begin
   SectionB4.Add('  result.Value := Power(AQuantity.Value, ' + S3 + ');');
   SectionB4.Add('end;');
   SectionB4.Add('');
-end;
-
-procedure TMainForm.AddIdentifierEquivalence(AClassName, AResult: string);
-begin
-  AClassName := GetQT(AClassName);
-  AResult    := GetQT(AResult);
-
-  if AClassName <> 'double' then
-    AClassName := AClassName + 'Identifier';
-
-  if AResult <> 'double' then
-    AResult := AResult + 'Identifier';
-
-  if OperatorList.IndexOf('operator := (AQuantity: ' + AClassName + '):' + AResult + ';') = -1 then
-  begin
-    OperatorList.Add('operator := (AQuantity: ' + AClassName + '):' + AResult + ';');
-
-    SectionA5.Add('operator := ({%H-}AQuantity: ' + AClassName + '): ' + AResult + '; inline;');
-    SectionB5.Add('operator := (AQuantity: ' + AClassName + '): ' + AResult + ';');
-
-    if AResult = 'double' then
-    begin
-      SectionB5.Add('begin');
-      SectionB5.Add('  result := 1;');
-      SectionB5.Add('end;');
-    end else
-      SectionB5.Add('begin end;');
-
-    SectionB5.Add('');
-  end else
-    MessageDlg('Duplicate Operator: ',  'Operator := (AQuantity: ' + AClassName + '):' + AResult + '; already esists.', mtError, [mbOk], '');
-end;
-
-procedure TMainForm.AddQuantityEquivalence(AClassName, AResult: string);
-var
-  S: string;
-begin
-  AClassName := GetQT(AClassName);
-  AResult    := GetQT(AResult);
-
-  if OperatorList.IndexOf('operator := (AQuantity: ' + AClassName + '):' + AResult + ';') = -1 then
-  begin
-    OperatorList.Add('operator := (AQuantity: ' + AClassName + '):' + AResult + ';');
-
-    SectionA5.Add('operator := (AQuantity: ' + AClassName + '): ' + AResult + '; inline;');
-    SectionB5.Add('operator := (AQuantity: ' + AClassName + '): ' + AResult + ';');
-    SectionB5.Add('begin');
-
-    S := '';
-    if AResult = 'double' then
-      S := '  result := '
-    else
-      S := '  result.Value := ';
-
-    if AClassName = 'double' then
-      S := S + 'AQuantity;'
-    else
-      S := S + 'AQuantity.Value;';
-
-    SectionB5.Add(S);
-    SectionB5.Add('end;');
-    SectionB5.Add('');
-  end else
-    MessageDlg('Duplicate Operator: ',  'Operator := (AQuantity: ' + AClassName + '):' + AResult + '; already esists.', mtError, [mbOk], '');
 end;
 
 procedure TMainForm.AddHelper(AClassParent1, AClassName: string);
@@ -568,7 +439,6 @@ begin
   SectionA0    := TStringList.Create;
   SectionA1    := TStringList.Create;
   SectionA2    := TStringList.Create;
-  SectionA3    := TStringList.Create;
   SectionA4    := TStringList.Create;
   SectionA5    := TStringList.Create;
   SectionA6    := TStringList.Create;
@@ -576,7 +446,6 @@ begin
 
   SectionB1    := TStringList.Create;
   SectionB2    := TStringList.Create;
-  SectionB3    := TStringList.Create;
   SectionB4    := TStringList.Create;
   SectionB5    := TStringList.Create;
   SectionB6    := TStringList.Create;
@@ -597,18 +466,11 @@ begin
   SectionB1.Insert(0, '');
   Stream.Destroy;
 
-  SectionA2.Add('{ Combining units }');
+  SectionA2.Add('{ Combining units & quantities }');
   SectionA2.Add('');
   SectionB2.Add('');
-  SectionB2.Add('{ Combining units }');
+  SectionB2.Add('{ Combining units & quantities  }');
   SectionB2.Add('');
-
-  SectionA3.Add('');
-  SectionA3.Add('{ Combining quantities }');
-  SectionA3.Add('');
-  SectionB3.Add('');
-  SectionB3.Add('{ Combining quantities }');
-  SectionB3.Add('');
 
   SectionA4.Add('');
   SectionA4.Add('{ Power units }');
@@ -689,7 +551,6 @@ begin
   for I := 0 to SectionA0.Count -1 do Document.Append(SectionA0[I]);
   for I := 0 to SectionA1.Count -1 do Document.Append(SectionA1[I]);
   for I := 0 to SectionA2.Count -1 do Document.Append(SectionA2[I]);
-  for I := 0 to SectionA3.Count -1 do Document.Append(SectionA3[I]);
   for I := 0 to SectionA4.Count -1 do Document.Append(SectionA4[I]);
   for I := 0 to SectionA5.Count -1 do Document.Append(SectionA5[I]);
   for I := 0 to SectionA6.Count -1 do Document.Append(SectionA6[I]);
@@ -697,7 +558,6 @@ begin
 
   for I := 0 to SectionB1.Count -1 do Document.Append(SectionB1[I]);
   for I := 0 to SectionB2.Count -1 do Document.Append(SectionB2[I]);
-  for I := 0 to SectionB3.Count -1 do Document.Append(SectionB3[I]);
   for I := 0 to SectionB4.Count -1 do Document.Append(SectionB4[I]);
   for I := 0 to SectionB5.Count -1 do Document.Append(SectionB5[I]);
   for I := 0 to SectionB6.Count -1 do Document.Append(SectionB6[I]);
@@ -718,7 +578,6 @@ begin
   SectionB6.Destroy;
   SectionB5.Destroy;
   SectionB4.Destroy;
-  SectionB3.Destroy;
   SectionB2.Destroy;
   SectionB1.Destroy;
 
@@ -726,7 +585,6 @@ begin
   SectionA6.Destroy;
   SectionA5.Destroy;
   SectionA4.Destroy;
-  SectionA3.Destroy;
   SectionA2.Destroy;
   SectionA1.Destroy;
   SectionA0.Destroy;

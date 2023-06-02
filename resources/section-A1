@@ -9,22 +9,9 @@ uses
   SysUtils;
 
 type
-  { TUnit }
-
-  TUnit = class
-  public
-    class function Name: string; virtual; abstract;
-    class function Symbol: string; virtual; abstract;
-  end;
-
-  TFactoredUnit = class(TUnit)
-  public
-    class function Factor: double; virtual; abstract;
-  end;
-
   { TQuantity }
 
-  generic TQuantity<U: TUnit> = record
+  generic TQuantity<U> = record
     type TSelf = specialize TQuantity<U>;
   public
     Value: double;
@@ -47,10 +34,10 @@ type
     class operator >= (const ALeft, ARight: TSelf): boolean;
   end;
 
-  { TIdentifier }
+  { TQuantityId }
 
-  generic TIdentifier<U: TUnit> = record
-    type TSelf = specialize TIdentifier<U>;
+  generic TQuantityId<U> = record
+    type TSelf = specialize TQuantityId<U>;
     type TBaseQuantity = specialize TQuantity<U>;
   public
     class function From(const AQuantity: TBaseQuantity): TBaseQuantity; inline; static;
@@ -58,10 +45,10 @@ type
 
   end;
 
-  { TFactoredIdentifier }
+  { TFactoredQuantityId }
 
-  generic TFactoredIdentifier<BaseU: TUnit; U: TFactoredUnit> = record
-    type TSelf = specialize TFactoredIdentifier<BaseU, U>;
+  generic TFactoredQuantityId<BaseU, U> = record
+    type TSelf = specialize TFactoredQuantityId<BaseU, U>;
     type TBaseQuantity = specialize TQuantity<BaseU>;
     type TFactoredQuantity = specialize TQuantity<U>; 
   public
