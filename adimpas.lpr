@@ -36,8 +36,8 @@ uses
 
 begin
   RequireDerivedFormResource:=True;
-  Application.Title := 'ADimPas Toolkit';
-  Application.Scaled := True;
+  Application.Title:='ADimPas Toolkit';
+  Application.Scaled:=True;
   Application.Initialize;
   Application.CreateForm(TMainForm, MainForm);
   Application.Run;

@@ -15,9 +15,9 @@
       <Resources Count="5">
         <Resource_0 FileName="resources\section-A0" Type="RCDATA" ResourceName="SECTION-A0"/>
         <Resource_1 FileName="resources\section-A1" Type="RCDATA" ResourceName="SECTION-A1"/>
-        <Resource_2 FileName="resources\section-A6" Type="RCDATA" ResourceName="SECTION-A6"/>
+        <Resource_2 FileName="resources\section-A4" Type="RCDATA" ResourceName="SECTION-A4"/>
         <Resource_3 FileName="resources\section-B1" Type="RCDATA" ResourceName="SECTION-B1"/>
-        <Resource_4 FileName="resources\section-B6" Type="RCDATA" ResourceName="SECTION-B6"/>
+        <Resource_4 FileName="resources\section-B4" Type="RCDATA" ResourceName="SECTION-B4"/>
       </Resources>
     </General>
     <BuildModes Active="Default">
@@ -51,7 +51,7 @@
         <UnitName Value="ADimPas"/>
         <TopLine Value="8"/>
         <CursorPos X="3" Y="33"/>
-        <UsageCount Value="95"/>
+        <UsageCount Value="96"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -63,10 +63,10 @@
         <UnitName Value="MainFrm"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="278"/>
-        <CursorPos X="7" Y="291"/>
-        <FoldState Value=" T3kG0M212 PjdmJ0Q"/>
-        <UsageCount Value="95"/>
+        <TopLine Value="221"/>
+        <CursorPos X="34" Y="237"/>
+        <FoldState Value=" T3lA0bJ"/>
+        <UsageCount Value="96"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -229,47 +229,7 @@
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="28">
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="482" Column="46" TopLine="450"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="461" Column="41" TopLine="442"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="17" Column="5"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="460" Column="67" TopLine="454"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="493" Column="67" TopLine="475"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="127" Column="41" TopLine="103"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="294" Column="40" TopLine="291"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="53" Column="24" TopLine="39"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="174" Column="36" TopLine="156"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="291" Column="13" TopLine="261"/>
-      </Position>
+    <JumpHistory HistoryIndex="29">
       <Position>
         <Filename Value="mainfrm.pas"/>
         <Caret Line="119" Column="16" TopLine="81"/>
@@ -345,6 +305,50 @@
       <Position>
         <Filename Value="mainfrm.pas"/>
         <Caret Line="315" Column="17" TopLine="302"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="71" Column="25" TopLine="60"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="170" Column="38" TopLine="161"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="270" Column="28" TopLine="251"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="283" Column="24" TopLine="265"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="438" Column="46" TopLine="427"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="61" TopLine="50"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="372" Column="45" TopLine="71"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="571" TopLine="534"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="379" Column="12" TopLine="312"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="570" TopLine="533"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="533" TopLine="515"/>
       </Position>
     </JumpHistory>
   </ProjectOptions>

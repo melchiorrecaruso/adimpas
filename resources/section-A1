@@ -5,12 +5,10 @@ unit ADim;
 
 interface
 
-uses
-  SysUtils;
+uses SysUtils;
 
 type
   { TQuantity }
-
   generic TQuantity<U> = record
     type TSelf = specialize TQuantity<U>;
   public
@@ -22,9 +20,9 @@ type
     function ToVerboseString(Precision, Digits: longint): string;      
     class operator +  (const ALeft, ARight: TSelf): TSelf;
     class operator -  (const ALeft, ARight: TSelf): TSelf;
-    class operator *  (const AFactor: double; const AValue: TSelf): TSelf;
-    class operator *  (const AValue: TSelf; const AFactor: double): TSelf;
-    class operator /  (const AValue: TSelf; const AFactor: double): TSelf;
+    class operator *  (const AValue: double; const ASelf: TSelf): TSelf;
+    class operator *  (const ASelf: TSelf; const AValue: double): TSelf;
+    class operator /  (const ASelf: TSelf; const AValue: double): TSelf;
     class operator /  (const ALeft, ARight: TSelf): double;
     class operator mod(const ALeft, ARight: TSelf): TSelf;    
     class operator =  (const ALeft, ARight: TSelf): boolean;
@@ -34,24 +32,21 @@ type
     class operator >= (const ALeft, ARight: TSelf): boolean;
   end;
 
-  { TQuantityId }
-
-  generic TQuantityId<U> = record
-    type TSelf = specialize TQuantityId<U>;
+  { TUnitId }
+  generic TUnitId<U> = record
+    type TSelf = specialize TUnitId<U>;
     type TBaseQuantity = specialize TQuantity<U>;
   public
     class function From(const AQuantity: TBaseQuantity): TBaseQuantity; inline; static;
-    class operator *(const AValue: double; const {%H-}TheUnit: TSelf): TBaseQuantity;
-
+    class operator *(const AValue: double; const {%H-}ASelf: TSelf): TBaseQuantity;
   end;
 
-  { TFactoredQuantityId }
-
-  generic TFactoredQuantityId<BaseU, U> = record
-    type TSelf = specialize TFactoredQuantityId<BaseU, U>;
+  { TFactoredUnitId }
+  generic TFactoredUnitId<BaseU, U> = record
+    type TSelf = specialize TFactoredUnitId<BaseU, U>;
     type TBaseQuantity = specialize TQuantity<BaseU>;
     type TFactoredQuantity = specialize TQuantity<U>; 
   public
     class function From(const AQuantity: TBaseQuantity): TFactoredQuantity; inline; static;
-    class operator *(const AValue: double; const {%H-}TheUnit: TSelf): TBaseQuantity;
+    class operator *(const AValue: double; const {%H-}ASelf: TSelf): TBaseQuantity;
   end;

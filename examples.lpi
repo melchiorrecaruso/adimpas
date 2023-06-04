@@ -26,7 +26,6 @@
       <Unit>
         <Filename Value="examples.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
         <CursorPos X="7" Y="27"/>
         <UsageCount Value="157"/>
         <Loaded Value="True"/>
@@ -110,10 +109,12 @@
       </Unit>
       <Unit>
         <Filename Value="ADim.pas"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="163"/>
-        <CursorPos X="36" Y="240"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="129"/>
+        <CursorPos Y="147"/>
         <UsageCount Value="12"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../../../../../FPC/3.2.2/source/rtl/objpas/math.pp"/>
@@ -174,31 +175,7 @@
         <UsageCount Value="10"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="28">
-      <Position>
-        <Filename Value="examples.pas"/>
-        <Caret Line="956" Column="11" TopLine="934"/>
-      </Position>
-      <Position>
-        <Filename Value="examples.pas"/>
-        <Caret Line="464" Column="12" TopLine="450"/>
-      </Position>
-      <Position>
-        <Filename Value="examples.pas"/>
-        <Caret Line="65" Column="3" TopLine="51"/>
-      </Position>
-      <Position>
-        <Filename Value="examples.pas"/>
-        <Caret Line="464" Column="27" TopLine="451"/>
-      </Position>
-      <Position>
-        <Filename Value="examples.pas"/>
-        <Caret Line="463" Column="39" TopLine="450"/>
-      </Position>
-      <Position>
-        <Filename Value="examples.pas"/>
-        <Caret Line="65" Column="3" TopLine="51"/>
-      </Position>
+    <JumpHistory HistoryIndex="29">
       <Position>
         <Filename Value="examples.pas"/>
         <Caret Line="597" Column="20" TopLine="583"/>
@@ -290,6 +267,34 @@
       <Position>
         <Filename Value="examples.pas"/>
         <Caret Line="693" Column="30" TopLine="672"/>
+      </Position>
+      <Position>
+        <Filename Value="examples.pas"/>
+        <Caret Line="27" Column="7"/>
+      </Position>
+      <Position>
+        <Filename Value="ADim.pas"/>
+        <Caret Line="481" Column="30"/>
+      </Position>
+      <Position>
+        <Filename Value="ADim.pas"/>
+        <Caret Line="151" Column="5" TopLine="133"/>
+      </Position>
+      <Position>
+        <Filename Value="ADim.pas"/>
+        <Caret Line="147" Column="22" TopLine="128"/>
+      </Position>
+      <Position>
+        <Filename Value="ADim.pas"/>
+        <Caret Line="148" Column="5" TopLine="129"/>
+      </Position>
+      <Position>
+        <Filename Value="ADim.pas"/>
+        <Caret Line="149" Column="5" TopLine="129"/>
+      </Position>
+      <Position>
+        <Filename Value="ADim.pas"/>
+        <Caret Line="148" Column="13" TopLine="129"/>
       </Position>
     </JumpHistory>
   </ProjectOptions>

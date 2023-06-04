@@ -56,19 +56,15 @@ type
     SectionA0: TStringList;
     SectionA1: TStringList;
     SectionA2: TStringList;
+    SectionA3: TStringList;
     SectionA4: TStringList;
-    SectionA5: TStringList;
-    SectionA6: TStringList;
-    SectionA7: TStringList;
 
     SectionB1: TStringList;
     SectionB2: TStringList;
+    SectionB3: TStringList;
     SectionB4: TStringList;
-    SectionB5: TStringList;
-    SectionB6: TStringList;
-    SectionB7: TStringList;
 
-    procedure AddIdentifierOperator(AOperator, ALeftParent, ARightParent, AResult: string);
+    procedure AddUnitIdOperator(AOperator, ALeftParent, ARightParent, AResult: string);
     procedure AddQuantityOperator(AOperator, ALeftParent, ARightParent, AResult: string);
 
     procedure AddClass(const AClassName, AOperator, AClassParent1, AClassParent2,
@@ -167,7 +163,7 @@ begin
   end;
 end;
 
-procedure TMainForm.AddIdentifierOperator(AOperator, ALeftParent, ARightParent, AResult: string);
+procedure TMainForm.AddUnitIdOperator(AOperator, ALeftParent, ARightParent, AResult: string);
 begin
   if ALeftParent  <> 'double' then ALeftParent  := GetID(ALeftParent);
   if ARightParent <> 'double' then ARightParent := GetID(ARightParent);
@@ -177,11 +173,10 @@ begin
   begin
     OperatorList.Append(ALeftParent + AOperator + ARightParent);
 
-    SectionA2.Append('operator ' + AOperator + '(const {%H-}ALeft: ' + ALeftParent + '; const {%H-}ARight: ' + ARightParent  + '): ' + AResult + '; inline;');
-
-    SectionB2.Append('operator ' + AOperator + '(const ALeft: ' + ALeftParent + '; const ARight: ' + ARightParent  + '): ' + AResult + ';');
-    SectionB2.Append('begin end;');
-    SectionB2.Append('');
+    SectionA1.Append('operator ' + AOperator + '(const {%H-}ALeft: ' + ALeftParent + '; const {%H-}ARight: ' + ARightParent  + '): ' + AResult + '; inline;');
+    SectionB1.Append('operator ' + AOperator + '(const ALeft: ' + ALeftParent + '; const ARight: ' + ARightParent  + '): ' + AResult + ';');
+    SectionB1.Append('begin end;');
+    SectionB1.Append('');
   end;
 end;
 
@@ -197,10 +192,10 @@ begin
   begin
     OperatorList.Append(ALeftParent + AOperator + ARightParent);
 
-    SectionA2.Append('operator ' + AOperator + '(const ALeft: ' + ALeftParent + '; const ARight: ' + ARightParent + '): ' + AResult  + '; inline;');
+    SectionA1.Append('operator ' + AOperator + '(const ALeft: ' + ALeftParent + '; const ARight: ' + ARightParent + '): ' + AResult  + '; inline;');
 
-    SectionB2.Append('operator ' + AOperator + '(const ALeft: ' + ALeftParent + '; const ARight: ' + ARightParent + '): ' + AResult  + ';');
-    SectionB2.Append('begin');
+    SectionB1.Append('operator ' + AOperator + '(const ALeft: ' + ALeftParent + '; const ARight: ' + ARightParent + '): ' + AResult  + ';');
+    SectionB1.Append('begin');
 
     if AResult = 'double' then
       S := '  result :='
@@ -217,9 +212,9 @@ begin
     else
       S := S + ' ARight.Value;';
 
-    SectionB2.Append(S);
-    SectionB2.Append('end;');
-    SectionB2.Append('');
+    SectionB1.Append(S);
+    SectionB1.Append('end;');
+    SectionB1.Append('');
   end else
     MessageDlg('Duplicate Operator: ',  ALeftParent + AOperator + ARightParent + '=' + AResult + ' already esists.', mtError, [mbOk], '');
 end;
@@ -232,10 +227,8 @@ begin
     ClassList.Append(GetNM(AClassName));
 
     SectionA1.Add('');
-    SectionA1.Add('{ Unit of ' + GetNM(AClassName) + ' }');
-    SectionA1.Add('');
     SectionA1.Append('type');
-
+    SectionA1.Append('  { Unit of ' + GetNM(AClassName) + ' }');
     if (ABaseClass = '') and (AFactor = '') then
     begin
       SectionA1.Append('  ' + GetUN(AClassName) + ' = record');
@@ -243,7 +236,7 @@ begin
       SectionA1.Append('    const Name   : string = ''' + ALongSymbol + ''';');
       SectionA1.Append('  end;');
       SectionA1.Append('  ' + GetQT(AClassName) + ' = specialize TQuantity<' + GetUN(AClassName) + '>;');
-      SectionA1.Append('  ' + GetID(AClassName) + ' = specialize TQuantityId<' + GetUN(AClassName) + '>;');
+      SectionA1.Append('  ' + GetID(AClassName) + ' = specialize TUnitId<' + GetUN(AClassName) + '>;');
       SectionA1.Append('');
     end else
     begin
@@ -252,25 +245,24 @@ begin
       SectionA1.Append('    const Name   : string = ''' + ALongSymbol  + ''';');
       SectionA1.Append('    const Factor : double = '   + AFactor      +   ';');
       SectionA1.Append('  end;');
-      SectionA1.Append('  ' + GetID(AClassName) + ' = specialize TFactoredQuantityId<' + GetUN(ABaseClass) + ', ' + GetUN(AClassName) + '>;');
+      SectionA1.Append('  ' + GetID(AClassName) + ' = specialize TFactoredUnitId<' + GetUN(ABaseClass) + ', ' + GetUN(AClassName) + '>;');
       SectionA1.Append('');
     end;
 
     if AIdentifierSymbol <> '' then
     begin
-      SectionA1.Append('var');
-      SectionA1.Append('  ' + AIdentifierSymbol + ': ' + GetID(AClassName) + ';');
+      SectionA1.Append('var ' + AIdentifierSymbol + ': ' + GetID(AClassName) + ';');
       SectionA1.Append('');
     end else
     begin
       if (ABaseClass <> '') and (AFactor <> '') then
         if (AClassParent1 <> '') and (AClassParent2 <> '') then
         begin
-          SectionA2.Add('');
-          SectionA2.Add('// ' + AComment);
-          SectionB2.Add('');
-          SectionB2.Add('// ' + AComment);
-          AddIdentifierOperator('/', AClassParent1, AClassParent2, AClassName);
+          SectionA1.Add('');
+          SectionA1.Add('// ' + AComment);
+          SectionB1.Add('');
+          SectionB1.Add('// ' + AComment);
+          AddUnitIdOperator('/', AClassParent1, AClassParent2, AClassName);
         end;
     end;
   end;
@@ -279,15 +271,13 @@ begin
   begin
     if AOperator = '*' then
     begin
-      SectionA2.Add('');
-      SectionA2.Add('// ' + AComment);
-      SectionB2.Add('');
-      SectionB2.Add('// ' + AComment);
-      AddIdentifierOperator('*', AClassParent1, AClassParent2, AClassName);
-      SectionA2.Add('');
-      SectionB2.Add('');
-      AddQuantityOperator  ('*', AClassParent1, AClassParent2, AClassName);
-      AddQuantityOperator  ('/', AClassName,    AClassParent1, AClassParent2);
+      SectionA1.Add('');
+      SectionA1.Add('// ' + AComment);
+      SectionB1.Add('');
+      SectionB1.Add('// ' + AComment);
+      AddUnitIdOperator  ('*', AClassParent1, AClassParent2, AClassName);
+      AddQuantityOperator('*', AClassParent1, AClassParent2, AClassName);
+      AddQuantityOperator('/', AClassName,    AClassParent1, AClassParent2);
       if AClassParent1 <> AClassParent2 then
       begin
         AddQuantityOperator('*', AClassParent2, AClassParent1, AClassName);
@@ -297,17 +287,15 @@ begin
     end else
       if AOperator = '/' then
       begin
-        SectionA2.Add('');
-        SectionA2.Add('// ' + AComment);
-        SectionB2.Add('');
-        SectionB2.Add('// ' + AComment);
-        AddIdentifierOperator('/', AClassParent1, AClassParent2, AClassName);
-        SectionA2.Add('');
-        SectionB2.Add('');
-        AddQuantityOperator  ('/', AClassParent1, AClassParent2, AClassName);
-        AddQuantityOperator  ('/', AClassParent1, AClassName,    AClassParent2);
-        AddQuantityOperator  ('*', AClassName,    AClassParent2, AClassParent1);
-        AddQuantityOperator  ('*', AClassParent2, AClassName,    AClassParent1);
+        SectionA1.Add('');
+        SectionA1.Add('// ' + AComment);
+        SectionB1.Add('');
+        SectionB1.Add('// ' + AComment);
+        AddUnitIdOperator  ('/', AClassParent1, AClassParent2, AClassName);
+        AddQuantityOperator('/', AClassParent1, AClassParent2, AClassName);
+        AddQuantityOperator('/', AClassParent1, AClassName,    AClassParent2);
+        AddQuantityOperator('*', AClassName,    AClassParent2, AClassParent1);
+        AddQuantityOperator('*', AClassParent2, AClassName,    AClassParent1);
       end else
         if Pos('power', LowerCase(AOperator)) > 0 then
         begin
@@ -361,39 +349,38 @@ begin
   AQuantity := GetQT(AQuantity);
   AResult   := GetQT(AResult);
 
-  SectionA4.Add('function ' + S1 + 'Power(AQuantity: ' + AQuantity + '): ' + AResult + ';');
-  SectionA4.Add('function ' + S1 + 'Root(AQuantity: ' +  AResult + '): ' + AQuantity + ';');
+  SectionA3.Add('function ' + S1 + 'Power(AQuantity: ' + AQuantity + '): ' + AResult + ';');
+  SectionA3.Add('function ' + S1 + 'Root(AQuantity: ' +  AResult + '): ' + AQuantity + ';');
 
-  SectionB4.Add('function ' + S1 + 'Power(AQuantity: ' + AQuantity + '): ' + AResult + ';');
-  SectionB4.Add('begin');
-  SectionB4.Add('  result.Value := Power(AQuantity.Value, ' + S2 + ');');
-  SectionB4.Add('end;');
-  SectionB4.Add('');
+  SectionB3.Add('function ' + S1 + 'Power(AQuantity: ' + AQuantity + '): ' + AResult + ';');
+  SectionB3.Add('begin');
+  SectionB3.Add('  result.Value := Power(AQuantity.Value, ' + S2 + ');');
+  SectionB3.Add('end;');
+  SectionB3.Add('');
 
-  SectionB4.Add('function ' + S1 + 'Root(AQuantity: ' + AResult + '): ' + AQuantity + ';');
-  SectionB4.Add('begin');
-  SectionB4.Add('  result.Value := Power(AQuantity.Value, ' + S3 + ');');
-  SectionB4.Add('end;');
-  SectionB4.Add('');
+  SectionB3.Add('function ' + S1 + 'Root(AQuantity: ' + AResult + '): ' + AQuantity + ';');
+  SectionB3.Add('begin');
+  SectionB3.Add('  result.Value := Power(AQuantity.Value, ' + S3 + ');');
+  SectionB3.Add('end;');
+  SectionB3.Add('');
 end;
 
 procedure TMainForm.AddHelper(AClassParent1, AClassName: string);
 begin
-  SectionA7.Add('{ Helper for ' + GetNM(AClassName) + ' }');
-  SectionA7.Add('');
-  SectionA7.Append('type');
-  SectionA7.Append('  ' + GetUH(AClassName) + ' = record helper for ' + GetID(AClassName));
-  SectionA7.Append('    function From(const AQuantity: ' + GetQT(AClassParent1) + '): ' + GetQT(AClassName) + ';');
-  SectionA7.Append('  end;');
-  SectionA7.Add('');
+  SectionA2.Add('{ Helper for ' + GetNM(AClassName) + ' }');
+  SectionA2.Add('');
+  SectionA2.Append('type');
+  SectionA2.Append('  ' + GetUH(AClassName) + ' = record helper for ' + GetID(AClassName));
+  SectionA2.Append('    function From(const AQuantity: ' + GetQT(AClassParent1) + '): ' + GetQT(AClassName) + ';');
+  SectionA2.Append('  end;');
+  SectionA2.Add('');
 
-  SectionB7.Append('{ Helper for ' + GetNM(AClassName) + ' }');
-  SectionB7.Add('');
-  SectionB7.Append('function ' + GetUH(AClassName) + '.From(const AQuantity: ' + GetQT(AClassParent1) + '): ' + GetQT(AClassName) + ';');
-  SectionB7.Append('begin');
-  SectionB7.Append('  result.Value := AQuantity.Value;');
-  SectionB7.Append('end;');
-  SectionB7.Append('');
+  SectionB2.Add('');
+  SectionB2.Append('function ' + GetUH(AClassName) + '.From(const AQuantity: ' + GetQT(AClassParent1) + '): ' + GetQT(AClassName) + ';');
+  SectionB2.Append('begin');
+  SectionB2.Append('  result.Value := AQuantity.Value;');
+  SectionB2.Append('end;');
+  SectionB2.Append('');
 end;
 
 { TMainForm }
@@ -439,17 +426,13 @@ begin
   SectionA0    := TStringList.Create;
   SectionA1    := TStringList.Create;
   SectionA2    := TStringList.Create;
+  SectionA3    := TStringList.Create;
   SectionA4    := TStringList.Create;
-  SectionA5    := TStringList.Create;
-  SectionA6    := TStringList.Create;
-  SectionA7    := TStringList.Create;
 
   SectionB1    := TStringList.Create;
   SectionB2    := TStringList.Create;
+  SectionB3    := TStringList.Create;
   SectionB4    := TStringList.Create;
-  SectionB5    := TStringList.Create;
-  SectionB6    := TStringList.Create;
-  SectionB7    := TStringList.Create;
 
   Stream := TResourceStream.Create(HInstance, 'SECTION-A0', RT_RCDATA);
   SectionA0.LoadFromStream(Stream);
@@ -466,45 +449,32 @@ begin
   SectionB1.Insert(0, '');
   Stream.Destroy;
 
-  SectionA2.Add('{ Combining units & quantities }');
+  SectionA2.Add('');
+  SectionA2.Add('{ Helpers }');
   SectionA2.Add('');
   SectionB2.Add('');
-  SectionB2.Add('{ Combining units & quantities  }');
+  SectionB2.Add('{ Helpers }');
   SectionB2.Add('');
 
-  SectionA4.Add('');
-  SectionA4.Add('{ Power units }');
-  SectionA4.Add('');
-  SectionB4.Add('');
-  SectionB4.Add('{ Power quantities }');
-  SectionB4.Add('');
-
-  SectionA5.Add('');
-  SectionA5.Add('{ Equivalences }');
-  SectionA5.Add('');
-  SectionB5.Add('');
-  SectionB5.Add('{ Equivalences }');
-  SectionB5.Add('');
+  SectionA3.Add('');
+  SectionA3.Add('{ Power units }');
+  SectionA3.Add('');
+  SectionB3.Add('');
+  SectionB3.Add('{ Power quantities }');
+  SectionB3.Add('');
 
   if TrigonometricCheckBox.Checked then
   begin
-    Stream := TResourceStream.Create(HInstance, 'SECTION-A6', RT_RCDATA);
-    SectionA6.LoadFromStream(Stream);
-    SectionA6.Insert(0, '');
+    Stream := TResourceStream.Create(HInstance, 'SECTION-A4', RT_RCDATA);
+    SectionA4.LoadFromStream(Stream);
+    SectionA4.Insert(0, '');
     Stream.Destroy;
 
-    Stream := TResourceStream.Create(HInstance, 'SECTION-B6', RT_RCDATA);
-    SectionB6.LoadFromStream(Stream);
-    SectionB6.Insert(0, '');
+    Stream := TResourceStream.Create(HInstance, 'SECTION-B4', RT_RCDATA);
+    SectionB4.LoadFromStream(Stream);
+    SectionB4.Insert(0, '');
     Stream.Destroy;
   end;
-
-  SectionA7.Add('');
-  SectionA7.Add('{ Helpers }');
-  SectionA7.Add('');
-  SectionB7.Add('');
-  SectionB7.Add('{ Helpers }');
-  SectionB7.Add('');
 
   for I := 0 to WorksheetGrid.Worksheet.GetLastRowIndex do
   begin
@@ -551,17 +521,14 @@ begin
   for I := 0 to SectionA0.Count -1 do Document.Append(SectionA0[I]);
   for I := 0 to SectionA1.Count -1 do Document.Append(SectionA1[I]);
   for I := 0 to SectionA2.Count -1 do Document.Append(SectionA2[I]);
+  for I := 0 to SectionA3.Count -1 do Document.Append(SectionA3[I]);
   for I := 0 to SectionA4.Count -1 do Document.Append(SectionA4[I]);
-  for I := 0 to SectionA5.Count -1 do Document.Append(SectionA5[I]);
-  for I := 0 to SectionA6.Count -1 do Document.Append(SectionA6[I]);
-  for I := 0 to SectionA7.Count -1 do Document.Append(SectionA7[I]);
 
   for I := 0 to SectionB1.Count -1 do Document.Append(SectionB1[I]);
   for I := 0 to SectionB2.Count -1 do Document.Append(SectionB2[I]);
+  for I := 0 to SectionB3.Count -1 do Document.Append(SectionB3[I]);
   for I := 0 to SectionB4.Count -1 do Document.Append(SectionB4[I]);
-  for I := 0 to SectionB5.Count -1 do Document.Append(SectionB5[I]);
-  for I := 0 to SectionB6.Count -1 do Document.Append(SectionB6[I]);
-  for I := 0 to SectionB7.Count -1 do Document.Append(SectionB7[I]);
+
   Document.Append('');
   Document.Append('end.');
   CleanDocument(Document);
@@ -574,20 +541,17 @@ begin
   end;
   SynEdit.EndUpdate;
 
-  SectionB7.Destroy;
-  SectionB6.Destroy;
-  SectionB5.Destroy;
   SectionB4.Destroy;
+  SectionB3.Destroy;
   SectionB2.Destroy;
   SectionB1.Destroy;
 
-  SectionA7.Destroy;
-  SectionA6.Destroy;
-  SectionA5.Destroy;
   SectionA4.Destroy;
+  SectionA3.Destroy;
   SectionA2.Destroy;
   SectionA1.Destroy;
   SectionA0.Destroy;
+
   OperatorList.Destroy;
   ClassList.Destroy;
   Document.Destroy;

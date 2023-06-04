@@ -1,7 +1,6 @@
 implementation
 
-uses
-  Math;
+uses Math;
 
 { TQuantity }
 
@@ -40,19 +39,19 @@ begin
   result.Value := ALeft.Value - ARight.Value;
 end;
 
-class operator TQuantity.*(const AFactor: double; const AValue: TSelf): TSelf;
+class operator TQuantity.*(const AValue: double; const ASelf: TSelf): TSelf;
 begin
-  result.Value := AFactor * AValue.Value;
+  result.Value := AValue * ASelf.Value;
 end;
 
-class operator TQuantity.*(const AValue: TSelf; const AFactor: double): TSelf;
+class operator TQuantity.*(const ASelf: TSelf; const AValue: double): TSelf;
 begin
-  result.Value := AValue.Value * AFactor;
+  result.Value := ASelf.Value * AValue;
 end;
 
-class operator TQuantity./(const AValue: TSelf; const AFactor: double): TSelf;
+class operator TQuantity./(const ASelf: TSelf; const AValue: double): TSelf;
 begin
-  result.Value := AValue.Value / AFactor;
+  result.Value := ASelf.Value / AValue;
 end;
 
 class operator TQuantity./(const ALeft, ARight: TSelf): double;
@@ -90,26 +89,26 @@ begin
   result := ALeft.Value >= ARight.Value;
 end;
 
-{ TQuantityId }
+{ TUnitId }
 
-class function TQuantityId.From(const AQuantity: TBaseQuantity): TBaseQuantity;
+class function TUnitId.From(const AQuantity: TBaseQuantity): TBaseQuantity;
 begin
   result.Value := AQuantity.Value;
 end;
 
-class operator TQuantityId.*(const AValue: double; const TheUnit: TSelf): TBaseQuantity;
+class operator TUnitId.*(const AValue: double; const ASelf: TSelf): TBaseQuantity;
 begin
   result.Value := AValue;
 end;
 
-{ TFactoredQuantityId }
+{ TFactoredUnitId }
 
-class function TFactoredQuantityId.From(const AQuantity: TBaseQuantity): TFactoredQuantity;
+class function TFactoredUnitId.From(const AQuantity: TBaseQuantity): TFactoredQuantity;
 begin
   result.Value := AQuantity.Value / U.Factor;
 end;
 
-class operator TFactoredQuantityId.*(const AValue: double; const TheUnit: TSelf): TBaseQuantity;
+class operator TFactoredUnitId.*(const AValue: double; const ASelf: TSelf): TBaseQuantity;
 begin
   result.Value := AValue * U.Factor;
-end;     
+end;
