@@ -64,8 +64,9 @@ type
     SectionB3: TStringList;
     SectionB4: TStringList;
 
-    procedure AddUnitIdOperator(AOperator, ALeftParent, ARightParent, AResult: string);
     procedure AddQuantityOperator(AOperator, ALeftParent, ARightParent, AResult: string);
+    procedure AddUnitIdOperator(AOperator, ALeftParent, ARightParent, AResult: string);
+    procedure AddFactoredUnitId(const AIdentifierSymbol, ABaseClass, AFactor: string);
 
     procedure AddClass(const AClassName, AOperator, AClassParent1, AClassParent2,
       AComment, ALongSymbol, AShortSymbol, AIdentifierSymbol, ABaseClass, AFactor: string);
@@ -163,23 +164,6 @@ begin
   end;
 end;
 
-procedure TMainForm.AddUnitIdOperator(AOperator, ALeftParent, ARightParent, AResult: string);
-begin
-  if ALeftParent  <> 'double' then ALeftParent  := GetID(ALeftParent);
-  if ARightParent <> 'double' then ARightParent := GetID(ARightParent);
-  if AResult      <> 'double' then AResult      := GetID(AResult);
-
-  if OperatorList.IndexOf(ALeftParent + AOperator + ARightParent) = -1 then
-  begin
-    OperatorList.Append(ALeftParent + AOperator + ARightParent);
-
-    SectionA1.Append('operator ' + AOperator + '(const {%H-}ALeft: ' + ALeftParent + '; const {%H-}ARight: ' + ARightParent  + '): ' + AResult + '; inline;');
-    SectionB1.Append('operator ' + AOperator + '(const ALeft: ' + ALeftParent + '; const ARight: ' + ARightParent  + '): ' + AResult + ';');
-    SectionB1.Append('begin end;');
-    SectionB1.Append('');
-  end;
-end;
-
 procedure TMainForm.AddQuantityOperator(AOperator, ALeftParent, ARightParent, AResult: string);
 var
   S: string;
@@ -219,6 +203,40 @@ begin
     MessageDlg('Duplicate Operator: ',  ALeftParent + AOperator + ARightParent + '=' + AResult + ' already esists.', mtError, [mbOk], '');
 end;
 
+procedure TMainForm.AddUnitIdOperator(AOperator, ALeftParent, ARightParent, AResult: string);
+begin
+  if ALeftParent  <> 'double' then ALeftParent  := GetID(ALeftParent);
+  if ARightParent <> 'double' then ARightParent := GetID(ARightParent);
+  if AResult      <> 'double' then AResult      := GetID(AResult);
+
+  if OperatorList.IndexOf(ALeftParent + AOperator + ARightParent) = -1 then
+  begin
+    OperatorList.Append(ALeftParent + AOperator + ARightParent);
+
+    SectionA1.Append('');
+    SectionA1.Append('operator ' + AOperator + '(const {%H-}ALeft: ' + ALeftParent + '; const {%H-}ARight: ' + ARightParent  + '): ' + AResult + '; inline;');
+    SectionA1.Append('');
+    SectionB1.Append('');
+    SectionB1.Append('operator ' + AOperator + '(const ALeft: ' + ALeftParent + '; const ARight: ' + ARightParent  + '): ' + AResult + ';');
+    SectionB1.Append('begin end;');
+    SectionB1.Append('');
+  end;
+end;
+
+procedure TMainForm.AddFactoredUnitId(const AIdentifierSymbol, ABaseClass, AFactor: string);
+begin
+  SectionA1.Append('');
+  SectionA1.Append(Format('function %s: %s;' , [AIdentifierSymbol, ABaseClass]));
+  SectionA1.Append('');
+
+  SectionB1.Append('');
+  SectionB1.Append(Format('function %s: %s;' , [AIdentifierSymbol, ABaseClass]));
+  SectionB1.Append('begin');
+  SectionB1.Append(Format('  result.Value := %s;' , [AFactor]));
+  SectionB1.Append('end;');
+  SectionB1.Append('');
+end;
+
 procedure TMainForm.AddClass(const AClassName, AOperator, AClassParent1, AClassParent2,
   AComment, ALongSymbol, AShortSymbol, AIdentifierSymbol, ABaseClass, AFactor: string);
 begin
@@ -226,10 +244,10 @@ begin
   begin
     ClassList.Append(GetNM(AClassName));
 
-    SectionA1.Add('');
+    SectionA1.Append('');
     SectionA1.Append('type');
     SectionA1.Append('  { Unit of ' + GetNM(AClassName) + ' }');
-    if (ABaseClass = '') and (AFactor = '') then
+    if (ABaseClass = '') then
     begin
       SectionA1.Append('  ' + GetUN(AClassName) + ' = record');
       SectionA1.Append('    const Symbol = ''' + AShortSymbol + ''';');
@@ -248,26 +266,20 @@ begin
       SectionA1.Append('  ' + GetID(AClassName) + ' = specialize TFactoredUnitId<' + GetUN(ABaseClass) + ', ' + GetUN(AClassName) + '>;');
       SectionA1.Append('');
     end;
-
-    if AIdentifierSymbol <> '' then
-    begin
-      SectionA1.Append('var ' + AIdentifierSymbol + ': ' + GetID(AClassName) + ';');
-      SectionA1.Append('');
-    end else
-    begin
-      if (ABaseClass <> '') and (AFactor <> '') then
-        if (AClassParent1 <> '') and (AClassParent2 <> '') then
-        begin
-          SectionA1.Add('');
-          SectionA1.Add('// ' + AComment);
-          SectionB1.Add('');
-          SectionB1.Add('// ' + AComment);
-          AddUnitIdOperator('/', AClassParent1, AClassParent2, AClassName);
-        end;
-    end;
   end;
 
-  if (ABaseClass = '') and (AFactor = '') then
+  if (AIdentifierSymbol = 'operator') then
+  begin
+    AddUnitIdOperator(AOperator, AClassParent1, AClassParent2, AClassName);
+  end else
+    if (AIdentifierSymbol <> '') then
+    begin
+      SectionA1.Append('');
+      SectionA1.Append(Format('var %s: %s;', [AIdentifierSymbol, GetID(AClassName)]));
+      SectionA1.Append('');
+    end;
+
+  if (ABaseClass = '') then
   begin
     if AOperator = '*' then
     begin
@@ -275,7 +287,7 @@ begin
       SectionA1.Add('// ' + AComment);
       SectionB1.Add('');
       SectionB1.Add('// ' + AComment);
-      AddUnitIdOperator  ('*', AClassParent1, AClassParent2, AClassName);
+
       AddQuantityOperator('*', AClassParent1, AClassParent2, AClassName);
       AddQuantityOperator('/', AClassName,    AClassParent1, AClassParent2);
       if AClassParent1 <> AClassParent2 then
@@ -291,7 +303,7 @@ begin
         SectionA1.Add('// ' + AComment);
         SectionB1.Add('');
         SectionB1.Add('// ' + AComment);
-        AddUnitIdOperator  ('/', AClassParent1, AClassParent2, AClassName);
+
         AddQuantityOperator('/', AClassParent1, AClassParent2, AClassName);
         AddQuantityOperator('/', AClassParent1, AClassName,    AClassParent2);
         AddQuantityOperator('*', AClassName,    AClassParent2, AClassParent1);
