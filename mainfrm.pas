@@ -232,8 +232,8 @@ begin
     if (ABaseClass = '') and (AFactor = '') then
     begin
       SectionA1.Append('  ' + GetUN(AClassName) + ' = record');
-      SectionA1.Append('    const Symbol : string = ''' + AShortSymbol + ''';');
-      SectionA1.Append('    const Name   : string = ''' + ALongSymbol + ''';');
+      SectionA1.Append('    const Symbol = ''' + AShortSymbol + ''';');
+      SectionA1.Append('    const Name   = ''' + ALongSymbol + ''';');
       SectionA1.Append('  end;');
       SectionA1.Append('  ' + GetQT(AClassName) + ' = specialize TQuantity<' + GetUN(AClassName) + '>;');
       SectionA1.Append('  ' + GetID(AClassName) + ' = specialize TUnitId<' + GetUN(AClassName) + '>;');
@@ -241,9 +241,9 @@ begin
     end else
     begin
       SectionA1.Append('  ' + GetUN(AClassName) + ' = record');
-      SectionA1.Append('    const Symbol : string = ''' + AShortSymbol + ''';');
-      SectionA1.Append('    const Name   : string = ''' + ALongSymbol  + ''';');
-      SectionA1.Append('    const Factor : double = '   + AFactor      +   ';');
+      SectionA1.Append('    const Symbol = ''' + AShortSymbol + ''';');
+      SectionA1.Append('    const Name   = ''' + ALongSymbol  + ''';');
+      SectionA1.Append('    const Factor = '   + AFactor      +   ';');
       SectionA1.Append('  end;');
       SectionA1.Append('  ' + GetID(AClassName) + ' = specialize TFactoredUnitId<' + GetUN(ABaseClass) + ', ' + GetUN(AClassName) + '>;');
       SectionA1.Append('');
@@ -367,7 +367,6 @@ end;
 
 procedure TMainForm.AddHelper(AClassParent1, AClassName: string);
 begin
-  SectionA2.Add('{ Helper for ' + GetNM(AClassName) + ' }');
   SectionA2.Add('');
   SectionA2.Append('type');
   SectionA2.Append('  ' + GetUH(AClassName) + ' = record helper for ' + GetID(AClassName));
