@@ -219,13 +219,12 @@ begin
 
     SectionB1.Append('');
     SectionB1.Append('operator ' + AOperator + '(const ALeft: ' + ALeftParent + '; const {%H-}ARight: ' + ARightParent  + '): ' + AResult + ';');
-
+    SectionB1.Append('begin');
     if ALeftParent <> 'double' then
-
-      SectionB1.Append('begin result.Value := ALeft.Value; end;')
+      SectionB1.Append('  result.Value := ALeft.Value;')
     else
-      SectionB1.Append('begin result.Value := ALeft; end;');
-
+      SectionB1.Append('  result.Value := ALeft;');
+    SectionB1.Append('end;');
     SectionB1.Append('');
   end;
 end;
@@ -252,10 +251,10 @@ begin
     ClassList.Append(GetNM(AClassName));
 
     SectionA1.Append('');
+    SectionA1.Append('type');
+    SectionA1.Append('  { Unit of ' + GetNM(AClassName) + ' }');
     if (ABaseClass = '') then
     begin
-      SectionA1.Append('type');
-      SectionA1.Append('  { Unit of ' + GetNM(AClassName) + ' }');
       SectionA1.Append('  ' + GetUN(AClassName) + ' = record');
       SectionA1.Append('    const Symbol = ''' + AShortSymbol + ''';');
       SectionA1.Append('    const Name   = ''' + ALongSymbol + ''';');
@@ -265,7 +264,6 @@ begin
       SectionA1.Append('');
     end else
     begin
-      SectionA1.Append('type');
       SectionA1.Append('  ' + GetUN(AClassName) + ' = record');
       SectionA1.Append('    const Symbol = ''' + AShortSymbol + ''';');
       SectionA1.Append('    const Name   = ''' + ALongSymbol  + ''';');
@@ -324,9 +322,10 @@ begin
   begin
     if AOperator = '*' then
     begin
-      SectionA1.Add('// ' + AComment);
-      SectionB1.Add('');
-      SectionB1.Add('// ' + AComment);
+      SectionA1.Append('');
+      SectionA1.Append('// ' + AComment);
+      SectionB1.Append('');
+      SectionB1.Append('// ' + AComment);
 
       AddQuantityOperator('*', AClassParent1, AClassParent2, AClassName);
       AddQuantityOperator('/', AClassName,    AClassParent1, AClassParent2);
@@ -341,9 +340,10 @@ begin
     end else
       if AOperator = '/' then
       begin
-        SectionA1.Add('// ' + AComment);
-        SectionB1.Add('');
-        SectionB1.Add('// ' + AComment);
+        SectionA1.Append('');
+        SectionA1.Append('// ' + AComment);
+        SectionB1.Append('');
+        SectionB1.Append('// ' + AComment);
 
         AddQuantityOperator('/', AClassParent1, AClassParent2, AClassName);
         AddQuantityOperator('/', AClassParent1, AClassName,    AClassParent2);

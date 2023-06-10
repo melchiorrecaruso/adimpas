@@ -1,11 +1,11 @@
 object MainForm: TMainForm
-  Left = 198
-  Height = 519
-  Top = 134
-  Width = 1137
+  Left = 313
+  Height = 530
+  Top = 111
+  Width = 766
   Caption = 'ADimPas Unit Toolkit'
-  ClientHeight = 519
-  ClientWidth = 1137
+  ClientHeight = 530
+  ClientWidth = 766
   OnCreate = FormCreate
   LCLVersion = '2.3.0.0'
   object PageControl: TPageControl
@@ -16,9 +16,9 @@ object MainForm: TMainForm
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
     Left = 0
-    Height = 479
+    Height = 490
     Top = 40
-    Width = 1137
+    Width = 766
     ActivePage = TabSheet1
     Anchors = [akTop, akLeft, akRight, akBottom]
     BorderSpacing.Top = 4
@@ -26,13 +26,13 @@ object MainForm: TMainForm
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = 'Unit of measurement'
-      ClientHeight = 451
-      ClientWidth = 1129
+      ClientHeight = 462
+      ClientWidth = 758
       object WorksheetGrid: TsWorksheetGrid
         Left = 4
-        Height = 443
+        Height = 454
         Top = 4
-        Width = 1121
+        Width = 750
         FrozenCols = 0
         FrozenRows = 0
         PageBreakPen.Color = clBlue
@@ -55,8 +55,8 @@ object MainForm: TMainForm
     end
     object TabSheet2: TTabSheet
       Caption = 'Unit Source Code'
-      ClientHeight = 451
-      ClientWidth = 1129
+      ClientHeight = 462
+      ClientWidth = 758
       inline SynEdit: TSynEdit
         AnchorSideLeft.Control = TabSheet2
         AnchorSideTop.Control = TabSheet2
@@ -65,9 +65,9 @@ object MainForm: TMainForm
         AnchorSideBottom.Control = TabSheet2
         AnchorSideBottom.Side = asrBottom
         Left = 4
-        Height = 443
+        Height = 454
         Top = 4
-        Width = 1121
+        Width = 750
         BorderSpacing.Left = 4
         BorderSpacing.Top = 4
         BorderSpacing.Right = 4
@@ -663,7 +663,7 @@ object MainForm: TMainForm
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Side = asrBottom
-    Left = 1033
+    Left = 662
     Height = 32
     Top = 8
     Width = 100
@@ -755,7 +755,7 @@ object MainForm: TMainForm
     AnchorSideRight.Control = RunBtn
     AnchorSideBottom.Control = RunBtn
     AnchorSideBottom.Side = asrBottom
-    Left = 929
+    Left = 558
     Height = 32
     Top = 8
     Width = 100
@@ -771,7 +771,7 @@ object MainForm: TMainForm
     AnchorSideRight.Control = ExportBtn
     AnchorSideBottom.Control = ExportBtn
     AnchorSideBottom.Side = asrBottom
-    Left = 750
+    Left = 379
     Height = 32
     Top = 8
     Width = 169
