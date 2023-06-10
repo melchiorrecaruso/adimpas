@@ -62,9 +62,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainFrm"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="167"/>
-        <CursorPos X="76" Y="218"/>
-        <FoldState Value=" T3kb0b011 PCiN0q"/>
+        <CursorPos X="7" Y="552"/>
         <UsageCount Value="99"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -204,8 +202,7 @@
       </Unit>
       <Unit>
         <Filename Value="resources\section-A1"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="4"/>
         <CursorPos X="9" Y="16"/>
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
@@ -219,9 +216,9 @@
       </Unit>
       <Unit>
         <Filename Value="resources\section-B1"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="63"/>
-        <CursorPos X="5" Y="109"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="72"/>
+        <CursorPos X="31" Y="108"/>
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
@@ -239,6 +236,29 @@
         <TopLine Value="155"/>
         <CursorPos X="10" Y="174"/>
         <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="resources\section-A0"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="None"/>
+      </Unit>
+      <Unit>
+        <Filename Value="resources\section-A4"/>
+        <EditorIndex Value="2"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="None"/>
+      </Unit>
+      <Unit>
+        <Filename Value="resources\section-B4"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="14"/>
+        <CursorPos X="11" Y="50"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">

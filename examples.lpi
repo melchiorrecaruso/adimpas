@@ -112,8 +112,8 @@
       <Unit>
         <Filename Value="ADim.pas"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="2479"/>
-        <CursorPos X="91" Y="2494"/>
+        <TopLine Value="3703"/>
+        <CursorPos X="10" Y="3722"/>
         <UsageCount Value="14"/>
         <Loaded Value="True"/>
       </Unit>
@@ -177,14 +177,6 @@
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="examples.pas"/>
-        <Caret Line="213" Column="45" TopLine="194"/>
-      </Position>
-      <Position>
-        <Filename Value="examples.pas"/>
-        <Caret Line="224" Column="45" TopLine="205"/>
-      </Position>
       <Position>
         <Filename Value="examples.pas"/>
         <Caret Line="226" Column="61" TopLine="207"/>
@@ -296,6 +288,14 @@
       <Position>
         <Filename Value="examples.pas"/>
         <Caret Line="212" Column="33" TopLine="193"/>
+      </Position>
+      <Position>
+        <Filename Value="ADim.pas"/>
+        <Caret Line="2494" Column="91" TopLine="2479"/>
+      </Position>
+      <Position>
+        <Filename Value="ADim.pas"/>
+        <Caret Line="3623" Column="10" TopLine="3604"/>
       </Position>
     </JumpHistory>
   </ProjectOptions>

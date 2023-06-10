@@ -12,7 +12,7 @@ type
   generic TQuantity<U> = record
     type TSelf = specialize TQuantity<U>;
   private
-    Value: double;
+    FValue: double;
   public
     function Abs: TSelf;
     function ToString: string;

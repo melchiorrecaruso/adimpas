@@ -6,104 +6,104 @@ uses Math;
 
 function TQuantity.Abs: TSelf;
 begin
-  result.Value := System.Abs(Value);
+  result.FValue := System.Abs(FValue);
 end;
 
 function TQuantity.ToString: string;
 begin
-  result := FloatToStr(Value) + ' ' + U.Symbol;
+  result := FloatToStr(FValue) + ' ' + U.Symbol;
 end;
 
 function TQuantity.ToString(Precision, Digits: longint): string;
 begin
-  result := FloatToStrF(Value, ffGeneral, Precision, Digits)  + ' ' + U.Symbol;
+  result := FloatToStrF(FValue, ffGeneral, Precision, Digits)  + ' ' + U.Symbol;
 end;
 
 function TQuantity.ToVerboseString: string;
 begin
-  result := FloatToStr(Value) + ' ' + U.Name;
+  result := FloatToStr(FValue) + ' ' + U.Name;
 end;
 
 function TQuantity.ToVerboseString(Precision, Digits: longint): string;
 begin
-  result := FloatToStrF(Value, ffGeneral, Precision, Digits)  + ' ' + U.Name;
+  result := FloatToStrF(FValue, ffGeneral, Precision, Digits)  + ' ' + U.Name;
 end; 
 
 class operator TQuantity.+(const ALeft, ARight: TSelf): TSelf;
 begin
-  result.Value := ALeft.Value + ARight.Value;
+  result.FValue := ALeft.FValue + ARight.FValue;
 end;
 
 class operator TQuantity.-(const ALeft, ARight: TSelf): TSelf;
 begin
-  result.Value := ALeft.Value - ARight.Value;
+  result.FValue := ALeft.FValue - ARight.FValue;
 end;
 
 class operator TQuantity.*(const AValue: double; const ASelf: TSelf): TSelf;
 begin
-  result.Value := AValue * ASelf.Value;
+  result.FValue := AValue * ASelf.FValue;
 end;
 
 class operator TQuantity.*(const ASelf: TSelf; const AValue: double): TSelf;
 begin
-  result.Value := ASelf.Value * AValue;
+  result.FValue := ASelf.FValue * AValue;
 end;
 
 class operator TQuantity./(const ASelf: TSelf; const AValue: double): TSelf;
 begin
-  result.Value := ASelf.Value / AValue;
+  result.FValue := ASelf.FValue / AValue;
 end;
 
 class operator TQuantity./(const ALeft, ARight: TSelf): double;
 begin
-  result := ALeft.Value / ARight.Value;
+  result := ALeft.FValue / ARight.FValue;
 end;
 
 class operator TQuantity.mod(const ALeft, ARight: TSelf): TSelf;
 begin
-  result.Value := ALeft.Value mod ARight.Value;
+  result.FValue := ALeft.FValue mod ARight.FValue;
 end;
 
 class operator TQuantity.=(const ALeft, ARight: TSelf): boolean;
 begin
-  result := ALeft.Value = ARight.Value;
+  result := ALeft.FValue = ARight.FValue;
 end;
 
 class operator TQuantity.<(const ALeft, ARight: TSelf): boolean;
 begin
-  result := ALeft.Value < ARight.Value;
+  result := ALeft.FValue < ARight.FValue;
 end;
 
 class operator TQuantity.>(const ALeft, ARight: TSelf): boolean;
 begin
-  result := ALeft.Value > ARight.Value;
+  result := ALeft.FValue > ARight.FValue;
 end;
 
 class operator TQuantity.<=(const ALeft, ARight: TSelf): boolean;
 begin
-  result := ALeft.Value <= ARight.Value;
+  result := ALeft.FValue <= ARight.FValue;
 end;
 
 class operator TQuantity.>=(const ALeft, ARight: TSelf): boolean;
 begin
-  result := ALeft.Value >= ARight.Value;
+  result := ALeft.FValue >= ARight.FValue;
 end;
 
 { TUnitId }
 
 class function TUnitId.From(const AQuantity: TBaseQuantity): TBaseQuantity;
 begin
-  result.Value := AQuantity.Value;
+  result.FValue := AQuantity.FValue;
 end;
 
 class operator TUnitId.*(const AValue: double; const ASelf: TSelf): TBaseQuantity;
 begin
-  result.Value := AValue;
+  result.FValue := AValue;
 end;
 
 { TFactoredUnitId }
 
 class function TFactoredUnitId.From(const AQuantity: TBaseQuantity): TFactoredQuantity;
 begin
-  result.Value := AQuantity.Value / U.Factor;
+  result.FValue := AQuantity.FValue / U.Factor;
 end;

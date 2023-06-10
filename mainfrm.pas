@@ -184,17 +184,17 @@ begin
     if AResult = 'double' then
       S := '  result :='
     else
-      S := '  result.Value :=';
+      S := '  result.FValue :=';
 
     if ALeftParent = 'double' then
       S := S + ' ALeft ' + AOperator
     else
-      S := S + ' ALeft.Value ' + AOperator;
+      S := S + ' ALeft.FValue ' + AOperator;
 
     if ARightParent = 'double' then
       S := S + ' ARight;'
     else
-      S := S + ' ARight.Value;';
+      S := S + ' ARight.FValue;';
 
     SectionB1.Append(S);
     SectionB1.Append('end;');
@@ -221,9 +221,9 @@ begin
     SectionB1.Append('operator ' + AOperator + '(const ALeft: ' + ALeftParent + '; const {%H-}ARight: ' + ARightParent  + '): ' + AResult + ';');
     SectionB1.Append('begin');
     if ALeftParent <> 'double' then
-      SectionB1.Append('  result.Value := ALeft.Value;')
+      SectionB1.Append('  result.FValue := ALeft.FValue;')
     else
-      SectionB1.Append('  result.Value := ALeft;');
+      SectionB1.Append('  result.FValue := ALeft;');
     SectionB1.Append('end;');
     SectionB1.Append('');
   end;
@@ -305,13 +305,13 @@ begin
     begin
       SectionA1.Append('');
       SectionA1.Append('const');
-      SectionA1.Append(Format('  %s: specialize TQuantity<%s> = (Value: %s);', [AIdentifierSymbol, GetUN(ABaseClass), GetUN(AClassName) + '.Factor']));
+      SectionA1.Append(Format('  %s: specialize TQuantity<%s> = (FValue: %s);', [AIdentifierSymbol, GetUN(ABaseClass), GetUN(AClassName) + '.Factor']));
       (*
       SectionA1.Append(Format('  function %s: %s;', [AIdentifierSymbol, GetQT(ABaseClass)]));
       SectionA1.Append('');
 
       SectionB1.Append(Format('function %s: %s;', [AIdentifierSymbol, GetQT(ABaseClass)]));
-      SectionB1.Append('begin result.Value := ' + AFactor + ' end;');
+      SectionB1.Append('begin result.FValue := ' + AFactor + ' end;');
       SectionB1.Append('');
       *)
     end;
@@ -411,13 +411,13 @@ begin
 
   SectionB3.Add('function ' + S1 + 'Power(AQuantity: ' + AQuantity + '): ' + AResult + ';');
   SectionB3.Add('begin');
-  SectionB3.Add('  result.Value := Power(AQuantity.Value, ' + S2 + ');');
+  SectionB3.Add('  result.FValue := Power(AQuantity.FValue, ' + S2 + ');');
   SectionB3.Add('end;');
   SectionB3.Add('');
 
   SectionB3.Add('function ' + S1 + 'Root(AQuantity: ' + AResult + '): ' + AQuantity + ';');
   SectionB3.Add('begin');
-  SectionB3.Add('  result.Value := Power(AQuantity.Value, ' + S3 + ');');
+  SectionB3.Add('  result.FValue := Power(AQuantity.FValue, ' + S3 + ');');
   SectionB3.Add('end;');
   SectionB3.Add('');
 end;
@@ -434,7 +434,7 @@ begin
   SectionB2.Add('');
   SectionB2.Append('function ' + GetUH(AClassName) + '.From(const AQuantity: ' + GetQT(AClassParent1) + '): ' + GetQT(AClassName) + ';');
   SectionB2.Append('begin');
-  SectionB2.Append('  result.Value := AQuantity.Value;');
+  SectionB2.Append('  result.FValue := AQuantity.FValue;');
   SectionB2.Append('end;');
   SectionB2.Append('');
 end;
@@ -535,8 +535,6 @@ begin
   for I := 0 to WorksheetGrid.Worksheet.GetLastRowIndex do
   begin
     if (WorksheetGrid.Worksheet.ReadAsText(I, _class_name) <> '') then
-     //(WorksheetGrid.Worksheet.ReadAsText(I, _base_class)  = '') and
-     //(WorksheetGrid.Worksheet.ReadAsText(I, _factor    )  = '') then
     begin
       if Pos('//', WorksheetGrid.Worksheet.ReadAsText(I, _class_name)) = 0 then
         AddClass(
@@ -552,28 +550,6 @@ begin
           WorksheetGrid.Worksheet.ReadAsText(I, _factor           ));
     end;
   end;
-  (*
-  for I := 0 to WorksheetGrid.Worksheet.GetLastRowIndex do
-  begin
-    if (WorksheetGrid.Worksheet.ReadAsText(I, _class_name) <> '') and
-       (WorksheetGrid.Worksheet.ReadAsText(I, _base_class) <> '') and
-       (WorksheetGrid.Worksheet.ReadAsText(I, _factor    ) <> '') then
-    begin
-      if Pos('//', WorksheetGrid.Worksheet.ReadAsText(I, _class_name)) = 0 then
-        AddClass(
-          WorksheetGrid.Worksheet.ReadAsText(I, _class_name       ),
-          WorksheetGrid.Worksheet.ReadAsText(I, _operator         ),
-          WorksheetGrid.Worksheet.ReadAsText(I, _class_parent_1   ),
-          WorksheetGrid.Worksheet.ReadAsText(I, _class_parent_2   ),
-          WorksheetGrid.Worksheet.ReadAsText(I, _comment          ),
-          WorksheetGrid.Worksheet.ReadAsText(I, _long_symbol      ),
-          WorksheetGrid.Worksheet.ReadAsText(I, _short_symbol     ),
-          WorksheetGrid.Worksheet.ReadAsText(I, _identifier_symbol),
-          WorksheetGrid.Worksheet.ReadAsText(I, _base_class       ),
-          WorksheetGrid.Worksheet.ReadAsText(I, _factor           ));
-    end;
-  end;
-  *)
 
   for I := 0 to SectionA0.Count -1 do Document.Append(SectionA0[I]);
   for I := 0 to SectionA1.Count -1 do Document.Append(SectionA1[I]);
