@@ -86,7 +86,7 @@ implementation
 {$R *.lfm}
 
 uses
-  LCLType;
+  LCLType, StrUtils;
 
 const
   _class_name        = 0;
@@ -147,7 +147,7 @@ begin
   i := 0;
   while i < S.Count do
   begin
-    if S[i] = '' then
+    if IsEmptyStr(S[i], [' ']) then
     begin
       S.Delete(i);
     end else
@@ -156,7 +156,7 @@ begin
 
   while (i + 1) < S.Count do
   begin
-    if (S[i] = '') and (S[i + 1] = '') then
+    if IsEmptyStr(S[i], [' ']) and IsEmptyStr(S[i + 1], [' ']) then
     begin
       S.Delete(i + 1);
     end;
@@ -205,20 +205,27 @@ end;
 
 procedure TMainForm.AddUnitIdOperator(AOperator, ALeftParent, ARightParent, AResult: string);
 begin
-  if ALeftParent  <> 'double' then ALeftParent  := GetID(ALeftParent);
+  if ALeftParent  <> 'double' then ALeftParent  := GetQT(ALeftParent);
   if ARightParent <> 'double' then ARightParent := GetID(ARightParent);
-  if AResult      <> 'double' then AResult      := GetID(AResult);
+  if AResult      <> 'double' then AResult      := GetQT(AResult);
 
   if OperatorList.IndexOf(ALeftParent + AOperator + ARightParent) = -1 then
   begin
     OperatorList.Append(ALeftParent + AOperator + ARightParent);
 
-    SectionA1.Append('');
-    SectionA1.Append('operator ' + AOperator + '(const {%H-}ALeft: ' + ALeftParent + '; const {%H-}ARight: ' + ARightParent  + '): ' + AResult + '; inline;');
-    SectionA1.Append('');
+    SectionA1.Add('');
+    SectionA1.Append('operator ' + AOperator + '(const ALeft: ' + ALeftParent + '; const {%H-}ARight: ' + ARightParent  + '): ' + AResult + '; inline;');
+    SectionA1.Add('');
+
     SectionB1.Append('');
-    SectionB1.Append('operator ' + AOperator + '(const ALeft: ' + ALeftParent + '; const ARight: ' + ARightParent  + '): ' + AResult + ';');
-    SectionB1.Append('begin end;');
+    SectionB1.Append('operator ' + AOperator + '(const ALeft: ' + ALeftParent + '; const {%H-}ARight: ' + ARightParent  + '): ' + AResult + ';');
+
+    if ALeftParent <> 'double' then
+
+      SectionB1.Append('begin result.Value := ALeft.Value; end;')
+    else
+      SectionB1.Append('begin result.Value := ALeft; end;');
+
     SectionB1.Append('');
   end;
 end;
@@ -245,10 +252,10 @@ begin
     ClassList.Append(GetNM(AClassName));
 
     SectionA1.Append('');
-    SectionA1.Append('type');
-    SectionA1.Append('  { Unit of ' + GetNM(AClassName) + ' }');
     if (ABaseClass = '') then
     begin
+      SectionA1.Append('type');
+      SectionA1.Append('  { Unit of ' + GetNM(AClassName) + ' }');
       SectionA1.Append('  ' + GetUN(AClassName) + ' = record');
       SectionA1.Append('    const Symbol = ''' + AShortSymbol + ''';');
       SectionA1.Append('    const Name   = ''' + ALongSymbol + ''';');
@@ -258,32 +265,65 @@ begin
       SectionA1.Append('');
     end else
     begin
+      SectionA1.Append('type');
       SectionA1.Append('  ' + GetUN(AClassName) + ' = record');
       SectionA1.Append('    const Symbol = ''' + AShortSymbol + ''';');
       SectionA1.Append('    const Name   = ''' + ALongSymbol  + ''';');
       SectionA1.Append('    const Factor = '   + AFactor      +   ';');
+      //SectionA1.Append('    class function ToString(AQuantity: ' + GetQT(ABaseClass) + '): string; static;');
+      //SectionA1.Append('    class function ToVerboseString(AQuantity: ' + GetQT(ABaseClass) + '): string; static;');
       SectionA1.Append('  end;');
       SectionA1.Append('  ' + GetID(AClassName) + ' = specialize TFactoredUnitId<' + GetUN(ABaseClass) + ', ' + GetUN(AClassName) + '>;');
       SectionA1.Append('');
+      (*
+      SectionA1.Append('  { Unit of ' + GetNM(AClassName) + ' }');
+      SectionA1.Append('');
+      SectionA1.Append('  function ' + GetNM(AClassName) + 'ToString(AQuantity: ' + GetQT(ABaseClass) + '): string;');
+      SectionA1.Append('  function ' + GetNM(AClassName) + 'ToVerboseString(AQuantity: ' + GetQT(ABaseClass) + '): string;');
+
+
+      SectionB1.Append('{ Unit of ' + GetNM(AClassName) + ' }');
+      SectionB1.Append('');
+      SectionB1.Append('function ' + GetNM(AClassName) + 'ToString(AQuantity: ' + GetQT(ABaseClass) + '): string;');
+      SectionB1.Append('begin  result := FloatToStr(AQuantity.Value) + ''' + AShortSymbol + '''; end;');
+
+      SectionB1.Append('');
+      SectionB1.Append('function ' + GetNM(AClassName) + 'ToVerboseString(AQuantity: ' + GetQT(ABaseClass) + '): string;');
+      SectionB1.Append('begin  result := FloatToStr(AQuantity.Value) + ''' + ALongSymbol + '''; end;');
+      SectionB1.Append('');
+      *)
     end;
   end;
 
-  if (AIdentifierSymbol = 'operator') then
+  if (AIdentifierSymbol <> '') then
   begin
-    AddUnitIdOperator(AOperator, AClassParent1, AClassParent2, AClassName);
-  end else
-    if (AIdentifierSymbol <> '') then
+    if (ABaseClass = '') then
     begin
       SectionA1.Append('');
-      SectionA1.Append(Format('var %s: %s;', [AIdentifierSymbol, GetID(AClassName)]));
+      SectionA1.Append('var');
+      SectionA1.Append(Format('  %s: %s;', [AIdentifierSymbol, GetID(AClassName)]));
       SectionA1.Append('');
+    end else
+    begin
+      SectionA1.Append('');
+      SectionA1.Append('const');
+      SectionA1.Append(Format('  %s: specialize TQuantity<%s> = (Value: %s);', [AIdentifierSymbol, GetUN(ABaseClass), GetUN(AClassName) + '.Factor']));
+      (*
+      SectionA1.Append(Format('  function %s: %s;', [AIdentifierSymbol, GetQT(ABaseClass)]));
+      SectionA1.Append('');
+
+      SectionB1.Append(Format('function %s: %s;', [AIdentifierSymbol, GetQT(ABaseClass)]));
+      SectionB1.Append('begin result.Value := ' + AFactor + ' end;');
+      SectionB1.Append('');
+      *)
     end;
+  end;
+
 
   if (ABaseClass = '') then
   begin
     if AOperator = '*' then
     begin
-      SectionA1.Add('');
       SectionA1.Add('// ' + AComment);
       SectionB1.Add('');
       SectionB1.Add('// ' + AComment);
@@ -295,11 +335,12 @@ begin
         AddQuantityOperator('*', AClassParent2, AClassParent1, AClassName);
         AddQuantityOperator('/', AClassName,     AClassParent2, AClassParent1);
       end;
+      if AFactor = '' then
+        AddUnitIdOperator('*', AClassParent1, AClassParent2, AClassName);
 
     end else
       if AOperator = '/' then
       begin
-        SectionA1.Add('');
         SectionA1.Add('// ' + AComment);
         SectionB1.Add('');
         SectionB1.Add('// ' + AComment);
@@ -308,6 +349,10 @@ begin
         AddQuantityOperator('/', AClassParent1, AClassName,    AClassParent2);
         AddQuantityOperator('*', AClassName,    AClassParent2, AClassParent1);
         AddQuantityOperator('*', AClassParent2, AClassName,    AClassParent1);
+
+        if AFactor = '' then
+          AddUnitIdOperator('/', AClassParent1, AClassParent2, AClassName);
+
       end else
         if Pos('power', LowerCase(AOperator)) > 0 then
         begin
@@ -489,9 +534,9 @@ begin
 
   for I := 0 to WorksheetGrid.Worksheet.GetLastRowIndex do
   begin
-    if (WorksheetGrid.Worksheet.ReadAsText(I, _class_name) <> '') and
-       (WorksheetGrid.Worksheet.ReadAsText(I, _base_class)  = '') and
-       (WorksheetGrid.Worksheet.ReadAsText(I, _factor    )  = '') then
+    if (WorksheetGrid.Worksheet.ReadAsText(I, _class_name) <> '') then
+     //(WorksheetGrid.Worksheet.ReadAsText(I, _base_class)  = '') and
+     //(WorksheetGrid.Worksheet.ReadAsText(I, _factor    )  = '') then
     begin
       if Pos('//', WorksheetGrid.Worksheet.ReadAsText(I, _class_name)) = 0 then
         AddClass(
@@ -507,7 +552,7 @@ begin
           WorksheetGrid.Worksheet.ReadAsText(I, _factor           ));
     end;
   end;
-
+  (*
   for I := 0 to WorksheetGrid.Worksheet.GetLastRowIndex do
   begin
     if (WorksheetGrid.Worksheet.ReadAsText(I, _class_name) <> '') and
@@ -528,6 +573,7 @@ begin
           WorksheetGrid.Worksheet.ReadAsText(I, _factor           ));
     end;
   end;
+  *)
 
   for I := 0 to SectionA0.Count -1 do Document.Append(SectionA0[I]);
   for I := 0 to SectionA1.Count -1 do Document.Append(SectionA1[I]);

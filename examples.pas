@@ -209,26 +209,26 @@ begin
 
   writeln('*** Speed: v = distance / time');
   writeln('The distance is: ', distance.ToString);
-  writeln('The time is: ', hour.From(time).ToString);
-  writeln('The speed is: ', (km/hour).From(speed).ToString);
+  writeln('The time is: ', THourId.From(time).ToString);
+  writeln('The speed is: ', TKilometerPerHourId.From(speed).ToString);
   writeln;
 
   // acceleration
   time         := 5*s;
-  speed        := 100*(km/hour);
+  speed        := 100*km/hour;
   acc          := speed/time;
   time         := speed/acc;
   speed        := acc*time;
 
   writeln('*** Acceleration: a = speed / time');
-  writeln('The speed is: ', (km/hour).From(speed).ToString);
+  writeln('The speed is: ', TKilometerPerHourId.From(speed).ToString);
   writeln('The time is: ', time.ToString);
-  writeln('The acceleration is: ', (km/hour/s).From(acc).ToString);
+  writeln('The acceleration is: ', TKilometerPerHourPerSecondId.From(acc).ToString);
   writeln;
 
   // force
   mass         := 5*kg;
-  acc          := 10*(m/s2);
+  acc          := 10*m/s2;
   force        := mass*acc;
   mass         := force/acc;
   acc          := force/mass;
@@ -258,7 +258,7 @@ begin
 
   // centrifugal force
   mass         := 1*kg;
-  angularspeed := 2*pi*(rad/s);
+  angularspeed := 2*pi*rad/s;
   radius       := 10*m;
   acc          := (angularspeed*angularspeed)*radius;
   force        := mass*acc;
@@ -274,7 +274,7 @@ begin
   // centripetal force
   mass         := 10*kg;
   radius       := 1*m;
-  angularspeed := 2*pi*(rad/s);
+  angularspeed := 2*pi*rad/s;
   speed        := angularspeed*radius;
   force        := mass*(SquarePower(angularspeed)*radius);
   force        := mass*(SquarePower(speed)/radius);
@@ -291,6 +291,10 @@ begin
   force    := 10*N;
   area     := 5*m2;
   pressure := force/area;
+
+  speed := 10*m/s;     // not speed := 10*(m/s);
+  speed := 10*km/hour; // not speed := 10*(km/hour);
+  speed := 10*cm/s;    // not speed := 10*(cm/s);
 
   writeln('*** Pressure: P = force / area');
   writeln('The force is: ', force.ToString);
@@ -320,8 +324,8 @@ begin
   writeln;
 
   // power
-  torque       := 10*(N*m);
-  angularspeed := 2*pi*(rad/s);
+  torque       := 10*N*m;
+  angularspeed := 2*pi*rad/s;
   power        := torque*angularspeed;
 
   writeln('*** Power: P = torque * angular speed');
@@ -465,8 +469,8 @@ begin
   dose2 := 5*Gy;
 //dose1 := 10*(m2/s2);
 //dose2 := 10*(m2/s2);
-  dose1 := Sv.From(10*(j/kg));
-  dose2 := Gy.From(10*(j/kg));
+  dose1 := Sv.From(10*j/kg);
+  dose2 := Gy.From(10*j/kg);
 
   writeln('*** Sievert and Gray mixing:');
   writeln('The dose1 is: ', dose1.ToVerboseString);
@@ -494,7 +498,7 @@ begin
   writeln('*** Density:');
   writeln('The mass is: ', mass.ToVerboseString);
   writeln('The volume is: ', volume.ToVerboseString);
-  writeln('The density is: ', (kg/m3).From(density).ToVerboseString);
+  writeln('The density is: ', TKilogramPerCubicMeterId.From(density).ToVerboseString);
   writeln;
 
   // specific weight
@@ -530,16 +534,16 @@ begin
   writeln('*** Rolling friction:');
   writeln('The normal force is: ', normal.ToVerboseString);
   writeln('The kAr is: ', kAr.ToVerboseString);
-  writeln('The radius is: ', mm.From(radius).ToVerboseString);
+  writeln('The radius is: ', TMillimeterId.From(radius).ToVerboseString);
   writeln('The force is: ', force.ToVerboseString);
   writeln;
 
   // viscosity force (laminar flow)
-  eta    := 10*(Pa*s);
+  eta    := 10*Pa*s;
   radius := 20*mm;
   side1  := 1*m;
   area   := 2*pi*radius*side1;
-  speed  := 0.5*(m/s);
+  speed  := 0.5*m/s;
   force  := (eta/(radius/speed))*area;
 
   writeln('*** Viscosity (laminar flow):');
@@ -554,8 +558,8 @@ begin
   // drag force
   cCd     := 0.47;
   area    := 1000*mm2;
-  speed   := 5*(m/s);
-  density := 1.225*(kg/m3);
+  speed   := 5*m/s;
+  density := 1.225*kg/m3;
   force   := 0.5*cCd*(density*SquarePower(Speed))*area;
 
   writeln('*** Drag force:');
@@ -570,21 +574,21 @@ begin
   mass1    := 5.972E24*kg;
   mass2    := 7.348E22*kg;
   distance := 384400*km;
-  GN       := 6.67E-11*(N*(m2/kg2));
-  GN       := 6.67E-11*(N*m2/kg2);
+  GN       := 6.67E-11*N*m2/kg2;
+  GN       := 6.67E-11*N*m2/kg2;
   force    := GN*(mass1*mass2)/(distance*distance);
 
   writeln('*** Universal gravitation law:');
   writeln('The mass-1 is: ', mass1.ToVerboseString(4,0));
   writeln('The mass-2 is: ', mass2.ToVerboseString(4,0));
-  writeln('The distance is: ', km.From(distance).ToVerboseString);
+  writeln('The distance is: ', TKilometerId.From(distance).ToVerboseString);
   writeln('The G is: ', GN.ToVerboseString);
   writeln('The force is: ', force.ToVerboseString(4, 0));
   writeln;
 
   // gravitational potential energy
   mass     := 10*kg;
-  acc      := 9.81*(m/s2);
+  acc      := 9.81*m/s2;
   distance := 10*m;
   Ug       := mass*acc*distance;
 
@@ -597,7 +601,7 @@ begin
 
   // kinematic potential energy
   mass  := 10*kg;
-  speed := 5*(m/s);
+  speed := 5*m/s;
   Uc    := 1/2*mass*(speed*speed);
 
   writeln('*** Kinematic potential energy:');
@@ -607,7 +611,7 @@ begin
   writeln;
 
   // elastic potential energy
-  kx       := 10*(N/m);
+  kx       := 10*N/m;
   distance := 10*m;
   Ue       := 0.5*kx*(distance*distance);
 
@@ -619,7 +623,7 @@ begin
 
   // momentum
   mass  := 10*kg;
-  speed := 5*(m/s);
+  speed := 5*m/s;
   p     := mass*speed;
 
   writeln('*** Momentum:');
@@ -636,13 +640,13 @@ begin
 
   writeln('*** Impulse:');
   writeln('The force is: ', force.ToVerboseString);
-  writeln('The time is: ', ms.From(time).ToVerboseString);
+  writeln('The time is: ', TMillisecondId.From(time).ToVerboseString);
   writeln('The impulse is: ', impulse.ToVerboseString);
   writeln;
 
   // Stevino's law
-  density      := 10*(kg/m3);
-  acc          := 9.81*(m/s2);
+  density      := 10*kg/m3;
+  acc          := 9.81*m/s2;
   distance     := 2*m;
   pressure     := density*acc*distance;
 
@@ -654,8 +658,8 @@ begin
   writeln;
 
   // Archimede's law
-  density      := 0.5*(kg/m3);
-  acc          := 9.81*(m/s2);
+  density      := 0.5*kg/m3;
+  acc          := 9.81*m/s2;
   volume       := 0.5*m3;
   force        := density*acc*volume;
 
@@ -678,8 +682,8 @@ begin
   writeln;
 
   // Bernoulli's law
-  density  := 5*(kg/m3);
-  speed    := 5*(m/s);
+  density  := 5*kg/m3;
+  speed    := 5*m/s;
   pressure := 1/2*density*(speed*speed);
 
   writeln('*** Bernoulli''s law:');
@@ -688,7 +692,7 @@ begin
   writeln('The pressure is: ', pressure.ToVerboseString);
   writeln;
 
-  acc         := 9.81*(m/s2);
+  acc         := 9.81*m/s2;
   distance     := 2*m;
   pressure     := density*acc*distance;
 
@@ -712,7 +716,7 @@ begin
 
   // heat capacity
   mass                 := 10*kg;
-  specificheatcapacity := 7.5*(J/kg/K);
+  specificheatcapacity := 7.5*J/kg/K;
   heatcapacity         := mass*specificheatcapacity;
 
   writeln('*** Heat transfer:');
@@ -724,10 +728,10 @@ begin
   // calorimeter
   _m1 := 10*kg;
   _t1 := 100*K;
-  _c1 := 7.5*(J/kg/K);
+  _c1 := 7.5*J/kg/K;
   _m2 := 10*kg;
   _t2 := 50*K;
-  _c2 := 7.5*(J/kg/K);
+  _c2 := 7.5*J/kg/K;
   _tf := (_m1*_c1*_t1+_m2*_c2*_t2) / (_m1*_c1+_m2*_c2);
 
   writeln('*** Calorimeter:');
@@ -745,7 +749,7 @@ begin
   // thermal flux
   area      := 5*m2;
   side1     := 100*mm;
-  lambda2   := 1.1*(W/m/K);
+  lambda2   := 1.1*W/m/K;
   deltatemp := 15*K;
   power     := lambda2*(deltatemp/side1)*area;
 
@@ -758,7 +762,7 @@ begin
   writeln;
 
   // electric potential energy
-  ke       := 8.988E9*(N*m2/C2);
+  ke       := 8.988E9*N*m2/C2;
   q1       := 6E-6*C;
   q2       := 9E-6*C;
   Uel      := ke*(q1*q2/distance);
@@ -768,7 +772,7 @@ begin
   writeln;
 
   // electrostatic force on a point charge in a electric field
-  E     := 0.0015*(N/C);
+  E     := 0.0015*N/C;
   q1    := 1.602E-19*C;
   force := E*q1;
 
@@ -779,7 +783,7 @@ begin
   writeln;
 
   // electrostatic force between two point charges
-  ke       := 8.988E9*(N*m2/C2);
+  ke       := 8.988E9*N*m2/C2;
   q1       := 6E-6*C;
   q2       := 9E-6*C;
   distance := 2*m;
@@ -794,7 +798,7 @@ begin
   writeln;
 
   // electric field of a single point charge
-  e0       := 8.854187817E-12*(F/m);
+  e0       := 8.854187817E-12*F/m;
   er       := 1;
   ke       := 1/(4*pi*e0*er);
   q1       := 2*C;
@@ -811,7 +815,7 @@ begin
   writeln;
 
   // electric field of uniform charge sphere
-  e0       := 8.854187817E-12*(F/m);
+  e0       := 8.854187817E-12*F/m;
   er       := 1;
   ke       := 1/(4*pi*e0);
   q1       := 2*C;
@@ -830,7 +834,7 @@ begin
   writeln;
 
   // electric field of parallel conducting plates
-  e0       := 8.854187817E-12*(F/m);
+  e0       := 8.854187817E-12*F/m;
   er       := 1;
   q1       := 2*C;
   Area     := 4*cm2;
@@ -848,7 +852,7 @@ begin
 
   // magnetic force for lifting a object
   mass      := 100*g;
-  acc       := 9.81*(m/s2);
+  acc       := 9.81*m/s2;
   len       := 20*cm;
   B         := 2.0*T;
   current   := (mass*acc)/(len*B*Sin(90*deg));
@@ -862,7 +866,7 @@ begin
   writeln;
 
   // magnetic field due to straight wire
-  m0       := 4*pi*1E-7*(T*m/A);
+  m0       := 4*pi*1E-7*T*m/A;
   current  := 3.0*A;
   R        := 50*cm;
   z        := 0*cm;
@@ -876,7 +880,7 @@ begin
   writeln;
 
   // magnetic field produced by a current-carrying solenoid
-  m0       := 4*pi*1E-7*(T*m/A);
+  m0       := 4*pi*1E-7*T*m/A;
   current  := 1600*A;
   loops    := 2000;
   len      := 2.0*m;
@@ -891,7 +895,7 @@ begin
   writeln;
 
   // forces between parallel conductors
-  m0       := 4*pi*1E-7*(T*m/A);
+  m0       := 4*pi*1E-7*T*m/A;
   i1       := 2.5*A;
   i2       := 1.5*A;
   r        := 4*cm;
@@ -926,14 +930,14 @@ begin
 
   writeln('*** Electromagnetic induction:');
   writeln('The magnetic flux change is: ', magneticflux.ToVerboseString(4, 4));
-  writeln('The time is: ', ms.From(time).ToVerboseString(4, 4));
+  writeln('The time is: ', TMillisecondId.From(time).ToVerboseString);
   writeln('The emf  is: ', potential.ToVerboseString (4, 4));
   writeln;
 
   // displacement current
   Area     := 100*cm2;
-  e0       := 8.854187817E-12*(F/m);
-  DeltaE   := 6.0E10*(N/C);
+  e0       := 8.854187817E-12*F/m;
+  DeltaE   := 6.0E10*N/C;
   time     := 1*s;
   current  := (e0*DeltaE*Area)/time;
 
@@ -947,8 +951,8 @@ begin
 
   // harmonic wave
   Ampl  := 2*m;
-  Kw    := 0.2*(rad/m);
-  omega := 80*(rad/s);
+  Kw    := 0.2*rad/m;
+  omega := 80*rad/s;
   phi   := 0*rad;
 
   writeln('*** Harmonic wave:');
