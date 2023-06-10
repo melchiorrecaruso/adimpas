@@ -45,8 +45,7 @@ type
   generic TFactoredUnitId<BaseU, U> = record
     type TSelf = specialize TFactoredUnitId<BaseU, U>;
     type TBaseQuantity = specialize TQuantity<BaseU>;
-    type TFactoredQuantity = specialize TQuantity<U>; 
+    type TFactoredQuantity = specialize TQuantity<U>;
   public
     class function From(const AQuantity: TBaseQuantity): TFactoredQuantity; inline; static;
-    class operator *(const AValue: double; const {%H-}ASelf: TSelf): TBaseQuantity;
   end;

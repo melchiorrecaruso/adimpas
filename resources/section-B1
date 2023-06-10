@@ -107,8 +107,3 @@ class function TFactoredUnitId.From(const AQuantity: TBaseQuantity): TFactoredQu
 begin
   result.Value := AQuantity.Value / U.Factor;
 end;
-
-class operator TFactoredUnitId.*(const AValue: double; const ASelf: TSelf): TBaseQuantity;
-begin
-  result.Value := AValue * U.Factor;
-end;
