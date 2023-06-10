@@ -61,7 +61,6 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainFrm"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <TopLine Value="167"/>
         <CursorPos X="76" Y="218"/>
@@ -205,10 +204,11 @@
       </Unit>
       <Unit>
         <Filename Value="resources\section-A1"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="14"/>
-        <CursorPos X="92" Y="50"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="2"/>
+        <CursorPos X="9" Y="16"/>
         <UsageCount Value="10"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -219,10 +219,11 @@
       </Unit>
       <Unit>
         <Filename Value="resources\section-B1"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="72"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="63"/>
         <CursorPos X="5" Y="109"/>
         <UsageCount Value="10"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>

@@ -11,8 +11,9 @@ type
   { TQuantity }
   generic TQuantity<U> = record
     type TSelf = specialize TQuantity<U>;
-  public
+  private
     Value: double;
+  public
     function Abs: TSelf;
     function ToString: string;
     function ToString(Precision, Digits: longint): string;
