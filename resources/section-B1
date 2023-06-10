@@ -9,6 +9,11 @@ begin
   result.FValue := System.Abs(FValue);
 end;
 
+function TQuantity.Value: double;
+begin
+  result := FValue;
+end;
+
 function TQuantity.ToString: string;
 begin
   result := FloatToStr(FValue) + ' ' + U.Symbol;

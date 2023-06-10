@@ -15,6 +15,7 @@ type
     FValue: double;
   public
     function Abs: TSelf;
+    function Value: double;
     function ToString: string;
     function ToString(Precision, Digits: longint): string;
     function ToVerboseString: string;
