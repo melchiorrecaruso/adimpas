@@ -427,12 +427,12 @@ begin
   SectionA2.Add('');
   SectionA2.Append('type');
   SectionA2.Append('  ' + GetUH(AClassName) + ' = record helper for ' + GetID(AClassName));
-  SectionA2.Append('    function From(const AQuantity: ' + GetQT(AClassParent1) + '): ' + GetQT(AClassName) + ';');
+  SectionA2.Append('    class function From(const AQuantity: ' + GetQT(AClassParent1) + '): ' + GetQT(AClassName) + '; static;');
   SectionA2.Append('  end;');
   SectionA2.Add('');
 
   SectionB2.Add('');
-  SectionB2.Append('function ' + GetUH(AClassName) + '.From(const AQuantity: ' + GetQT(AClassParent1) + '): ' + GetQT(AClassName) + ';');
+  SectionB2.Append('class function ' + GetUH(AClassName) + '.From(const AQuantity: ' + GetQT(AClassParent1) + '): ' + GetQT(AClassName) + ';');
   SectionB2.Append('begin');
   SectionB2.Append('  result.FValue := AQuantity.FValue;');
   SectionB2.Append('end;');

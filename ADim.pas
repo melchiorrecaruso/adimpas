@@ -34,6 +34,7 @@ type
     FValue: double;
   public
     function Abs: TSelf;
+    function Value: double;
     function ToString: string;
     function ToString(Precision, Digits: longint): string;
     function ToVerboseString: string;
@@ -3522,37 +3523,37 @@ operator /(const ALeft: TRadians; const {%H-}ARight: TMeterId): TRadiansPerMeter
 
 type
   TBequerelHelper = record helper for TBequerelId
-    function From(const AQuantity: THertz): TBequerels;
+    class function From(const AQuantity: THertz): TBequerels; static;
   end;
 
 type
   TGrayHelper = record helper for TGrayId
-    function From(const AQuantity: TSquareMetersPerSquareSecond): TGrays;
+    class function From(const AQuantity: TSquareMetersPerSquareSecond): TGrays; static;
   end;
 
 type
   TSievertHelper = record helper for TSievertId
-    function From(const AQuantity: TSquareMetersPerSquareSecond): TSieverts;
+    class function From(const AQuantity: TSquareMetersPerSquareSecond): TSieverts; static;
   end;
 
 type
   TNewtonMeterHelper = record helper for TNewtonMeterId
-    function From(const AQuantity: TJoules): TNewtonMeters;
+    class function From(const AQuantity: TJoules): TNewtonMeters; static;
   end;
 
 type
   TNewtonMeterPerRadianHelper = record helper for TNewtonMeterPerRadianId
-    function From(const AQuantity: TJoulesPerRadian): TNewtonMetersPerRadian;
+    class function From(const AQuantity: TJoulesPerRadian): TNewtonMetersPerRadian; static;
   end;
 
 type
   TNewtonSecondHelper = record helper for TNewtonSecondId
-    function From(const AQuantity: TKilogramMetersPerSecond): TNewtonSeconds;
+    class function From(const AQuantity: TKilogramMetersPerSecond): TNewtonSeconds; static;
   end;
 
 type
   TJoulePerKilogramHelper = record helper for TJoulePerKilogramId
-    function From(const AQuantity: TSquareMetersPerSquareKilogram): TJoulesPerKilogram;
+    class function From(const AQuantity: TSquareMetersPerSquareKilogram): TJoulesPerKilogram; static;
   end;
 
 { Power units }
@@ -3621,6 +3622,11 @@ uses Math;
 function TQuantity.Abs: TSelf;
 begin
   result.FValue := System.Abs(FValue);
+end;
+
+function TQuantity.Value: double;
+begin
+  result := FValue;
 end;
 
 function TQuantity.ToString: string;
@@ -7270,37 +7276,37 @@ end;
 
 { Helpers }
 
-function TBequerelHelper.From(const AQuantity: THertz): TBequerels;
+class function TBequerelHelper.From(const AQuantity: THertz): TBequerels;
 begin
   result.FValue := AQuantity.FValue;
 end;
 
-function TGrayHelper.From(const AQuantity: TSquareMetersPerSquareSecond): TGrays;
+class function TGrayHelper.From(const AQuantity: TSquareMetersPerSquareSecond): TGrays;
 begin
   result.FValue := AQuantity.FValue;
 end;
 
-function TSievertHelper.From(const AQuantity: TSquareMetersPerSquareSecond): TSieverts;
+class function TSievertHelper.From(const AQuantity: TSquareMetersPerSquareSecond): TSieverts;
 begin
   result.FValue := AQuantity.FValue;
 end;
 
-function TNewtonMeterHelper.From(const AQuantity: TJoules): TNewtonMeters;
+class function TNewtonMeterHelper.From(const AQuantity: TJoules): TNewtonMeters;
 begin
   result.FValue := AQuantity.FValue;
 end;
 
-function TNewtonMeterPerRadianHelper.From(const AQuantity: TJoulesPerRadian): TNewtonMetersPerRadian;
+class function TNewtonMeterPerRadianHelper.From(const AQuantity: TJoulesPerRadian): TNewtonMetersPerRadian;
 begin
   result.FValue := AQuantity.FValue;
 end;
 
-function TNewtonSecondHelper.From(const AQuantity: TKilogramMetersPerSecond): TNewtonSeconds;
+class function TNewtonSecondHelper.From(const AQuantity: TKilogramMetersPerSecond): TNewtonSeconds;
 begin
   result.FValue := AQuantity.FValue;
 end;
 
-function TJoulePerKilogramHelper.From(const AQuantity: TSquareMetersPerSquareKilogram): TJoulesPerKilogram;
+class function TJoulePerKilogramHelper.From(const AQuantity: TSquareMetersPerSquareKilogram): TJoulesPerKilogram;
 begin
   result.FValue := AQuantity.FValue;
 end;

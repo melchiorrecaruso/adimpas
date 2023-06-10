@@ -62,7 +62,8 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainFrm"/>
         <EditorIndex Value="1"/>
-        <CursorPos X="7" Y="552"/>
+        <TopLine Value="409"/>
+        <CursorPos X="27" Y="435"/>
         <UsageCount Value="99"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -114,9 +115,9 @@
       <Unit>
         <Filename Value="..\qk\SpringLIB\src\EN13906.pas"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="638"/>
-        <CursorPos X="59" Y="755"/>
-        <UsageCount Value="9"/>
+        <TopLine Value="799"/>
+        <CursorPos X="62" Y="802"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="..\lazarus\lcl\grids.pas"/>
@@ -151,8 +152,8 @@
       <Unit>
         <Filename Value="..\qk\SpringLIB\src\ADim.pas"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="2145"/>
-        <CursorPos X="38" Y="2162"/>
+        <TopLine Value="3604"/>
+        <CursorPos X="6" Y="3623"/>
         <UsageCount Value="10"/>
       </Unit>
       <Unit>
@@ -202,8 +203,9 @@
       </Unit>
       <Unit>
         <Filename Value="resources\section-A1"/>
-        <EditorIndex Value="4"/>
-        <CursorPos X="9" Y="16"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="11"/>
+        <CursorPos X="16" Y="17"/>
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
@@ -216,9 +218,10 @@
       </Unit>
       <Unit>
         <Filename Value="resources\section-B1"/>
-        <EditorIndex Value="5"/>
-        <TopLine Value="72"/>
-        <CursorPos X="31" Y="108"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="77"/>
+        <CursorPos X="12" Y="10"/>
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
@@ -245,91 +248,33 @@
       </Unit>
       <Unit>
         <Filename Value="resources\section-A4"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="-1"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
         <Filename Value="resources\section-B4"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="14"/>
+        <EditorIndex Value="-1"/>
         <CursorPos X="11" Y="50"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
+      <Unit>
+        <Filename Value="..\qk\SpringLIB\src\EN15800.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="477"/>
+        <CursorPos X="21" Y="495"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\qk\SpringLIB\src\EN10270.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="237"/>
+        <CursorPos X="82" Y="253"/>
+        <UsageCount Value="10"/>
+      </Unit>
     </Units>
-    <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="437" Column="38" TopLine="420"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="276" Column="12" TopLine="268"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="558" TopLine="522"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="265" Column="17" TopLine="223"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="278" Column="3" TopLine="266"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="378" TopLine="342"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="287" Column="9" TopLine="260"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="278" TopLine="255"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="294" Column="22" TopLine="287"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="68" Column="15" TopLine="50"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="207" Column="21" TopLine="151"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="68" Column="15" TopLine="50"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="207" Column="21" TopLine="151"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="312" Column="94" TopLine="287"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="297" Column="24" TopLine="291"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="68" Column="15" TopLine="50"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="207" Column="21" TopLine="151"/>
-      </Position>
+    <JumpHistory HistoryIndex="12">
       <Position>
         <Filename Value="mainfrm.pas"/>
         <Caret Line="298" Column="29" TopLine="279"/>
