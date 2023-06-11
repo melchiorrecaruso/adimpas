@@ -84,6 +84,18 @@ var
   s: TSecondId;
 
 type
+  { Unit of Year }
+  TYearUnit = record
+    const Symbol = 'year';
+    const Name   = 'year';
+    const Factor = 31556952;
+  end;
+  TYearId = specialize TFactoredUnitId<TSecondUnit, TYearUnit>;
+
+const
+  year: specialize TQuantity<TSecondUnit> = (FValue: TYearUnit.Factor);
+
+type
   { Unit of Day }
   TDayUnit = record
     const Symbol = 'day';
@@ -993,15 +1005,15 @@ type
 var
   K4: TQuarticKelvinId;
 
-// alternative definition [ K4 ] = [ K2 ] * [ K2 ]
-operator *(const ALeft: TSquareKelvins; const ARight: TSquareKelvins): TQuarticKelvins; inline;
-operator /(const ALeft: TQuarticKelvins; const ARight: TSquareKelvins): TSquareKelvins; inline;
-
-//
+// main definition [ K4 ] = [ K3 ] * [ K ]
 operator *(const ALeft: TCubicKelvins; const ARight: TKelvins): TQuarticKelvins; inline;
 operator /(const ALeft: TQuarticKelvins; const ARight: TCubicKelvins): TKelvins; inline;
 operator *(const ALeft: TKelvins; const ARight: TCubicKelvins): TQuarticKelvins; inline;
 operator /(const ALeft: TQuarticKelvins; const ARight: TKelvins): TCubicKelvins; inline;
+
+// alternative definition [ K4 ] = [ K2 ] * [ K2 ]
+operator *(const ALeft: TSquareKelvins; const ARight: TSquareKelvins): TQuarticKelvins; inline;
+operator /(const ALeft: TQuarticKelvins; const ARight: TSquareKelvins): TSquareKelvins; inline;
 
 type
   { Unit of Mole }
@@ -1219,7 +1231,7 @@ operator *(const ALeft: TSquareSeconds; const ARight: TRadiansPerSquareSecond): 
 
 operator /(const ALeft: TRadians; const {%H-}ARight: TSquareSecondId): TRadiansPerSquareSecond; inline;
 
-// main definition [ rad/s2 ] = [ rad/s ] / [ s ]
+// alternative definition [ rad/s2 ] = [ rad/s ] / [ s ]
 operator /(const ALeft: TRadiansPerSecond; const ARight: TSeconds): TRadiansPerSquareSecond; inline;
 operator /(const ALeft: TRadiansPerSecond; const ARight: TRadiansPerSquareSecond): TSeconds; inline;
 operator *(const ALeft: TRadiansPerSquareSecond; const ARight: TSeconds): TRadiansPerSecond; inline;
@@ -2707,7 +2719,7 @@ operator /(const ALeft: TNewtonSquareMetersPerSquareKilogram; const ARight: TNew
 operator *(const ALeft: TSquareMetersPerSquareKilogram; const ARight: TNewtons): TNewtonSquareMetersPerSquareKilogram; inline;
 operator /(const ALeft: TNewtonSquareMetersPerSquareKilogram; const ARight: TSquareMetersPerSquareKilogram): TNewtons; inline;
 
-// main definition [ N*m2/kg2 ] = [ N ] / [ kg2/m2 ]
+// alternative definition [ N*m2/kg2 ] = [ N ] / [ kg2/m2 ]
 operator /(const ALeft: TNewtons; const ARight: TSquareKilogramsPerSquareMeter): TNewtonSquareMetersPerSquareKilogram; inline;
 operator /(const ALeft: TNewtons; const ARight: TNewtonSquareMetersPerSquareKilogram): TSquareKilogramsPerSquareMeter; inline;
 operator *(const ALeft: TNewtonSquareMetersPerSquareKilogram; const ARight: TSquareKilogramsPerSquareMeter): TNewtons; inline;
@@ -3952,18 +3964,7 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-// alternative definition [ K4 ] = [ K2 ] * [ K2 ]
-operator *(const ALeft: TSquareKelvins; const ARight: TSquareKelvins): TQuarticKelvins;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
-
-operator /(const ALeft: TQuarticKelvins; const ARight: TSquareKelvins): TSquareKelvins;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
-
-//
+// main definition [ K4 ] = [ K3 ] * [ K ]
 operator *(const ALeft: TCubicKelvins; const ARight: TKelvins): TQuarticKelvins;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -3980,6 +3981,17 @@ begin
 end;
 
 operator /(const ALeft: TQuarticKelvins; const ARight: TKelvins): TCubicKelvins;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+// alternative definition [ K4 ] = [ K2 ] * [ K2 ]
+operator *(const ALeft: TSquareKelvins; const ARight: TSquareKelvins): TQuarticKelvins;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator /(const ALeft: TQuarticKelvins; const ARight: TSquareKelvins): TSquareKelvins;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
@@ -4141,7 +4153,7 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
-// main definition [ rad/s2 ] = [ rad/s ] / [ s ]
+// alternative definition [ rad/s2 ] = [ rad/s ] / [ s ]
 operator /(const ALeft: TRadiansPerSecond; const ARight: TSeconds): TRadiansPerSquareSecond;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -5646,7 +5658,7 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-// main definition [ N*m2/kg2 ] = [ N ] / [ kg2/m2 ]
+// alternative definition [ N*m2/kg2 ] = [ N ] / [ kg2/m2 ]
 operator /(const ALeft: TNewtons; const ARight: TSquareKilogramsPerSquareMeter): TNewtonSquareMetersPerSquareKilogram;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
