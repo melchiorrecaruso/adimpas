@@ -130,7 +130,7 @@ begin
   Result := S;
   while Pos('?', Result) > 0 do
     Delete(Result, Pos('?', Result), 1);
-  Result := Result + 'Id';
+  Result := Result + 'UnitId';
 end;
 
 function GetQT(const S: string): string;

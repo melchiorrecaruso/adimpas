@@ -209,8 +209,8 @@ begin
 
   writeln('*** Speed: v = distance / time');
   writeln('The distance is: ', distance.ToString);
-  writeln('The time is: ', THourId.From(time).ToString);
-  writeln('The speed is: ', TKilometerPerHourId.From(speed).ToString);
+  writeln('The time is: ', THourUnitId.From(time).ToString);
+  writeln('The speed is: ', TKilometerPerHourUnitId.From(speed).ToString);
   writeln;
 
   // acceleration
@@ -221,9 +221,9 @@ begin
   speed        := acc*time;
 
   writeln('*** Acceleration: a = speed / time');
-  writeln('The speed is: ', TKilometerPerHourId.From(speed).ToString);
+  writeln('The speed is: ', TKilometerPerHourUnitId.From(speed).ToString);
   writeln('The time is: ', time.ToString);
-  writeln('The acceleration is: ', TKilometerPerHourPerSecondId.From(acc).ToString);
+  writeln('The acceleration is: ', TKilometerPerHourPerSecondUnitId.From(acc).ToString);
   writeln;
 
   // force
@@ -498,7 +498,7 @@ begin
   writeln('*** Density:');
   writeln('The mass is: ', mass.ToVerboseString);
   writeln('The volume is: ', volume.ToVerboseString);
-  writeln('The density is: ', TKilogramPerCubicMeterId.From(density).ToVerboseString);
+  writeln('The density is: ', TKilogramPerCubicMeterUnitId.From(density).ToVerboseString);
   writeln;
 
   // specific weight
@@ -534,7 +534,7 @@ begin
   writeln('*** Rolling friction:');
   writeln('The normal force is: ', normal.ToVerboseString);
   writeln('The kAr is: ', kAr.ToVerboseString);
-  writeln('The radius is: ', TMillimeterId.From(radius).ToVerboseString);
+  writeln('The radius is: ', TMillimeterUnitId.From(radius).ToVerboseString);
   writeln('The force is: ', force.ToVerboseString);
   writeln;
 
@@ -581,7 +581,7 @@ begin
   writeln('*** Universal gravitation law:');
   writeln('The mass-1 is: ', mass1.ToVerboseString(4,0));
   writeln('The mass-2 is: ', mass2.ToVerboseString(4,0));
-  writeln('The distance is: ', TKilometerId.From(distance).ToVerboseString);
+  writeln('The distance is: ', TKilometerUnitId.From(distance).ToVerboseString);
   writeln('The G is: ', GN.ToVerboseString);
   writeln('The force is: ', force.ToVerboseString(4, 0));
   writeln;
@@ -640,7 +640,7 @@ begin
 
   writeln('*** Impulse:');
   writeln('The force is: ', force.ToVerboseString);
-  writeln('The time is: ', TMillisecondId.From(time).ToVerboseString);
+  writeln('The time is: ', TMillisecondUnitId.From(time).ToVerboseString);
   writeln('The impulse is: ', impulse.ToVerboseString);
   writeln;
 
@@ -930,7 +930,7 @@ begin
 
   writeln('*** Electromagnetic induction:');
   writeln('The magnetic flux change is: ', magneticflux.ToVerboseString(4, 4));
-  writeln('The time is: ', TMillisecondId.From(time).ToVerboseString);
+  writeln('The time is: ', TMillisecondUnitId.From(time).ToVerboseString);
   writeln('The emf  is: ', potential.ToVerboseString (4, 4));
   writeln;
 

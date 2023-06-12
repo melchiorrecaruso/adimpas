@@ -78,10 +78,10 @@ type
     const Name   = 'second';
   end;
   TSeconds = specialize TQuantity<TSecondUnit>;
-  TSecondId = specialize TUnitId<TSecondUnit>;
+  TSecondUnitId = specialize TUnitId<TSecondUnit>;
 
 var
-  s: TSecondId;
+  s: TSecondUnitId;
 
 type
   { Unit of Year }
@@ -90,7 +90,7 @@ type
     const Name   = 'year';
     const Factor = 31556952;
   end;
-  TYearId = specialize TFactoredUnitId<TSecondUnit, TYearUnit>;
+  TYearUnitId = specialize TFactoredUnitId<TSecondUnit, TYearUnit>;
 
 const
   year: specialize TQuantity<TSecondUnit> = (FValue: TYearUnit.Factor);
@@ -102,7 +102,7 @@ type
     const Name   = 'day';
     const Factor = 86400;
   end;
-  TDayId = specialize TFactoredUnitId<TSecondUnit, TDayUnit>;
+  TDayUnitId = specialize TFactoredUnitId<TSecondUnit, TDayUnit>;
 
 const
   day: specialize TQuantity<TSecondUnit> = (FValue: TDayUnit.Factor);
@@ -114,7 +114,7 @@ type
     const Name   = 'hour';
     const Factor = 3600;
   end;
-  THourId = specialize TFactoredUnitId<TSecondUnit, THourUnit>;
+  THourUnitId = specialize TFactoredUnitId<TSecondUnit, THourUnit>;
 
 const
   hour: specialize TQuantity<TSecondUnit> = (FValue: THourUnit.Factor);
@@ -126,7 +126,7 @@ type
     const Name   = 'minute';
     const Factor = 60;
   end;
-  TMinuteId = specialize TFactoredUnitId<TSecondUnit, TMinuteUnit>;
+  TMinuteUnitId = specialize TFactoredUnitId<TSecondUnit, TMinuteUnit>;
 
 const
   minute: specialize TQuantity<TSecondUnit> = (FValue: TMinuteUnit.Factor);
@@ -138,7 +138,7 @@ type
     const Name   = 'decisecond';
     const Factor = 1E-01;
   end;
-  TDecisecondId = specialize TFactoredUnitId<TSecondUnit, TDecisecondUnit>;
+  TDecisecondUnitId = specialize TFactoredUnitId<TSecondUnit, TDecisecondUnit>;
 
 const
   ds: specialize TQuantity<TSecondUnit> = (FValue: TDecisecondUnit.Factor);
@@ -150,7 +150,7 @@ type
     const Name   = 'centisecond';
     const Factor = 1E-02;
   end;
-  TCentisecondId = specialize TFactoredUnitId<TSecondUnit, TCentisecondUnit>;
+  TCentisecondUnitId = specialize TFactoredUnitId<TSecondUnit, TCentisecondUnit>;
 
 const
   cs: specialize TQuantity<TSecondUnit> = (FValue: TCentisecondUnit.Factor);
@@ -162,7 +162,7 @@ type
     const Name   = 'millisecond';
     const Factor = 1E-03;
   end;
-  TMillisecondId = specialize TFactoredUnitId<TSecondUnit, TMillisecondUnit>;
+  TMillisecondUnitId = specialize TFactoredUnitId<TSecondUnit, TMillisecondUnit>;
 
 const
   ms: specialize TQuantity<TSecondUnit> = (FValue: TMillisecondUnit.Factor);
@@ -174,7 +174,7 @@ type
     const Name   = 'microsecond';
     const Factor = 1E-06;
   end;
-  TMicrosecondId = specialize TFactoredUnitId<TSecondUnit, TMicrosecondUnit>;
+  TMicrosecondUnitId = specialize TFactoredUnitId<TSecondUnit, TMicrosecondUnit>;
 
 const
   us: specialize TQuantity<TSecondUnit> = (FValue: TMicrosecondUnit.Factor);
@@ -186,7 +186,7 @@ type
     const Name   = 'nanosecond';
     const Factor = 1E-09;
   end;
-  TNanosecondId = specialize TFactoredUnitId<TSecondUnit, TNanosecondUnit>;
+  TNanosecondUnitId = specialize TFactoredUnitId<TSecondUnit, TNanosecondUnit>;
 
 const
   ns: specialize TQuantity<TSecondUnit> = (FValue: TNanosecondUnit.Factor);
@@ -198,7 +198,7 @@ type
     const Name   = 'picosecond';
     const Factor = 1E-12;
   end;
-  TPicosecondId = specialize TFactoredUnitId<TSecondUnit, TPicosecondUnit>;
+  TPicosecondUnitId = specialize TFactoredUnitId<TSecondUnit, TPicosecondUnit>;
 
 const
   ps: specialize TQuantity<TSecondUnit> = (FValue: TPicosecondUnit.Factor);
@@ -210,10 +210,10 @@ type
     const Name   = 'square second';
   end;
   TSquareSeconds = specialize TQuantity<TSquareSecondUnit>;
-  TSquareSecondId = specialize TUnitId<TSquareSecondUnit>;
+  TSquareSecondUnitId = specialize TUnitId<TSquareSecondUnit>;
 
 var
-  s2: TSquareSecondId;
+  s2: TSquareSecondUnitId;
 
 // main definition [ s2 ] = [ s ] * [ s ]
 operator *(const ALeft: TSeconds; const ARight: TSeconds): TSquareSeconds; inline;
@@ -226,10 +226,22 @@ type
     const Name   = 'meter';
   end;
   TMeters = specialize TQuantity<TMeterUnit>;
-  TMeterId = specialize TUnitId<TMeterUnit>;
+  TMeterUnitId = specialize TUnitId<TMeterUnit>;
 
 var
-  m: TMeterId;
+  m: TMeterUnitId;
+
+type
+  { Unit of Astronomical }
+  TAstronomicalUnit = record
+    const Symbol = 'au';
+    const Name   = 'astronomical unit';
+    const Factor = 149597870691;
+  end;
+  TAstronomicalUnitId = specialize TFactoredUnitId<TMeterUnit, TAstronomicalUnit>;
+
+const
+  au: specialize TQuantity<TMeterUnit> = (FValue: TAstronomicalUnit.Factor);
 
 type
   { Unit of Kilometer }
@@ -238,7 +250,7 @@ type
     const Name   = 'kilometer';
     const Factor = 1E+03;
   end;
-  TKilometerId = specialize TFactoredUnitId<TMeterUnit, TKilometerUnit>;
+  TKilometerUnitId = specialize TFactoredUnitId<TMeterUnit, TKilometerUnit>;
 
 const
   km: specialize TQuantity<TMeterUnit> = (FValue: TKilometerUnit.Factor);
@@ -250,7 +262,7 @@ type
     const Name   = 'hectometer';
     const Factor = 1E+02;
   end;
-  THectometerId = specialize TFactoredUnitId<TMeterUnit, THectometerUnit>;
+  THectometerUnitId = specialize TFactoredUnitId<TMeterUnit, THectometerUnit>;
 
 const
   hm: specialize TQuantity<TMeterUnit> = (FValue: THectometerUnit.Factor);
@@ -262,7 +274,7 @@ type
     const Name   = 'decameter';
     const Factor = 1E+01;
   end;
-  TDecameterId = specialize TFactoredUnitId<TMeterUnit, TDecameterUnit>;
+  TDecameterUnitId = specialize TFactoredUnitId<TMeterUnit, TDecameterUnit>;
 
 const
   dam: specialize TQuantity<TMeterUnit> = (FValue: TDecameterUnit.Factor);
@@ -274,7 +286,7 @@ type
     const Name   = 'decimeter';
     const Factor = 1E-01;
   end;
-  TDecimeterId = specialize TFactoredUnitId<TMeterUnit, TDecimeterUnit>;
+  TDecimeterUnitId = specialize TFactoredUnitId<TMeterUnit, TDecimeterUnit>;
 
 const
   dm: specialize TQuantity<TMeterUnit> = (FValue: TDecimeterUnit.Factor);
@@ -286,7 +298,7 @@ type
     const Name   = 'centimeter';
     const Factor = 1E-02;
   end;
-  TCentimeterId = specialize TFactoredUnitId<TMeterUnit, TCentimeterUnit>;
+  TCentimeterUnitId = specialize TFactoredUnitId<TMeterUnit, TCentimeterUnit>;
 
 const
   cm: specialize TQuantity<TMeterUnit> = (FValue: TCentimeterUnit.Factor);
@@ -298,7 +310,7 @@ type
     const Name   = 'millimeter';
     const Factor = 1E-03;
   end;
-  TMillimeterId = specialize TFactoredUnitId<TMeterUnit, TMillimeterUnit>;
+  TMillimeterUnitId = specialize TFactoredUnitId<TMeterUnit, TMillimeterUnit>;
 
 const
   mm: specialize TQuantity<TMeterUnit> = (FValue: TMillimeterUnit.Factor);
@@ -310,7 +322,7 @@ type
     const Name   = 'micrometer';
     const Factor = 1E-06;
   end;
-  TMicrometerId = specialize TFactoredUnitId<TMeterUnit, TMicrometerUnit>;
+  TMicrometerUnitId = specialize TFactoredUnitId<TMeterUnit, TMicrometerUnit>;
 
 const
   um: specialize TQuantity<TMeterUnit> = (FValue: TMicrometerUnit.Factor);
@@ -322,7 +334,7 @@ type
     const Name   = 'nanometer';
     const Factor = 1E-09;
   end;
-  TNanometerId = specialize TFactoredUnitId<TMeterUnit, TNanometerUnit>;
+  TNanometerUnitId = specialize TFactoredUnitId<TMeterUnit, TNanometerUnit>;
 
 const
   nm: specialize TQuantity<TMeterUnit> = (FValue: TNanometerUnit.Factor);
@@ -334,7 +346,7 @@ type
     const Name   = 'picometer';
     const Factor = 1E-12;
   end;
-  TPicometerId = specialize TFactoredUnitId<TMeterUnit, TPicometerUnit>;
+  TPicometerUnitId = specialize TFactoredUnitId<TMeterUnit, TPicometerUnit>;
 
 const
   pm: specialize TQuantity<TMeterUnit> = (FValue: TPicometerUnit.Factor);
@@ -346,10 +358,10 @@ type
     const Name   = 'square meter';
   end;
   TSquareMeters = specialize TQuantity<TSquareMeterUnit>;
-  TSquareMeterId = specialize TUnitId<TSquareMeterUnit>;
+  TSquareMeterUnitId = specialize TUnitId<TSquareMeterUnit>;
 
 var
-  m2: TSquareMeterId;
+  m2: TSquareMeterUnitId;
 
 // main definition [ m2 ] = [ m ] * [ m ]
 operator *(const ALeft: TMeters; const ARight: TMeters): TSquareMeters; inline;
@@ -362,7 +374,7 @@ type
     const Name   = 'square kilometer';
     const Factor = 1E+06;
   end;
-  TSquareKilometerId = specialize TFactoredUnitId<TSquareMeterUnit, TSquareKilometerUnit>;
+  TSquareKilometerUnitId = specialize TFactoredUnitId<TSquareMeterUnit, TSquareKilometerUnit>;
 
 const
   km2: specialize TQuantity<TSquareMeterUnit> = (FValue: TSquareKilometerUnit.Factor);
@@ -374,7 +386,7 @@ type
     const Name   = 'square hectometer';
     const Factor = 1E+04;
   end;
-  TSquareHectometerId = specialize TFactoredUnitId<TSquareMeterUnit, TSquareHectometerUnit>;
+  TSquareHectometerUnitId = specialize TFactoredUnitId<TSquareMeterUnit, TSquareHectometerUnit>;
 
 const
   hm2: specialize TQuantity<TSquareMeterUnit> = (FValue: TSquareHectometerUnit.Factor);
@@ -386,7 +398,7 @@ type
     const Name   = 'square decameter';
     const Factor = 1E+02;
   end;
-  TSquareDecameterId = specialize TFactoredUnitId<TSquareMeterUnit, TSquareDecameterUnit>;
+  TSquareDecameterUnitId = specialize TFactoredUnitId<TSquareMeterUnit, TSquareDecameterUnit>;
 
 const
   dam2: specialize TQuantity<TSquareMeterUnit> = (FValue: TSquareDecameterUnit.Factor);
@@ -398,7 +410,7 @@ type
     const Name   = 'square decimeter';
     const Factor = 1E-02;
   end;
-  TSquareDecimeterId = specialize TFactoredUnitId<TSquareMeterUnit, TSquareDecimeterUnit>;
+  TSquareDecimeterUnitId = specialize TFactoredUnitId<TSquareMeterUnit, TSquareDecimeterUnit>;
 
 const
   dm2: specialize TQuantity<TSquareMeterUnit> = (FValue: TSquareDecimeterUnit.Factor);
@@ -410,7 +422,7 @@ type
     const Name   = 'square centimeter';
     const Factor = 1E-04;
   end;
-  TSquareCentimeterId = specialize TFactoredUnitId<TSquareMeterUnit, TSquareCentimeterUnit>;
+  TSquareCentimeterUnitId = specialize TFactoredUnitId<TSquareMeterUnit, TSquareCentimeterUnit>;
 
 const
   cm2: specialize TQuantity<TSquareMeterUnit> = (FValue: TSquareCentimeterUnit.Factor);
@@ -422,7 +434,7 @@ type
     const Name   = 'square millimeter';
     const Factor = 1E-06;
   end;
-  TSquareMillimeterId = specialize TFactoredUnitId<TSquareMeterUnit, TSquareMillimeterUnit>;
+  TSquareMillimeterUnitId = specialize TFactoredUnitId<TSquareMeterUnit, TSquareMillimeterUnit>;
 
 const
   mm2: specialize TQuantity<TSquareMeterUnit> = (FValue: TSquareMillimeterUnit.Factor);
@@ -434,10 +446,10 @@ type
     const Name   = 'cubic meter';
   end;
   TCubicMeters = specialize TQuantity<TCubicMeterUnit>;
-  TCubicMeterId = specialize TUnitId<TCubicMeterUnit>;
+  TCubicMeterUnitId = specialize TUnitId<TCubicMeterUnit>;
 
 var
-  m3: TCubicMeterId;
+  m3: TCubicMeterUnitId;
 
 // main definition [ m3 ] = [ m2 ] * [ m ]
 operator *(const ALeft: TSquareMeters; const ARight: TMeters): TCubicMeters; inline;
@@ -452,7 +464,7 @@ type
     const Name   = 'cubic kilometer';
     const Factor = 1E+09;
   end;
-  TCubicKilometerId = specialize TFactoredUnitId<TCubicMeterUnit, TCubicKilometerUnit>;
+  TCubicKilometerUnitId = specialize TFactoredUnitId<TCubicMeterUnit, TCubicKilometerUnit>;
 
 const
   km3: specialize TQuantity<TCubicMeterUnit> = (FValue: TCubicKilometerUnit.Factor);
@@ -464,7 +476,7 @@ type
     const Name   = 'cubic hectometer';
     const Factor = 1E+06;
   end;
-  TCubicHectometerId = specialize TFactoredUnitId<TCubicMeterUnit, TCubicHectometerUnit>;
+  TCubicHectometerUnitId = specialize TFactoredUnitId<TCubicMeterUnit, TCubicHectometerUnit>;
 
 const
   hm3: specialize TQuantity<TCubicMeterUnit> = (FValue: TCubicHectometerUnit.Factor);
@@ -476,7 +488,7 @@ type
     const Name   = 'cubic decameter';
     const Factor = 1E+03;
   end;
-  TCubicDecameterId = specialize TFactoredUnitId<TCubicMeterUnit, TCubicDecameterUnit>;
+  TCubicDecameterUnitId = specialize TFactoredUnitId<TCubicMeterUnit, TCubicDecameterUnit>;
 
 const
   dam3: specialize TQuantity<TCubicMeterUnit> = (FValue: TCubicDecameterUnit.Factor);
@@ -488,7 +500,7 @@ type
     const Name   = 'cubic decimeter';
     const Factor = 1E-03;
   end;
-  TCubicDecimeterId = specialize TFactoredUnitId<TCubicMeterUnit, TCubicDecimeterUnit>;
+  TCubicDecimeterUnitId = specialize TFactoredUnitId<TCubicMeterUnit, TCubicDecimeterUnit>;
 
 const
   dm3: specialize TQuantity<TCubicMeterUnit> = (FValue: TCubicDecimeterUnit.Factor);
@@ -500,7 +512,7 @@ type
     const Name   = 'cubic centimeter';
     const Factor = 1E-06;
   end;
-  TCubicCentimeterId = specialize TFactoredUnitId<TCubicMeterUnit, TCubicCentimeterUnit>;
+  TCubicCentimeterUnitId = specialize TFactoredUnitId<TCubicMeterUnit, TCubicCentimeterUnit>;
 
 const
   cm3: specialize TQuantity<TCubicMeterUnit> = (FValue: TCubicCentimeterUnit.Factor);
@@ -512,7 +524,7 @@ type
     const Name   = 'cubic millimeter';
     const Factor = 1E-09;
   end;
-  TCubicMillimeterId = specialize TFactoredUnitId<TCubicMeterUnit, TCubicMillimeterUnit>;
+  TCubicMillimeterUnitId = specialize TFactoredUnitId<TCubicMeterUnit, TCubicMillimeterUnit>;
 
 const
   mm3: specialize TQuantity<TCubicMeterUnit> = (FValue: TCubicMillimeterUnit.Factor);
@@ -524,10 +536,10 @@ type
     const Name   = 'quartic meter';
   end;
   TQuarticMeters = specialize TQuantity<TQuarticMeterUnit>;
-  TQuarticMeterId = specialize TUnitId<TQuarticMeterUnit>;
+  TQuarticMeterUnitId = specialize TUnitId<TQuarticMeterUnit>;
 
 var
-  m4: TQuarticMeterId;
+  m4: TQuarticMeterUnitId;
 
 // main definition [ m4 ] = [ m3 ] * [ m ]
 operator *(const ALeft: TCubicMeters; const ARight: TMeters): TQuarticMeters; inline;
@@ -546,7 +558,7 @@ type
     const Name   = 'quartic kilometer';
     const Factor = 1E+12;
   end;
-  TQuarticKilometerId = specialize TFactoredUnitId<TQuarticMeterUnit, TQuarticKilometerUnit>;
+  TQuarticKilometerUnitId = specialize TFactoredUnitId<TQuarticMeterUnit, TQuarticKilometerUnit>;
 
 const
   km4: specialize TQuantity<TQuarticMeterUnit> = (FValue: TQuarticKilometerUnit.Factor);
@@ -558,7 +570,7 @@ type
     const Name   = 'quartic hectometer';
     const Factor = 1E+08;
   end;
-  TQuarticHectometerId = specialize TFactoredUnitId<TQuarticMeterUnit, TQuarticHectometerUnit>;
+  TQuarticHectometerUnitId = specialize TFactoredUnitId<TQuarticMeterUnit, TQuarticHectometerUnit>;
 
 const
   hm4: specialize TQuantity<TQuarticMeterUnit> = (FValue: TQuarticHectometerUnit.Factor);
@@ -570,7 +582,7 @@ type
     const Name   = 'quartic decameter';
     const Factor = 1E+04;
   end;
-  TQuarticDecameterId = specialize TFactoredUnitId<TQuarticMeterUnit, TQuarticDecameterUnit>;
+  TQuarticDecameterUnitId = specialize TFactoredUnitId<TQuarticMeterUnit, TQuarticDecameterUnit>;
 
 const
   dam4: specialize TQuantity<TQuarticMeterUnit> = (FValue: TQuarticDecameterUnit.Factor);
@@ -582,7 +594,7 @@ type
     const Name   = 'quartic decimeter';
     const Factor = 1E-04;
   end;
-  TQuarticDecimeterId = specialize TFactoredUnitId<TQuarticMeterUnit, TQuarticDecimeterUnit>;
+  TQuarticDecimeterUnitId = specialize TFactoredUnitId<TQuarticMeterUnit, TQuarticDecimeterUnit>;
 
 const
   dm4: specialize TQuantity<TQuarticMeterUnit> = (FValue: TQuarticDecimeterUnit.Factor);
@@ -594,7 +606,7 @@ type
     const Name   = 'quartic centimeter';
     const Factor = 1E-08;
   end;
-  TQuarticCentimeterId = specialize TFactoredUnitId<TQuarticMeterUnit, TQuarticCentimeterUnit>;
+  TQuarticCentimeterUnitId = specialize TFactoredUnitId<TQuarticMeterUnit, TQuarticCentimeterUnit>;
 
 const
   cm4: specialize TQuantity<TQuarticMeterUnit> = (FValue: TQuarticCentimeterUnit.Factor);
@@ -606,7 +618,7 @@ type
     const Name   = 'quartic millimeter';
     const Factor = 1E-12;
   end;
-  TQuarticMillimeterId = specialize TFactoredUnitId<TQuarticMeterUnit, TQuarticMillimeterUnit>;
+  TQuarticMillimeterUnitId = specialize TFactoredUnitId<TQuarticMeterUnit, TQuarticMillimeterUnit>;
 
 const
   mm4: specialize TQuantity<TQuarticMeterUnit> = (FValue: TQuarticMillimeterUnit.Factor);
@@ -618,10 +630,10 @@ type
     const Name   = 'quintic meter';
   end;
   TQuinticMeters = specialize TQuantity<TQuinticMeterUnit>;
-  TQuinticMeterId = specialize TUnitId<TQuinticMeterUnit>;
+  TQuinticMeterUnitId = specialize TUnitId<TQuinticMeterUnit>;
 
 var
-  m5: TQuinticMeterId;
+  m5: TQuinticMeterUnitId;
 
 // main definition [ m5 ] = [ m4 ] * [ m ]
 operator *(const ALeft: TQuarticMeters; const ARight: TMeters): TQuinticMeters; inline;
@@ -642,10 +654,10 @@ type
     const Name   = 'sextic meter';
   end;
   TSexticMeters = specialize TQuantity<TSexticMeterUnit>;
-  TSexticMeterId = specialize TUnitId<TSexticMeterUnit>;
+  TSexticMeterUnitId = specialize TUnitId<TSexticMeterUnit>;
 
 var
-  m6: TSexticMeterId;
+  m6: TSexticMeterUnitId;
 
 // main definition [ m6 ] = [ m5 ] * [ m ]
 operator *(const ALeft: TQuinticMeters; const ARight: TMeters): TSexticMeters; inline;
@@ -670,10 +682,10 @@ type
     const Name   = 'kilogram';
   end;
   TKilograms = specialize TQuantity<TKilogramUnit>;
-  TKilogramId = specialize TUnitId<TKilogramUnit>;
+  TKilogramUnitId = specialize TUnitId<TKilogramUnit>;
 
 var
-  kg: TKilogramId;
+  kg: TKilogramUnitId;
 
 type
   { Unit of Hectogram }
@@ -682,7 +694,7 @@ type
     const Name   = 'hectogram';
     const Factor = 1E-01;
   end;
-  THectogramId = specialize TFactoredUnitId<TKilogramUnit, THectogramUnit>;
+  THectogramUnitId = specialize TFactoredUnitId<TKilogramUnit, THectogramUnit>;
 
 const
   hg: specialize TQuantity<TKilogramUnit> = (FValue: THectogramUnit.Factor);
@@ -694,7 +706,7 @@ type
     const Name   = 'decagram';
     const Factor = 1E-02;
   end;
-  TDecagramId = specialize TFactoredUnitId<TKilogramUnit, TDecagramUnit>;
+  TDecagramUnitId = specialize TFactoredUnitId<TKilogramUnit, TDecagramUnit>;
 
 const
   dag: specialize TQuantity<TKilogramUnit> = (FValue: TDecagramUnit.Factor);
@@ -706,7 +718,7 @@ type
     const Name   = 'gram';
     const Factor = 1E-03;
   end;
-  TGramId = specialize TFactoredUnitId<TKilogramUnit, TGramUnit>;
+  TGramUnitId = specialize TFactoredUnitId<TKilogramUnit, TGramUnit>;
 
 const
   g: specialize TQuantity<TKilogramUnit> = (FValue: TGramUnit.Factor);
@@ -718,7 +730,7 @@ type
     const Name   = 'decigram';
     const Factor = 1E-04;
   end;
-  TDecigramId = specialize TFactoredUnitId<TKilogramUnit, TDecigramUnit>;
+  TDecigramUnitId = specialize TFactoredUnitId<TKilogramUnit, TDecigramUnit>;
 
 const
   dg: specialize TQuantity<TKilogramUnit> = (FValue: TDecigramUnit.Factor);
@@ -730,7 +742,7 @@ type
     const Name   = 'centigram';
     const Factor = 1E-05;
   end;
-  TCentigramId = specialize TFactoredUnitId<TKilogramUnit, TCentigramUnit>;
+  TCentigramUnitId = specialize TFactoredUnitId<TKilogramUnit, TCentigramUnit>;
 
 const
   cg: specialize TQuantity<TKilogramUnit> = (FValue: TCentigramUnit.Factor);
@@ -742,7 +754,7 @@ type
     const Name   = 'milligram';
     const Factor = 1E-06;
   end;
-  TMilligramId = specialize TFactoredUnitId<TKilogramUnit, TMilligramUnit>;
+  TMilligramUnitId = specialize TFactoredUnitId<TKilogramUnit, TMilligramUnit>;
 
 const
   mg: specialize TQuantity<TKilogramUnit> = (FValue: TMilligramUnit.Factor);
@@ -754,7 +766,7 @@ type
     const Name   = 'microgram';
     const Factor = 1E-09;
   end;
-  TMicrogramId = specialize TFactoredUnitId<TKilogramUnit, TMicrogramUnit>;
+  TMicrogramUnitId = specialize TFactoredUnitId<TKilogramUnit, TMicrogramUnit>;
 
 const
   ug: specialize TQuantity<TKilogramUnit> = (FValue: TMicrogramUnit.Factor);
@@ -766,7 +778,7 @@ type
     const Name   = 'nanogram';
     const Factor = 1E-12;
   end;
-  TNanogramId = specialize TFactoredUnitId<TKilogramUnit, TNanogramUnit>;
+  TNanogramUnitId = specialize TFactoredUnitId<TKilogramUnit, TNanogramUnit>;
 
 const
   ng: specialize TQuantity<TKilogramUnit> = (FValue: TNanogramUnit.Factor);
@@ -778,7 +790,7 @@ type
     const Name   = 'picogram';
     const Factor = 1E-15;
   end;
-  TPicogramId = specialize TFactoredUnitId<TKilogramUnit, TPicogramUnit>;
+  TPicogramUnitId = specialize TFactoredUnitId<TKilogramUnit, TPicogramUnit>;
 
 const
   pg: specialize TQuantity<TKilogramUnit> = (FValue: TPicogramUnit.Factor);
@@ -790,10 +802,10 @@ type
     const Name   = 'square kilogram';
   end;
   TSquareKilograms = specialize TQuantity<TSquareKilogramUnit>;
-  TSquareKilogramId = specialize TUnitId<TSquareKilogramUnit>;
+  TSquareKilogramUnitId = specialize TUnitId<TSquareKilogramUnit>;
 
 var
-  kg2: TSquareKilogramId;
+  kg2: TSquareKilogramUnitId;
 
 // main definition [ kg2 ] = [ kg ] * [ kg ]
 operator *(const ALeft: TKilograms; const ARight: TKilograms): TSquareKilograms; inline;
@@ -806,10 +818,10 @@ type
     const Name   = 'ampere';
   end;
   TAmperes = specialize TQuantity<TAmpereUnit>;
-  TAmpereId = specialize TUnitId<TAmpereUnit>;
+  TAmpereUnitId = specialize TUnitId<TAmpereUnit>;
 
 var
-  A: TAmpereId;
+  A: TAmpereUnitId;
 
 type
   { Unit of Kiloampere }
@@ -818,7 +830,7 @@ type
     const Name   = 'kiloampere';
     const Factor = 1E+03;
   end;
-  TKiloampereId = specialize TFactoredUnitId<TAmpereUnit, TKiloampereUnit>;
+  TKiloampereUnitId = specialize TFactoredUnitId<TAmpereUnit, TKiloampereUnit>;
 
 const
   kA: specialize TQuantity<TAmpereUnit> = (FValue: TKiloampereUnit.Factor);
@@ -830,7 +842,7 @@ type
     const Name   = 'hectoampere';
     const Factor = 1E+02;
   end;
-  THectoampereId = specialize TFactoredUnitId<TAmpereUnit, THectoampereUnit>;
+  THectoampereUnitId = specialize TFactoredUnitId<TAmpereUnit, THectoampereUnit>;
 
 const
   hA: specialize TQuantity<TAmpereUnit> = (FValue: THectoampereUnit.Factor);
@@ -842,7 +854,7 @@ type
     const Name   = 'decampere';
     const Factor = 1E+01;
   end;
-  TDecampereId = specialize TFactoredUnitId<TAmpereUnit, TDecampereUnit>;
+  TDecampereUnitId = specialize TFactoredUnitId<TAmpereUnit, TDecampereUnit>;
 
 const
   daA: specialize TQuantity<TAmpereUnit> = (FValue: TDecampereUnit.Factor);
@@ -854,7 +866,7 @@ type
     const Name   = 'deciampere';
     const Factor = 1E-01;
   end;
-  TDeciampereId = specialize TFactoredUnitId<TAmpereUnit, TDeciampereUnit>;
+  TDeciampereUnitId = specialize TFactoredUnitId<TAmpereUnit, TDeciampereUnit>;
 
 const
   dA: specialize TQuantity<TAmpereUnit> = (FValue: TDeciampereUnit.Factor);
@@ -866,7 +878,7 @@ type
     const Name   = 'centiampere';
     const Factor = 1E-02;
   end;
-  TCentiampereId = specialize TFactoredUnitId<TAmpereUnit, TCentiampereUnit>;
+  TCentiampereUnitId = specialize TFactoredUnitId<TAmpereUnit, TCentiampereUnit>;
 
 const
   cA: specialize TQuantity<TAmpereUnit> = (FValue: TCentiampereUnit.Factor);
@@ -878,7 +890,7 @@ type
     const Name   = 'milliampere';
     const Factor = 1E-03;
   end;
-  TMilliampereId = specialize TFactoredUnitId<TAmpereUnit, TMilliampereUnit>;
+  TMilliampereUnitId = specialize TFactoredUnitId<TAmpereUnit, TMilliampereUnit>;
 
 const
   mA: specialize TQuantity<TAmpereUnit> = (FValue: TMilliampereUnit.Factor);
@@ -890,7 +902,7 @@ type
     const Name   = 'microampere';
     const Factor = 1E-06;
   end;
-  TMicroampereId = specialize TFactoredUnitId<TAmpereUnit, TMicroampereUnit>;
+  TMicroampereUnitId = specialize TFactoredUnitId<TAmpereUnit, TMicroampereUnit>;
 
 const
   uA: specialize TQuantity<TAmpereUnit> = (FValue: TMicroampereUnit.Factor);
@@ -902,7 +914,7 @@ type
     const Name   = 'nanoampere';
     const Factor = 1E-09;
   end;
-  TNanoampereId = specialize TFactoredUnitId<TAmpereUnit, TNanoampereUnit>;
+  TNanoampereUnitId = specialize TFactoredUnitId<TAmpereUnit, TNanoampereUnit>;
 
 const
   nA: specialize TQuantity<TAmpereUnit> = (FValue: TNanoampereUnit.Factor);
@@ -914,7 +926,7 @@ type
     const Name   = 'picoampere';
     const Factor = 1E-12;
   end;
-  TPicoampereId = specialize TFactoredUnitId<TAmpereUnit, TPicoampereUnit>;
+  TPicoampereUnitId = specialize TFactoredUnitId<TAmpereUnit, TPicoampereUnit>;
 
 const
   picoampere: specialize TQuantity<TAmpereUnit> = (FValue: TPicoampereUnit.Factor);
@@ -926,10 +938,10 @@ type
     const Name   = 'square ampere';
   end;
   TSquareAmperes = specialize TQuantity<TSquareAmpereUnit>;
-  TSquareAmpereId = specialize TUnitId<TSquareAmpereUnit>;
+  TSquareAmpereUnitId = specialize TUnitId<TSquareAmpereUnit>;
 
 var
-  A2: TSquareAmpereId;
+  A2: TSquareAmpereUnitId;
 
 // main definition [ A2 ] = [ A ] * [ A ]
 operator *(const ALeft: TAmperes; const ARight: TAmperes): TSquareAmperes; inline;
@@ -942,7 +954,7 @@ type
     const Name   = 'square milliampere';
     const Factor = 1E-06;
   end;
-  TSquareMilliampereId = specialize TFactoredUnitId<TSquareAmpereUnit, TSquareMilliampereUnit>;
+  TSquareMilliampereUnitId = specialize TFactoredUnitId<TSquareAmpereUnit, TSquareMilliampereUnit>;
 
 const
   mA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: TSquareMilliampereUnit.Factor);
@@ -954,10 +966,10 @@ type
     const Name   = 'kelvin';
   end;
   TKelvins = specialize TQuantity<TKelvinUnit>;
-  TKelvinId = specialize TUnitId<TKelvinUnit>;
+  TKelvinUnitId = specialize TUnitId<TKelvinUnit>;
 
 var
-  K: TKelvinId;
+  K: TKelvinUnitId;
 
 type
   { Unit of SquareKelvin }
@@ -966,10 +978,10 @@ type
     const Name   = 'square kelvin';
   end;
   TSquareKelvins = specialize TQuantity<TSquareKelvinUnit>;
-  TSquareKelvinId = specialize TUnitId<TSquareKelvinUnit>;
+  TSquareKelvinUnitId = specialize TUnitId<TSquareKelvinUnit>;
 
 var
-  K2: TSquareKelvinId;
+  K2: TSquareKelvinUnitId;
 
 // main definition [ K2 ] = [ K ] * [ K ]
 operator *(const ALeft: TKelvins; const ARight: TKelvins): TSquareKelvins; inline;
@@ -982,10 +994,10 @@ type
     const Name   = 'cubic kelvin';
   end;
   TCubicKelvins = specialize TQuantity<TCubicKelvinUnit>;
-  TCubicKelvinId = specialize TUnitId<TCubicKelvinUnit>;
+  TCubicKelvinUnitId = specialize TUnitId<TCubicKelvinUnit>;
 
 var
-  K3: TCubicKelvinId;
+  K3: TCubicKelvinUnitId;
 
 // main definition [ K3 ] = [ K2 ] * [ K ]
 operator *(const ALeft: TSquareKelvins; const ARight: TKelvins): TCubicKelvins; inline;
@@ -1000,10 +1012,10 @@ type
     const Name   = 'quartic kelvin';
   end;
   TQuarticKelvins = specialize TQuantity<TQuarticKelvinUnit>;
-  TQuarticKelvinId = specialize TUnitId<TQuarticKelvinUnit>;
+  TQuarticKelvinUnitId = specialize TUnitId<TQuarticKelvinUnit>;
 
 var
-  K4: TQuarticKelvinId;
+  K4: TQuarticKelvinUnitId;
 
 // main definition [ K4 ] = [ K3 ] * [ K ]
 operator *(const ALeft: TCubicKelvins; const ARight: TKelvins): TQuarticKelvins; inline;
@@ -1022,10 +1034,10 @@ type
     const Name   = 'mole';
   end;
   TMoles = specialize TQuantity<TMoleUnit>;
-  TMoleId = specialize TUnitId<TMoleUnit>;
+  TMoleUnitId = specialize TUnitId<TMoleUnit>;
 
 var
-  mol: TMoleId;
+  mol: TMoleUnitId;
 
 type
   { Unit of Candela }
@@ -1034,10 +1046,10 @@ type
     const Name   = 'candela';
   end;
   TCandelas = specialize TQuantity<TCandelaUnit>;
-  TCandelaId = specialize TUnitId<TCandelaUnit>;
+  TCandelaUnitId = specialize TUnitId<TCandelaUnit>;
 
 var
-  cd: TCandelaId;
+  cd: TCandelaUnitId;
 
 type
   { Unit of Radian }
@@ -1046,10 +1058,10 @@ type
     const Name   = 'radian';
   end;
   TRadians = specialize TQuantity<TRadianUnit>;
-  TRadianId = specialize TUnitId<TRadianUnit>;
+  TRadianUnitId = specialize TUnitId<TRadianUnit>;
 
 var
-  rad: TRadianId;
+  rad: TRadianUnitId;
 
 type
   { Unit of Degree }
@@ -1058,7 +1070,7 @@ type
     const Name   = 'degree';
     const Factor = Pi/180;
   end;
-  TDegreeId = specialize TFactoredUnitId<TRadianUnit, TDegreeUnit>;
+  TDegreeUnitId = specialize TFactoredUnitId<TRadianUnit, TDegreeUnit>;
 
 const
   deg: specialize TQuantity<TRadianUnit> = (FValue: TDegreeUnit.Factor);
@@ -1070,10 +1082,10 @@ type
     const Name   = 'steradian';
   end;
   TSteradians = specialize TQuantity<TSteradianUnit>;
-  TSteradianId = specialize TUnitId<TSteradianUnit>;
+  TSteradianUnitId = specialize TUnitId<TSteradianUnit>;
 
 var
-  sr: TSteradianId;
+  sr: TSteradianUnitId;
 
 // main definition [ sr ] = [ rad ] * [ rad ]
 operator *(const ALeft: TRadians; const ARight: TRadians): TSteradians; inline;
@@ -1086,7 +1098,7 @@ type
     const Name   = 'meter per second';
   end;
   TMetersPerSecond = specialize TQuantity<TMeterPerSecondUnit>;
-  TMeterPerSecondId = specialize TUnitId<TMeterPerSecondUnit>;
+  TMeterPerSecondUnitId = specialize TUnitId<TMeterPerSecondUnit>;
 
 // main definition [ m/s ] = [ m ] / [ s ]
 operator /(const ALeft: TMeters; const ARight: TSeconds): TMetersPerSecond; inline;
@@ -1094,7 +1106,7 @@ operator /(const ALeft: TMeters; const ARight: TMetersPerSecond): TSeconds; inli
 operator *(const ALeft: TMetersPerSecond; const ARight: TSeconds): TMeters; inline;
 operator *(const ALeft: TSeconds; const ARight: TMetersPerSecond): TMeters; inline;
 
-operator /(const ALeft: TMeters; const {%H-}ARight: TSecondId): TMetersPerSecond; inline;
+operator /(const ALeft: TMeters; const {%H-}ARight: TSecondUnitId): TMetersPerSecond; inline;
 
 type
   { Unit of KilometerPerHour }
@@ -1103,7 +1115,7 @@ type
     const Name   = 'kilometer per hour';
     const Factor = 5/18;
   end;
-  TKilometerPerHourId = specialize TFactoredUnitId<TMeterPerSecondUnit, TKilometerPerHourUnit>;
+  TKilometerPerHourUnitId = specialize TFactoredUnitId<TMeterPerSecondUnit, TKilometerPerHourUnit>;
 
 type
   { Unit of DecimeterPerSecond }
@@ -1112,7 +1124,7 @@ type
     const Name   = 'decimeter per second';
     const Factor = 1E-01;
   end;
-  TDecimeterPerSecondId = specialize TFactoredUnitId<TMeterPerSecondUnit, TDecimeterPerSecondUnit>;
+  TDecimeterPerSecondUnitId = specialize TFactoredUnitId<TMeterPerSecondUnit, TDecimeterPerSecondUnit>;
 
 type
   { Unit of CentimeterPerSecond }
@@ -1121,7 +1133,7 @@ type
     const Name   = 'centimeter per second';
     const Factor = 1E-02;
   end;
-  TCentimeterPerSecondId = specialize TFactoredUnitId<TMeterPerSecondUnit, TCentimeterPerSecondUnit>;
+  TCentimeterPerSecondUnitId = specialize TFactoredUnitId<TMeterPerSecondUnit, TCentimeterPerSecondUnit>;
 
 type
   { Unit of MillimeterPerSecond }
@@ -1130,7 +1142,7 @@ type
     const Name   = 'millimeter per second';
     const Factor = 1E-03;
   end;
-  TMillimeterPerSecondId = specialize TFactoredUnitId<TMeterPerSecondUnit, TMillimeterPerSecondUnit>;
+  TMillimeterPerSecondUnitId = specialize TFactoredUnitId<TMeterPerSecondUnit, TMillimeterPerSecondUnit>;
 
 type
   { Unit of MeterPerSquareSecond }
@@ -1139,7 +1151,7 @@ type
     const Name   = 'meter per square second';
   end;
   TMetersPerSquareSecond = specialize TQuantity<TMeterPerSquareSecondUnit>;
-  TMeterPerSquareSecondId = specialize TUnitId<TMeterPerSquareSecondUnit>;
+  TMeterPerSquareSecondUnitId = specialize TUnitId<TMeterPerSquareSecondUnit>;
 
 // main definition [ m/s2 ] = [ m ] / [ s2 ]
 operator /(const ALeft: TMeters; const ARight: TSquareSeconds): TMetersPerSquareSecond; inline;
@@ -1147,7 +1159,7 @@ operator /(const ALeft: TMeters; const ARight: TMetersPerSquareSecond): TSquareS
 operator *(const ALeft: TMetersPerSquareSecond; const ARight: TSquareSeconds): TMeters; inline;
 operator *(const ALeft: TSquareSeconds; const ARight: TMetersPerSquareSecond): TMeters; inline;
 
-operator /(const ALeft: TMeters; const {%H-}ARight: TSquareSecondId): TMetersPerSquareSecond; inline;
+operator /(const ALeft: TMeters; const {%H-}ARight: TSquareSecondUnitId): TMetersPerSquareSecond; inline;
 
 // alternative definition [ m/s2 ] = [ m/s ] / [ s ]
 operator /(const ALeft: TMetersPerSecond; const ARight: TSeconds): TMetersPerSquareSecond; inline;
@@ -1162,7 +1174,7 @@ type
     const Name   = 'kilometer-hour per second';
     const Factor = 5/18;
   end;
-  TKilometerPerHourPerSecondId = specialize TFactoredUnitId<TMeterPerSquareSecondUnit, TKilometerPerHourPerSecondUnit>;
+  TKilometerPerHourPerSecondUnitId = specialize TFactoredUnitId<TMeterPerSquareSecondUnit, TKilometerPerHourPerSecondUnit>;
 
 type
   { Unit of DecimeterPerSquareSecond }
@@ -1171,7 +1183,7 @@ type
     const Name   = 'decimeter per square second';
     const Factor = 1E-01;
   end;
-  TDecimeterPerSquareSecondId = specialize TFactoredUnitId<TMeterPerSquareSecondUnit, TDecimeterPerSquareSecondUnit>;
+  TDecimeterPerSquareSecondUnitId = specialize TFactoredUnitId<TMeterPerSquareSecondUnit, TDecimeterPerSquareSecondUnit>;
 
 type
   { Unit of CentimeterPerSquareSecond }
@@ -1180,7 +1192,7 @@ type
     const Name   = 'centimeter per square second';
     const Factor = 1E-02;
   end;
-  TCentimeterPerSquareSecondId = specialize TFactoredUnitId<TMeterPerSquareSecondUnit, TCentimeterPerSquareSecondUnit>;
+  TCentimeterPerSquareSecondUnitId = specialize TFactoredUnitId<TMeterPerSquareSecondUnit, TCentimeterPerSquareSecondUnit>;
 
 type
   { Unit of MillimeterPerSquareSecond }
@@ -1189,7 +1201,7 @@ type
     const Name   = 'millimeter per square second';
     const Factor = 1E-03;
   end;
-  TMillimeterPerSquareSecondId = specialize TFactoredUnitId<TMeterPerSquareSecondUnit, TMillimeterPerSquareSecondUnit>;
+  TMillimeterPerSquareSecondUnitId = specialize TFactoredUnitId<TMeterPerSquareSecondUnit, TMillimeterPerSquareSecondUnit>;
 
 type
   { Unit of RadianPerSecond }
@@ -1198,7 +1210,7 @@ type
     const Name   = 'radian per second';
   end;
   TRadiansPerSecond = specialize TQuantity<TRadianPerSecondUnit>;
-  TRadianPerSecondId = specialize TUnitId<TRadianPerSecondUnit>;
+  TRadianPerSecondUnitId = specialize TUnitId<TRadianPerSecondUnit>;
 
 // main definition [ rad/s ] = [ rad ] / [ s ]
 operator /(const ALeft: TRadians; const ARight: TSeconds): TRadiansPerSecond; inline;
@@ -1206,7 +1218,7 @@ operator /(const ALeft: TRadians; const ARight: TRadiansPerSecond): TSeconds; in
 operator *(const ALeft: TRadiansPerSecond; const ARight: TSeconds): TRadians; inline;
 operator *(const ALeft: TSeconds; const ARight: TRadiansPerSecond): TRadians; inline;
 
-operator /(const ALeft: TRadians; const {%H-}ARight: TSecondId): TRadiansPerSecond; inline;
+operator /(const ALeft: TRadians; const {%H-}ARight: TSecondUnitId): TRadiansPerSecond; inline;
 
 // alternative definition [ rad/s ] = [ m/s ] / [ m ]
 operator /(const ALeft: TMetersPerSecond; const ARight: TMeters): TRadiansPerSecond; inline;
@@ -1221,7 +1233,7 @@ type
     const Name   = 'radian per square second';
   end;
   TRadiansPerSquareSecond = specialize TQuantity<TRadianPerSquareSecondUnit>;
-  TRadianPerSquareSecondId = specialize TUnitId<TRadianPerSquareSecondUnit>;
+  TRadianPerSquareSecondUnitId = specialize TUnitId<TRadianPerSquareSecondUnit>;
 
 // main definition [ rad/s2 ] = [ rad ] / [ s2 ]
 operator /(const ALeft: TRadians; const ARight: TSquareSeconds): TRadiansPerSquareSecond; inline;
@@ -1229,7 +1241,7 @@ operator /(const ALeft: TRadians; const ARight: TRadiansPerSquareSecond): TSquar
 operator *(const ALeft: TRadiansPerSquareSecond; const ARight: TSquareSeconds): TRadians; inline;
 operator *(const ALeft: TSquareSeconds; const ARight: TRadiansPerSquareSecond): TRadians; inline;
 
-operator /(const ALeft: TRadians; const {%H-}ARight: TSquareSecondId): TRadiansPerSquareSecond; inline;
+operator /(const ALeft: TRadians; const {%H-}ARight: TSquareSecondUnitId): TRadiansPerSquareSecond; inline;
 
 // alternative definition [ rad/s2 ] = [ rad/s ] / [ s ]
 operator /(const ALeft: TRadiansPerSecond; const ARight: TSeconds): TRadiansPerSquareSecond; inline;
@@ -1244,10 +1256,10 @@ type
     const Name   = 'hertz';
   end;
   THertz = specialize TQuantity<THertzUnit>;
-  THertzId = specialize TUnitId<THertzUnit>;
+  THertzUnitId = specialize TUnitId<THertzUnit>;
 
 var
-  Hz: THertzId;
+  Hz: THertzUnitId;
 
 // main definition [ Hz ] = 1 / [ s ]
 operator /(const ALeft: double; const ARight: TSeconds): THertz; inline;
@@ -1255,7 +1267,7 @@ operator /(const ALeft: double; const ARight: THertz): TSeconds; inline;
 operator *(const ALeft: THertz; const ARight: TSeconds): double; inline;
 operator *(const ALeft: TSeconds; const ARight: THertz): double; inline;
 
-operator /(const ALeft: double; const {%H-}ARight: TSecondId): THertz; inline;
+operator /(const ALeft: double; const {%H-}ARight: TSecondUnitId): THertz; inline;
 
 type
   { Unit of Gigahertz }
@@ -1264,7 +1276,7 @@ type
     const Name   = 'gigahertz';
     const Factor = 1E+09;
   end;
-  TGigahertzId = specialize TFactoredUnitId<THertzUnit, TGigahertzUnit>;
+  TGigahertzUnitId = specialize TFactoredUnitId<THertzUnit, TGigahertzUnit>;
 
 const
   GHz: specialize TQuantity<THertzUnit> = (FValue: TGigahertzUnit.Factor);
@@ -1276,7 +1288,7 @@ type
     const Name   = 'megahertz';
     const Factor = 1E+06;
   end;
-  TMegahertzId = specialize TFactoredUnitId<THertzUnit, TMegahertzUnit>;
+  TMegahertzUnitId = specialize TFactoredUnitId<THertzUnit, TMegahertzUnit>;
 
 const
   MHz: specialize TQuantity<THertzUnit> = (FValue: TMegahertzUnit.Factor);
@@ -1288,7 +1300,7 @@ type
     const Name   = 'kilohertz';
     const Factor = 1E+03;
   end;
-  TKilohertzId = specialize TFactoredUnitId<THertzUnit, TKilohertzUnit>;
+  TKilohertzUnitId = specialize TFactoredUnitId<THertzUnit, TKilohertzUnit>;
 
 const
   kHz: specialize TQuantity<THertzUnit> = (FValue: TKilohertzUnit.Factor);
@@ -1300,10 +1312,10 @@ type
     const Name   = 'square hertz';
   end;
   TSquareHertz = specialize TQuantity<TSquareHertzUnit>;
-  TSquareHertzId = specialize TUnitId<TSquareHertzUnit>;
+  TSquareHertzUnitId = specialize TUnitId<TSquareHertzUnit>;
 
 var
-  Hz2: TSquareHertzId;
+  Hz2: TSquareHertzUnitId;
 
 // main definition [ Hz2 ] = [ Hz ] * [ Hz ]
 operator *(const ALeft: THertz; const ARight: THertz): TSquareHertz; inline;
@@ -1316,10 +1328,10 @@ type
     const Name   = 'newton';
   end;
   TNewtons = specialize TQuantity<TNewtonUnit>;
-  TNewtonId = specialize TUnitId<TNewtonUnit>;
+  TNewtonUnitId = specialize TUnitId<TNewtonUnit>;
 
 var
-  N: TNewtonId;
+  N: TNewtonUnitId;
 
 // main definition [ N ] = [ kg ] * [ m/s2 ]
 operator *(const ALeft: TKilograms; const ARight: TMetersPerSquareSecond): TNewtons; inline;
@@ -1327,7 +1339,7 @@ operator /(const ALeft: TNewtons; const ARight: TKilograms): TMetersPerSquareSec
 operator *(const ALeft: TMetersPerSquareSecond; const ARight: TKilograms): TNewtons; inline;
 operator /(const ALeft: TNewtons; const ARight: TMetersPerSquareSecond): TKilograms; inline;
 
-operator *(const ALeft: TKilograms; const {%H-}ARight: TMeterPerSquareSecondId): TNewtons; inline;
+operator *(const ALeft: TKilograms; const {%H-}ARight: TMeterPerSquareSecondUnitId): TNewtons; inline;
 
 type
   { Unit of Giganewton }
@@ -1336,7 +1348,7 @@ type
     const Name   = 'giganewton';
     const Factor = 1E+09;
   end;
-  TGiganewtonId = specialize TFactoredUnitId<TNewtonUnit, TGiganewtonUnit>;
+  TGiganewtonUnitId = specialize TFactoredUnitId<TNewtonUnit, TGiganewtonUnit>;
 
 const
   GN: specialize TQuantity<TNewtonUnit> = (FValue: TGiganewtonUnit.Factor);
@@ -1348,7 +1360,7 @@ type
     const Name   = 'meganewton';
     const Factor = 1E+06;
   end;
-  TMeganewtonId = specialize TFactoredUnitId<TNewtonUnit, TMeganewtonUnit>;
+  TMeganewtonUnitId = specialize TFactoredUnitId<TNewtonUnit, TMeganewtonUnit>;
 
 const
   MN: specialize TQuantity<TNewtonUnit> = (FValue: TMeganewtonUnit.Factor);
@@ -1360,7 +1372,7 @@ type
     const Name   = 'kilonewton';
     const Factor = 1E+03;
   end;
-  TKilonewtonId = specialize TFactoredUnitId<TNewtonUnit, TKilonewtonUnit>;
+  TKilonewtonUnitId = specialize TFactoredUnitId<TNewtonUnit, TKilonewtonUnit>;
 
 const
   kN: specialize TQuantity<TNewtonUnit> = (FValue: TKilonewtonUnit.Factor);
@@ -1372,10 +1384,10 @@ type
     const Name   = 'pascal';
   end;
   TPascals = specialize TQuantity<TPascalUnit>;
-  TPascalId = specialize TUnitId<TPascalUnit>;
+  TPascalUnitId = specialize TUnitId<TPascalUnit>;
 
 var
-  Pa: TPascalId;
+  Pa: TPascalUnitId;
 
 // main definition [ Pa ] = [ N ] / [ m2 ]
 operator /(const ALeft: TNewtons; const ARight: TSquareMeters): TPascals; inline;
@@ -1383,7 +1395,7 @@ operator /(const ALeft: TNewtons; const ARight: TPascals): TSquareMeters; inline
 operator *(const ALeft: TPascals; const ARight: TSquareMeters): TNewtons; inline;
 operator *(const ALeft: TSquareMeters; const ARight: TPascals): TNewtons; inline;
 
-operator /(const ALeft: TNewtons; const {%H-}ARight: TSquareMeterId): TPascals; inline;
+operator /(const ALeft: TNewtons; const {%H-}ARight: TSquareMeterUnitId): TPascals; inline;
 
 type
   { Unit of Gigapascal }
@@ -1392,7 +1404,7 @@ type
     const Name   = 'gigapascal';
     const Factor = 1E+09;
   end;
-  TGigapascalId = specialize TFactoredUnitId<TPascalUnit, TGigapascalUnit>;
+  TGigapascalUnitId = specialize TFactoredUnitId<TPascalUnit, TGigapascalUnit>;
 
 const
   GPa: specialize TQuantity<TPascalUnit> = (FValue: TGigapascalUnit.Factor);
@@ -1404,7 +1416,7 @@ type
     const Name   = 'megapascal';
     const Factor = 1E+06;
   end;
-  TMegapascalId = specialize TFactoredUnitId<TPascalUnit, TMegapascalUnit>;
+  TMegapascalUnitId = specialize TFactoredUnitId<TPascalUnit, TMegapascalUnit>;
 
 const
   MPa: specialize TQuantity<TPascalUnit> = (FValue: TMegapascalUnit.Factor);
@@ -1416,7 +1428,7 @@ type
     const Name   = 'kilopascal';
     const Factor = 1E+03;
   end;
-  TKilopascalId = specialize TFactoredUnitId<TPascalUnit, TKilopascalUnit>;
+  TKilopascalUnitId = specialize TFactoredUnitId<TPascalUnit, TKilopascalUnit>;
 
 const
   kPa: specialize TQuantity<TPascalUnit> = (FValue: TKilopascalUnit.Factor);
@@ -1428,10 +1440,10 @@ type
     const Name   = 'joule';
   end;
   TJoules = specialize TQuantity<TJouleUnit>;
-  TJouleId = specialize TUnitId<TJouleUnit>;
+  TJouleUnitId = specialize TUnitId<TJouleUnit>;
 
 var
-  J: TJouleId;
+  J: TJouleUnitId;
 
 // main definition [ J ] = [ N ] * [ m ]
 operator *(const ALeft: TNewtons; const ARight: TMeters): TJoules; inline;
@@ -1439,7 +1451,7 @@ operator /(const ALeft: TJoules; const ARight: TNewtons): TMeters; inline;
 operator *(const ALeft: TMeters; const ARight: TNewtons): TJoules; inline;
 operator /(const ALeft: TJoules; const ARight: TMeters): TNewtons; inline;
 
-operator *(const ALeft: TNewtons; const {%H-}ARight: TMeterId): TJoules; inline;
+operator *(const ALeft: TNewtons; const {%H-}ARight: TMeterUnitId): TJoules; inline;
 
 // alternative definition [ J ] = [ Pa ] * [ m3 ]
 operator *(const ALeft: TPascals; const ARight: TCubicMeters): TJoules; inline;
@@ -1454,7 +1466,7 @@ type
     const Name   = 'gigajoule';
     const Factor = 1E+09;
   end;
-  TGigajouleId = specialize TFactoredUnitId<TJouleUnit, TGigajouleUnit>;
+  TGigajouleUnitId = specialize TFactoredUnitId<TJouleUnit, TGigajouleUnit>;
 
 const
   GJ: specialize TQuantity<TJouleUnit> = (FValue: TGigajouleUnit.Factor);
@@ -1466,7 +1478,7 @@ type
     const Name   = 'magajoule';
     const Factor = 1E+06;
   end;
-  TMegajouleId = specialize TFactoredUnitId<TJouleUnit, TMegajouleUnit>;
+  TMegajouleUnitId = specialize TFactoredUnitId<TJouleUnit, TMegajouleUnit>;
 
 const
   MJ: specialize TQuantity<TJouleUnit> = (FValue: TMegajouleUnit.Factor);
@@ -1478,7 +1490,7 @@ type
     const Name   = 'kilojoule';
     const Factor = 1E+03;
   end;
-  TKilojouleId = specialize TFactoredUnitId<TJouleUnit, TKilojouleUnit>;
+  TKilojouleUnitId = specialize TFactoredUnitId<TJouleUnit, TKilojouleUnit>;
 
 const
   kJ: specialize TQuantity<TJouleUnit> = (FValue: TKilojouleUnit.Factor);
@@ -1490,10 +1502,10 @@ type
     const Name   = 'watt';
   end;
   TWatts = specialize TQuantity<TWattUnit>;
-  TWattId = specialize TUnitId<TWattUnit>;
+  TWattUnitId = specialize TUnitId<TWattUnit>;
 
 var
-  W: TWattId;
+  W: TWattUnitId;
 
 // main definition [ W ] = [ J ] / [ s ]
 operator /(const ALeft: TJoules; const ARight: TSeconds): TWatts; inline;
@@ -1501,7 +1513,7 @@ operator /(const ALeft: TJoules; const ARight: TWatts): TSeconds; inline;
 operator *(const ALeft: TWatts; const ARight: TSeconds): TJoules; inline;
 operator *(const ALeft: TSeconds; const ARight: TWatts): TJoules; inline;
 
-operator /(const ALeft: TJoules; const {%H-}ARight: TSecondId): TWatts; inline;
+operator /(const ALeft: TJoules; const {%H-}ARight: TSecondUnitId): TWatts; inline;
 
 // alternative definition [ W ] = [ J ] * [ rad/s ]
 operator *(const ALeft: TJoules; const ARight: TRadiansPerSecond): TWatts; inline;
@@ -1522,7 +1534,7 @@ type
     const Name   = 'gigawatt';
     const Factor = 1E+09;
   end;
-  TGigawattId = specialize TFactoredUnitId<TWattUnit, TGigawattUnit>;
+  TGigawattUnitId = specialize TFactoredUnitId<TWattUnit, TGigawattUnit>;
 
 const
   GW: specialize TQuantity<TWattUnit> = (FValue: TGigawattUnit.Factor);
@@ -1534,7 +1546,7 @@ type
     const Name   = 'megawatt';
     const Factor = 1E+06;
   end;
-  TMegawattId = specialize TFactoredUnitId<TWattUnit, TMegawattUnit>;
+  TMegawattUnitId = specialize TFactoredUnitId<TWattUnit, TMegawattUnit>;
 
 const
   megawatt: specialize TQuantity<TWattUnit> = (FValue: TMegawattUnit.Factor);
@@ -1546,7 +1558,7 @@ type
     const Name   = 'kilowatt';
     const Factor = 1E+03;
   end;
-  TKilowattId = specialize TFactoredUnitId<TWattUnit, TKilowattUnit>;
+  TKilowattUnitId = specialize TFactoredUnitId<TWattUnit, TKilowattUnit>;
 
 const
   kW: specialize TQuantity<TWattUnit> = (FValue: TKilowattUnit.Factor);
@@ -1558,7 +1570,7 @@ type
     const Name   = 'milliwatt';
     const Factor = 1E-03;
   end;
-  TMilliwattId = specialize TFactoredUnitId<TWattUnit, TMilliwattUnit>;
+  TMilliwattUnitId = specialize TFactoredUnitId<TWattUnit, TMilliwattUnit>;
 
 const
   mW: specialize TQuantity<TWattUnit> = (FValue: TMilliwattUnit.Factor);
@@ -1570,10 +1582,10 @@ type
     const Name   = 'coulomb';
   end;
   TCoulombs = specialize TQuantity<TCoulombUnit>;
-  TCoulombId = specialize TUnitId<TCoulombUnit>;
+  TCoulombUnitId = specialize TUnitId<TCoulombUnit>;
 
 var
-  C: TCoulombId;
+  C: TCoulombUnitId;
 
 // main definition [ C ] = [ s ] * [ A ]
 operator *(const ALeft: TSeconds; const ARight: TAmperes): TCoulombs; inline;
@@ -1581,7 +1593,7 @@ operator /(const ALeft: TCoulombs; const ARight: TSeconds): TAmperes; inline;
 operator *(const ALeft: TAmperes; const ARight: TSeconds): TCoulombs; inline;
 operator /(const ALeft: TCoulombs; const ARight: TAmperes): TSeconds; inline;
 
-operator *(const ALeft: TSeconds; const {%H-}ARight: TAmpereId): TCoulombs; inline;
+operator *(const ALeft: TSeconds; const {%H-}ARight: TAmpereUnitId): TCoulombs; inline;
 
 type
   { Unit of Gigacoulomb }
@@ -1590,7 +1602,7 @@ type
     const Name   = 'gigacoulomb';
     const Factor = 1E+09;
   end;
-  TGigacoulombId = specialize TFactoredUnitId<TCoulombUnit, TGigacoulombUnit>;
+  TGigacoulombUnitId = specialize TFactoredUnitId<TCoulombUnit, TGigacoulombUnit>;
 
 const
   GC: specialize TQuantity<TCoulombUnit> = (FValue: TGigacoulombUnit.Factor);
@@ -1602,7 +1614,7 @@ type
     const Name   = 'megacoulomb';
     const Factor = 1E+06;
   end;
-  TMegacoulombId = specialize TFactoredUnitId<TCoulombUnit, TMegacoulombUnit>;
+  TMegacoulombUnitId = specialize TFactoredUnitId<TCoulombUnit, TMegacoulombUnit>;
 
 const
   megacoulomb: specialize TQuantity<TCoulombUnit> = (FValue: TMegacoulombUnit.Factor);
@@ -1614,7 +1626,7 @@ type
     const Name   = 'kilocoulomb';
     const Factor = 1E+03;
   end;
-  TKilocoulombId = specialize TFactoredUnitId<TCoulombUnit, TKilocoulombUnit>;
+  TKilocoulombUnitId = specialize TFactoredUnitId<TCoulombUnit, TKilocoulombUnit>;
 
 const
   kC: specialize TQuantity<TCoulombUnit> = (FValue: TKilocoulombUnit.Factor);
@@ -1626,7 +1638,7 @@ type
     const Name   = 'millicoulomb';
     const Factor = 1E-03;
   end;
-  TMillicoulombId = specialize TFactoredUnitId<TCoulombUnit, TMillicoulombUnit>;
+  TMillicoulombUnitId = specialize TFactoredUnitId<TCoulombUnit, TMillicoulombUnit>;
 
 const
   mC: specialize TQuantity<TCoulombUnit> = (FValue: TMillicoulombUnit.Factor);
@@ -1638,10 +1650,10 @@ type
     const Name   = 'square coulomb';
   end;
   TSquareCoulombs = specialize TQuantity<TSquareCoulombUnit>;
-  TSquareCoulombId = specialize TUnitId<TSquareCoulombUnit>;
+  TSquareCoulombUnitId = specialize TUnitId<TSquareCoulombUnit>;
 
 var
-  C2: TSquareCoulombId;
+  C2: TSquareCoulombUnitId;
 
 // main definition [ C2 ] = [ C ] * [ C ]
 operator *(const ALeft: TCoulombs; const ARight: TCoulombs): TSquareCoulombs; inline;
@@ -1654,10 +1666,10 @@ type
     const Name   = 'volt';
   end;
   TVolts = specialize TQuantity<TVoltUnit>;
-  TVoltId = specialize TUnitId<TVoltUnit>;
+  TVoltUnitId = specialize TUnitId<TVoltUnit>;
 
 var
-  V: TVoltId;
+  V: TVoltUnitId;
 
 // main definition [ V ] = [ W ] / [ A ]
 operator /(const ALeft: TWatts; const ARight: TAmperes): TVolts; inline;
@@ -1665,7 +1677,7 @@ operator /(const ALeft: TWatts; const ARight: TVolts): TAmperes; inline;
 operator *(const ALeft: TVolts; const ARight: TAmperes): TWatts; inline;
 operator *(const ALeft: TAmperes; const ARight: TVolts): TWatts; inline;
 
-operator /(const ALeft: TWatts; const {%H-}ARight: TAmpereId): TVolts; inline;
+operator /(const ALeft: TWatts; const {%H-}ARight: TAmpereUnitId): TVolts; inline;
 
 // alternative definition [ V ] = [ J ] / [ C ]
 operator /(const ALeft: TJoules; const ARight: TCoulombs): TVolts; inline;
@@ -1673,7 +1685,7 @@ operator /(const ALeft: TJoules; const ARight: TVolts): TCoulombs; inline;
 operator *(const ALeft: TVolts; const ARight: TCoulombs): TJoules; inline;
 operator *(const ALeft: TCoulombs; const ARight: TVolts): TJoules; inline;
 
-operator /(const ALeft: TJoules; const {%H-}ARight: TCoulombId): TVolts; inline;
+operator /(const ALeft: TJoules; const {%H-}ARight: TCoulombUnitId): TVolts; inline;
 
 type
   { Unit of Gigavolt }
@@ -1682,7 +1694,7 @@ type
     const Name   = 'gigavolt';
     const Factor = 1E+09;
   end;
-  TGigavoltId = specialize TFactoredUnitId<TVoltUnit, TGigavoltUnit>;
+  TGigavoltUnitId = specialize TFactoredUnitId<TVoltUnit, TGigavoltUnit>;
 
 const
   GV: specialize TQuantity<TVoltUnit> = (FValue: TGigavoltUnit.Factor);
@@ -1694,7 +1706,7 @@ type
     const Name   = 'megavolt';
     const Factor = 1E+06;
   end;
-  TMegavoltId = specialize TFactoredUnitId<TVoltUnit, TMegavoltUnit>;
+  TMegavoltUnitId = specialize TFactoredUnitId<TVoltUnit, TMegavoltUnit>;
 
 const
   megavolt: specialize TQuantity<TVoltUnit> = (FValue: TMegavoltUnit.Factor);
@@ -1706,7 +1718,7 @@ type
     const Name   = 'kilovolt';
     const Factor = 1E+03;
   end;
-  TKilovoltId = specialize TFactoredUnitId<TVoltUnit, TKilovoltUnit>;
+  TKilovoltUnitId = specialize TFactoredUnitId<TVoltUnit, TKilovoltUnit>;
 
 const
   kV: specialize TQuantity<TVoltUnit> = (FValue: TKilovoltUnit.Factor);
@@ -1718,7 +1730,7 @@ type
     const Name   = 'millivolt';
     const Factor = 1E-03;
   end;
-  TMillivoltId = specialize TFactoredUnitId<TVoltUnit, TMillivoltUnit>;
+  TMillivoltUnitId = specialize TFactoredUnitId<TVoltUnit, TMillivoltUnit>;
 
 const
   mV: specialize TQuantity<TVoltUnit> = (FValue: TMillivoltUnit.Factor);
@@ -1730,10 +1742,10 @@ type
     const Name   = 'square volt';
   end;
   TSquareVolts = specialize TQuantity<TSquareVoltUnit>;
-  TSquareVoltId = specialize TUnitId<TSquareVoltUnit>;
+  TSquareVoltUnitId = specialize TUnitId<TSquareVoltUnit>;
 
 var
-  V2: TSquareVoltId;
+  V2: TSquareVoltUnitId;
 
 // main definition [ V2 ] = [ V ] * [ V ]
 operator *(const ALeft: TVolts; const ARight: TVolts): TSquareVolts; inline;
@@ -1746,10 +1758,10 @@ type
     const Name   = 'farad';
   end;
   TFarads = specialize TQuantity<TFaradUnit>;
-  TFaradId = specialize TUnitId<TFaradUnit>;
+  TFaradUnitId = specialize TUnitId<TFaradUnit>;
 
 var
-  F: TFaradId;
+  F: TFaradUnitId;
 
 // main definition [ F ] = [ C ] / [ V ]
 operator /(const ALeft: TCoulombs; const ARight: TVolts): TFarads; inline;
@@ -1757,7 +1769,7 @@ operator /(const ALeft: TCoulombs; const ARight: TFarads): TVolts; inline;
 operator *(const ALeft: TFarads; const ARight: TVolts): TCoulombs; inline;
 operator *(const ALeft: TVolts; const ARight: TFarads): TCoulombs; inline;
 
-operator /(const ALeft: TCoulombs; const {%H-}ARight: TVoltId): TFarads; inline;
+operator /(const ALeft: TCoulombs; const {%H-}ARight: TVoltUnitId): TFarads; inline;
 
 // alternative definition [ F ] = [ C2 ] / [ J ]
 operator /(const ALeft: TSquareCoulombs; const ARight: TJoules): TFarads; inline;
@@ -1772,7 +1784,7 @@ type
     const Name   = 'gigafarad';
     const Factor = 1E+09;
   end;
-  TGigafaradId = specialize TFactoredUnitId<TFaradUnit, TGigafaradUnit>;
+  TGigafaradUnitId = specialize TFactoredUnitId<TFaradUnit, TGigafaradUnit>;
 
 const
   GF: specialize TQuantity<TFaradUnit> = (FValue: TGigafaradUnit.Factor);
@@ -1784,7 +1796,7 @@ type
     const Name   = 'megafarad';
     const Factor = 1E+06;
   end;
-  TMegafaradId = specialize TFactoredUnitId<TFaradUnit, TMegafaradUnit>;
+  TMegafaradUnitId = specialize TFactoredUnitId<TFaradUnit, TMegafaradUnit>;
 
 const
   megafarad: specialize TQuantity<TFaradUnit> = (FValue: TMegafaradUnit.Factor);
@@ -1796,7 +1808,7 @@ type
     const Name   = 'kilofarad';
     const Factor = 1E+03;
   end;
-  TKilofaradId = specialize TFactoredUnitId<TFaradUnit, TKilofaradUnit>;
+  TKilofaradUnitId = specialize TFactoredUnitId<TFaradUnit, TKilofaradUnit>;
 
 const
   kF: specialize TQuantity<TFaradUnit> = (FValue: TKilofaradUnit.Factor);
@@ -1808,7 +1820,7 @@ type
     const Name   = 'millifarad';
     const Factor = 1E-03;
   end;
-  TMillifaradId = specialize TFactoredUnitId<TFaradUnit, TMillifaradUnit>;
+  TMillifaradUnitId = specialize TFactoredUnitId<TFaradUnit, TMillifaradUnit>;
 
 const
   mF: specialize TQuantity<TFaradUnit> = (FValue: TMillifaradUnit.Factor);
@@ -1820,7 +1832,7 @@ type
     const Name   = 'microfarad';
     const Factor = 1E-06;
   end;
-  TMicrofaradId = specialize TFactoredUnitId<TFaradUnit, TMicrofaradUnit>;
+  TMicrofaradUnitId = specialize TFactoredUnitId<TFaradUnit, TMicrofaradUnit>;
 
 const
   uF: specialize TQuantity<TFaradUnit> = (FValue: TMicrofaradUnit.Factor);
@@ -1832,7 +1844,7 @@ type
     const Name   = 'nanofarad';
     const Factor = 1E-09;
   end;
-  TNanofaradId = specialize TFactoredUnitId<TFaradUnit, TNanofaradUnit>;
+  TNanofaradUnitId = specialize TFactoredUnitId<TFaradUnit, TNanofaradUnit>;
 
 const
   nF: specialize TQuantity<TFaradUnit> = (FValue: TNanofaradUnit.Factor);
@@ -1844,7 +1856,7 @@ type
     const Name   = 'picofarad';
     const Factor = 1E-12;
   end;
-  TPicofaradId = specialize TFactoredUnitId<TFaradUnit, TPicofaradUnit>;
+  TPicofaradUnitId = specialize TFactoredUnitId<TFaradUnit, TPicofaradUnit>;
 
 const
   pF: specialize TQuantity<TFaradUnit> = (FValue: TPicofaradUnit.Factor);
@@ -1856,10 +1868,10 @@ type
     const Name   = 'ohm';
   end;
   TOhms = specialize TQuantity<TOhmUnit>;
-  TOhmId = specialize TUnitId<TOhmUnit>;
+  TOhmUnitId = specialize TUnitId<TOhmUnit>;
 
 var
-  ohm: TOhmId;
+  ohm: TOhmUnitId;
 
 // main definition [ Ω ] = [ V ] / [ A ]
 operator /(const ALeft: TVolts; const ARight: TAmperes): TOhms; inline;
@@ -1867,7 +1879,7 @@ operator /(const ALeft: TVolts; const ARight: TOhms): TAmperes; inline;
 operator *(const ALeft: TOhms; const ARight: TAmperes): TVolts; inline;
 operator *(const ALeft: TAmperes; const ARight: TOhms): TVolts; inline;
 
-operator /(const ALeft: TVolts; const {%H-}ARight: TAmpereId): TOhms; inline;
+operator /(const ALeft: TVolts; const {%H-}ARight: TAmpereUnitId): TOhms; inline;
 
 // alternative definition [ Ω ] = [ s ] / [ F ]
 operator /(const ALeft: TSeconds; const ARight: TFarads): TOhms; inline;
@@ -1894,7 +1906,7 @@ type
     const Name   = 'gigaohm';
     const Factor = 1E+09;
   end;
-  TGigaohmId = specialize TFactoredUnitId<TOhmUnit, TGigaohmUnit>;
+  TGigaohmUnitId = specialize TFactoredUnitId<TOhmUnit, TGigaohmUnit>;
 
 const
   gigaohm: specialize TQuantity<TOhmUnit> = (FValue: TGigaohmUnit.Factor);
@@ -1906,7 +1918,7 @@ type
     const Name   = 'megaohm';
     const Factor = 1E+06;
   end;
-  TMegaohmId = specialize TFactoredUnitId<TOhmUnit, TMegaohmUnit>;
+  TMegaohmUnitId = specialize TFactoredUnitId<TOhmUnit, TMegaohmUnit>;
 
 const
   megaohm: specialize TQuantity<TOhmUnit> = (FValue: TMegaohmUnit.Factor);
@@ -1918,7 +1930,7 @@ type
     const Name   = 'kiloohm';
     const Factor = 1E+03;
   end;
-  TKiloohmId = specialize TFactoredUnitId<TOhmUnit, TKiloohmUnit>;
+  TKiloohmUnitId = specialize TFactoredUnitId<TOhmUnit, TKiloohmUnit>;
 
 const
   kiloohm: specialize TQuantity<TOhmUnit> = (FValue: TKiloohmUnit.Factor);
@@ -1930,7 +1942,7 @@ type
     const Name   = 'milliohm';
     const Factor = 1E-03;
   end;
-  TMilliohmId = specialize TFactoredUnitId<TOhmUnit, TMilliohmUnit>;
+  TMilliohmUnitId = specialize TFactoredUnitId<TOhmUnit, TMilliohmUnit>;
 
 const
   milliohm: specialize TQuantity<TOhmUnit> = (FValue: TMilliohmUnit.Factor);
@@ -1942,7 +1954,7 @@ type
     const Name   = 'microohm';
     const Factor = 1E-06;
   end;
-  TMicroohmId = specialize TFactoredUnitId<TOhmUnit, TMicroohmUnit>;
+  TMicroohmUnitId = specialize TFactoredUnitId<TOhmUnit, TMicroohmUnit>;
 
 const
   microohm: specialize TQuantity<TOhmUnit> = (FValue: TMicroohmUnit.Factor);
@@ -1954,7 +1966,7 @@ type
     const Name   = 'nanoohm';
     const Factor = 1E-09;
   end;
-  TNanoohmId = specialize TFactoredUnitId<TOhmUnit, TNanoohmUnit>;
+  TNanoohmUnitId = specialize TFactoredUnitId<TOhmUnit, TNanoohmUnit>;
 
 const
   nanoohm: specialize TQuantity<TOhmUnit> = (FValue: TNanoohmUnit.Factor);
@@ -1966,7 +1978,7 @@ type
     const Name   = 'picoohm';
     const Factor = 1E-12;
   end;
-  TPicoohmId = specialize TFactoredUnitId<TOhmUnit, TPicoohmUnit>;
+  TPicoohmUnitId = specialize TFactoredUnitId<TOhmUnit, TPicoohmUnit>;
 
 const
   picoohm: specialize TQuantity<TOhmUnit> = (FValue: TPicoohmUnit.Factor);
@@ -1978,10 +1990,10 @@ type
     const Name   = 'siemens';
   end;
   TSiemens = specialize TQuantity<TSiemensUnit>;
-  TSiemensId = specialize TUnitId<TSiemensUnit>;
+  TSiemensUnitId = specialize TUnitId<TSiemensUnit>;
 
 var
-  siemens: TSiemensId;
+  siemens: TSiemensUnitId;
 
 // main definition [ S ] = 1 / [ Ω ]
 operator /(const ALeft: double; const ARight: TOhms): TSiemens; inline;
@@ -1989,7 +2001,7 @@ operator /(const ALeft: double; const ARight: TSiemens): TOhms; inline;
 operator *(const ALeft: TSiemens; const ARight: TOhms): double; inline;
 operator *(const ALeft: TOhms; const ARight: TSiemens): double; inline;
 
-operator /(const ALeft: double; const {%H-}ARight: TOhmId): TSiemens; inline;
+operator /(const ALeft: double; const {%H-}ARight: TOhmUnitId): TSiemens; inline;
 
 type
   { Unit of Weber }
@@ -1998,10 +2010,10 @@ type
     const Name   = 'weber';
   end;
   TWebers = specialize TQuantity<TWeberUnit>;
-  TWeberId = specialize TUnitId<TWeberUnit>;
+  TWeberUnitId = specialize TUnitId<TWeberUnit>;
 
 var
-  Wb: TWeberId;
+  Wb: TWeberUnitId;
 
 // main definition [ Wb ] = [ V ] * [ s ]
 operator *(const ALeft: TVolts; const ARight: TSeconds): TWebers; inline;
@@ -2009,7 +2021,7 @@ operator /(const ALeft: TWebers; const ARight: TVolts): TSeconds; inline;
 operator *(const ALeft: TSeconds; const ARight: TVolts): TWebers; inline;
 operator /(const ALeft: TWebers; const ARight: TSeconds): TVolts; inline;
 
-operator *(const ALeft: TVolts; const {%H-}ARight: TSecondId): TWebers; inline;
+operator *(const ALeft: TVolts; const {%H-}ARight: TSecondUnitId): TWebers; inline;
 
 type
   { Unit of Tesla }
@@ -2018,10 +2030,10 @@ type
     const Name   = 'tesla';
   end;
   TTeslas = specialize TQuantity<TTeslaUnit>;
-  TTeslaId = specialize TUnitId<TTeslaUnit>;
+  TTeslaUnitId = specialize TUnitId<TTeslaUnit>;
 
 var
-  T: TTeslaId;
+  T: TTeslaUnitId;
 
 // main definition [ T ] = [ Wb ] / [ m2 ]
 operator /(const ALeft: TWebers; const ARight: TSquareMeters): TTeslas; inline;
@@ -2029,7 +2041,7 @@ operator /(const ALeft: TWebers; const ARight: TTeslas): TSquareMeters; inline;
 operator *(const ALeft: TTeslas; const ARight: TSquareMeters): TWebers; inline;
 operator *(const ALeft: TSquareMeters; const ARight: TTeslas): TWebers; inline;
 
-operator /(const ALeft: TWebers; const {%H-}ARight: TSquareMeterId): TTeslas; inline;
+operator /(const ALeft: TWebers; const {%H-}ARight: TSquareMeterUnitId): TTeslas; inline;
 
 type
   { Unit of Henry }
@@ -2038,10 +2050,10 @@ type
     const Name   = 'henry';
   end;
   THenrys = specialize TQuantity<THenryUnit>;
-  THenryId = specialize TUnitId<THenryUnit>;
+  THenryUnitId = specialize TUnitId<THenryUnit>;
 
 var
-  H: THenryId;
+  H: THenryUnitId;
 
 // main definition [ H ] = [ Wb ] / [ A ]
 operator /(const ALeft: TWebers; const ARight: TAmperes): THenrys; inline;
@@ -2049,7 +2061,7 @@ operator /(const ALeft: TWebers; const ARight: THenrys): TAmperes; inline;
 operator *(const ALeft: THenrys; const ARight: TAmperes): TWebers; inline;
 operator *(const ALeft: TAmperes; const ARight: THenrys): TWebers; inline;
 
-operator /(const ALeft: TWebers; const {%H-}ARight: TAmpereId): THenrys; inline;
+operator /(const ALeft: TWebers; const {%H-}ARight: TAmpereUnitId): THenrys; inline;
 
 // alternative definition [ H ] = [ Ω ] * [ s ]
 operator *(const ALeft: TOhms; const ARight: TSeconds): THenrys; inline;
@@ -2070,10 +2082,10 @@ type
     const Name   = 'lumen';
   end;
   TLumens = specialize TQuantity<TLumenUnit>;
-  TLumenId = specialize TUnitId<TLumenUnit>;
+  TLumenUnitId = specialize TUnitId<TLumenUnit>;
 
 var
-  lm: TLumenId;
+  lm: TLumenUnitId;
 
 // main definition [ lm ] = [ cd ] * [ sr ]
 operator *(const ALeft: TCandelas; const ARight: TSteradians): TLumens; inline;
@@ -2081,7 +2093,7 @@ operator /(const ALeft: TLumens; const ARight: TCandelas): TSteradians; inline;
 operator *(const ALeft: TSteradians; const ARight: TCandelas): TLumens; inline;
 operator /(const ALeft: TLumens; const ARight: TSteradians): TCandelas; inline;
 
-operator *(const ALeft: TCandelas; const {%H-}ARight: TSteradianId): TLumens; inline;
+operator *(const ALeft: TCandelas; const {%H-}ARight: TSteradianUnitId): TLumens; inline;
 
 type
   { Unit of Lux }
@@ -2090,10 +2102,10 @@ type
     const Name   = 'lux';
   end;
   TLux = specialize TQuantity<TLuxUnit>;
-  TLuxId = specialize TUnitId<TLuxUnit>;
+  TLuxUnitId = specialize TUnitId<TLuxUnit>;
 
 var
-  lx: TLuxId;
+  lx: TLuxUnitId;
 
 // main definition [ lx ] = [ lm ] / [ m2 ]
 operator /(const ALeft: TLumens; const ARight: TSquareMeters): TLux; inline;
@@ -2101,7 +2113,7 @@ operator /(const ALeft: TLumens; const ARight: TLux): TSquareMeters; inline;
 operator *(const ALeft: TLux; const ARight: TSquareMeters): TLumens; inline;
 operator *(const ALeft: TSquareMeters; const ARight: TLux): TLumens; inline;
 
-operator /(const ALeft: TLumens; const {%H-}ARight: TSquareMeterId): TLux; inline;
+operator /(const ALeft: TLumens; const {%H-}ARight: TSquareMeterUnitId): TLux; inline;
 
 type
   { Unit of Bequerel }
@@ -2110,10 +2122,10 @@ type
     const Name   = 'bequerel';
   end;
   TBequerels = specialize TQuantity<TBequerelUnit>;
-  TBequerelId = specialize TUnitId<TBequerelUnit>;
+  TBequerelUnitId = specialize TUnitId<TBequerelUnit>;
 
 var
-  Bq: TBequerelId;
+  Bq: TBequerelUnitId;
 
 type
   { Unit of Gray }
@@ -2122,10 +2134,10 @@ type
     const Name   = 'gray';
   end;
   TGrays = specialize TQuantity<TGrayUnit>;
-  TGrayId = specialize TUnitId<TGrayUnit>;
+  TGrayUnitId = specialize TUnitId<TGrayUnit>;
 
 var
-  Gy: TGrayId;
+  Gy: TGrayUnitId;
 
 type
   { Unit of Milligray }
@@ -2134,7 +2146,7 @@ type
     const Name   = 'milli gray';
     const Factor = 1E-03;
   end;
-  TMilligrayId = specialize TFactoredUnitId<TGrayUnit, TMilligrayUnit>;
+  TMilligrayUnitId = specialize TFactoredUnitId<TGrayUnit, TMilligrayUnit>;
 
 const
   mGy: specialize TQuantity<TGrayUnit> = (FValue: TMilligrayUnit.Factor);
@@ -2146,10 +2158,10 @@ type
     const Name   = 'sievert';
   end;
   TSieverts = specialize TQuantity<TSievertUnit>;
-  TSievertId = specialize TUnitId<TSievertUnit>;
+  TSievertUnitId = specialize TUnitId<TSievertUnit>;
 
 var
-  Sv: TSievertId;
+  Sv: TSievertUnitId;
 
 type
   { Unit of MilliSievert }
@@ -2158,7 +2170,7 @@ type
     const Name   = 'millisievert';
     const Factor = 1E-03;
   end;
-  TMilliSievertId = specialize TFactoredUnitId<TSievertUnit, TMilliSievertUnit>;
+  TMilliSievertUnitId = specialize TFactoredUnitId<TSievertUnit, TMilliSievertUnit>;
 
 const
   mSv: specialize TQuantity<TSievertUnit> = (FValue: TMilliSievertUnit.Factor);
@@ -2170,10 +2182,10 @@ type
     const Name   = 'katal';
   end;
   TKatals = specialize TQuantity<TKatalUnit>;
-  TKatalId = specialize TUnitId<TKatalUnit>;
+  TKatalUnitId = specialize TUnitId<TKatalUnit>;
 
 var
-  kat: TKatalId;
+  kat: TKatalUnitId;
 
 // main definition [ kat ] = [ mol ] / [ s ]
 operator /(const ALeft: TMoles; const ARight: TSeconds): TKatals; inline;
@@ -2181,7 +2193,7 @@ operator /(const ALeft: TMoles; const ARight: TKatals): TSeconds; inline;
 operator *(const ALeft: TKatals; const ARight: TSeconds): TMoles; inline;
 operator *(const ALeft: TSeconds; const ARight: TKatals): TMoles; inline;
 
-operator /(const ALeft: TMoles; const {%H-}ARight: TSecondId): TKatals; inline;
+operator /(const ALeft: TMoles; const {%H-}ARight: TSecondUnitId): TKatals; inline;
 
 type
   { Unit of NewtonMeter }
@@ -2190,7 +2202,7 @@ type
     const Name   = 'newton meter';
   end;
   TNewtonMeters = specialize TQuantity<TNewtonMeterUnit>;
-  TNewtonMeterId = specialize TUnitId<TNewtonMeterUnit>;
+  TNewtonMeterUnitId = specialize TUnitId<TNewtonMeterUnit>;
 
 type
   { Unit of JoulePerRadian }
@@ -2199,7 +2211,7 @@ type
     const Name   = 'joule per radian';
   end;
   TJoulesPerRadian = specialize TQuantity<TJoulePerRadianUnit>;
-  TJoulePerRadianId = specialize TUnitId<TJoulePerRadianUnit>;
+  TJoulePerRadianUnitId = specialize TUnitId<TJoulePerRadianUnit>;
 
 // main definition [ J/rad ] = [ J ] / [ rad ]
 operator /(const ALeft: TJoules; const ARight: TRadians): TJoulesPerRadian; inline;
@@ -2207,7 +2219,7 @@ operator /(const ALeft: TJoules; const ARight: TJoulesPerRadian): TRadians; inli
 operator *(const ALeft: TJoulesPerRadian; const ARight: TRadians): TJoules; inline;
 operator *(const ALeft: TRadians; const ARight: TJoulesPerRadian): TJoules; inline;
 
-operator /(const ALeft: TJoules; const {%H-}ARight: TRadianId): TJoulesPerRadian; inline;
+operator /(const ALeft: TJoules; const {%H-}ARight: TRadianUnitId): TJoulesPerRadian; inline;
 
 type
   { Unit of JoulePerDegree }
@@ -2216,7 +2228,7 @@ type
     const Name   = 'joule per degree';
     const Factor = 180/Pi;
   end;
-  TJoulePerDegreeId = specialize TFactoredUnitId<TJoulePerRadianUnit, TJoulePerDegreeUnit>;
+  TJoulePerDegreeUnitId = specialize TFactoredUnitId<TJoulePerRadianUnit, TJoulePerDegreeUnit>;
 
 type
   { Unit of NewtonMeterPerRadian }
@@ -2225,7 +2237,7 @@ type
     const Name   = 'newton meter per radian';
   end;
   TNewtonMetersPerRadian = specialize TQuantity<TNewtonMeterPerRadianUnit>;
-  TNewtonMeterPerRadianId = specialize TUnitId<TNewtonMeterPerRadianUnit>;
+  TNewtonMeterPerRadianUnitId = specialize TUnitId<TNewtonMeterPerRadianUnit>;
 
 type
   { Unit of NewtonMeterPerDegree }
@@ -2234,7 +2246,7 @@ type
     const Name   = 'newton meter per degree';
     const Factor = 180/Pi;
   end;
-  TNewtonMeterPerDegreeId = specialize TFactoredUnitId<TJoulePerRadianUnit, TNewtonMeterPerDegreeUnit>;
+  TNewtonMeterPerDegreeUnitId = specialize TFactoredUnitId<TJoulePerRadianUnit, TNewtonMeterPerDegreeUnit>;
 
 type
   { Unit of KilogramPerMeter }
@@ -2243,7 +2255,7 @@ type
     const Name   = 'kilogram per meter';
   end;
   TKilogramsPerMeter = specialize TQuantity<TKilogramPerMeterUnit>;
-  TKilogramPerMeterId = specialize TUnitId<TKilogramPerMeterUnit>;
+  TKilogramPerMeterUnitId = specialize TUnitId<TKilogramPerMeterUnit>;
 
 // main definition [ kg/m ] = [ kg ] / [ m ]
 operator /(const ALeft: TKilograms; const ARight: TMeters): TKilogramsPerMeter; inline;
@@ -2251,7 +2263,7 @@ operator /(const ALeft: TKilograms; const ARight: TKilogramsPerMeter): TMeters; 
 operator *(const ALeft: TKilogramsPerMeter; const ARight: TMeters): TKilograms; inline;
 operator *(const ALeft: TMeters; const ARight: TKilogramsPerMeter): TKilograms; inline;
 
-operator /(const ALeft: TKilograms; const {%H-}ARight: TMeterId): TKilogramsPerMeter; inline;
+operator /(const ALeft: TKilograms; const {%H-}ARight: TMeterUnitId): TKilogramsPerMeter; inline;
 
 type
   { Unit of KilogramPerSquareMeter }
@@ -2260,7 +2272,7 @@ type
     const Name   = 'kilogram per square meter';
   end;
   TKilogramsPerSquareMeter = specialize TQuantity<TKilogramPerSquareMeterUnit>;
-  TKilogramPerSquareMeterId = specialize TUnitId<TKilogramPerSquareMeterUnit>;
+  TKilogramPerSquareMeterUnitId = specialize TUnitId<TKilogramPerSquareMeterUnit>;
 
 // main definition [ kg/m2 ] = [ kg ] / [ m2 ]
 operator /(const ALeft: TKilograms; const ARight: TSquareMeters): TKilogramsPerSquareMeter; inline;
@@ -2268,7 +2280,7 @@ operator /(const ALeft: TKilograms; const ARight: TKilogramsPerSquareMeter): TSq
 operator *(const ALeft: TKilogramsPerSquareMeter; const ARight: TSquareMeters): TKilograms; inline;
 operator *(const ALeft: TSquareMeters; const ARight: TKilogramsPerSquareMeter): TKilograms; inline;
 
-operator /(const ALeft: TKilograms; const {%H-}ARight: TSquareMeterId): TKilogramsPerSquareMeter; inline;
+operator /(const ALeft: TKilograms; const {%H-}ARight: TSquareMeterUnitId): TKilogramsPerSquareMeter; inline;
 
 type
   { Unit of KilogramPerCubicMeter }
@@ -2277,7 +2289,7 @@ type
     const Name   = 'kilogram per cubic meter';
   end;
   TKilogramsPerCubicMeter = specialize TQuantity<TKilogramPerCubicMeterUnit>;
-  TKilogramPerCubicMeterId = specialize TUnitId<TKilogramPerCubicMeterUnit>;
+  TKilogramPerCubicMeterUnitId = specialize TUnitId<TKilogramPerCubicMeterUnit>;
 
 // main definition [ kg/m3 ] = [ kg ] / [ m3 ]
 operator /(const ALeft: TKilograms; const ARight: TCubicMeters): TKilogramsPerCubicMeter; inline;
@@ -2285,7 +2297,7 @@ operator /(const ALeft: TKilograms; const ARight: TKilogramsPerCubicMeter): TCub
 operator *(const ALeft: TKilogramsPerCubicMeter; const ARight: TCubicMeters): TKilograms; inline;
 operator *(const ALeft: TCubicMeters; const ARight: TKilogramsPerCubicMeter): TKilograms; inline;
 
-operator /(const ALeft: TKilograms; const {%H-}ARight: TCubicMeterId): TKilogramsPerCubicMeter; inline;
+operator /(const ALeft: TKilograms; const {%H-}ARight: TCubicMeterUnitId): TKilogramsPerCubicMeter; inline;
 
 type
   { Unit of KilogramPerCubicMillimeter }
@@ -2294,7 +2306,7 @@ type
     const Name   = 'kilogram per cubic millimeter';
     const Factor = 1E+09;
   end;
-  TKilogramPerCubicMillimeterId = specialize TFactoredUnitId<TKilogramPerCubicMeterUnit, TKilogramPerCubicMillimeterUnit>;
+  TKilogramPerCubicMillimeterUnitId = specialize TFactoredUnitId<TKilogramPerCubicMeterUnit, TKilogramPerCubicMillimeterUnit>;
 
 type
   { Unit of KilogramPerCubicCentimeter }
@@ -2303,7 +2315,7 @@ type
     const Name   = 'kilogram per cubic centimeter';
     const Factor = 1E+06;
   end;
-  TKilogramPerCubicCentimeterId = specialize TFactoredUnitId<TKilogramPerCubicMeterUnit, TKilogramPerCubicCentimeterUnit>;
+  TKilogramPerCubicCentimeterUnitId = specialize TFactoredUnitId<TKilogramPerCubicMeterUnit, TKilogramPerCubicCentimeterUnit>;
 
 type
   { Unit of KilogramPerCubicDecimeter }
@@ -2312,7 +2324,7 @@ type
     const Name   = 'kilogram per cubic decimeter';
     const Factor = 1E+03;
   end;
-  TKilogramPerCubicDecimeterId = specialize TFactoredUnitId<TKilogramPerCubicMeterUnit, TKilogramPerCubicDecimeterUnit>;
+  TKilogramPerCubicDecimeterUnitId = specialize TFactoredUnitId<TKilogramPerCubicMeterUnit, TKilogramPerCubicDecimeterUnit>;
 
 type
   { Unit of HectogramPerCubicMeter }
@@ -2321,7 +2333,7 @@ type
     const Name   = 'hectogram per cubic meter';
     const Factor = 1E-01;
   end;
-  THectogramPerCubicMeterId = specialize TFactoredUnitId<TKilogramPerCubicMeterUnit, THectogramPerCubicMeterUnit>;
+  THectogramPerCubicMeterUnitId = specialize TFactoredUnitId<TKilogramPerCubicMeterUnit, THectogramPerCubicMeterUnit>;
 
 type
   { Unit of DecagramPerCubicMeter }
@@ -2330,7 +2342,7 @@ type
     const Name   = 'decagram per cubic meter';
     const Factor = 1E-02;
   end;
-  TDecagramPerCubicMeterId = specialize TFactoredUnitId<TKilogramPerCubicMeterUnit, TDecagramPerCubicMeterUnit>;
+  TDecagramPerCubicMeterUnitId = specialize TFactoredUnitId<TKilogramPerCubicMeterUnit, TDecagramPerCubicMeterUnit>;
 
 type
   { Unit of GramPerCubicMeter }
@@ -2339,7 +2351,7 @@ type
     const Name   = 'gram per cubic meter';
     const Factor = 1E-03;
   end;
-  TGramPerCubicMeterId = specialize TFactoredUnitId<TKilogramPerCubicMeterUnit, TGramPerCubicMeterUnit>;
+  TGramPerCubicMeterUnitId = specialize TFactoredUnitId<TKilogramPerCubicMeterUnit, TGramPerCubicMeterUnit>;
 
 type
   { Unit of NewtonPerCubicMeter }
@@ -2348,7 +2360,7 @@ type
     const Name   = 'newton per cubic meter';
   end;
   TNewtonsPerCubicMeter = specialize TQuantity<TNewtonPerCubicMeterUnit>;
-  TNewtonPerCubicMeterId = specialize TUnitId<TNewtonPerCubicMeterUnit>;
+  TNewtonPerCubicMeterUnitId = specialize TUnitId<TNewtonPerCubicMeterUnit>;
 
 // main definition [ N/m3 ] = [ N ] / [ m3 ]
 operator /(const ALeft: TNewtons; const ARight: TCubicMeters): TNewtonsPerCubicMeter; inline;
@@ -2356,7 +2368,7 @@ operator /(const ALeft: TNewtons; const ARight: TNewtonsPerCubicMeter): TCubicMe
 operator *(const ALeft: TNewtonsPerCubicMeter; const ARight: TCubicMeters): TNewtons; inline;
 operator *(const ALeft: TCubicMeters; const ARight: TNewtonsPerCubicMeter): TNewtons; inline;
 
-operator /(const ALeft: TNewtons; const {%H-}ARight: TCubicMeterId): TNewtonsPerCubicMeter; inline;
+operator /(const ALeft: TNewtons; const {%H-}ARight: TCubicMeterUnitId): TNewtonsPerCubicMeter; inline;
 
 // alternative definition [ N/m3 ] = [ Pa ] / [ m ]
 operator /(const ALeft: TPascals; const ARight: TMeters): TNewtonsPerCubicMeter; inline;
@@ -2377,7 +2389,7 @@ type
     const Name   = 'newton per meter';
   end;
   TNewtonsPerMeter = specialize TQuantity<TNewtonPerMeterUnit>;
-  TNewtonPerMeterId = specialize TUnitId<TNewtonPerMeterUnit>;
+  TNewtonPerMeterUnitId = specialize TUnitId<TNewtonPerMeterUnit>;
 
 // main definition [ N/m ] = [ N ] / [ m ]
 operator /(const ALeft: TNewtons; const ARight: TMeters): TNewtonsPerMeter; inline;
@@ -2385,7 +2397,7 @@ operator /(const ALeft: TNewtons; const ARight: TNewtonsPerMeter): TMeters; inli
 operator *(const ALeft: TNewtonsPerMeter; const ARight: TMeters): TNewtons; inline;
 operator *(const ALeft: TMeters; const ARight: TNewtonsPerMeter): TNewtons; inline;
 
-operator /(const ALeft: TNewtons; const {%H-}ARight: TMeterId): TNewtonsPerMeter; inline;
+operator /(const ALeft: TNewtons; const {%H-}ARight: TMeterUnitId): TNewtonsPerMeter; inline;
 
 // alternative definition [ N/m ] = [ J ] / [ m2 ]
 operator /(const ALeft: TJoules; const ARight: TSquareMeters): TNewtonsPerMeter; inline;
@@ -2406,7 +2418,7 @@ type
     const Name   = 'newton per millimeter';
     const Factor = 1E+03;
   end;
-  TNewtonPerMillimeterId = specialize TFactoredUnitId<TNewtonPerMeterUnit, TNewtonPerMillimeterUnit>;
+  TNewtonPerMillimeterUnitId = specialize TFactoredUnitId<TNewtonPerMeterUnit, TNewtonPerMillimeterUnit>;
 
 type
   { Unit of KilogramMeterPerSecond }
@@ -2415,7 +2427,7 @@ type
     const Name   = 'kilogram meter per second';
   end;
   TKilogramMetersPerSecond = specialize TQuantity<TKilogramMeterPerSecondUnit>;
-  TKilogramMeterPerSecondId = specialize TUnitId<TKilogramMeterPerSecondUnit>;
+  TKilogramMeterPerSecondUnitId = specialize TUnitId<TKilogramMeterPerSecondUnit>;
 
 // main definition [ kg*m/s ] = [kg ] * [ m/s ]
 operator *(const ALeft: TKilograms; const ARight: TMetersPerSecond): TKilogramMetersPerSecond; inline;
@@ -2423,7 +2435,7 @@ operator /(const ALeft: TKilogramMetersPerSecond; const ARight: TKilograms): TMe
 operator *(const ALeft: TMetersPerSecond; const ARight: TKilograms): TKilogramMetersPerSecond; inline;
 operator /(const ALeft: TKilogramMetersPerSecond; const ARight: TMetersPerSecond): TKilograms; inline;
 
-operator *(const ALeft: TKilograms; const {%H-}ARight: TMeterPerSecondId): TKilogramMetersPerSecond; inline;
+operator *(const ALeft: TKilograms; const {%H-}ARight: TMeterPerSecondUnitId): TKilogramMetersPerSecond; inline;
 
 // alternative definition [ N*s ] = [ N ] * [ s ]
 operator *(const ALeft: TNewtons; const ARight: TSeconds): TKilogramMetersPerSecond; inline;
@@ -2431,7 +2443,7 @@ operator /(const ALeft: TKilogramMetersPerSecond; const ARight: TNewtons): TSeco
 operator *(const ALeft: TSeconds; const ARight: TNewtons): TKilogramMetersPerSecond; inline;
 operator /(const ALeft: TKilogramMetersPerSecond; const ARight: TSeconds): TNewtons; inline;
 
-operator *(const ALeft: TNewtons; const {%H-}ARight: TSecondId): TKilogramMetersPerSecond; inline;
+operator *(const ALeft: TNewtons; const {%H-}ARight: TSecondUnitId): TKilogramMetersPerSecond; inline;
 
 type
   { Unit of NewtonSecond }
@@ -2440,7 +2452,7 @@ type
     const Name   = 'newton second';
   end;
   TNewtonSeconds = specialize TQuantity<TNewtonSecondUnit>;
-  TNewtonSecondId = specialize TUnitId<TNewtonSecondUnit>;
+  TNewtonSecondUnitId = specialize TUnitId<TNewtonSecondUnit>;
 
 type
   { Unit of KilogramSquareMeter }
@@ -2449,7 +2461,7 @@ type
     const Name   = 'kilogram square meter';
   end;
   TKilogramSquareMeters = specialize TQuantity<TKilogramSquareMeterUnit>;
-  TKilogramSquareMeterId = specialize TUnitId<TKilogramSquareMeterUnit>;
+  TKilogramSquareMeterUnitId = specialize TUnitId<TKilogramSquareMeterUnit>;
 
 // main definition [ kg*m2 ] = [ kg ] * [ m2 ]
 operator *(const ALeft: TKilograms; const ARight: TSquareMeters): TKilogramSquareMeters; inline;
@@ -2457,7 +2469,7 @@ operator /(const ALeft: TKilogramSquareMeters; const ARight: TKilograms): TSquar
 operator *(const ALeft: TSquareMeters; const ARight: TKilograms): TKilogramSquareMeters; inline;
 operator /(const ALeft: TKilogramSquareMeters; const ARight: TSquareMeters): TKilograms; inline;
 
-operator *(const ALeft: TKilograms; const {%H-}ARight: TSquareMeterId): TKilogramSquareMeters; inline;
+operator *(const ALeft: TKilograms; const {%H-}ARight: TSquareMeterUnitId): TKilogramSquareMeters; inline;
 
 type
   { Unit of KilogramSquareMeterPerSecond }
@@ -2466,7 +2478,7 @@ type
     const Name   = 'kilogram square meter per second';
   end;
   TKilogramSquareMetersPerSecond = specialize TQuantity<TKilogramSquareMeterPerSecondUnit>;
-  TKilogramSquareMeterPerSecondId = specialize TUnitId<TKilogramSquareMeterPerSecondUnit>;
+  TKilogramSquareMeterPerSecondUnitId = specialize TUnitId<TKilogramSquareMeterPerSecondUnit>;
 
 // main definition [ kg*m2/s ] = [ kg*m2 ] / [ s ]
 operator /(const ALeft: TKilogramSquareMeters; const ARight: TSeconds): TKilogramSquareMetersPerSecond; inline;
@@ -2474,7 +2486,7 @@ operator /(const ALeft: TKilogramSquareMeters; const ARight: TKilogramSquareMete
 operator *(const ALeft: TKilogramSquareMetersPerSecond; const ARight: TSeconds): TKilogramSquareMeters; inline;
 operator *(const ALeft: TSeconds; const ARight: TKilogramSquareMetersPerSecond): TKilogramSquareMeters; inline;
 
-operator /(const ALeft: TKilogramSquareMeters; const {%H-}ARight: TSecondId): TKilogramSquareMetersPerSecond; inline;
+operator /(const ALeft: TKilogramSquareMeters; const {%H-}ARight: TSecondUnitId): TKilogramSquareMetersPerSecond; inline;
 
 // alternative definition [ kg*m2/s ] = [ kg*m2 ] * [ rad/s ]
 operator *(const ALeft: TKilogramSquareMeters; const ARight: TRadiansPerSecond): TKilogramSquareMetersPerSecond; inline;
@@ -2489,7 +2501,7 @@ type
     const Name   = 'square meter per square second';
   end;
   TSquareMetersPerSquareSecond = specialize TQuantity<TSquareMeterPerSquareSecondUnit>;
-  TSquareMeterPerSquareSecondId = specialize TUnitId<TSquareMeterPerSquareSecondUnit>;
+  TSquareMeterPerSquareSecondUnitId = specialize TUnitId<TSquareMeterPerSquareSecondUnit>;
 
 // main definition [ m2/s2 ] = [ m2 ] / [ s2 ]
 operator /(const ALeft: TSquareMeters; const ARight: TSquareSeconds): TSquareMetersPerSquareSecond; inline;
@@ -2497,7 +2509,7 @@ operator /(const ALeft: TSquareMeters; const ARight: TSquareMetersPerSquareSecon
 operator *(const ALeft: TSquareMetersPerSquareSecond; const ARight: TSquareSeconds): TSquareMeters; inline;
 operator *(const ALeft: TSquareSeconds; const ARight: TSquareMetersPerSquareSecond): TSquareMeters; inline;
 
-operator /(const ALeft: TSquareMeters; const {%H-}ARight: TSquareSecondId): TSquareMetersPerSquareSecond; inline;
+operator /(const ALeft: TSquareMeters; const {%H-}ARight: TSquareSecondUnitId): TSquareMetersPerSquareSecond; inline;
 
 // alternative definition [ m2/s2 ] = [ m/s ] / [ m/s ]
 operator *(const ALeft: TMetersPerSecond; const ARight: TMetersPerSecond): TSquareMetersPerSquareSecond; inline;
@@ -2515,7 +2527,7 @@ operator /(const ALeft: TJoules; const ARight: TSquareMetersPerSquareSecond): TK
 operator *(const ALeft: TSquareMetersPerSquareSecond; const ARight: TKilograms): TJoules; inline;
 operator *(const ALeft: TKilograms; const ARight: TSquareMetersPerSquareSecond): TJoules; inline;
 
-operator /(const ALeft: TJoules; const {%H-}ARight: TKilogramId): TSquareMetersPerSquareSecond; inline;
+operator /(const ALeft: TJoules; const {%H-}ARight: TKilogramUnitId): TSquareMetersPerSquareSecond; inline;
 
 // alternative definition [ m2/s2 ] = [ Pa ] / [ kg/m3 ]
 operator /(const ALeft: TPascals; const ARight: TKilogramsPerCubicMeter): TSquareMetersPerSquareSecond; inline;
@@ -2530,7 +2542,7 @@ type
     const Name   = 'square rad per square second';
   end;
   TSteradiansPerSquareSecond = specialize TQuantity<TSteradianPerSquareSecondUnit>;
-  TSteradianPerSquareSecondId = specialize TUnitId<TSteradianPerSquareSecondUnit>;
+  TSteradianPerSquareSecondUnitId = specialize TUnitId<TSteradianPerSquareSecondUnit>;
 
 // main definition [ sr/s2 ] = [ sr ] / [ s2 ]
 operator /(const ALeft: TSteradians; const ARight: TSquareSeconds): TSteradiansPerSquareSecond; inline;
@@ -2538,7 +2550,7 @@ operator /(const ALeft: TSteradians; const ARight: TSteradiansPerSquareSecond): 
 operator *(const ALeft: TSteradiansPerSquareSecond; const ARight: TSquareSeconds): TSteradians; inline;
 operator *(const ALeft: TSquareSeconds; const ARight: TSteradiansPerSquareSecond): TSteradians; inline;
 
-operator /(const ALeft: TSteradians; const {%H-}ARight: TSquareSecondId): TSteradiansPerSquareSecond; inline;
+operator /(const ALeft: TSteradians; const {%H-}ARight: TSquareSecondUnitId): TSteradiansPerSquareSecond; inline;
 
 // alternative definition [ sr/s2 ] = [ rad/s ] * [ rad/s ]
 operator *(const ALeft: TRadiansPerSecond; const ARight: TRadiansPerSecond): TSteradiansPerSquareSecond; inline;
@@ -2563,7 +2575,7 @@ type
     const Name   = 'cubic meter per second';
   end;
   TCubicMetersPerSecond = specialize TQuantity<TCubicMeterPerSecondUnit>;
-  TCubicMeterPerSecondId = specialize TUnitId<TCubicMeterPerSecondUnit>;
+  TCubicMeterPerSecondUnitId = specialize TUnitId<TCubicMeterPerSecondUnit>;
 
 // main definition [ m3/s ] = [ m3 ] / [ s ]
 operator /(const ALeft: TCubicMeters; const ARight: TSeconds): TCubicMetersPerSecond; inline;
@@ -2571,7 +2583,7 @@ operator /(const ALeft: TCubicMeters; const ARight: TCubicMetersPerSecond): TSec
 operator *(const ALeft: TCubicMetersPerSecond; const ARight: TSeconds): TCubicMeters; inline;
 operator *(const ALeft: TSeconds; const ARight: TCubicMetersPerSecond): TCubicMeters; inline;
 
-operator /(const ALeft: TCubicMeters; const {%H-}ARight: TSecondId): TCubicMetersPerSecond; inline;
+operator /(const ALeft: TCubicMeters; const {%H-}ARight: TSecondUnitId): TCubicMetersPerSecond; inline;
 
 // alternative definition [ m3/s ] = [ m2 ] * [ m/s ]
 operator *(const ALeft: TSquareMeters; const ARight: TMetersPerSecond): TCubicMetersPerSecond; inline;
@@ -2586,7 +2598,7 @@ type
     const Name   = 'pascal second';
   end;
   TPascalSeconds = specialize TQuantity<TPascalSecondUnit>;
-  TPascalSecondId = specialize TUnitId<TPascalSecondUnit>;
+  TPascalSecondUnitId = specialize TUnitId<TPascalSecondUnit>;
 
 // main definition [ Pa*s ] = [ Pa ] * [ s ]
 operator *(const ALeft: TPascals; const ARight: TSeconds): TPascalSeconds; inline;
@@ -2594,7 +2606,7 @@ operator /(const ALeft: TPascalSeconds; const ARight: TPascals): TSeconds; inlin
 operator *(const ALeft: TSeconds; const ARight: TPascals): TPascalSeconds; inline;
 operator /(const ALeft: TPascalSeconds; const ARight: TSeconds): TPascals; inline;
 
-operator *(const ALeft: TPascals; const {%H-}ARight: TSecondId): TPascalSeconds; inline;
+operator *(const ALeft: TPascals; const {%H-}ARight: TSecondUnitId): TPascalSeconds; inline;
 
 type
   { Unit of SquareMeterPerSecond }
@@ -2603,7 +2615,7 @@ type
     const Name   = 'square meter per second';
   end;
   TSquareMetersPerSecond = specialize TQuantity<TSquareMeterPerSecondUnit>;
-  TSquareMeterPerSecondId = specialize TUnitId<TSquareMeterPerSecondUnit>;
+  TSquareMeterPerSecondUnitId = specialize TUnitId<TSquareMeterPerSecondUnit>;
 
 // main definition [ m2/s ] = [ m2 ] / [ s ]
 operator /(const ALeft: TSquareMeters; const ARight: TSeconds): TSquareMetersPerSecond; inline;
@@ -2611,7 +2623,7 @@ operator /(const ALeft: TSquareMeters; const ARight: TSquareMetersPerSecond): TS
 operator *(const ALeft: TSquareMetersPerSecond; const ARight: TSeconds): TSquareMeters; inline;
 operator *(const ALeft: TSeconds; const ARight: TSquareMetersPerSecond): TSquareMeters; inline;
 
-operator /(const ALeft: TSquareMeters; const {%H-}ARight: TSecondId): TSquareMetersPerSecond; inline;
+operator /(const ALeft: TSquareMeters; const {%H-}ARight: TSecondUnitId): TSquareMetersPerSecond; inline;
 
 // alternative definition [ m2/s ] = [ Pa*s ] / [ kg/m3 ]
 operator /(const ALeft: TPascalSeconds; const ARight: TKilogramsPerCubicMeter): TSquareMetersPerSecond; inline;
@@ -2626,7 +2638,7 @@ type
     const Name   = 'newton square meter';
   end;
   TNewtonSquareMeters = specialize TQuantity<TNewtonSquareMeterUnit>;
-  TNewtonSquareMeterId = specialize TUnitId<TNewtonSquareMeterUnit>;
+  TNewtonSquareMeterUnitId = specialize TUnitId<TNewtonSquareMeterUnit>;
 
 // main definition [ N*m2 ] = [ N ] * [ m2 ]
 operator *(const ALeft: TNewtons; const ARight: TSquareMeters): TNewtonSquareMeters; inline;
@@ -2634,7 +2646,7 @@ operator /(const ALeft: TNewtonSquareMeters; const ARight: TNewtons): TSquareMet
 operator *(const ALeft: TSquareMeters; const ARight: TNewtons): TNewtonSquareMeters; inline;
 operator /(const ALeft: TNewtonSquareMeters; const ARight: TSquareMeters): TNewtons; inline;
 
-operator *(const ALeft: TNewtons; const {%H-}ARight: TSquareMeterId): TNewtonSquareMeters; inline;
+operator *(const ALeft: TNewtons; const {%H-}ARight: TSquareMeterUnitId): TNewtonSquareMeters; inline;
 
 type
   { Unit of NewtonPerSquareKilogram }
@@ -2643,7 +2655,7 @@ type
     const Name   = 'newton per square kilogram';
   end;
   TNewtonsPerSquareKilogram = specialize TQuantity<TNewtonPerSquareKilogramUnit>;
-  TNewtonPerSquareKilogramId = specialize TUnitId<TNewtonPerSquareKilogramUnit>;
+  TNewtonPerSquareKilogramUnitId = specialize TUnitId<TNewtonPerSquareKilogramUnit>;
 
 // main definition [ N/kg2 ] = [ N ] / [ kg2 ]
 operator /(const ALeft: TNewtons; const ARight: TSquareKilograms): TNewtonsPerSquareKilogram; inline;
@@ -2651,7 +2663,7 @@ operator /(const ALeft: TNewtons; const ARight: TNewtonsPerSquareKilogram): TSqu
 operator *(const ALeft: TNewtonsPerSquareKilogram; const ARight: TSquareKilograms): TNewtons; inline;
 operator *(const ALeft: TSquareKilograms; const ARight: TNewtonsPerSquareKilogram): TNewtons; inline;
 
-operator /(const ALeft: TNewtons; const {%H-}ARight: TSquareKilogramId): TNewtonsPerSquareKilogram; inline;
+operator /(const ALeft: TNewtons; const {%H-}ARight: TSquareKilogramUnitId): TNewtonsPerSquareKilogram; inline;
 
 type
   { Unit of SquareKilogramPerMeter }
@@ -2660,7 +2672,7 @@ type
     const Name   = 'square kilogram per meter';
   end;
   TSquareKilogramsPerMeter = specialize TQuantity<TSquareKilogramPerMeterUnit>;
-  TSquareKilogramPerMeterId = specialize TUnitId<TSquareKilogramPerMeterUnit>;
+  TSquareKilogramPerMeterUnitId = specialize TUnitId<TSquareKilogramPerMeterUnit>;
 
 // main definition [ kg2/m ] = [ kg2 ] / [ m ]
 operator /(const ALeft: TSquareKilograms; const ARight: TMeters): TSquareKilogramsPerMeter; inline;
@@ -2668,7 +2680,7 @@ operator /(const ALeft: TSquareKilograms; const ARight: TSquareKilogramsPerMeter
 operator *(const ALeft: TSquareKilogramsPerMeter; const ARight: TMeters): TSquareKilograms; inline;
 operator *(const ALeft: TMeters; const ARight: TSquareKilogramsPerMeter): TSquareKilograms; inline;
 
-operator /(const ALeft: TSquareKilograms; const {%H-}ARight: TMeterId): TSquareKilogramsPerMeter; inline;
+operator /(const ALeft: TSquareKilograms; const {%H-}ARight: TMeterUnitId): TSquareKilogramsPerMeter; inline;
 
 type
   { Unit of SquareKilogramPerSquareMeter }
@@ -2677,7 +2689,7 @@ type
     const Name   = 'square kilogram per square meter';
   end;
   TSquareKilogramsPerSquareMeter = specialize TQuantity<TSquareKilogramPerSquareMeterUnit>;
-  TSquareKilogramPerSquareMeterId = specialize TUnitId<TSquareKilogramPerSquareMeterUnit>;
+  TSquareKilogramPerSquareMeterUnitId = specialize TUnitId<TSquareKilogramPerSquareMeterUnit>;
 
 // main definition [ kg2/m2 ] = [ kg2 ] / [ m2 ]
 operator /(const ALeft: TSquareKilograms; const ARight: TSquareMeters): TSquareKilogramsPerSquareMeter; inline;
@@ -2685,7 +2697,7 @@ operator /(const ALeft: TSquareKilograms; const ARight: TSquareKilogramsPerSquar
 operator *(const ALeft: TSquareKilogramsPerSquareMeter; const ARight: TSquareMeters): TSquareKilograms; inline;
 operator *(const ALeft: TSquareMeters; const ARight: TSquareKilogramsPerSquareMeter): TSquareKilograms; inline;
 
-operator /(const ALeft: TSquareKilograms; const {%H-}ARight: TSquareMeterId): TSquareKilogramsPerSquareMeter; inline;
+operator /(const ALeft: TSquareKilograms; const {%H-}ARight: TSquareMeterUnitId): TSquareKilogramsPerSquareMeter; inline;
 
 type
   { Unit of SquareMeterPerSquareKilogram }
@@ -2694,7 +2706,7 @@ type
     const Name   = 'square meter per square kilogram';
   end;
   TSquareMetersPerSquareKilogram = specialize TQuantity<TSquareMeterPerSquareKilogramUnit>;
-  TSquareMeterPerSquareKilogramId = specialize TUnitId<TSquareMeterPerSquareKilogramUnit>;
+  TSquareMeterPerSquareKilogramUnitId = specialize TUnitId<TSquareMeterPerSquareKilogramUnit>;
 
 // main definition [ m2/kg2 ] = [ m2 ] / [ kg2 ]
 operator /(const ALeft: TSquareMeters; const ARight: TSquareKilograms): TSquareMetersPerSquareKilogram; inline;
@@ -2702,7 +2714,7 @@ operator /(const ALeft: TSquareMeters; const ARight: TSquareMetersPerSquareKilog
 operator *(const ALeft: TSquareMetersPerSquareKilogram; const ARight: TSquareKilograms): TSquareMeters; inline;
 operator *(const ALeft: TSquareKilograms; const ARight: TSquareMetersPerSquareKilogram): TSquareMeters; inline;
 
-operator /(const ALeft: TSquareMeters; const {%H-}ARight: TSquareKilogramId): TSquareMetersPerSquareKilogram; inline;
+operator /(const ALeft: TSquareMeters; const {%H-}ARight: TSquareKilogramUnitId): TSquareMetersPerSquareKilogram; inline;
 
 type
   { Unit of NewtonSquareMeterPerSquareKilogram }
@@ -2711,7 +2723,7 @@ type
     const Name   = 'newton square meter per square kilogram';
   end;
   TNewtonSquareMetersPerSquareKilogram = specialize TQuantity<TNewtonSquareMeterPerSquareKilogramUnit>;
-  TNewtonSquareMeterPerSquareKilogramId = specialize TUnitId<TNewtonSquareMeterPerSquareKilogramUnit>;
+  TNewtonSquareMeterPerSquareKilogramUnitId = specialize TUnitId<TNewtonSquareMeterPerSquareKilogramUnit>;
 
 // main definition [ N*m2/kg2 ] = [ N ] * [ m2/kg2 ]
 operator *(const ALeft: TNewtons; const ARight: TSquareMetersPerSquareKilogram): TNewtonSquareMetersPerSquareKilogram; inline;
@@ -2731,7 +2743,7 @@ operator /(const ALeft: TNewtonSquareMeters; const ARight: TNewtonSquareMetersPe
 operator *(const ALeft: TNewtonSquareMetersPerSquareKilogram; const ARight: TSquareKilograms): TNewtonSquareMeters; inline;
 operator *(const ALeft: TSquareKilograms; const ARight: TNewtonSquareMetersPerSquareKilogram): TNewtonSquareMeters; inline;
 
-operator /(const ALeft: TNewtonSquareMeters; const {%H-}ARight: TSquareKilogramId): TNewtonSquareMetersPerSquareKilogram; inline;
+operator /(const ALeft: TNewtonSquareMeters; const {%H-}ARight: TSquareKilogramUnitId): TNewtonSquareMetersPerSquareKilogram; inline;
 
 // alternative definition [ N*m2/kg2 ] = [ N/kg2 ] * [ m2 ]
 operator *(const ALeft: TNewtonsPerSquareKilogram; const ARight: TSquareMeters): TNewtonSquareMetersPerSquareKilogram; inline;
@@ -2752,7 +2764,7 @@ type
     const Name   = 'reciprocal kelvin';
   end;
   TReciprocalKelvins = specialize TQuantity<TReciprocalKelvinUnit>;
-  TReciprocalKelvinId = specialize TUnitId<TReciprocalKelvinUnit>;
+  TReciprocalKelvinUnitId = specialize TUnitId<TReciprocalKelvinUnit>;
 
 // main definition [ 1/K ] = 1 / [ K ]
 operator /(const ALeft: double; const ARight: TKelvins): TReciprocalKelvins; inline;
@@ -2760,7 +2772,7 @@ operator /(const ALeft: double; const ARight: TReciprocalKelvins): TKelvins; inl
 operator *(const ALeft: TReciprocalKelvins; const ARight: TKelvins): double; inline;
 operator *(const ALeft: TKelvins; const ARight: TReciprocalKelvins): double; inline;
 
-operator /(const ALeft: double; const {%H-}ARight: TKelvinId): TReciprocalKelvins; inline;
+operator /(const ALeft: double; const {%H-}ARight: TKelvinUnitId): TReciprocalKelvins; inline;
 
 type
   { Unit of KilogramKelvin }
@@ -2769,7 +2781,7 @@ type
     const Name   = 'kilogram kelvin';
   end;
   TKilogramKelvins = specialize TQuantity<TKilogramKelvinUnit>;
-  TKilogramKelvinId = specialize TUnitId<TKilogramKelvinUnit>;
+  TKilogramKelvinUnitId = specialize TUnitId<TKilogramKelvinUnit>;
 
 // main definition [ kg*K] = [ kg ] * [ K ]
 operator *(const ALeft: TKilograms; const ARight: TKelvins): TKilogramKelvins; inline;
@@ -2777,7 +2789,7 @@ operator /(const ALeft: TKilogramKelvins; const ARight: TKilograms): TKelvins; i
 operator *(const ALeft: TKelvins; const ARight: TKilograms): TKilogramKelvins; inline;
 operator /(const ALeft: TKilogramKelvins; const ARight: TKelvins): TKilograms; inline;
 
-operator *(const ALeft: TKilograms; const {%H-}ARight: TKelvinId): TKilogramKelvins; inline;
+operator *(const ALeft: TKilograms; const {%H-}ARight: TKelvinUnitId): TKilogramKelvins; inline;
 
 type
   { Unit of JoulePerKelvin }
@@ -2786,7 +2798,7 @@ type
     const Name   = 'joule per kelvin';
   end;
   TJoulesPerKelvin = specialize TQuantity<TJoulePerKelvinUnit>;
-  TJoulePerKelvinId = specialize TUnitId<TJoulePerKelvinUnit>;
+  TJoulePerKelvinUnitId = specialize TUnitId<TJoulePerKelvinUnit>;
 
 // main definition [ J/K ] = [ J ] / [ K ]
 operator /(const ALeft: TJoules; const ARight: TKelvins): TJoulesPerKelvin; inline;
@@ -2794,7 +2806,7 @@ operator /(const ALeft: TJoules; const ARight: TJoulesPerKelvin): TKelvins; inli
 operator *(const ALeft: TJoulesPerKelvin; const ARight: TKelvins): TJoules; inline;
 operator *(const ALeft: TKelvins; const ARight: TJoulesPerKelvin): TJoules; inline;
 
-operator /(const ALeft: TJoules; const {%H-}ARight: TKelvinId): TJoulesPerKelvin; inline;
+operator /(const ALeft: TJoules; const {%H-}ARight: TKelvinUnitId): TJoulesPerKelvin; inline;
 
 type
   { Unit of JoulePerKilogram }
@@ -2803,7 +2815,7 @@ type
     const Name   = 'joule per kilogram';
   end;
   TJoulesPerKilogram = specialize TQuantity<TJoulePerKilogramUnit>;
-  TJoulePerKilogramId = specialize TUnitId<TJoulePerKilogramUnit>;
+  TJoulePerKilogramUnitId = specialize TUnitId<TJoulePerKilogramUnit>;
 
 type
   { Unit of JoulePerKilogramPerKelvin }
@@ -2812,7 +2824,7 @@ type
     const Name   = 'joule per kilogram per kelvin';
   end;
   TJoulesPerKilogramPerKelvin = specialize TQuantity<TJoulePerKilogramPerKelvinUnit>;
-  TJoulePerKilogramPerKelvinId = specialize TUnitId<TJoulePerKilogramPerKelvinUnit>;
+  TJoulePerKilogramPerKelvinUnitId = specialize TUnitId<TJoulePerKilogramPerKelvinUnit>;
 
 // main definition [ J/kg/K ] = [ J ] / [ kg*K ]
 operator /(const ALeft: TJoules; const ARight: TKilogramKelvins): TJoulesPerKilogramPerKelvin; inline;
@@ -2826,7 +2838,7 @@ operator /(const ALeft: TSquareMetersPerSquareSecond; const ARight: TJoulesPerKi
 operator *(const ALeft: TJoulesPerKilogramPerKelvin; const ARight: TKelvins): TSquareMetersPerSquareSecond; inline;
 operator *(const ALeft: TKelvins; const ARight: TJoulesPerKilogramPerKelvin): TSquareMetersPerSquareSecond; inline;
 
-operator /(const ALeft: TSquareMetersPerSquareSecond; const {%H-}ARight: TKelvinId): TJoulesPerKilogramPerKelvin; inline;
+operator /(const ALeft: TSquareMetersPerSquareSecond; const {%H-}ARight: TKelvinUnitId): TJoulesPerKilogramPerKelvin; inline;
 
 // alternative definition [ J/kg/K ] = [ J/K ] / [ kg ]
 operator /(const ALeft: TJoulesPerKelvin; const ARight: TKilograms): TJoulesPerKilogramPerKelvin; inline;
@@ -2841,7 +2853,7 @@ type
     const Name   = 'meter kelvin';
   end;
   TMeterKelvins = specialize TQuantity<TMeterKelvinUnit>;
-  TMeterKelvinId = specialize TUnitId<TMeterKelvinUnit>;
+  TMeterKelvinUnitId = specialize TUnitId<TMeterKelvinUnit>;
 
 // main definition [ m*K ] = [ m ] * [ K ]
 operator *(const ALeft: TMeters; const ARight: TKelvins): TMeterKelvins; inline;
@@ -2849,7 +2861,7 @@ operator /(const ALeft: TMeterKelvins; const ARight: TMeters): TKelvins; inline;
 operator *(const ALeft: TKelvins; const ARight: TMeters): TMeterKelvins; inline;
 operator /(const ALeft: TMeterKelvins; const ARight: TKelvins): TMeters; inline;
 
-operator *(const ALeft: TMeters; const {%H-}ARight: TKelvinId): TMeterKelvins; inline;
+operator *(const ALeft: TMeters; const {%H-}ARight: TKelvinUnitId): TMeterKelvins; inline;
 
 type
   { Unit of KelvinPerMeter }
@@ -2858,7 +2870,7 @@ type
     const Name   = 'kelvin per meter';
   end;
   TKelvinsPerMeter = specialize TQuantity<TKelvinPerMeterUnit>;
-  TKelvinPerMeterId = specialize TUnitId<TKelvinPerMeterUnit>;
+  TKelvinPerMeterUnitId = specialize TUnitId<TKelvinPerMeterUnit>;
 
 // main definition [ K/m ] = [ K ] / [ m ]
 operator /(const ALeft: TKelvins; const ARight: TMeters): TKelvinsPerMeter; inline;
@@ -2866,7 +2878,7 @@ operator /(const ALeft: TKelvins; const ARight: TKelvinsPerMeter): TMeters; inli
 operator *(const ALeft: TKelvinsPerMeter; const ARight: TMeters): TKelvins; inline;
 operator *(const ALeft: TMeters; const ARight: TKelvinsPerMeter): TKelvins; inline;
 
-operator /(const ALeft: TKelvins; const {%H-}ARight: TMeterId): TKelvinsPerMeter; inline;
+operator /(const ALeft: TKelvins; const {%H-}ARight: TMeterUnitId): TKelvinsPerMeter; inline;
 
 type
   { Unit of WattPerMeter }
@@ -2875,7 +2887,7 @@ type
     const Name   = 'watt per meter';
   end;
   TWattsPerMeter = specialize TQuantity<TWattPerMeterUnit>;
-  TWattPerMeterId = specialize TUnitId<TWattPerMeterUnit>;
+  TWattPerMeterUnitId = specialize TUnitId<TWattPerMeterUnit>;
 
 // main definition [ W/m ] = [ W ] / [ m ]
 operator /(const ALeft: TWatts; const ARight: TMeters): TWattsPerMeter; inline;
@@ -2883,7 +2895,7 @@ operator /(const ALeft: TWatts; const ARight: TWattsPerMeter): TMeters; inline;
 operator *(const ALeft: TWattsPerMeter; const ARight: TMeters): TWatts; inline;
 operator *(const ALeft: TMeters; const ARight: TWattsPerMeter): TWatts; inline;
 
-operator /(const ALeft: TWatts; const {%H-}ARight: TMeterId): TWattsPerMeter; inline;
+operator /(const ALeft: TWatts; const {%H-}ARight: TMeterUnitId): TWattsPerMeter; inline;
 
 type
   { Unit of WattPerSquareMeter }
@@ -2892,7 +2904,7 @@ type
     const Name   = 'watt per square meter';
   end;
   TWattsPerSquareMeter = specialize TQuantity<TWattPerSquareMeterUnit>;
-  TWattPerSquareMeterId = specialize TUnitId<TWattPerSquareMeterUnit>;
+  TWattPerSquareMeterUnitId = specialize TUnitId<TWattPerSquareMeterUnit>;
 
 // main definition [ W/m2 ] = [ W ] / [ m2 ]
 operator /(const ALeft: TWatts; const ARight: TSquareMeters): TWattsPerSquareMeter; inline;
@@ -2900,7 +2912,7 @@ operator /(const ALeft: TWatts; const ARight: TWattsPerSquareMeter): TSquareMete
 operator *(const ALeft: TWattsPerSquareMeter; const ARight: TSquareMeters): TWatts; inline;
 operator *(const ALeft: TSquareMeters; const ARight: TWattsPerSquareMeter): TWatts; inline;
 
-operator /(const ALeft: TWatts; const {%H-}ARight: TSquareMeterId): TWattsPerSquareMeter; inline;
+operator /(const ALeft: TWatts; const {%H-}ARight: TSquareMeterUnitId): TWattsPerSquareMeter; inline;
 
 type
   { Unit of WattPerKelvin }
@@ -2909,7 +2921,7 @@ type
     const Name   = 'watt per kelvin';
   end;
   TWattsPerKelvin = specialize TQuantity<TWattPerKelvinUnit>;
-  TWattPerKelvinId = specialize TUnitId<TWattPerKelvinUnit>;
+  TWattPerKelvinUnitId = specialize TUnitId<TWattPerKelvinUnit>;
 
 // main definition [ W/K ] = [ W ] / [ K ]
 operator /(const ALeft: TWatts; const ARight: TKelvins): TWattsPerKelvin; inline;
@@ -2917,7 +2929,7 @@ operator /(const ALeft: TWatts; const ARight: TWattsPerKelvin): TKelvins; inline
 operator *(const ALeft: TWattsPerKelvin; const ARight: TKelvins): TWatts; inline;
 operator *(const ALeft: TKelvins; const ARight: TWattsPerKelvin): TWatts; inline;
 
-operator /(const ALeft: TWatts; const {%H-}ARight: TKelvinId): TWattsPerKelvin; inline;
+operator /(const ALeft: TWatts; const {%H-}ARight: TKelvinUnitId): TWattsPerKelvin; inline;
 
 type
   { Unit of WattPerMeterPerKelvin }
@@ -2926,7 +2938,7 @@ type
     const Name   = 'watt per meter per kelvin';
   end;
   TWattsPerMeterPerKelvin = specialize TQuantity<TWattPerMeterPerKelvinUnit>;
-  TWattPerMeterPerKelvinId = specialize TUnitId<TWattPerMeterPerKelvinUnit>;
+  TWattPerMeterPerKelvinUnitId = specialize TUnitId<TWattPerMeterPerKelvinUnit>;
 
 // main definition [ W/m/K ] = [ W ] / [ m*K ]
 operator /(const ALeft: TWatts; const ARight: TMeterKelvins): TWattsPerMeterPerKelvin; inline;
@@ -2940,7 +2952,7 @@ operator /(const ALeft: TWattsPerMeter; const ARight: TWattsPerMeterPerKelvin): 
 operator *(const ALeft: TWattsPerMeterPerKelvin; const ARight: TKelvins): TWattsPerMeter; inline;
 operator *(const ALeft: TKelvins; const ARight: TWattsPerMeterPerKelvin): TWattsPerMeter; inline;
 
-operator /(const ALeft: TWattsPerMeter; const {%H-}ARight: TKelvinId): TWattsPerMeterPerKelvin; inline;
+operator /(const ALeft: TWattsPerMeter; const {%H-}ARight: TKelvinUnitId): TWattsPerMeterPerKelvin; inline;
 
 // alternative definition [ W/m/K ] = [ W/K ] / [ m ]
 operator /(const ALeft: TWattsPerKelvin; const ARight: TMeters): TWattsPerMeterPerKelvin; inline;
@@ -2961,7 +2973,7 @@ type
     const Name   = 'square meter kelvin';
   end;
   TSquareMeterKelvins = specialize TQuantity<TSquareMeterKelvinUnit>;
-  TSquareMeterKelvinId = specialize TUnitId<TSquareMeterKelvinUnit>;
+  TSquareMeterKelvinUnitId = specialize TUnitId<TSquareMeterKelvinUnit>;
 
 // main definition [ m2*K ] = [ m2 ] * [ K ]
 operator *(const ALeft: TSquareMeters; const ARight: TKelvins): TSquareMeterKelvins; inline;
@@ -2969,7 +2981,7 @@ operator /(const ALeft: TSquareMeterKelvins; const ARight: TSquareMeters): TKelv
 operator *(const ALeft: TKelvins; const ARight: TSquareMeters): TSquareMeterKelvins; inline;
 operator /(const ALeft: TSquareMeterKelvins; const ARight: TKelvins): TSquareMeters; inline;
 
-operator *(const ALeft: TSquareMeters; const {%H-}ARight: TKelvinId): TSquareMeterKelvins; inline;
+operator *(const ALeft: TSquareMeters; const {%H-}ARight: TKelvinUnitId): TSquareMeterKelvins; inline;
 
 type
   { Unit of WattPerSquareMeterPerKelvin }
@@ -2978,7 +2990,7 @@ type
     const Name   = 'watt per square meter per kelvin';
   end;
   TWattsPerSquareMeterPerKelvin = specialize TQuantity<TWattPerSquareMeterPerKelvinUnit>;
-  TWattPerSquareMeterPerKelvinId = specialize TUnitId<TWattPerSquareMeterPerKelvinUnit>;
+  TWattPerSquareMeterPerKelvinUnitId = specialize TUnitId<TWattPerSquareMeterPerKelvinUnit>;
 
 // main definition [ W/m2/K ] = [ W ] / [ m2*K ]
 operator /(const ALeft: TWatts; const ARight: TSquareMeterKelvins): TWattsPerSquareMeterPerKelvin; inline;
@@ -2992,7 +3004,7 @@ operator /(const ALeft: TWattsPerSquareMeter; const ARight: TWattsPerSquareMeter
 operator *(const ALeft: TWattsPerSquareMeterPerKelvin; const ARight: TKelvins): TWattsPerSquareMeter; inline;
 operator *(const ALeft: TKelvins; const ARight: TWattsPerSquareMeterPerKelvin): TWattsPerSquareMeter; inline;
 
-operator /(const ALeft: TWattsPerSquareMeter; const {%H-}ARight: TKelvinId): TWattsPerSquareMeterPerKelvin; inline;
+operator /(const ALeft: TWattsPerSquareMeter; const {%H-}ARight: TKelvinUnitId): TWattsPerSquareMeterPerKelvin; inline;
 
 // alternative definition [ W/m2/K ] = [ W/K ] / [ m2 ]
 operator /(const ALeft: TWattsPerKelvin; const ARight: TSquareMeters): TWattsPerSquareMeterPerKelvin; inline;
@@ -3007,7 +3019,7 @@ type
     const Name   = 'square meter quartic kelvin';
   end;
   TSquareMeterQuarticKelvins = specialize TQuantity<TSquareMeterQuarticKelvinUnit>;
-  TSquareMeterQuarticKelvinId = specialize TUnitId<TSquareMeterQuarticKelvinUnit>;
+  TSquareMeterQuarticKelvinUnitId = specialize TUnitId<TSquareMeterQuarticKelvinUnit>;
 
 // main definition [ m2*K4 ] = [ m2 ] * [ K4 ]
 operator *(const ALeft: TSquareMeters; const ARight: TQuarticKelvins): TSquareMeterQuarticKelvins; inline;
@@ -3015,7 +3027,7 @@ operator /(const ALeft: TSquareMeterQuarticKelvins; const ARight: TSquareMeters)
 operator *(const ALeft: TQuarticKelvins; const ARight: TSquareMeters): TSquareMeterQuarticKelvins; inline;
 operator /(const ALeft: TSquareMeterQuarticKelvins; const ARight: TQuarticKelvins): TSquareMeters; inline;
 
-operator *(const ALeft: TSquareMeters; const {%H-}ARight: TQuarticKelvinId): TSquareMeterQuarticKelvins; inline;
+operator *(const ALeft: TSquareMeters; const {%H-}ARight: TQuarticKelvinUnitId): TSquareMeterQuarticKelvins; inline;
 
 type
   { Unit of WattPerQuarticKelvin }
@@ -3024,7 +3036,7 @@ type
     const Name   = 'watt per quartic kelvin';
   end;
   TWattsPerQuarticKelvin = specialize TQuantity<TWattPerQuarticKelvinUnit>;
-  TWattPerQuarticKelvinId = specialize TUnitId<TWattPerQuarticKelvinUnit>;
+  TWattPerQuarticKelvinUnitId = specialize TUnitId<TWattPerQuarticKelvinUnit>;
 
 // main definition [ W/K4 ] = [ W ] / [ K4 ]
 operator /(const ALeft: TWatts; const ARight: TQuarticKelvins): TWattsPerQuarticKelvin; inline;
@@ -3032,7 +3044,7 @@ operator /(const ALeft: TWatts; const ARight: TWattsPerQuarticKelvin): TQuarticK
 operator *(const ALeft: TWattsPerQuarticKelvin; const ARight: TQuarticKelvins): TWatts; inline;
 operator *(const ALeft: TQuarticKelvins; const ARight: TWattsPerQuarticKelvin): TWatts; inline;
 
-operator /(const ALeft: TWatts; const {%H-}ARight: TQuarticKelvinId): TWattsPerQuarticKelvin; inline;
+operator /(const ALeft: TWatts; const {%H-}ARight: TQuarticKelvinUnitId): TWattsPerQuarticKelvin; inline;
 
 type
   { Unit of WattPerSquareMeterPerQuarticKelvin }
@@ -3041,7 +3053,7 @@ type
     const Name   = 'watt per square meter per quartic kelvin';
   end;
   TWattsPerSquareMeterPerQuarticKelvin = specialize TQuantity<TWattPerSquareMeterPerQuarticKelvinUnit>;
-  TWattPerSquareMeterPerQuarticKelvinId = specialize TUnitId<TWattPerSquareMeterPerQuarticKelvinUnit>;
+  TWattPerSquareMeterPerQuarticKelvinUnitId = specialize TUnitId<TWattPerSquareMeterPerQuarticKelvinUnit>;
 
 // main definition [ W/m2/K4 ] = [ W ] / [ m2*K4 ]
 operator /(const ALeft: TWatts; const ARight: TSquareMeterQuarticKelvins): TWattsPerSquareMeterPerQuarticKelvin; inline;
@@ -3055,7 +3067,7 @@ operator /(const ALeft: TWattsPerSquareMeter; const ARight: TWattsPerSquareMeter
 operator *(const ALeft: TWattsPerSquareMeterPerQuarticKelvin; const ARight: TQuarticKelvins): TWattsPerSquareMeter; inline;
 operator *(const ALeft: TQuarticKelvins; const ARight: TWattsPerSquareMeterPerQuarticKelvin): TWattsPerSquareMeter; inline;
 
-operator /(const ALeft: TWattsPerSquareMeter; const {%H-}ARight: TQuarticKelvinId): TWattsPerSquareMeterPerQuarticKelvin; inline;
+operator /(const ALeft: TWattsPerSquareMeter; const {%H-}ARight: TQuarticKelvinUnitId): TWattsPerSquareMeterPerQuarticKelvin; inline;
 
 // alternative definition [ W/m2/K4 ] = [ W/K4 ] / [ m2 ]
 operator /(const ALeft: TWattsPerQuarticKelvin; const ARight: TSquareMeters): TWattsPerSquareMeterPerQuarticKelvin; inline;
@@ -3070,7 +3082,7 @@ type
     const Name   = 'joule per mole';
   end;
   TJoulesPerMole = specialize TQuantity<TJoulePerMoleUnit>;
-  TJoulePerMoleId = specialize TUnitId<TJoulePerMoleUnit>;
+  TJoulePerMoleUnitId = specialize TUnitId<TJoulePerMoleUnit>;
 
 // main definition [ J/mol ] = [ J ] / [ mol ]
 operator /(const ALeft: TJoules; const ARight: TMoles): TJoulesPerMole; inline;
@@ -3078,7 +3090,7 @@ operator /(const ALeft: TJoules; const ARight: TJoulesPerMole): TMoles; inline;
 operator *(const ALeft: TJoulesPerMole; const ARight: TMoles): TJoules; inline;
 operator *(const ALeft: TMoles; const ARight: TJoulesPerMole): TJoules; inline;
 
-operator /(const ALeft: TJoules; const {%H-}ARight: TMoleId): TJoulesPerMole; inline;
+operator /(const ALeft: TJoules; const {%H-}ARight: TMoleUnitId): TJoulesPerMole; inline;
 
 type
   { Unit of MoleKelvin }
@@ -3087,7 +3099,7 @@ type
     const Name   = 'mole kelvin';
   end;
   TMoleKelvins = specialize TQuantity<TMoleKelvinUnit>;
-  TMoleKelvinId = specialize TUnitId<TMoleKelvinUnit>;
+  TMoleKelvinUnitId = specialize TUnitId<TMoleKelvinUnit>;
 
 // main definition [ mol*K ] = [ mol ] * [ K ]
 operator *(const ALeft: TMoles; const ARight: TKelvins): TMoleKelvins; inline;
@@ -3095,7 +3107,7 @@ operator /(const ALeft: TMoleKelvins; const ARight: TMoles): TKelvins; inline;
 operator *(const ALeft: TKelvins; const ARight: TMoles): TMoleKelvins; inline;
 operator /(const ALeft: TMoleKelvins; const ARight: TKelvins): TMoles; inline;
 
-operator *(const ALeft: TMoles; const {%H-}ARight: TKelvinId): TMoleKelvins; inline;
+operator *(const ALeft: TMoles; const {%H-}ARight: TKelvinUnitId): TMoleKelvins; inline;
 
 type
   { Unit of JoulePerMolePerKelvin }
@@ -3104,7 +3116,7 @@ type
     const Name   = 'joule per mole per kelvin';
   end;
   TJoulesPerMolePerKelvin = specialize TQuantity<TJoulePerMolePerKelvinUnit>;
-  TJoulePerMolePerKelvinId = specialize TUnitId<TJoulePerMolePerKelvinUnit>;
+  TJoulePerMolePerKelvinUnitId = specialize TUnitId<TJoulePerMolePerKelvinUnit>;
 
 // main definition [ J/mol/K ] = [ J ] / [ mol * K ]
 operator /(const ALeft: TJoules; const ARight: TMoleKelvins): TJoulesPerMolePerKelvin; inline;
@@ -3124,7 +3136,7 @@ operator /(const ALeft: TJoulesPerMole; const ARight: TJoulesPerMolePerKelvin): 
 operator *(const ALeft: TJoulesPerMolePerKelvin; const ARight: TKelvins): TJoulesPerMole; inline;
 operator *(const ALeft: TKelvins; const ARight: TJoulesPerMolePerKelvin): TJoulesPerMole; inline;
 
-operator /(const ALeft: TJoulesPerMole; const {%H-}ARight: TKelvinId): TJoulesPerMolePerKelvin; inline;
+operator /(const ALeft: TJoulesPerMole; const {%H-}ARight: TKelvinUnitId): TJoulesPerMolePerKelvin; inline;
 
 type
   { Unit of OhmMeter }
@@ -3133,7 +3145,7 @@ type
     const Name   = 'ohm meter';
   end;
   TOhmMeters = specialize TQuantity<TOhmMeterUnit>;
-  TOhmMeterId = specialize TUnitId<TOhmMeterUnit>;
+  TOhmMeterUnitId = specialize TUnitId<TOhmMeterUnit>;
 
 // main definition [ Ω*m ] = [ Ω ] * [ m ]
 operator *(const ALeft: TOhms; const ARight: TMeters): TOhmMeters; inline;
@@ -3141,7 +3153,7 @@ operator /(const ALeft: TOhmMeters; const ARight: TOhms): TMeters; inline;
 operator *(const ALeft: TMeters; const ARight: TOhms): TOhmMeters; inline;
 operator /(const ALeft: TOhmMeters; const ARight: TMeters): TOhms; inline;
 
-operator *(const ALeft: TOhms; const {%H-}ARight: TMeterId): TOhmMeters; inline;
+operator *(const ALeft: TOhms; const {%H-}ARight: TMeterUnitId): TOhmMeters; inline;
 
 type
   { Unit of VoltPerMeter }
@@ -3150,7 +3162,7 @@ type
     const Name   = 'volt per meter';
   end;
   TVoltsPerMeter = specialize TQuantity<TVoltPerMeterUnit>;
-  TVoltPerMeterId = specialize TUnitId<TVoltPerMeterUnit>;
+  TVoltPerMeterUnitId = specialize TUnitId<TVoltPerMeterUnit>;
 
 // main definition [ V/m ] = [ V ] / [ m ]
 operator /(const ALeft: TVolts; const ARight: TMeters): TVoltsPerMeter; inline;
@@ -3158,7 +3170,7 @@ operator /(const ALeft: TVolts; const ARight: TVoltsPerMeter): TMeters; inline;
 operator *(const ALeft: TVoltsPerMeter; const ARight: TMeters): TVolts; inline;
 operator *(const ALeft: TMeters; const ARight: TVoltsPerMeter): TVolts; inline;
 
-operator /(const ALeft: TVolts; const {%H-}ARight: TMeterId): TVoltsPerMeter; inline;
+operator /(const ALeft: TVolts; const {%H-}ARight: TMeterUnitId): TVoltsPerMeter; inline;
 
 // alternative definition [ V/m ] = [ N ] / [ C ]
 operator /(const ALeft: TNewtons; const ARight: TCoulombs): TVoltsPerMeter; inline;
@@ -3166,7 +3178,7 @@ operator /(const ALeft: TNewtons; const ARight: TVoltsPerMeter): TCoulombs; inli
 operator *(const ALeft: TVoltsPerMeter; const ARight: TCoulombs): TNewtons; inline;
 operator *(const ALeft: TCoulombs; const ARight: TVoltsPerMeter): TNewtons; inline;
 
-operator /(const ALeft: TNewtons; const {%H-}ARight: TCoulombId): TVoltsPerMeter; inline;
+operator /(const ALeft: TNewtons; const {%H-}ARight: TCoulombUnitId): TVoltsPerMeter; inline;
 
 // alternative definition [ V/m ] = [ T ] * [ m/s ]
 operator *(const ALeft: TTeslas; const ARight: TMetersPerSecond): TVoltsPerMeter; inline;
@@ -3181,7 +3193,7 @@ type
     const Name   = 'coulomb per meter';
   end;
   TCoulombsPerMeter = specialize TQuantity<TCoulombPerMeterUnit>;
-  TCoulombPerMeterId = specialize TUnitId<TCoulombPerMeterUnit>;
+  TCoulombPerMeterUnitId = specialize TUnitId<TCoulombPerMeterUnit>;
 
 // main definition [ C/m ] = [ C ] / [ m ]
 operator /(const ALeft: TCoulombs; const ARight: TMeters): TCoulombsPerMeter; inline;
@@ -3189,7 +3201,7 @@ operator /(const ALeft: TCoulombs; const ARight: TCoulombsPerMeter): TMeters; in
 operator *(const ALeft: TCoulombsPerMeter; const ARight: TMeters): TCoulombs; inline;
 operator *(const ALeft: TMeters; const ARight: TCoulombsPerMeter): TCoulombs; inline;
 
-operator /(const ALeft: TCoulombs; const {%H-}ARight: TMeterId): TCoulombsPerMeter; inline;
+operator /(const ALeft: TCoulombs; const {%H-}ARight: TMeterUnitId): TCoulombsPerMeter; inline;
 
 type
   { Unit of SquareCoulombPerMeter }
@@ -3198,7 +3210,7 @@ type
     const Name   = 'square coulomb per meter';
   end;
   TSquareCoulombsPerMeter = specialize TQuantity<TSquareCoulombPerMeterUnit>;
-  TSquareCoulombPerMeterId = specialize TUnitId<TSquareCoulombPerMeterUnit>;
+  TSquareCoulombPerMeterUnitId = specialize TUnitId<TSquareCoulombPerMeterUnit>;
 
 // main definition [ C2/m ] = [ C2 ] / [ m ]
 operator /(const ALeft: TSquareCoulombs; const ARight: TMeters): TSquareCoulombsPerMeter; inline;
@@ -3206,7 +3218,7 @@ operator /(const ALeft: TSquareCoulombs; const ARight: TSquareCoulombsPerMeter):
 operator *(const ALeft: TSquareCoulombsPerMeter; const ARight: TMeters): TSquareCoulombs; inline;
 operator *(const ALeft: TMeters; const ARight: TSquareCoulombsPerMeter): TSquareCoulombs; inline;
 
-operator /(const ALeft: TSquareCoulombs; const {%H-}ARight: TMeterId): TSquareCoulombsPerMeter; inline;
+operator /(const ALeft: TSquareCoulombs; const {%H-}ARight: TMeterUnitId): TSquareCoulombsPerMeter; inline;
 
 // alternative definition [ C2/m ] = [ C/m ] * [ C ]
 operator *(const ALeft: TCoulombsPerMeter; const ARight: TCoulombs): TSquareCoulombsPerMeter; inline;
@@ -3221,7 +3233,7 @@ type
     const Name   = 'coulomb per square meter';
   end;
   TCoulombsPerSquareMeter = specialize TQuantity<TCoulombPerSquareMeterUnit>;
-  TCoulombPerSquareMeterId = specialize TUnitId<TCoulombPerSquareMeterUnit>;
+  TCoulombPerSquareMeterUnitId = specialize TUnitId<TCoulombPerSquareMeterUnit>;
 
 // main definition [ C/m2 ] = [ C ] / [ m2 ]
 operator /(const ALeft: TCoulombs; const ARight: TSquareMeters): TCoulombsPerSquareMeter; inline;
@@ -3229,7 +3241,7 @@ operator /(const ALeft: TCoulombs; const ARight: TCoulombsPerSquareMeter): TSqua
 operator *(const ALeft: TCoulombsPerSquareMeter; const ARight: TSquareMeters): TCoulombs; inline;
 operator *(const ALeft: TSquareMeters; const ARight: TCoulombsPerSquareMeter): TCoulombs; inline;
 
-operator /(const ALeft: TCoulombs; const {%H-}ARight: TSquareMeterId): TCoulombsPerSquareMeter; inline;
+operator /(const ALeft: TCoulombs; const {%H-}ARight: TSquareMeterUnitId): TCoulombsPerSquareMeter; inline;
 
 // alternative definition [ C/m2 ] = [ C/m ] / [ m ]
 operator /(const ALeft: TCoulombsPerMeter; const ARight: TMeters): TCoulombsPerSquareMeter; inline;
@@ -3244,7 +3256,7 @@ type
     const Name   = 'square meter per square coulomb';
   end;
   TSquareMetersPerSquareCoulomb = specialize TQuantity<TSquareMeterPerSquareCoulombUnit>;
-  TSquareMeterPerSquareCoulombId = specialize TUnitId<TSquareMeterPerSquareCoulombUnit>;
+  TSquareMeterPerSquareCoulombUnitId = specialize TUnitId<TSquareMeterPerSquareCoulombUnit>;
 
 // main definition [ m2/C2 ] = [ m2 ] / [ C2 ]
 operator /(const ALeft: TSquareMeters; const ARight: TSquareCoulombs): TSquareMetersPerSquareCoulomb; inline;
@@ -3252,7 +3264,7 @@ operator /(const ALeft: TSquareMeters; const ARight: TSquareMetersPerSquareCoulo
 operator *(const ALeft: TSquareMetersPerSquareCoulomb; const ARight: TSquareCoulombs): TSquareMeters; inline;
 operator *(const ALeft: TSquareCoulombs; const ARight: TSquareMetersPerSquareCoulomb): TSquareMeters; inline;
 
-operator /(const ALeft: TSquareMeters; const {%H-}ARight: TSquareCoulombId): TSquareMetersPerSquareCoulomb; inline;
+operator /(const ALeft: TSquareMeters; const {%H-}ARight: TSquareCoulombUnitId): TSquareMetersPerSquareCoulomb; inline;
 
 type
   { Unit of NewtonPerSquareCoulomb }
@@ -3261,7 +3273,7 @@ type
     const Name   = 'newton per square coulomb';
   end;
   TNewtonsPerSquareCoulomb = specialize TQuantity<TNewtonPerSquareCoulombUnit>;
-  TNewtonPerSquareCoulombId = specialize TUnitId<TNewtonPerSquareCoulombUnit>;
+  TNewtonPerSquareCoulombUnitId = specialize TUnitId<TNewtonPerSquareCoulombUnit>;
 
 // main definition [ N/C2 ] = [ N ] / [ C2 ]
 operator /(const ALeft: TNewtons; const ARight: TSquareCoulombs): TNewtonsPerSquareCoulomb; inline;
@@ -3269,7 +3281,7 @@ operator /(const ALeft: TNewtons; const ARight: TNewtonsPerSquareCoulomb): TSqua
 operator *(const ALeft: TNewtonsPerSquareCoulomb; const ARight: TSquareCoulombs): TNewtons; inline;
 operator *(const ALeft: TSquareCoulombs; const ARight: TNewtonsPerSquareCoulomb): TNewtons; inline;
 
-operator /(const ALeft: TNewtons; const {%H-}ARight: TSquareCoulombId): TNewtonsPerSquareCoulomb; inline;
+operator /(const ALeft: TNewtons; const {%H-}ARight: TSquareCoulombUnitId): TNewtonsPerSquareCoulomb; inline;
 
 type
   { Unit of NewtonSquareMeterPerSquareCoulomb }
@@ -3278,7 +3290,7 @@ type
     const Name   = 'newton square meter per square coulomb';
   end;
   TNewtonSquareMetersPerSquareCoulomb = specialize TQuantity<TNewtonSquareMeterPerSquareCoulombUnit>;
-  TNewtonSquareMeterPerSquareCoulombId = specialize TUnitId<TNewtonSquareMeterPerSquareCoulombUnit>;
+  TNewtonSquareMeterPerSquareCoulombUnitId = specialize TUnitId<TNewtonSquareMeterPerSquareCoulombUnit>;
 
 // main definition [ N*m2/C2 ] = [ N ] * [ m2/C2 ]
 operator *(const ALeft: TNewtons; const ARight: TSquareMetersPerSquareCoulomb): TNewtonSquareMetersPerSquareCoulomb; inline;
@@ -3292,7 +3304,7 @@ operator /(const ALeft: TNewtonSquareMeters; const ARight: TNewtonSquareMetersPe
 operator *(const ALeft: TNewtonSquareMetersPerSquareCoulomb; const ARight: TSquareCoulombs): TNewtonSquareMeters; inline;
 operator *(const ALeft: TSquareCoulombs; const ARight: TNewtonSquareMetersPerSquareCoulomb): TNewtonSquareMeters; inline;
 
-operator /(const ALeft: TNewtonSquareMeters; const {%H-}ARight: TSquareCoulombId): TNewtonSquareMetersPerSquareCoulomb; inline;
+operator /(const ALeft: TNewtonSquareMeters; const {%H-}ARight: TSquareCoulombUnitId): TNewtonSquareMetersPerSquareCoulomb; inline;
 
 // alternative definition [ N*m2/C2 ] = [ N/C2 ] * [ m2 ]
 operator *(const ALeft: TNewtonsPerSquareCoulomb; const ARight: TSquareMeters): TNewtonSquareMetersPerSquareCoulomb; inline;
@@ -3319,7 +3331,7 @@ type
     const Name   = 'volt meter';
   end;
   TVoltMeters = specialize TQuantity<TVoltMeterUnit>;
-  TVoltMeterId = specialize TUnitId<TVoltMeterUnit>;
+  TVoltMeterUnitId = specialize TUnitId<TVoltMeterUnit>;
 
 // main definition [ V*m ] = [ V ] * [ m ]
 operator *(const ALeft: TVolts; const ARight: TMeters): TVoltMeters; inline;
@@ -3327,7 +3339,7 @@ operator /(const ALeft: TVoltMeters; const ARight: TVolts): TMeters; inline;
 operator *(const ALeft: TMeters; const ARight: TVolts): TVoltMeters; inline;
 operator /(const ALeft: TVoltMeters; const ARight: TMeters): TVolts; inline;
 
-operator *(const ALeft: TVolts; const {%H-}ARight: TMeterId): TVoltMeters; inline;
+operator *(const ALeft: TVolts; const {%H-}ARight: TMeterUnitId): TVoltMeters; inline;
 
 // alternative definition [ V*m ] = [ V/m ] * [ m2 ]
 operator *(const ALeft: TVoltsPerMeter; const ARight: TSquareMeters): TVoltMeters; inline;
@@ -3342,7 +3354,7 @@ type
     const Name   = 'volt meter per second';
   end;
   TVoltMetersPerSecond = specialize TQuantity<TVoltMeterPerSecondUnit>;
-  TVoltMeterPerSecondId = specialize TUnitId<TVoltMeterPerSecondUnit>;
+  TVoltMeterPerSecondUnitId = specialize TUnitId<TVoltMeterPerSecondUnit>;
 
 // main definition [ V*m/s ] = [ V*m ] / [ s ]
 operator /(const ALeft: TVoltMeters; const ARight: TSeconds): TVoltMetersPerSecond; inline;
@@ -3350,7 +3362,7 @@ operator /(const ALeft: TVoltMeters; const ARight: TVoltMetersPerSecond): TSecon
 operator *(const ALeft: TVoltMetersPerSecond; const ARight: TSeconds): TVoltMeters; inline;
 operator *(const ALeft: TSeconds; const ARight: TVoltMetersPerSecond): TVoltMeters; inline;
 
-operator /(const ALeft: TVoltMeters; const {%H-}ARight: TSecondId): TVoltMetersPerSecond; inline;
+operator /(const ALeft: TVoltMeters; const {%H-}ARight: TSecondUnitId): TVoltMetersPerSecond; inline;
 
 type
   { Unit of FaradPerMeter }
@@ -3359,7 +3371,7 @@ type
     const Name   = 'farad per meter';
   end;
   TFaradsPerMeter = specialize TQuantity<TFaradPerMeterUnit>;
-  TFaradPerMeterId = specialize TUnitId<TFaradPerMeterUnit>;
+  TFaradPerMeterUnitId = specialize TUnitId<TFaradPerMeterUnit>;
 
 // main definition [ F/m ] = [ F ] / [ m ]
 operator /(const ALeft: TFarads; const ARight: TMeters): TFaradsPerMeter; inline;
@@ -3367,7 +3379,7 @@ operator /(const ALeft: TFarads; const ARight: TFaradsPerMeter): TMeters; inline
 operator *(const ALeft: TFaradsPerMeter; const ARight: TMeters): TFarads; inline;
 operator *(const ALeft: TMeters; const ARight: TFaradsPerMeter): TFarads; inline;
 
-operator /(const ALeft: TFarads; const {%H-}ARight: TMeterId): TFaradsPerMeter; inline;
+operator /(const ALeft: TFarads; const {%H-}ARight: TMeterUnitId): TFaradsPerMeter; inline;
 
 // alternative definition [ F/m ] = [ C ] / [ V*m ]
 operator /(const ALeft: TCoulombs; const ARight: TVoltMeters): TFaradsPerMeter; inline;
@@ -3394,7 +3406,7 @@ type
     const Name   = 'ampere per meter';
   end;
   TAmperesPerMeter = specialize TQuantity<TAmperePerMeterUnit>;
-  TAmperePerMeterId = specialize TUnitId<TAmperePerMeterUnit>;
+  TAmperePerMeterUnitId = specialize TUnitId<TAmperePerMeterUnit>;
 
 // main definition [ A/m ] = [ A ] / [ m ]
 operator /(const ALeft: TAmperes; const ARight: TMeters): TAmperesPerMeter; inline;
@@ -3402,7 +3414,7 @@ operator /(const ALeft: TAmperes; const ARight: TAmperesPerMeter): TMeters; inli
 operator *(const ALeft: TAmperesPerMeter; const ARight: TMeters): TAmperes; inline;
 operator *(const ALeft: TMeters; const ARight: TAmperesPerMeter): TAmperes; inline;
 
-operator /(const ALeft: TAmperes; const {%H-}ARight: TMeterId): TAmperesPerMeter; inline;
+operator /(const ALeft: TAmperes; const {%H-}ARight: TMeterUnitId): TAmperesPerMeter; inline;
 
 type
   { Unit of MeterPerAmpere }
@@ -3411,7 +3423,7 @@ type
     const Name   = 'meter per ampere';
   end;
   TMetersPerAmpere = specialize TQuantity<TMeterPerAmpereUnit>;
-  TMeterPerAmpereId = specialize TUnitId<TMeterPerAmpereUnit>;
+  TMeterPerAmpereUnitId = specialize TUnitId<TMeterPerAmpereUnit>;
 
 // main definition [ m/A ] = [ m ] / [ A ]
 operator /(const ALeft: TMeters; const ARight: TAmperes): TMetersPerAmpere; inline;
@@ -3419,7 +3431,7 @@ operator /(const ALeft: TMeters; const ARight: TMetersPerAmpere): TAmperes; inli
 operator *(const ALeft: TMetersPerAmpere; const ARight: TAmperes): TMeters; inline;
 operator *(const ALeft: TAmperes; const ARight: TMetersPerAmpere): TMeters; inline;
 
-operator /(const ALeft: TMeters; const {%H-}ARight: TAmpereId): TMetersPerAmpere; inline;
+operator /(const ALeft: TMeters; const {%H-}ARight: TAmpereUnitId): TMetersPerAmpere; inline;
 
 type
   { Unit of TeslaMeter }
@@ -3428,7 +3440,7 @@ type
     const Name   = 'tesla meter';
   end;
   TTeslaMeters = specialize TQuantity<TTeslaMeterUnit>;
-  TTeslaMeterId = specialize TUnitId<TTeslaMeterUnit>;
+  TTeslaMeterUnitId = specialize TUnitId<TTeslaMeterUnit>;
 
 // main definition [ T*m ] = [ T ] * [ m ]
 operator *(const ALeft: TTeslas; const ARight: TMeters): TTeslaMeters; inline;
@@ -3436,7 +3448,7 @@ operator /(const ALeft: TTeslaMeters; const ARight: TTeslas): TMeters; inline;
 operator *(const ALeft: TMeters; const ARight: TTeslas): TTeslaMeters; inline;
 operator /(const ALeft: TTeslaMeters; const ARight: TMeters): TTeslas; inline;
 
-operator *(const ALeft: TTeslas; const {%H-}ARight: TMeterId): TTeslaMeters; inline;
+operator *(const ALeft: TTeslas; const {%H-}ARight: TMeterUnitId): TTeslaMeters; inline;
 
 // alternative definition [ T*m ] = [ N/A ] = [ N ] / [ A ]
 operator /(const ALeft: TNewtons; const ARight: TAmperes): TTeslaMeters; inline;
@@ -3444,7 +3456,7 @@ operator /(const ALeft: TNewtons; const ARight: TTeslaMeters): TAmperes; inline;
 operator *(const ALeft: TTeslaMeters; const ARight: TAmperes): TNewtons; inline;
 operator *(const ALeft: TAmperes; const ARight: TTeslaMeters): TNewtons; inline;
 
-operator /(const ALeft: TNewtons; const {%H-}ARight: TAmpereId): TTeslaMeters; inline;
+operator /(const ALeft: TNewtons; const {%H-}ARight: TAmpereUnitId): TTeslaMeters; inline;
 
 type
   { Unit of TeslaPerAmpere }
@@ -3453,7 +3465,7 @@ type
     const Name   = 'tesla per ampere';
   end;
   TTeslasPerAmpere = specialize TQuantity<TTeslaPerAmpereUnit>;
-  TTeslaPerAmpereId = specialize TUnitId<TTeslaPerAmpereUnit>;
+  TTeslaPerAmpereUnitId = specialize TUnitId<TTeslaPerAmpereUnit>;
 
 // main definition [ T/A ] = [ T ] / [ A ]
 operator /(const ALeft: TTeslas; const ARight: TAmperes): TTeslasPerAmpere; inline;
@@ -3461,7 +3473,7 @@ operator /(const ALeft: TTeslas; const ARight: TTeslasPerAmpere): TAmperes; inli
 operator *(const ALeft: TTeslasPerAmpere; const ARight: TAmperes): TTeslas; inline;
 operator *(const ALeft: TAmperes; const ARight: TTeslasPerAmpere): TTeslas; inline;
 
-operator /(const ALeft: TTeslas; const {%H-}ARight: TAmpereId): TTeslasPerAmpere; inline;
+operator /(const ALeft: TTeslas; const {%H-}ARight: TAmpereUnitId): TTeslasPerAmpere; inline;
 
 type
   { Unit of HenryPerMeter }
@@ -3470,7 +3482,7 @@ type
     const Name   = 'henry per meter';
   end;
   THenrysPerMeter = specialize TQuantity<THenryPerMeterUnit>;
-  THenryPerMeterId = specialize TUnitId<THenryPerMeterUnit>;
+  THenryPerMeterUnitId = specialize TUnitId<THenryPerMeterUnit>;
 
 // main definition [ H/m ] = [ H ] / [ m ]
 operator /(const ALeft: THenrys; const ARight: TMeters): THenrysPerMeter; inline;
@@ -3478,7 +3490,7 @@ operator /(const ALeft: THenrys; const ARight: THenrysPerMeter): TMeters; inline
 operator *(const ALeft: THenrysPerMeter; const ARight: TMeters): THenrys; inline;
 operator *(const ALeft: TMeters; const ARight: THenrysPerMeter): THenrys; inline;
 
-operator /(const ALeft: THenrys; const {%H-}ARight: TMeterId): THenrysPerMeter; inline;
+operator /(const ALeft: THenrys; const {%H-}ARight: TMeterUnitId): THenrysPerMeter; inline;
 
 // alternative definition [ H/ m ] = [ T*m/A ] = [ T*m ] / [ A ]
 operator /(const ALeft: TTeslaMeters; const ARight: TAmperes): THenrysPerMeter; inline;
@@ -3486,7 +3498,7 @@ operator /(const ALeft: TTeslaMeters; const ARight: THenrysPerMeter): TAmperes; 
 operator *(const ALeft: THenrysPerMeter; const ARight: TAmperes): TTeslaMeters; inline;
 operator *(const ALeft: TAmperes; const ARight: THenrysPerMeter): TTeslaMeters; inline;
 
-operator /(const ALeft: TTeslaMeters; const {%H-}ARight: TAmpereId): THenrysPerMeter; inline;
+operator /(const ALeft: TTeslaMeters; const {%H-}ARight: TAmpereUnitId): THenrysPerMeter; inline;
 
 // alternative definition [ H/ m ] = [ T*m/A ] = [ T/A ] * [ m ]
 operator *(const ALeft: TTeslasPerAmpere; const ARight: TMeters): THenrysPerMeter; inline;
@@ -3512,7 +3524,7 @@ operator /(const ALeft: TNewtons; const ARight: THenrysPerMeter): TSquareAmperes
 operator *(const ALeft: THenrysPerMeter; const ARight: TSquareAmperes): TNewtons; inline;
 operator *(const ALeft: TSquareAmperes; const ARight: THenrysPerMeter): TNewtons; inline;
 
-operator /(const ALeft: TNewtons; const {%H-}ARight: TSquareAmpereId): THenrysPerMeter; inline;
+operator /(const ALeft: TNewtons; const {%H-}ARight: TSquareAmpereUnitId): THenrysPerMeter; inline;
 
 type
   { Unit of RadianPerMeter }
@@ -3521,7 +3533,7 @@ type
     const Name   = 'radian per meter';
   end;
   TRadiansPerMeter = specialize TQuantity<TRadianPerMeterUnit>;
-  TRadianPerMeterId = specialize TUnitId<TRadianPerMeterUnit>;
+  TRadianPerMeterUnitId = specialize TUnitId<TRadianPerMeterUnit>;
 
 // main definition [ rad/m ] = [ rad ] / [ m ]
 operator /(const ALeft: TRadians; const ARight: TMeters): TRadiansPerMeter; inline;
@@ -3529,42 +3541,42 @@ operator /(const ALeft: TRadians; const ARight: TRadiansPerMeter): TMeters; inli
 operator *(const ALeft: TRadiansPerMeter; const ARight: TMeters): TRadians; inline;
 operator *(const ALeft: TMeters; const ARight: TRadiansPerMeter): TRadians; inline;
 
-operator /(const ALeft: TRadians; const {%H-}ARight: TMeterId): TRadiansPerMeter; inline;
+operator /(const ALeft: TRadians; const {%H-}ARight: TMeterUnitId): TRadiansPerMeter; inline;
 
 { Helpers }
 
 type
-  TBequerelHelper = record helper for TBequerelId
+  TBequerelHelper = record helper for TBequerelUnitId
     class function From(const AQuantity: THertz): TBequerels; static;
   end;
 
 type
-  TGrayHelper = record helper for TGrayId
+  TGrayHelper = record helper for TGrayUnitId
     class function From(const AQuantity: TSquareMetersPerSquareSecond): TGrays; static;
   end;
 
 type
-  TSievertHelper = record helper for TSievertId
+  TSievertHelper = record helper for TSievertUnitId
     class function From(const AQuantity: TSquareMetersPerSquareSecond): TSieverts; static;
   end;
 
 type
-  TNewtonMeterHelper = record helper for TNewtonMeterId
+  TNewtonMeterHelper = record helper for TNewtonMeterUnitId
     class function From(const AQuantity: TJoules): TNewtonMeters; static;
   end;
 
 type
-  TNewtonMeterPerRadianHelper = record helper for TNewtonMeterPerRadianId
+  TNewtonMeterPerRadianHelper = record helper for TNewtonMeterPerRadianUnitId
     class function From(const AQuantity: TJoulesPerRadian): TNewtonMetersPerRadian; static;
   end;
 
 type
-  TNewtonSecondHelper = record helper for TNewtonSecondId
+  TNewtonSecondHelper = record helper for TNewtonSecondUnitId
     class function From(const AQuantity: TKilogramMetersPerSecond): TNewtonSeconds; static;
   end;
 
 type
-  TJoulePerKilogramHelper = record helper for TJoulePerKilogramId
+  TJoulePerKilogramHelper = record helper for TJoulePerKilogramUnitId
     class function From(const AQuantity: TSquareMetersPerSquareKilogram): TJoulesPerKilogram; static;
   end;
 
@@ -4028,7 +4040,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TMeters; const {%H-}ARight: TSecondId): TMetersPerSecond;
+operator /(const ALeft: TMeters; const {%H-}ARight: TSecondUnitId): TMetersPerSecond;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -4054,7 +4066,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TMeters; const {%H-}ARight: TSquareSecondId): TMetersPerSquareSecond;
+operator /(const ALeft: TMeters; const {%H-}ARight: TSquareSecondUnitId): TMetersPerSquareSecond;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -4101,7 +4113,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TRadians; const {%H-}ARight: TSecondId): TRadiansPerSecond;
+operator /(const ALeft: TRadians; const {%H-}ARight: TSecondUnitId): TRadiansPerSecond;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -4148,7 +4160,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TRadians; const {%H-}ARight: TSquareSecondId): TRadiansPerSquareSecond;
+operator /(const ALeft: TRadians; const {%H-}ARight: TSquareSecondUnitId): TRadiansPerSquareSecond;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -4195,7 +4207,7 @@ begin
   result := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: double; const {%H-}ARight: TSecondId): THertz;
+operator /(const ALeft: double; const {%H-}ARight: TSecondUnitId): THertz;
 begin
   result.FValue := ALeft;
 end;
@@ -4232,7 +4244,7 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-operator *(const ALeft: TKilograms; const {%H-}ARight: TMeterPerSquareSecondId): TNewtons;
+operator *(const ALeft: TKilograms; const {%H-}ARight: TMeterPerSquareSecondUnitId): TNewtons;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -4258,7 +4270,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TNewtons; const {%H-}ARight: TSquareMeterId): TPascals;
+operator /(const ALeft: TNewtons; const {%H-}ARight: TSquareMeterUnitId): TPascals;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -4284,7 +4296,7 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-operator *(const ALeft: TNewtons; const {%H-}ARight: TMeterId): TJoules;
+operator *(const ALeft: TNewtons; const {%H-}ARight: TMeterUnitId): TJoules;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -4331,7 +4343,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TJoules; const {%H-}ARight: TSecondId): TWatts;
+operator /(const ALeft: TJoules; const {%H-}ARight: TSecondUnitId): TWatts;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -4399,7 +4411,7 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-operator *(const ALeft: TSeconds; const {%H-}ARight: TAmpereId): TCoulombs;
+operator *(const ALeft: TSeconds; const {%H-}ARight: TAmpereUnitId): TCoulombs;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -4436,7 +4448,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TWatts; const {%H-}ARight: TAmpereId): TVolts;
+operator /(const ALeft: TWatts; const {%H-}ARight: TAmpereUnitId): TVolts;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -4462,7 +4474,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TJoules; const {%H-}ARight: TCoulombId): TVolts;
+operator /(const ALeft: TJoules; const {%H-}ARight: TCoulombUnitId): TVolts;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -4499,7 +4511,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TCoulombs; const {%H-}ARight: TVoltId): TFarads;
+operator /(const ALeft: TCoulombs; const {%H-}ARight: TVoltUnitId): TFarads;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -4546,7 +4558,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TVolts; const {%H-}ARight: TAmpereId): TOhms;
+operator /(const ALeft: TVolts; const {%H-}ARight: TAmpereUnitId): TOhms;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -4635,7 +4647,7 @@ begin
   result := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: double; const {%H-}ARight: TOhmId): TSiemens;
+operator /(const ALeft: double; const {%H-}ARight: TOhmUnitId): TSiemens;
 begin
   result.FValue := ALeft;
 end;
@@ -4661,7 +4673,7 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-operator *(const ALeft: TVolts; const {%H-}ARight: TSecondId): TWebers;
+operator *(const ALeft: TVolts; const {%H-}ARight: TSecondUnitId): TWebers;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -4687,7 +4699,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TWebers; const {%H-}ARight: TSquareMeterId): TTeslas;
+operator /(const ALeft: TWebers; const {%H-}ARight: TSquareMeterUnitId): TTeslas;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -4713,7 +4725,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TWebers; const {%H-}ARight: TAmpereId): THenrys;
+operator /(const ALeft: TWebers; const {%H-}ARight: TAmpereUnitId): THenrys;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -4781,7 +4793,7 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-operator *(const ALeft: TCandelas; const {%H-}ARight: TSteradianId): TLumens;
+operator *(const ALeft: TCandelas; const {%H-}ARight: TSteradianUnitId): TLumens;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -4807,7 +4819,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TLumens; const {%H-}ARight: TSquareMeterId): TLux;
+operator /(const ALeft: TLumens; const {%H-}ARight: TSquareMeterUnitId): TLux;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -4833,7 +4845,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TMoles; const {%H-}ARight: TSecondId): TKatals;
+operator /(const ALeft: TMoles; const {%H-}ARight: TSecondUnitId): TKatals;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -4859,7 +4871,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TJoules; const {%H-}ARight: TRadianId): TJoulesPerRadian;
+operator /(const ALeft: TJoules; const {%H-}ARight: TRadianUnitId): TJoulesPerRadian;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -4885,7 +4897,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TKilograms; const {%H-}ARight: TMeterId): TKilogramsPerMeter;
+operator /(const ALeft: TKilograms; const {%H-}ARight: TMeterUnitId): TKilogramsPerMeter;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -4911,7 +4923,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TKilograms; const {%H-}ARight: TSquareMeterId): TKilogramsPerSquareMeter;
+operator /(const ALeft: TKilograms; const {%H-}ARight: TSquareMeterUnitId): TKilogramsPerSquareMeter;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -4937,7 +4949,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TKilograms; const {%H-}ARight: TCubicMeterId): TKilogramsPerCubicMeter;
+operator /(const ALeft: TKilograms; const {%H-}ARight: TCubicMeterUnitId): TKilogramsPerCubicMeter;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -4963,7 +4975,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TNewtons; const {%H-}ARight: TCubicMeterId): TNewtonsPerCubicMeter;
+operator /(const ALeft: TNewtons; const {%H-}ARight: TCubicMeterUnitId): TNewtonsPerCubicMeter;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -5031,7 +5043,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TNewtons; const {%H-}ARight: TMeterId): TNewtonsPerMeter;
+operator /(const ALeft: TNewtons; const {%H-}ARight: TMeterUnitId): TNewtonsPerMeter;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -5099,7 +5111,7 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-operator *(const ALeft: TKilograms; const {%H-}ARight: TMeterPerSecondId): TKilogramMetersPerSecond;
+operator *(const ALeft: TKilograms; const {%H-}ARight: TMeterPerSecondUnitId): TKilogramMetersPerSecond;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -5125,7 +5137,7 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-operator *(const ALeft: TNewtons; const {%H-}ARight: TSecondId): TKilogramMetersPerSecond;
+operator *(const ALeft: TNewtons; const {%H-}ARight: TSecondUnitId): TKilogramMetersPerSecond;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -5151,7 +5163,7 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-operator *(const ALeft: TKilograms; const {%H-}ARight: TSquareMeterId): TKilogramSquareMeters;
+operator *(const ALeft: TKilograms; const {%H-}ARight: TSquareMeterUnitId): TKilogramSquareMeters;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -5177,7 +5189,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TKilogramSquareMeters; const {%H-}ARight: TSecondId): TKilogramSquareMetersPerSecond;
+operator /(const ALeft: TKilogramSquareMeters; const {%H-}ARight: TSecondUnitId): TKilogramSquareMetersPerSecond;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -5224,7 +5236,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TSquareMeters; const {%H-}ARight: TSquareSecondId): TSquareMetersPerSquareSecond;
+operator /(const ALeft: TSquareMeters; const {%H-}ARight: TSquareSecondUnitId): TSquareMetersPerSquareSecond;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -5282,7 +5294,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TJoules; const {%H-}ARight: TKilogramId): TSquareMetersPerSquareSecond;
+operator /(const ALeft: TJoules; const {%H-}ARight: TKilogramUnitId): TSquareMetersPerSquareSecond;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -5329,7 +5341,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TSteradians; const {%H-}ARight: TSquareSecondId): TSteradiansPerSquareSecond;
+operator /(const ALeft: TSteradians; const {%H-}ARight: TSquareSecondUnitId): TSteradiansPerSquareSecond;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -5408,7 +5420,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TCubicMeters; const {%H-}ARight: TSecondId): TCubicMetersPerSecond;
+operator /(const ALeft: TCubicMeters; const {%H-}ARight: TSecondUnitId): TCubicMetersPerSecond;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -5455,7 +5467,7 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-operator *(const ALeft: TPascals; const {%H-}ARight: TSecondId): TPascalSeconds;
+operator *(const ALeft: TPascals; const {%H-}ARight: TSecondUnitId): TPascalSeconds;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -5481,7 +5493,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TSquareMeters; const {%H-}ARight: TSecondId): TSquareMetersPerSecond;
+operator /(const ALeft: TSquareMeters; const {%H-}ARight: TSecondUnitId): TSquareMetersPerSecond;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -5528,7 +5540,7 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-operator *(const ALeft: TNewtons; const {%H-}ARight: TSquareMeterId): TNewtonSquareMeters;
+operator *(const ALeft: TNewtons; const {%H-}ARight: TSquareMeterUnitId): TNewtonSquareMeters;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -5554,7 +5566,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TNewtons; const {%H-}ARight: TSquareKilogramId): TNewtonsPerSquareKilogram;
+operator /(const ALeft: TNewtons; const {%H-}ARight: TSquareKilogramUnitId): TNewtonsPerSquareKilogram;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -5580,7 +5592,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TSquareKilograms; const {%H-}ARight: TMeterId): TSquareKilogramsPerMeter;
+operator /(const ALeft: TSquareKilograms; const {%H-}ARight: TMeterUnitId): TSquareKilogramsPerMeter;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -5606,7 +5618,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TSquareKilograms; const {%H-}ARight: TSquareMeterId): TSquareKilogramsPerSquareMeter;
+operator /(const ALeft: TSquareKilograms; const {%H-}ARight: TSquareMeterUnitId): TSquareKilogramsPerSquareMeter;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -5632,7 +5644,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TSquareMeters; const {%H-}ARight: TSquareKilogramId): TSquareMetersPerSquareKilogram;
+operator /(const ALeft: TSquareMeters; const {%H-}ARight: TSquareKilogramUnitId): TSquareMetersPerSquareKilogram;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -5700,7 +5712,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TNewtonSquareMeters; const {%H-}ARight: TSquareKilogramId): TNewtonSquareMetersPerSquareKilogram;
+operator /(const ALeft: TNewtonSquareMeters; const {%H-}ARight: TSquareKilogramUnitId): TNewtonSquareMetersPerSquareKilogram;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -5768,7 +5780,7 @@ begin
   result := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: double; const {%H-}ARight: TKelvinId): TReciprocalKelvins;
+operator /(const ALeft: double; const {%H-}ARight: TKelvinUnitId): TReciprocalKelvins;
 begin
   result.FValue := ALeft;
 end;
@@ -5794,7 +5806,7 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-operator *(const ALeft: TKilograms; const {%H-}ARight: TKelvinId): TKilogramKelvins;
+operator *(const ALeft: TKilograms; const {%H-}ARight: TKelvinUnitId): TKilogramKelvins;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -5820,7 +5832,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TJoules; const {%H-}ARight: TKelvinId): TJoulesPerKelvin;
+operator /(const ALeft: TJoules; const {%H-}ARight: TKelvinUnitId): TJoulesPerKelvin;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -5867,7 +5879,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TSquareMetersPerSquareSecond; const {%H-}ARight: TKelvinId): TJoulesPerKilogramPerKelvin;
+operator /(const ALeft: TSquareMetersPerSquareSecond; const {%H-}ARight: TKelvinUnitId): TJoulesPerKilogramPerKelvin;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -5914,7 +5926,7 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-operator *(const ALeft: TMeters; const {%H-}ARight: TKelvinId): TMeterKelvins;
+operator *(const ALeft: TMeters; const {%H-}ARight: TKelvinUnitId): TMeterKelvins;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -5940,7 +5952,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TKelvins; const {%H-}ARight: TMeterId): TKelvinsPerMeter;
+operator /(const ALeft: TKelvins; const {%H-}ARight: TMeterUnitId): TKelvinsPerMeter;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -5966,7 +5978,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TWatts; const {%H-}ARight: TMeterId): TWattsPerMeter;
+operator /(const ALeft: TWatts; const {%H-}ARight: TMeterUnitId): TWattsPerMeter;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -5992,7 +6004,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TWatts; const {%H-}ARight: TSquareMeterId): TWattsPerSquareMeter;
+operator /(const ALeft: TWatts; const {%H-}ARight: TSquareMeterUnitId): TWattsPerSquareMeter;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -6018,7 +6030,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TWatts; const {%H-}ARight: TKelvinId): TWattsPerKelvin;
+operator /(const ALeft: TWatts; const {%H-}ARight: TKelvinUnitId): TWattsPerKelvin;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -6065,7 +6077,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TWattsPerMeter; const {%H-}ARight: TKelvinId): TWattsPerMeterPerKelvin;
+operator /(const ALeft: TWattsPerMeter; const {%H-}ARight: TKelvinUnitId): TWattsPerMeterPerKelvin;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -6133,7 +6145,7 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-operator *(const ALeft: TSquareMeters; const {%H-}ARight: TKelvinId): TSquareMeterKelvins;
+operator *(const ALeft: TSquareMeters; const {%H-}ARight: TKelvinUnitId): TSquareMeterKelvins;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -6180,7 +6192,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TWattsPerSquareMeter; const {%H-}ARight: TKelvinId): TWattsPerSquareMeterPerKelvin;
+operator /(const ALeft: TWattsPerSquareMeter; const {%H-}ARight: TKelvinUnitId): TWattsPerSquareMeterPerKelvin;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -6227,7 +6239,7 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-operator *(const ALeft: TSquareMeters; const {%H-}ARight: TQuarticKelvinId): TSquareMeterQuarticKelvins;
+operator *(const ALeft: TSquareMeters; const {%H-}ARight: TQuarticKelvinUnitId): TSquareMeterQuarticKelvins;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -6253,7 +6265,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TWatts; const {%H-}ARight: TQuarticKelvinId): TWattsPerQuarticKelvin;
+operator /(const ALeft: TWatts; const {%H-}ARight: TQuarticKelvinUnitId): TWattsPerQuarticKelvin;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -6300,7 +6312,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TWattsPerSquareMeter; const {%H-}ARight: TQuarticKelvinId): TWattsPerSquareMeterPerQuarticKelvin;
+operator /(const ALeft: TWattsPerSquareMeter; const {%H-}ARight: TQuarticKelvinUnitId): TWattsPerSquareMeterPerQuarticKelvin;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -6347,7 +6359,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TJoules; const {%H-}ARight: TMoleId): TJoulesPerMole;
+operator /(const ALeft: TJoules; const {%H-}ARight: TMoleUnitId): TJoulesPerMole;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -6373,7 +6385,7 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-operator *(const ALeft: TMoles; const {%H-}ARight: TKelvinId): TMoleKelvins;
+operator *(const ALeft: TMoles; const {%H-}ARight: TKelvinUnitId): TMoleKelvins;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -6441,7 +6453,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TJoulesPerMole; const {%H-}ARight: TKelvinId): TJoulesPerMolePerKelvin;
+operator /(const ALeft: TJoulesPerMole; const {%H-}ARight: TKelvinUnitId): TJoulesPerMolePerKelvin;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -6467,7 +6479,7 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-operator *(const ALeft: TOhms; const {%H-}ARight: TMeterId): TOhmMeters;
+operator *(const ALeft: TOhms; const {%H-}ARight: TMeterUnitId): TOhmMeters;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -6493,7 +6505,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TVolts; const {%H-}ARight: TMeterId): TVoltsPerMeter;
+operator /(const ALeft: TVolts; const {%H-}ARight: TMeterUnitId): TVoltsPerMeter;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -6519,7 +6531,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TNewtons; const {%H-}ARight: TCoulombId): TVoltsPerMeter;
+operator /(const ALeft: TNewtons; const {%H-}ARight: TCoulombUnitId): TVoltsPerMeter;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -6566,7 +6578,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TCoulombs; const {%H-}ARight: TMeterId): TCoulombsPerMeter;
+operator /(const ALeft: TCoulombs; const {%H-}ARight: TMeterUnitId): TCoulombsPerMeter;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -6592,7 +6604,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TSquareCoulombs; const {%H-}ARight: TMeterId): TSquareCoulombsPerMeter;
+operator /(const ALeft: TSquareCoulombs; const {%H-}ARight: TMeterUnitId): TSquareCoulombsPerMeter;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -6639,7 +6651,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TCoulombs; const {%H-}ARight: TSquareMeterId): TCoulombsPerSquareMeter;
+operator /(const ALeft: TCoulombs; const {%H-}ARight: TSquareMeterUnitId): TCoulombsPerSquareMeter;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -6686,7 +6698,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TSquareMeters; const {%H-}ARight: TSquareCoulombId): TSquareMetersPerSquareCoulomb;
+operator /(const ALeft: TSquareMeters; const {%H-}ARight: TSquareCoulombUnitId): TSquareMetersPerSquareCoulomb;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -6712,7 +6724,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TNewtons; const {%H-}ARight: TSquareCoulombId): TNewtonsPerSquareCoulomb;
+operator /(const ALeft: TNewtons; const {%H-}ARight: TSquareCoulombUnitId): TNewtonsPerSquareCoulomb;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -6759,7 +6771,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TNewtonSquareMeters; const {%H-}ARight: TSquareCoulombId): TNewtonSquareMetersPerSquareCoulomb;
+operator /(const ALeft: TNewtonSquareMeters; const {%H-}ARight: TSquareCoulombUnitId): TNewtonSquareMetersPerSquareCoulomb;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -6848,7 +6860,7 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-operator *(const ALeft: TVolts; const {%H-}ARight: TMeterId): TVoltMeters;
+operator *(const ALeft: TVolts; const {%H-}ARight: TMeterUnitId): TVoltMeters;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -6895,7 +6907,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TVoltMeters; const {%H-}ARight: TSecondId): TVoltMetersPerSecond;
+operator /(const ALeft: TVoltMeters; const {%H-}ARight: TSecondUnitId): TVoltMetersPerSecond;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -6921,7 +6933,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TFarads; const {%H-}ARight: TMeterId): TFaradsPerMeter;
+operator /(const ALeft: TFarads; const {%H-}ARight: TMeterUnitId): TFaradsPerMeter;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -7010,7 +7022,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TAmperes; const {%H-}ARight: TMeterId): TAmperesPerMeter;
+operator /(const ALeft: TAmperes; const {%H-}ARight: TMeterUnitId): TAmperesPerMeter;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -7036,7 +7048,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TMeters; const {%H-}ARight: TAmpereId): TMetersPerAmpere;
+operator /(const ALeft: TMeters; const {%H-}ARight: TAmpereUnitId): TMetersPerAmpere;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -7062,7 +7074,7 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-operator *(const ALeft: TTeslas; const {%H-}ARight: TMeterId): TTeslaMeters;
+operator *(const ALeft: TTeslas; const {%H-}ARight: TMeterUnitId): TTeslaMeters;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -7088,7 +7100,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TNewtons; const {%H-}ARight: TAmpereId): TTeslaMeters;
+operator /(const ALeft: TNewtons; const {%H-}ARight: TAmpereUnitId): TTeslaMeters;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -7114,7 +7126,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TTeslas; const {%H-}ARight: TAmpereId): TTeslasPerAmpere;
+operator /(const ALeft: TTeslas; const {%H-}ARight: TAmpereUnitId): TTeslasPerAmpere;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -7140,7 +7152,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: THenrys; const {%H-}ARight: TMeterId): THenrysPerMeter;
+operator /(const ALeft: THenrys; const {%H-}ARight: TMeterUnitId): THenrysPerMeter;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -7166,7 +7178,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TTeslaMeters; const {%H-}ARight: TAmpereId): THenrysPerMeter;
+operator /(const ALeft: TTeslaMeters; const {%H-}ARight: TAmpereUnitId): THenrysPerMeter;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -7255,7 +7267,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TNewtons; const {%H-}ARight: TSquareAmpereId): THenrysPerMeter;
+operator /(const ALeft: TNewtons; const {%H-}ARight: TSquareAmpereUnitId): THenrysPerMeter;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -7281,7 +7293,7 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TRadians; const {%H-}ARight: TMeterId): TRadiansPerMeter;
+operator /(const ALeft: TRadians; const {%H-}ARight: TMeterUnitId): TRadiansPerMeter;
 begin
   result.FValue := ALeft.FValue;
 end;
