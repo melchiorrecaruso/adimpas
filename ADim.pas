@@ -3543,6 +3543,27 @@ operator *(const ALeft: TMeters; const ARight: TRadiansPerMeter): TRadians; inli
 
 operator /(const ALeft: TRadians; const {%H-}ARight: TMeterUnitId): TRadiansPerMeter; inline;
 
+type
+  { Unit of SquareSecondPerSquareMeter }
+  TSquareSecondPerSquareMeterUnit = record
+    const Symbol = 's2/m2';
+    const Name   = 'square second per square meter';
+  end;
+  TSquareSecondsPerSquareMeter = specialize TQuantity<TSquareSecondPerSquareMeterUnit>;
+  TSquareSecondPerSquareMeterUnitId = specialize TUnitId<TSquareSecondPerSquareMeterUnit>;
+
+// main definition [ s2/m2 ] = [ 1 ] / [ m2/s2 ]
+operator /(const ALeft: TSquareSeconds; const ARight: TSquareMeters): TSquareSecondsPerSquareMeter; inline;
+operator /(const ALeft: TSquareSeconds; const ARight: TSquareSecondsPerSquareMeter): TSquareMeters; inline;
+operator *(const ALeft: TSquareSecondsPerSquareMeter; const ARight: TSquareMeters): TSquareSeconds; inline;
+operator *(const ALeft: TSquareMeters; const ARight: TSquareSecondsPerSquareMeter): TSquareSeconds; inline;
+
+// alternative definition [ s2/m2 ] = [ F/m ] * [ H/m ]
+operator *(const ALeft: TFaradsPerMeter; const ARight: THenrysPerMeter): TSquareSecondsPerSquareMeter; inline;
+operator /(const ALeft: TSquareSecondsPerSquareMeter; const ARight: TFaradsPerMeter): THenrysPerMeter; inline;
+operator *(const ALeft: THenrysPerMeter; const ARight: TFaradsPerMeter): TSquareSecondsPerSquareMeter; inline;
+operator /(const ALeft: TSquareSecondsPerSquareMeter; const ARight: THenrysPerMeter): TFaradsPerMeter; inline;
+
 { Helpers }
 
 type
@@ -7296,6 +7317,48 @@ end;
 operator /(const ALeft: TRadians; const {%H-}ARight: TMeterUnitId): TRadiansPerMeter;
 begin
   result.FValue := ALeft.FValue;
+end;
+
+// main definition [ s2/m2 ] = [ 1 ] / [ m2/s2 ]
+operator /(const ALeft: TSquareSeconds; const ARight: TSquareMeters): TSquareSecondsPerSquareMeter;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TSquareSeconds; const ARight: TSquareSecondsPerSquareMeter): TSquareMeters;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator *(const ALeft: TSquareSecondsPerSquareMeter; const ARight: TSquareMeters): TSquareSeconds;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator *(const ALeft: TSquareMeters; const ARight: TSquareSecondsPerSquareMeter): TSquareSeconds;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+// alternative definition [ s2/m2 ] = [ F/m ] * [ H/m ]
+operator *(const ALeft: TFaradsPerMeter; const ARight: THenrysPerMeter): TSquareSecondsPerSquareMeter;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator /(const ALeft: TSquareSecondsPerSquareMeter; const ARight: TFaradsPerMeter): THenrysPerMeter;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator *(const ALeft: THenrysPerMeter; const ARight: TFaradsPerMeter): TSquareSecondsPerSquareMeter;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator /(const ALeft: TSquareSecondsPerSquareMeter; const ARight: THenrysPerMeter): TFaradsPerMeter;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
 { Helpers }

@@ -13,6 +13,8 @@ Another unit for type checking of dimensioned quantities at compile time in Free
 - [Electricity and Magnetism](doc/electricityandmagnetism.md)
 - [Heat and Thermodynamics](doc/heatandthermodynamics.md)
 - [Waves and Hearing](doc/waves.md)
+- [Light and Vision](doc/lightandvision.md)
+- [Relativity](doc/relativity.md)
 - [Units of measurement](doc/unitsofmeasurement.md)
 
 ## References
