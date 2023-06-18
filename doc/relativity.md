@@ -103,8 +103,9 @@ $E=m·c^2=\sqrt {(p·c)^2 + (m_0·c^2)^2}$ ,
 where
 
 - $m$ is the effective mass, $[kg]$;
-- $m_0$ is the rest mass, $[kg]$;
-- $c$ is the speed of light, $[m/s]$.
+- $c$ is the speed of light, $[m/s]$;
+- $p$ is the momentum, $[kg·m/s]$;
+- $m_0$ is the rest mass, $[kg]$.
 
 ### Kinetic energy
 
@@ -116,6 +117,28 @@ where
 - $m_0$ is the rest mass, $[kg]$;
 - $c$ is the speed of light, $[m/s]$;
 - $\gamma$ is the Lorentz factor.
+
+###  Planck relationship
+
+$E=h·f$ ,
+
+where
+
+- $E$ is the photon energy, $[J]$;
+- $h$ is the Planck constant, $[J·s]$;
+- $f$ is the frequency, $[Hz]$.
+
+### Momentum of Photon 
+
+$p=\displaystyle \frac{E}{c}=\frac{h}{\lambda}$ ,
+
+where
+
+- $p$ is the momentum of photon, $[kg·m/s]$;
+- $E$ is the photon energy, $[J]$;
+- $c$ is the speed of light, $[m/s]$;
+- $h$ is the Planck constant, $[J·s]$;
+- $\lambda$ is wave lenght, $[m]$.
 
 #
 [Go To Home](https://github.com/melchiorrecaruso/ADimPas)
