@@ -22,13 +22,15 @@ $a = \displaystyle\frac{\Delta v}{\Delta t}$ ,
 
 ### Force
 
-$F = m·a$ ,
+$F = \displaystyle m·\frac{\Delta v}{\Delta t} + v·\frac{\Delta m}{\Delta t}$ ,
 
 where
 
-- $F$ is the value of force, $[N]$,
-- $m$ is the mass of object, $[kg]$,
-- $a$ is the acceleration of object, $[m/s^2]$.
+- $F$ is the value of force, $[N]$;
+- $m$ is the mass of object, $[kg]$;
+- $v$ is the speed of object, $[m/s]$,
+- $\Delta v/\Delta t$ is the change in speed, $[m/s^2]$;
+- $\Delta m/\Delta t$ is the change in mass, $[kg/s]$.
 
 ### Angular speed
 
