@@ -2672,6 +2672,29 @@ operator *(const ALeft: TMetersPerSecond; const ARight: TSquareMeters): TCubicMe
 operator /(const ALeft: TCubicMetersPerSecond; const ARight: TMetersPerSecond): TSquareMeters; inline;
 
 type
+  { Unit of KilogramPerSecond }
+  TKilogramPerSecondUnit = record
+    const Symbol = 'kg/s';
+    const Name   = 'kilogram per second';
+  end;
+  TKilogramsPerSecond = specialize TQuantity<TKilogramPerSecondUnit>;
+  TKilogramPerSecondUnitId = specialize TUnitId<TKilogramPerSecondUnit>;
+
+// main definition [ kg/s ] = [ kg ] / [ s ]
+operator /(const ALeft: TKilograms; const ARight: TSeconds): TKilogramsPerSecond; inline;
+operator /(const ALeft: TKilograms; const ARight: TKilogramsPerSecond): TSeconds; inline;
+operator *(const ALeft: TKilogramsPerSecond; const ARight: TSeconds): TKilograms; inline;
+operator *(const ALeft: TSeconds; const ARight: TKilogramsPerSecond): TKilograms; inline;
+
+operator /(const ALeft: TKilograms; const {%H-}ARight: TSecondUnitId): TKilogramsPerSecond; inline;
+
+// alternative definition [ kg/s ] = [ N ] / [ m/s ]
+operator /(const ALeft: TNewtons; const ARight: TMetersPerSecond): TKilogramsPerSecond; inline;
+operator /(const ALeft: TNewtons; const ARight: TKilogramsPerSecond): TMetersPerSecond; inline;
+operator *(const ALeft: TKilogramsPerSecond; const ARight: TMetersPerSecond): TNewtons; inline;
+operator *(const ALeft: TMetersPerSecond; const ARight: TKilogramsPerSecond): TNewtons; inline;
+
+type
   { Unit of PascalSecond }
   TPascalSecondUnit = record
     const Symbol = 'Pa.s';
@@ -5635,6 +5658,53 @@ end;
 operator /(const ALeft: TCubicMetersPerSecond; const ARight: TMetersPerSecond): TSquareMeters;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+// main definition [ kg/s ] = [ kg ] / [ s ]
+operator /(const ALeft: TKilograms; const ARight: TSeconds): TKilogramsPerSecond;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TKilograms; const ARight: TKilogramsPerSecond): TSeconds;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator *(const ALeft: TKilogramsPerSecond; const ARight: TSeconds): TKilograms;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator *(const ALeft: TSeconds; const ARight: TKilogramsPerSecond): TKilograms;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator /(const ALeft: TKilograms; const {%H-}ARight: TSecondUnitId): TKilogramsPerSecond;
+begin
+  result.FValue := ALeft.FValue;
+end;
+
+// alternative definition [ kg/s ] = [ N ] / [ m/s ]
+operator /(const ALeft: TNewtons; const ARight: TMetersPerSecond): TKilogramsPerSecond;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TNewtons; const ARight: TKilogramsPerSecond): TMetersPerSecond;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator *(const ALeft: TKilogramsPerSecond; const ARight: TMetersPerSecond): TNewtons;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator *(const ALeft: TMetersPerSecond; const ARight: TKilogramsPerSecond): TNewtons;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
 // main definition [ Pa*s ] = [ Pa ] * [ s ]
