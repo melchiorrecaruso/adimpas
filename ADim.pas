@@ -2711,6 +2711,12 @@ operator /(const ALeft: TPascalSeconds; const ARight: TSeconds): TPascals; inlin
 
 operator *(const ALeft: TPascals; const {%H-}ARight: TSecondUnitId): TPascalSeconds; inline;
 
+// alternative definition [ Pa*s ] = [ kg/s ] / [ m ]
+operator /(const ALeft: TKilogramsPerSecond; const ARight: TMeters): TPascalSeconds; inline;
+operator /(const ALeft: TKilogramsPerSecond; const ARight: TPascalSeconds): TMeters; inline;
+operator *(const ALeft: TPascalSeconds; const ARight: TMeters): TKilogramsPerSecond; inline;
+operator *(const ALeft: TMeters; const ARight: TPascalSeconds): TKilogramsPerSecond; inline;
+
 type
   { Unit of SquareMeterPerSecond }
   TSquareMeterPerSecondUnit = record
@@ -5731,6 +5737,27 @@ end;
 operator *(const ALeft: TPascals; const {%H-}ARight: TSecondUnitId): TPascalSeconds;
 begin
   result.FValue := ALeft.FValue;
+end;
+
+// alternative definition [ Pa*s ] = [ kg/s ] / [ m ]
+operator /(const ALeft: TKilogramsPerSecond; const ARight: TMeters): TPascalSeconds;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TKilogramsPerSecond; const ARight: TPascalSeconds): TMeters;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator *(const ALeft: TPascalSeconds; const ARight: TMeters): TKilogramsPerSecond;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator *(const ALeft: TMeters; const ARight: TPascalSeconds): TKilogramsPerSecond;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
 // main definition [ m2/s ] = [ m2 ] / [ s ]
