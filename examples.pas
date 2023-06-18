@@ -23,7 +23,6 @@ uses
   {$IFDEF WINDOWS}
   Windows,
   {$ENDIF}
-  Math,
   ADim;
 
 var
@@ -146,6 +145,11 @@ var
   Kw: TRadiansPerMeter;
   Omega: TRadiansPerSecond;
   phi: TRadians;
+
+  lightspeed: TMetersPerSecond;
+  energy: TJoules;
+  plank: TJouleSeconds;
+  freq: THertz;
 
 begin
   {$IFDEF WINDOWS}
@@ -962,6 +966,47 @@ begin
   writeln('The wave phase is: ', phi.ToString(4, 4));
   writeln('The wave value at position (1m, 0.8s) is: ', (Ampl*sin(Kw*(1*m)-omega*(0.8*s)+phi)).ToString(4, 4));
   writeln;
+
+  // relativty: energy
+  mass       := 1*kg;
+  lightspeed := 299792458*m/s;
+  energy     := mass*SquarePower(lightspeed);
+
+  writeln('*** Relativistic energy:');
+  writeln('The mass "m" is: ', mass.ToString(4, 4));
+  writeln('The ligth speed c: ', lightspeed.ToString(4, 4));
+  writeln('The energy E is: ', TTeraElettronVoltUnitId.From(energy).ToString(4, 0));
+  writeln('The energy E is: ', TTeraJouleUnitId.From(energy).ToString(4, 0));
+  writeln;
+
+  // relativty: momentum
+  mass       := 9.11*1E-31*kg;
+  speed      := 10800000*km/hour;
+  p          := mass*speed;
+  energy     := SquareRoot(SquarePower(p*lightspeed)+ SquarePower(mass*SquarePower(lightspeed)));
+
+  writeln('*** Relativistic momentum:');
+  writeln('The mass "m" is: ', mass.ToString(4, 4));
+  writeln('The speed "v": ', speed.ToString(4, 4));
+  writeln('The momentum "p" is: ', p.ToString(4, 4));
+  writeln('The energy E is: ', TTeraElettronVoltUnitId.From(energy).ToString(4, 0));
+  writeln;
+
+  // momentum of photon
+  plank  := 6.62607015*1E-34*J*s;
+  len    := 1*um;
+  freq   := 1*Hz;
+
+  energy := plank/(len/lightspeed);
+  p      := plank*freq/lightspeed;
+  p      := plank/len;
+
+  writeln('*** Momentum of photon:');
+  writeln('The Plank costant "h" is: ', plank.ToString(4, 4));
+  writeln('The wavelength "lambda" is: ', len.ToString(4, 4));
+  writeln('The frequency "f" is: ', freq.ToString(4, 4));
+  writeln('The energy "E" is: ', energy.ToString(4, 4));
+  writeln('The momentum "p" is: ', p.ToString(4, 4));
 
   writeln;
   writeln('Press ENTER to exit.');
