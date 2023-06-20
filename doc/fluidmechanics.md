@@ -26,27 +26,39 @@ where
 
 ###  Air friction (air drag force)
 
-$F = 1/2·(ρ·v^2)·C_d·A$
+$F_{drag}=\displaystyle -\frac {1}{2}·C_d\left( ρ·v^2 \right)·A$
 
 where 
-
+- $F_{drag}$ if the drag force, $[N]$;
+- $C_d$ is the drag coefficient;
 - $ρ$ is the the density of the fluid, $[kg/m^3]$;
 - $v$ is the speed of the object relative to the fluid, $[m/s]$;
-- $A$ is the cross sectional area, $[m^2]$;
-- $C_d$ is the drag coefficient.
+- $A$ is the cross sectional area, $[m^2]$.
 
-### Kinematic viscosity
+### Viscous resistance (falling sphere through a liquid)
 
-$ν = μ/ρ$
+$F_{drag} = -6\pi·\left(a·\eta\right)·v$
 
 where
 
-- $μ$ is the dynamic viscosity of the fluid, $[Pa⋅s]$;
+- $F_{drag}$ if the drag force, $[N]$;
+- $a$ is the sphere radius, $[m]$;
+- $\eta$ is the dynamic viscosity, $[Pa·s]$;
+- $v$ is the particle velocity, $[m/s]$.
+
+### Kinematic viscosity
+
+$\nu = \eta/ρ$
+
+where
+
+- $\nu$ is the kinematic viscosity of the fluid, $\displaystyle[\frac{m^2}{s}]$;
+- $\eta$ is the dynamic viscosity of the fluid, $[Pa⋅s]$;
 - $ρ$ is the the density of the fluid, $[kg/m^3]$.
 
 ### Viscous friction (laminar flow)
 
-$ μ = \displaystyle \left(\frac {F}{A} \right)⋅ \left(\frac {\Delta y}{\Delta v}\right)$
+$μ = \displaystyle \left(\frac {F}{A} \right)⋅ \left(\frac {\Delta y}{\Delta v}\right)$
 
 where 
 - $μ$ is the dynamic viscosity of the fluid, $[Pa⋅s]$;

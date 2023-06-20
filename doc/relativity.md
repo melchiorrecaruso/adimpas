@@ -128,7 +128,7 @@ where
 - $h$ is the Planck constant, $[J·s]$;
 - $f$ is the frequency, $[Hz]$.
 
-### Momentum of Photon 
+### Momentum of photon
 
 $p=\displaystyle \frac{E}{c}=\frac{h}{\lambda}$ ,
 
