@@ -72,7 +72,8 @@ type
       AComment, ALongSymbol, AShortSymbol, AIdentifierSymbol, ABaseClass, AFactor: string);
 
     procedure AddPower(AOperator, AQuantity, AResult: string);
-    procedure AddHelper(AClassParent1, AClassName: string);
+    procedure AddHelper(AClassName, ABaseClass, AFactor: string);
+    procedure AddEquivalence(AOperator, AClassName, ABaseClass: string);
   public
 
   end;
@@ -213,17 +214,25 @@ begin
   begin
     OperatorList.Append(ALeftParent + AOperator + ARightParent);
 
-    SectionA1.Add('');
     SectionA1.Append('operator ' + AOperator + '(const ALeft: ' + ALeftParent + '; const {%H-}ARight: ' + ARightParent  + '): ' + AResult + '; inline;');
-    SectionA1.Add('');
 
     SectionB1.Append('');
     SectionB1.Append('operator ' + AOperator + '(const ALeft: ' + ALeftParent + '; const {%H-}ARight: ' + ARightParent  + '): ' + AResult + ';');
     SectionB1.Append('begin');
-    if ALeftParent <> 'double' then
-      SectionB1.Append('  result.FValue := ALeft.FValue;')
-    else
-      SectionB1.Append('  result.FValue := ALeft;');
+
+    if AResult <> 'double' then
+    begin
+      if ALeftParent <> 'double' then
+        SectionB1.Append('  result.FValue := ALeft.FValue;')
+      else
+        SectionB1.Append('  result.FValue := ALeft;');
+    end else
+    begin
+      if ALeftParent <> 'double' then
+        SectionB1.Append('  result := ALeft.FValue;')
+      else
+        SectionB1.Append('  result := ALeft;');
+    end;
     SectionB1.Append('end;');
     SectionB1.Append('');
   end;
@@ -267,29 +276,19 @@ begin
       SectionA1.Append('  ' + GetUN(AClassName) + ' = record');
       SectionA1.Append('    const Symbol = ''' + AShortSymbol + ''';');
       SectionA1.Append('    const Name   = ''' + ALongSymbol  + ''';');
-      SectionA1.Append('    const Factor = '   + AFactor      +   ';');
-      //SectionA1.Append('    class function ToString(AQuantity: ' + GetQT(ABaseClass) + '): string; static;');
-      //SectionA1.Append('    class function ToVerboseString(AQuantity: ' + GetQT(ABaseClass) + '): string; static;');
-      SectionA1.Append('  end;');
-      SectionA1.Append('  ' + GetID(AClassName) + ' = specialize TFactoredUnitId<' + GetUN(ABaseClass) + ', ' + GetUN(AClassName) + '>;');
+
+      if AFactor <> '' then
+      begin
+        SectionA1.Append('    const Factor = '   + AFactor      +   ';');
+        SectionA1.Append('  end;');
+        SectionA1.Append('  ' + GetID(AClassName) + ' = specialize TFactoredUnitId<' + GetUN(ABaseClass) + ', ' + GetUN(AClassName) + '>;');
+      end else
+      begin
+        SectionA1.Append('  end;');
+        SectionA1.Append('  ' + GetQT(AClassName) + ' = specialize TQuantity<' + GetUN(ABaseClass) + '>;');
+        SectionA1.Append('  ' + GetID(AClassName) + ' = specialize TUnitId<' + GetUN(AClassName) + '>;');
+      end;
       SectionA1.Append('');
-      (*
-      SectionA1.Append('  { Unit of ' + GetNM(AClassName) + ' }');
-      SectionA1.Append('');
-      SectionA1.Append('  function ' + GetNM(AClassName) + 'ToString(AQuantity: ' + GetQT(ABaseClass) + '): string;');
-      SectionA1.Append('  function ' + GetNM(AClassName) + 'ToVerboseString(AQuantity: ' + GetQT(ABaseClass) + '): string;');
-
-
-      SectionB1.Append('{ Unit of ' + GetNM(AClassName) + ' }');
-      SectionB1.Append('');
-      SectionB1.Append('function ' + GetNM(AClassName) + 'ToString(AQuantity: ' + GetQT(ABaseClass) + '): string;');
-      SectionB1.Append('begin  result := FloatToStr(AQuantity.Value) + ''' + AShortSymbol + '''; end;');
-
-      SectionB1.Append('');
-      SectionB1.Append('function ' + GetNM(AClassName) + 'ToVerboseString(AQuantity: ' + GetQT(ABaseClass) + '): string;');
-      SectionB1.Append('begin  result := FloatToStr(AQuantity.Value) + ''' + ALongSymbol + '''; end;');
-      SectionB1.Append('');
-      *)
     end;
   end;
 
@@ -303,17 +302,19 @@ begin
       SectionA1.Append('');
     end else
     begin
-      SectionA1.Append('');
-      SectionA1.Append('const');
-      SectionA1.Append(Format('  %s: specialize TQuantity<%s> = (FValue: %s);', [AIdentifierSymbol, GetUN(ABaseClass), GetUN(AClassName) + '.Factor']));
-      (*
-      SectionA1.Append(Format('  function %s: %s;', [AIdentifierSymbol, GetQT(ABaseClass)]));
-      SectionA1.Append('');
 
-      SectionB1.Append(Format('function %s: %s;', [AIdentifierSymbol, GetQT(ABaseClass)]));
-      SectionB1.Append('begin result.FValue := ' + AFactor + ' end;');
-      SectionB1.Append('');
-      *)
+      if AFactor <> '' then
+      begin
+        SectionA1.Append('');
+        SectionA1.Append('const');
+        SectionA1.Append(Format('  %s: specialize TQuantity<%s> = (FValue: %s);', [AIdentifierSymbol, GetUN(ABaseClass), GetUN(AClassName) + '.Factor']));
+      end else
+      begin
+        SectionA1.Append('');
+        SectionA1.Append('var');
+        SectionA1.Append(Format('  %s: %s;', [AIdentifierSymbol, GetID(ABaseClass)]));
+        SectionA1.Append('');
+      end;
     end;
   end;
 
@@ -328,14 +329,21 @@ begin
       SectionB1.Append('// ' + AComment);
 
       AddQuantityOperator('*', AClassParent1, AClassParent2, AClassName);
-      AddQuantityOperator('/', AClassName,    AClassParent1, AClassParent2);
       if AClassParent1 <> AClassParent2 then
       begin
         AddQuantityOperator('*', AClassParent2, AClassParent1, AClassName);
-        AddQuantityOperator('/', AClassName,     AClassParent2, AClassParent1);
       end;
-      if AFactor = '' then
-        AddUnitIdOperator('*', AClassParent1, AClassParent2, AClassName);
+
+      AddQuantityOperator('/', AClassName, AClassParent1, AClassParent2);
+      if AClassParent1 <> AClassParent2 then
+      begin
+        AddQuantityOperator('/', AClassName, AClassParent2, AClassParent1);
+      end;
+
+      if Pos('OP1', AFactor) > 0 then AddUnitIdOperator('*', AClassParent1, AClassParent2, AClassName);
+      if Pos('OP2', AFactor) > 0 then AddUnitIdOperator('*', AClassParent2, AClassParent1, AClassName);
+      if Pos('OP3', AFactor) > 0 then AddUnitIdOperator('/', AClassName, AClassParent1, AClassParent2);
+      if Pos('OP4', AFactor) > 0 then AddUnitIdOperator('/', AClassName, AClassParent2, AClassParent1);
 
     end else
       if AOperator = '/' then
@@ -346,12 +354,14 @@ begin
         SectionB1.Append('// ' + AComment);
 
         AddQuantityOperator('/', AClassParent1, AClassParent2, AClassName);
-        AddQuantityOperator('/', AClassParent1, AClassName,    AClassParent2);
-        AddQuantityOperator('*', AClassName,    AClassParent2, AClassParent1);
         AddQuantityOperator('*', AClassParent2, AClassName,    AClassParent1);
+        AddQuantityOperator('*', AClassName,    AClassParent2, AClassParent1);
+        AddQuantityOperator('/', AClassParent1, AClassName,    AClassParent2);
 
-        if AFactor = '' then
-          AddUnitIdOperator('/', AClassParent1, AClassParent2, AClassName);
+        if Pos('OP1', AFactor) > 0 then AddUnitIdOperator('/', AClassParent1, AClassParent2, AClassName);
+        if Pos('OP2', AFactor) > 0 then AddUnitIdOperator('*', AClassParent2, AClassName, AClassParent1);
+        if Pos('OP3', AFactor) > 0 then AddUnitIdOperator('*', AClassName, AClassParent2, AClassParent1);
+        if Pos('OP4', AFactor) > 0 then AddUnitIdOperator('/', AClassParent1, AClassName, AClassParent2);
 
       end else
         if Pos('power', LowerCase(AOperator)) > 0 then
@@ -360,9 +370,15 @@ begin
         end else
           if ('helper' = LowerCase(AOperator)) then
           begin
-            AddHelper(AClassParent1, AClassName);
+            AddHelper(AClassName, ABaseClass, AFactor);
           end;
-  end;
+
+  end else
+    if (':=' = AOperator) or ('=' = AOperator) then
+    begin
+      AddEquivalence(AOperator, AClassName, ABaseClass);
+    end
+
 end;
 
 procedure TMainForm.AddPower(AOperator, AQuantity, AResult: string);
@@ -422,22 +438,59 @@ begin
   SectionB3.Add('');
 end;
 
-procedure TMainForm.AddHelper(AClassParent1, AClassName: string);
+procedure TMainForm.AddHelper(AClassName, ABaseClass, AFactor: string);
 begin
   SectionA2.Add('');
   SectionA2.Append('type');
   SectionA2.Append('  ' + GetUH(AClassName) + ' = record helper for ' + GetID(AClassName));
-  SectionA2.Append('    class function From(const AQuantity: ' + GetQT(AClassParent1) + '): ' + GetQT(AClassName) + '; static;');
+
+  if AFactor = '' then
+    SectionA2.Append('    class function From(const AQuantity: ' + GetQT(ABaseClass) + '): ' + GetID(AClassName) + '.TBaseQuantity; static;')
+  else
+    SectionA2.Append('    class function From(const AQuantity: ' + GetQT(ABaseClass) + '): ' + GetID(AClassName) + '.TFactoredQuantity; static;');
+
   SectionA2.Append('  end;');
   SectionA2.Add('');
 
   SectionB2.Add('');
-  SectionB2.Append('class function ' + GetUH(AClassName) + '.From(const AQuantity: ' + GetQT(AClassParent1) + '): ' + GetQT(AClassName) + ';');
+
+  if AFactor = '' then
+    SectionA2.Append('    class function From(const AQuantity: ' + GetQT(ABaseClass) + '): ' + GetID(AClassName) + '.TBaseQuantity; static;')
+  else
+    SectionA2.Append('    class function From(const AQuantity: ' + GetQT(ABaseClass) + '): ' + GetID(AClassName) + '.TFactoredQuantity; static;');
+
   SectionB2.Append('begin');
   SectionB2.Append('  result.FValue := AQuantity.FValue;');
   SectionB2.Append('end;');
   SectionB2.Append('');
 end;
+
+procedure TMainForm.AddEquivalence(AOperator, AClassName, ABaseClass: string);
+begin
+  SectionA1.Append('');
+  SectionA1.Append('operator :=(const AQuantity: ' + GetQT(AClassName) + '): ' + GetQT(ABaseClass) + '; inline;');
+  if AOperator = '=' then
+  begin
+    SectionA1.Append('operator :=(const AQuantity: ' + GetQT(ABaseClass) + '): ' + GetQT(AClassName) + '; inline;');
+  end;
+  SectionA1.Append('');
+
+  SectionB1.Append('');
+  SectionB1.Append('operator :=(const AQuantity: ' + GetQT(AClassName) + '): ' + GetQT(ABaseClass) + '; inline;');
+  SectionB1.Append('begin');
+  SectionB1.Append('  result.FValue := AQuantity.FValue;');
+  SectionB1.Append('end;');
+  SectionB1.Append('');
+  if AOperator = '=' then
+  begin
+    SectionB1.Append('operator :=(const AQuantity: ' + GetQT(ABaseClass) + '): ' + GetQT(AClassName) + '; inline;');
+    SectionB1.Append('begin');
+    SectionB1.Append('  result.FValue := AQuantity.FValue;');
+    SectionB1.Append('end;');
+    SectionB1.Append('');
+  end;
+end;
+
 
 { TMainForm }
 
