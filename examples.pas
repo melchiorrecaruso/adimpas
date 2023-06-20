@@ -471,10 +471,10 @@ begin
   // sievert & gray
   dose1 := 10*Sv;
   dose2 := 5*Gy;
-//dose1 := 10*(m2/s2);
-//dose2 := 10*(m2/s2);
-  dose1 := Sv.From(10*j/kg);
-  dose2 := Gy.From(10*j/kg);
+  dose1 := 10*m2/s2;
+  dose2 := 10*m2/s2;
+  dose1 := 10*j/kg;
+  dose2 := 10*j/kg;
 
   writeln('*** Sievert and Gray mixing:');
   writeln('The dose1 is: ', dose1.ToVerboseString);
@@ -548,7 +548,8 @@ begin
   side1  := 1*m;
   area   := 2*pi*radius*side1;
   speed  := 0.5*m/s;
-  force  := (eta/(radius/speed))*area;
+  force  := 6*pi*radius*eta*speed;
+  force  := eta/(radius/speed)*area;
 
   writeln('*** Viscosity (laminar flow):');
   writeln('The eta coefficent is: ', eta.ToVerboseString);
@@ -964,7 +965,7 @@ begin
   writeln('The wave number K is: ', Kw.ToString(4, 4));
   writeln('The angular frequency Omega is: ', omega.ToString(4, 4));
   writeln('The wave phase is: ', phi.ToString(4, 4));
-  writeln('The wave value at position (1m, 0.8s) is: ', (Ampl*sin(Kw*(1*m)-omega*(0.8*s)+phi)).ToString(4, 4));
+  writeln('The wave value at position (1m, 0.8s) is: ', (Ampl*sin(Kw*(1*m) - omega*(0.8*s) + phi)).ToString(4, 4));
   writeln;
 
   // relativty: energy
@@ -1000,6 +1001,7 @@ begin
   energy := plank/(len/lightspeed);
   p      := plank*freq/lightspeed;
   p      := plank/len;
+  speed  := len*freq;
 
   writeln('*** Momentum of photon:');
   writeln('The Plank costant "h" is: ', plank.ToString(4, 4));
