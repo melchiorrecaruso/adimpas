@@ -367,17 +367,17 @@ begin
         if Pos('power', LowerCase(AOperator)) > 0 then
         begin
           AddPower(AOperator, AClassParent1, AClassName);
-        end else
-          if ('helper' = LowerCase(AOperator)) then
-          begin
-            AddHelper(AClassName, ABaseClass, AFactor);
-          end;
+        end;
 
   end else
     if (':=' = AOperator) or ('=' = AOperator) then
     begin
       AddEquivalence(AOperator, AClassName, ABaseClass);
-    end
+    end else
+      if ('helper' = LowerCase(AOperator)) then
+      begin
+        AddHelper(AClassName, ABaseClass, AFactor);
+      end;
 
 end;
 
@@ -455,9 +455,9 @@ begin
   SectionB2.Add('');
 
   if AFactor = '' then
-    SectionA2.Append('    class function From(const AQuantity: ' + GetQT(ABaseClass) + '): ' + GetID(AClassName) + '.TBaseQuantity; static;')
+    SectionB2.Append('class function ' + GetUH(AClassName) + '.From(const AQuantity: ' + GetQT(ABaseClass) + '): ' + GetID(AClassName) + '.TBaseQuantity; static;')
   else
-    SectionA2.Append('    class function From(const AQuantity: ' + GetQT(ABaseClass) + '): ' + GetID(AClassName) + '.TFactoredQuantity; static;');
+    SectionB2.Append('class function ' + GetUH(AClassName) + '.From(const AQuantity: ' + GetQT(ABaseClass) + '): ' + GetID(AClassName) + '.TFactoredQuantity; static;');
 
   SectionB2.Append('begin');
   SectionB2.Append('  result.FValue := AQuantity.FValue;');

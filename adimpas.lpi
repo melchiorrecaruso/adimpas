@@ -63,9 +63,9 @@
         <UnitName Value="MainFrm"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="462"/>
-        <CursorPos X="89" Y="486"/>
-        <FoldState Value=" T3kc0b031 PiCm10B"/>
+        <TopLine Value="379"/>
+        <CursorPos X="47" Y="460"/>
+        <FoldState Value=" T3kc0b211 PjDm10c"/>
         <UsageCount Value="99"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -287,7 +287,7 @@
         <UsageCount Value="10"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="24">
+    <JumpHistory HistoryIndex="26">
       <Position>
         <Filename Value="mainfrm.pas"/>
         <Caret Line="298" Column="29" TopLine="279"/>
@@ -387,6 +387,14 @@
       <Position>
         <Filename Value="mainfrm.pas"/>
         <Caret Line="75" Column="64" TopLine="58"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="467" Column="84" TopLine="351"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="75" Column="24" TopLine="58"/>
       </Position>
     </JumpHistory>
   </ProjectOptions>

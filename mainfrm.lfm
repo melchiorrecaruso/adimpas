@@ -7,7 +7,7 @@ object MainForm: TMainForm
   ClientHeight = 530
   ClientWidth = 766
   OnCreate = FormCreate
-  LCLVersion = '2.3.0.0'
+  LCLVersion = '3.99.0.0'
   object PageControl: TPageControl
     AnchorSideLeft.Control = Owner
     AnchorSideTop.Side = asrBottom
