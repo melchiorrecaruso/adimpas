@@ -1025,6 +1025,16 @@ begin
   writeln('The earth period is:', TDayUnitId.From(time).toString(5, 0));
   writeln;
 
+  // Earth's gravity
+  mass2    := 5.972E24*kg;
+  GN       := 6.6743E-11*N*m2/kg2;
+  distance := 6.373E6*m;
+
+  writeln('The mass of earth is:', mass2.toString(5, 0));
+  writeln('The radius of earth is:', distance.toString(5, 0));
+  writeln('The value of "g" constant is:', (GN*mass2/SquarePower(distance)).toString(5, 0));
+  writeln;
+
   writeln;
   writeln('Press ENTER to exit.');
   readln;

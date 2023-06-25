@@ -2735,6 +2735,12 @@ operator *(const ALeft: TCubicMetersPerSquareSecond; const ARight: TSquareSecond
 operator /(const ALeft: TCubicMeters; const ARight: TCubicMetersPerSquareSecond): TSquareSeconds; inline;
 operator /(const ALeft: TCubicMeters; const {%H-}ARight: TSquareSecondUnitId): TCubicMetersPerSquareSecond; inline;
 
+// alternative definition [ m3/s2 ] = [ m/s2 ] * [ m2 ]
+operator *(const ALeft: TMetersPerSquareSecond; const ARight: TSquareMeters): TCubicMetersPerSquareSecond; inline;
+operator *(const ALeft: TSquareMeters; const ARight: TMetersPerSquareSecond): TCubicMetersPerSquareSecond; inline;
+operator /(const ALeft: TCubicMetersPerSquareSecond; const ARight: TMetersPerSquareSecond): TSquareMeters; inline;
+operator /(const ALeft: TCubicMetersPerSquareSecond; const ARight: TSquareMeters): TMetersPerSquareSecond; inline;
+
 type
   { Unit of NewtonSquareMeter }
   TNewtonSquareMeterUnit = record
@@ -5826,6 +5832,27 @@ end;
 operator /(const ALeft: TCubicMeters; const {%H-}ARight: TSquareSecondUnitId): TCubicMetersPerSquareSecond;
 begin
   result.FValue := ALeft.FValue;
+end;
+
+// alternative definition [ m3/s2 ] = [ m/s2 ] * [ m2 ]
+operator *(const ALeft: TMetersPerSquareSecond; const ARight: TSquareMeters): TCubicMetersPerSquareSecond;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator *(const ALeft: TSquareMeters; const ARight: TMetersPerSquareSecond): TCubicMetersPerSquareSecond;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator /(const ALeft: TCubicMetersPerSquareSecond; const ARight: TMetersPerSquareSecond): TSquareMeters;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TCubicMetersPerSquareSecond; const ARight: TSquareMeters): TMetersPerSquareSecond;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
 // main definition [ N*m2 ] = [ N ] * [ m2 ]
