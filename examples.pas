@@ -1009,6 +1009,21 @@ begin
   writeln('The frequency "f" is: ', freq.ToString(4, 4));
   writeln('The energy "E" is: ', energy.ToString(4, 4));
   writeln('The momentum "p" is: ', p.ToString(4, 4));
+  writeln;
+
+  // third kepler's law
+  mass1    := 1.989E30*kg;
+  mass2    := 5.972E24*kg;
+  distance := 1*au;
+  GN       := 6.6743E-11*N*m2/kg2;
+  time     := SquareRoot( 4*Sqr(pi)*CubicPower(distance)/(GN*(mass1+mass2)) );
+
+  writeln('*** Third Kepler''law: earth period');
+  writeln('The mass of sun is:', mass1.toString(5, 0));
+  writeln('The mass of earth is:', mass2.toString(5, 0));
+  writeln('The distance earth-sun is:', TAstronomicalUnitId.From(distance).toString(5, 0));
+  writeln('The earth period is:', TDayUnitId.From(time).toString(5, 0));
+  writeln;
 
   writeln;
   writeln('Press ENTER to exit.');

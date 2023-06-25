@@ -2688,6 +2688,54 @@ operator *(const ALeft: TSquareMetersPerSecond; const ARight: TKilogramsPerCubic
 operator /(const ALeft: TPascalSeconds; const ARight: TSquareMetersPerSecond): TKilogramsPerCubicMeter; inline;
 
 type
+  { Unit of CubicMeterPerKilogram }
+  TCubicMeterPerKilogramUnit = record
+    const Symbol = 'm3/kg';
+    const Name   = 'cubic meter per kilogram';
+  end;
+  TCubicMetersPerKilogram = specialize TQuantity<TCubicMeterPerKilogramUnit>;
+  TCubicMeterPerKilogramUnitId = specialize TUnitId<TCubicMeterPerKilogramUnit>;
+
+// main definition [ m3/kg ] = [ m3 ] / [ kg ]
+operator /(const ALeft: TCubicMeters; const ARight: TKilograms): TCubicMetersPerKilogram; inline;
+operator *(const ALeft: TKilograms; const ARight: TCubicMetersPerKilogram): TCubicMeters; inline;
+operator *(const ALeft: TCubicMetersPerKilogram; const ARight: TKilograms): TCubicMeters; inline;
+operator /(const ALeft: TCubicMeters; const ARight: TCubicMetersPerKilogram): TKilograms; inline;
+operator /(const ALeft: TCubicMeters; const {%H-}ARight: TKilogramUnitId): TCubicMetersPerKilogram; inline;
+
+type
+  { Unit of KilogramSquareSecond }
+  TKilogramSquareSecondUnit = record
+    const Symbol = 'kg.s2';
+    const Name   = 'kilogram square second';
+  end;
+  TKilogramSquareSeconds = specialize TQuantity<TKilogramSquareSecondUnit>;
+  TKilogramSquareSecondUnitId = specialize TUnitId<TKilogramSquareSecondUnit>;
+
+// main definition [ kg*s2 ] = [ kg ] * [ s2 ]
+operator *(const ALeft: TKilograms; const ARight: TSquareSeconds): TKilogramSquareSeconds; inline;
+operator *(const ALeft: TSquareSeconds; const ARight: TKilograms): TKilogramSquareSeconds; inline;
+operator /(const ALeft: TKilogramSquareSeconds; const ARight: TKilograms): TSquareSeconds; inline;
+operator /(const ALeft: TKilogramSquareSeconds; const ARight: TSquareSeconds): TKilograms; inline;
+operator *(const ALeft: TKilograms; const {%H-}ARight: TSquareSecondUnitId): TKilogramSquareSeconds; inline;
+
+type
+  { Unit of CubicMeterPerSquareSecond }
+  TCubicMeterPerSquareSecondUnit = record
+    const Symbol = 'm3/s2';
+    const Name   = 'cubic meter per square second';
+  end;
+  TCubicMetersPerSquareSecond = specialize TQuantity<TCubicMeterPerSquareSecondUnit>;
+  TCubicMeterPerSquareSecondUnitId = specialize TUnitId<TCubicMeterPerSquareSecondUnit>;
+
+// main definitio [ m3/s2 ] = [ m3 ] / [ s2 ]
+operator /(const ALeft: TCubicMeters; const ARight: TSquareSeconds): TCubicMetersPerSquareSecond; inline;
+operator *(const ALeft: TSquareSeconds; const ARight: TCubicMetersPerSquareSecond): TCubicMeters; inline;
+operator *(const ALeft: TCubicMetersPerSquareSecond; const ARight: TSquareSeconds): TCubicMeters; inline;
+operator /(const ALeft: TCubicMeters; const ARight: TCubicMetersPerSquareSecond): TSquareSeconds; inline;
+operator /(const ALeft: TCubicMeters; const {%H-}ARight: TSquareSecondUnitId): TCubicMetersPerSquareSecond; inline;
+
+type
   { Unit of NewtonSquareMeter }
   TNewtonSquareMeterUnit = record
     const Symbol = 'N.m2';
@@ -2702,6 +2750,18 @@ operator *(const ALeft: TSquareMeters; const ARight: TNewtons): TNewtonSquareMet
 operator /(const ALeft: TNewtonSquareMeters; const ARight: TNewtons): TSquareMeters; inline;
 operator /(const ALeft: TNewtonSquareMeters; const ARight: TSquareMeters): TNewtons; inline;
 operator *(const ALeft: TNewtons; const {%H-}ARight: TSquareMeterUnitId): TNewtonSquareMeters; inline;
+
+// alternative definition [ N*m2 ] = [ J ] * [ m ]
+operator *(const ALeft: TJoules; const ARight: TMeters): TNewtonSquareMeters; inline;
+operator *(const ALeft: TMeters; const ARight: TJoules): TNewtonSquareMeters; inline;
+operator /(const ALeft: TNewtonSquareMeters; const ARight: TJoules): TMeters; inline;
+operator /(const ALeft: TNewtonSquareMeters; const ARight: TMeters): TJoules; inline;
+
+// alternative definition [ N*m2 ] = [ Pa ] * [ m4 ]
+operator *(const ALeft: TPascals; const ARight: TQuarticMeters): TNewtonSquareMeters; inline;
+operator *(const ALeft: TQuarticMeters; const ARight: TPascals): TNewtonSquareMeters; inline;
+operator /(const ALeft: TNewtonSquareMeters; const ARight: TPascals): TQuarticMeters; inline;
+operator /(const ALeft: TNewtonSquareMeters; const ARight: TQuarticMeters): TPascals; inline;
 
 type
   { Unit of NewtonPerSquareKilogram }
@@ -2807,6 +2867,24 @@ operator /(const ALeft: TJoules; const ARight: TSquareKilogramsPerMeter): TNewto
 operator *(const ALeft: TSquareKilogramsPerMeter; const ARight: TNewtonSquareMetersPerSquareKilogram): TJoules; inline;
 operator *(const ALeft: TNewtonSquareMetersPerSquareKilogram; const ARight: TSquareKilogramsPerMeter): TJoules; inline;
 operator /(const ALeft: TJoules; const ARight: TNewtonSquareMetersPerSquareKilogram): TSquareKilogramsPerMeter; inline;
+
+// alternative definition [ N*m2/kg2 ] = [ m3/kg ] / [ s2 ]
+operator /(const ALeft: TCubicMetersPerKilogram; const ARight: TSquareSeconds): TNewtonSquareMetersPerSquareKilogram; inline;
+operator *(const ALeft: TSquareSeconds; const ARight: TNewtonSquareMetersPerSquareKilogram): TCubicMetersPerKilogram; inline;
+operator *(const ALeft: TNewtonSquareMetersPerSquareKilogram; const ARight: TSquareSeconds): TCubicMetersPerKilogram; inline;
+operator /(const ALeft: TCubicMetersPerKilogram; const ARight: TNewtonSquareMetersPerSquareKilogram): TSquareSeconds; inline;
+
+// alternative definition [ N*m2/kg2 ] = [ m3 ] / [ kg*s2 ]
+operator /(const ALeft: TCubicMeters; const ARight: TKilogramSquareSeconds): TNewtonSquareMetersPerSquareKilogram; inline;
+operator *(const ALeft: TKilogramSquareSeconds; const ARight: TNewtonSquareMetersPerSquareKilogram): TCubicMeters; inline;
+operator *(const ALeft: TNewtonSquareMetersPerSquareKilogram; const ARight: TKilogramSquareSeconds): TCubicMeters; inline;
+operator /(const ALeft: TCubicMeters; const ARight: TNewtonSquareMetersPerSquareKilogram): TKilogramSquareSeconds; inline;
+
+// alternative definition [ N*m2/kg2 ] = [ m3/s2 ] / [ kg ]
+operator /(const ALeft: TCubicMetersPerSquareSecond; const ARight: TKilograms): TNewtonSquareMetersPerSquareKilogram; inline;
+operator *(const ALeft: TKilograms; const ARight: TNewtonSquareMetersPerSquareKilogram): TCubicMetersPerSquareSecond; inline;
+operator *(const ALeft: TNewtonSquareMetersPerSquareKilogram; const ARight: TKilograms): TCubicMetersPerSquareSecond; inline;
+operator /(const ALeft: TCubicMetersPerSquareSecond; const ARight: TNewtonSquareMetersPerSquareKilogram): TKilograms; inline;
 
 type
   { Unit of ReciprocalKelvin }
@@ -5672,6 +5750,84 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+// main definition [ m3/kg ] = [ m3 ] / [ kg ]
+operator /(const ALeft: TCubicMeters; const ARight: TKilograms): TCubicMetersPerKilogram;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator *(const ALeft: TKilograms; const ARight: TCubicMetersPerKilogram): TCubicMeters;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator *(const ALeft: TCubicMetersPerKilogram; const ARight: TKilograms): TCubicMeters;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator /(const ALeft: TCubicMeters; const ARight: TCubicMetersPerKilogram): TKilograms;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TCubicMeters; const {%H-}ARight: TKilogramUnitId): TCubicMetersPerKilogram;
+begin
+  result.FValue := ALeft.FValue;
+end;
+
+// main definition [ kg*s2 ] = [ kg ] * [ s2 ]
+operator *(const ALeft: TKilograms; const ARight: TSquareSeconds): TKilogramSquareSeconds;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator *(const ALeft: TSquareSeconds; const ARight: TKilograms): TKilogramSquareSeconds;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator /(const ALeft: TKilogramSquareSeconds; const ARight: TKilograms): TSquareSeconds;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TKilogramSquareSeconds; const ARight: TSquareSeconds): TKilograms;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator *(const ALeft: TKilograms; const {%H-}ARight: TSquareSecondUnitId): TKilogramSquareSeconds;
+begin
+  result.FValue := ALeft.FValue;
+end;
+
+// main definitio [ m3/s2 ] = [ m3 ] / [ s2 ]
+operator /(const ALeft: TCubicMeters; const ARight: TSquareSeconds): TCubicMetersPerSquareSecond;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator *(const ALeft: TSquareSeconds; const ARight: TCubicMetersPerSquareSecond): TCubicMeters;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator *(const ALeft: TCubicMetersPerSquareSecond; const ARight: TSquareSeconds): TCubicMeters;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator /(const ALeft: TCubicMeters; const ARight: TCubicMetersPerSquareSecond): TSquareSeconds;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TCubicMeters; const {%H-}ARight: TSquareSecondUnitId): TCubicMetersPerSquareSecond;
+begin
+  result.FValue := ALeft.FValue;
+end;
+
 // main definition [ N*m2 ] = [ N ] * [ m2 ]
 operator *(const ALeft: TNewtons; const ARight: TSquareMeters): TNewtonSquareMeters;
 begin
@@ -5696,6 +5852,48 @@ end;
 operator *(const ALeft: TNewtons; const {%H-}ARight: TSquareMeterUnitId): TNewtonSquareMeters;
 begin
   result.FValue := ALeft.FValue;
+end;
+
+// alternative definition [ N*m2 ] = [ J ] * [ m ]
+operator *(const ALeft: TJoules; const ARight: TMeters): TNewtonSquareMeters;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator *(const ALeft: TMeters; const ARight: TJoules): TNewtonSquareMeters;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator /(const ALeft: TNewtonSquareMeters; const ARight: TJoules): TMeters;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TNewtonSquareMeters; const ARight: TMeters): TJoules;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+// alternative definition [ N*m2 ] = [ Pa ] * [ m4 ]
+operator *(const ALeft: TPascals; const ARight: TQuarticMeters): TNewtonSquareMeters;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator *(const ALeft: TQuarticMeters; const ARight: TPascals): TNewtonSquareMeters;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator /(const ALeft: TNewtonSquareMeters; const ARight: TPascals): TQuarticMeters;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TNewtonSquareMeters; const ARight: TQuarticMeters): TPascals;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
 // main definition [ N/kg2 ] = [ N ] / [ kg2 ]
@@ -5913,6 +6111,69 @@ begin
 end;
 
 operator /(const ALeft: TJoules; const ARight: TNewtonSquareMetersPerSquareKilogram): TSquareKilogramsPerMeter;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+// alternative definition [ N*m2/kg2 ] = [ m3/kg ] / [ s2 ]
+operator /(const ALeft: TCubicMetersPerKilogram; const ARight: TSquareSeconds): TNewtonSquareMetersPerSquareKilogram;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator *(const ALeft: TSquareSeconds; const ARight: TNewtonSquareMetersPerSquareKilogram): TCubicMetersPerKilogram;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator *(const ALeft: TNewtonSquareMetersPerSquareKilogram; const ARight: TSquareSeconds): TCubicMetersPerKilogram;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator /(const ALeft: TCubicMetersPerKilogram; const ARight: TNewtonSquareMetersPerSquareKilogram): TSquareSeconds;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+// alternative definition [ N*m2/kg2 ] = [ m3 ] / [ kg*s2 ]
+operator /(const ALeft: TCubicMeters; const ARight: TKilogramSquareSeconds): TNewtonSquareMetersPerSquareKilogram;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator *(const ALeft: TKilogramSquareSeconds; const ARight: TNewtonSquareMetersPerSquareKilogram): TCubicMeters;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator *(const ALeft: TNewtonSquareMetersPerSquareKilogram; const ARight: TKilogramSquareSeconds): TCubicMeters;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator /(const ALeft: TCubicMeters; const ARight: TNewtonSquareMetersPerSquareKilogram): TKilogramSquareSeconds;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+// alternative definition [ N*m2/kg2 ] = [ m3/s2 ] / [ kg ]
+operator /(const ALeft: TCubicMetersPerSquareSecond; const ARight: TKilograms): TNewtonSquareMetersPerSquareKilogram;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator *(const ALeft: TKilograms; const ARight: TNewtonSquareMetersPerSquareKilogram): TCubicMetersPerSquareSecond;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator *(const ALeft: TNewtonSquareMetersPerSquareKilogram; const ARight: TKilograms): TCubicMetersPerSquareSecond;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator /(const ALeft: TCubicMetersPerSquareSecond; const ARight: TNewtonSquareMetersPerSquareKilogram): TKilograms;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
