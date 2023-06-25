@@ -79,6 +79,7 @@ var
 
   mass: TKilograms;
   eta: TPascalSeconds;
+  Cb: TKilogramsPerSecond;
 
   mass1: TKilograms;
   mass2: TKilograms;
@@ -1026,13 +1027,38 @@ begin
   writeln;
 
   // Earth's gravity
-  mass2    := 5.972E24*kg;
+  mass     := 5.972E24*kg;
   GN       := 6.6743E-11*N*m2/kg2;
   distance := 6.373E6*m;
 
-  writeln('The mass of earth is:', mass2.toString(5, 0));
+  writeln('*** Earth''s gravity:');
+  writeln('The mass of earth is:', mass.toString(5, 0));
   writeln('The radius of earth is:', distance.toString(5, 0));
-  writeln('The value of "g" constant is:', (GN*mass2/SquarePower(distance)).toString(5, 0));
+  writeln('The value of "g" constant is:', (GN*mass/SquarePower(distance)).toString(5, 0));
+  writeln;
+
+  // Simple harmonic oscillator
+  mass  := 1*kg;
+  kx    := 10*N/m;
+  omega := SquareRoot(kx/mass);
+
+  writeln('*** Simple harmonic oscillator:');
+  writeln('The mass is:', mass.toString);
+  writeln('The spring stiffness is: ', kx.toString(4, 0));
+  writeln('The angular frequency "ω" is: ', omega.toString(4, 0));
+  writeln;
+
+  // Damped harmonic oscillator
+  mass  := 1*kg;
+  kx    := 10*N/m;
+  Cb    := 10*Pa*s*m;
+  omega := SquareRoot(kx/mass);
+
+  writeln('*** Damped harmonic oscillator:');
+  writeln('The mass is: ', mass.toString(4, 0));
+  writeln('The spring stiffness is: ', kx.toString(4, 0));
+  writeln('The undamped angular frequency "ω" is: ', omega.toString(4, 0));
+  writeln('The damping ratio "ζ" is: ', (Cb/2/SquareRoot(mass*kx)):0:4);
   writeln;
 
   writeln;

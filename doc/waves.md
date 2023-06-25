@@ -22,16 +22,40 @@ where
 
 ### Sinusoidal wave function
 
-$y(x,t)=A⋅sin(k⋅x±\omega ⋅t + \phi)$ ,
+$y(x,t)=A⋅sin(k⋅x-\omega ⋅t - \phi)$ ,
 
 where
-- $A$ is the value of wave amplitude;
+- $A$ is the value of wave amplitude, $[m]$;
 - $k=\displaystyle\frac{2\pi}{\lambda}$ is the wave number, $[rad/m]$;
 - $x$ is the position, $[m]$;
 - $ω=\displaystyle {2\pi}/{T}$ is the angular frequency, $[rad/s]$;
 - $T=\displaystyle 1/f$, is the wave period, $[s]$;
 - $t$ is the time, $[s]$;
 - $\phi$ is the wave phase, $[rad]$.
+
+### Transverse speed of a periodic wave
+
+$v_y=-\omega ⋅A⋅cos(k⋅x-\omega⋅t)$ ,
+
+where
+
+- $v_y$ is the trasversal wave speed, $[m/s]$;
+- $ω$ is the angular frequency, $[rad/s]$;
+- $A$ is the value of wave amplitude, $[m]$;
+- $k$ is the wave number, $[rad/m]$;
+- $t$ is the time, $[s]$.
+
+### Transverse acceleration of a periodic wave
+
+$a_y=-\omega^2 sin(k⋅x-\omega⋅t)$ ,
+
+where
+
+- $a_y$ is the trasversal wave acceleration, $[m/s^2]$;
+- $ω$ is the angular frequency, $[rad/s]$;
+- $A$ is the value of wave amplitude, $[m]$;
+- $k$ is the wave number, $[rad/m]$;
+- $t$ is the time, $[s]$.
 
 ### Beat (acoustics)
 
