@@ -2590,6 +2590,12 @@ operator *(const ALeft: TMeters; const ARight: TPascals): TNewtonsPerMeter; inli
 operator /(const ALeft: TNewtonsPerMeter; const ARight: TPascals): TMeters; inline;
 operator /(const ALeft: TNewtonsPerMeter; const ARight: TMeters): TPascals; inline;
 
+// alternative definition [ N/m ] = [ kg ] * [ sr/s2 ]
+operator *(const ALeft: TKilograms; const ARight: TSteradiansPerSquareSecond): TNewtonsPerMeter; inline;
+operator *(const ALeft: TSteradiansPerSquareSecond; const ARight: TKilograms): TNewtonsPerMeter; inline;
+operator /(const ALeft: TNewtonsPerMeter; const ARight: TKilograms): TSteradiansPerSquareSecond; inline;
+operator /(const ALeft: TNewtonsPerMeter; const ARight: TSteradiansPerSquareSecond): TKilograms; inline;
+
 type
   { Unit of NewtonPerMillimeter }
   TNewtonPerMillimeterUnit = record
@@ -2664,6 +2670,7 @@ operator /(const ALeft: TKilogramsPerSecond; const ARight: TMeters): TPascalSeco
 operator *(const ALeft: TMeters; const ARight: TPascalSeconds): TKilogramsPerSecond; inline;
 operator *(const ALeft: TPascalSeconds; const ARight: TMeters): TKilogramsPerSecond; inline;
 operator /(const ALeft: TKilogramsPerSecond; const ARight: TPascalSeconds): TMeters; inline;
+operator *(const ALeft: TPascalSeconds; const {%H-}ARight: TMeterUnitId): TKilogramsPerSecond; inline;
 
 type
   { Unit of SquareMeterPerSecond }
@@ -3646,6 +3653,32 @@ operator /(const ALeft: TRadians; const ARight: TRadiansPerMeter): TMeters; inli
 operator /(const ALeft: TRadians; const {%H-}ARight: TMeterUnitId): TRadiansPerMeter; inline;
 
 type
+  { Unit of SquareKilogramPerSquareSecond }
+  TSquareKilogramPerSquareSecondUnit = record
+    const Symbol = 'kg2/s2';
+    const Name   = 'square kilogram per square second';
+  end;
+  TSquareKilogramsPerSquareSecond = specialize TQuantity<TSquareKilogramPerSquareSecondUnit>;
+  TSquareKilogramPerSquareSecondUnitId = specialize TUnitId<TSquareKilogramPerSquareSecondUnit>;
+
+// main definition [ kg2/s2 ] = [ kg2 ] / [ s2 ]
+operator /(const ALeft: TSquareKilograms; const ARight: TSquareSeconds): TSquareKilogramsPerSquareSecond; inline;
+operator *(const ALeft: TSquareSeconds; const ARight: TSquareKilogramsPerSquareSecond): TSquareKilograms; inline;
+operator *(const ALeft: TSquareKilogramsPerSquareSecond; const ARight: TSquareSeconds): TSquareKilograms; inline;
+operator /(const ALeft: TSquareKilograms; const ARight: TSquareKilogramsPerSquareSecond): TSquareSeconds; inline;
+operator /(const ALeft: TSquareKilograms; const {%H-}ARight: TSquareSecondUnitId): TSquareKilogramsPerSquareSecond; inline;
+
+// alternative definition [ kg2/s2 ] = [ kg/s ] * [ kg/s ]
+operator *(const ALeft: TKilogramsPerSecond; const ARight: TKilogramsPerSecond): TSquareKilogramsPerSquareSecond; inline;
+operator /(const ALeft: TSquareKilogramsPerSquareSecond; const ARight: TKilogramsPerSecond): TKilogramsPerSecond; inline;
+
+// alternative definition [ kg2/s2 ] = [ kg ] * [ N/m ]
+operator *(const ALeft: TKilograms; const ARight: TNewtonsPerMeter): TSquareKilogramsPerSquareSecond; inline;
+operator *(const ALeft: TNewtonsPerMeter; const ARight: TKilograms): TSquareKilogramsPerSquareSecond; inline;
+operator /(const ALeft: TSquareKilogramsPerSquareSecond; const ARight: TKilograms): TNewtonsPerMeter; inline;
+operator /(const ALeft: TSquareKilogramsPerSquareSecond; const ARight: TNewtonsPerMeter): TKilograms; inline;
+
+type
   { Unit of SquareSecondPerSquareMeter }
   TSquareSecondPerSquareMeterUnit = record
     const Symbol = 's2/m2';
@@ -3729,6 +3762,46 @@ type
 
 { Helpers }
 
+type
+  TNewtonSecondHelper = record helper for TNewtonSecondUnitId
+    class function From(const AQuantity: TKilogramMetersPerSecond): TNewtonSecondUnitId.TBaseQuantity; static;
+  end;
+
+type
+  TBequerelHelper = record helper for TBequerelUnitId
+    class function From(const AQuantity: THertz): TBequerelUnitId.TBaseQuantity; static;
+  end;
+
+type
+  TGrayHelper = record helper for TGrayUnitId
+    class function From(const AQuantity: TSquareMetersPerSquareSecond): TGrayUnitId.TBaseQuantity; static;
+  end;
+
+type
+  TSievertHelper = record helper for TSievertUnitId
+    class function From(const AQuantity: TSquareMetersPerSquareSecond): TSievertUnitId.TBaseQuantity; static;
+  end;
+
+type
+  TNewtonMeterHelper = record helper for TNewtonMeterUnitId
+    class function From(const AQuantity: TJoules): TNewtonMeterUnitId.TBaseQuantity; static;
+  end;
+
+type
+  TNewtonMeterPerRadianHelper = record helper for TNewtonMeterPerRadianUnitId
+    class function From(const AQuantity: TJoulesPerRadian): TNewtonMeterPerRadianUnitId.TBaseQuantity; static;
+  end;
+
+type
+  TNewtonMeterPerDegreeHelper = record helper for TNewtonMeterPerDegreeUnitId
+    class function From(const AQuantity: TJoulesPerRadian): TNewtonMeterPerDegreeUnitId.TFactoredQuantity; static;
+  end;
+
+type
+  TJoulePerKilogramHelper = record helper for TJoulePerKilogramUnitId
+    class function From(const AQuantity: TSquareMetersPerSquareKilogram): TJoulePerKilogramUnitId.TBaseQuantity; static;
+  end;
+
 { Power units }
 
 function SquarePower(AQuantity: TSeconds): TSquareSeconds;
@@ -3769,6 +3842,8 @@ function SquarePower(AQuantity: TCoulombs): TSquareCoulombs;
 function SquareRoot(AQuantity: TSquareCoulombs): TCoulombs;
 function SquarePower(AQuantity: TVolts): TSquareVolts;
 function SquareRoot(AQuantity: TSquareVolts): TVolts;
+function SquarePower(AQuantity: TKilogramsPerSecond): TSquareKilogramsPerSquareSecond;
+function SquareRoot(AQuantity: TSquareKilogramsPerSquareSecond): TKilogramsPerSecond;
 function SquarePower(AQuantity: TJoules): TSquareJoules;
 function SquareRoot(AQuantity: TSquareJoules): TJoules;
 
@@ -5568,6 +5643,27 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+// alternative definition [ N/m ] = [ kg ] * [ sr/s2 ]
+operator *(const ALeft: TKilograms; const ARight: TSteradiansPerSquareSecond): TNewtonsPerMeter;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator *(const ALeft: TSteradiansPerSquareSecond; const ARight: TKilograms): TNewtonsPerMeter;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator /(const ALeft: TNewtonsPerMeter; const ARight: TKilograms): TSteradiansPerSquareSecond;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TNewtonsPerMeter; const ARight: TSteradiansPerSquareSecond): TKilograms;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
 // main definition [ m3/s ] = [ m3 ] / [ s ]
 operator /(const ALeft: TCubicMeters; const ARight: TSeconds): TCubicMetersPerSecond;
 begin
@@ -5707,6 +5803,11 @@ end;
 operator /(const ALeft: TKilogramsPerSecond; const ARight: TPascalSeconds): TMeters;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator *(const ALeft: TPascalSeconds; const {%H-}ARight: TMeterUnitId): TKilogramsPerSecond;
+begin
+  result.FValue := ALeft.FValue;
 end;
 
 // main definition [ m2/s ] = [ m2 ] / [ s ]
@@ -7774,6 +7875,64 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+// main definition [ kg2/s2 ] = [ kg2 ] / [ s2 ]
+operator /(const ALeft: TSquareKilograms; const ARight: TSquareSeconds): TSquareKilogramsPerSquareSecond;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator *(const ALeft: TSquareSeconds; const ARight: TSquareKilogramsPerSquareSecond): TSquareKilograms;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator *(const ALeft: TSquareKilogramsPerSquareSecond; const ARight: TSquareSeconds): TSquareKilograms;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator /(const ALeft: TSquareKilograms; const ARight: TSquareKilogramsPerSquareSecond): TSquareSeconds;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TSquareKilograms; const {%H-}ARight: TSquareSecondUnitId): TSquareKilogramsPerSquareSecond;
+begin
+  result.FValue := ALeft.FValue;
+end;
+
+// alternative definition [ kg2/s2 ] = [ kg/s ] * [ kg/s ]
+operator *(const ALeft: TKilogramsPerSecond; const ARight: TKilogramsPerSecond): TSquareKilogramsPerSquareSecond;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator /(const ALeft: TSquareKilogramsPerSquareSecond; const ARight: TKilogramsPerSecond): TKilogramsPerSecond;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+// alternative definition [ kg2/s2 ] = [ kg ] * [ N/m ]
+operator *(const ALeft: TKilograms; const ARight: TNewtonsPerMeter): TSquareKilogramsPerSquareSecond;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator *(const ALeft: TNewtonsPerMeter; const ARight: TKilograms): TSquareKilogramsPerSquareSecond;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator /(const ALeft: TSquareKilogramsPerSquareSecond; const ARight: TKilograms): TNewtonsPerMeter;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TSquareKilogramsPerSquareSecond; const ARight: TNewtonsPerMeter): TKilograms;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
 // main definition [ s2/m2 ] = [ s2 ] / [ m2 ]
 operator /(const ALeft: TSquareSeconds; const ARight: TSquareMeters): TSquareSecondsPerSquareMeter;
 begin
@@ -7927,6 +8086,46 @@ begin
 end;
 
 { Helpers }
+
+class function TNewtonSecondHelper.From(const AQuantity: TKilogramMetersPerSecond): TNewtonSecondUnitId.TBaseQuantity; static;
+begin
+  result.FValue := AQuantity.FValue;
+end;
+
+class function TBequerelHelper.From(const AQuantity: THertz): TBequerelUnitId.TBaseQuantity; static;
+begin
+  result.FValue := AQuantity.FValue;
+end;
+
+class function TGrayHelper.From(const AQuantity: TSquareMetersPerSquareSecond): TGrayUnitId.TBaseQuantity; static;
+begin
+  result.FValue := AQuantity.FValue;
+end;
+
+class function TSievertHelper.From(const AQuantity: TSquareMetersPerSquareSecond): TSievertUnitId.TBaseQuantity; static;
+begin
+  result.FValue := AQuantity.FValue;
+end;
+
+class function TNewtonMeterHelper.From(const AQuantity: TJoules): TNewtonMeterUnitId.TBaseQuantity; static;
+begin
+  result.FValue := AQuantity.FValue;
+end;
+
+class function TNewtonMeterPerRadianHelper.From(const AQuantity: TJoulesPerRadian): TNewtonMeterPerRadianUnitId.TBaseQuantity; static;
+begin
+  result.FValue := AQuantity.FValue;
+end;
+
+class function TNewtonMeterPerDegreeHelper.From(const AQuantity: TJoulesPerRadian): TNewtonMeterPerDegreeUnitId.TFactoredQuantity; static;
+begin
+  result.FValue := AQuantity.FValue;
+end;
+
+class function TJoulePerKilogramHelper.From(const AQuantity: TSquareMetersPerSquareKilogram): TJoulePerKilogramUnitId.TBaseQuantity; static;
+begin
+  result.FValue := AQuantity.FValue;
+end;
 
 { Power quantities }
 
@@ -8116,6 +8315,16 @@ begin
 end;
 
 function SquareRoot(AQuantity: TSquareVolts): TVolts;
+begin
+  result.FValue := Power(AQuantity.FValue, 1/2);
+end;
+
+function SquarePower(AQuantity: TKilogramsPerSecond): TSquareKilogramsPerSquareSecond;
+begin
+  result.FValue := Power(AQuantity.FValue, 2);
+end;
+
+function SquareRoot(AQuantity: TSquareKilogramsPerSquareSecond): TKilogramsPerSecond;
 begin
   result.FValue := Power(AQuantity.FValue, 1/2);
 end;
