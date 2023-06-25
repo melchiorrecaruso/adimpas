@@ -106,11 +106,11 @@ where
 
 ### Kinetic energy
 
-$E_c = 1/2·m·v^2 + 1/2·I·ω^2$ ,
+$KE = \displaystyle\frac{1}{2}·m·v^2 + \frac{1}{2}·I·ω^2$ ,
 
 where
 
-- $E_c$ is the kinetic energy, $[J]$,
+- $KE$ is the kinetic energy, $[J]$,
 - $m$ is the mass of the body, $[kg]$,
 - $v$ is the velocity of the body, $[m/s]$,
 - $I$ is the moment of inertia of the body, $[kg·m^2]$,
@@ -118,7 +118,7 @@ where
 
 ### Elastic potential energy
 
-$U_e = 1/2·k_e·Δx^2$ ,
+$U_e = \displaystyle\frac{1}{2}·k_e·Δx^2$ ,
 
 where
 
@@ -127,7 +127,7 @@ where
 
 ### Gravitational potential energy
 
-$U_g = G·[(m_1·m_2)/r]$ ,
+$U_g = \displaystyle -\frac{G·\left(m_1·m_2\right)}{r}$ ,
 
 where
 
@@ -135,6 +135,17 @@ where
 - $m_2$ is the mass of the particle 2, $[kg]$,
 - $G$ is the gravitational constant, $[m^3/(kg⋅s^2)]$,
 - $r$ is the distance between particles, $[m]$.
+
+### Change in gravitational potential energy: close to surface
+
+$\Delta U_g = m·g·h$ ,
+
+where
+
+- $\Delta U_g$ is the change in gravitational potential energy, $[J]$,
+- $m$ is the mass of the particle, $[kg]$,
+- $g$ is the surface value of acceleration, $[m/s^2]$,
+- $h$ is the height above the surface, $[m]$.
 
 #
 [Go To Home](https://github.com/melchiorrecaruso/ADimPas)
