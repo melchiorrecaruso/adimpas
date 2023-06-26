@@ -855,7 +855,6 @@ begin
   writeln('The electric field strength is: ', E.ToString(4, 4));
   writeln;
 
-
   // magnetic force for lifting a object
   mass      := 100*g;
   acc       := 9.81*m/s2;
@@ -960,13 +959,15 @@ begin
   Kw    := 0.2*rad/m;
   omega := 80*rad/s;
   phi   := 0*rad;
-
   writeln('*** Harmonic wave:');
   writeln('The wave amplitude A is: ', Ampl.ToString(4, 4));
   writeln('The wave number K is: ', Kw.ToString(4, 4));
   writeln('The angular frequency Omega is: ', omega.ToString(4, 4));
   writeln('The wave phase is: ', phi.ToString(4, 4));
   writeln('The wave value at position (1m, 0.8s) is: ', (Ampl*sin(Kw*(1*m) - omega*(0.8*s) + phi)).ToString(4, 4));
+  writeln('The transverse speed at position (1m, 0.8s) is: ', (-1*omega*Ampl*cos(Kw*(1*m) - omega*(0.8*s))).ToString(4, 0));
+  writeln('The transverse acceleration at position (1m, 0.8s) is: ', (-1*SquarePower(omega)*Ampl*cos(Kw*(1*m) - omega*(0.8*s))).ToString(4, 0));
+  writeln('The wave power is: ', ((1.0*g/m)*SquarePower(omega*Ampl)*(5*mm/s)).ToString(4, 0));
   writeln;
 
   // relativty: energy

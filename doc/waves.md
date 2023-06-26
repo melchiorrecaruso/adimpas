@@ -47,7 +47,7 @@ where
 
 ### Transverse acceleration of a periodic wave
 
-$a_y=-\omega^2 sin(k⋅x-\omega⋅t)$ ,
+$a_y=-\omega^2  ⋅A⋅sin(k⋅x-\omega⋅t)$ ,
 
 where
 
@@ -56,6 +56,17 @@ where
 - $A$ is the value of wave amplitude, $[m]$;
 - $k$ is the wave number, $[rad/m]$;
 - $t$ is the time, $[s]$.
+
+### Wave power on a stretched string
+
+$W=\displaystyle \frac{1}{2}⋅\left[\mu⋅(\omega⋅A)^2\right]⋅v$ ,
+
+where
+
+- $\mu$ is the linear dentity of the stretched string, $[kg/m]$;
+- $ω$ is the angular frequency, $[rad/s]$;
+- $A$ is the value of wave amplitude, $[m]$;
+- $v$ is the wave speed, $[m/s]$.
 
 ### Beat (acoustics)
 
