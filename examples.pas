@@ -45,7 +45,7 @@ var
   specificw: TNewtonsPerCubicMeter;
   force, normal: TNewtons;
 
-  torque: TJoules;
+  torque: TNewtonMeters;
   work: TJoules;
   power: TWatts;
 
@@ -151,6 +151,8 @@ var
   energy: TJoules;
   plank: TJouleSeconds;
   freq: THertz;
+
+  I: TKilogramSquareMeters;
 
 begin
   {$IFDEF WINDOWS}
@@ -965,7 +967,7 @@ begin
   writeln('The angular frequency Omega is: ', omega.ToString(4, 4));
   writeln('The wave phase is: ', phi.ToString(4, 4));
   writeln('The wave value at position (1m, 0.8s) is: ', (Ampl*sin(Kw*(1*m) - omega*(0.8*s) + phi)).ToString(4, 4));
-  writeln('The transverse speed at position (1m, 0.8s) is: ', (-1*omega*Ampl*cos(Kw*(1*m) - omega*(0.8*s))).ToString(4, 0));
+  writeln('The transverse speed at position (1m, 0.8s) is: ', (-1*omega*Ampl*cos(Kw*(1*m) - omega*(0.8*s) )).ToString(4, 0));
   writeln('The transverse acceleration at position (1m, 0.8s) is: ', (-1*SquarePower(omega)*Ampl*cos(Kw*(1*m) - omega*(0.8*s))).ToString(4, 0));
   writeln('The wave power is: ', ((1.0*g/m)*SquarePower(omega*Ampl)*(5*mm/s)).ToString(4, 0));
   writeln;
@@ -1050,16 +1052,30 @@ begin
   writeln;
 
   // Damped harmonic oscillator
-  mass  := 1*kg;
-  kx    := 10*N/m;
-  Cb    := 10*Pa*s*m;
-  omega := SquareRoot(kx/mass);
+  mass   := 1*kg;
+  kx     := 10*N/m;
+  Cb     := 10*Pa*s*m;
+  omega  := SquareRoot(kx/mass);
 
   writeln('*** Damped harmonic oscillator:');
   writeln('The mass is: ', mass.toString(4, 0));
   writeln('The spring stiffness is: ', kx.toString(4, 0));
   writeln('The undamped angular frequency "ω" is: ', omega.toString(4, 0));
   writeln('The damping ratio "ζ" is: ', (Cb/2/SquareRoot(mass*kx)):0:4);
+  writeln;
+
+  // Physical pendulum
+  mass   := 1*kg;
+  I      := 10*kg*m2;
+  acc    := 9.8*m/s2;
+  radius := 20*cm;
+  time   := 2*pi*SquareRoot(1/((mass*acc*radius)/I));
+
+  writeln('*** Physical pendulum:');
+  writeln('The mass is: ', mass.toString(4, 0));
+  writeln('The body inertia is: ', I.toString(4, 0));
+  writeln('The center of gravity distance is: ', radius.toString(4, 0));
+  writeln('The pendulum period "T" is: ', time.toString(4, 0));
   writeln;
 
   writeln;
