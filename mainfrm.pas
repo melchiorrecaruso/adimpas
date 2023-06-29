@@ -370,14 +370,28 @@ begin
         end;
 
   end else
-    if (':=' = AOperator) or ('=' = AOperator) then
+    if ('=' = AOperator) then
     begin
+      SectionA1.Append('');
+      SectionB1.Append('');
       AddEquivalence(AOperator, AClassName, ABaseClass);
+      SectionB1.Append('');
+      AddEquivalence(AOperator, ABaseClass, AClassName);
+      SectionB1.Append('');
+      SectionA1.Append('');
     end else
-      if ('helper' = LowerCase(AOperator)) then
+      if (':=' = AOperator) then
       begin
-        AddHelper(AClassName, ABaseClass, AFactor);
-      end;
+        SectionA1.Append('');
+        SectionB1.Append('');
+        AddEquivalence(AOperator, AClassName, ABaseClass);
+        SectionB1.Append('');
+        SectionA1.Append('');
+      end else
+        if ('helper' = LowerCase(AOperator)) then
+        begin
+          AddHelper(AClassName, ABaseClass, AFactor);
+        end;
 
 end;
 
@@ -467,28 +481,20 @@ end;
 
 procedure TMainForm.AddEquivalence(AOperator, AClassName, ABaseClass: string);
 begin
-  SectionA1.Append('');
   SectionA1.Append('operator :=(const AQuantity: ' + GetQT(AClassName) + '): ' + GetQT(ABaseClass) + '; inline;');
-  if AOperator = '=' then
-  begin
-    SectionA1.Append('operator :=(const AQuantity: ' + GetQT(ABaseClass) + '): ' + GetQT(AClassName) + '; inline;');
-  end;
-  SectionA1.Append('');
 
-  SectionB1.Append('');
   SectionB1.Append('operator :=(const AQuantity: ' + GetQT(AClassName) + '): ' + GetQT(ABaseClass) + '; inline;');
   SectionB1.Append('begin');
-  SectionB1.Append('  result.FValue := AQuantity.FValue;');
+
+  if GetQT(AClassName) = 'double' then
+    SectionB1.Append('  result.FValue := AQuantity;')
+  else
+    if GetQT(ABaseClass) = 'double' then
+      SectionB1.Append('  result := AQuantity.FValue;')
+    else
+      SectionB1.Append('  result.FValue := AQuantity.FValue;');
+
   SectionB1.Append('end;');
-  SectionB1.Append('');
-  if AOperator = '=' then
-  begin
-    SectionB1.Append('operator :=(const AQuantity: ' + GetQT(ABaseClass) + '): ' + GetQT(AClassName) + '; inline;');
-    SectionB1.Append('begin');
-    SectionB1.Append('  result.FValue := AQuantity.FValue;');
-    SectionB1.Append('end;');
-    SectionB1.Append('');
-  end;
 end;
 
 
