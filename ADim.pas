@@ -1092,6 +1092,90 @@ operator *(const ALeft: TRadians; const ARight: TRadians): TSteradians; inline;
 operator /(const ALeft: TSteradians; const ARight: TRadians): TRadians; inline;
 
 type
+  { Unit of Hertz }
+  THertzUnit = record
+    const Symbol = 'Hz';
+    const Name   = 'hertz';
+  end;
+  THertz = specialize TQuantity<THertzUnit>;
+  THertzUnitId = specialize TUnitId<THertzUnit>;
+
+var
+  Hz: THertzUnitId;
+
+// main definition [ Hz ] = [ 1 ] / [ s ]
+operator /(const ALeft: double; const ARight: TSeconds): THertz; inline;
+operator *(const ALeft: TSeconds; const ARight: THertz): double; inline;
+operator *(const ALeft: THertz; const ARight: TSeconds): double; inline;
+operator /(const ALeft: double; const ARight: THertz): TSeconds; inline;
+operator /(const ALeft: double; const {%H-}ARight: TSecondUnitId): THertz; inline;
+
+type
+  { Unit of Gigahertz }
+  TGigahertzUnit = record
+    const Symbol = 'GHz';
+    const Name   = 'gigahertz';
+    const Factor = 1E+09;
+  end;
+  TGigahertzUnitId = specialize TFactoredUnitId<THertzUnit, TGigahertzUnit>;
+
+const
+  GHz: specialize TQuantity<THertzUnit> = (FValue: TGigahertzUnit.Factor);
+
+type
+  { Unit of Megahertz }
+  TMegahertzUnit = record
+    const Symbol = 'MHz';
+    const Name   = 'megahertz';
+    const Factor = 1E+06;
+  end;
+  TMegahertzUnitId = specialize TFactoredUnitId<THertzUnit, TMegahertzUnit>;
+
+const
+  MHz: specialize TQuantity<THertzUnit> = (FValue: TMegahertzUnit.Factor);
+
+type
+  { Unit of Kilohertz }
+  TKilohertzUnit = record
+    const Symbol = 'kHz';
+    const Name   = 'kilohertz';
+    const Factor = 1E+03;
+  end;
+  TKilohertzUnitId = specialize TFactoredUnitId<THertzUnit, TKilohertzUnit>;
+
+const
+  kHz: specialize TQuantity<THertzUnit> = (FValue: TKilohertzUnit.Factor);
+
+type
+  { Unit of SquareHertz }
+  TSquareHertzUnit = record
+    const Symbol = 'Hz2';
+    const Name   = 'square hertz';
+  end;
+  TSquareHertz = specialize TQuantity<TSquareHertzUnit>;
+  TSquareHertzUnitId = specialize TUnitId<TSquareHertzUnit>;
+
+var
+  Hz2: TSquareHertzUnitId;
+
+// main definition [ Hz2 ] = [ 1 ] / [ s2 ]
+operator /(const ALeft: double; const ARight: TSquareSeconds): TSquareHertz; inline;
+operator *(const ALeft: TSquareSeconds; const ARight: TSquareHertz): double; inline;
+operator *(const ALeft: TSquareHertz; const ARight: TSquareSeconds): double; inline;
+operator /(const ALeft: double; const ARight: TSquareHertz): TSquareSeconds; inline;
+operator /(const ALeft: double; const {%H-}ARight: TSquareSecondUnitId): TSquareHertz; inline;
+
+// alternative definition [ Hz2 ] = [ Hz ] / [ s ]
+operator /(const ALeft: THertz; const ARight: TSeconds): TSquareHertz; inline;
+operator *(const ALeft: TSeconds; const ARight: TSquareHertz): THertz; inline;
+operator *(const ALeft: TSquareHertz; const ARight: TSeconds): THertz; inline;
+operator /(const ALeft: THertz; const ARight: TSquareHertz): TSeconds; inline;
+
+// alternative definition [ Hz2 ] = [ Hz ] * [ Hz ]
+operator *(const ALeft: THertz; const ARight: THertz): TSquareHertz; inline;
+operator /(const ALeft: TSquareHertz; const ARight: THertz): THertz; inline;
+
+type
   { Unit of RadianPerSecond }
   TRadianPerSecondUnit = record
     const Symbol = 'rad/s';
@@ -1107,13 +1191,22 @@ operator *(const ALeft: TRadiansPerSecond; const ARight: TSeconds): TRadians; in
 operator /(const ALeft: TRadians; const ARight: TRadiansPerSecond): TSeconds; inline;
 operator /(const ALeft: TRadians; const {%H-}ARight: TSecondUnitId): TRadiansPerSecond; inline;
 
+// alternative definition [ rad/s ] = [ rad ] * [ Hz ]
+operator *(const ALeft: TRadians; const ARight: THertz): TRadiansPerSecond; inline;
+operator *(const ALeft: THertz; const ARight: TRadians): TRadiansPerSecond; inline;
+operator /(const ALeft: TRadiansPerSecond; const ARight: TRadians): THertz; inline;
+operator /(const ALeft: TRadiansPerSecond; const ARight: THertz): TRadians; inline;
+
+operator :=(const AQuantity: TRadiansPerSecond): THertz; inline;
+operator :=(const AQuantity: THertz): TRadiansPerSecond; inline;
+
 type
   { Unit of RadianPerSquareSecond }
   TRadianPerSquareSecondUnit = record
     const Symbol = 'rad/s2';
     const Name   = 'radian per square second';
   end;
-  TRadiansPerSquareSecond = specialize TQuantity<TRadianPerSquareSecondUnit>;
+  TRadiansPerSquareSecond = specialize TQuantity<TSquareHertzUnit>;
   TRadianPerSquareSecondUnitId = specialize TUnitId<TRadianPerSquareSecondUnit>;
 
 // main definition [ rad/s2 ] = [ rad ] / [ s2 ]
@@ -1123,11 +1216,11 @@ operator *(const ALeft: TRadiansPerSquareSecond; const ARight: TSquareSeconds): 
 operator /(const ALeft: TRadians; const ARight: TRadiansPerSquareSecond): TSquareSeconds; inline;
 operator /(const ALeft: TRadians; const {%H-}ARight: TSquareSecondUnitId): TRadiansPerSquareSecond; inline;
 
-// alternative definition [ rad/s2 ] = [ rad/s ] / [ s ]
-operator /(const ALeft: TRadiansPerSecond; const ARight: TSeconds): TRadiansPerSquareSecond; inline;
-operator *(const ALeft: TSeconds; const ARight: TRadiansPerSquareSecond): TRadiansPerSecond; inline;
-operator *(const ALeft: TRadiansPerSquareSecond; const ARight: TSeconds): TRadiansPerSecond; inline;
-operator /(const ALeft: TRadiansPerSecond; const ARight: TRadiansPerSquareSecond): TSeconds; inline;
+// alternative definition [ rad/s2 ] = [ rad ] * [ Hz2 ]
+operator *(const ALeft: TRadians; const ARight: TSquareHertz): TRadiansPerSquareSecond; inline;
+operator *(const ALeft: TSquareHertz; const ARight: TRadians): TRadiansPerSquareSecond; inline;
+operator /(const ALeft: TRadiansPerSquareSecond; const ARight: TRadians): TSquareHertz; inline;
+operator /(const ALeft: TRadiansPerSquareSecond; const ARight: TSquareHertz): TRadians; inline;
 
 type
   { Unit of SteradianPerSquareSecond }
@@ -1135,7 +1228,7 @@ type
     const Symbol = 'rad2/s2';
     const Name   = 'square rad per square second';
   end;
-  TSteradiansPerSquareSecond = specialize TQuantity<TSteradianPerSquareSecondUnit>;
+  TSteradiansPerSquareSecond = specialize TQuantity<TSquareHertzUnit>;
   TSteradianPerSquareSecondUnitId = specialize TUnitId<TSteradianPerSquareSecondUnit>;
 
 // main definition [ sr/s2 ] = [ sr ] / [ s2 ]
@@ -1145,9 +1238,11 @@ operator *(const ALeft: TSteradiansPerSquareSecond; const ARight: TSquareSeconds
 operator /(const ALeft: TSteradians; const ARight: TSteradiansPerSquareSecond): TSquareSeconds; inline;
 operator /(const ALeft: TSteradians; const {%H-}ARight: TSquareSecondUnitId): TSteradiansPerSquareSecond; inline;
 
-// alternative definition [ sr/s2 ] = [ rad/s ] * [ rad/s ]
-operator *(const ALeft: TRadiansPerSecond; const ARight: TRadiansPerSecond): TSteradiansPerSquareSecond; inline;
-operator /(const ALeft: TSteradiansPerSquareSecond; const ARight: TRadiansPerSecond): TRadiansPerSecond; inline;
+// alternative definition [ sr/s2 ] = [ sr ] * [ Hz2 ]
+operator *(const ALeft: TSteradians; const ARight: TSquareHertz): TSteradiansPerSquareSecond; inline;
+operator *(const ALeft: TSquareHertz; const ARight: TSteradians): TSteradiansPerSquareSecond; inline;
+operator /(const ALeft: TSteradiansPerSquareSecond; const ARight: TSteradians): TSquareHertz; inline;
+operator /(const ALeft: TSteradiansPerSquareSecond; const ARight: TSquareHertz): TSteradians; inline;
 
 type
   { Unit of MeterPerSecond }
@@ -1165,12 +1260,12 @@ operator *(const ALeft: TMetersPerSecond; const ARight: TSeconds): TMeters; inli
 operator /(const ALeft: TMeters; const ARight: TMetersPerSecond): TSeconds; inline;
 operator /(const ALeft: TMeters; const {%H-}ARight: TSecondUnitId): TMetersPerSecond; inline;
 
-// alternative definition [ m/s ] = [ rad/s ] * [ m ]
-operator *(const ALeft: TRadiansPerSecond; const ARight: TMeters): TMetersPerSecond; inline;
-operator *(const ALeft: TMeters; const ARight: TRadiansPerSecond): TMetersPerSecond; inline;
-operator /(const ALeft: TMetersPerSecond; const ARight: TRadiansPerSecond): TMeters; inline;
-operator /(const ALeft: TMetersPerSecond; const ARight: TMeters): TRadiansPerSecond; inline;
-operator *(const ALeft: TRadiansPerSecond; const {%H-}ARight: TMeterUnitId): TMetersPerSecond; inline;
+// alternative definition [ m/s ] = [ m ] * [ Hz ]
+operator *(const ALeft: TMeters; const ARight: THertz): TMetersPerSecond; inline;
+operator *(const ALeft: THertz; const ARight: TMeters): TMetersPerSecond; inline;
+operator /(const ALeft: TMetersPerSecond; const ARight: TMeters): THertz; inline;
+operator /(const ALeft: TMetersPerSecond; const ARight: THertz): TMeters; inline;
+operator *(const ALeft: TMeters; const {%H-}ARight: THertzUnitId): TMetersPerSecond; inline;
 
 type
   { Unit of KilometerPerHour }
@@ -1230,11 +1325,11 @@ operator *(const ALeft: TSeconds; const ARight: TMetersPerSquareSecond): TMeters
 operator *(const ALeft: TMetersPerSquareSecond; const ARight: TSeconds): TMetersPerSecond; inline;
 operator /(const ALeft: TMetersPerSecond; const ARight: TMetersPerSquareSecond): TSeconds; inline;
 
-// alternative definition [ m/s2 ] = [ sr/s2 ] * [ m ]
-operator *(const ALeft: TSteradiansPerSquareSecond; const ARight: TMeters): TMetersPerSquareSecond; inline;
-operator *(const ALeft: TMeters; const ARight: TSteradiansPerSquareSecond): TMetersPerSquareSecond; inline;
-operator /(const ALeft: TMetersPerSquareSecond; const ARight: TSteradiansPerSquareSecond): TMeters; inline;
-operator /(const ALeft: TMetersPerSquareSecond; const ARight: TMeters): TSteradiansPerSquareSecond; inline;
+// alternative definition [ m/s2 ] = [ Hz2 ] * [ m ]
+operator *(const ALeft: TSquareHertz; const ARight: TMeters): TMetersPerSquareSecond; inline;
+operator *(const ALeft: TMeters; const ARight: TSquareHertz): TMetersPerSquareSecond; inline;
+operator /(const ALeft: TMetersPerSquareSecond; const ARight: TSquareHertz): TMeters; inline;
+operator /(const ALeft: TMetersPerSquareSecond; const ARight: TMeters): TSquareHertz; inline;
 
 type
   { Unit of KilometerPerHourPerSecond }
@@ -1355,11 +1450,11 @@ operator *(const ALeft: TKilogramSquareMetersPerSecond; const ARight: TSeconds):
 operator /(const ALeft: TKilogramSquareMeters; const ARight: TKilogramSquareMetersPerSecond): TSeconds; inline;
 operator /(const ALeft: TKilogramSquareMeters; const {%H-}ARight: TSecondUnitId): TKilogramSquareMetersPerSecond; inline;
 
-// alternative definition [ kg*m2/s ] = [ kg*m2 ] * [ rad/s ]
-operator *(const ALeft: TKilogramSquareMeters; const ARight: TRadiansPerSecond): TKilogramSquareMetersPerSecond; inline;
-operator *(const ALeft: TRadiansPerSecond; const ARight: TKilogramSquareMeters): TKilogramSquareMetersPerSecond; inline;
-operator /(const ALeft: TKilogramSquareMetersPerSecond; const ARight: TKilogramSquareMeters): TRadiansPerSecond; inline;
-operator /(const ALeft: TKilogramSquareMetersPerSecond; const ARight: TRadiansPerSecond): TKilogramSquareMeters; inline;
+// alternative definition [ kg*m2/s ] = [ kg*m2 ] * [ Hz ]
+operator *(const ALeft: TKilogramSquareMeters; const ARight: THertz): TKilogramSquareMetersPerSecond; inline;
+operator *(const ALeft: THertz; const ARight: TKilogramSquareMeters): TKilogramSquareMetersPerSecond; inline;
+operator /(const ALeft: TKilogramSquareMetersPerSecond; const ARight: TKilogramSquareMeters): THertz; inline;
+operator /(const ALeft: TKilogramSquareMetersPerSecond; const ARight: THertz): TKilogramSquareMeters; inline;
 
 type
   { Unit of KilogramPerMeter }
@@ -1462,64 +1557,6 @@ type
     const Factor = 1E-03;
   end;
   TGramPerCubicMeterUnitId = specialize TFactoredUnitId<TKilogramPerCubicMeterUnit, TGramPerCubicMeterUnit>;
-
-type
-  { Unit of Hertz }
-  THertzUnit = record
-    const Symbol = 'Hz';
-    const Name   = 'hertz';
-  end;
-  THertz = specialize TQuantity<THertzUnit>;
-  THertzUnitId = specialize TUnitId<THertzUnit>;
-
-var
-  Hz: THertzUnitId;
-
-// main definition [ Hz ] = 1 / [ s ]
-operator /(const ALeft: double; const ARight: TSeconds): THertz; inline;
-operator *(const ALeft: TSeconds; const ARight: THertz): double; inline;
-operator *(const ALeft: THertz; const ARight: TSeconds): double; inline;
-operator /(const ALeft: double; const ARight: THertz): TSeconds; inline;
-operator /(const ALeft: double; const {%H-}ARight: TSecondUnitId): THertz; inline;
-
-operator :=(const AQuantity: THertz): TRadiansPerSecond; inline;
-operator :=(const AQuantity: TRadiansPerSecond): THertz; inline;
-
-type
-  { Unit of Gigahertz }
-  TGigahertzUnit = record
-    const Symbol = 'GHz';
-    const Name   = 'gigahertz';
-    const Factor = 1E+09;
-  end;
-  TGigahertzUnitId = specialize TFactoredUnitId<THertzUnit, TGigahertzUnit>;
-
-const
-  GHz: specialize TQuantity<THertzUnit> = (FValue: TGigahertzUnit.Factor);
-
-type
-  { Unit of Megahertz }
-  TMegahertzUnit = record
-    const Symbol = 'MHz';
-    const Name   = 'megahertz';
-    const Factor = 1E+06;
-  end;
-  TMegahertzUnitId = specialize TFactoredUnitId<THertzUnit, TMegahertzUnit>;
-
-const
-  MHz: specialize TQuantity<THertzUnit> = (FValue: TMegahertzUnit.Factor);
-
-type
-  { Unit of Kilohertz }
-  TKilohertzUnit = record
-    const Symbol = 'kHz';
-    const Name   = 'kilohertz';
-    const Factor = 1E+03;
-  end;
-  TKilohertzUnitId = specialize TFactoredUnitId<THertzUnit, TKilohertzUnit>;
-
-const
-  kHz: specialize TQuantity<THertzUnit> = (FValue: TKilohertzUnit.Factor);
 
 type
   { Unit of Newton }
@@ -1687,11 +1724,11 @@ operator /(const ALeft: TJoules; const ARight: TKilograms): TSquareMetersPerSqua
 operator /(const ALeft: TJoules; const ARight: TSquareMetersPerSquareSecond): TKilograms; inline;
 operator /(const ALeft: TJoules; const {%H-}ARight: TKilogramUnitId): TSquareMetersPerSquareSecond; inline;
 
-// alternative definition [ J ] = [ kg*m2 ] * [ sr/s2 ]
-operator *(const ALeft: TKilogramSquareMeters; const ARight: TSteradiansPerSquareSecond): TJoules; inline;
-operator *(const ALeft: TSteradiansPerSquareSecond; const ARight: TKilogramSquareMeters): TJoules; inline;
-operator /(const ALeft: TJoules; const ARight: TKilogramSquareMeters): TSteradiansPerSquareSecond; inline;
-operator /(const ALeft: TJoules; const ARight: TSteradiansPerSquareSecond): TKilogramSquareMeters; inline;
+// alternative definition [ J ] = [ kg*m2 ] * [ Hz2 ]
+operator *(const ALeft: TKilogramSquareMeters; const ARight: TSquareHertz): TJoules; inline;
+operator *(const ALeft: TSquareHertz; const ARight: TKilogramSquareMeters): TJoules; inline;
+operator /(const ALeft: TJoules; const ARight: TKilogramSquareMeters): TSquareHertz; inline;
+operator /(const ALeft: TJoules; const ARight: TSquareHertz): TKilogramSquareMeters; inline;
 
 type
   { Unit of Terajoule }
@@ -1820,11 +1857,11 @@ operator *(const ALeft: TWatts; const ARight: TSeconds): TJoules; inline;
 operator /(const ALeft: TJoules; const ARight: TWatts): TSeconds; inline;
 operator /(const ALeft: TJoules; const {%H-}ARight: TSecondUnitId): TWatts; inline;
 
-// alternative definition [ W ] = [ J ] * [ rad/s ]
-operator *(const ALeft: TJoules; const ARight: TRadiansPerSecond): TWatts; inline;
-operator *(const ALeft: TRadiansPerSecond; const ARight: TJoules): TWatts; inline;
-operator /(const ALeft: TWatts; const ARight: TJoules): TRadiansPerSecond; inline;
-operator /(const ALeft: TWatts; const ARight: TRadiansPerSecond): TJoules; inline;
+// alternative definition [ W ] = [ J ] * [ Hz ]
+operator *(const ALeft: TJoules; const ARight: THertz): TWatts; inline;
+operator *(const ALeft: THertz; const ARight: TJoules): TWatts; inline;
+operator /(const ALeft: TWatts; const ARight: TJoules): THertz; inline;
+operator /(const ALeft: TWatts; const ARight: THertz): TJoules; inline;
 
 // alternative definition [ W ] = [ N ] * [ m/s ]
 operator *(const ALeft: TNewtons; const ARight: TMetersPerSecond): TWatts; inline;
@@ -2596,11 +2633,11 @@ operator *(const ALeft: TMeters; const ARight: TPascals): TNewtonsPerMeter; inli
 operator /(const ALeft: TNewtonsPerMeter; const ARight: TPascals): TMeters; inline;
 operator /(const ALeft: TNewtonsPerMeter; const ARight: TMeters): TPascals; inline;
 
-// alternative definition [ N/m ] = [ kg ] * [ sr/s2 ]
-operator *(const ALeft: TKilograms; const ARight: TSteradiansPerSquareSecond): TNewtonsPerMeter; inline;
-operator *(const ALeft: TSteradiansPerSquareSecond; const ARight: TKilograms): TNewtonsPerMeter; inline;
-operator /(const ALeft: TNewtonsPerMeter; const ARight: TKilograms): TSteradiansPerSquareSecond; inline;
-operator /(const ALeft: TNewtonsPerMeter; const ARight: TSteradiansPerSquareSecond): TKilograms; inline;
+// alternative definition [ N/m ] = [ kg ] * [ Hz2 ]
+operator *(const ALeft: TKilograms; const ARight: TSquareHertz): TNewtonsPerMeter; inline;
+operator *(const ALeft: TSquareHertz; const ARight: TKilograms): TNewtonsPerMeter; inline;
+operator /(const ALeft: TNewtonsPerMeter; const ARight: TKilograms): TSquareHertz; inline;
+operator /(const ALeft: TNewtonsPerMeter; const ARight: TSquareHertz): TKilograms; inline;
 
 type
   { Unit of NewtonPerMillimeter }
@@ -3769,6 +3806,16 @@ type
 { Helpers }
 
 type
+  TRadianPerSquareSecondHelper = record helper for TRadianPerSquareSecondUnitId
+    class function From(const AQuantity: TSquareHertz): TRadianPerSquareSecondUnitId.TBaseQuantity; static;
+  end;
+
+type
+  TSteradianPerSquareSecondHelper = record helper for TSteradianPerSquareSecondUnitId
+    class function From(const AQuantity: TSquareHertz): TSteradianPerSquareSecondUnitId.TBaseQuantity; static;
+  end;
+
+type
   TNewtonSecondHelper = record helper for TNewtonSecondUnitId
     class function From(const AQuantity: TKilogramMetersPerSecond): TNewtonSecondUnitId.TBaseQuantity; static;
   end;
@@ -3840,8 +3887,8 @@ function QuarticPower(AQuantity: TKelvins): TQuarticKelvins;
 function QuarticRoot(AQuantity: TQuarticKelvins): TKelvins;
 function SquarePower(AQuantity: TRadians): TSteradians;
 function SquareRoot(AQuantity: TSteradians): TRadians;
-function SquarePower(AQuantity: TRadiansPerSecond): TSteradiansPerSquareSecond;
-function SquareRoot(AQuantity: TSteradiansPerSquareSecond): TRadiansPerSecond;
+function SquarePower(AQuantity: THertz): TSquareHertz;
+function SquareRoot(AQuantity: TSquareHertz): THertz;
 function SquarePower(AQuantity: TMetersPerSecond): TSquareMetersPerSquareSecond;
 function SquareRoot(AQuantity: TSquareMetersPerSquareSecond): TMetersPerSecond;
 function SquarePower(AQuantity: TCoulombs): TSquareCoulombs;
@@ -4249,6 +4296,90 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+// main definition [ Hz ] = [ 1 ] / [ s ]
+operator /(const ALeft: double; const ARight: TSeconds): THertz;
+begin
+  result.FValue := ALeft / ARight.FValue;
+end;
+
+operator *(const ALeft: TSeconds; const ARight: THertz): double;
+begin
+  result := ALeft.FValue * ARight.FValue;
+end;
+
+operator *(const ALeft: THertz; const ARight: TSeconds): double;
+begin
+  result := ALeft.FValue * ARight.FValue;
+end;
+
+operator /(const ALeft: double; const ARight: THertz): TSeconds;
+begin
+  result.FValue := ALeft / ARight.FValue;
+end;
+
+operator /(const ALeft: double; const {%H-}ARight: TSecondUnitId): THertz;
+begin
+  result.FValue := ALeft;
+end;
+
+// main definition [ Hz2 ] = [ 1 ] / [ s2 ]
+operator /(const ALeft: double; const ARight: TSquareSeconds): TSquareHertz;
+begin
+  result.FValue := ALeft / ARight.FValue;
+end;
+
+operator *(const ALeft: TSquareSeconds; const ARight: TSquareHertz): double;
+begin
+  result := ALeft.FValue * ARight.FValue;
+end;
+
+operator *(const ALeft: TSquareHertz; const ARight: TSquareSeconds): double;
+begin
+  result := ALeft.FValue * ARight.FValue;
+end;
+
+operator /(const ALeft: double; const ARight: TSquareHertz): TSquareSeconds;
+begin
+  result.FValue := ALeft / ARight.FValue;
+end;
+
+operator /(const ALeft: double; const {%H-}ARight: TSquareSecondUnitId): TSquareHertz;
+begin
+  result.FValue := ALeft;
+end;
+
+// alternative definition [ Hz2 ] = [ Hz ] / [ s ]
+operator /(const ALeft: THertz; const ARight: TSeconds): TSquareHertz;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator *(const ALeft: TSeconds; const ARight: TSquareHertz): THertz;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator *(const ALeft: TSquareHertz; const ARight: TSeconds): THertz;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator /(const ALeft: THertz; const ARight: TSquareHertz): TSeconds;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+// alternative definition [ Hz2 ] = [ Hz ] * [ Hz ]
+operator *(const ALeft: THertz; const ARight: THertz): TSquareHertz;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator /(const ALeft: TSquareHertz; const ARight: THertz): THertz;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
 // main definition [ rad/s ] = [ rad ] / [ s ]
 operator /(const ALeft: TRadians; const ARight: TSeconds): TRadiansPerSecond;
 begin
@@ -4273,6 +4404,37 @@ end;
 operator /(const ALeft: TRadians; const {%H-}ARight: TSecondUnitId): TRadiansPerSecond;
 begin
   result.FValue := ALeft.FValue;
+end;
+
+// alternative definition [ rad/s ] = [ rad ] * [ Hz ]
+operator *(const ALeft: TRadians; const ARight: THertz): TRadiansPerSecond;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator *(const ALeft: THertz; const ARight: TRadians): TRadiansPerSecond;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator /(const ALeft: TRadiansPerSecond; const ARight: TRadians): THertz;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TRadiansPerSecond; const ARight: THertz): TRadians;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator :=(const AQuantity: TRadiansPerSecond): THertz; inline;
+begin
+  result.FValue := AQuantity.FValue;
+end;
+
+operator :=(const AQuantity: THertz): TRadiansPerSecond; inline;
+begin
+  result.FValue := AQuantity.FValue;
 end;
 
 // main definition [ rad/s2 ] = [ rad ] / [ s2 ]
@@ -4301,23 +4463,23 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
-// alternative definition [ rad/s2 ] = [ rad/s ] / [ s ]
-operator /(const ALeft: TRadiansPerSecond; const ARight: TSeconds): TRadiansPerSquareSecond;
+// alternative definition [ rad/s2 ] = [ rad ] * [ Hz2 ]
+operator *(const ALeft: TRadians; const ARight: TSquareHertz): TRadiansPerSquareSecond;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator *(const ALeft: TSquareHertz; const ARight: TRadians): TRadiansPerSquareSecond;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator /(const ALeft: TRadiansPerSquareSecond; const ARight: TRadians): TSquareHertz;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-operator *(const ALeft: TSeconds; const ARight: TRadiansPerSquareSecond): TRadiansPerSecond;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
-
-operator *(const ALeft: TRadiansPerSquareSecond; const ARight: TSeconds): TRadiansPerSecond;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
-
-operator /(const ALeft: TRadiansPerSecond; const ARight: TRadiansPerSquareSecond): TSeconds;
+operator /(const ALeft: TRadiansPerSquareSecond; const ARight: TSquareHertz): TRadians;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
@@ -4348,13 +4510,23 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
-// alternative definition [ sr/s2 ] = [ rad/s ] * [ rad/s ]
-operator *(const ALeft: TRadiansPerSecond; const ARight: TRadiansPerSecond): TSteradiansPerSquareSecond;
+// alternative definition [ sr/s2 ] = [ sr ] * [ Hz2 ]
+operator *(const ALeft: TSteradians; const ARight: TSquareHertz): TSteradiansPerSquareSecond;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TSteradiansPerSquareSecond; const ARight: TRadiansPerSecond): TRadiansPerSecond;
+operator *(const ALeft: TSquareHertz; const ARight: TSteradians): TSteradiansPerSquareSecond;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator /(const ALeft: TSteradiansPerSquareSecond; const ARight: TSteradians): TSquareHertz;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TSteradiansPerSquareSecond; const ARight: TSquareHertz): TSteradians;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
@@ -4385,28 +4557,28 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
-// alternative definition [ m/s ] = [ rad/s ] * [ m ]
-operator *(const ALeft: TRadiansPerSecond; const ARight: TMeters): TMetersPerSecond;
+// alternative definition [ m/s ] = [ m ] * [ Hz ]
+operator *(const ALeft: TMeters; const ARight: THertz): TMetersPerSecond;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator *(const ALeft: TMeters; const ARight: TRadiansPerSecond): TMetersPerSecond;
+operator *(const ALeft: THertz; const ARight: TMeters): TMetersPerSecond;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TMetersPerSecond; const ARight: TRadiansPerSecond): TMeters;
+operator /(const ALeft: TMetersPerSecond; const ARight: TMeters): THertz;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-operator /(const ALeft: TMetersPerSecond; const ARight: TMeters): TRadiansPerSecond;
+operator /(const ALeft: TMetersPerSecond; const ARight: THertz): TMeters;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-operator *(const ALeft: TRadiansPerSecond; const {%H-}ARight: TMeterUnitId): TMetersPerSecond;
+operator *(const ALeft: TMeters; const {%H-}ARight: THertzUnitId): TMetersPerSecond;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -4458,23 +4630,23 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-// alternative definition [ m/s2 ] = [ sr/s2 ] * [ m ]
-operator *(const ALeft: TSteradiansPerSquareSecond; const ARight: TMeters): TMetersPerSquareSecond;
+// alternative definition [ m/s2 ] = [ Hz2 ] * [ m ]
+operator *(const ALeft: TSquareHertz; const ARight: TMeters): TMetersPerSquareSecond;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator *(const ALeft: TMeters; const ARight: TSteradiansPerSquareSecond): TMetersPerSquareSecond;
+operator *(const ALeft: TMeters; const ARight: TSquareHertz): TMetersPerSquareSecond;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TMetersPerSquareSecond; const ARight: TSteradiansPerSquareSecond): TMeters;
+operator /(const ALeft: TMetersPerSquareSecond; const ARight: TSquareHertz): TMeters;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-operator /(const ALeft: TMetersPerSquareSecond; const ARight: TMeters): TSteradiansPerSquareSecond;
+operator /(const ALeft: TMetersPerSquareSecond; const ARight: TMeters): TSquareHertz;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
@@ -4615,23 +4787,23 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
-// alternative definition [ kg*m2/s ] = [ kg*m2 ] * [ rad/s ]
-operator *(const ALeft: TKilogramSquareMeters; const ARight: TRadiansPerSecond): TKilogramSquareMetersPerSecond;
+// alternative definition [ kg*m2/s ] = [ kg*m2 ] * [ Hz ]
+operator *(const ALeft: TKilogramSquareMeters; const ARight: THertz): TKilogramSquareMetersPerSecond;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator *(const ALeft: TRadiansPerSecond; const ARight: TKilogramSquareMeters): TKilogramSquareMetersPerSecond;
+operator *(const ALeft: THertz; const ARight: TKilogramSquareMeters): TKilogramSquareMetersPerSecond;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TKilogramSquareMetersPerSecond; const ARight: TKilogramSquareMeters): TRadiansPerSecond;
+operator /(const ALeft: TKilogramSquareMetersPerSecond; const ARight: TKilogramSquareMeters): THertz;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-operator /(const ALeft: TKilogramSquareMetersPerSecond; const ARight: TRadiansPerSecond): TKilogramSquareMeters;
+operator /(const ALeft: TKilogramSquareMetersPerSecond; const ARight: THertz): TKilogramSquareMeters;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
@@ -4712,42 +4884,6 @@ end;
 operator /(const ALeft: TKilograms; const {%H-}ARight: TCubicMeterUnitId): TKilogramsPerCubicMeter;
 begin
   result.FValue := ALeft.FValue;
-end;
-
-// main definition [ Hz ] = 1 / [ s ]
-operator /(const ALeft: double; const ARight: TSeconds): THertz;
-begin
-  result.FValue := ALeft / ARight.FValue;
-end;
-
-operator *(const ALeft: TSeconds; const ARight: THertz): double;
-begin
-  result := ALeft.FValue * ARight.FValue;
-end;
-
-operator *(const ALeft: THertz; const ARight: TSeconds): double;
-begin
-  result := ALeft.FValue * ARight.FValue;
-end;
-
-operator /(const ALeft: double; const ARight: THertz): TSeconds;
-begin
-  result.FValue := ALeft / ARight.FValue;
-end;
-
-operator /(const ALeft: double; const {%H-}ARight: TSecondUnitId): THertz;
-begin
-  result.FValue := ALeft;
-end;
-
-operator :=(const AQuantity: THertz): TRadiansPerSecond; inline;
-begin
-  result.FValue := AQuantity.FValue;
-end;
-
-operator :=(const AQuantity: TRadiansPerSecond): THertz; inline;
-begin
-  result.FValue := AQuantity.FValue;
 end;
 
 // main definition [ N ] = [ kg ] * [ m/s2 ]
@@ -4959,23 +5095,23 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
-// alternative definition [ J ] = [ kg*m2 ] * [ sr/s2 ]
-operator *(const ALeft: TKilogramSquareMeters; const ARight: TSteradiansPerSquareSecond): TJoules;
+// alternative definition [ J ] = [ kg*m2 ] * [ Hz2 ]
+operator *(const ALeft: TKilogramSquareMeters; const ARight: TSquareHertz): TJoules;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator *(const ALeft: TSteradiansPerSquareSecond; const ARight: TKilogramSquareMeters): TJoules;
+operator *(const ALeft: TSquareHertz; const ARight: TKilogramSquareMeters): TJoules;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TJoules; const ARight: TKilogramSquareMeters): TSteradiansPerSquareSecond;
+operator /(const ALeft: TJoules; const ARight: TKilogramSquareMeters): TSquareHertz;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-operator /(const ALeft: TJoules; const ARight: TSteradiansPerSquareSecond): TKilogramSquareMeters;
+operator /(const ALeft: TJoules; const ARight: TSquareHertz): TKilogramSquareMeters;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
@@ -5006,23 +5142,23 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
-// alternative definition [ W ] = [ J ] * [ rad/s ]
-operator *(const ALeft: TJoules; const ARight: TRadiansPerSecond): TWatts;
+// alternative definition [ W ] = [ J ] * [ Hz ]
+operator *(const ALeft: TJoules; const ARight: THertz): TWatts;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator *(const ALeft: TRadiansPerSecond; const ARight: TJoules): TWatts;
+operator *(const ALeft: THertz; const ARight: TJoules): TWatts;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TWatts; const ARight: TJoules): TRadiansPerSecond;
+operator /(const ALeft: TWatts; const ARight: TJoules): THertz;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-operator /(const ALeft: TWatts; const ARight: TRadiansPerSecond): TJoules;
+operator /(const ALeft: TWatts; const ARight: THertz): TJoules;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
@@ -5670,23 +5806,23 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-// alternative definition [ N/m ] = [ kg ] * [ sr/s2 ]
-operator *(const ALeft: TKilograms; const ARight: TSteradiansPerSquareSecond): TNewtonsPerMeter;
+// alternative definition [ N/m ] = [ kg ] * [ Hz2 ]
+operator *(const ALeft: TKilograms; const ARight: TSquareHertz): TNewtonsPerMeter;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator *(const ALeft: TSteradiansPerSquareSecond; const ARight: TKilograms): TNewtonsPerMeter;
+operator *(const ALeft: TSquareHertz; const ARight: TKilograms): TNewtonsPerMeter;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TNewtonsPerMeter; const ARight: TKilograms): TSteradiansPerSquareSecond;
+operator /(const ALeft: TNewtonsPerMeter; const ARight: TKilograms): TSquareHertz;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-operator /(const ALeft: TNewtonsPerMeter; const ARight: TSteradiansPerSquareSecond): TKilograms;
+operator /(const ALeft: TNewtonsPerMeter; const ARight: TSquareHertz): TKilograms;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
@@ -8114,6 +8250,16 @@ end;
 
 { Helpers }
 
+class function TRadianPerSquareSecondHelper.From(const AQuantity: TSquareHertz): TRadianPerSquareSecondUnitId.TBaseQuantity; static;
+begin
+  result.FValue := AQuantity.FValue;
+end;
+
+class function TSteradianPerSquareSecondHelper.From(const AQuantity: TSquareHertz): TSteradianPerSquareSecondUnitId.TBaseQuantity; static;
+begin
+  result.FValue := AQuantity.FValue;
+end;
+
 class function TNewtonSecondHelper.From(const AQuantity: TKilogramMetersPerSecond): TNewtonSecondUnitId.TBaseQuantity; static;
 begin
   result.FValue := AQuantity.FValue;
@@ -8306,12 +8452,12 @@ begin
   result.FValue := Power(AQuantity.FValue, 1/2);
 end;
 
-function SquarePower(AQuantity: TRadiansPerSecond): TSteradiansPerSquareSecond;
+function SquarePower(AQuantity: THertz): TSquareHertz;
 begin
   result.FValue := Power(AQuantity.FValue, 2);
 end;
 
-function SquareRoot(AQuantity: TSteradiansPerSquareSecond): TRadiansPerSecond;
+function SquareRoot(AQuantity: TSquareHertz): THertz;
 begin
   result.FValue := Power(AQuantity.FValue, 1/2);
 end;
