@@ -1070,6 +1070,7 @@ begin
   acc    := 9.8*m/s2;
   radius := 20*cm;
   time   := 2*pi*SquareRoot(1/((mass*acc*radius)/I));
+  time   := 2*pi*SquareRoot(I/(mass*acc*radius));
 
   writeln('*** Physical pendulum:');
   writeln('The mass is: ', mass.toString(4, 0));

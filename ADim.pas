@@ -1730,6 +1730,12 @@ operator *(const ALeft: TSquareHertz; const ARight: TKilogramSquareMeters): TJou
 operator /(const ALeft: TJoules; const ARight: TKilogramSquareMeters): TSquareHertz; inline;
 operator /(const ALeft: TJoules; const ARight: TSquareHertz): TKilogramSquareMeters; inline;
 
+// alternative definition [ J ] = [ kg*m2 ] / [ s2 ]
+operator /(const ALeft: TKilogramSquareMeters; const ARight: TSquareSeconds): TJoules; inline;
+operator *(const ALeft: TSquareSeconds; const ARight: TJoules): TKilogramSquareMeters; inline;
+operator *(const ALeft: TJoules; const ARight: TSquareSeconds): TKilogramSquareMeters; inline;
+operator /(const ALeft: TKilogramSquareMeters; const ARight: TJoules): TSquareSeconds; inline;
+
 type
   { Unit of Terajoule }
   TTerajouleUnit = record
@@ -5112,6 +5118,27 @@ begin
 end;
 
 operator /(const ALeft: TJoules; const ARight: TSquareHertz): TKilogramSquareMeters;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+// alternative definition [ J ] = [ kg*m2 ] / [ s2 ]
+operator /(const ALeft: TKilogramSquareMeters; const ARight: TSquareSeconds): TJoules;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator *(const ALeft: TSquareSeconds; const ARight: TJoules): TKilogramSquareMeters;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator *(const ALeft: TJoules; const ARight: TSquareSeconds): TKilogramSquareMeters;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator /(const ALeft: TKilogramSquareMeters; const ARight: TJoules): TSquareSeconds;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
