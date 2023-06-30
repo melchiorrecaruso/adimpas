@@ -153,6 +153,7 @@ var
   freq: THertz;
 
   I: TKilogramSquareMeters;
+  Re: double;
 
 begin
   {$IFDEF WINDOWS}
@@ -707,6 +708,17 @@ begin
   writeln('The acceleration is: ', acc.ToVerboseString);
   writeln('The distance is: ', distance.ToVerboseString);
   writeln('The pressure is: ', pressure.ToVerboseString);
+  writeln;
+
+  // Reynolds number
+  flowrate := 5*dm3/minute;
+  density  := 1.05*g/cm3;
+  eta      := 0.03*ADim.P;
+  radius   := 0.9*cm;
+  Re       := 2000;
+  speed    := Re*eta/(2*density*radius);
+
+  writeln('The critical speed is: ', TCentimeterPerSecondUnitId.From(speed).ToString(0, 0));
   writeln;
 
   // linear thermal expansion
