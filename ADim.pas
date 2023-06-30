@@ -1504,6 +1504,12 @@ operator *(const ALeft: TKilogramsPerCubicMeter; const ARight: TCubicMeters): TK
 operator /(const ALeft: TKilograms; const ARight: TKilogramsPerCubicMeter): TCubicMeters; inline;
 operator /(const ALeft: TKilograms; const {%H-}ARight: TCubicMeterUnitId): TKilogramsPerCubicMeter; inline;
 
+// alternative definition [ kg/m3 ] = [ kg/m2 ] / [ m ]
+operator /(const ALeft: TKilogramsPerSquareMeter; const ARight: TMeters): TKilogramsPerCubicMeter; inline;
+operator *(const ALeft: TMeters; const ARight: TKilogramsPerCubicMeter): TKilogramsPerSquareMeter; inline;
+operator *(const ALeft: TKilogramsPerCubicMeter; const ARight: TMeters): TKilogramsPerSquareMeter; inline;
+operator /(const ALeft: TKilogramsPerSquareMeter; const ARight: TKilogramsPerCubicMeter): TMeters; inline;
+
 type
   { Unit of KilogramPerCubicMillimeter }
   TKilogramPerCubicMillimeterUnit = record
@@ -2720,6 +2726,24 @@ operator *(const ALeft: TMeters; const ARight: TPascalSeconds): TKilogramsPerSec
 operator *(const ALeft: TPascalSeconds; const ARight: TMeters): TKilogramsPerSecond; inline;
 operator /(const ALeft: TKilogramsPerSecond; const ARight: TPascalSeconds): TMeters; inline;
 operator *(const ALeft: TPascalSeconds; const {%H-}ARight: TMeterUnitId): TKilogramsPerSecond; inline;
+
+// alternative definition [ Pa*s ] = [ kg/m2 ] * [ m/s ]
+operator *(const ALeft: TKilogramsPerSquareMeter; const ARight: TMetersPerSecond): TPascalSeconds; inline;
+operator *(const ALeft: TMetersPerSecond; const ARight: TKilogramsPerSquareMeter): TPascalSeconds; inline;
+operator /(const ALeft: TPascalSeconds; const ARight: TKilogramsPerSquareMeter): TMetersPerSecond; inline;
+operator /(const ALeft: TPascalSeconds; const ARight: TMetersPerSecond): TKilogramsPerSquareMeter; inline;
+
+type
+  { Unit of Poise }
+  TPoiseUnit = record
+    const Symbol = 'P';
+    const Name   = 'poise';
+    const Factor = 1E-01;
+  end;
+  TPoiseUnitId = specialize TFactoredUnitId<TPascalSecondUnit, TPoiseUnit>;
+
+const
+  P: specialize TQuantity<TPascalSecondUnit> = (FValue: TPoiseUnit.Factor);
 
 type
   { Unit of SquareMeterPerSecond }
@@ -4959,6 +4983,27 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+// alternative definition [ kg/m3 ] = [ kg/m2 ] / [ m ]
+operator /(const ALeft: TKilogramsPerSquareMeter; const ARight: TMeters): TKilogramsPerCubicMeter;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator *(const ALeft: TMeters; const ARight: TKilogramsPerCubicMeter): TKilogramsPerSquareMeter;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator *(const ALeft: TKilogramsPerCubicMeter; const ARight: TMeters): TKilogramsPerSquareMeter;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator /(const ALeft: TKilogramsPerSquareMeter; const ARight: TKilogramsPerCubicMeter): TMeters;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
 // main definition [ N ] = [ kg ] * [ m/s2 ]
 operator *(const ALeft: TKilograms; const ARight: TMetersPerSquareSecond): TNewtons;
 begin
@@ -6065,6 +6110,27 @@ end;
 operator *(const ALeft: TPascalSeconds; const {%H-}ARight: TMeterUnitId): TKilogramsPerSecond;
 begin
   result.FValue := ALeft.FValue;
+end;
+
+// alternative definition [ Pa*s ] = [ kg/m2 ] * [ m/s ]
+operator *(const ALeft: TKilogramsPerSquareMeter; const ARight: TMetersPerSecond): TPascalSeconds;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator *(const ALeft: TMetersPerSecond; const ARight: TKilogramsPerSquareMeter): TPascalSeconds;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator /(const ALeft: TPascalSeconds; const ARight: TKilogramsPerSquareMeter): TMetersPerSecond;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TPascalSeconds; const ARight: TMetersPerSecond): TKilogramsPerSquareMeter;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
 // main definition [ m2/s ] = [ m2 ] / [ s ]
