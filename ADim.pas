@@ -2746,6 +2746,27 @@ const
   P: specialize TQuantity<TPascalSecondUnit> = (FValue: TPoiseUnit.Factor);
 
 type
+  { Unit of Poiseuille }
+  TPoiseuilleUnit = record
+    const Symbol = 'Pl';
+    const Name   = 'poiseuille ';
+  end;
+  TPoiseuilles = specialize TQuantity<TPascalSecondUnit>;
+  TPoiseuilleUnitId = specialize TUnitId<TPoiseuilleUnit>;
+
+var
+  Pl: TPascalSecondUnitId;
+
+type
+  { Unit of Millipoiseuille }
+  TMillipoiseuilleUnit = record
+    const Symbol = '';
+    const Name   = '';
+    const Factor = 1E-03;
+  end;
+  TMillipoiseuilleUnitId = specialize TFactoredUnitId<TPascalSecondUnit, TMillipoiseuilleUnit>;
+
+type
   { Unit of SquareMeterPerSecond }
   TSquareMeterPerSecondUnit = record
     const Symbol = 'm2/s';
@@ -3945,6 +3966,11 @@ type
 type
   TNewtonMeterPerDegreeHelper = record helper for TNewtonMeterPerDegreeUnitId
     class function From(const AQuantity: TJoulesPerRadian): TNewtonMeterPerDegreeUnitId.TFactoredQuantity; static;
+  end;
+
+type
+  TPoiseuilleHelper = record helper for TPoiseuilleUnitId
+    class function From(const AQuantity: TPascalSeconds): TPoiseuilleUnitId.TBaseQuantity; static;
   end;
 
 type
@@ -8597,6 +8623,11 @@ begin
 end;
 
 class function TNewtonMeterPerDegreeHelper.From(const AQuantity: TJoulesPerRadian): TNewtonMeterPerDegreeUnitId.TFactoredQuantity; static;
+begin
+  result.FValue := AQuantity.FValue;
+end;
+
+class function TPoiseuilleHelper.From(const AQuantity: TPascalSeconds): TPoiseuilleUnitId.TBaseQuantity; static;
 begin
   result.FValue := AQuantity.FValue;
 end;
