@@ -2744,6 +2744,73 @@ operator *(const ALeft: TSquareMetersPerSecond; const ARight: TKilogramsPerCubic
 operator /(const ALeft: TPascalSeconds; const ARight: TSquareMetersPerSecond): TKilogramsPerCubicMeter; inline;
 
 type
+  { Unit of KilogramPerQuarticMeter }
+  TKilogramPerQuarticMeterUnit = record
+    const Symbol = 'kg/m4';
+    const Name   = 'kilogram per quartic meter';
+  end;
+  TKilogramsPerQuarticMeter = specialize TQuantity<TKilogramPerQuarticMeterUnit>;
+  TKilogramPerQuarticMeterUnitId = specialize TUnitId<TKilogramPerQuarticMeterUnit>;
+
+// main definition [ kg/m4 ] = [ kg ] / [ m4 ]
+operator /(const ALeft: TKilograms; const ARight: TQuarticMeters): TKilogramsPerQuarticMeter; inline;
+operator *(const ALeft: TQuarticMeters; const ARight: TKilogramsPerQuarticMeter): TKilograms; inline;
+operator *(const ALeft: TKilogramsPerQuarticMeter; const ARight: TQuarticMeters): TKilograms; inline;
+operator /(const ALeft: TKilograms; const ARight: TKilogramsPerQuarticMeter): TQuarticMeters; inline;
+operator /(const ALeft: TKilograms; const {%H-}ARight: TQuarticMeterUnitId): TKilogramsPerQuarticMeter; inline;
+
+type
+  { Unit of QuarticMeterSecond }
+  TQuarticMeterSecondUnit = record
+    const Symbol = 'm4.s';
+    const Name   = 'quartic meter second';
+  end;
+  TQuarticMeterSeconds = specialize TQuantity<TQuarticMeterSecondUnit>;
+  TQuarticMeterSecondUnitId = specialize TUnitId<TQuarticMeterSecondUnit>;
+
+// main definition [ m4*s ] = [ m4 ] * [ s ]
+operator *(const ALeft: TQuarticMeters; const ARight: TSeconds): TQuarticMeterSeconds; inline;
+operator *(const ALeft: TSeconds; const ARight: TQuarticMeters): TQuarticMeterSeconds; inline;
+operator /(const ALeft: TQuarticMeterSeconds; const ARight: TQuarticMeters): TSeconds; inline;
+operator /(const ALeft: TQuarticMeterSeconds; const ARight: TSeconds): TQuarticMeters; inline;
+operator *(const ALeft: TQuarticMeters; const {%H-}ARight: TSecondUnitId): TQuarticMeterSeconds; inline;
+
+type
+  { Unit of KilogramPerQuarticMeterPerSecond }
+  TKilogramPerQuarticMeterPerSecondUnit = record
+    const Symbol = 'kg/m4/s';
+    const Name   = 'kilogram per quartic meter per second';
+  end;
+  TKilogramsPerQuarticMeterPerSecond = specialize TQuantity<TKilogramPerQuarticMeterPerSecondUnit>;
+  TKilogramPerQuarticMeterPerSecondUnitId = specialize TUnitId<TKilogramPerQuarticMeterPerSecondUnit>;
+
+// main definition [ kg/m4/s ] = [ kg/s ] / [ m4 ]
+operator /(const ALeft: TKilogramsPerSecond; const ARight: TQuarticMeters): TKilogramsPerQuarticMeterPerSecond; inline;
+operator *(const ALeft: TQuarticMeters; const ARight: TKilogramsPerQuarticMeterPerSecond): TKilogramsPerSecond; inline;
+operator *(const ALeft: TKilogramsPerQuarticMeterPerSecond; const ARight: TQuarticMeters): TKilogramsPerSecond; inline;
+operator /(const ALeft: TKilogramsPerSecond; const ARight: TKilogramsPerQuarticMeterPerSecond): TQuarticMeters; inline;
+operator /(const ALeft: TKilogramsPerSecond; const {%H-}ARight: TQuarticMeterUnitId): TKilogramsPerQuarticMeterPerSecond; inline;
+
+// alternative definition [ kg/m4/s ] = [ kg/m4 ] / [ s ]
+operator /(const ALeft: TKilogramsPerQuarticMeter; const ARight: TSeconds): TKilogramsPerQuarticMeterPerSecond; inline;
+operator *(const ALeft: TSeconds; const ARight: TKilogramsPerQuarticMeterPerSecond): TKilogramsPerQuarticMeter; inline;
+operator *(const ALeft: TKilogramsPerQuarticMeterPerSecond; const ARight: TSeconds): TKilogramsPerQuarticMeter; inline;
+operator /(const ALeft: TKilogramsPerQuarticMeter; const ARight: TKilogramsPerQuarticMeterPerSecond): TSeconds; inline;
+operator /(const ALeft: TKilogramsPerQuarticMeter; const {%H-}ARight: TSecondUnitId): TKilogramsPerQuarticMeterPerSecond; inline;
+
+// alternative definition [ kg/m4/s ] = [ kg ] / [ m4*s ]
+operator /(const ALeft: TKilograms; const ARight: TQuarticMeterSeconds): TKilogramsPerQuarticMeterPerSecond; inline;
+operator *(const ALeft: TQuarticMeterSeconds; const ARight: TKilogramsPerQuarticMeterPerSecond): TKilograms; inline;
+operator *(const ALeft: TKilogramsPerQuarticMeterPerSecond; const ARight: TQuarticMeterSeconds): TKilograms; inline;
+operator /(const ALeft: TKilograms; const ARight: TKilogramsPerQuarticMeterPerSecond): TQuarticMeterSeconds; inline;
+
+// alternative definition [ kg/m4/s ] = [ Pa ] / [ m3/s ]
+operator /(const ALeft: TPascals; const ARight: TCubicMetersPerSecond): TKilogramsPerQuarticMeterPerSecond; inline;
+operator *(const ALeft: TCubicMetersPerSecond; const ARight: TKilogramsPerQuarticMeterPerSecond): TPascals; inline;
+operator *(const ALeft: TKilogramsPerQuarticMeterPerSecond; const ARight: TCubicMetersPerSecond): TPascals; inline;
+operator /(const ALeft: TPascals; const ARight: TKilogramsPerQuarticMeterPerSecond): TCubicMetersPerSecond; inline;
+
+type
   { Unit of CubicMeterPerKilogram }
   TCubicMeterPerKilogramUnit = record
     const Symbol = 'm3/kg';
@@ -6043,6 +6110,152 @@ begin
 end;
 
 operator /(const ALeft: TPascalSeconds; const ARight: TSquareMetersPerSecond): TKilogramsPerCubicMeter;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+// main definition [ kg/m4 ] = [ kg ] / [ m4 ]
+operator /(const ALeft: TKilograms; const ARight: TQuarticMeters): TKilogramsPerQuarticMeter;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator *(const ALeft: TQuarticMeters; const ARight: TKilogramsPerQuarticMeter): TKilograms;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator *(const ALeft: TKilogramsPerQuarticMeter; const ARight: TQuarticMeters): TKilograms;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator /(const ALeft: TKilograms; const ARight: TKilogramsPerQuarticMeter): TQuarticMeters;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TKilograms; const {%H-}ARight: TQuarticMeterUnitId): TKilogramsPerQuarticMeter;
+begin
+  result.FValue := ALeft.FValue;
+end;
+
+// main definition [ m4*s ] = [ m4 ] * [ s ]
+operator *(const ALeft: TQuarticMeters; const ARight: TSeconds): TQuarticMeterSeconds;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator *(const ALeft: TSeconds; const ARight: TQuarticMeters): TQuarticMeterSeconds;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator /(const ALeft: TQuarticMeterSeconds; const ARight: TQuarticMeters): TSeconds;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TQuarticMeterSeconds; const ARight: TSeconds): TQuarticMeters;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator *(const ALeft: TQuarticMeters; const {%H-}ARight: TSecondUnitId): TQuarticMeterSeconds;
+begin
+  result.FValue := ALeft.FValue;
+end;
+
+// main definition [ kg/m4/s ] = [ kg/s ] / [ m4 ]
+operator /(const ALeft: TKilogramsPerSecond; const ARight: TQuarticMeters): TKilogramsPerQuarticMeterPerSecond;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator *(const ALeft: TQuarticMeters; const ARight: TKilogramsPerQuarticMeterPerSecond): TKilogramsPerSecond;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator *(const ALeft: TKilogramsPerQuarticMeterPerSecond; const ARight: TQuarticMeters): TKilogramsPerSecond;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator /(const ALeft: TKilogramsPerSecond; const ARight: TKilogramsPerQuarticMeterPerSecond): TQuarticMeters;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TKilogramsPerSecond; const {%H-}ARight: TQuarticMeterUnitId): TKilogramsPerQuarticMeterPerSecond;
+begin
+  result.FValue := ALeft.FValue;
+end;
+
+// alternative definition [ kg/m4/s ] = [ kg/m4 ] / [ s ]
+operator /(const ALeft: TKilogramsPerQuarticMeter; const ARight: TSeconds): TKilogramsPerQuarticMeterPerSecond;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator *(const ALeft: TSeconds; const ARight: TKilogramsPerQuarticMeterPerSecond): TKilogramsPerQuarticMeter;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator *(const ALeft: TKilogramsPerQuarticMeterPerSecond; const ARight: TSeconds): TKilogramsPerQuarticMeter;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator /(const ALeft: TKilogramsPerQuarticMeter; const ARight: TKilogramsPerQuarticMeterPerSecond): TSeconds;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TKilogramsPerQuarticMeter; const {%H-}ARight: TSecondUnitId): TKilogramsPerQuarticMeterPerSecond;
+begin
+  result.FValue := ALeft.FValue;
+end;
+
+// alternative definition [ kg/m4/s ] = [ kg ] / [ m4*s ]
+operator /(const ALeft: TKilograms; const ARight: TQuarticMeterSeconds): TKilogramsPerQuarticMeterPerSecond;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator *(const ALeft: TQuarticMeterSeconds; const ARight: TKilogramsPerQuarticMeterPerSecond): TKilograms;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator *(const ALeft: TKilogramsPerQuarticMeterPerSecond; const ARight: TQuarticMeterSeconds): TKilograms;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator /(const ALeft: TKilograms; const ARight: TKilogramsPerQuarticMeterPerSecond): TQuarticMeterSeconds;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+// alternative definition [ kg/m4/s ] = [ Pa ] / [ m3/s ]
+operator /(const ALeft: TPascals; const ARight: TCubicMetersPerSecond): TKilogramsPerQuarticMeterPerSecond;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator *(const ALeft: TCubicMetersPerSecond; const ARight: TKilogramsPerQuarticMeterPerSecond): TPascals;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator *(const ALeft: TKilogramsPerQuarticMeterPerSecond; const ARight: TCubicMetersPerSecond): TPascals;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator /(const ALeft: TPascals; const ARight: TKilogramsPerQuarticMeterPerSecond): TCubicMetersPerSecond;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
