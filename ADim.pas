@@ -929,7 +929,7 @@ type
   TPicoampereUnitId = specialize TFactoredUnitId<TAmpereUnit, TPicoampereUnit>;
 
 const
-  picoampere: specialize TQuantity<TAmpereUnit> = (FValue: TPicoampereUnit.Factor);
+  picoA: specialize TQuantity<TAmpereUnit> = (FValue: TPicoampereUnit.Factor);
 
 type
   { Unit of SquareAmpere }
@@ -1693,6 +1693,66 @@ const
   kPa: specialize TQuantity<TPascalUnit> = (FValue: TKilopascalUnit.Factor);
 
 type
+  { Unit of Hectopascal }
+  THectopascalUnit = record
+    const Symbol = 'hPa';
+    const Name   = 'hectopascal';
+    const Factor = 1E+02;
+  end;
+  THectopascalUnitId = specialize TFactoredUnitId<TPascalUnit, THectopascalUnit>;
+
+const
+  hPa: specialize TQuantity<TPascalUnit> = (FValue: THectopascalUnit.Factor);
+
+type
+  { Unit of Decapascal }
+  TDecapascalUnit = record
+    const Symbol = 'daPa';
+    const Name   = 'decapascal';
+    const Factor = 1E+01;
+  end;
+  TDecapascalUnitId = specialize TFactoredUnitId<TPascalUnit, TDecapascalUnit>;
+
+const
+  daPa: specialize TQuantity<TPascalUnit> = (FValue: TDecapascalUnit.Factor);
+
+type
+  { Unit of Decipascal }
+  TDecipascalUnit = record
+    const Symbol = 'dPa';
+    const Name   = 'decipascal';
+    const Factor = 1E-01;
+  end;
+  TDecipascalUnitId = specialize TFactoredUnitId<TPascalUnit, TDecipascalUnit>;
+
+const
+  dPa: specialize TQuantity<TPascalUnit> = (FValue: TDecipascalUnit.Factor);
+
+type
+  { Unit of Centipascal }
+  TCentipascalUnit = record
+    const Symbol = 'cPa';
+    const Name   = 'centipascal';
+    const Factor = 1E-02;
+  end;
+  TCentipascalUnitId = specialize TFactoredUnitId<TPascalUnit, TCentipascalUnit>;
+
+const
+  cPa: specialize TQuantity<TPascalUnit> = (FValue: TCentipascalUnit.Factor);
+
+type
+  { Unit of Millipascal }
+  TMillipascalUnit = record
+    const Symbol = 'mPa';
+    const Name   = 'millipascal';
+    const Factor = 1E-03;
+  end;
+  TMillipascalUnitId = specialize TFactoredUnitId<TPascalUnit, TMillipascalUnit>;
+
+const
+  milliPa: specialize TQuantity<TPascalUnit> = (FValue: TMillipascalUnit.Factor);
+
+type
   { Unit of Joule }
   TJouleUnit = record
     const Symbol = 'J';
@@ -1903,7 +1963,7 @@ type
   TMegawattUnitId = specialize TFactoredUnitId<TWattUnit, TMegawattUnit>;
 
 const
-  megawatt: specialize TQuantity<TWattUnit> = (FValue: TMegawattUnit.Factor);
+  megaW: specialize TQuantity<TWattUnit> = (FValue: TMegawattUnit.Factor);
 
 type
   { Unit of Kilowatt }
@@ -1970,7 +2030,7 @@ type
   TMegacoulombUnitId = specialize TFactoredUnitId<TCoulombUnit, TMegacoulombUnit>;
 
 const
-  megacoulomb: specialize TQuantity<TCoulombUnit> = (FValue: TMegacoulombUnit.Factor);
+  megaC: specialize TQuantity<TCoulombUnit> = (FValue: TMegacoulombUnit.Factor);
 
 type
   { Unit of Kilocoulomb }
@@ -2060,7 +2120,7 @@ type
   TMegavoltUnitId = specialize TFactoredUnitId<TVoltUnit, TMegavoltUnit>;
 
 const
-  megavolt: specialize TQuantity<TVoltUnit> = (FValue: TMegavoltUnit.Factor);
+  megaV: specialize TQuantity<TVoltUnit> = (FValue: TMegavoltUnit.Factor);
 
 type
   { Unit of Kilovolt }
@@ -2149,7 +2209,7 @@ type
   TMegafaradUnitId = specialize TFactoredUnitId<TFaradUnit, TMegafaradUnit>;
 
 const
-  megafarad: specialize TQuantity<TFaradUnit> = (FValue: TMegafaradUnit.Factor);
+  megaF: specialize TQuantity<TFaradUnit> = (FValue: TMegafaradUnit.Factor);
 
 type
   { Unit of Kilofarad }
@@ -2483,10 +2543,34 @@ var
   Gy: TSquareMeterPerSquareSecondUnitId;
 
 type
+  { Unit of Decigray }
+  TDecigrayUnit = record
+    const Symbol = 'dGy';
+    const Name   = 'decigray';
+    const Factor = 1E-01;
+  end;
+  TDecigrayUnitId = specialize TFactoredUnitId<TGrayUnit, TDecigrayUnit>;
+
+const
+  dGy: specialize TQuantity<TGrayUnit> = (FValue: TDecigrayUnit.Factor);
+
+type
+  { Unit of Centigray }
+  TCentigrayUnit = record
+    const Symbol = 'cGy';
+    const Name   = 'centigray';
+    const Factor = 1E-02;
+  end;
+  TCentigrayUnitId = specialize TFactoredUnitId<TGrayUnit, TCentigrayUnit>;
+
+const
+  cGy: specialize TQuantity<TGrayUnit> = (FValue: TCentigrayUnit.Factor);
+
+type
   { Unit of Milligray }
   TMilligrayUnit = record
     const Symbol = 'mGy';
-    const Name   = 'milli gray';
+    const Name   = 'milligray';
     const Factor = 1E-03;
   end;
   TMilligrayUnitId = specialize TFactoredUnitId<TGrayUnit, TMilligrayUnit>;
@@ -2507,16 +2591,40 @@ var
   Sv: TSquareMeterPerSquareSecondUnitId;
 
 type
-  { Unit of MilliSievert }
-  TMilliSievertUnit = record
+  { Unit of Decisievert }
+  TDecisievertUnit = record
+    const Symbol = 'dSv';
+    const Name   = 'decisievert';
+    const Factor = 1E-01;
+  end;
+  TDecisievertUnitId = specialize TFactoredUnitId<TSievertUnit, TDecisievertUnit>;
+
+const
+  dSv: specialize TQuantity<TSievertUnit> = (FValue: TDecisievertUnit.Factor);
+
+type
+  { Unit of Centisievert }
+  TCentisievertUnit = record
+    const Symbol = 'cSv';
+    const Name   = 'centisievert';
+    const Factor = 1E-02;
+  end;
+  TCentisievertUnitId = specialize TFactoredUnitId<TSievertUnit, TCentisievertUnit>;
+
+const
+  cSv: specialize TQuantity<TSievertUnit> = (FValue: TCentisievertUnit.Factor);
+
+type
+  { Unit of Millisievert }
+  TMillisievertUnit = record
     const Symbol = 'mSv';
     const Name   = 'millisievert';
     const Factor = 1E-03;
   end;
-  TMilliSievertUnitId = specialize TFactoredUnitId<TSievertUnit, TMilliSievertUnit>;
+  TMillisievertUnitId = specialize TFactoredUnitId<TSievertUnit, TMillisievertUnit>;
 
 const
-  mSv: specialize TQuantity<TSievertUnit> = (FValue: TMilliSievertUnit.Factor);
+  mSv: specialize TQuantity<TSievertUnit> = (FValue: TMillisievertUnit.Factor);
 
 type
   { Unit of Katal }
@@ -2650,6 +2758,24 @@ operator *(const ALeft: TKilograms; const ARight: TSquareHertz): TNewtonsPerMete
 operator *(const ALeft: TSquareHertz; const ARight: TKilograms): TNewtonsPerMeter; inline;
 operator /(const ALeft: TNewtonsPerMeter; const ARight: TKilograms): TSquareHertz; inline;
 operator /(const ALeft: TNewtonsPerMeter; const ARight: TSquareHertz): TKilograms; inline;
+
+type
+  { Unit of NewtonPerDecimeter }
+  TNewtonPerDecimeterUnit = record
+    const Symbol = 'N/dm';
+    const Name   = 'newton per decimeter';
+    const Factor = 1E+01;
+  end;
+  TNewtonPerDecimeterUnitId = specialize TFactoredUnitId<TNewtonPerMeterUnit, TNewtonPerDecimeterUnit>;
+
+type
+  { Unit of NewtonPerCentimeter }
+  TNewtonPerCentimeterUnit = record
+    const Symbol = 'N/cm';
+    const Name   = 'newton per centimeter';
+    const Factor = 1E+02;
+  end;
+  TNewtonPerCentimeterUnitId = specialize TFactoredUnitId<TNewtonPerMeterUnit, TNewtonPerCentimeterUnit>;
 
 type
   { Unit of NewtonPerMillimeter }
