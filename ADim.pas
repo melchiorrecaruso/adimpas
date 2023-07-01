@@ -2705,66 +2705,81 @@ operator *(const ALeft: TKilogramsPerSecond; const ARight: TMetersPerSecond): TN
 operator /(const ALeft: TNewtons; const ARight: TKilogramsPerSecond): TMetersPerSecond; inline;
 
 type
-  { Unit of PascalSecond }
-  TPascalSecondUnit = record
-    const Symbol = 'Pa.s';
-    const Name   = 'pascal second';
-  end;
-  TPascalSeconds = specialize TQuantity<TPascalSecondUnit>;
-  TPascalSecondUnitId = specialize TUnitId<TPascalSecondUnit>;
-
-// main definition [ Pa*s ] = [ Pa ] * [ s ]
-operator *(const ALeft: TPascals; const ARight: TSeconds): TPascalSeconds; inline;
-operator *(const ALeft: TSeconds; const ARight: TPascals): TPascalSeconds; inline;
-operator /(const ALeft: TPascalSeconds; const ARight: TPascals): TSeconds; inline;
-operator /(const ALeft: TPascalSeconds; const ARight: TSeconds): TPascals; inline;
-operator *(const ALeft: TPascals; const {%H-}ARight: TSecondUnitId): TPascalSeconds; inline;
-
-// alternative definition [ Pa*s ] = [ kg/s ] / [ m ]
-operator /(const ALeft: TKilogramsPerSecond; const ARight: TMeters): TPascalSeconds; inline;
-operator *(const ALeft: TMeters; const ARight: TPascalSeconds): TKilogramsPerSecond; inline;
-operator *(const ALeft: TPascalSeconds; const ARight: TMeters): TKilogramsPerSecond; inline;
-operator /(const ALeft: TKilogramsPerSecond; const ARight: TPascalSeconds): TMeters; inline;
-operator *(const ALeft: TPascalSeconds; const {%H-}ARight: TMeterUnitId): TKilogramsPerSecond; inline;
-
-// alternative definition [ Pa*s ] = [ kg/m2 ] * [ m/s ]
-operator *(const ALeft: TKilogramsPerSquareMeter; const ARight: TMetersPerSecond): TPascalSeconds; inline;
-operator *(const ALeft: TMetersPerSecond; const ARight: TKilogramsPerSquareMeter): TPascalSeconds; inline;
-operator /(const ALeft: TPascalSeconds; const ARight: TKilogramsPerSquareMeter): TMetersPerSecond; inline;
-operator /(const ALeft: TPascalSeconds; const ARight: TMetersPerSecond): TKilogramsPerSquareMeter; inline;
-
-type
-  { Unit of Poise }
-  TPoiseUnit = record
-    const Symbol = 'P';
-    const Name   = 'poise';
-    const Factor = 1E-01;
-  end;
-  TPoiseUnitId = specialize TFactoredUnitId<TPascalSecondUnit, TPoiseUnit>;
-
-const
-  P: specialize TQuantity<TPascalSecondUnit> = (FValue: TPoiseUnit.Factor);
-
-type
   { Unit of Poiseuille }
   TPoiseuilleUnit = record
     const Symbol = 'Pl';
     const Name   = 'poiseuille ';
   end;
-  TPoiseuilles = specialize TQuantity<TPascalSecondUnit>;
+  TPoiseuilles = specialize TQuantity<TPoiseuilleUnit>;
   TPoiseuilleUnitId = specialize TUnitId<TPoiseuilleUnit>;
 
 var
-  Pl: TPascalSecondUnitId;
+  Pl: TPoiseuilleUnitId;
+
+// main definition [ Pl ] = [ Pa ] * [ s ]
+operator *(const ALeft: TPascals; const ARight: TSeconds): TPoiseuilles; inline;
+operator *(const ALeft: TSeconds; const ARight: TPascals): TPoiseuilles; inline;
+operator /(const ALeft: TPoiseuilles; const ARight: TPascals): TSeconds; inline;
+operator /(const ALeft: TPoiseuilles; const ARight: TSeconds): TPascals; inline;
+operator *(const ALeft: TPascals; const {%H-}ARight: TSecondUnitId): TPoiseuilles; inline;
+
+// alternative definition [ Pl ] = [ kg/m2 ] * [ m/s ]
+operator *(const ALeft: TKilogramsPerSquareMeter; const ARight: TMetersPerSecond): TPoiseuilles; inline;
+operator *(const ALeft: TMetersPerSecond; const ARight: TKilogramsPerSquareMeter): TPoiseuilles; inline;
+operator /(const ALeft: TPoiseuilles; const ARight: TKilogramsPerSquareMeter): TMetersPerSecond; inline;
+operator /(const ALeft: TPoiseuilles; const ARight: TMetersPerSecond): TKilogramsPerSquareMeter; inline;
+
+// alternative definition [ Pl ] = [ kg/s ] / [ m ]
+operator /(const ALeft: TKilogramsPerSecond; const ARight: TMeters): TPoiseuilles; inline;
+operator *(const ALeft: TMeters; const ARight: TPoiseuilles): TKilogramsPerSecond; inline;
+operator *(const ALeft: TPoiseuilles; const ARight: TMeters): TKilogramsPerSecond; inline;
+operator /(const ALeft: TKilogramsPerSecond; const ARight: TPoiseuilles): TMeters; inline;
+operator *(const ALeft: TPoiseuilles; const {%H-}ARight: TMeterUnitId): TKilogramsPerSecond; inline;
+
+type
+  { Unit of Decipoiseuille }
+  TDecipoiseuilleUnit = record
+    const Symbol = 'dPl';
+    const Name   = 'decipoiseuille';
+    const Factor = 1E-01;
+  end;
+  TDecipoiseuilleUnitId = specialize TFactoredUnitId<TPoiseuilleUnit, TDecipoiseuilleUnit>;
+
+const
+  dPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: TDecipoiseuilleUnit.Factor);
+
+type
+  { Unit of Centipoiseuille }
+  TCentipoiseuilleUnit = record
+    const Symbol = 'cPl';
+    const Name   = 'centipoiseuille';
+    const Factor = 1E-02;
+  end;
+  TCentipoiseuilleUnitId = specialize TFactoredUnitId<TPoiseuilleUnit, TCentipoiseuilleUnit>;
+
+const
+  cPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: TCentipoiseuilleUnit.Factor);
 
 type
   { Unit of Millipoiseuille }
   TMillipoiseuilleUnit = record
-    const Symbol = '';
-    const Name   = '';
+    const Symbol = 'mPl';
+    const Name   = 'millipoiseuille';
     const Factor = 1E-03;
   end;
-  TMillipoiseuilleUnitId = specialize TFactoredUnitId<TPascalSecondUnit, TMillipoiseuilleUnit>;
+  TMillipoiseuilleUnitId = specialize TFactoredUnitId<TPoiseuilleUnit, TMillipoiseuilleUnit>;
+
+const
+  mPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: TMillipoiseuilleUnit.Factor);
+
+type
+  { Unit of PascalSecond }
+  TPascalSecondUnit = record
+    const Symbol = 'Pa.s';
+    const Name   = 'pascal second';
+  end;
+  TPascalSeconds = specialize TQuantity<TPoiseuilleUnit>;
+  TPascalSecondUnitId = specialize TUnitId<TPascalSecondUnit>;
 
 type
   { Unit of SquareMeterPerSecond }
@@ -2782,11 +2797,11 @@ operator *(const ALeft: TSquareMetersPerSecond; const ARight: TSeconds): TSquare
 operator /(const ALeft: TSquareMeters; const ARight: TSquareMetersPerSecond): TSeconds; inline;
 operator /(const ALeft: TSquareMeters; const {%H-}ARight: TSecondUnitId): TSquareMetersPerSecond; inline;
 
-// alternative definition [ m2/s ] = [ Pa*s ] / [ kg/m3 ]
-operator /(const ALeft: TPascalSeconds; const ARight: TKilogramsPerCubicMeter): TSquareMetersPerSecond; inline;
-operator *(const ALeft: TKilogramsPerCubicMeter; const ARight: TSquareMetersPerSecond): TPascalSeconds; inline;
-operator *(const ALeft: TSquareMetersPerSecond; const ARight: TKilogramsPerCubicMeter): TPascalSeconds; inline;
-operator /(const ALeft: TPascalSeconds; const ARight: TSquareMetersPerSecond): TKilogramsPerCubicMeter; inline;
+// alternative definition [ m2/s ] = [ Pl ] / [ kg/m3 ]
+operator /(const ALeft: TPoiseuilles; const ARight: TKilogramsPerCubicMeter): TSquareMetersPerSecond; inline;
+operator *(const ALeft: TKilogramsPerCubicMeter; const ARight: TSquareMetersPerSecond): TPoiseuilles; inline;
+operator *(const ALeft: TSquareMetersPerSecond; const ARight: TKilogramsPerCubicMeter): TPoiseuilles; inline;
+operator /(const ALeft: TPoiseuilles; const ARight: TSquareMetersPerSecond): TKilogramsPerCubicMeter; inline;
 
 type
   { Unit of KilogramPerQuarticMeter }
@@ -3969,8 +3984,8 @@ type
   end;
 
 type
-  TPoiseuilleHelper = record helper for TPoiseuilleUnitId
-    class function From(const AQuantity: TPascalSeconds): TPoiseuilleUnitId.TBaseQuantity; static;
+  TPascalSecondHelper = record helper for TPascalSecondUnitId
+    class function From(const AQuantity: TPoiseuilles): TPascalSecondUnitId.TBaseQuantity; static;
   end;
 
 type
@@ -6086,77 +6101,77 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-// main definition [ Pa*s ] = [ Pa ] * [ s ]
-operator *(const ALeft: TPascals; const ARight: TSeconds): TPascalSeconds;
+// main definition [ Pl ] = [ Pa ] * [ s ]
+operator *(const ALeft: TPascals; const ARight: TSeconds): TPoiseuilles;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator *(const ALeft: TSeconds; const ARight: TPascals): TPascalSeconds;
+operator *(const ALeft: TSeconds; const ARight: TPascals): TPoiseuilles;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TPascalSeconds; const ARight: TPascals): TSeconds;
+operator /(const ALeft: TPoiseuilles; const ARight: TPascals): TSeconds;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-operator /(const ALeft: TPascalSeconds; const ARight: TSeconds): TPascals;
+operator /(const ALeft: TPoiseuilles; const ARight: TSeconds): TPascals;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-operator *(const ALeft: TPascals; const {%H-}ARight: TSecondUnitId): TPascalSeconds;
+operator *(const ALeft: TPascals; const {%H-}ARight: TSecondUnitId): TPoiseuilles;
 begin
   result.FValue := ALeft.FValue;
 end;
 
-// alternative definition [ Pa*s ] = [ kg/s ] / [ m ]
-operator /(const ALeft: TKilogramsPerSecond; const ARight: TMeters): TPascalSeconds;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
-
-operator *(const ALeft: TMeters; const ARight: TPascalSeconds): TKilogramsPerSecond;
+// alternative definition [ Pl ] = [ kg/m2 ] * [ m/s ]
+operator *(const ALeft: TKilogramsPerSquareMeter; const ARight: TMetersPerSecond): TPoiseuilles;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator *(const ALeft: TPascalSeconds; const ARight: TMeters): TKilogramsPerSecond;
+operator *(const ALeft: TMetersPerSecond; const ARight: TKilogramsPerSquareMeter): TPoiseuilles;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TKilogramsPerSecond; const ARight: TPascalSeconds): TMeters;
+operator /(const ALeft: TPoiseuilles; const ARight: TKilogramsPerSquareMeter): TMetersPerSecond;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-operator *(const ALeft: TPascalSeconds; const {%H-}ARight: TMeterUnitId): TKilogramsPerSecond;
+operator /(const ALeft: TPoiseuilles; const ARight: TMetersPerSecond): TKilogramsPerSquareMeter;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+// alternative definition [ Pl ] = [ kg/s ] / [ m ]
+operator /(const ALeft: TKilogramsPerSecond; const ARight: TMeters): TPoiseuilles;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator *(const ALeft: TMeters; const ARight: TPoiseuilles): TKilogramsPerSecond;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator *(const ALeft: TPoiseuilles; const ARight: TMeters): TKilogramsPerSecond;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator /(const ALeft: TKilogramsPerSecond; const ARight: TPoiseuilles): TMeters;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator *(const ALeft: TPoiseuilles; const {%H-}ARight: TMeterUnitId): TKilogramsPerSecond;
 begin
   result.FValue := ALeft.FValue;
-end;
-
-// alternative definition [ Pa*s ] = [ kg/m2 ] * [ m/s ]
-operator *(const ALeft: TKilogramsPerSquareMeter; const ARight: TMetersPerSecond): TPascalSeconds;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
-
-operator *(const ALeft: TMetersPerSecond; const ARight: TKilogramsPerSquareMeter): TPascalSeconds;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
-
-operator /(const ALeft: TPascalSeconds; const ARight: TKilogramsPerSquareMeter): TMetersPerSecond;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
-
-operator /(const ALeft: TPascalSeconds; const ARight: TMetersPerSecond): TKilogramsPerSquareMeter;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
 // main definition [ m2/s ] = [ m2 ] / [ s ]
@@ -6185,23 +6200,23 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
-// alternative definition [ m2/s ] = [ Pa*s ] / [ kg/m3 ]
-operator /(const ALeft: TPascalSeconds; const ARight: TKilogramsPerCubicMeter): TSquareMetersPerSecond;
+// alternative definition [ m2/s ] = [ Pl ] / [ kg/m3 ]
+operator /(const ALeft: TPoiseuilles; const ARight: TKilogramsPerCubicMeter): TSquareMetersPerSecond;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-operator *(const ALeft: TKilogramsPerCubicMeter; const ARight: TSquareMetersPerSecond): TPascalSeconds;
+operator *(const ALeft: TKilogramsPerCubicMeter; const ARight: TSquareMetersPerSecond): TPoiseuilles;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator *(const ALeft: TSquareMetersPerSecond; const ARight: TKilogramsPerCubicMeter): TPascalSeconds;
+operator *(const ALeft: TSquareMetersPerSecond; const ARight: TKilogramsPerCubicMeter): TPoiseuilles;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TPascalSeconds; const ARight: TSquareMetersPerSecond): TKilogramsPerCubicMeter;
+operator /(const ALeft: TPoiseuilles; const ARight: TSquareMetersPerSecond): TKilogramsPerCubicMeter;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
@@ -8627,7 +8642,7 @@ begin
   result.FValue := AQuantity.FValue;
 end;
 
-class function TPoiseuilleHelper.From(const AQuantity: TPascalSeconds): TPoiseuilleUnitId.TBaseQuantity; static;
+class function TPascalSecondHelper.From(const AQuantity: TPoiseuilles): TPascalSecondUnitId.TBaseQuantity; static;
 begin
   result.FValue := AQuantity.FValue;
 end;

@@ -713,7 +713,7 @@ begin
   // Reynolds number
   flowrate := 5*dm3/minute;
   density  := 1.05*g/cm3;
-  eta      := 0.03*ADim.P;
+  eta      := 0.003*Pl;
   radius   := 0.9*cm;
   Re       := 2000;
   speed    := Re*eta/(2*density*radius);
