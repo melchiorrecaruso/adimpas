@@ -20,7 +20,9 @@ Another unit for type checking of dimensioned quantities at compile time in Free
 ## References
 
 - [HyperPhysics](http://hyperphysics.phy-astr.gsu.edu/hbase/hframe.html)
-- [University Physics Volume 1](https://pressbooks.online.ucf.edu/osuniversityphysics/)
+- [University Physics Volume 1](https://openstax.org/details/books/university-physics-volume-1)
+- [University Physics Volume 2](https://openstax.org/details/books/university-physics-volume-2)
+- [University Physics Volume 3](https://openstax.org/details/books/university-physics-volume-3)
 
 ## LICENSE
 
