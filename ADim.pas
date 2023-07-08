@@ -2685,6 +2685,15 @@ operator /(const ALeft: TVoltsPerMeter; const ARight: TTeslas): TMetersPerSecond
 operator /(const ALeft: TVoltsPerMeter; const ARight: TMetersPerSecond): TTeslas; inline;
 
 type
+  { Unit of NewtonPerCoulomb }
+  TNewtonPerCoulombUnit = record
+    const Symbol = 'N/C';
+    const Name   = 'newton per coulomb';
+  end;
+  TNewtonsPerCoulomb = specialize TQuantity<TVoltPerMeterUnit>;
+  TNewtonPerCoulombUnitId = specialize TUnitId<TVoltPerMeterUnit>;
+
+type
   { Unit of CoulombPerMeter }
   TCoulombPerMeterUnit = record
     const Symbol = 'C/m';
@@ -2840,6 +2849,15 @@ operator /(const ALeft: TVoltMeters; const ARight: TVoltsPerMeter): TSquareMeter
 operator /(const ALeft: TVoltMeters; const ARight: TSquareMeters): TVoltsPerMeter; inline;
 
 type
+  { Unit of NewtonSquareMeterPerCoulomb }
+  TNewtonSquareMeterPerCoulombUnit = record
+    const Symbol = 'N.m2/C';
+    const Name   = 'newton square meter per coulomb';
+  end;
+  TNewtonSquareMetersPerCoulomb = specialize TQuantity<TVoltMeterUnit>;
+  TNewtonSquareMeterPerCoulombUnitId = specialize TUnitId<TVoltMeterUnit>;
+
+type
   { Unit of VoltMeterPerSecond }
   TVoltMeterPerSecondUnit = record
     const Symbol = 'V.m/s';
@@ -2945,6 +2963,15 @@ operator /(const ALeft: TNewtons; const ARight: TTeslaMeters): TAmperes; inline;
 operator /(const ALeft: TNewtons; const {%H-}ARight: TAmpereUnitId): TTeslaMeters; inline;
 
 type
+  { Unit of NewtonPerAmpere }
+  TNewtonPerAmpereUnit = record
+    const Symbol = 'N/A';
+    const Name   = 'newton per ampere';
+  end;
+  TNewtonsPerAmpere = specialize TQuantity<TTeslaMeterUnit>;
+  TNewtonPerAmpereUnitId = specialize TUnitId<TTeslaMeterUnit>;
+
+type
   { Unit of TeslaPerAmpere }
   TTeslaPerAmpereUnit = record
     const Symbol = 'T/A';
@@ -3007,6 +3034,24 @@ operator /(const ALeft: TNewtons; const ARight: TSquareAmperes): THenrysPerMeter
 operator *(const ALeft: TSquareAmperes; const ARight: THenrysPerMeter): TNewtons; inline;
 operator *(const ALeft: THenrysPerMeter; const ARight: TSquareAmperes): TNewtons; inline;
 operator /(const ALeft: TNewtons; const ARight: THenrysPerMeter): TSquareAmperes; inline;
+
+type
+  { Unit of TeslaMeterPerAmpere }
+  TTeslaMeterPerAmpereUnit = record
+    const Symbol = 'T.m/A';
+    const Name   = 'tesla meter per ampere';
+  end;
+  TTeslaMetersPerAmpere = specialize TQuantity<THenryPerMeterUnit>;
+  TTeslaMeterPerAmpereUnitId = specialize TUnitId<THenryPerMeterUnit>;
+
+type
+  { Unit of NewtonPerSquareAmpere }
+  TNewtonPerSquareAmpereUnit = record
+    const Symbol = 'N/A2';
+    const Name   = 'newton per square ampere';
+  end;
+  TNewtonsPerSquareAmpere = specialize TQuantity<THenryPerMeterUnit>;
+  TNewtonPerSquareAmpereUnitId = specialize TUnitId<THenryPerMeterUnit>;
 
 type
   { Unit of RadianPerMeter }
@@ -3219,6 +3264,27 @@ type
 type
   TSquareMeterPerSquareKilogramHelper = record helper for TSquareMetersPerSquareKilogram
     function AsJoulePerKilogram: specialize TQuantity<TJoulePerKilogramUnit>;
+  end;
+
+type
+  TVoltPerMeterHelper = record helper for TVoltsPerMeter
+    function AsNewtonPerCoulomb: specialize TQuantity<TNewtonPerCoulombUnit>;
+  end;
+
+type
+  TVoltMeterHelper = record helper for TVoltMeters
+    function AsNewtonSquareMeterPerCoulomb: specialize TQuantity<TNewtonSquareMeterPerCoulombUnit>;
+  end;
+
+type
+  TTeslaMeterHelper = record helper for TTeslaMeters
+    function AsNewtonPerAmpere: specialize TQuantity<TNewtonPerAmpereUnit>;
+  end;
+
+type
+  THenryPerMeterHelper = record helper for THenrysPerMeter
+    function AsNewtonPerSquareAmpere: specialize TQuantity<TNewtonPerSquareAmpereUnit>;
+    function AsTeslaMeterPerAmpere: specialize TQuantity<TTeslaMeterPerAmpereUnit>;
   end;
 
 type
@@ -8168,6 +8234,31 @@ begin
 end;
 
 function TSquareMeterPerSquareKilogramHelper.AsJoulePerKilogram: specialize TQuantity<TJoulePerKilogramUnit>;
+begin
+  result.FValue := FValue;
+end;
+
+function TVoltPerMeterHelper.AsNewtonPerCoulomb: specialize TQuantity<TNewtonPerCoulombUnit>;
+begin
+  result.FValue := FValue;
+end;
+
+function TVoltMeterHelper.AsNewtonSquareMeterPerCoulomb: specialize TQuantity<TNewtonSquareMeterPerCoulombUnit>;
+begin
+  result.FValue := FValue;
+end;
+
+function TTeslaMeterHelper.AsNewtonPerAmpere: specialize TQuantity<TNewtonPerAmpereUnit>;
+begin
+  result.FValue := FValue;
+end;
+
+function THenryPerMeterHelper.AsTeslaMeterPerAmpere: specialize TQuantity<TTeslaMeterPerAmpereUnit>;
+begin
+  result.FValue := FValue;
+end;
+
+function THenryPerMeterHelper.AsNewtonPerSquareAmpere: specialize TQuantity<TNewtonPerSquareAmpereUnit>;
 begin
   result.FValue := FValue;
 end;
