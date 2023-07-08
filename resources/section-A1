@@ -7,19 +7,24 @@ interface
 
 uses SysUtils;
 
-type
+type 
+  { Prefixes }
+  TPrefix = (pTera, pGiga, pMega, pKilo, pHecto, pDeca, pNone, pDeci, 
+    pCenti, pMilli, pMicro, pNano, pPico, pDay, pHour, pMinute);
+
   { TQuantity }
   generic TQuantity<U> = record
     type TSelf = specialize TQuantity<U>;
+    type TPrefixes = array of TPrefix; 
   private
     FValue: double;
   public
     function Abs: TSelf;
     function Value: double;
     function ToString: string;
-    function ToString(Precision, Digits: longint): string;
     function ToVerboseString: string;
-    function ToVerboseString(Precision, Digits: longint): string;      
+    function ToString(Precision, Digits: longint; const Prefixes: TPrefixes): string;
+    function ToVerboseString(Precision, Digits: longint; const Prefixes: TPrefixes): string;
     class operator +  (const ALeft, ARight: TSelf): TSelf;
     class operator -  (const ALeft, ARight: TSelf): TSelf;
     class operator *  (const AValue: double; const ASelf: TSelf): TSelf;
@@ -42,12 +47,4 @@ type
     class function From(const AQuantity: TBaseQuantity): TBaseQuantity; inline; static;
     class operator *(const AValue: double; const {%H-}ASelf: TSelf): TBaseQuantity;
   end;
-
-  { TFactoredUnitId }
-  generic TFactoredUnitId<BaseU, U> = record
-    type TSelf = specialize TFactoredUnitId<BaseU, U>;
-    type TBaseQuantity = specialize TQuantity<BaseU>;
-    type TFactoredQuantity = specialize TQuantity<U>;
-  public
-    class function From(const AQuantity: TBaseQuantity): TFactoredQuantity; inline; static;
-  end;
+  

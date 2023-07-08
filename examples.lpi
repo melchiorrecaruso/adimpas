@@ -27,9 +27,9 @@
         <Filename Value="examples.pas"/>
         <IsPartOfProject Value="True"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="1030"/>
-        <CursorPos Y="1063"/>
-        <UsageCount Value="168"/>
+        <TopLine Value="1094"/>
+        <CursorPos X="68" Y="1120"/>
+        <UsageCount Value="192"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -39,7 +39,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="138"/>
         <CursorPos X="7" Y="153"/>
-        <UsageCount Value="168"/>
+        <UsageCount Value="192"/>
       </Unit>
       <Unit>
         <Filename Value="code.inc"/>
@@ -111,11 +111,10 @@
       </Unit>
       <Unit>
         <Filename Value="ADim.pas"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="1033"/>
-        <CursorPos X="3" Y="1052"/>
-        <UsageCount Value="14"/>
-        <Loaded Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="604"/>
+        <CursorPos X="62" Y="3490"/>
+        <UsageCount Value="28"/>
       </Unit>
       <Unit>
         <Filename Value="../../../../../FPC/3.2.2/source/rtl/objpas/math.pp"/>
@@ -174,127 +173,139 @@
         <CursorPos X="11" Y="20"/>
         <UsageCount Value="10"/>
       </Unit>
+      <Unit>
+        <Filename Value="../../../../../fpcupdeluxe/fpcsrc/packages/rtl-objpas/src/inc/strutils.pp"/>
+        <UnitName Value="StrUtils"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="65"/>
+        <CursorPos X="10" Y="81"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../../fpcupdeluxe/fpcsrc/rtl/objpas/types.pp"/>
+        <UnitName Value="Types"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="11" Y="15"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../../fpcupdeluxe/fpcsrc/rtl/win32/system.pp"/>
+        <UnitName Value="System"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="15" Y="445"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../../fpcupdeluxe/fpcsrc/rtl/objpas/math.pp"/>
+        <UnitName Value="Math"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="564"/>
+        <CursorPos X="18" Y="584"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../../fpcupdeluxe/fpcsrc/rtl/objpas/sysutils/syshelph.inc"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="3" Y="4"/>
+        <UsageCount Value="10"/>
+      </Unit>
     </Units>
-    <JumpHistory HistoryIndex="29">
+    <JumpHistory HistoryIndex="23">
       <Position>
         <Filename Value="examples.pas"/>
-        <Caret Line="103" Column="3" TopLine="87"/>
+        <Caret Line="1097" Column="70" TopLine="1073"/>
       </Position>
       <Position>
         <Filename Value="examples.pas"/>
-        <Caret Line="151" Column="19" TopLine="136"/>
+        <Caret Line="849" Column="63" TopLine="833"/>
       </Position>
       <Position>
         <Filename Value="examples.pas"/>
-        <Caret Line="985" Column="28" TopLine="967"/>
+        <Caret Line="294" Column="48" TopLine="274"/>
       </Position>
       <Position>
         <Filename Value="examples.pas"/>
-        <Caret Line="976" Column="61" TopLine="966"/>
+        <Caret Line="984" Column="88" TopLine="967"/>
       </Position>
       <Position>
         <Filename Value="examples.pas"/>
-        <Caret Line="992" Column="37" TopLine="966"/>
+        <Caret Line="983" Column="138" TopLine="967"/>
       </Position>
       <Position>
         <Filename Value="examples.pas"/>
-        <Caret Line="981" Column="37" TopLine="969"/>
+        <Caret Line="1075" Column="70" TopLine="1055"/>
       </Position>
       <Position>
         <Filename Value="examples.pas"/>
-        <Caret Line="25" Column="11" TopLine="10"/>
+        <Caret Line="1097" Column="24" TopLine="1072"/>
       </Position>
       <Position>
         <Filename Value="examples.pas"/>
-        <Caret Line="997" Column="15" TopLine="973"/>
+        <Caret Line="1087" Column="65" TopLine="1067"/>
       </Position>
       <Position>
         <Filename Value="examples.pas"/>
-        <Caret Line="998" Column="36" TopLine="974"/>
+        <Caret Line="1097" Column="26" TopLine="1067"/>
       </Position>
       <Position>
         <Filename Value="examples.pas"/>
-        <Caret Line="996" Column="31" TopLine="969"/>
+        <Caret Line="1096" Column="29" TopLine="1067"/>
       </Position>
       <Position>
         <Filename Value="examples.pas"/>
-        <Caret Line="999" Column="35" TopLine="969"/>
+        <Caret Line="1097" Column="30" TopLine="1067"/>
       </Position>
       <Position>
         <Filename Value="examples.pas"/>
-        <Caret Line="152" Column="6" TopLine="127"/>
+        <Caret Line="1097" Column="19" TopLine="1067"/>
       </Position>
       <Position>
         <Filename Value="examples.pas"/>
-        <Caret Line="1010" TopLine="982"/>
+        <Caret Line="1094" Column="27" TopLine="1067"/>
       </Position>
       <Position>
         <Filename Value="examples.pas"/>
-        <Caret Line="67" Column="8" TopLine="56"/>
+        <Caret Line="221" Column="52" TopLine="204"/>
       </Position>
       <Position>
         <Filename Value="examples.pas"/>
-        <Caret Line="476" Column="12" TopLine="453"/>
+        <Caret Line="340" Column="54" TopLine="324"/>
       </Position>
       <Position>
         <Filename Value="examples.pas"/>
-        <Caret Line="470" Column="48" TopLine="457"/>
+        <Caret Line="869" Column="66" TopLine="851"/>
       </Position>
       <Position>
         <Filename Value="examples.pas"/>
-        <Caret Line="67" Column="8" TopLine="48"/>
+        <Caret Line="930" Column="72" TopLine="903"/>
       </Position>
       <Position>
         <Filename Value="examples.pas"/>
-        <Caret Line="1042" Column="3" TopLine="1013"/>
+        <Caret Line="1008" Column="55" TopLine="990"/>
       </Position>
       <Position>
         <Filename Value="examples.pas"/>
-        <Caret Line="95" Column="3" TopLine="76"/>
+        <Caret Line="984" Column="96" TopLine="968"/>
       </Position>
       <Position>
         <Filename Value="examples.pas"/>
-        <Caret Line="1041" Column="16" TopLine="1013"/>
+        <Caret Line="1096" Column="19" TopLine="1078"/>
       </Position>
       <Position>
         <Filename Value="examples.pas"/>
-        <Caret Line="73" Column="3" TopLine="54"/>
+        <Caret Line="1106" Column="75" TopLine="1084"/>
       </Position>
       <Position>
         <Filename Value="examples.pas"/>
-        <Caret Line="960" Column="8" TopLine="941"/>
+        <Caret Line="1129" Column="73" TopLine="1097"/>
       </Position>
       <Position>
         <Filename Value="examples.pas"/>
-        <Caret Line="1043" Column="25" TopLine="1013"/>
+        <Caret Line="1135" Column="20" TopLine="1114"/>
       </Position>
       <Position>
         <Filename Value="examples.pas"/>
-        <Caret Line="1050" Column="6" TopLine="1023"/>
-      </Position>
-      <Position>
-        <Filename Value="examples.pas"/>
-        <Caret Line="82" Column="26" TopLine="62"/>
-      </Position>
-      <Position>
-        <Filename Value="examples.pas"/>
-        <Caret Line="133" Column="3" TopLine="114"/>
-      </Position>
-      <Position>
-        <Filename Value="examples.pas"/>
-        <Caret Line="82" Column="5" TopLine="63"/>
-      </Position>
-      <Position>
-        <Filename Value="examples.pas"/>
-        <Caret Line="1051" Column="20" TopLine="1024"/>
-      </Position>
-      <Position>
-        <Filename Value="examples.pas"/>
-        <Caret Line="82" Column="5" TopLine="63"/>
-      </Position>
-      <Position>
-        <Filename Value="examples.pas"/>
-        <Caret Line="1061" Column="68" TopLine="1032"/>
+        <Caret Line="1100" Column="30" TopLine="1086"/>
       </Position>
     </JumpHistory>
   </ProjectOptions>
@@ -315,6 +326,7 @@
     <Linking>
       <Debugging>
         <DebugInfoType Value="dsDwarf2Set"/>
+        <UseHeaptrc Value="True"/>
       </Debugging>
     </Linking>
   </CompilerOptions>

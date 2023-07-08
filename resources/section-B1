@@ -1,6 +1,89 @@
+
+const
+  Prefixes: array[0..14] of record Prefix: TPrefix; Symbol, Name: string; Factor: double end = (
+    (Prefix: pTera;   Symbol: 'T';   Name: 'tera';   Factor: 1E+12),
+    (Prefix: pGiga;   Symbol: 'G';   Name: 'giga';   Factor: 1E+9),
+    (Prefix: pMega;   Symbol: 'M';   Name: 'mega';   Factor: 1E+6),
+    (Prefix: pKilo;   Symbol: 'k';   Name: 'kilo';   Factor: 1E+3),
+    (Prefix: pHecto;  Symbol: 'h';   Name: 'hecto';  Factor: 1E+2),
+    (Prefix: pDeca;   Symbol: 'da';  Name: 'deca';   Factor: 1E+1),
+    (Prefix: pDeci;   Symbol: 'd';   Name: 'deci';   Factor: 1E-1),
+    (Prefix: pCenti;  Symbol: 'c';   Name: 'centi';  Factor: 1E-2),
+    (Prefix: pMilli;  Symbol: 'm';   Name: 'milli';  Factor: 1E-3),
+    (Prefix: pMicro;  Symbol: 'μ';   Name: 'micro';  Factor: 1E-6),
+    (Prefix: pNano;   Symbol: 'n';   Name: 'nano';   Factor: 1E-9),
+    (Prefix: pPico;   Symbol: 'p';   Name: 'pico';   Factor: 1E-12),
+    (Prefix: pDay;    Symbol: 'd';   Name: 'day';    Factor: 86400),
+    (Prefix: pHour;   Symbol: 'h';   Name: 'hour';   Factor: 3600),
+    (Prefix: pMinute; Symbol: 'min'; Name: 'minute'; Factor: 60)
+  );
+
+function Split(const AStr: string): TStringArray;
+function GetPrefixName(const APrefix: TPrefix): string;
+function GetPrefixSymbol(const APrefix: TPrefix): string;
+function GetPrefixFactor(const APrefix: TPrefix): double;
+
 implementation
 
 uses Math;
+
+function Split(const AStr: string): TStringArray;
+var
+  I, Index: longint;
+begin
+  result := nil;
+  Index  := 0;
+  SetLength(result, Index + 10);
+  for I := low(AStr) to high(AStr) do
+  begin
+    if (AStr[I] in ['.', '/', ' ']) then
+    begin
+      Inc(Index);
+      if Index = Length(result) then
+        SetLength(result, Index + 10);
+      if AStr[I] <> ' ' then
+      begin
+        result[Index] := AStr[I];
+        Inc(Index);
+        if Index = Length(result) then
+           SetLength(result, Index + 10);
+      end;
+      result[Index] := '';
+    end else
+      result[Index] := result[Index] + AStr[I];
+  end;
+  SetLength(result, Index + 1);
+end;
+
+function GetPrefixName(const APrefix: TPrefix): string;
+var
+  I: longint;
+begin
+  for I := low(Prefixes) to high(Prefixes) do
+    if Prefixes[i].Prefix = APrefix then
+      exit(Prefixes[i].Name);
+  result := '';
+end;
+
+function GetPrefixSymbol(const APrefix: TPrefix): string;
+var
+  I: longint;
+begin
+  for I := low(Prefixes) to high(Prefixes) do
+    if Prefixes[i].Prefix = APrefix then
+      exit(Prefixes[i].Symbol);
+  result := '';
+end;
+
+function GetPrefixFactor(const APrefix: TPrefix): double;
+var
+  I: longint;
+begin
+  for I := low(Prefixes) to high(Prefixes) do
+    if Prefixes[i].Prefix = APrefix then
+      exit(Prefixes[i].Factor);
+  result := 1;
+end;
 
 { TQuantity }
 
@@ -19,20 +102,172 @@ begin
   result := FloatToStr(FValue) + ' ' + U.Symbol;
 end;
 
-function TQuantity.ToString(Precision, Digits: longint): string;
-begin
-  result := FloatToStrF(FValue, ffGeneral, Precision, Digits)  + ' ' + U.Symbol;
-end;
-
 function TQuantity.ToVerboseString: string;
 begin
   result := FloatToStr(FValue) + ' ' + U.Name;
 end;
 
-function TQuantity.ToVerboseString(Precision, Digits: longint): string;
+function TQuantity.ToString(Precision, Digits: longint; const Prefixes: TPrefixes): string;
+var
+  Exponent: longint;
+  Return: double;
+  I, Index: longint;
+  Prefix: TPrefix;
+  SubStr: TStringArray;
 begin
-  result := FloatToStrF(FValue, ffGeneral, Precision, Digits)  + ' ' + U.Name;
-end; 
+  Return   := FValue;
+  Exponent := 1;
+  Index    := Low(Prefixes);
+  if Index <= High(Prefixes) then
+    Prefix := Prefixes[Index]
+  else
+    Prefix := pNone;
+
+  SubStr := Split(U.Symbol);
+  for I := Low(SubStr) to High(SubStr) do
+  begin
+    if (SubStr[I] = '/') then Exponent := -1 else
+    if (SubStr[I] = '.') then Exponent := +1 
+      else
+      begin
+
+        if SubStr[I][length(SubStr[I])] in ['2', '3', '4', '5', '6'] then
+          Exponent := Exponent * StrToInt(SubStr[I][length(SubStr[I])]); 
+           
+        if (SubStr[I] = 's' ) or (SubStr[I] = 's2') then
+        begin
+
+          if Prefix in [pDay, pHour, pMinute] then
+          begin
+            SubStr[I] := GetPrefixSymbol(Prefix);
+            Return    := Return / IntPower(GetPrefixFactor(Prefix), Exponent);
+          end else
+            if Prefix in [pDeci, pCenti, pMilli, pMicro, pNano, pPico] then
+            begin
+              SubStr[I] := GetPrefixSymbol(Prefix) + SubStr[I];
+              Return    := Return / IntPower(GetPrefixFactor(Prefix), Exponent);
+            end else
+              Prefix := pNone;
+
+        end else
+          if not (Prefix in [pDay, pHour, pMinute]) then
+          begin
+          
+            if (SubStr[I] = 'kg' ) or (SubStr[I] = 'kg2') then
+            begin      
+              if Prefix <> pKilo then
+              begin
+                SubStr[I] := Copy(SubStr[I], 2, Length(SubStr[I]));  
+                Return := Return * IntPower(1000, Exponent); 
+              end else
+                Prefix := pNone; 
+            end;
+
+            if Prefix <> pNone then 
+            begin
+              SubStr[I] := GetPrefixSymbol(Prefix) + SubStr[I];
+              Return    := Return / IntPower(GetPrefixFactor(Prefix), Exponent);
+            end;  
+          end;
+        
+        Exponent := 1;
+        Index    := Index + 1;
+        if Index <= High(Prefixes) then
+          Prefix := Prefixes[Index]
+        else
+          Prefix := pNone;
+      end;
+  end;
+
+  result := FloatToStrF(Return, ffGeneral, Precision, Digits) + ' ';
+  for I := Low(SubStr) to High(SubStr) do
+  begin
+    result := result + SubStr[I];
+  end;
+  SubStr := nil;
+end;
+
+function TQuantity.ToVerboseString(Precision, Digits: longint; const Prefixes: TPrefixes): string;
+var
+  Exponent: longint;
+  Return: double;
+  I, Index: longint;
+  Prefix: TPrefix;
+  SubStr: TStringArray;
+begin
+  Return   := FValue;
+  Exponent := 1;
+  Index    := Low(Prefixes);
+  if Index <= High(Prefixes) then
+    Prefix := Prefixes[Index]
+  else
+    Prefix := pNone;
+
+  SubStr := Split(U.Name);
+  for I := Low(SubStr) to High(SubStr) do
+  begin
+
+    if (SubStr[I] = 'per'    ) then Exponent := -1           else
+    if (SubStr[I] = 'square' ) then Exponent := Exponent * 2 else
+    if (SubStr[I] = 'cubic'  ) then Exponent := Exponent * 3 else
+    if (SubStr[I] = 'quartic') then Exponent := Exponent * 4 else
+    if (SubStr[I] = 'quintic') then Exponent := Exponent * 5 else
+    if (SubStr[I] = 'sextic' ) then Exponent := Exponent * 6
+      else
+      begin
+
+        if (SubStr[I] = 'second') then
+        begin
+
+          if Prefix in [pDay, pHour, pMinute] then
+          begin
+            SubStr[I] := GetPrefixSymbol(Prefix);
+            Return    := Return / IntPower(GetPrefixFactor(Prefix), Exponent);
+          end else
+            if Prefix in [pDeci, pCenti, pMilli, pMicro, pNano, pPico] then
+            begin
+              SubStr[I] := GetPrefixSymbol(Prefix) + SubStr[I];
+              Return    := Return / IntPower(GetPrefixFactor(Prefix), Exponent);
+            end else
+              Prefix := pNone;        
+
+        end else
+          if not (Prefix in [pDay, pHour, pMinute]) then
+          begin
+          
+            if (SubStr[I] = 'kilogram') then
+            begin      
+              if Prefix <> pKilo then
+              begin
+                SubStr[I] := 'gram';
+                Return := Return * IntPower(1000, Exponent); 
+              end else
+                Prefix := pNone;                 
+            end;
+
+            if Prefix <> pNone then 
+            begin
+              SubStr[I] := GetPrefixSymbol(Prefix) + SubStr[I];
+              Return := Return / IntPower(GetPrefixFactor(Prefix), Exponent);
+            end;  
+          end;
+
+        Exponent := 1;
+        Index    := Index + 1;
+        if Index <= High(Prefixes) then
+          Prefix := Prefixes[Index]
+        else
+          Prefix := pNone;
+      end;
+  end;
+
+  result := FloatToStrF(Return, ffGeneral, Precision, Digits);
+  for I := Low(SubStr) to High(SubStr) do
+  begin
+    result := result + ' ' + SubStr[I];
+  end;
+  SubStr := nil;
+end;                                             
 
 class operator TQuantity.+(const ALeft, ARight: TSelf): TSelf;
 begin
@@ -104,11 +339,4 @@ end;
 class operator TUnitId.*(const AValue: double; const ASelf: TSelf): TBaseQuantity;
 begin
   result.FValue := AValue;
-end;
-
-{ TFactoredUnitId }
-
-class function TFactoredUnitId.From(const AQuantity: TBaseQuantity): TFactoredQuantity;
-begin
-  result.FValue := AQuantity.FValue / U.Factor;
 end;

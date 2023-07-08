@@ -27,18 +27,23 @@ interface
 uses SysUtils;
 
 type
+  { Prefixes }
+  TPrefix = (pTera, pGiga, pMega, pKilo, pHecto, pDeca, pNone, pDeci,
+    pCenti, pMilli, pMicro, pNano, pPico, pDay, pHour, pMinute);
+
   { TQuantity }
   generic TQuantity<U> = record
     type TSelf = specialize TQuantity<U>;
+    type TPrefixes = array of TPrefix;
   private
     FValue: double;
   public
     function Abs: TSelf;
     function Value: double;
     function ToString: string;
-    function ToString(Precision, Digits: longint): string;
     function ToVerboseString: string;
-    function ToVerboseString(Precision, Digits: longint): string;
+    function ToString(Precision, Digits: longint; const Prefixes: TPrefixes): string;
+    function ToVerboseString(Precision, Digits: longint; const Prefixes: TPrefixes): string;
     class operator +  (const ALeft, ARight: TSelf): TSelf;
     class operator -  (const ALeft, ARight: TSelf): TSelf;
     class operator *  (const AValue: double; const ASelf: TSelf): TSelf;
@@ -62,15 +67,6 @@ type
     class operator *(const AValue: double; const {%H-}ASelf: TSelf): TBaseQuantity;
   end;
 
-  { TFactoredUnitId }
-  generic TFactoredUnitId<BaseU, U> = record
-    type TSelf = specialize TFactoredUnitId<BaseU, U>;
-    type TBaseQuantity = specialize TQuantity<BaseU>;
-    type TFactoredQuantity = specialize TQuantity<U>;
-  public
-    class function From(const AQuantity: TBaseQuantity): TFactoredQuantity; inline; static;
-  end;
-
 type
   { Unit of Second }
   TSecondUnit = record
@@ -80,32 +76,26 @@ type
   TSeconds = specialize TQuantity<TSecondUnit>;
   TSecondUnitId = specialize TUnitId<TSecondUnit>;
 
-var
-  s: TSecondUnitId;
+var s: TSecondUnitId;
 
-type
-  { Unit of Year }
-  TYearUnit = record
-    const Symbol = 'year';
-    const Name   = 'year';
-    const Factor = 31556952;
-  end;
-  TYearUnitId = specialize TFactoredUnitId<TSecondUnit, TYearUnit>;
-
-const
-  year: specialize TQuantity<TSecondUnit> = (FValue: TYearUnit.Factor);
+const     ds: specialize TQuantity<TSecondUnit> = (FValue: 1E-01);
+const     cs: specialize TQuantity<TSecondUnit> = (FValue: 1E-02);
+const     ms: specialize TQuantity<TSecondUnit> = (FValue: 1E-03);
+const    mis: specialize TQuantity<TSecondUnit> = (FValue: 1E-06);
+const     ns: specialize TQuantity<TSecondUnit> = (FValue: 1E-09);
+const     ps: specialize TQuantity<TSecondUnit> = (FValue: 1E-12);
 
 type
   { Unit of Day }
   TDayUnit = record
-    const Symbol = 'day';
+    const Symbol = 'd';
     const Name   = 'day';
     const Factor = 86400;
   end;
-  TDayUnitId = specialize TFactoredUnitId<TSecondUnit, TDayUnit>;
+  TDays = specialize TQuantity<TSecondUnit>;
+  TDayUnitId = specialize TUnitId<TDayUnit>;
 
-const
-  day: specialize TQuantity<TSecondUnit> = (FValue: TDayUnit.Factor);
+const day: specialize TQuantity<TSecondUnit> = (FValue: 86400);
 
 type
   { Unit of Hour }
@@ -114,10 +104,10 @@ type
     const Name   = 'hour';
     const Factor = 3600;
   end;
-  THourUnitId = specialize TFactoredUnitId<TSecondUnit, THourUnit>;
+  THours = specialize TQuantity<TSecondUnit>;
+  THourUnitId = specialize TUnitId<THourUnit>;
 
-const
-  hour: specialize TQuantity<TSecondUnit> = (FValue: THourUnit.Factor);
+const hr: specialize TQuantity<TSecondUnit> = (FValue: 3600);
 
 type
   { Unit of Minute }
@@ -126,82 +116,10 @@ type
     const Name   = 'minute';
     const Factor = 60;
   end;
-  TMinuteUnitId = specialize TFactoredUnitId<TSecondUnit, TMinuteUnit>;
+  TMinutes = specialize TQuantity<TSecondUnit>;
+  TMinuteUnitId = specialize TUnitId<TMinuteUnit>;
 
-const
-  minute: specialize TQuantity<TSecondUnit> = (FValue: TMinuteUnit.Factor);
-
-type
-  { Unit of Decisecond }
-  TDecisecondUnit = record
-    const Symbol = 'ds';
-    const Name   = 'decisecond';
-    const Factor = 1E-01;
-  end;
-  TDecisecondUnitId = specialize TFactoredUnitId<TSecondUnit, TDecisecondUnit>;
-
-const
-  ds: specialize TQuantity<TSecondUnit> = (FValue: TDecisecondUnit.Factor);
-
-type
-  { Unit of Centisecond }
-  TCentisecondUnit = record
-    const Symbol = 'cs';
-    const Name   = 'centisecond';
-    const Factor = 1E-02;
-  end;
-  TCentisecondUnitId = specialize TFactoredUnitId<TSecondUnit, TCentisecondUnit>;
-
-const
-  cs: specialize TQuantity<TSecondUnit> = (FValue: TCentisecondUnit.Factor);
-
-type
-  { Unit of Millisecond }
-  TMillisecondUnit = record
-    const Symbol = 'ms';
-    const Name   = 'millisecond';
-    const Factor = 1E-03;
-  end;
-  TMillisecondUnitId = specialize TFactoredUnitId<TSecondUnit, TMillisecondUnit>;
-
-const
-  ms: specialize TQuantity<TSecondUnit> = (FValue: TMillisecondUnit.Factor);
-
-type
-  { Unit of Microsecond }
-  TMicrosecondUnit = record
-    const Symbol = 'us';
-    const Name   = 'microsecond';
-    const Factor = 1E-06;
-  end;
-  TMicrosecondUnitId = specialize TFactoredUnitId<TSecondUnit, TMicrosecondUnit>;
-
-const
-  us: specialize TQuantity<TSecondUnit> = (FValue: TMicrosecondUnit.Factor);
-
-type
-  { Unit of Nanosecond }
-  TNanosecondUnit = record
-    const Symbol = 'ns';
-    const Name   = 'nanosecond';
-    const Factor = 1E-09;
-  end;
-  TNanosecondUnitId = specialize TFactoredUnitId<TSecondUnit, TNanosecondUnit>;
-
-const
-  ns: specialize TQuantity<TSecondUnit> = (FValue: TNanosecondUnit.Factor);
-
-type
-  { Unit of Picosecond }
-  TPicosecondUnit = record
-    const Symbol = 'ps';
-    const Name   = 'picosecond';
-    const Factor = 1E-12;
-  end;
-  TPicosecondUnitId = specialize TFactoredUnitId<TSecondUnit, TPicosecondUnit>;
-
-const
-  ps: specialize TQuantity<TSecondUnit> = (FValue: TPicosecondUnit.Factor);
+const minute: specialize TQuantity<TSecondUnit> = (FValue: 60);
 
 type
   { Unit of SquareSecond }
@@ -212,12 +130,47 @@ type
   TSquareSeconds = specialize TQuantity<TSquareSecondUnit>;
   TSquareSecondUnitId = specialize TUnitId<TSquareSecondUnit>;
 
-var
-  s2: TSquareSecondUnitId;
+var s2: TSquareSecondUnitId;
 
 // main definition [ s2 ] = [ s ] * [ s ]
 operator *(const ALeft: TSeconds; const ARight: TSeconds): TSquareSeconds; inline;
 operator /(const ALeft: TSquareSeconds; const ARight: TSeconds): TSeconds; inline;
+
+type
+  { Unit of SquareDay }
+  TSquareDayUnit = record
+    const Symbol = 'd2';
+    const Name   = 'square day';
+    const Factor = 7464960000;
+  end;
+  TSquareDays = specialize TQuantity<TSquareSecondUnit>;
+  TSquareDayUnitId = specialize TUnitId<TSquareDayUnit>;
+
+const day2: specialize TQuantity<TSquareSecondUnit> = (FValue: 7464960000);
+
+type
+  { Unit of SquareHour }
+  TSquareHourUnit = record
+    const Symbol = 'h2';
+    const Name   = 'square hour';
+    const Factor = 12960000;
+  end;
+  TSquareHours = specialize TQuantity<TSquareSecondUnit>;
+  TSquareHourUnitId = specialize TUnitId<TSquareHourUnit>;
+
+const hr2: specialize TQuantity<TSquareSecondUnit> = (FValue: 12960000);
+
+type
+  { Unit of SquareMinute }
+  TSquareMinuteUnit = record
+    const Symbol = 'min2';
+    const Name   = 'square minute';
+    const Factor = 3600;
+  end;
+  TSquareMinutes = specialize TQuantity<TSquareSecondUnit>;
+  TSquareMinuteUnitId = specialize TUnitId<TSquareMinuteUnit>;
+
+const minute2: specialize TQuantity<TSquareSecondUnit> = (FValue: 3600);
 
 type
   { Unit of Meter }
@@ -228,8 +181,17 @@ type
   TMeters = specialize TQuantity<TMeterUnit>;
   TMeterUnitId = specialize TUnitId<TMeterUnit>;
 
-var
-  m: TMeterUnitId;
+var m: TMeterUnitId;
+
+const     km: specialize TQuantity<TMeterUnit> = (FValue: 1E+03);
+const     hm: specialize TQuantity<TMeterUnit> = (FValue: 1E+02);
+const    dam: specialize TQuantity<TMeterUnit> = (FValue: 1E+01);
+const     dm: specialize TQuantity<TMeterUnit> = (FValue: 1E-01);
+const     cm: specialize TQuantity<TMeterUnit> = (FValue: 1E-02);
+const     mm: specialize TQuantity<TMeterUnit> = (FValue: 1E-03);
+const    mim: specialize TQuantity<TMeterUnit> = (FValue: 1E-06);
+const     nm: specialize TQuantity<TMeterUnit> = (FValue: 1E-09);
+const     pm: specialize TQuantity<TMeterUnit> = (FValue: 1E-12);
 
 type
   { Unit of Astronomical }
@@ -238,118 +200,10 @@ type
     const Name   = 'astronomical unit';
     const Factor = 149597870691;
   end;
-  TAstronomicalUnitId = specialize TFactoredUnitId<TMeterUnit, TAstronomicalUnit>;
+  TAstronomical = specialize TQuantity<TMeterUnit>;
+  TAstronomicalUnitId = specialize TUnitId<TAstronomicalUnit>;
 
-const
-  au: specialize TQuantity<TMeterUnit> = (FValue: TAstronomicalUnit.Factor);
-
-type
-  { Unit of Kilometer }
-  TKilometerUnit = record
-    const Symbol = 'km';
-    const Name   = 'kilometer';
-    const Factor = 1E+03;
-  end;
-  TKilometerUnitId = specialize TFactoredUnitId<TMeterUnit, TKilometerUnit>;
-
-const
-  km: specialize TQuantity<TMeterUnit> = (FValue: TKilometerUnit.Factor);
-
-type
-  { Unit of Hectometer }
-  THectometerUnit = record
-    const Symbol = 'hm';
-    const Name   = 'hectometer';
-    const Factor = 1E+02;
-  end;
-  THectometerUnitId = specialize TFactoredUnitId<TMeterUnit, THectometerUnit>;
-
-const
-  hm: specialize TQuantity<TMeterUnit> = (FValue: THectometerUnit.Factor);
-
-type
-  { Unit of Decameter }
-  TDecameterUnit = record
-    const Symbol = 'dam';
-    const Name   = 'decameter';
-    const Factor = 1E+01;
-  end;
-  TDecameterUnitId = specialize TFactoredUnitId<TMeterUnit, TDecameterUnit>;
-
-const
-  dam: specialize TQuantity<TMeterUnit> = (FValue: TDecameterUnit.Factor);
-
-type
-  { Unit of Decimeter }
-  TDecimeterUnit = record
-    const Symbol = 'dm';
-    const Name   = 'decimeter';
-    const Factor = 1E-01;
-  end;
-  TDecimeterUnitId = specialize TFactoredUnitId<TMeterUnit, TDecimeterUnit>;
-
-const
-  dm: specialize TQuantity<TMeterUnit> = (FValue: TDecimeterUnit.Factor);
-
-type
-  { Unit of Centimeter }
-  TCentimeterUnit = record
-    const Symbol = 'cm';
-    const Name   = 'centimeter';
-    const Factor = 1E-02;
-  end;
-  TCentimeterUnitId = specialize TFactoredUnitId<TMeterUnit, TCentimeterUnit>;
-
-const
-  cm: specialize TQuantity<TMeterUnit> = (FValue: TCentimeterUnit.Factor);
-
-type
-  { Unit of Millimeter }
-  TMillimeterUnit = record
-    const Symbol = 'mm';
-    const Name   = 'millimeter';
-    const Factor = 1E-03;
-  end;
-  TMillimeterUnitId = specialize TFactoredUnitId<TMeterUnit, TMillimeterUnit>;
-
-const
-  mm: specialize TQuantity<TMeterUnit> = (FValue: TMillimeterUnit.Factor);
-
-type
-  { Unit of Micrometer }
-  TMicrometerUnit = record
-    const Symbol = 'um';
-    const Name   = 'micrometer';
-    const Factor = 1E-06;
-  end;
-  TMicrometerUnitId = specialize TFactoredUnitId<TMeterUnit, TMicrometerUnit>;
-
-const
-  um: specialize TQuantity<TMeterUnit> = (FValue: TMicrometerUnit.Factor);
-
-type
-  { Unit of Nanometer }
-  TNanometerUnit = record
-    const Symbol = 'nm';
-    const Name   = 'nanometer';
-    const Factor = 1E-09;
-  end;
-  TNanometerUnitId = specialize TFactoredUnitId<TMeterUnit, TNanometerUnit>;
-
-const
-  nm: specialize TQuantity<TMeterUnit> = (FValue: TNanometerUnit.Factor);
-
-type
-  { Unit of Picometer }
-  TPicometerUnit = record
-    const Symbol = 'pm';
-    const Name   = 'picometer';
-    const Factor = 1E-12;
-  end;
-  TPicometerUnitId = specialize TFactoredUnitId<TMeterUnit, TPicometerUnit>;
-
-const
-  pm: specialize TQuantity<TMeterUnit> = (FValue: TPicometerUnit.Factor);
+const au: specialize TQuantity<TMeterUnit> = (FValue: 149597870691);
 
 type
   { Unit of SquareMeter }
@@ -360,84 +214,21 @@ type
   TSquareMeters = specialize TQuantity<TSquareMeterUnit>;
   TSquareMeterUnitId = specialize TUnitId<TSquareMeterUnit>;
 
-var
-  m2: TSquareMeterUnitId;
+var m2: TSquareMeterUnitId;
+
+const     km2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E+06);
+const     hm2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E+04);
+const    dam2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E+02);
+const     dm2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E-02);
+const     cm2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E-04);
+const     mm2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E-06);
+const    mim2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E-12);
+const     nm2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E-18);
+const     pm2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E-24);
 
 // main definition [ m2 ] = [ m ] * [ m ]
 operator *(const ALeft: TMeters; const ARight: TMeters): TSquareMeters; inline;
 operator /(const ALeft: TSquareMeters; const ARight: TMeters): TMeters; inline;
-
-type
-  { Unit of SquareKilometer }
-  TSquareKilometerUnit = record
-    const Symbol = 'km2';
-    const Name   = 'square kilometer';
-    const Factor = 1E+06;
-  end;
-  TSquareKilometerUnitId = specialize TFactoredUnitId<TSquareMeterUnit, TSquareKilometerUnit>;
-
-const
-  km2: specialize TQuantity<TSquareMeterUnit> = (FValue: TSquareKilometerUnit.Factor);
-
-type
-  { Unit of SquareHectometer }
-  TSquareHectometerUnit = record
-    const Symbol = 'hm2';
-    const Name   = 'square hectometer';
-    const Factor = 1E+04;
-  end;
-  TSquareHectometerUnitId = specialize TFactoredUnitId<TSquareMeterUnit, TSquareHectometerUnit>;
-
-const
-  hm2: specialize TQuantity<TSquareMeterUnit> = (FValue: TSquareHectometerUnit.Factor);
-
-type
-  { Unit of SquareDecameter }
-  TSquareDecameterUnit = record
-    const Symbol = 'dam2';
-    const Name   = 'square decameter';
-    const Factor = 1E+02;
-  end;
-  TSquareDecameterUnitId = specialize TFactoredUnitId<TSquareMeterUnit, TSquareDecameterUnit>;
-
-const
-  dam2: specialize TQuantity<TSquareMeterUnit> = (FValue: TSquareDecameterUnit.Factor);
-
-type
-  { Unit of SquareDecimeter }
-  TSquareDecimeterUnit = record
-    const Symbol = 'dm2';
-    const Name   = 'square decimeter';
-    const Factor = 1E-02;
-  end;
-  TSquareDecimeterUnitId = specialize TFactoredUnitId<TSquareMeterUnit, TSquareDecimeterUnit>;
-
-const
-  dm2: specialize TQuantity<TSquareMeterUnit> = (FValue: TSquareDecimeterUnit.Factor);
-
-type
-  { Unit of SquareCentimeter }
-  TSquareCentimeterUnit = record
-    const Symbol = 'cm2';
-    const Name   = 'square centimeter';
-    const Factor = 1E-04;
-  end;
-  TSquareCentimeterUnitId = specialize TFactoredUnitId<TSquareMeterUnit, TSquareCentimeterUnit>;
-
-const
-  cm2: specialize TQuantity<TSquareMeterUnit> = (FValue: TSquareCentimeterUnit.Factor);
-
-type
-  { Unit of SquareMillimeter }
-  TSquareMillimeterUnit = record
-    const Symbol = 'mm2';
-    const Name   = 'square millimeter';
-    const Factor = 1E-06;
-  end;
-  TSquareMillimeterUnitId = specialize TFactoredUnitId<TSquareMeterUnit, TSquareMillimeterUnit>;
-
-const
-  mm2: specialize TQuantity<TSquareMeterUnit> = (FValue: TSquareMillimeterUnit.Factor);
 
 type
   { Unit of CubicMeter }
@@ -448,86 +239,23 @@ type
   TCubicMeters = specialize TQuantity<TCubicMeterUnit>;
   TCubicMeterUnitId = specialize TUnitId<TCubicMeterUnit>;
 
-var
-  m3: TCubicMeterUnitId;
+var m3: TCubicMeterUnitId;
+
+const     km3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E+09);
+const     hm3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E+06);
+const    dam3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E+03);
+const     dm3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03);
+const     cm3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-06);
+const     mm3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-09);
+const    mim3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-18);
+const     nm3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-27);
+const     pm3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-36);
 
 // main definition [ m3 ] = [ m2 ] * [ m ]
 operator *(const ALeft: TSquareMeters; const ARight: TMeters): TCubicMeters; inline;
 operator *(const ALeft: TMeters; const ARight: TSquareMeters): TCubicMeters; inline;
 operator /(const ALeft: TCubicMeters; const ARight: TSquareMeters): TMeters; inline;
 operator /(const ALeft: TCubicMeters; const ARight: TMeters): TSquareMeters; inline;
-
-type
-  { Unit of CubicKilometer }
-  TCubicKilometerUnit = record
-    const Symbol = 'km3';
-    const Name   = 'cubic kilometer';
-    const Factor = 1E+09;
-  end;
-  TCubicKilometerUnitId = specialize TFactoredUnitId<TCubicMeterUnit, TCubicKilometerUnit>;
-
-const
-  km3: specialize TQuantity<TCubicMeterUnit> = (FValue: TCubicKilometerUnit.Factor);
-
-type
-  { Unit of CubicHectometer }
-  TCubicHectometerUnit = record
-    const Symbol = 'hm3';
-    const Name   = 'cubic hectometer';
-    const Factor = 1E+06;
-  end;
-  TCubicHectometerUnitId = specialize TFactoredUnitId<TCubicMeterUnit, TCubicHectometerUnit>;
-
-const
-  hm3: specialize TQuantity<TCubicMeterUnit> = (FValue: TCubicHectometerUnit.Factor);
-
-type
-  { Unit of CubicDecameter }
-  TCubicDecameterUnit = record
-    const Symbol = 'dam3';
-    const Name   = 'cubic decameter';
-    const Factor = 1E+03;
-  end;
-  TCubicDecameterUnitId = specialize TFactoredUnitId<TCubicMeterUnit, TCubicDecameterUnit>;
-
-const
-  dam3: specialize TQuantity<TCubicMeterUnit> = (FValue: TCubicDecameterUnit.Factor);
-
-type
-  { Unit of CubicDecimeter }
-  TCubicDecimeterUnit = record
-    const Symbol = 'dm3';
-    const Name   = 'cubic decimeter';
-    const Factor = 1E-03;
-  end;
-  TCubicDecimeterUnitId = specialize TFactoredUnitId<TCubicMeterUnit, TCubicDecimeterUnit>;
-
-const
-  dm3: specialize TQuantity<TCubicMeterUnit> = (FValue: TCubicDecimeterUnit.Factor);
-
-type
-  { Unit of CubicCentimeter }
-  TCubicCentimeterUnit = record
-    const Symbol = 'cm3';
-    const Name   = 'cubic centimeter';
-    const Factor = 1E-06;
-  end;
-  TCubicCentimeterUnitId = specialize TFactoredUnitId<TCubicMeterUnit, TCubicCentimeterUnit>;
-
-const
-  cm3: specialize TQuantity<TCubicMeterUnit> = (FValue: TCubicCentimeterUnit.Factor);
-
-type
-  { Unit of CubicMillimeter }
-  TCubicMillimeterUnit = record
-    const Symbol = 'mm3';
-    const Name   = 'cubic millimeter';
-    const Factor = 1E-09;
-  end;
-  TCubicMillimeterUnitId = specialize TFactoredUnitId<TCubicMeterUnit, TCubicMillimeterUnit>;
-
-const
-  mm3: specialize TQuantity<TCubicMeterUnit> = (FValue: TCubicMillimeterUnit.Factor);
 
 type
   { Unit of QuarticMeter }
@@ -538,8 +266,17 @@ type
   TQuarticMeters = specialize TQuantity<TQuarticMeterUnit>;
   TQuarticMeterUnitId = specialize TUnitId<TQuarticMeterUnit>;
 
-var
-  m4: TQuarticMeterUnitId;
+var m4: TQuarticMeterUnitId;
+
+const     km4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E+12);
+const     hm4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E+08);
+const    dam4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E+04);
+const     dm4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E-04);
+const     cm4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E-08);
+const     mm4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E-12);
+const    mim4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E-24);
+const     nm4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E-36);
+const     pm4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E-48);
 
 // main definition [ m4 ] = [ m3 ] * [ m ]
 operator *(const ALeft: TCubicMeters; const ARight: TMeters): TQuarticMeters; inline;
@@ -552,78 +289,6 @@ operator *(const ALeft: TSquareMeters; const ARight: TSquareMeters): TQuarticMet
 operator /(const ALeft: TQuarticMeters; const ARight: TSquareMeters): TSquareMeters; inline;
 
 type
-  { Unit of QuarticKilometer }
-  TQuarticKilometerUnit = record
-    const Symbol = 'km4';
-    const Name   = 'quartic kilometer';
-    const Factor = 1E+12;
-  end;
-  TQuarticKilometerUnitId = specialize TFactoredUnitId<TQuarticMeterUnit, TQuarticKilometerUnit>;
-
-const
-  km4: specialize TQuantity<TQuarticMeterUnit> = (FValue: TQuarticKilometerUnit.Factor);
-
-type
-  { Unit of QuarticHectometer }
-  TQuarticHectometerUnit = record
-    const Symbol = 'hm4';
-    const Name   = 'quartic hectometer';
-    const Factor = 1E+08;
-  end;
-  TQuarticHectometerUnitId = specialize TFactoredUnitId<TQuarticMeterUnit, TQuarticHectometerUnit>;
-
-const
-  hm4: specialize TQuantity<TQuarticMeterUnit> = (FValue: TQuarticHectometerUnit.Factor);
-
-type
-  { Unit of QuarticDecameter }
-  TQuarticDecameterUnit = record
-    const Symbol = 'dam4';
-    const Name   = 'quartic decameter';
-    const Factor = 1E+04;
-  end;
-  TQuarticDecameterUnitId = specialize TFactoredUnitId<TQuarticMeterUnit, TQuarticDecameterUnit>;
-
-const
-  dam4: specialize TQuantity<TQuarticMeterUnit> = (FValue: TQuarticDecameterUnit.Factor);
-
-type
-  { Unit of QuarticDecimeter }
-  TQuarticDecimeterUnit = record
-    const Symbol = 'dm4';
-    const Name   = 'quartic decimeter';
-    const Factor = 1E-04;
-  end;
-  TQuarticDecimeterUnitId = specialize TFactoredUnitId<TQuarticMeterUnit, TQuarticDecimeterUnit>;
-
-const
-  dm4: specialize TQuantity<TQuarticMeterUnit> = (FValue: TQuarticDecimeterUnit.Factor);
-
-type
-  { Unit of QuarticCentimeter }
-  TQuarticCentimeterUnit = record
-    const Symbol = 'cm4';
-    const Name   = 'quartic centimeter';
-    const Factor = 1E-08;
-  end;
-  TQuarticCentimeterUnitId = specialize TFactoredUnitId<TQuarticMeterUnit, TQuarticCentimeterUnit>;
-
-const
-  cm4: specialize TQuantity<TQuarticMeterUnit> = (FValue: TQuarticCentimeterUnit.Factor);
-
-type
-  { Unit of QuarticMillimeter }
-  TQuarticMillimeterUnit = record
-    const Symbol = 'mm4';
-    const Name   = 'quartic millimeter';
-    const Factor = 1E-12;
-  end;
-  TQuarticMillimeterUnitId = specialize TFactoredUnitId<TQuarticMeterUnit, TQuarticMillimeterUnit>;
-
-const
-  mm4: specialize TQuantity<TQuarticMeterUnit> = (FValue: TQuarticMillimeterUnit.Factor);
-
-type
   { Unit of QuinticMeter }
   TQuinticMeterUnit = record
     const Symbol = 'm5';
@@ -632,8 +297,17 @@ type
   TQuinticMeters = specialize TQuantity<TQuinticMeterUnit>;
   TQuinticMeterUnitId = specialize TUnitId<TQuinticMeterUnit>;
 
-var
-  m5: TQuinticMeterUnitId;
+var m5: TQuinticMeterUnitId;
+
+const     km5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E+15);
+const     hm5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E+10);
+const    dam5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E+05);
+const     dm5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E-05);
+const     cm5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E-10);
+const     mm5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E-15);
+const    mim5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E-30);
+const     nm5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E-45);
+const     pm5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E-60);
 
 // main definition [ m5 ] = [ m4 ] * [ m ]
 operator *(const ALeft: TQuarticMeters; const ARight: TMeters): TQuinticMeters; inline;
@@ -656,8 +330,17 @@ type
   TSexticMeters = specialize TQuantity<TSexticMeterUnit>;
   TSexticMeterUnitId = specialize TUnitId<TSexticMeterUnit>;
 
-var
-  m6: TSexticMeterUnitId;
+var m6: TSexticMeterUnitId;
+
+const     km6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E+18);
+const     hm6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E+12);
+const    dam6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E+06);
+const     dm6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E-06);
+const     cm6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E-12);
+const     mm6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E-18);
+const    mim6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E-36);
+const     nm6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E-54);
+const     pm6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E-72);
 
 // main definition [ m6 ] = [ m5 ] * [ m ]
 operator *(const ALeft: TQuinticMeters; const ARight: TMeters): TSexticMeters; inline;
@@ -684,116 +367,17 @@ type
   TKilograms = specialize TQuantity<TKilogramUnit>;
   TKilogramUnitId = specialize TUnitId<TKilogramUnit>;
 
-var
-  kg: TKilogramUnitId;
+var kg: TKilogramUnitId;
 
-type
-  { Unit of Hectogram }
-  THectogramUnit = record
-    const Symbol = 'hg';
-    const Name   = 'hectogram';
-    const Factor = 1E-01;
-  end;
-  THectogramUnitId = specialize TFactoredUnitId<TKilogramUnit, THectogramUnit>;
-
-const
-  hg: specialize TQuantity<TKilogramUnit> = (FValue: THectogramUnit.Factor);
-
-type
-  { Unit of Decagram }
-  TDecagramUnit = record
-    const Symbol = 'dag';
-    const Name   = 'decagram';
-    const Factor = 1E-02;
-  end;
-  TDecagramUnitId = specialize TFactoredUnitId<TKilogramUnit, TDecagramUnit>;
-
-const
-  dag: specialize TQuantity<TKilogramUnit> = (FValue: TDecagramUnit.Factor);
-
-type
-  { Unit of Gram }
-  TGramUnit = record
-    const Symbol = 'g';
-    const Name   = 'gram';
-    const Factor = 1E-03;
-  end;
-  TGramUnitId = specialize TFactoredUnitId<TKilogramUnit, TGramUnit>;
-
-const
-  g: specialize TQuantity<TKilogramUnit> = (FValue: TGramUnit.Factor);
-
-type
-  { Unit of Decigram }
-  TDecigramUnit = record
-    const Symbol = 'dg';
-    const Name   = 'decigram';
-    const Factor = 1E-04;
-  end;
-  TDecigramUnitId = specialize TFactoredUnitId<TKilogramUnit, TDecigramUnit>;
-
-const
-  dg: specialize TQuantity<TKilogramUnit> = (FValue: TDecigramUnit.Factor);
-
-type
-  { Unit of Centigram }
-  TCentigramUnit = record
-    const Symbol = 'cg';
-    const Name   = 'centigram';
-    const Factor = 1E-05;
-  end;
-  TCentigramUnitId = specialize TFactoredUnitId<TKilogramUnit, TCentigramUnit>;
-
-const
-  cg: specialize TQuantity<TKilogramUnit> = (FValue: TCentigramUnit.Factor);
-
-type
-  { Unit of Milligram }
-  TMilligramUnit = record
-    const Symbol = 'mg';
-    const Name   = 'milligram';
-    const Factor = 1E-06;
-  end;
-  TMilligramUnitId = specialize TFactoredUnitId<TKilogramUnit, TMilligramUnit>;
-
-const
-  mg: specialize TQuantity<TKilogramUnit> = (FValue: TMilligramUnit.Factor);
-
-type
-  { Unit of Microgram }
-  TMicrogramUnit = record
-    const Symbol = 'ug';
-    const Name   = 'microgram';
-    const Factor = 1E-09;
-  end;
-  TMicrogramUnitId = specialize TFactoredUnitId<TKilogramUnit, TMicrogramUnit>;
-
-const
-  ug: specialize TQuantity<TKilogramUnit> = (FValue: TMicrogramUnit.Factor);
-
-type
-  { Unit of Nanogram }
-  TNanogramUnit = record
-    const Symbol = 'ng';
-    const Name   = 'nanogram';
-    const Factor = 1E-12;
-  end;
-  TNanogramUnitId = specialize TFactoredUnitId<TKilogramUnit, TNanogramUnit>;
-
-const
-  ng: specialize TQuantity<TKilogramUnit> = (FValue: TNanogramUnit.Factor);
-
-type
-  { Unit of Picogram }
-  TPicogramUnit = record
-    const Symbol = 'pg';
-    const Name   = 'picogram';
-    const Factor = 1E-15;
-  end;
-  TPicogramUnitId = specialize TFactoredUnitId<TKilogramUnit, TPicogramUnit>;
-
-const
-  pg: specialize TQuantity<TKilogramUnit> = (FValue: TPicogramUnit.Factor);
+const  hg: specialize TQuantity<TKilogramUnit> = (FValue: 1E-01);
+const dag: specialize TQuantity<TKilogramUnit> = (FValue: 1E-02);
+const   g: specialize TQuantity<TKilogramUnit> = (FValue: 1E-03);
+const  dg: specialize TQuantity<TKilogramUnit> = (FValue: 1E-04);
+const  cg: specialize TQuantity<TKilogramUnit> = (FValue: 1E-05);
+const  mg: specialize TQuantity<TKilogramUnit> = (FValue: 1E-06);
+const mig: specialize TQuantity<TKilogramUnit> = (FValue: 1E-09);
+const  ng: specialize TQuantity<TKilogramUnit> = (FValue: 1E-12);
+const  pg: specialize TQuantity<TKilogramUnit> = (FValue: 1E-15);
 
 type
   { Unit of SquareKilogram }
@@ -804,8 +388,17 @@ type
   TSquareKilograms = specialize TQuantity<TSquareKilogramUnit>;
   TSquareKilogramUnitId = specialize TUnitId<TSquareKilogramUnit>;
 
-var
-  kg2: TSquareKilogramUnitId;
+var kg2: TSquareKilogramUnitId;
+
+const  hg2: specialize TQuantity<TSquareKilogramUnit> = (FValue: 1E-02);
+const dag2: specialize TQuantity<TSquareKilogramUnit> = (FValue: 1E-04);
+const   g2: specialize TQuantity<TSquareKilogramUnit> = (FValue: 1E-06);
+const  dg2: specialize TQuantity<TSquareKilogramUnit> = (FValue: 1E-08);
+const  cg2: specialize TQuantity<TSquareKilogramUnit> = (FValue: 1E-10);
+const  mg2: specialize TQuantity<TSquareKilogramUnit> = (FValue: 1E-12);
+const mig2: specialize TQuantity<TSquareKilogramUnit> = (FValue: 1E-18);
+const  ng2: specialize TQuantity<TSquareKilogramUnit> = (FValue: 1E-24);
+const  pg2: specialize TQuantity<TSquareKilogramUnit> = (FValue: 1E-30);
 
 // main definition [ kg2 ] = [ kg ] * [ kg ]
 operator *(const ALeft: TKilograms; const ARight: TKilograms): TSquareKilograms; inline;
@@ -820,116 +413,20 @@ type
   TAmperes = specialize TQuantity<TAmpereUnit>;
   TAmpereUnitId = specialize TUnitId<TAmpereUnit>;
 
-var
-  A: TAmpereUnitId;
+var A: TAmpereUnitId;
 
-type
-  { Unit of Kiloampere }
-  TKiloampereUnit = record
-    const Symbol = 'kA';
-    const Name   = 'kiloampere';
-    const Factor = 1E+03;
-  end;
-  TKiloampereUnitId = specialize TFactoredUnitId<TAmpereUnit, TKiloampereUnit>;
-
-const
-  kA: specialize TQuantity<TAmpereUnit> = (FValue: TKiloampereUnit.Factor);
-
-type
-  { Unit of Hectoampere }
-  THectoampereUnit = record
-    const Symbol = 'hA';
-    const Name   = 'hectoampere';
-    const Factor = 1E+02;
-  end;
-  THectoampereUnitId = specialize TFactoredUnitId<TAmpereUnit, THectoampereUnit>;
-
-const
-  hA: specialize TQuantity<TAmpereUnit> = (FValue: THectoampereUnit.Factor);
-
-type
-  { Unit of Decampere }
-  TDecampereUnit = record
-    const Symbol = 'daA';
-    const Name   = 'decampere';
-    const Factor = 1E+01;
-  end;
-  TDecampereUnitId = specialize TFactoredUnitId<TAmpereUnit, TDecampereUnit>;
-
-const
-  daA: specialize TQuantity<TAmpereUnit> = (FValue: TDecampereUnit.Factor);
-
-type
-  { Unit of Deciampere }
-  TDeciampereUnit = record
-    const Symbol = 'dA';
-    const Name   = 'deciampere';
-    const Factor = 1E-01;
-  end;
-  TDeciampereUnitId = specialize TFactoredUnitId<TAmpereUnit, TDeciampereUnit>;
-
-const
-  dA: specialize TQuantity<TAmpereUnit> = (FValue: TDeciampereUnit.Factor);
-
-type
-  { Unit of Centiampere }
-  TCentiampereUnit = record
-    const Symbol = 'cA';
-    const Name   = 'centiampere';
-    const Factor = 1E-02;
-  end;
-  TCentiampereUnitId = specialize TFactoredUnitId<TAmpereUnit, TCentiampereUnit>;
-
-const
-  cA: specialize TQuantity<TAmpereUnit> = (FValue: TCentiampereUnit.Factor);
-
-type
-  { Unit of Milliampere }
-  TMilliampereUnit = record
-    const Symbol = 'mA';
-    const Name   = 'milliampere';
-    const Factor = 1E-03;
-  end;
-  TMilliampereUnitId = specialize TFactoredUnitId<TAmpereUnit, TMilliampereUnit>;
-
-const
-  mA: specialize TQuantity<TAmpereUnit> = (FValue: TMilliampereUnit.Factor);
-
-type
-  { Unit of Microampere }
-  TMicroampereUnit = record
-    const Symbol = 'uA';
-    const Name   = 'microampere';
-    const Factor = 1E-06;
-  end;
-  TMicroampereUnitId = specialize TFactoredUnitId<TAmpereUnit, TMicroampereUnit>;
-
-const
-  uA: specialize TQuantity<TAmpereUnit> = (FValue: TMicroampereUnit.Factor);
-
-type
-  { Unit of Nanoampere }
-  TNanoampereUnit = record
-    const Symbol = 'nA';
-    const Name   = 'nanoampere';
-    const Factor = 1E-09;
-  end;
-  TNanoampereUnitId = specialize TFactoredUnitId<TAmpereUnit, TNanoampereUnit>;
-
-const
-  nA: specialize TQuantity<TAmpereUnit> = (FValue: TNanoampereUnit.Factor);
-
-type
-  { Unit of Picoampere }
-  TPicoampereUnit = record
-    const Symbol = 'pA';
-    const Name   = 'picoampere';
-    const Factor = 1E-12;
-  end;
-  TPicoampereUnitId = specialize TFactoredUnitId<TAmpereUnit, TPicoampereUnit>;
-
-const
-  picoA: specialize TQuantity<TAmpereUnit> = (FValue: TPicoampereUnit.Factor);
+const     TA: specialize TQuantity<TAmpereUnit> = (FValue: 1E+12);
+const     GA: specialize TQuantity<TAmpereUnit> = (FValue: 1E+09);
+const  megaA: specialize TQuantity<TAmpereUnit> = (FValue: 1E+06);
+const     kA: specialize TQuantity<TAmpereUnit> = (FValue: 1E+03);
+const     hA: specialize TQuantity<TAmpereUnit> = (FValue: 1E+02);
+const    daA: specialize TQuantity<TAmpereUnit> = (FValue: 1E+01);
+const     dA: specialize TQuantity<TAmpereUnit> = (FValue: 1E-01);
+const     cA: specialize TQuantity<TAmpereUnit> = (FValue: 1E-02);
+const     mA: specialize TQuantity<TAmpereUnit> = (FValue: 1E-03);
+const    miA: specialize TQuantity<TAmpereUnit> = (FValue: 1E-06);
+const     nA: specialize TQuantity<TAmpereUnit> = (FValue: 1E-09);
+const  picoA: specialize TQuantity<TAmpereUnit> = (FValue: 1E-12);
 
 type
   { Unit of SquareAmpere }
@@ -940,24 +437,24 @@ type
   TSquareAmperes = specialize TQuantity<TSquareAmpereUnit>;
   TSquareAmpereUnitId = specialize TUnitId<TSquareAmpereUnit>;
 
-var
-  A2: TSquareAmpereUnitId;
+var A2: TSquareAmpereUnitId;
+
+const     TA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E+24);
+const     GA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E+18);
+const  megaA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E+12);
+const     kA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E+06);
+const     hA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E+04);
+const    daA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E+02);
+const     dA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E-02);
+const     cA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E-04);
+const     mA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E-06);
+const    miA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E-12);
+const     nA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E-18);
+const  picoA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E-24);
 
 // main definition [ A2 ] = [ A ] * [ A ]
 operator *(const ALeft: TAmperes; const ARight: TAmperes): TSquareAmperes; inline;
 operator /(const ALeft: TSquareAmperes; const ARight: TAmperes): TAmperes; inline;
-
-type
-  { Unit of SquareMilliampere }
-  TSquareMilliampereUnit = record
-    const Symbol = 'mA2';
-    const Name   = 'square milliampere';
-    const Factor = 1E-06;
-  end;
-  TSquareMilliampereUnitId = specialize TFactoredUnitId<TSquareAmpereUnit, TSquareMilliampereUnit>;
-
-const
-  mA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: TSquareMilliampereUnit.Factor);
 
 type
   { Unit of Kelvin }
@@ -968,8 +465,20 @@ type
   TKelvins = specialize TQuantity<TKelvinUnit>;
   TKelvinUnitId = specialize TUnitId<TKelvinUnit>;
 
-var
-  K: TKelvinUnitId;
+var K: TKelvinUnitId;
+
+const     TK: specialize TQuantity<TKelvinUnit> = (FValue: 1E+12);
+const     GK: specialize TQuantity<TKelvinUnit> = (FValue: 1E+09);
+const  megaK: specialize TQuantity<TKelvinUnit> = (FValue: 1E+06);
+const     kK: specialize TQuantity<TKelvinUnit> = (FValue: 1E+03);
+const     hK: specialize TQuantity<TKelvinUnit> = (FValue: 1E+02);
+const    daK: specialize TQuantity<TKelvinUnit> = (FValue: 1E+01);
+const     dK: specialize TQuantity<TKelvinUnit> = (FValue: 1E-01);
+const     cK: specialize TQuantity<TKelvinUnit> = (FValue: 1E-02);
+const     mK: specialize TQuantity<TKelvinUnit> = (FValue: 1E-03);
+const    miK: specialize TQuantity<TKelvinUnit> = (FValue: 1E-06);
+const     nK: specialize TQuantity<TKelvinUnit> = (FValue: 1E-09);
+const     pK: specialize TQuantity<TKelvinUnit> = (FValue: 1E-12);
 
 type
   { Unit of SquareKelvin }
@@ -980,8 +489,20 @@ type
   TSquareKelvins = specialize TQuantity<TSquareKelvinUnit>;
   TSquareKelvinUnitId = specialize TUnitId<TSquareKelvinUnit>;
 
-var
-  K2: TSquareKelvinUnitId;
+var K2: TSquareKelvinUnitId;
+
+const     TK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E+24);
+const     GK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E+18);
+const  megaK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E+12);
+const     kK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E+06);
+const     hK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E+04);
+const    daK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E+02);
+const     dK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E-02);
+const     cK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E-04);
+const     mK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E-06);
+const    miK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E-12);
+const     nK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E-18);
+const     pK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E-24);
 
 // main definition [ K2 ] = [ K ] * [ K ]
 operator *(const ALeft: TKelvins; const ARight: TKelvins): TSquareKelvins; inline;
@@ -996,8 +517,20 @@ type
   TCubicKelvins = specialize TQuantity<TCubicKelvinUnit>;
   TCubicKelvinUnitId = specialize TUnitId<TCubicKelvinUnit>;
 
-var
-  K3: TCubicKelvinUnitId;
+var K3: TCubicKelvinUnitId;
+
+const     TK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E+36);
+const     GK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E+27);
+const  megaK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E+18);
+const     kK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E+09);
+const     hK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E+06);
+const    daK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E+03);
+const     dK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E-03);
+const     cK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E-06);
+const     mK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E-09);
+const    miK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E-18);
+const     nK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E-27);
+const     pK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E-36);
 
 // main definition [ K3 ] = [ K2 ] * [ K ]
 operator *(const ALeft: TSquareKelvins; const ARight: TKelvins): TCubicKelvins; inline;
@@ -1014,8 +547,20 @@ type
   TQuarticKelvins = specialize TQuantity<TQuarticKelvinUnit>;
   TQuarticKelvinUnitId = specialize TUnitId<TQuarticKelvinUnit>;
 
-var
-  K4: TQuarticKelvinUnitId;
+var K4: TQuarticKelvinUnitId;
+
+const     TK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E+48);
+const     GK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E+36);
+const  megaK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E+24);
+const     kK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E+12);
+const     hK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E+08);
+const    daK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E+04);
+const     dK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E-04);
+const     cK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E-08);
+const     mK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E-12);
+const    miK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E-24);
+const     nK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E-36);
+const     pK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E-48);
 
 // main definition [ K4 ] = [ K3 ] * [ K ]
 operator *(const ALeft: TCubicKelvins; const ARight: TKelvins): TQuarticKelvins; inline;
@@ -1036,8 +581,20 @@ type
   TMoles = specialize TQuantity<TMoleUnit>;
   TMoleUnitId = specialize TUnitId<TMoleUnit>;
 
-var
-  mol: TMoleUnitId;
+var mol: TMoleUnitId;
+
+const     Tmol: specialize TQuantity<TMoleUnit> = (FValue: 1E+12);
+const     Gmol: specialize TQuantity<TMoleUnit> = (FValue: 1E+09);
+const  megamol: specialize TQuantity<TMoleUnit> = (FValue: 1E+06);
+const     kmol: specialize TQuantity<TMoleUnit> = (FValue: 1E+03);
+const     hmol: specialize TQuantity<TMoleUnit> = (FValue: 1E+02);
+const    damol: specialize TQuantity<TMoleUnit> = (FValue: 1E+01);
+const     dmol: specialize TQuantity<TMoleUnit> = (FValue: 1E-01);
+const     cmol: specialize TQuantity<TMoleUnit> = (FValue: 1E-02);
+const     mmol: specialize TQuantity<TMoleUnit> = (FValue: 1E-03);
+const    mimol: specialize TQuantity<TMoleUnit> = (FValue: 1E-06);
+const     nmol: specialize TQuantity<TMoleUnit> = (FValue: 1E-09);
+const     pmol: specialize TQuantity<TMoleUnit> = (FValue: 1E-12);
 
 type
   { Unit of Candela }
@@ -1048,8 +605,20 @@ type
   TCandelas = specialize TQuantity<TCandelaUnit>;
   TCandelaUnitId = specialize TUnitId<TCandelaUnit>;
 
-var
-  cd: TCandelaUnitId;
+var cd: TCandelaUnitId;
+
+const     Tcd: specialize TQuantity<TCandelaUnit> = (FValue: 1E+12);
+const     Gcd: specialize TQuantity<TCandelaUnit> = (FValue: 1E+09);
+const  megacd: specialize TQuantity<TCandelaUnit> = (FValue: 1E+06);
+const     kcd: specialize TQuantity<TCandelaUnit> = (FValue: 1E+03);
+const     hcd: specialize TQuantity<TCandelaUnit> = (FValue: 1E+02);
+const    dacd: specialize TQuantity<TCandelaUnit> = (FValue: 1E+01);
+const     dcd: specialize TQuantity<TCandelaUnit> = (FValue: 1E-01);
+const     ccd: specialize TQuantity<TCandelaUnit> = (FValue: 1E-02);
+const     mcd: specialize TQuantity<TCandelaUnit> = (FValue: 1E-03);
+const    micd: specialize TQuantity<TCandelaUnit> = (FValue: 1E-06);
+const     ncd: specialize TQuantity<TCandelaUnit> = (FValue: 1E-09);
+const     pcd: specialize TQuantity<TCandelaUnit> = (FValue: 1E-12);
 
 type
   { Unit of Radian }
@@ -1060,8 +629,20 @@ type
   TRadians = specialize TQuantity<TRadianUnit>;
   TRadianUnitId = specialize TUnitId<TRadianUnit>;
 
-var
-  rad: TRadianUnitId;
+var rad: TRadianUnitId;
+
+const     Trad: specialize TQuantity<TRadianUnit> = (FValue: 1E+12);
+const     Grad: specialize TQuantity<TRadianUnit> = (FValue: 1E+09);
+const  megarad: specialize TQuantity<TRadianUnit> = (FValue: 1E+06);
+const     krad: specialize TQuantity<TRadianUnit> = (FValue: 1E+03);
+const     hrad: specialize TQuantity<TRadianUnit> = (FValue: 1E+02);
+const    darad: specialize TQuantity<TRadianUnit> = (FValue: 1E+01);
+const     drad: specialize TQuantity<TRadianUnit> = (FValue: 1E-01);
+const     crad: specialize TQuantity<TRadianUnit> = (FValue: 1E-02);
+const     mrad: specialize TQuantity<TRadianUnit> = (FValue: 1E-03);
+const    mirad: specialize TQuantity<TRadianUnit> = (FValue: 1E-06);
+const     nrad: specialize TQuantity<TRadianUnit> = (FValue: 1E-09);
+const     prad: specialize TQuantity<TRadianUnit> = (FValue: 1E-12);
 
 type
   { Unit of Degree }
@@ -1070,10 +651,23 @@ type
     const Name   = 'degree';
     const Factor = Pi/180;
   end;
-  TDegreeUnitId = specialize TFactoredUnitId<TRadianUnit, TDegreeUnit>;
+  TDegrees = specialize TQuantity<TRadianUnit>;
+  TDegreeUnitId = specialize TUnitId<TDegreeUnit>;
 
-const
-  deg: specialize TQuantity<TRadianUnit> = (FValue: TDegreeUnit.Factor);
+const deg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180);
+
+const     Tdeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E+12);
+const     Gdeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E+09);
+const  megadeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E+06);
+const     kdeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E+03);
+const     hdeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E+02);
+const    dadeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E+01);
+const     ddeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E-01);
+const     cdeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E-02);
+const     mdeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E-03);
+const    mideg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E-06);
+const     ndeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E-09);
+const     pdeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E-12);
 
 type
   { Unit of Steradian }
@@ -1084,8 +678,20 @@ type
   TSteradians = specialize TQuantity<TSteradianUnit>;
   TSteradianUnitId = specialize TUnitId<TSteradianUnit>;
 
-var
-  sr: TSteradianUnitId;
+var sr: TSteradianUnitId;
+
+const     Tsr: specialize TQuantity<TSteradianUnit> = (FValue: 1E+12);
+const     Gsr: specialize TQuantity<TSteradianUnit> = (FValue: 1E+09);
+const  megasr: specialize TQuantity<TSteradianUnit> = (FValue: 1E+06);
+const     ksr: specialize TQuantity<TSteradianUnit> = (FValue: 1E+03);
+const     hsr: specialize TQuantity<TSteradianUnit> = (FValue: 1E+02);
+const    dasr: specialize TQuantity<TSteradianUnit> = (FValue: 1E+01);
+const     dsr: specialize TQuantity<TSteradianUnit> = (FValue: 1E-01);
+const     csr: specialize TQuantity<TSteradianUnit> = (FValue: 1E-02);
+const     msr: specialize TQuantity<TSteradianUnit> = (FValue: 1E-03);
+const    misr: specialize TQuantity<TSteradianUnit> = (FValue: 1E-06);
+const     nsr: specialize TQuantity<TSteradianUnit> = (FValue: 1E-09);
+const     psr: specialize TQuantity<TSteradianUnit> = (FValue: 1E-12);
 
 // main definition [ sr ] = [ rad ] * [ rad ]
 operator *(const ALeft: TRadians; const ARight: TRadians): TSteradians; inline;
@@ -1100,8 +706,20 @@ type
   THertz = specialize TQuantity<THertzUnit>;
   THertzUnitId = specialize TUnitId<THertzUnit>;
 
-var
-  Hz: THertzUnitId;
+var Hz: THertzUnitId;
+
+const     THz: specialize TQuantity<THertzUnit> = (FValue: 1E+12);
+const     GHz: specialize TQuantity<THertzUnit> = (FValue: 1E+09);
+const  megaHz: specialize TQuantity<THertzUnit> = (FValue: 1E+06);
+const     kHz: specialize TQuantity<THertzUnit> = (FValue: 1E+03);
+const     hHz: specialize TQuantity<THertzUnit> = (FValue: 1E+02);
+const    daHz: specialize TQuantity<THertzUnit> = (FValue: 1E+01);
+const     dHz: specialize TQuantity<THertzUnit> = (FValue: 1E-01);
+const     cHz: specialize TQuantity<THertzUnit> = (FValue: 1E-02);
+const     mHz: specialize TQuantity<THertzUnit> = (FValue: 1E-03);
+const    miHz: specialize TQuantity<THertzUnit> = (FValue: 1E-06);
+const     nHz: specialize TQuantity<THertzUnit> = (FValue: 1E-09);
+const     pHz: specialize TQuantity<THertzUnit> = (FValue: 1E-12);
 
 // main definition [ Hz ] = [ 1 ] / [ s ]
 operator /(const ALeft: double; const ARight: TSeconds): THertz; inline;
@@ -1109,42 +727,6 @@ operator *(const ALeft: TSeconds; const ARight: THertz): double; inline;
 operator *(const ALeft: THertz; const ARight: TSeconds): double; inline;
 operator /(const ALeft: double; const ARight: THertz): TSeconds; inline;
 operator /(const ALeft: double; const {%H-}ARight: TSecondUnitId): THertz; inline;
-
-type
-  { Unit of Gigahertz }
-  TGigahertzUnit = record
-    const Symbol = 'GHz';
-    const Name   = 'gigahertz';
-    const Factor = 1E+09;
-  end;
-  TGigahertzUnitId = specialize TFactoredUnitId<THertzUnit, TGigahertzUnit>;
-
-const
-  GHz: specialize TQuantity<THertzUnit> = (FValue: TGigahertzUnit.Factor);
-
-type
-  { Unit of Megahertz }
-  TMegahertzUnit = record
-    const Symbol = 'MHz';
-    const Name   = 'megahertz';
-    const Factor = 1E+06;
-  end;
-  TMegahertzUnitId = specialize TFactoredUnitId<THertzUnit, TMegahertzUnit>;
-
-const
-  MHz: specialize TQuantity<THertzUnit> = (FValue: TMegahertzUnit.Factor);
-
-type
-  { Unit of Kilohertz }
-  TKilohertzUnit = record
-    const Symbol = 'kHz';
-    const Name   = 'kilohertz';
-    const Factor = 1E+03;
-  end;
-  TKilohertzUnitId = specialize TFactoredUnitId<THertzUnit, TKilohertzUnit>;
-
-const
-  kHz: specialize TQuantity<THertzUnit> = (FValue: TKilohertzUnit.Factor);
 
 type
   { Unit of SquareHertz }
@@ -1155,8 +737,20 @@ type
   TSquareHertz = specialize TQuantity<TSquareHertzUnit>;
   TSquareHertzUnitId = specialize TUnitId<TSquareHertzUnit>;
 
-var
-  Hz2: TSquareHertzUnitId;
+var Hz2: TSquareHertzUnitId;
+
+const     THz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E+24);
+const     GHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E+18);
+const  megaHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E+12);
+const     kHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E+06);
+const     hHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E+04);
+const    daHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E+02);
+const     dHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E-02);
+const     cHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E-04);
+const     mHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E-06);
+const    miHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E-12);
+const     nHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E-18);
+const     pHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E-24);
 
 // main definition [ Hz2 ] = [ 1 ] / [ s2 ]
 operator /(const ALeft: double; const ARight: TSquareSeconds): TSquareHertz; inline;
@@ -1207,7 +801,7 @@ type
     const Name   = 'radian per square second';
   end;
   TRadiansPerSquareSecond = specialize TQuantity<TSquareHertzUnit>;
-  TRadianPerSquareSecondUnitId = specialize TUnitId<TRadianPerSquareSecondUnit>;
+  TRadianPerSquareSecondUnitId = specialize TUnitId<TSquareHertzUnit>;
 
 // main definition [ rad/s2 ] = [ rad ] / [ s2 ]
 operator /(const ALeft: TRadians; const ARight: TSquareSeconds): TRadiansPerSquareSecond; inline;
@@ -1229,7 +823,7 @@ type
     const Name   = 'square rad per square second';
   end;
   TSteradiansPerSquareSecond = specialize TQuantity<TSquareHertzUnit>;
-  TSteradianPerSquareSecondUnitId = specialize TUnitId<TSteradianPerSquareSecondUnit>;
+  TSteradianPerSquareSecondUnitId = specialize TUnitId<TSquareHertzUnit>;
 
 // main definition [ sr/s2 ] = [ sr ] / [ s2 ]
 operator /(const ALeft: TSteradians; const ARight: TSquareSeconds): TSteradiansPerSquareSecond; inline;
@@ -1268,42 +862,6 @@ operator /(const ALeft: TMetersPerSecond; const ARight: THertz): TMeters; inline
 operator *(const ALeft: TMeters; const {%H-}ARight: THertzUnitId): TMetersPerSecond; inline;
 
 type
-  { Unit of KilometerPerHour }
-  TKilometerPerHourUnit = record
-    const Symbol = 'km/h';
-    const Name   = 'kilometer per hour';
-    const Factor = 5/18;
-  end;
-  TKilometerPerHourUnitId = specialize TFactoredUnitId<TMeterPerSecondUnit, TKilometerPerHourUnit>;
-
-type
-  { Unit of DecimeterPerSecond }
-  TDecimeterPerSecondUnit = record
-    const Symbol = 'dm/s';
-    const Name   = 'decimeter per second';
-    const Factor = 1E-01;
-  end;
-  TDecimeterPerSecondUnitId = specialize TFactoredUnitId<TMeterPerSecondUnit, TDecimeterPerSecondUnit>;
-
-type
-  { Unit of CentimeterPerSecond }
-  TCentimeterPerSecondUnit = record
-    const Symbol = 'cm/s';
-    const Name   = 'centimeter per second';
-    const Factor = 1E-02;
-  end;
-  TCentimeterPerSecondUnitId = specialize TFactoredUnitId<TMeterPerSecondUnit, TCentimeterPerSecondUnit>;
-
-type
-  { Unit of MillimeterPerSecond }
-  TMillimeterPerSecondUnit = record
-    const Symbol = 'mm/s';
-    const Name   = 'millimeter per second';
-    const Factor = 1E-03;
-  end;
-  TMillimeterPerSecondUnitId = specialize TFactoredUnitId<TMeterPerSecondUnit, TMillimeterPerSecondUnit>;
-
-type
   { Unit of MeterPerSquareSecond }
   TMeterPerSquareSecondUnit = record
     const Symbol = 'm/s2';
@@ -1324,6 +882,7 @@ operator /(const ALeft: TMetersPerSecond; const ARight: TSeconds): TMetersPerSqu
 operator *(const ALeft: TSeconds; const ARight: TMetersPerSquareSecond): TMetersPerSecond; inline;
 operator *(const ALeft: TMetersPerSquareSecond; const ARight: TSeconds): TMetersPerSecond; inline;
 operator /(const ALeft: TMetersPerSecond; const ARight: TMetersPerSquareSecond): TSeconds; inline;
+operator /(const ALeft: TMetersPerSecond; const {%H-}ARight: TSecondUnitId): TMetersPerSquareSecond; inline;
 
 // alternative definition [ m/s2 ] = [ Hz2 ] * [ m ]
 operator *(const ALeft: TSquareHertz; const ARight: TMeters): TMetersPerSquareSecond; inline;
@@ -1332,40 +891,13 @@ operator /(const ALeft: TMetersPerSquareSecond; const ARight: TSquareHertz): TMe
 operator /(const ALeft: TMetersPerSquareSecond; const ARight: TMeters): TSquareHertz; inline;
 
 type
-  { Unit of KilometerPerHourPerSecond }
-  TKilometerPerHourPerSecondUnit = record
-    const Symbol = 'km/h/s';
-    const Name   = 'kilometer-hour per second';
-    const Factor = 5/18;
+  { Unit of MeterPerSecondPerSecond }
+  TMeterPerSecondPerSecondUnit = record
+    const Symbol = 'm/s/s';
+    const Name   = 'meter per second per second';
   end;
-  TKilometerPerHourPerSecondUnitId = specialize TFactoredUnitId<TMeterPerSquareSecondUnit, TKilometerPerHourPerSecondUnit>;
-
-type
-  { Unit of DecimeterPerSquareSecond }
-  TDecimeterPerSquareSecondUnit = record
-    const Symbol = 'dm/s2';
-    const Name   = 'decimeter per square second';
-    const Factor = 1E-01;
-  end;
-  TDecimeterPerSquareSecondUnitId = specialize TFactoredUnitId<TMeterPerSquareSecondUnit, TDecimeterPerSquareSecondUnit>;
-
-type
-  { Unit of CentimeterPerSquareSecond }
-  TCentimeterPerSquareSecondUnit = record
-    const Symbol = 'cm/s2';
-    const Name   = 'centimeter per square second';
-    const Factor = 1E-02;
-  end;
-  TCentimeterPerSquareSecondUnitId = specialize TFactoredUnitId<TMeterPerSquareSecondUnit, TCentimeterPerSquareSecondUnit>;
-
-type
-  { Unit of MillimeterPerSquareSecond }
-  TMillimeterPerSquareSecondUnit = record
-    const Symbol = 'mm/s2';
-    const Name   = 'millimeter per square second';
-    const Factor = 1E-03;
-  end;
-  TMillimeterPerSquareSecondUnitId = specialize TFactoredUnitId<TMeterPerSquareSecondUnit, TMillimeterPerSquareSecondUnit>;
+  TMetersPerSecondPerSecond = specialize TQuantity<TMeterPerSquareSecondUnit>;
+  TMeterPerSecondPerSecondUnitId = specialize TUnitId<TMeterPerSquareSecondUnit>;
 
 type
   { Unit of SquareMeterPerSquareSecond }
@@ -1416,7 +948,7 @@ type
     const Name   = 'newton second';
   end;
   TNewtonSeconds = specialize TQuantity<TKilogramMeterPerSecondUnit>;
-  TNewtonSecondUnitId = specialize TUnitId<TNewtonSecondUnit>;
+  TNewtonSecondUnitId = specialize TUnitId<TKilogramMeterPerSecondUnit>;
 
 type
   { Unit of KilogramSquareMeter }
@@ -1511,60 +1043,6 @@ operator *(const ALeft: TKilogramsPerCubicMeter; const ARight: TMeters): TKilogr
 operator /(const ALeft: TKilogramsPerSquareMeter; const ARight: TKilogramsPerCubicMeter): TMeters; inline;
 
 type
-  { Unit of KilogramPerCubicMillimeter }
-  TKilogramPerCubicMillimeterUnit = record
-    const Symbol = 'kg/mm3';
-    const Name   = 'kilogram per cubic millimeter';
-    const Factor = 1E+09;
-  end;
-  TKilogramPerCubicMillimeterUnitId = specialize TFactoredUnitId<TKilogramPerCubicMeterUnit, TKilogramPerCubicMillimeterUnit>;
-
-type
-  { Unit of KilogramPerCubicCentimeter }
-  TKilogramPerCubicCentimeterUnit = record
-    const Symbol = 'kg/cm3';
-    const Name   = 'kilogram per cubic centimeter';
-    const Factor = 1E+06;
-  end;
-  TKilogramPerCubicCentimeterUnitId = specialize TFactoredUnitId<TKilogramPerCubicMeterUnit, TKilogramPerCubicCentimeterUnit>;
-
-type
-  { Unit of KilogramPerCubicDecimeter }
-  TKilogramPerCubicDecimeterUnit = record
-    const Symbol = 'kg/dm3';
-    const Name   = 'kilogram per cubic decimeter';
-    const Factor = 1E+03;
-  end;
-  TKilogramPerCubicDecimeterUnitId = specialize TFactoredUnitId<TKilogramPerCubicMeterUnit, TKilogramPerCubicDecimeterUnit>;
-
-type
-  { Unit of HectogramPerCubicMeter }
-  THectogramPerCubicMeterUnit = record
-    const Symbol = 'hg/m3';
-    const Name   = 'hectogram per cubic meter';
-    const Factor = 1E-01;
-  end;
-  THectogramPerCubicMeterUnitId = specialize TFactoredUnitId<TKilogramPerCubicMeterUnit, THectogramPerCubicMeterUnit>;
-
-type
-  { Unit of DecagramPerCubicMeter }
-  TDecagramPerCubicMeterUnit = record
-    const Symbol = 'dag/m3';
-    const Name   = 'decagram per cubic meter';
-    const Factor = 1E-02;
-  end;
-  TDecagramPerCubicMeterUnitId = specialize TFactoredUnitId<TKilogramPerCubicMeterUnit, TDecagramPerCubicMeterUnit>;
-
-type
-  { Unit of GramPerCubicMeter }
-  TGramPerCubicMeterUnit = record
-    const Symbol = 'g/m3';
-    const Name   = 'gram per cubic meter';
-    const Factor = 1E-03;
-  end;
-  TGramPerCubicMeterUnitId = specialize TFactoredUnitId<TKilogramPerCubicMeterUnit, TGramPerCubicMeterUnit>;
-
-type
   { Unit of Newton }
   TNewtonUnit = record
     const Symbol = 'N';
@@ -1573,8 +1051,20 @@ type
   TNewtons = specialize TQuantity<TNewtonUnit>;
   TNewtonUnitId = specialize TUnitId<TNewtonUnit>;
 
-var
-  N: TNewtonUnitId;
+var N: TNewtonUnitId;
+
+const     TN: specialize TQuantity<TNewtonUnit> = (FValue: 1E+12);
+const     GN: specialize TQuantity<TNewtonUnit> = (FValue: 1E+09);
+const  megaN: specialize TQuantity<TNewtonUnit> = (FValue: 1E+06);
+const     kN: specialize TQuantity<TNewtonUnit> = (FValue: 1E+03);
+const     hN: specialize TQuantity<TNewtonUnit> = (FValue: 1E+02);
+const    daN: specialize TQuantity<TNewtonUnit> = (FValue: 1E+01);
+const     dN: specialize TQuantity<TNewtonUnit> = (FValue: 1E-01);
+const     cN: specialize TQuantity<TNewtonUnit> = (FValue: 1E-02);
+const     mN: specialize TQuantity<TNewtonUnit> = (FValue: 1E-03);
+const    miN: specialize TQuantity<TNewtonUnit> = (FValue: 1E-06);
+const     nN: specialize TQuantity<TNewtonUnit> = (FValue: 1E-09);
+const     pN: specialize TQuantity<TNewtonUnit> = (FValue: 1E-12);
 
 // main definition [ N ] = [ kg ] * [ m/s2 ]
 operator *(const ALeft: TKilograms; const ARight: TMetersPerSquareSecond): TNewtons; inline;
@@ -1596,42 +1086,6 @@ operator *(const ALeft: TNewtons; const ARight: TSeconds): TKilogramMetersPerSec
 operator /(const ALeft: TKilogramMetersPerSecond; const ARight: TNewtons): TSeconds; inline;
 
 type
-  { Unit of Giganewton }
-  TGiganewtonUnit = record
-    const Symbol = 'GN';
-    const Name   = 'giganewton';
-    const Factor = 1E+09;
-  end;
-  TGiganewtonUnitId = specialize TFactoredUnitId<TNewtonUnit, TGiganewtonUnit>;
-
-const
-  GN: specialize TQuantity<TNewtonUnit> = (FValue: TGiganewtonUnit.Factor);
-
-type
-  { Unit of Meganewton }
-  TMeganewtonUnit = record
-    const Symbol = 'MN';
-    const Name   = 'meganewton';
-    const Factor = 1E+06;
-  end;
-  TMeganewtonUnitId = specialize TFactoredUnitId<TNewtonUnit, TMeganewtonUnit>;
-
-const
-  MN: specialize TQuantity<TNewtonUnit> = (FValue: TMeganewtonUnit.Factor);
-
-type
-  { Unit of Kilonewton }
-  TKilonewtonUnit = record
-    const Symbol = 'kN';
-    const Name   = 'kilonewton';
-    const Factor = 1E+03;
-  end;
-  TKilonewtonUnitId = specialize TFactoredUnitId<TNewtonUnit, TKilonewtonUnit>;
-
-const
-  kN: specialize TQuantity<TNewtonUnit> = (FValue: TKilonewtonUnit.Factor);
-
-type
   { Unit of Pascal }
   TPascalUnit = record
     const Symbol = 'Pa';
@@ -1640,8 +1094,20 @@ type
   TPascals = specialize TQuantity<TPascalUnit>;
   TPascalUnitId = specialize TUnitId<TPascalUnit>;
 
-var
-  Pa: TPascalUnitId;
+var Pa: TPascalUnitId;
+
+const     TPa: specialize TQuantity<TPascalUnit> = (FValue: 1E+12);
+const     GPa: specialize TQuantity<TPascalUnit> = (FValue: 1E+09);
+const  megaPa: specialize TQuantity<TPascalUnit> = (FValue: 1E+06);
+const     kPa: specialize TQuantity<TPascalUnit> = (FValue: 1E+03);
+const     hPa: specialize TQuantity<TPascalUnit> = (FValue: 1E+02);
+const    daPa: specialize TQuantity<TPascalUnit> = (FValue: 1E+01);
+const     dPa: specialize TQuantity<TPascalUnit> = (FValue: 1E-01);
+const     cPa: specialize TQuantity<TPascalUnit> = (FValue: 1E-02);
+const     mPa: specialize TQuantity<TPascalUnit> = (FValue: 1E-03);
+const    miPa: specialize TQuantity<TPascalUnit> = (FValue: 1E-06);
+const     nPa: specialize TQuantity<TPascalUnit> = (FValue: 1E-09);
+const     pPa: specialize TQuantity<TPascalUnit> = (FValue: 1E-12);
 
 // main definition [ Pa ] = [ N ] / [ m2 ]
 operator /(const ALeft: TNewtons; const ARight: TSquareMeters): TPascals; inline;
@@ -1657,102 +1123,6 @@ operator /(const ALeft: TPascals; const ARight: TKilogramsPerCubicMeter): TSquar
 operator /(const ALeft: TPascals; const ARight: TSquareMetersPerSquareSecond): TKilogramsPerCubicMeter; inline;
 
 type
-  { Unit of Gigapascal }
-  TGigapascalUnit = record
-    const Symbol = 'GPa';
-    const Name   = 'gigapascal';
-    const Factor = 1E+09;
-  end;
-  TGigapascalUnitId = specialize TFactoredUnitId<TPascalUnit, TGigapascalUnit>;
-
-const
-  GPa: specialize TQuantity<TPascalUnit> = (FValue: TGigapascalUnit.Factor);
-
-type
-  { Unit of Megapascal }
-  TMegapascalUnit = record
-    const Symbol = 'MPa';
-    const Name   = 'megapascal';
-    const Factor = 1E+06;
-  end;
-  TMegapascalUnitId = specialize TFactoredUnitId<TPascalUnit, TMegapascalUnit>;
-
-const
-  MPa: specialize TQuantity<TPascalUnit> = (FValue: TMegapascalUnit.Factor);
-
-type
-  { Unit of Kilopascal }
-  TKilopascalUnit = record
-    const Symbol = 'kPa';
-    const Name   = 'kilopascal';
-    const Factor = 1E+03;
-  end;
-  TKilopascalUnitId = specialize TFactoredUnitId<TPascalUnit, TKilopascalUnit>;
-
-const
-  kPa: specialize TQuantity<TPascalUnit> = (FValue: TKilopascalUnit.Factor);
-
-type
-  { Unit of Hectopascal }
-  THectopascalUnit = record
-    const Symbol = 'hPa';
-    const Name   = 'hectopascal';
-    const Factor = 1E+02;
-  end;
-  THectopascalUnitId = specialize TFactoredUnitId<TPascalUnit, THectopascalUnit>;
-
-const
-  hPa: specialize TQuantity<TPascalUnit> = (FValue: THectopascalUnit.Factor);
-
-type
-  { Unit of Decapascal }
-  TDecapascalUnit = record
-    const Symbol = 'daPa';
-    const Name   = 'decapascal';
-    const Factor = 1E+01;
-  end;
-  TDecapascalUnitId = specialize TFactoredUnitId<TPascalUnit, TDecapascalUnit>;
-
-const
-  daPa: specialize TQuantity<TPascalUnit> = (FValue: TDecapascalUnit.Factor);
-
-type
-  { Unit of Decipascal }
-  TDecipascalUnit = record
-    const Symbol = 'dPa';
-    const Name   = 'decipascal';
-    const Factor = 1E-01;
-  end;
-  TDecipascalUnitId = specialize TFactoredUnitId<TPascalUnit, TDecipascalUnit>;
-
-const
-  dPa: specialize TQuantity<TPascalUnit> = (FValue: TDecipascalUnit.Factor);
-
-type
-  { Unit of Centipascal }
-  TCentipascalUnit = record
-    const Symbol = 'cPa';
-    const Name   = 'centipascal';
-    const Factor = 1E-02;
-  end;
-  TCentipascalUnitId = specialize TFactoredUnitId<TPascalUnit, TCentipascalUnit>;
-
-const
-  cPa: specialize TQuantity<TPascalUnit> = (FValue: TCentipascalUnit.Factor);
-
-type
-  { Unit of Millipascal }
-  TMillipascalUnit = record
-    const Symbol = 'mPa';
-    const Name   = 'millipascal';
-    const Factor = 1E-03;
-  end;
-  TMillipascalUnitId = specialize TFactoredUnitId<TPascalUnit, TMillipascalUnit>;
-
-const
-  milliPa: specialize TQuantity<TPascalUnit> = (FValue: TMillipascalUnit.Factor);
-
-type
   { Unit of Joule }
   TJouleUnit = record
     const Symbol = 'J';
@@ -1761,8 +1131,20 @@ type
   TJoules = specialize TQuantity<TJouleUnit>;
   TJouleUnitId = specialize TUnitId<TJouleUnit>;
 
-var
-  J: TJouleUnitId;
+var J: TJouleUnitId;
+
+const     TJ: specialize TQuantity<TJouleUnit> = (FValue: 1E+12);
+const     GJ: specialize TQuantity<TJouleUnit> = (FValue: 1E+09);
+const  megaJ: specialize TQuantity<TJouleUnit> = (FValue: 1E+06);
+const     kJ: specialize TQuantity<TJouleUnit> = (FValue: 1E+03);
+const     hJ: specialize TQuantity<TJouleUnit> = (FValue: 1E+02);
+const    daJ: specialize TQuantity<TJouleUnit> = (FValue: 1E+01);
+const     dJ: specialize TQuantity<TJouleUnit> = (FValue: 1E-01);
+const     cJ: specialize TQuantity<TJouleUnit> = (FValue: 1E-02);
+const     mJ: specialize TQuantity<TJouleUnit> = (FValue: 1E-03);
+const    miJ: specialize TQuantity<TJouleUnit> = (FValue: 1E-06);
+const     nJ: specialize TQuantity<TJouleUnit> = (FValue: 1E-09);
+const     pJ: specialize TQuantity<TJouleUnit> = (FValue: 1E-12);
 
 // main definition [ J ] = [ N ] * [ m ]
 operator *(const ALeft: TNewtons; const ARight: TMeters): TJoules; inline;
@@ -1803,112 +1185,29 @@ operator *(const ALeft: TJoules; const ARight: TSquareSeconds): TKilogramSquareM
 operator /(const ALeft: TKilogramSquareMeters; const ARight: TJoules): TSquareSeconds; inline;
 
 type
-  { Unit of Terajoule }
-  TTerajouleUnit = record
-    const Symbol = 'TJ';
-    const Name   = 'terajoule';
-    const Factor = 1E+12;
-  end;
-  TTerajouleUnitId = specialize TFactoredUnitId<TJouleUnit, TTerajouleUnit>;
-
-const
-  TJ: specialize TQuantity<TJouleUnit> = (FValue: TTerajouleUnit.Factor);
-
-type
-  { Unit of Gigajoule }
-  TGigajouleUnit = record
-    const Symbol = 'GJ';
-    const Name   = 'gigajoule';
-    const Factor = 1E+09;
-  end;
-  TGigajouleUnitId = specialize TFactoredUnitId<TJouleUnit, TGigajouleUnit>;
-
-const
-  GJ: specialize TQuantity<TJouleUnit> = (FValue: TGigajouleUnit.Factor);
-
-type
-  { Unit of Megajoule }
-  TMegajouleUnit = record
-    const Symbol = 'MJ';
-    const Name   = 'magajoule';
-    const Factor = 1E+06;
-  end;
-  TMegajouleUnitId = specialize TFactoredUnitId<TJouleUnit, TMegajouleUnit>;
-
-const
-  MJ: specialize TQuantity<TJouleUnit> = (FValue: TMegajouleUnit.Factor);
-
-type
-  { Unit of Kilojoule }
-  TKilojouleUnit = record
-    const Symbol = 'kJ';
-    const Name   = 'kilojoule';
-    const Factor = 1E+03;
-  end;
-  TKilojouleUnitId = specialize TFactoredUnitId<TJouleUnit, TKilojouleUnit>;
-
-const
-  kJ: specialize TQuantity<TJouleUnit> = (FValue: TKilojouleUnit.Factor);
-
-type
-  { Unit of Teraelettronvolt }
-  TTeraelettronvoltUnit = record
-    const Symbol = 'TeV';
-    const Name   = 'teraelettronvolt ';
-    const Factor = 1.60217742320523E-007;
-  end;
-  TTeraelettronvoltUnitId = specialize TFactoredUnitId<TJouleUnit, TTeraelettronvoltUnit>;
-
-const
-  TeV: specialize TQuantity<TJouleUnit> = (FValue: TTeraelettronvoltUnit.Factor);
-
-type
-  { Unit of Gigaelettronvolt }
-  TGigaelettronvoltUnit = record
-    const Symbol = 'GeV';
-    const Name   = 'gigaelettronvolt ';
-    const Factor = 1.60217742320523E-010;
-  end;
-  TGigaelettronvoltUnitId = specialize TFactoredUnitId<TJouleUnit, TGigaelettronvoltUnit>;
-
-const
-  GeV: specialize TQuantity<TJouleUnit> = (FValue: TGigaelettronvoltUnit.Factor);
-
-type
-  { Unit of Megaelettronvolt }
-  TMegaelettronvoltUnit = record
-    const Symbol = 'MeV';
-    const Name   = 'megaelettronvolt ';
-    const Factor = 1.60217742320523E-013;
-  end;
-  TMegaelettronvoltUnitId = specialize TFactoredUnitId<TJouleUnit, TMegaelettronvoltUnit>;
-
-const
-  MeV: specialize TQuantity<TJouleUnit> = (FValue: TMegaelettronvoltUnit.Factor);
-
-type
-  { Unit of Kiloelettronvolt }
-  TKiloelettronvoltUnit = record
-    const Symbol = 'keV';
-    const Name   = 'kiloelettronvolt ';
-    const Factor = 1.60217742320523E-016;
-  end;
-  TKiloelettronvoltUnitId = specialize TFactoredUnitId<TJouleUnit, TKiloelettronvoltUnit>;
-
-const
-  keV: specialize TQuantity<TJouleUnit> = (FValue: TKiloelettronvoltUnit.Factor);
-
-type
   { Unit of Elettronvolt }
   TElettronvoltUnit = record
     const Symbol = 'eV';
     const Name   = 'elettronvolt ';
     const Factor = 1.60217742320523E-019;
   end;
-  TElettronvoltUnitId = specialize TFactoredUnitId<TJouleUnit, TElettronvoltUnit>;
+  TElettronvolts = specialize TQuantity<TJouleUnit>;
+  TElettronvoltUnitId = specialize TUnitId<TElettronvoltUnit>;
 
-const
-  eV: specialize TQuantity<TJouleUnit> = (FValue: TElettronvoltUnit.Factor);
+const eV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019);
+
+const     TeV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E+12);
+const     GeV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E+09);
+const  megaeV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E+06);
+const     keV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E+03);
+const     heV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E+02);
+const    daeV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E+01);
+const     deV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E-01);
+const     ceV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E-02);
+const     meV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E-03);
+const    mieV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E-06);
+const     neV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E-09);
+const     peV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E-12);
 
 type
   { Unit of Watt }
@@ -1919,8 +1218,20 @@ type
   TWatts = specialize TQuantity<TWattUnit>;
   TWattUnitId = specialize TUnitId<TWattUnit>;
 
-var
-  W: TWattUnitId;
+var W: TWattUnitId;
+
+const     TW: specialize TQuantity<TWattUnit> = (FValue: 1E+12);
+const     GW: specialize TQuantity<TWattUnit> = (FValue: 1E+09);
+const  megaW: specialize TQuantity<TWattUnit> = (FValue: 1E+06);
+const     kW: specialize TQuantity<TWattUnit> = (FValue: 1E+03);
+const     hW: specialize TQuantity<TWattUnit> = (FValue: 1E+02);
+const    daW: specialize TQuantity<TWattUnit> = (FValue: 1E+01);
+const     dW: specialize TQuantity<TWattUnit> = (FValue: 1E-01);
+const     cW: specialize TQuantity<TWattUnit> = (FValue: 1E-02);
+const     mW: specialize TQuantity<TWattUnit> = (FValue: 1E-03);
+const    miW: specialize TQuantity<TWattUnit> = (FValue: 1E-06);
+const     nW: specialize TQuantity<TWattUnit> = (FValue: 1E-09);
+const     pW: specialize TQuantity<TWattUnit> = (FValue: 1E-12);
 
 // main definition [ W ] = [ J ] / [ s ]
 operator /(const ALeft: TJoules; const ARight: TSeconds): TWatts; inline;
@@ -1942,54 +1253,6 @@ operator /(const ALeft: TWatts; const ARight: TNewtons): TMetersPerSecond; inlin
 operator /(const ALeft: TWatts; const ARight: TMetersPerSecond): TNewtons; inline;
 
 type
-  { Unit of Gigawatt }
-  TGigawattUnit = record
-    const Symbol = 'GW';
-    const Name   = 'gigawatt';
-    const Factor = 1E+09;
-  end;
-  TGigawattUnitId = specialize TFactoredUnitId<TWattUnit, TGigawattUnit>;
-
-const
-  GW: specialize TQuantity<TWattUnit> = (FValue: TGigawattUnit.Factor);
-
-type
-  { Unit of Megawatt }
-  TMegawattUnit = record
-    const Symbol = 'MW';
-    const Name   = 'megawatt';
-    const Factor = 1E+06;
-  end;
-  TMegawattUnitId = specialize TFactoredUnitId<TWattUnit, TMegawattUnit>;
-
-const
-  megaW: specialize TQuantity<TWattUnit> = (FValue: TMegawattUnit.Factor);
-
-type
-  { Unit of Kilowatt }
-  TKilowattUnit = record
-    const Symbol = 'kW';
-    const Name   = 'kilowatt';
-    const Factor = 1E+03;
-  end;
-  TKilowattUnitId = specialize TFactoredUnitId<TWattUnit, TKilowattUnit>;
-
-const
-  kW: specialize TQuantity<TWattUnit> = (FValue: TKilowattUnit.Factor);
-
-type
-  { Unit of Milliwatt }
-  TMilliwattUnit = record
-    const Symbol = 'mW';
-    const Name   = 'milliwatt';
-    const Factor = 1E-03;
-  end;
-  TMilliwattUnitId = specialize TFactoredUnitId<TWattUnit, TMilliwattUnit>;
-
-const
-  mW: specialize TQuantity<TWattUnit> = (FValue: TMilliwattUnit.Factor);
-
-type
   { Unit of Coulomb }
   TCoulombUnit = record
     const Symbol = 'C';
@@ -1998,8 +1261,20 @@ type
   TCoulombs = specialize TQuantity<TCoulombUnit>;
   TCoulombUnitId = specialize TUnitId<TCoulombUnit>;
 
-var
-  C: TCoulombUnitId;
+var C: TCoulombUnitId;
+
+const     TC: specialize TQuantity<TCoulombUnit> = (FValue: 1E+12);
+const     GC: specialize TQuantity<TCoulombUnit> = (FValue: 1E+09);
+const  megaC: specialize TQuantity<TCoulombUnit> = (FValue: 1E+06);
+const     kC: specialize TQuantity<TCoulombUnit> = (FValue: 1E+03);
+const     hC: specialize TQuantity<TCoulombUnit> = (FValue: 1E+02);
+const    daC: specialize TQuantity<TCoulombUnit> = (FValue: 1E+01);
+const     dC: specialize TQuantity<TCoulombUnit> = (FValue: 1E-01);
+const     cC: specialize TQuantity<TCoulombUnit> = (FValue: 1E-02);
+const     mC: specialize TQuantity<TCoulombUnit> = (FValue: 1E-03);
+const    miC: specialize TQuantity<TCoulombUnit> = (FValue: 1E-06);
+const     nC: specialize TQuantity<TCoulombUnit> = (FValue: 1E-09);
+const     pC: specialize TQuantity<TCoulombUnit> = (FValue: 1E-12);
 
 // main definition [ C ] = [ s ] * [ A ]
 operator *(const ALeft: TSeconds; const ARight: TAmperes): TCoulombs; inline;
@@ -2007,54 +1282,6 @@ operator *(const ALeft: TAmperes; const ARight: TSeconds): TCoulombs; inline;
 operator /(const ALeft: TCoulombs; const ARight: TSeconds): TAmperes; inline;
 operator /(const ALeft: TCoulombs; const ARight: TAmperes): TSeconds; inline;
 operator *(const ALeft: TSeconds; const {%H-}ARight: TAmpereUnitId): TCoulombs; inline;
-
-type
-  { Unit of Gigacoulomb }
-  TGigacoulombUnit = record
-    const Symbol = 'GC';
-    const Name   = 'gigacoulomb';
-    const Factor = 1E+09;
-  end;
-  TGigacoulombUnitId = specialize TFactoredUnitId<TCoulombUnit, TGigacoulombUnit>;
-
-const
-  GC: specialize TQuantity<TCoulombUnit> = (FValue: TGigacoulombUnit.Factor);
-
-type
-  { Unit of Megacoulomb }
-  TMegacoulombUnit = record
-    const Symbol = 'MC';
-    const Name   = 'megacoulomb';
-    const Factor = 1E+06;
-  end;
-  TMegacoulombUnitId = specialize TFactoredUnitId<TCoulombUnit, TMegacoulombUnit>;
-
-const
-  megaC: specialize TQuantity<TCoulombUnit> = (FValue: TMegacoulombUnit.Factor);
-
-type
-  { Unit of Kilocoulomb }
-  TKilocoulombUnit = record
-    const Symbol = 'kC';
-    const Name   = 'kilocoulomb';
-    const Factor = 1E+03;
-  end;
-  TKilocoulombUnitId = specialize TFactoredUnitId<TCoulombUnit, TKilocoulombUnit>;
-
-const
-  kC: specialize TQuantity<TCoulombUnit> = (FValue: TKilocoulombUnit.Factor);
-
-type
-  { Unit of Millicoulomb }
-  TMillicoulombUnit = record
-    const Symbol = 'mC';
-    const Name   = 'millicoulomb';
-    const Factor = 1E-03;
-  end;
-  TMillicoulombUnitId = specialize TFactoredUnitId<TCoulombUnit, TMillicoulombUnit>;
-
-const
-  mC: specialize TQuantity<TCoulombUnit> = (FValue: TMillicoulombUnit.Factor);
 
 type
   { Unit of SquareCoulomb }
@@ -2065,8 +1292,20 @@ type
   TSquareCoulombs = specialize TQuantity<TSquareCoulombUnit>;
   TSquareCoulombUnitId = specialize TUnitId<TSquareCoulombUnit>;
 
-var
-  C2: TSquareCoulombUnitId;
+var C2: TSquareCoulombUnitId;
+
+const     TC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E+24);
+const     GC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E+18);
+const  megaC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E+12);
+const     kC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E+06);
+const     hC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E+04);
+const    daC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E+02);
+const     dC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E-02);
+const     cC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E-04);
+const     mC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E-06);
+const    miC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E-12);
+const     nC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E-18);
+const     pC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E-24);
 
 // main definition [ C2 ] = [ C ] * [ C ]
 operator *(const ALeft: TCoulombs; const ARight: TCoulombs): TSquareCoulombs; inline;
@@ -2081,8 +1320,20 @@ type
   TVolts = specialize TQuantity<TVoltUnit>;
   TVoltUnitId = specialize TUnitId<TVoltUnit>;
 
-var
-  V: TVoltUnitId;
+var V: TVoltUnitId;
+
+const     TV: specialize TQuantity<TVoltUnit> = (FValue: 1E+12);
+const     GV: specialize TQuantity<TVoltUnit> = (FValue: 1E+09);
+const  megaV: specialize TQuantity<TVoltUnit> = (FValue: 1E+06);
+const     kV: specialize TQuantity<TVoltUnit> = (FValue: 1E+03);
+const     hV: specialize TQuantity<TVoltUnit> = (FValue: 1E+02);
+const    daV: specialize TQuantity<TVoltUnit> = (FValue: 1E+01);
+const     dV: specialize TQuantity<TVoltUnit> = (FValue: 1E-01);
+const     cV: specialize TQuantity<TVoltUnit> = (FValue: 1E-02);
+const     mV: specialize TQuantity<TVoltUnit> = (FValue: 1E-03);
+const    miV: specialize TQuantity<TVoltUnit> = (FValue: 1E-06);
+const     nV: specialize TQuantity<TVoltUnit> = (FValue: 1E-09);
+const     pV: specialize TQuantity<TVoltUnit> = (FValue: 1E-12);
 
 // main definition [ V ] = [ W ] / [ A ]
 operator /(const ALeft: TWatts; const ARight: TAmperes): TVolts; inline;
@@ -2099,54 +1350,6 @@ operator /(const ALeft: TJoules; const ARight: TVolts): TCoulombs; inline;
 operator /(const ALeft: TJoules; const {%H-}ARight: TCoulombUnitId): TVolts; inline;
 
 type
-  { Unit of Gigavolt }
-  TGigavoltUnit = record
-    const Symbol = 'GV';
-    const Name   = 'gigavolt';
-    const Factor = 1E+09;
-  end;
-  TGigavoltUnitId = specialize TFactoredUnitId<TVoltUnit, TGigavoltUnit>;
-
-const
-  GV: specialize TQuantity<TVoltUnit> = (FValue: TGigavoltUnit.Factor);
-
-type
-  { Unit of Megavolt }
-  TMegavoltUnit = record
-    const Symbol = 'MV';
-    const Name   = 'megavolt';
-    const Factor = 1E+06;
-  end;
-  TMegavoltUnitId = specialize TFactoredUnitId<TVoltUnit, TMegavoltUnit>;
-
-const
-  megaV: specialize TQuantity<TVoltUnit> = (FValue: TMegavoltUnit.Factor);
-
-type
-  { Unit of Kilovolt }
-  TKilovoltUnit = record
-    const Symbol = 'kV';
-    const Name   = 'kilovolt';
-    const Factor = 1E+03;
-  end;
-  TKilovoltUnitId = specialize TFactoredUnitId<TVoltUnit, TKilovoltUnit>;
-
-const
-  kV: specialize TQuantity<TVoltUnit> = (FValue: TKilovoltUnit.Factor);
-
-type
-  { Unit of Millivolt }
-  TMillivoltUnit = record
-    const Symbol = 'mV';
-    const Name   = 'millivolt';
-    const Factor = 1E-03;
-  end;
-  TMillivoltUnitId = specialize TFactoredUnitId<TVoltUnit, TMillivoltUnit>;
-
-const
-  mV: specialize TQuantity<TVoltUnit> = (FValue: TMillivoltUnit.Factor);
-
-type
   { Unit of SquareVolt }
   TSquareVoltUnit = record
     const Symbol = 'V2';
@@ -2155,8 +1358,20 @@ type
   TSquareVolts = specialize TQuantity<TSquareVoltUnit>;
   TSquareVoltUnitId = specialize TUnitId<TSquareVoltUnit>;
 
-var
-  V2: TSquareVoltUnitId;
+var V2: TSquareVoltUnitId;
+
+const     TV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E+24);
+const     GV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E+18);
+const  megaV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E+12);
+const     kV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E+06);
+const     hV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E+04);
+const    daV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E+02);
+const     dV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E-02);
+const     cV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E-04);
+const     mV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E-06);
+const    miV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E-12);
+const     nV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E-18);
+const     pV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E-24);
 
 // main definition [ V2 ] = [ V ] * [ V ]
 operator *(const ALeft: TVolts; const ARight: TVolts): TSquareVolts; inline;
@@ -2171,8 +1386,20 @@ type
   TFarads = specialize TQuantity<TFaradUnit>;
   TFaradUnitId = specialize TUnitId<TFaradUnit>;
 
-var
-  F: TFaradUnitId;
+var F: TFaradUnitId;
+
+const     TF: specialize TQuantity<TFaradUnit> = (FValue: 1E+12);
+const     GF: specialize TQuantity<TFaradUnit> = (FValue: 1E+09);
+const  megaF: specialize TQuantity<TFaradUnit> = (FValue: 1E+06);
+const     kF: specialize TQuantity<TFaradUnit> = (FValue: 1E+03);
+const     hF: specialize TQuantity<TFaradUnit> = (FValue: 1E+02);
+const    daF: specialize TQuantity<TFaradUnit> = (FValue: 1E+01);
+const     dF: specialize TQuantity<TFaradUnit> = (FValue: 1E-01);
+const     cF: specialize TQuantity<TFaradUnit> = (FValue: 1E-02);
+const     mF: specialize TQuantity<TFaradUnit> = (FValue: 1E-03);
+const    miF: specialize TQuantity<TFaradUnit> = (FValue: 1E-06);
+const     nF: specialize TQuantity<TFaradUnit> = (FValue: 1E-09);
+const     pF: specialize TQuantity<TFaradUnit> = (FValue: 1E-12);
 
 // main definition [ F ] = [ C ] / [ V ]
 operator /(const ALeft: TCoulombs; const ARight: TVolts): TFarads; inline;
@@ -2188,90 +1415,6 @@ operator *(const ALeft: TFarads; const ARight: TJoules): TSquareCoulombs; inline
 operator /(const ALeft: TSquareCoulombs; const ARight: TFarads): TJoules; inline;
 
 type
-  { Unit of Gigafarad }
-  TGigafaradUnit = record
-    const Symbol = 'GF';
-    const Name   = 'gigafarad';
-    const Factor = 1E+09;
-  end;
-  TGigafaradUnitId = specialize TFactoredUnitId<TFaradUnit, TGigafaradUnit>;
-
-const
-  GF: specialize TQuantity<TFaradUnit> = (FValue: TGigafaradUnit.Factor);
-
-type
-  { Unit of Megafarad }
-  TMegafaradUnit = record
-    const Symbol = 'MF';
-    const Name   = 'megafarad';
-    const Factor = 1E+06;
-  end;
-  TMegafaradUnitId = specialize TFactoredUnitId<TFaradUnit, TMegafaradUnit>;
-
-const
-  megaF: specialize TQuantity<TFaradUnit> = (FValue: TMegafaradUnit.Factor);
-
-type
-  { Unit of Kilofarad }
-  TKilofaradUnit = record
-    const Symbol = 'kF';
-    const Name   = 'kilofarad';
-    const Factor = 1E+03;
-  end;
-  TKilofaradUnitId = specialize TFactoredUnitId<TFaradUnit, TKilofaradUnit>;
-
-const
-  kF: specialize TQuantity<TFaradUnit> = (FValue: TKilofaradUnit.Factor);
-
-type
-  { Unit of Millifarad }
-  TMillifaradUnit = record
-    const Symbol = 'mF';
-    const Name   = 'millifarad';
-    const Factor = 1E-03;
-  end;
-  TMillifaradUnitId = specialize TFactoredUnitId<TFaradUnit, TMillifaradUnit>;
-
-const
-  mF: specialize TQuantity<TFaradUnit> = (FValue: TMillifaradUnit.Factor);
-
-type
-  { Unit of Microfarad }
-  TMicrofaradUnit = record
-    const Symbol = 'uF';
-    const Name   = 'microfarad';
-    const Factor = 1E-06;
-  end;
-  TMicrofaradUnitId = specialize TFactoredUnitId<TFaradUnit, TMicrofaradUnit>;
-
-const
-  uF: specialize TQuantity<TFaradUnit> = (FValue: TMicrofaradUnit.Factor);
-
-type
-  { Unit of Nanofarad }
-  TNanofaradUnit = record
-    const Symbol = 'nF';
-    const Name   = 'nanofarad';
-    const Factor = 1E-09;
-  end;
-  TNanofaradUnitId = specialize TFactoredUnitId<TFaradUnit, TNanofaradUnit>;
-
-const
-  nF: specialize TQuantity<TFaradUnit> = (FValue: TNanofaradUnit.Factor);
-
-type
-  { Unit of Picofarad }
-  TPicofaradUnit = record
-    const Symbol = 'pF';
-    const Name   = 'picofarad';
-    const Factor = 1E-12;
-  end;
-  TPicofaradUnitId = specialize TFactoredUnitId<TFaradUnit, TPicofaradUnit>;
-
-const
-  pF: specialize TQuantity<TFaradUnit> = (FValue: TPicofaradUnit.Factor);
-
-type
   { Unit of Ohm }
   TOhmUnit = record
     const Symbol = 'Ω';
@@ -2280,8 +1423,20 @@ type
   TOhms = specialize TQuantity<TOhmUnit>;
   TOhmUnitId = specialize TUnitId<TOhmUnit>;
 
-var
-  ohm: TOhmUnitId;
+var ohm: TOhmUnitId;
+
+const     Tohm: specialize TQuantity<TOhmUnit> = (FValue: 1E+12);
+const     Gohm: specialize TQuantity<TOhmUnit> = (FValue: 1E+09);
+const  megaohm: specialize TQuantity<TOhmUnit> = (FValue: 1E+06);
+const     kohm: specialize TQuantity<TOhmUnit> = (FValue: 1E+03);
+const     hohm: specialize TQuantity<TOhmUnit> = (FValue: 1E+02);
+const    daohm: specialize TQuantity<TOhmUnit> = (FValue: 1E+01);
+const     dohm: specialize TQuantity<TOhmUnit> = (FValue: 1E-01);
+const     cohm: specialize TQuantity<TOhmUnit> = (FValue: 1E-02);
+const     mohm: specialize TQuantity<TOhmUnit> = (FValue: 1E-03);
+const    miohm: specialize TQuantity<TOhmUnit> = (FValue: 1E-06);
+const     nohm: specialize TQuantity<TOhmUnit> = (FValue: 1E-09);
+const     pohm: specialize TQuantity<TOhmUnit> = (FValue: 1E-12);
 
 // main definition [ Ω ] = [ V ] / [ A ]
 operator /(const ALeft: TVolts; const ARight: TAmperes): TOhms; inline;
@@ -2309,90 +1464,6 @@ operator *(const ALeft: TOhms; const ARight: TWatts): TSquareVolts; inline;
 operator /(const ALeft: TSquareVolts; const ARight: TOhms): TWatts; inline;
 
 type
-  { Unit of Gigaohm }
-  TGigaohmUnit = record
-    const Symbol = 'GΩ';
-    const Name   = 'gigaohm';
-    const Factor = 1E+09;
-  end;
-  TGigaohmUnitId = specialize TFactoredUnitId<TOhmUnit, TGigaohmUnit>;
-
-const
-  gigaohm: specialize TQuantity<TOhmUnit> = (FValue: TGigaohmUnit.Factor);
-
-type
-  { Unit of Megaohm }
-  TMegaohmUnit = record
-    const Symbol = 'MΩ';
-    const Name   = 'megaohm';
-    const Factor = 1E+06;
-  end;
-  TMegaohmUnitId = specialize TFactoredUnitId<TOhmUnit, TMegaohmUnit>;
-
-const
-  megaohm: specialize TQuantity<TOhmUnit> = (FValue: TMegaohmUnit.Factor);
-
-type
-  { Unit of Kiloohm }
-  TKiloohmUnit = record
-    const Symbol = 'kΩ';
-    const Name   = 'kiloohm';
-    const Factor = 1E+03;
-  end;
-  TKiloohmUnitId = specialize TFactoredUnitId<TOhmUnit, TKiloohmUnit>;
-
-const
-  kiloohm: specialize TQuantity<TOhmUnit> = (FValue: TKiloohmUnit.Factor);
-
-type
-  { Unit of Milliohm }
-  TMilliohmUnit = record
-    const Symbol = 'mΩ';
-    const Name   = 'milliohm';
-    const Factor = 1E-03;
-  end;
-  TMilliohmUnitId = specialize TFactoredUnitId<TOhmUnit, TMilliohmUnit>;
-
-const
-  milliohm: specialize TQuantity<TOhmUnit> = (FValue: TMilliohmUnit.Factor);
-
-type
-  { Unit of Microohm }
-  TMicroohmUnit = record
-    const Symbol = 'uΩ';
-    const Name   = 'microohm';
-    const Factor = 1E-06;
-  end;
-  TMicroohmUnitId = specialize TFactoredUnitId<TOhmUnit, TMicroohmUnit>;
-
-const
-  microohm: specialize TQuantity<TOhmUnit> = (FValue: TMicroohmUnit.Factor);
-
-type
-  { Unit of Nanoohm }
-  TNanoohmUnit = record
-    const Symbol = 'nΩ';
-    const Name   = 'nanoohm';
-    const Factor = 1E-09;
-  end;
-  TNanoohmUnitId = specialize TFactoredUnitId<TOhmUnit, TNanoohmUnit>;
-
-const
-  nanoohm: specialize TQuantity<TOhmUnit> = (FValue: TNanoohmUnit.Factor);
-
-type
-  { Unit of Picoohm }
-  TPicoohmUnit = record
-    const Symbol = 'pΩ';
-    const Name   = 'picoohm';
-    const Factor = 1E-12;
-  end;
-  TPicoohmUnitId = specialize TFactoredUnitId<TOhmUnit, TPicoohmUnit>;
-
-const
-  picoohm: specialize TQuantity<TOhmUnit> = (FValue: TPicoohmUnit.Factor);
-
-type
   { Unit of Siemens }
   TSiemensUnit = record
     const Symbol = 'S';
@@ -2401,8 +1472,20 @@ type
   TSiemens = specialize TQuantity<TSiemensUnit>;
   TSiemensUnitId = specialize TUnitId<TSiemensUnit>;
 
-var
-  siemens: TSiemensUnitId;
+var siemens: TSiemensUnitId;
+
+const  terasiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E+12);
+const  gigasiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E+09);
+const  megasiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E+06);
+const  kilosiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E+03);
+const hectosiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E+02);
+const  decasiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E+01);
+const  decisiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E-01);
+const centisiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E-02);
+const millisiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E-03);
+const microsiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E-06);
+const  nanosiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E-09);
+const  picosiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E-12);
 
 // main definition [ S ] = 1 / [ Ω ]
 operator /(const ALeft: double; const ARight: TOhms): TSiemens; inline;
@@ -2420,8 +1503,20 @@ type
   TWebers = specialize TQuantity<TWeberUnit>;
   TWeberUnitId = specialize TUnitId<TWeberUnit>;
 
-var
-  Wb: TWeberUnitId;
+var Wb: TWeberUnitId;
+
+const     TWb: specialize TQuantity<TWeberUnit> = (FValue: 1E+12);
+const     GWb: specialize TQuantity<TWeberUnit> = (FValue: 1E+09);
+const  megaWb: specialize TQuantity<TWeberUnit> = (FValue: 1E+06);
+const     kWb: specialize TQuantity<TWeberUnit> = (FValue: 1E+03);
+const     hWb: specialize TQuantity<TWeberUnit> = (FValue: 1E+02);
+const    daWb: specialize TQuantity<TWeberUnit> = (FValue: 1E+01);
+const     dWb: specialize TQuantity<TWeberUnit> = (FValue: 1E-01);
+const     cWb: specialize TQuantity<TWeberUnit> = (FValue: 1E-02);
+const     mWb: specialize TQuantity<TWeberUnit> = (FValue: 1E-03);
+const    miWb: specialize TQuantity<TWeberUnit> = (FValue: 1E-06);
+const     nWb: specialize TQuantity<TWeberUnit> = (FValue: 1E-09);
+const     pWb: specialize TQuantity<TWeberUnit> = (FValue: 1E-12);
 
 // main definition [ Wb ] = [ V ] * [ s ]
 operator *(const ALeft: TVolts; const ARight: TSeconds): TWebers; inline;
@@ -2439,8 +1534,20 @@ type
   TTeslas = specialize TQuantity<TTeslaUnit>;
   TTeslaUnitId = specialize TUnitId<TTeslaUnit>;
 
-var
-  T: TTeslaUnitId;
+var T: TTeslaUnitId;
+
+const     TT: specialize TQuantity<TTeslaUnit> = (FValue: 1E+12);
+const     GT: specialize TQuantity<TTeslaUnit> = (FValue: 1E+09);
+const  megaT: specialize TQuantity<TTeslaUnit> = (FValue: 1E+06);
+const     kT: specialize TQuantity<TTeslaUnit> = (FValue: 1E+03);
+const     hT: specialize TQuantity<TTeslaUnit> = (FValue: 1E+02);
+const    daT: specialize TQuantity<TTeslaUnit> = (FValue: 1E+01);
+const     dT: specialize TQuantity<TTeslaUnit> = (FValue: 1E-01);
+const     cT: specialize TQuantity<TTeslaUnit> = (FValue: 1E-02);
+const     mT: specialize TQuantity<TTeslaUnit> = (FValue: 1E-03);
+const    miT: specialize TQuantity<TTeslaUnit> = (FValue: 1E-06);
+const     nT: specialize TQuantity<TTeslaUnit> = (FValue: 1E-09);
+const     pT: specialize TQuantity<TTeslaUnit> = (FValue: 1E-12);
 
 // main definition [ T ] = [ Wb ] / [ m2 ]
 operator /(const ALeft: TWebers; const ARight: TSquareMeters): TTeslas; inline;
@@ -2458,8 +1565,20 @@ type
   THenrys = specialize TQuantity<THenryUnit>;
   THenryUnitId = specialize TUnitId<THenryUnit>;
 
-var
-  H: THenryUnitId;
+var H: THenryUnitId;
+
+const     TH: specialize TQuantity<THenryUnit> = (FValue: 1E+12);
+const     GH: specialize TQuantity<THenryUnit> = (FValue: 1E+09);
+const  megaH: specialize TQuantity<THenryUnit> = (FValue: 1E+06);
+const     kH: specialize TQuantity<THenryUnit> = (FValue: 1E+03);
+const     hH: specialize TQuantity<THenryUnit> = (FValue: 1E+02);
+const    daH: specialize TQuantity<THenryUnit> = (FValue: 1E+01);
+const     dH: specialize TQuantity<THenryUnit> = (FValue: 1E-01);
+const     cH: specialize TQuantity<THenryUnit> = (FValue: 1E-02);
+const     mH: specialize TQuantity<THenryUnit> = (FValue: 1E-03);
+const    miH: specialize TQuantity<THenryUnit> = (FValue: 1E-06);
+const     nH: specialize TQuantity<THenryUnit> = (FValue: 1E-09);
+const     pH: specialize TQuantity<THenryUnit> = (FValue: 1E-12);
 
 // main definition [ H ] = [ Wb ] / [ A ]
 operator /(const ALeft: TWebers; const ARight: TAmperes): THenrys; inline;
@@ -2489,8 +1608,20 @@ type
   TLumens = specialize TQuantity<TLumenUnit>;
   TLumenUnitId = specialize TUnitId<TLumenUnit>;
 
-var
-  lm: TLumenUnitId;
+var lm: TLumenUnitId;
+
+const     Tlm: specialize TQuantity<TLumenUnit> = (FValue: 1E+12);
+const     Glm: specialize TQuantity<TLumenUnit> = (FValue: 1E+09);
+const  megalm: specialize TQuantity<TLumenUnit> = (FValue: 1E+06);
+const     klm: specialize TQuantity<TLumenUnit> = (FValue: 1E+03);
+const     hlm: specialize TQuantity<TLumenUnit> = (FValue: 1E+02);
+const    dalm: specialize TQuantity<TLumenUnit> = (FValue: 1E+01);
+const     dlm: specialize TQuantity<TLumenUnit> = (FValue: 1E-01);
+const     clm: specialize TQuantity<TLumenUnit> = (FValue: 1E-02);
+const     mlm: specialize TQuantity<TLumenUnit> = (FValue: 1E-03);
+const    milm: specialize TQuantity<TLumenUnit> = (FValue: 1E-06);
+const     nlm: specialize TQuantity<TLumenUnit> = (FValue: 1E-09);
+const     plm: specialize TQuantity<TLumenUnit> = (FValue: 1E-12);
 
 // main definition [ lm ] = [ cd ] * [ sr ]
 operator *(const ALeft: TCandelas; const ARight: TSteradians): TLumens; inline;
@@ -2508,8 +1639,20 @@ type
   TLux = specialize TQuantity<TLuxUnit>;
   TLuxUnitId = specialize TUnitId<TLuxUnit>;
 
-var
-  lx: TLuxUnitId;
+var lx: TLuxUnitId;
+
+const     Tlx: specialize TQuantity<TLuxUnit> = (FValue: 1E+12);
+const     Glx: specialize TQuantity<TLuxUnit> = (FValue: 1E+09);
+const  megalx: specialize TQuantity<TLuxUnit> = (FValue: 1E+06);
+const     klx: specialize TQuantity<TLuxUnit> = (FValue: 1E+03);
+const     hlx: specialize TQuantity<TLuxUnit> = (FValue: 1E+02);
+const    dalx: specialize TQuantity<TLuxUnit> = (FValue: 1E+01);
+const     dlx: specialize TQuantity<TLuxUnit> = (FValue: 1E-01);
+const     clx: specialize TQuantity<TLuxUnit> = (FValue: 1E-02);
+const     mlx: specialize TQuantity<TLuxUnit> = (FValue: 1E-03);
+const    milx: specialize TQuantity<TLuxUnit> = (FValue: 1E-06);
+const     nlx: specialize TQuantity<TLuxUnit> = (FValue: 1E-09);
+const     plx: specialize TQuantity<TLuxUnit> = (FValue: 1E-12);
 
 // main definition [ lx ] = [ lm ] / [ m2 ]
 operator /(const ALeft: TLumens; const ARight: TSquareMeters): TLux; inline;
@@ -2525,10 +1668,22 @@ type
     const Name   = 'bequerel';
   end;
   TBequerels = specialize TQuantity<THertzUnit>;
-  TBequerelUnitId = specialize TUnitId<TBequerelUnit>;
+  TBequerelUnitId = specialize TUnitId<THertzUnit>;
 
-var
-  Bq: THertzUnitId;
+var Bq: TBequerelUnitId;
+
+const     TBq: specialize TQuantity<THertzUnit> = (FValue: 1E+12);
+const     GBq: specialize TQuantity<THertzUnit> = (FValue: 1E+09);
+const  megaBq: specialize TQuantity<THertzUnit> = (FValue: 1E+06);
+const     kBq: specialize TQuantity<THertzUnit> = (FValue: 1E+03);
+const     hBq: specialize TQuantity<THertzUnit> = (FValue: 1E+02);
+const    daBq: specialize TQuantity<THertzUnit> = (FValue: 1E+01);
+const     dBq: specialize TQuantity<THertzUnit> = (FValue: 1E-01);
+const     cBq: specialize TQuantity<THertzUnit> = (FValue: 1E-02);
+const     mBq: specialize TQuantity<THertzUnit> = (FValue: 1E-03);
+const    miBq: specialize TQuantity<THertzUnit> = (FValue: 1E-06);
+const     nBq: specialize TQuantity<THertzUnit> = (FValue: 1E-09);
+const     pBq: specialize TQuantity<THertzUnit> = (FValue: 1E-12);
 
 type
   { Unit of Gray }
@@ -2537,46 +1692,22 @@ type
     const Name   = 'gray';
   end;
   TGrays = specialize TQuantity<TSquareMeterPerSquareSecondUnit>;
-  TGrayUnitId = specialize TUnitId<TGrayUnit>;
+  TGrayUnitId = specialize TUnitId<TSquareMeterPerSquareSecondUnit>;
 
-var
-  Gy: TSquareMeterPerSquareSecondUnitId;
+var Gy: TGrayUnitId;
 
-type
-  { Unit of Decigray }
-  TDecigrayUnit = record
-    const Symbol = 'dGy';
-    const Name   = 'decigray';
-    const Factor = 1E-01;
-  end;
-  TDecigrayUnitId = specialize TFactoredUnitId<TGrayUnit, TDecigrayUnit>;
-
-const
-  dGy: specialize TQuantity<TGrayUnit> = (FValue: TDecigrayUnit.Factor);
-
-type
-  { Unit of Centigray }
-  TCentigrayUnit = record
-    const Symbol = 'cGy';
-    const Name   = 'centigray';
-    const Factor = 1E-02;
-  end;
-  TCentigrayUnitId = specialize TFactoredUnitId<TGrayUnit, TCentigrayUnit>;
-
-const
-  cGy: specialize TQuantity<TGrayUnit> = (FValue: TCentigrayUnit.Factor);
-
-type
-  { Unit of Milligray }
-  TMilligrayUnit = record
-    const Symbol = 'mGy';
-    const Name   = 'milligray';
-    const Factor = 1E-03;
-  end;
-  TMilligrayUnitId = specialize TFactoredUnitId<TGrayUnit, TMilligrayUnit>;
-
-const
-  mGy: specialize TQuantity<TGrayUnit> = (FValue: TMilligrayUnit.Factor);
+const     TGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+12);
+const     GGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+09);
+const  megaGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+06);
+const     kGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+03);
+const     hGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+02);
+const    daGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+01);
+const     dGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-01);
+const     cGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-02);
+const     mGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-03);
+const    miGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-06);
+const     nGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-09);
+const     pGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-12);
 
 type
   { Unit of Sievert }
@@ -2585,46 +1716,22 @@ type
     const Name   = 'sievert';
   end;
   TSieverts = specialize TQuantity<TSquareMeterPerSquareSecondUnit>;
-  TSievertUnitId = specialize TUnitId<TSievertUnit>;
+  TSievertUnitId = specialize TUnitId<TSquareMeterPerSquareSecondUnit>;
 
-var
-  Sv: TSquareMeterPerSquareSecondUnitId;
+var Sv: TSievertUnitId;
 
-type
-  { Unit of Decisievert }
-  TDecisievertUnit = record
-    const Symbol = 'dSv';
-    const Name   = 'decisievert';
-    const Factor = 1E-01;
-  end;
-  TDecisievertUnitId = specialize TFactoredUnitId<TSievertUnit, TDecisievertUnit>;
-
-const
-  dSv: specialize TQuantity<TSievertUnit> = (FValue: TDecisievertUnit.Factor);
-
-type
-  { Unit of Centisievert }
-  TCentisievertUnit = record
-    const Symbol = 'cSv';
-    const Name   = 'centisievert';
-    const Factor = 1E-02;
-  end;
-  TCentisievertUnitId = specialize TFactoredUnitId<TSievertUnit, TCentisievertUnit>;
-
-const
-  cSv: specialize TQuantity<TSievertUnit> = (FValue: TCentisievertUnit.Factor);
-
-type
-  { Unit of Millisievert }
-  TMillisievertUnit = record
-    const Symbol = 'mSv';
-    const Name   = 'millisievert';
-    const Factor = 1E-03;
-  end;
-  TMillisievertUnitId = specialize TFactoredUnitId<TSievertUnit, TMillisievertUnit>;
-
-const
-  mSv: specialize TQuantity<TSievertUnit> = (FValue: TMillisievertUnit.Factor);
+const     TSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+12);
+const     GSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+09);
+const  megaSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+06);
+const     kSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+03);
+const     hSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+02);
+const    daSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+01);
+const     dSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-01);
+const     cSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-02);
+const     mSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-03);
+const    miSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-06);
+const     nSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-09);
+const     pSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-12);
 
 type
   { Unit of Katal }
@@ -2635,8 +1742,20 @@ type
   TKatals = specialize TQuantity<TKatalUnit>;
   TKatalUnitId = specialize TUnitId<TKatalUnit>;
 
-var
-  kat: TKatalUnitId;
+var kat: TKatalUnitId;
+
+const     Tkat: specialize TQuantity<TKatalUnit> = (FValue: 1E+12);
+const     Gkat: specialize TQuantity<TKatalUnit> = (FValue: 1E+09);
+const  megakat: specialize TQuantity<TKatalUnit> = (FValue: 1E+06);
+const     kkat: specialize TQuantity<TKatalUnit> = (FValue: 1E+03);
+const     hkat: specialize TQuantity<TKatalUnit> = (FValue: 1E+02);
+const    dakat: specialize TQuantity<TKatalUnit> = (FValue: 1E+01);
+const     dkat: specialize TQuantity<TKatalUnit> = (FValue: 1E-01);
+const     ckat: specialize TQuantity<TKatalUnit> = (FValue: 1E-02);
+const     mkat: specialize TQuantity<TKatalUnit> = (FValue: 1E-03);
+const    mikat: specialize TQuantity<TKatalUnit> = (FValue: 1E-06);
+const     nkat: specialize TQuantity<TKatalUnit> = (FValue: 1E-09);
+const     pkat: specialize TQuantity<TKatalUnit> = (FValue: 1E-12);
 
 // main definition [ kat ] = [ mol ] / [ s ]
 operator /(const ALeft: TMoles; const ARight: TSeconds): TKatals; inline;
@@ -2652,7 +1771,7 @@ type
     const Name   = 'newton meter';
   end;
   TNewtonMeters = specialize TQuantity<TJouleUnit>;
-  TNewtonMeterUnitId = specialize TUnitId<TNewtonMeterUnit>;
+  TNewtonMeterUnitId = specialize TUnitId<TJouleUnit>;
 
 type
   { Unit of JoulePerRadian }
@@ -2677,7 +1796,8 @@ type
     const Name   = 'joule per degree';
     const Factor = 180/Pi;
   end;
-  TJoulePerDegreeUnitId = specialize TFactoredUnitId<TJoulePerRadianUnit, TJoulePerDegreeUnit>;
+  TJoulesPerDegree = specialize TQuantity<TJoulePerRadianUnit>;
+  TJoulePerDegreeUnitId = specialize TUnitId<TJoulePerDegreeUnit>;
 
 type
   { Unit of NewtonMeterPerRadian }
@@ -2686,7 +1806,7 @@ type
     const Name   = 'newton meter per radian';
   end;
   TNewtonMetersPerRadian = specialize TQuantity<TJoulePerRadianUnit>;
-  TNewtonMeterPerRadianUnitId = specialize TUnitId<TNewtonMeterPerRadianUnit>;
+  TNewtonMeterPerRadianUnitId = specialize TUnitId<TJoulePerRadianUnit>;
 
 type
   { Unit of NewtonMeterPerDegree }
@@ -2695,7 +1815,8 @@ type
     const Name   = 'newton meter per degree';
     const Factor = 180/Pi;
   end;
-  TNewtonMeterPerDegreeUnitId = specialize TFactoredUnitId<TJoulePerRadianUnit, TNewtonMeterPerDegreeUnit>;
+  TNewtonMetersPerDegree = specialize TQuantity<TJoulePerRadianUnit>;
+  TNewtonMeterPerDegreeUnitId = specialize TUnitId<TNewtonMeterPerDegreeUnit>;
 
 type
   { Unit of NewtonPerCubicMeter }
@@ -2760,33 +1881,6 @@ operator /(const ALeft: TNewtonsPerMeter; const ARight: TKilograms): TSquareHert
 operator /(const ALeft: TNewtonsPerMeter; const ARight: TSquareHertz): TKilograms; inline;
 
 type
-  { Unit of NewtonPerDecimeter }
-  TNewtonPerDecimeterUnit = record
-    const Symbol = 'N/dm';
-    const Name   = 'newton per decimeter';
-    const Factor = 1E+01;
-  end;
-  TNewtonPerDecimeterUnitId = specialize TFactoredUnitId<TNewtonPerMeterUnit, TNewtonPerDecimeterUnit>;
-
-type
-  { Unit of NewtonPerCentimeter }
-  TNewtonPerCentimeterUnit = record
-    const Symbol = 'N/cm';
-    const Name   = 'newton per centimeter';
-    const Factor = 1E+02;
-  end;
-  TNewtonPerCentimeterUnitId = specialize TFactoredUnitId<TNewtonPerMeterUnit, TNewtonPerCentimeterUnit>;
-
-type
-  { Unit of NewtonPerMillimeter }
-  TNewtonPerMillimeterUnit = record
-    const Symbol = 'N/mm';
-    const Name   = 'newton per millimeter';
-    const Factor = 1E+03;
-  end;
-  TNewtonPerMillimeterUnitId = specialize TFactoredUnitId<TNewtonPerMeterUnit, TNewtonPerMillimeterUnit>;
-
-type
   { Unit of CubicMeterPerSecond }
   TCubicMeterPerSecondUnit = record
     const Symbol = 'm3/s';
@@ -2839,8 +1933,20 @@ type
   TPoiseuilles = specialize TQuantity<TPoiseuilleUnit>;
   TPoiseuilleUnitId = specialize TUnitId<TPoiseuilleUnit>;
 
-var
-  Pl: TPoiseuilleUnitId;
+var Pl: TPoiseuilleUnitId;
+
+const     TPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E+12);
+const     GPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E+09);
+const  megaPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E+06);
+const     kPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E+03);
+const     hPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E+02);
+const    daPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E+01);
+const     dPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E-01);
+const     cPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E-02);
+const     mPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E-03);
+const    miPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E-06);
+const     nPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E-09);
+const     pPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E-12);
 
 // main definition [ Pl ] = [ Pa ] * [ s ]
 operator *(const ALeft: TPascals; const ARight: TSeconds): TPoiseuilles; inline;
@@ -2863,49 +1969,13 @@ operator /(const ALeft: TKilogramsPerSecond; const ARight: TPoiseuilles): TMeter
 operator *(const ALeft: TPoiseuilles; const {%H-}ARight: TMeterUnitId): TKilogramsPerSecond; inline;
 
 type
-  { Unit of Decipoiseuille }
-  TDecipoiseuilleUnit = record
-    const Symbol = 'dPl';
-    const Name   = 'decipoiseuille';
-    const Factor = 1E-01;
-  end;
-  TDecipoiseuilleUnitId = specialize TFactoredUnitId<TPoiseuilleUnit, TDecipoiseuilleUnit>;
-
-const
-  dPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: TDecipoiseuilleUnit.Factor);
-
-type
-  { Unit of Centipoiseuille }
-  TCentipoiseuilleUnit = record
-    const Symbol = 'cPl';
-    const Name   = 'centipoiseuille';
-    const Factor = 1E-02;
-  end;
-  TCentipoiseuilleUnitId = specialize TFactoredUnitId<TPoiseuilleUnit, TCentipoiseuilleUnit>;
-
-const
-  cPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: TCentipoiseuilleUnit.Factor);
-
-type
-  { Unit of Millipoiseuille }
-  TMillipoiseuilleUnit = record
-    const Symbol = 'mPl';
-    const Name   = 'millipoiseuille';
-    const Factor = 1E-03;
-  end;
-  TMillipoiseuilleUnitId = specialize TFactoredUnitId<TPoiseuilleUnit, TMillipoiseuilleUnit>;
-
-const
-  mPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: TMillipoiseuilleUnit.Factor);
-
-type
   { Unit of PascalSecond }
   TPascalSecondUnit = record
     const Symbol = 'Pa.s';
     const Name   = 'pascal second';
   end;
   TPascalSeconds = specialize TQuantity<TPoiseuilleUnit>;
-  TPascalSecondUnitId = specialize TUnitId<TPascalSecondUnit>;
+  TPascalSecondUnitId = specialize TUnitId<TPoiseuilleUnit>;
 
 type
   { Unit of SquareMeterPerSecond }
@@ -3256,7 +2326,7 @@ type
     const Name   = 'joule per kilogram';
   end;
   TJoulesPerKilogram = specialize TQuantity<TSquareMeterPerSquareKilogramUnit>;
-  TJoulePerKilogramUnitId = specialize TUnitId<TJoulePerKilogramUnit>;
+  TJoulePerKilogramUnitId = specialize TUnitId<TSquareMeterPerSquareKilogramUnit>;
 
 type
   { Unit of JoulePerKilogramPerKelvin }
@@ -4017,8 +3087,20 @@ type
   TSquareJoules = specialize TQuantity<TSquareJouleUnit>;
   TSquareJouleUnitId = specialize TUnitId<TSquareJouleUnit>;
 
-var
-  J2: TSquareJouleUnitId;
+var J2: TSquareJouleUnitId;
+
+const     TJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E+24);
+const     GJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E+18);
+const  megaJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E+12);
+const     kJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E+06);
+const     hJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E+04);
+const    daJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E+02);
+const     dJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E-02);
+const     cJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E-04);
+const     mJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E-06);
+const    miJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E-12);
+const     nJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E-18);
+const     pJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E-24);
 
 // main definition [ J2 ] = [ J ] * [ J ]
 operator *(const ALeft: TJoules; const ARight: TJoules): TSquareJoules; inline;
@@ -4054,69 +3136,94 @@ operator /(const ALeft: TJouleSeconds; const ARight: TKilogramMetersPerSecond): 
 operator /(const ALeft: TJouleSeconds; const ARight: TMeters): TKilogramMetersPerSecond; inline;
 
 type
-  { Unit of TeraelettronvoltSecond }
-  TTeraelettronvoltSecondUnit = record
-    const Symbol = 'TeV.s';
-    const Name   = 'teraelettronvolt second';
-    const Factor = 1.60217742320523E-007;
+  { Unit of ElettronvoltSecond }
+  TElettronvoltSecondUnit = record
+    const Symbol = 'eV.s';
+    const Name   = 'elettronvolt second';
+    const Factor = 1.60217742320523E-019;
   end;
-  TTeraelettronvoltSecondUnitId = specialize TFactoredUnitId<TJouleSecondUnit, TTeraelettronvoltSecondUnit>;
+  TElettronvoltSeconds = specialize TQuantity<TJouleSecondUnit>;
+  TElettronvoltSecondUnitId = specialize TUnitId<TElettronvoltSecondUnit>;
 
 { Helpers }
 
 type
-  TRadianPerSquareSecondHelper = record helper for TRadianPerSquareSecondUnitId
-    class function From(const AQuantity: TSquareHertz): TRadianPerSquareSecondUnitId.TBaseQuantity; static;
+  TSecondHelper = record helper for TSeconds
+    function AsMinute: specialize TQuantity<TMinuteUnit>;
+    function AsHour: specialize TQuantity<THourUnit>;
+    function AsDay: specialize TQuantity<TDayUnit>;
   end;
 
 type
-  TSteradianPerSquareSecondHelper = record helper for TSteradianPerSquareSecondUnitId
-    class function From(const AQuantity: TSquareHertz): TSteradianPerSquareSecondUnitId.TBaseQuantity; static;
+  TSquareSecondHelper = record helper for TSquareSeconds
+    function AsSquareMinute: specialize TQuantity<TSquareMinuteUnit>;
+    function AsSquareHour: specialize TQuantity<TSquareHourUnit>;
+    function AsSquareDay: specialize TQuantity<TSquareDayUnit>;
   end;
 
 type
-  TNewtonSecondHelper = record helper for TNewtonSecondUnitId
-    class function From(const AQuantity: TKilogramMetersPerSecond): TNewtonSecondUnitId.TBaseQuantity; static;
+  TMeterHelper = record helper for TMeters
+    function AsAstronomical: specialize TQuantity<TAstronomicalUnit>;
   end;
 
 type
-  TBequerelHelper = record helper for TBequerelUnitId
-    class function From(const AQuantity: THertz): TBequerelUnitId.TBaseQuantity; static;
+  TRadianHelper = record helper for TRadians
+    function AsDegree: specialize TQuantity<TDegreeUnit>;
   end;
 
 type
-  TGrayHelper = record helper for TGrayUnitId
-    class function From(const AQuantity: TSquareMetersPerSquareSecond): TGrayUnitId.TBaseQuantity; static;
+  TSquareHertzHelper = record helper for TSquareHertz
+    function AsSteradianPerSquareSecond: specialize TQuantity<TSteradianPerSquareSecondUnit>;
+    function AsRadianPerSquareSecond: specialize TQuantity<TRadianPerSquareSecondUnit>;
   end;
 
 type
-  TSievertHelper = record helper for TSievertUnitId
-    class function From(const AQuantity: TSquareMetersPerSquareSecond): TSievertUnitId.TBaseQuantity; static;
+  TMeterPerSquareSecondHelper = record helper for TMetersPerSquareSecond
+    function AsMeterPerSecondPerSecond: specialize TQuantity<TMeterPerSecondPerSecondUnit>;
   end;
 
 type
-  TNewtonMeterHelper = record helper for TNewtonMeterUnitId
-    class function From(const AQuantity: TJoules): TNewtonMeterUnitId.TBaseQuantity; static;
+  TKilogramMeterPerSecondHelper = record helper for TKilogramMetersPerSecond
+    function AsNewtonSecond: specialize TQuantity<TNewtonSecondUnit>;
   end;
 
 type
-  TNewtonMeterPerRadianHelper = record helper for TNewtonMeterPerRadianUnitId
-    class function From(const AQuantity: TJoulesPerRadian): TNewtonMeterPerRadianUnitId.TBaseQuantity; static;
+  TJouleHelper = record helper for TJoules
+    function AsNewtonMeter: specialize TQuantity<TNewtonMeterUnit>;
+    function AsElettronvolt: specialize TQuantity<TElettronvoltUnit>;
   end;
 
 type
-  TNewtonMeterPerDegreeHelper = record helper for TNewtonMeterPerDegreeUnitId
-    class function From(const AQuantity: TJoulesPerRadian): TNewtonMeterPerDegreeUnitId.TFactoredQuantity; static;
+  THertzHelper = record helper for THertz
+    function AsBequerel: specialize TQuantity<TBequerelUnit>;
   end;
 
 type
-  TPascalSecondHelper = record helper for TPascalSecondUnitId
-    class function From(const AQuantity: TPoiseuilles): TPascalSecondUnitId.TBaseQuantity; static;
+  TSquareMeterPerSquareSecondHelper = record helper for TSquareMetersPerSquareSecond
+    function AsSievert: specialize TQuantity<TSievertUnit>;
+    function AsGray: specialize TQuantity<TGrayUnit>;
   end;
 
 type
-  TJoulePerKilogramHelper = record helper for TJoulePerKilogramUnitId
-    class function From(const AQuantity: TSquareMetersPerSquareKilogram): TJoulePerKilogramUnitId.TBaseQuantity; static;
+  TJoulePerRadianHelper = record helper for TJoulesPerRadian
+    function AsNewtonMeterPerDegree: specialize TQuantity<TNewtonMeterPerDegreeUnit>;
+    function AsNewtonMeterPerRadian: specialize TQuantity<TNewtonMeterPerRadianUnit>;
+    function AsJoulePerDegree: specialize TQuantity<TJoulePerDegreeUnit>;
+  end;
+
+type
+  TPoiseuilleHelper = record helper for TPoiseuilles
+    function AsPascalSecond: specialize TQuantity<TPascalSecondUnit>;
+  end;
+
+type
+  TSquareMeterPerSquareKilogramHelper = record helper for TSquareMetersPerSquareKilogram
+    function AsJoulePerKilogram: specialize TQuantity<TJoulePerKilogramUnit>;
+  end;
+
+type
+  TJouleSecondHelper = record helper for TJouleSeconds
+    function AsElettronvoltSecond: specialize TQuantity<TElettronvoltSecondUnit>;
   end;
 
 { Power units }
@@ -4178,9 +3285,91 @@ function ArcSin(const AValue: double): TRadians;
 function ArcTan(const AValue: double): TRadians;
 function ArcTan2(const x, y: double): TRadians;
 
+const
+  Prefixes: array[0..14] of record Prefix: TPrefix; Symbol, Name: string; Factor: double end = (
+    (Prefix: pTera;   Symbol: 'T';   Name: 'tera';   Factor: 1E+12),
+    (Prefix: pGiga;   Symbol: 'G';   Name: 'giga';   Factor: 1E+9),
+    (Prefix: pMega;   Symbol: 'M';   Name: 'mega';   Factor: 1E+6),
+    (Prefix: pKilo;   Symbol: 'k';   Name: 'kilo';   Factor: 1E+3),
+    (Prefix: pHecto;  Symbol: 'h';   Name: 'hecto';  Factor: 1E+2),
+    (Prefix: pDeca;   Symbol: 'da';  Name: 'deca';   Factor: 1E+1),
+    (Prefix: pDeci;   Symbol: 'd';   Name: 'deci';   Factor: 1E-1),
+    (Prefix: pCenti;  Symbol: 'c';   Name: 'centi';  Factor: 1E-2),
+    (Prefix: pMilli;  Symbol: 'm';   Name: 'milli';  Factor: 1E-3),
+    (Prefix: pMicro;  Symbol: 'μ';   Name: 'micro';  Factor: 1E-6),
+    (Prefix: pNano;   Symbol: 'n';   Name: 'nano';   Factor: 1E-9),
+    (Prefix: pPico;   Symbol: 'p';   Name: 'pico';   Factor: 1E-12),
+    (Prefix: pDay;    Symbol: 'd';   Name: 'day';    Factor: 86400),
+    (Prefix: pHour;   Symbol: 'h';   Name: 'hour';   Factor: 3600),
+    (Prefix: pMinute; Symbol: 'min'; Name: 'minute'; Factor: 60)
+  );
+
+function Split(const AStr: string): TStringArray;
+function GetPrefixName(const APrefix: TPrefix): string;
+function GetPrefixSymbol(const APrefix: TPrefix): string;
+function GetPrefixFactor(const APrefix: TPrefix): double;
+
 implementation
 
 uses Math;
+
+function Split(const AStr: string): TStringArray;
+var
+  I, Index: longint;
+begin
+  result := nil;
+  Index  := 0;
+  SetLength(result, Index + 10);
+  for I := low(AStr) to high(AStr) do
+  begin
+    if (AStr[I] in ['.', '/', ' ']) then
+    begin
+      Inc(Index);
+      if Index = Length(result) then
+        SetLength(result, Index + 10);
+      if AStr[I] <> ' ' then
+      begin
+        result[Index] := AStr[I];
+        Inc(Index);
+        if Index = Length(result) then
+           SetLength(result, Index + 10);
+      end;
+      result[Index] := '';
+    end else
+      result[Index] := result[Index] + AStr[I];
+  end;
+  SetLength(result, Index + 1);
+end;
+
+function GetPrefixName(const APrefix: TPrefix): string;
+var
+  I: longint;
+begin
+  for I := low(Prefixes) to high(Prefixes) do
+    if Prefixes[i].Prefix = APrefix then
+      exit(Prefixes[i].Name);
+  result := '';
+end;
+
+function GetPrefixSymbol(const APrefix: TPrefix): string;
+var
+  I: longint;
+begin
+  for I := low(Prefixes) to high(Prefixes) do
+    if Prefixes[i].Prefix = APrefix then
+      exit(Prefixes[i].Symbol);
+  result := '';
+end;
+
+function GetPrefixFactor(const APrefix: TPrefix): double;
+var
+  I: longint;
+begin
+  for I := low(Prefixes) to high(Prefixes) do
+    if Prefixes[i].Prefix = APrefix then
+      exit(Prefixes[i].Factor);
+  result := 1;
+end;
 
 { TQuantity }
 
@@ -4199,19 +3388,171 @@ begin
   result := FloatToStr(FValue) + ' ' + U.Symbol;
 end;
 
-function TQuantity.ToString(Precision, Digits: longint): string;
-begin
-  result := FloatToStrF(FValue, ffGeneral, Precision, Digits)  + ' ' + U.Symbol;
-end;
-
 function TQuantity.ToVerboseString: string;
 begin
   result := FloatToStr(FValue) + ' ' + U.Name;
 end;
 
-function TQuantity.ToVerboseString(Precision, Digits: longint): string;
+function TQuantity.ToString(Precision, Digits: longint; const Prefixes: TPrefixes): string;
+var
+  Exponent: longint;
+  Return: double;
+  I, Index: longint;
+  Prefix: TPrefix;
+  SubStr: TStringArray;
 begin
-  result := FloatToStrF(FValue, ffGeneral, Precision, Digits)  + ' ' + U.Name;
+  Return   := FValue;
+  Exponent := 1;
+  Index    := Low(Prefixes);
+  if Index <= High(Prefixes) then
+    Prefix := Prefixes[Index]
+  else
+    Prefix := pNone;
+
+  SubStr := Split(U.Symbol);
+  for I := Low(SubStr) to High(SubStr) do
+  begin
+    if (SubStr[I] = '/') then Exponent := -1 else
+    if (SubStr[I] = '.') then Exponent := +1
+      else
+      begin
+
+        if SubStr[I][length(SubStr[I])] in ['2', '3', '4', '5', '6'] then
+          Exponent := Exponent * StrToInt(SubStr[I][length(SubStr[I])]);
+
+        if (SubStr[I] = 's' ) or (SubStr[I] = 's2') then
+        begin
+
+          if Prefix in [pDay, pHour, pMinute] then
+          begin
+            SubStr[I] := GetPrefixSymbol(Prefix);
+            Return    := Return / IntPower(GetPrefixFactor(Prefix), Exponent);
+          end else
+            if Prefix in [pDeci, pCenti, pMilli, pMicro, pNano, pPico] then
+            begin
+              SubStr[I] := GetPrefixSymbol(Prefix) + SubStr[I];
+              Return    := Return / IntPower(GetPrefixFactor(Prefix), Exponent);
+            end else
+              Prefix := pNone;
+
+        end else
+          if not (Prefix in [pDay, pHour, pMinute]) then
+          begin
+
+            if (SubStr[I] = 'kg' ) or (SubStr[I] = 'kg2') then
+            begin
+              if Prefix <> pKilo then
+              begin
+                SubStr[I] := Copy(SubStr[I], 2, Length(SubStr[I]));
+                Return := Return * IntPower(1000, Exponent);
+              end else
+                Prefix := pNone;
+            end;
+
+            if Prefix <> pNone then
+            begin
+              SubStr[I] := GetPrefixSymbol(Prefix) + SubStr[I];
+              Return    := Return / IntPower(GetPrefixFactor(Prefix), Exponent);
+            end;
+          end;
+
+        Exponent := 1;
+        Index    := Index + 1;
+        if Index <= High(Prefixes) then
+          Prefix := Prefixes[Index]
+        else
+          Prefix := pNone;
+      end;
+  end;
+
+  result := FloatToStrF(Return, ffGeneral, Precision, Digits) + ' ';
+  for I := Low(SubStr) to High(SubStr) do
+  begin
+    result := result + SubStr[I];
+  end;
+  SubStr := nil;
+end;
+
+function TQuantity.ToVerboseString(Precision, Digits: longint; const Prefixes: TPrefixes): string;
+var
+  Exponent: longint;
+  Return: double;
+  I, Index: longint;
+  Prefix: TPrefix;
+  SubStr: TStringArray;
+begin
+  Return   := FValue;
+  Exponent := 1;
+  Index    := Low(Prefixes);
+  if Index <= High(Prefixes) then
+    Prefix := Prefixes[Index]
+  else
+    Prefix := pNone;
+
+  SubStr := Split(U.Name);
+  for I := Low(SubStr) to High(SubStr) do
+  begin
+
+    if (SubStr[I] = 'per'    ) then Exponent := -1           else
+    if (SubStr[I] = 'square' ) then Exponent := Exponent * 2 else
+    if (SubStr[I] = 'cubic'  ) then Exponent := Exponent * 3 else
+    if (SubStr[I] = 'quartic') then Exponent := Exponent * 4 else
+    if (SubStr[I] = 'quintic') then Exponent := Exponent * 5 else
+    if (SubStr[I] = 'sextic' ) then Exponent := Exponent * 6
+      else
+      begin
+
+        if (SubStr[I] = 'second') then
+        begin
+
+          if Prefix in [pDay, pHour, pMinute] then
+          begin
+            SubStr[I] := GetPrefixSymbol(Prefix);
+            Return    := Return / IntPower(GetPrefixFactor(Prefix), Exponent);
+          end else
+            if Prefix in [pDeci, pCenti, pMilli, pMicro, pNano, pPico] then
+            begin
+              SubStr[I] := GetPrefixSymbol(Prefix) + SubStr[I];
+              Return    := Return / IntPower(GetPrefixFactor(Prefix), Exponent);
+            end else
+              Prefix := pNone;
+
+        end else
+          if not (Prefix in [pDay, pHour, pMinute]) then
+          begin
+
+            if (SubStr[I] = 'kilogram') then
+            begin
+              if Prefix <> pKilo then
+              begin
+                SubStr[I] := 'gram';
+                Return := Return * IntPower(1000, Exponent);
+              end else
+                Prefix := pNone;
+            end;
+
+            if Prefix <> pNone then
+            begin
+              SubStr[I] := GetPrefixSymbol(Prefix) + SubStr[I];
+              Return := Return / IntPower(GetPrefixFactor(Prefix), Exponent);
+            end;
+          end;
+
+        Exponent := 1;
+        Index    := Index + 1;
+        if Index <= High(Prefixes) then
+          Prefix := Prefixes[Index]
+        else
+          Prefix := pNone;
+      end;
+  end;
+
+  result := FloatToStrF(Return, ffGeneral, Precision, Digits);
+  for I := Low(SubStr) to High(SubStr) do
+  begin
+    result := result + ' ' + SubStr[I];
+  end;
+  SubStr := nil;
 end;
 
 class operator TQuantity.+(const ALeft, ARight: TSelf): TSelf;
@@ -4284,13 +3625,6 @@ end;
 class operator TUnitId.*(const AValue: double; const ASelf: TSelf): TBaseQuantity;
 begin
   result.FValue := AValue;
-end;
-
-{ TFactoredUnitId }
-
-class function TFactoredUnitId.From(const AQuantity: TBaseQuantity): TFactoredQuantity;
-begin
-  result.FValue := AQuantity.FValue / U.Factor;
 end;
 
 // main definition [ s2 ] = [ s ] * [ s ]
@@ -4892,6 +4226,11 @@ end;
 operator /(const ALeft: TMetersPerSecond; const ARight: TMetersPerSquareSecond): TSeconds;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TMetersPerSecond; const {%H-}ARight: TSecondUnitId): TMetersPerSquareSecond;
+begin
+  result.FValue := ALeft.FValue;
 end;
 
 // alternative definition [ m/s2 ] = [ Hz2 ] * [ m ]
@@ -8723,59 +8062,119 @@ end;
 
 { Helpers }
 
-class function TRadianPerSquareSecondHelper.From(const AQuantity: TSquareHertz): TRadianPerSquareSecondUnitId.TBaseQuantity; static;
+function TSecondHelper.AsDay: specialize TQuantity<TDayUnit>;
 begin
-  result.FValue := AQuantity.FValue;
+  result.FValue := FValue / TDayUnit.Factor;
 end;
 
-class function TSteradianPerSquareSecondHelper.From(const AQuantity: TSquareHertz): TSteradianPerSquareSecondUnitId.TBaseQuantity; static;
+function TSecondHelper.AsHour: specialize TQuantity<THourUnit>;
 begin
-  result.FValue := AQuantity.FValue;
+  result.FValue := FValue / THourUnit.Factor;
 end;
 
-class function TNewtonSecondHelper.From(const AQuantity: TKilogramMetersPerSecond): TNewtonSecondUnitId.TBaseQuantity; static;
+function TSecondHelper.AsMinute: specialize TQuantity<TMinuteUnit>;
 begin
-  result.FValue := AQuantity.FValue;
+  result.FValue := FValue / TMinuteUnit.Factor;
 end;
 
-class function TBequerelHelper.From(const AQuantity: THertz): TBequerelUnitId.TBaseQuantity; static;
+function TSquareSecondHelper.AsSquareDay: specialize TQuantity<TSquareDayUnit>;
 begin
-  result.FValue := AQuantity.FValue;
+  result.FValue := FValue / TSquareDayUnit.Factor;
 end;
 
-class function TGrayHelper.From(const AQuantity: TSquareMetersPerSquareSecond): TGrayUnitId.TBaseQuantity; static;
+function TSquareSecondHelper.AsSquareHour: specialize TQuantity<TSquareHourUnit>;
 begin
-  result.FValue := AQuantity.FValue;
+  result.FValue := FValue / TSquareHourUnit.Factor;
 end;
 
-class function TSievertHelper.From(const AQuantity: TSquareMetersPerSquareSecond): TSievertUnitId.TBaseQuantity; static;
+function TSquareSecondHelper.AsSquareMinute: specialize TQuantity<TSquareMinuteUnit>;
 begin
-  result.FValue := AQuantity.FValue;
+  result.FValue := FValue / TSquareMinuteUnit.Factor;
 end;
 
-class function TNewtonMeterHelper.From(const AQuantity: TJoules): TNewtonMeterUnitId.TBaseQuantity; static;
+function TMeterHelper.AsAstronomical: specialize TQuantity<TAstronomicalUnit>;
 begin
-  result.FValue := AQuantity.FValue;
+  result.FValue := FValue / TAstronomicalUnit.Factor;
 end;
 
-class function TNewtonMeterPerRadianHelper.From(const AQuantity: TJoulesPerRadian): TNewtonMeterPerRadianUnitId.TBaseQuantity; static;
+function TRadianHelper.AsDegree: specialize TQuantity<TDegreeUnit>;
 begin
-  result.FValue := AQuantity.FValue;
+  result.FValue := FValue / TDegreeUnit.Factor;
 end;
 
-class function TNewtonMeterPerDegreeHelper.From(const AQuantity: TJoulesPerRadian): TNewtonMeterPerDegreeUnitId.TFactoredQuantity; static;
+function TSquareHertzHelper.AsRadianPerSquareSecond: specialize TQuantity<TRadianPerSquareSecondUnit>;
 begin
-  result.FValue := AQuantity.FValue;
+  result.FValue := FValue;
 end;
 
-class function TPascalSecondHelper.From(const AQuantity: TPoiseuilles): TPascalSecondUnitId.TBaseQuantity; static;
+function TSquareHertzHelper.AsSteradianPerSquareSecond: specialize TQuantity<TSteradianPerSquareSecondUnit>;
 begin
-  result.FValue := AQuantity.FValue;
+  result.FValue := FValue;
 end;
 
-class function TJoulePerKilogramHelper.From(const AQuantity: TSquareMetersPerSquareKilogram): TJoulePerKilogramUnitId.TBaseQuantity; static;
+function TMeterPerSquareSecondHelper.AsMeterPerSecondPerSecond: specialize TQuantity<TMeterPerSecondPerSecondUnit>;
 begin
-  result.FValue := AQuantity.FValue;
+  result.FValue := FValue;
+end;
+
+function TKilogramMeterPerSecondHelper.AsNewtonSecond: specialize TQuantity<TNewtonSecondUnit>;
+begin
+  result.FValue := FValue;
+end;
+
+function TJouleHelper.AsElettronvolt: specialize TQuantity<TElettronvoltUnit>;
+begin
+  result.FValue := FValue / TElettronvoltUnit.Factor;
+end;
+
+function THertzHelper.AsBequerel: specialize TQuantity<TBequerelUnit>;
+begin
+  result.FValue := FValue;
+end;
+
+function TSquareMeterPerSquareSecondHelper.AsGray: specialize TQuantity<TGrayUnit>;
+begin
+  result.FValue := FValue;
+end;
+
+function TSquareMeterPerSquareSecondHelper.AsSievert: specialize TQuantity<TSievertUnit>;
+begin
+  result.FValue := FValue;
+end;
+
+function TJouleHelper.AsNewtonMeter: specialize TQuantity<TNewtonMeterUnit>;
+begin
+  result.FValue := FValue;
+end;
+
+function TJoulePerRadianHelper.AsJoulePerDegree: specialize TQuantity<TJoulePerDegreeUnit>;
+begin
+  result.FValue := FValue / TJoulePerDegreeUnit.Factor;
+end;
+
+function TJoulePerRadianHelper.AsNewtonMeterPerRadian: specialize TQuantity<TNewtonMeterPerRadianUnit>;
+begin
+  result.FValue := FValue;
+end;
+
+function TJoulePerRadianHelper.AsNewtonMeterPerDegree: specialize TQuantity<TNewtonMeterPerDegreeUnit>;
+begin
+  result.FValue := FValue / TNewtonMeterPerDegreeUnit.Factor;
+end;
+
+function TPoiseuilleHelper.AsPascalSecond: specialize TQuantity<TPascalSecondUnit>;
+begin
+  result.FValue := FValue;
+end;
+
+function TSquareMeterPerSquareKilogramHelper.AsJoulePerKilogram: specialize TQuantity<TJoulePerKilogramUnit>;
+begin
+  result.FValue := FValue;
+end;
+
+function TJouleSecondHelper.AsElettronvoltSecond: specialize TQuantity<TElettronvoltSecondUnit>;
+begin
+  result.FValue := FValue / TElettronvoltSecondUnit.Factor;
 end;
 
 { Power quantities }

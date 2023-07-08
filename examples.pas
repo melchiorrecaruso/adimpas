@@ -217,21 +217,21 @@ begin
 
   writeln('*** Speed: v = distance / time');
   writeln('The distance is: ', distance.ToString);
-  writeln('The time is: ', THourUnitId.From(time).ToString);
-  writeln('The speed is: ', TKilometerPerHourUnitId.From(speed).ToString);
+  writeln('The time is: ', time.ToString(4, 0, []));
+  writeln('The speed is: ', speed.ToString(4, 0, []));
   writeln;
 
   // acceleration
   time         := 5*s;
-  speed        := 100*km/hour;
+  speed        := 100*km/hr;
   acc          := speed/time;
   time         := speed/acc;
   speed        := acc*time;
 
   writeln('*** Acceleration: a = speed / time');
-  writeln('The speed is: ', TKilometerPerHourUnitId.From(speed).ToString);
+  writeln('The speed is: ', speed.ToString(4, 0, []));
   writeln('The time is: ', time.ToString);
-  writeln('The acceleration is: ', TKilometerPerHourPerSecondUnitId.From(acc).ToString);
+  writeln('The acceleration is: ', acc.ToString(4, 0, []));
   writeln;
 
   // force
@@ -257,11 +257,11 @@ begin
 
 
   writeln('*** Angular speed:');
-  writeln('The angle is: ', angle.ToVerboseString(4, 0));
-  writeln('The time is: ', time.ToVerboseString(4, 0));
-  writeln('The angular speed is: ', angularspeed.ToVerboseString(4, 0));
+  writeln('The angle is: ', angle.ToVerboseString(4, 0, []));
+  writeln('The time is: ', time.ToVerboseString(4, 0, []));
+  writeln('The angular speed is: ', angularspeed.ToVerboseString(4, 0, []));
   writeln('The radius is: ', radius.ToVerboseString);
-  writeln('The tangential speed is: ', speed.ToVerboseString(4, 0));
+  writeln('The tangential speed is: ', speed.ToVerboseString(4, 0, []));
   writeln;
 
   // centrifugal force
@@ -273,10 +273,10 @@ begin
 
   writeln('*** Centrifugal force:');
   writeln('The mass is: ', mass.ToVerboseString);
-  writeln('The angular speed is: ', angularspeed.ToVerboseString(4, 0));
+  writeln('The angular speed is: ', angularspeed.ToVerboseString(4, 0, []));
   writeln('The radius is: ', radius.ToVerboseString);
-  writeln('The acceleration is: ', acc.ToVerboseString(4, 0));
-  writeln('The force is: ', force.ToVerboseString(4, 0));
+  writeln('The acceleration is: ', acc.ToVerboseString(4, 0, []));
+  writeln('The force is: ', force.ToVerboseString(4, 0, []));
   writeln;
 
   // centripetal force
@@ -288,11 +288,11 @@ begin
   force        := mass*(SquarePower(speed)/radius);
 
   writeln('*** Centripetal force:');
-  writeln('The mass is: ', mass.ToString(4, 4));
-  writeln('The radius is: ', radius.ToString(4, 4));
-  writeln('The angularspeed is: ', angularspeed.ToString(4, 4));
-  writeln('The speed is: ', speed.ToString(4, 4));
-  writeln('The force is: ', force.ToString(4, 4));
+  writeln('The mass is: ', mass.ToString(4, 0, []));
+  writeln('The radius is: ', radius.ToString(4, 0, []));
+  writeln('The angularspeed is: ', angularspeed.ToString(4, 0, []));
+  writeln('The speed is: ', speed.ToString(4, 0, []));
+  writeln('The force is: ', force.ToString(4, 0, []));
   writeln;
 
   // pressure
@@ -301,7 +301,7 @@ begin
   pressure := force/area;
 
   speed := 10*m/s;     // not speed := 10*(m/s);
-  speed := 10*km/hour; // not speed := 10*(km/hour);
+  speed := 10*km/hr;   // not speed := 10*(km/hour);
   speed := 10*cm/s;    // not speed := 10*(cm/s);
 
   writeln('*** Pressure: P = force / area');
@@ -337,9 +337,9 @@ begin
   power        := torque*angularspeed;
 
   writeln('*** Power: P = torque * angular speed');
-  writeln('The torque is: ', torque.ToString(4, 0));
-  writeln('The angular speed is: ', angularspeed.ToString(4, 0));
-  writeln('The power is: ', power.ToString(4, 0));
+  writeln('The torque is: ', torque.ToString(4, 0, []));
+  writeln('The angular speed is: ', angularspeed.ToString(4, 0, []));
+  writeln('The power is: ', power.ToString(4, 0, []));
   writeln;
 
   // volt (J/C)
@@ -381,9 +381,9 @@ begin
   squareamp  := power/resistance;
 
   Writeln('*** Ampere ((W/Ω)^0.5):');
-  writeln('The power is: ', power.ToVerboseString(4, 4));
-  writeln('The resistance is: ', resistance.ToVerboseString(4, 4));
-  writeln('The current is: ', SquareRoot(squareamp).ToVerboseString(4, 4));
+  writeln('The power is: ', power.ToVerboseString(4, 4, []));
+  writeln('The resistance is: ', resistance.ToVerboseString(4, 4, []));
+  writeln('The current is: ', SquareRoot(squareamp).ToVerboseString(4, 4, []));
   writeln;
 
   // farad (C2/J)
@@ -542,7 +542,7 @@ begin
   writeln('*** Rolling friction:');
   writeln('The normal force is: ', normal.ToVerboseString);
   writeln('The kAr is: ', kAr.ToVerboseString);
-  writeln('The radius is: ', TMillimeterUnitId.From(radius).ToVerboseString);
+  writeln('The radius is: ', radius.ToVerboseString(4, 4, [pmilli]));
   writeln('The force is: ', force.ToVerboseString);
   writeln;
 
@@ -561,7 +561,7 @@ begin
   writeln('The side1 is: ', side1.ToVerboseString);
   writeln('The area  is: ', area.ToVerboseString);
   writeln('The speed is: ', speed.ToVerboseString);
-  writeln('The force is: ', force.ToVerboseString(4, 0));
+  writeln('The force is: ', force.ToVerboseString(4, 0, []));
   writeln;
 
   // drag force
@@ -576,7 +576,7 @@ begin
   writeln('The area is: ', area.ToVerboseString);
   writeln('The speed is: ', speed.ToVerboseString);
   writeln('The density is: ', density.ToVerboseString);
-  writeln('The force is: ', force.ToVerboseString(4, 0));
+  writeln('The force is: ', force.ToVerboseString(4, 0, []));
   writeln;
 
   // universal gravitation law
@@ -588,11 +588,11 @@ begin
   force    := GN*(mass1*mass2)/(distance*distance);
 
   writeln('*** Universal gravitation law:');
-  writeln('The mass-1 is: ', mass1.ToVerboseString(4,0));
-  writeln('The mass-2 is: ', mass2.ToVerboseString(4,0));
-  writeln('The distance is: ', TKilometerUnitId.From(distance).ToVerboseString);
+  writeln('The mass-1 is: ', mass1.ToVerboseString(4, 0, []));
+  writeln('The mass-2 is: ', mass2.ToVerboseString(4, 0, []));
+  writeln('The distance is: ', distance.ToVerboseString(4, 4, [pKilo]));
   writeln('The G is: ', GN.ToVerboseString);
-  writeln('The force is: ', force.ToVerboseString(4, 0));
+  writeln('The force is: ', force.ToVerboseString(4, 0, []));
   writeln;
 
   // gravitational potential energy
@@ -603,9 +603,9 @@ begin
 
   writeln('*** Gravitational potential energy:');
   writeln('The mass is: ', mass.ToVerboseString);
-  writeln('The g is: ', acc.ToVerboseString(4, 0));
+  writeln('The g is: ', acc.ToVerboseString(4, 0, []));
   writeln('The heigth is: ', distance.ToVerboseString);
-  writeln('The gravitational potential energy is: ', Ug.ToVerboseString(4, 0));
+  writeln('The gravitational potential energy is: ', Ug.ToVerboseString(4, 0, []));
   writeln;
 
   // kinematic potential energy
@@ -649,7 +649,7 @@ begin
 
   writeln('*** Impulse:');
   writeln('The force is: ', force.ToVerboseString);
-  writeln('The time is: ', TMillisecondUnitId.From(time).ToVerboseString);
+  writeln('The time is: ', time.ToVerboseString(4, 4, [pMilli]));
   writeln('The impulse is: ', impulse.ToVerboseString);
   writeln;
 
@@ -718,7 +718,7 @@ begin
   Re       := 2000;
   speed    := Re*eta/(2*density*radius);
 
-  writeln('The critical speed is: ', TCentimeterPerSecondUnitId.From(speed).ToString(0, 0));
+  writeln('The critical speed is: ', speed.ToString(4, 0, []));
   writeln;
 
   // linear thermal expansion
@@ -788,7 +788,7 @@ begin
   Uel      := ke*(q1*q2/distance);
 
   writeln('*** Electric potential energy:');
-  writeln('The electric potential energy is: ', Uel.ToVerboseString(4, 0));
+  writeln('The electric potential energy is: ', Uel.ToVerboseString(4, 0, []));
   writeln;
 
   // electrostatic force on a point charge in a electric field
@@ -797,9 +797,9 @@ begin
   force := E*q1;
 
   writeln('*** Electrostatic force on a point charge in a electric field:');
-  writeln('The electric field strength is: ', E.ToVerboseString(4, 4));
-  writeln('The charge on the object experiencing the force is: ', q1.ToVerboseString(4, 4));
-  writeln('The the force on the charged particle is: ', force.ToVerboseString(4, 4));
+  writeln('The electric field strength is: ', E.ToVerboseString(4, 4, []));
+  writeln('The charge on the object experiencing the force is: ', q1.ToVerboseString(4, 4, []));
+  writeln('The the force on the charged particle is: ', force.ToVerboseString(4, 4, []));
   writeln;
 
   // electrostatic force between two point charges
@@ -810,11 +810,11 @@ begin
   force    := ke*(q1*q2)/(distance*distance);
 
   writeln('*** Electrostatic force between two point charges:');
-  writeln('The Coulomb constant ke is: ', ke.ToString(4, 4));
+  writeln('The Coulomb constant ke is: ', ke.ToString(4, 4, []));
   writeln('The q1 is: ', q1.ToString);
   writeln('The q2 is: ', q2.ToString);
   writeln('The distance is: ', distance.ToString);
-  writeln('The force is: ', force.ToString(4, 4));
+  writeln('The force is: ', force.ToString(4, 4, []));
   writeln;
 
   // electric field of a single point charge
@@ -826,12 +826,12 @@ begin
   E        := ke*(q1/SquarePower(r));
 
   writeln('*** Electric field of a single point charge:');
-  writeln('The vacuum permittivity e0 is: ', e0.ToString(4, 4));
+  writeln('The vacuum permittivity e0 is: ', e0.ToString(4, 4, []));
   writeln('The relative permittivity er is: ', er:0:2);
-  writeln('The Coulomb constant ke is: ', ke.ToString(6, 6));
+  writeln('The Coulomb constant ke is: ', ke.ToString(6, 6, []));
   writeln('The single point charge q1 is: ', q1.ToString);
   writeln('The distance from charge is: ', distance.ToString);
-  writeln('The electric field strength is: ', E.ToString(4, 4));
+  writeln('The electric field strength is: ', E.ToString(4, 4, []));
   writeln;
 
   // electric field of uniform charge sphere
@@ -844,13 +844,13 @@ begin
   E        := ke*(q1/ (CubicPower(r)/distance));
 
   writeln('*** Electric field of uniform charge sphere:');
-  writeln('The vacuum permittivity e0 is: ', e0.ToString(4, 4));
+  writeln('The vacuum permittivity e0 is: ', e0.ToString(4, 4, []));
   writeln('The relative permittivity er is: ', er:0:2);
-  writeln('The Coulomb constant ke is: ', ke.ToString(6, 6));
+  writeln('The Coulomb constant ke is: ', ke.ToString(6, 6, []));
   writeln('The sphere charge is: ', q1.ToString);
   writeln('The sphere radius is: ', r.ToString);
   writeln('The distance from center of sphere is: ', distance.ToString);
-  writeln('The electric field strength is: ', E.ToString(4, 4));
+  writeln('The electric field strength is: ', E.ToString(4, 4, []));
   writeln;
 
   // electric field of parallel conducting plates
@@ -861,12 +861,12 @@ begin
   sigma    := q1/Area;
   E        := sigma/e0/er;
   writeln('*** Electric field of parallel conducting plates:');
-  writeln('The vacuum permittivity e0 is: ', e0.ToString(4, 4));
+  writeln('The vacuum permittivity e0 is: ', e0.ToString(4, 4, []));
   writeln('The relative permittivity er is: ', er:0:2);
-  writeln('The plate charge is: ', q1.ToString(4, 4));
-  writeln('The plate area is: ', Area.ToString(4, 4));
-  writeln('The charge density sigma is: ', sigma.ToString(4, 4));
-  writeln('The electric field strength is: ', E.ToString(4, 4));
+  writeln('The plate charge is: ', q1.ToString(4, 4, []));
+  writeln('The plate area is: ', Area.ToString(4, 4, []));
+  writeln('The charge density sigma is: ', sigma.ToString(4, 4, []));
+  writeln('The electric field strength is: ', E.ToString(4, 4, []));
   writeln;
 
   // magnetic force for lifting a object
@@ -877,11 +877,11 @@ begin
   current   := (mass*acc)/(len*B*Sin(90*deg));
 
   writeln('*** Magnetic force for lifting a object:');
-  writeln('The mass is: ', mass.ToString(4, 4));
-  writeln('The wire length is: ', len.ToString(4, 4));
-  writeln('The magnetic field B is: ', B.ToString(4, 4));
-  writeln('The needed magnetic force is: ', (mass*acc).ToString(2, 4));
-  writeln('The needed electric current is: ', current.ToString(2, 4));
+  writeln('The mass is: ', mass.ToString(4, 4, []));
+  writeln('The wire length is: ', len.ToString(4, 4, []));
+  writeln('The magnetic field B is: ', B.ToString(4, 4, []));
+  writeln('The needed magnetic force is: ', (mass*acc).ToString(2, 4, []));
+  writeln('The needed electric current is: ', current.ToString(2, 4, []));
   writeln;
 
   // magnetic field due to straight wire
@@ -892,10 +892,10 @@ begin
   B        := m0/(2*pi) * (current / (SquareRoot(CubicPower(SquarePower(z)+SquarePower(R)))/SquarePower(R) ));
 
   writeln('*** Magnetic field due to straight wire:');
-  writeln('The vacuum magnetic permeability is: ', m0.ToString(4, 4));
-  writeln('The electric current is: ', current.ToString(4, 4));
-  writeln('The distance of the magnetic field from the wire is: ', distance.ToString(4, 4));
-  writeln('The magnetic field B is: ', B.ToVerboseString(4, 4));
+  writeln('The vacuum magnetic permeability is: ', m0.ToString(4, 4, []));
+  writeln('The electric current is: ', current.ToString(4, 4, []));
+  writeln('The distance of the magnetic field from the wire is: ', distance.ToString(4, 4, []));
+  writeln('The magnetic field B is: ', B.ToVerboseString(4, 4, []));
   writeln;
 
   // magnetic field produced by a current-carrying solenoid
@@ -906,11 +906,11 @@ begin
   B        := m0*loops*(current/len);
 
   writeln('*** Magnetic field produced by a current-carrying solenoid:');
-  writeln('The vacuum magnetic permeability is: ', m0.ToString(4, 4));
-  writeln('The electric current is: ', current.ToString(4, 4));
+  writeln('The vacuum magnetic permeability is: ', m0.ToString(4, 4, []));
+  writeln('The electric current is: ', current.ToString(4, 4, []));
   writeln('The solenoid has: ', loops, ' loops');
-  writeln('The solenoid length is: ', len.ToString(4, 4));
-  writeln('The magnetic field B magnitude is: ', B.ToVerboseString(3, 4));
+  writeln('The solenoid length is: ', len.ToString(4, 4, []));
+  writeln('The magnetic field B magnitude is: ', B.ToVerboseString(3, 4, []));
   writeln;
 
   // forces between parallel conductors
@@ -922,12 +922,12 @@ begin
   force    := (m0/(2*pi)*(len/r)) * (i1*i2);
 
   writeln('*** Forces between parallel conductors:');
-  writeln('The vacuum magnetic permeability is: ', m0.ToString(4, 4));
-  writeln('The electric current 1 is: ', i1.ToString(4, 4));
-  writeln('The electric current 2 is: ', i2.ToString(4, 4));
-  writeln('The distance separating the conductors is: ', r.ToString(4, 4));
-  writeln('The length of conductors is: ', len.ToString(4, 4));
-  writeln('The forces between conductors is: ', force.ToString(4, 4));
+  writeln('The vacuum magnetic permeability is: ', m0.ToString(4, 4, []));
+  writeln('The electric current 1 is: ', i1.ToString(4, 4, []));
+  writeln('The electric current 2 is: ', i2.ToString(4, 4, []));
+  writeln('The distance separating the conductors is: ', r.ToString(4, 4, []));
+  writeln('The length of conductors is: ', len.ToString(4, 4, []));
+  writeln('The forces between conductors is: ', force.ToString(4, 4, []));
   writeln;
 
   // magnetic flux
@@ -937,9 +937,9 @@ begin
   magneticflux := B*Area*cos(angle);
 
   writeln('*** Magnetic flux:');
-  writeln('The magnetic field B magnitude is: ', B.ToVerboseString(4, 4));
-  writeln('The surface is: ', Area.ToVerboseString(3, 4));
-  writeln('The magnetic flux is: ', magneticflux.ToVerboseString(4, 4));
+  writeln('The magnetic field B magnitude is: ', B.ToVerboseString(4, 4, []));
+  writeln('The surface is: ', Area.ToVerboseString(3, 4, []));
+  writeln('The magnetic flux is: ', magneticflux.ToVerboseString(4, 4, []));
   writeln;
 
   // electromagnetic induction
@@ -948,9 +948,9 @@ begin
   potential    := magneticflux/time;
 
   writeln('*** Electromagnetic induction:');
-  writeln('The magnetic flux change is: ', magneticflux.ToVerboseString(4, 4));
-  writeln('The time is: ', TMillisecondUnitId.From(time).ToVerboseString);
-  writeln('The emf  is: ', potential.ToVerboseString (4, 4));
+  writeln('The magnetic flux change is: ', magneticflux.ToVerboseString(4, 4, []));
+  writeln('The time is: ', time.ToVerboseString(4, 4, [pMilli]));
+  writeln('The emf  is: ', potential.ToVerboseString (4, 4, []));
   writeln;
 
   // displacement current
@@ -961,11 +961,11 @@ begin
   current  := (e0*DeltaE*Area)/time;
 
   writeln('*** Displacement current:');
-  writeln('The plates Aare is: ', Area.ToString(4, 4));
-  writeln('The vacuum permittivity e0 is: ', e0.ToString(4, 4));
-  writeln('The change in electric field : ', DeltaE.ToVerboseString(4, 4));
-  writeln('The change in time is: ', time.ToVerboseString (4, 4));
-  writeln('The displacement current is: ', current.ToVerboseString (4, 4));
+  writeln('The plates Aare is: ', Area.ToString(4, 4, []));
+  writeln('The vacuum permittivity e0 is: ', e0.ToString(4, 4, []));
+  writeln('The change in electric field : ', DeltaE.ToVerboseString(4, 4, []));
+  writeln('The change in time is: ', time.ToVerboseString (4, 4, []));
+  writeln('The displacement current is: ', current.ToVerboseString (4, 4, []));
   writeln;
 
   // harmonic wave
@@ -974,14 +974,14 @@ begin
   omega := 80*rad/s;
   phi   := 0*rad;
   writeln('*** Harmonic wave:');
-  writeln('The wave amplitude A is: ', Ampl.ToString(4, 4));
-  writeln('The wave number K is: ', Kw.ToString(4, 4));
-  writeln('The angular frequency Omega is: ', omega.ToString(4, 4));
-  writeln('The wave phase is: ', phi.ToString(4, 4));
-  writeln('The wave value at position (1m, 0.8s) is: ', (Ampl*sin(Kw*(1*m) - omega*(0.8*s) + phi)).ToString(4, 4));
-  writeln('The transverse speed at position (1m, 0.8s) is: ', (-1*omega*Ampl*cos(Kw*(1*m) - omega*(0.8*s) )).ToString(4, 0));
-  writeln('The transverse acceleration at position (1m, 0.8s) is: ', (-1*SquarePower(omega)*Ampl*cos(Kw*(1*m) - omega*(0.8*s))).ToString(4, 0));
-  writeln('The wave power is: ', ((1.0*g/m)*SquarePower(omega*Ampl)*(5*mm/s)).ToString(4, 0));
+  writeln('The wave amplitude A is: ', Ampl.ToString(4, 4, []));
+  writeln('The wave number K is: ', Kw.ToString(4, 4, []));
+  writeln('The angular frequency Omega is: ', omega.ToString(4, 4, []));
+  writeln('The wave phase is: ', phi.ToString(4, 4, []));
+  writeln('The wave value at position (1m, 0.8s) is: ', (Ampl*sin(Kw*(1*m) - omega*(0.8*s) + phi)).ToString(4, 4, []));
+  writeln('The transverse speed at position (1m, 0.8s) is: ', (-1*omega*Ampl*cos(Kw*(1*m) - omega*(0.8*s) )).ToString(4, 0, []));
+  writeln('The transverse acceleration at position (1m, 0.8s) is: ', (-1*SquarePower(omega)*Ampl*cos(Kw*(1*m) - omega*(0.8*s))).ToString(4, 0, []));
+  writeln('The wave power is: ', ((1.0*g/m)*SquarePower(omega*Ampl)*(5*mm/s)).ToString(4, 0, []));
   writeln;
 
   // relativty: energy
@@ -990,28 +990,28 @@ begin
   energy     := mass*SquarePower(lightspeed);
 
   writeln('*** Relativistic energy:');
-  writeln('The mass "m" is: ', mass.ToString(4, 4));
-  writeln('The ligth speed c: ', lightspeed.ToString(4, 4));
-  writeln('The energy E is: ', TTeraElettronVoltUnitId.From(energy).ToString(4, 0));
-  writeln('The energy E is: ', TTeraJouleUnitId.From(energy).ToString(4, 0));
+  writeln('The mass "m" is: ', mass.ToString(4, 4, []));
+  writeln('The ligth speed c: ', lightspeed.ToString(4, 4, []));
+  writeln('The energy E is: ', energy.AsElettronvolt.ToString(4, 0, [pTera]));
+  writeln('The energy E is: ', energy.ToString(4, 0, [pTera]));
   writeln;
 
   // relativty: momentum
   mass       := 9.11*1E-31*kg;
-  speed      := 10800000*km/hour;
+  speed      := 10800000*km/hr;
   p          := mass*speed;
   energy     := SquareRoot(SquarePower(p*lightspeed)+ SquarePower(mass*SquarePower(lightspeed)));
 
   writeln('*** Relativistic momentum:');
-  writeln('The mass "m" is: ', mass.ToString(4, 4));
-  writeln('The speed "v": ', speed.ToString(4, 4));
-  writeln('The momentum "p" is: ', p.ToString(4, 4));
-  writeln('The energy E is: ', TTeraElettronVoltUnitId.From(energy).ToString(4, 0));
+  writeln('The mass "m" is: ', mass.ToString(4, 4, []));
+  writeln('The speed "v": ', speed.ToString(4, 4, []));
+  writeln('The momentum "p" is: ', p.ToString(4, 4, []));
+  writeln('The energy E is: ', energy.AsElettronVolt.ToString(4, 0, [pTera]));
   writeln;
 
   // momentum of photon
   plank  := 6.62607015*1E-34*J*s;
-  len    := 1*um;
+  len    := 1*mim;
   freq   := 1*Hz;
 
   energy := plank/(len/lightspeed);
@@ -1020,11 +1020,11 @@ begin
   speed  := len*freq;
 
   writeln('*** Momentum of photon:');
-  writeln('The Plank costant "h" is: ', plank.ToString(4, 4));
-  writeln('The wavelength "lambda" is: ', len.ToString(4, 4));
-  writeln('The frequency "f" is: ', freq.ToString(4, 4));
-  writeln('The energy "E" is: ', energy.ToString(4, 4));
-  writeln('The momentum "p" is: ', p.ToString(4, 4));
+  writeln('The Plank costant "h" is: ', plank.ToString(4, 4, []));
+  writeln('The wavelength "lambda" is: ', len.ToString(4, 4, []));
+  writeln('The frequency "f" is: ', freq.ToString(4, 4, []));
+  writeln('The energy "E" is: ', energy.ToString(4, 4, []));
+  writeln('The momentum "p" is: ', p.ToString(4, 4, []));
   writeln;
 
   // third kepler's law
@@ -1035,10 +1035,10 @@ begin
   time     := SquareRoot( 4*Sqr(pi)*CubicPower(distance)/(GN*(mass1+mass2)) );
 
   writeln('*** Third Kepler''law: earth period');
-  writeln('The mass of sun is:', mass1.toString(5, 0));
-  writeln('The mass of earth is:', mass2.toString(5, 0));
-  writeln('The distance earth-sun is:', TAstronomicalUnitId.From(distance).toString(5, 0));
-  writeln('The earth period is:', TDayUnitId.From(time).toString(5, 0));
+  writeln('The mass of sun is:', mass1.toString(5, 0, []));
+  writeln('The mass of earth is:', mass2.toString(5, 0, []));
+  writeln('The distance earth-sun is:', distance.AsAstronomical.toString(5, 0, []));
+  writeln('The earth period is:', time.AsDay.toString(5, 0, []));
   writeln;
 
   // Earth's gravity
@@ -1047,9 +1047,9 @@ begin
   distance := 6.373E6*m;
 
   writeln('*** Earth''s gravity:');
-  writeln('The mass of earth is:', mass.toString(5, 0));
-  writeln('The radius of earth is:', distance.toString(5, 0));
-  writeln('The value of "g" constant is:', (GN*mass/SquarePower(distance)).toString(5, 0));
+  writeln('The mass of earth is:', mass.toString(5, 0, []));
+  writeln('The radius of earth is:', distance.toString(5, 0, []));
+  writeln('The value of "g" constant is:', (GN*mass/SquarePower(distance)).toString(5, 0, []));
   writeln;
 
   // Simple harmonic oscillator
@@ -1059,8 +1059,8 @@ begin
 
   writeln('*** Simple harmonic oscillator:');
   writeln('The mass is:', mass.toString);
-  writeln('The spring stiffness is: ', kx.toString(4, 0));
-  writeln('The angular frequency "ω" is: ', omega.toString(4, 0));
+  writeln('The spring stiffness is: ', kx.toString(4, 0, []));
+  writeln('The angular frequency "ω" is: ', omega.toString(4, 0, []));
   writeln;
 
   // Damped harmonic oscillator
@@ -1070,9 +1070,9 @@ begin
   omega  := SquareRoot(kx/mass);
 
   writeln('*** Damped harmonic oscillator:');
-  writeln('The mass is: ', mass.toString(4, 0));
-  writeln('The spring stiffness is: ', kx.toString(4, 0));
-  writeln('The undamped angular frequency "ω" is: ', omega.toString(4, 0));
+  writeln('The mass is: ', mass.toString(4, 0, []));
+  writeln('The spring stiffness is: ', kx.toString(4, 0, []));
+  writeln('The undamped angular frequency "ω" is: ', omega.toString(4, 0, []));
   writeln('The damping ratio "ζ" is: ', (Cb/2/SquareRoot(mass*kx)):0:4);
   writeln;
 
@@ -1085,11 +1085,39 @@ begin
   time   := 2*pi*SquareRoot(I/(mass*acc*radius));
 
   writeln('*** Physical pendulum:');
-  writeln('The mass is: ', mass.toString(4, 0));
-  writeln('The body inertia is: ', I.toString(4, 0));
-  writeln('The center of gravity distance is: ', radius.toString(4, 0));
-  writeln('The pendulum period "T" is: ', time.toString(4, 0));
+  writeln('The mass is: ', mass.toString(4, 0, []));
+  writeln('The body inertia is: ', I.toString(4, 0, []));
+  writeln('The center of gravity distance is: ', radius.toString(4, 0, []));
+  writeln('The pendulum period "T" is: ', time.toString(4, 0, [pCenti]));
   writeln;
+
+  writeln('ToString - TEST');
+
+  writeln;
+  writeln('TEST PASSED: ', (1.0*mg  ).ToString       (10, 10, [pKilo]) = '1E-6 kg');
+  writeln('TEST PASSED: ', (1.0*mg2 ).ToString       (10, 0,  [pKilo]) = '1E-12 kg2');
+  writeln('TEST PASSED: ', (1.0*mg  ).ToString       (10, 10, [pMega]) = '1E-9 Mg');
+  writeln('TEST PASSED: ', (1.0*mg2 ).ToString       (10, 0,  [pMega]) = '1E-18 Mg2');
+  writeln('TEST PASSED: ', (1.0*kg  ).ToString       (10, 0,       []) = '1000 g');
+  writeln('TEST PASSED: ', (1.0*kg  ).ToString       (10, 0,  [pKilo]) = '1 kg');
+  writeln('TEST PASSED: ', (1.0*kg2 ).ToString       (10, 0,       []) = '1000000 g2');
+  writeln('TEST PASSED: ', (1.0*kg2 ).ToString       (10, 0,  [pKilo]) = '1 kg2');
+  writeln('TEST PASSED: ', (1.0*km  ).ToString       (10, 0,       []) = '1000 m');
+  writeln('TEST PASSED: ', (1.0*km2 ).ToString       (10, 0,       []) = '1000000 m2');
+  writeln('TEST PASSED: ', (1.0*kg  ).ToVerboseString(10, 0,       []) = '1000 gram');
+  writeln('TEST PASSED: ', (1.0*kg2 ).ToVerboseString(10, 0,       []) = '1000000 square gram');
+  writeln('TEST PASSED: ', (1.0*km  ).ToVerboseString(10, 0,       []) = '1000 meter');
+  writeln('TEST PASSED: ', (1.0*km2 ).ToVerboseString(10, 0,       []) = '1000000 square meter');
+  writeln('TEST PASSED: ', (1.0*km3 ).ToVerboseString(10, 0,       []) = '1000000000 cubic meter');
+  writeln('TEST PASSED: ', (1.0*km4 ).ToVerboseString(10, 0,       []) = '1E12 quartic meter');
+  writeln('TEST PASSED: ', (1.0*day ).ToVerboseString(10, 0,       []) = '86400 second');
+  writeln('TEST PASSED: ', (1.0*hr  ).ToVerboseString(10, 0,       []) = '3600 second');
+  writeln('TEST PASSED: ', (1.0*day ).ToString       (10, 0,       []) = '86400 s');
+  writeln('TEST PASSED: ', (1.0*hr  ).ToString       (10, 0,       []) = '3600 s');
+  writeln('TEST PASSED: ', (1.0*day2).ToVerboseString(10, 0,       []) = '7464960000 square second');
+  writeln('TEST PASSED: ', (1.0*hr2 ).ToVerboseString(10, 0,       []) = '12960000 square second');
+  writeln('TEST PASSED: ', (1.0*day2).ToString       (10, 0,       []) = '7464960000 s2');
+  writeln('TEST PASSED: ', (1.0*hr2 ).ToString       (10, 0,       []) = '12960000 s2');
 
   writeln;
   writeln('Press ENTER to exit.');
