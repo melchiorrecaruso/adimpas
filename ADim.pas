@@ -3247,128 +3247,128 @@ type
 
 type
   TSecondHelper = record helper for TSeconds
-    function AsMinute: specialize TQuantity<TMinuteUnit>;
-    function AsHour: specialize TQuantity<THourUnit>;
-    function AsDay: specialize TQuantity<TDayUnit>;
+    function ToMinute: specialize TQuantity<TMinuteUnit>;
+    function ToHour: specialize TQuantity<THourUnit>;
+    function ToDay: specialize TQuantity<TDayUnit>;
   end;
 
 type
   TSquareSecondHelper = record helper for TSquareSeconds
-    function AsSquareMinute: specialize TQuantity<TSquareMinuteUnit>;
-    function AsSquareHour: specialize TQuantity<TSquareHourUnit>;
-    function AsSquareDay: specialize TQuantity<TSquareDayUnit>;
+    function ToSquareMinute: specialize TQuantity<TSquareMinuteUnit>;
+    function ToSquareHour: specialize TQuantity<TSquareHourUnit>;
+    function ToSquareDay: specialize TQuantity<TSquareDayUnit>;
   end;
 
 type
   TMeterHelper = record helper for TMeters
-    function AsAstronomical: specialize TQuantity<TAstronomicalUnit>;
+    function ToAstronomical: specialize TQuantity<TAstronomicalUnit>;
   end;
 
 type
   TCubicMeterHelper = record helper for TCubicMeters
-    function AsLitre: specialize TQuantity<TLitreUnit>;
+    function ToLitre: specialize TQuantity<TLitreUnit>;
   end;
 
 type
   TKilogramHelper = record helper for TKilograms
-    function AsTon: specialize TQuantity<TTonUnit>;
+    function ToTon: specialize TQuantity<TTonUnit>;
   end;
 
 type
   TDegreeCelsiusHelper = record helper for TDegreesCelsius
-    function AsKelvin: specialize TQuantity<TKelvinUnit>;
+    function ToKelvin: specialize TQuantity<TKelvinUnit>;
   end;
 
 type
   TKelvinHelper = record helper for TKelvins
-    function AsDegreeFahrenheit: specialize TQuantity<TDegreeFahrenheitUnit>;
-    function AsDegreeCelsius: specialize TQuantity<TDegreeCelsiusUnit>;
+    function ToDegreeFahrenheit: specialize TQuantity<TDegreeFahrenheitUnit>;
+    function ToDegreeCelsius: specialize TQuantity<TDegreeCelsiusUnit>;
   end;
 
 type
   TDegreeFahrenheitHelper = record helper for TDegreesFahrenheit
-    function AsKelvin: specialize TQuantity<TKelvinUnit>;
+    function ToKelvin: specialize TQuantity<TKelvinUnit>;
   end;
 
 type
   TRadianHelper = record helper for TRadians
-    function AsDegree: specialize TQuantity<TDegreeUnit>;
+    function ToDegree: specialize TQuantity<TDegreeUnit>;
   end;
 
 type
   TSquareHertzHelper = record helper for TSquareHertz
-    function AsSteradianPerSquareSecond: specialize TQuantity<TSteradianPerSquareSecondUnit>;
-    function AsRadianPerSquareSecond: specialize TQuantity<TRadianPerSquareSecondUnit>;
+    function ToSteradianPerSquareSecond: specialize TQuantity<TSteradianPerSquareSecondUnit>;
+    function ToRadianPerSquareSecond: specialize TQuantity<TRadianPerSquareSecondUnit>;
   end;
 
 type
   TMeterPerSquareSecondHelper = record helper for TMetersPerSquareSecond
-    function AsMeterPerSecondPerSecond: specialize TQuantity<TMeterPerSecondPerSecondUnit>;
+    function ToMeterPerSecondPerSecond: specialize TQuantity<TMeterPerSecondPerSecondUnit>;
   end;
 
 type
   TKilogramMeterPerSecondHelper = record helper for TKilogramMetersPerSecond
-    function AsNewtonSecond: specialize TQuantity<TNewtonSecondUnit>;
+    function ToNewtonSecond: specialize TQuantity<TNewtonSecondUnit>;
   end;
 
 type
   TJouleHelper = record helper for TJoules
-    function AsNewtonMeter: specialize TQuantity<TNewtonMeterUnit>;
-    function AsElettronvolt: specialize TQuantity<TElettronvoltUnit>;
+    function ToNewtonMeter: specialize TQuantity<TNewtonMeterUnit>;
+    function ToElettronvolt: specialize TQuantity<TElettronvoltUnit>;
   end;
 
 type
   THertzHelper = record helper for THertz
-    function AsBequerel: specialize TQuantity<TBequerelUnit>;
+    function ToBequerel: specialize TQuantity<TBequerelUnit>;
   end;
 
 type
   TSquareMeterPerSquareSecondHelper = record helper for TSquareMetersPerSquareSecond
-    function AsSievert: specialize TQuantity<TSievertUnit>;
-    function AsGray: specialize TQuantity<TGrayUnit>;
+    function ToSievert: specialize TQuantity<TSievertUnit>;
+    function ToGray: specialize TQuantity<TGrayUnit>;
   end;
 
 type
   TJoulePerRadianHelper = record helper for TJoulesPerRadian
-    function AsNewtonMeterPerDegree: specialize TQuantity<TNewtonMeterPerDegreeUnit>;
-    function AsNewtonMeterPerRadian: specialize TQuantity<TNewtonMeterPerRadianUnit>;
-    function AsJoulePerDegree: specialize TQuantity<TJoulePerDegreeUnit>;
+    function ToNewtonMeterPerDegree: specialize TQuantity<TNewtonMeterPerDegreeUnit>;
+    function ToNewtonMeterPerRadian: specialize TQuantity<TNewtonMeterPerRadianUnit>;
+    function ToJoulePerDegree: specialize TQuantity<TJoulePerDegreeUnit>;
   end;
 
 type
   TPoiseuilleHelper = record helper for TPoiseuilles
-    function AsPascalSecond: specialize TQuantity<TPascalSecondUnit>;
+    function ToPascalSecond: specialize TQuantity<TPascalSecondUnit>;
   end;
 
 type
   TSquareMeterPerSquareKilogramHelper = record helper for TSquareMetersPerSquareKilogram
-    function AsJoulePerKilogram: specialize TQuantity<TJoulePerKilogramUnit>;
+    function ToJoulePerKilogram: specialize TQuantity<TJoulePerKilogramUnit>;
   end;
 
 type
   TVoltPerMeterHelper = record helper for TVoltsPerMeter
-    function AsNewtonPerCoulomb: specialize TQuantity<TNewtonPerCoulombUnit>;
+    function ToNewtonPerCoulomb: specialize TQuantity<TNewtonPerCoulombUnit>;
   end;
 
 type
   TVoltMeterHelper = record helper for TVoltMeters
-    function AsNewtonSquareMeterPerCoulomb: specialize TQuantity<TNewtonSquareMeterPerCoulombUnit>;
+    function ToNewtonSquareMeterPerCoulomb: specialize TQuantity<TNewtonSquareMeterPerCoulombUnit>;
   end;
 
 type
   TTeslaMeterHelper = record helper for TTeslaMeters
-    function AsNewtonPerAmpere: specialize TQuantity<TNewtonPerAmpereUnit>;
+    function ToNewtonPerAmpere: specialize TQuantity<TNewtonPerAmpereUnit>;
   end;
 
 type
   THenryPerMeterHelper = record helper for THenrysPerMeter
-    function AsNewtonPerSquareAmpere: specialize TQuantity<TNewtonPerSquareAmpereUnit>;
-    function AsTeslaMeterPerAmpere: specialize TQuantity<TTeslaMeterPerAmpereUnit>;
+    function ToNewtonPerSquareAmpere: specialize TQuantity<TNewtonPerSquareAmpereUnit>;
+    function ToTeslaMeterPerAmpere: specialize TQuantity<TTeslaMeterPerAmpereUnit>;
   end;
 
 type
   TJouleSecondHelper = record helper for TJouleSeconds
-    function AsElettronvoltSecond: specialize TQuantity<TElettronvoltSecondUnit>;
+    function ToElettronvoltSecond: specialize TQuantity<TElettronvoltSecondUnit>;
   end;
 
 { Power units }
@@ -8207,172 +8207,172 @@ end;
 
 { Helpers }
 
-function TSecondHelper.AsDay: specialize TQuantity<TDayUnit>;
+function TSecondHelper.ToDay: specialize TQuantity<TDayUnit>;
 begin
   result.FValue := FValue / TDayUnit.Factor;
 end;
 
-function TSecondHelper.AsHour: specialize TQuantity<THourUnit>;
+function TSecondHelper.ToHour: specialize TQuantity<THourUnit>;
 begin
   result.FValue := FValue / THourUnit.Factor;
 end;
 
-function TSecondHelper.AsMinute: specialize TQuantity<TMinuteUnit>;
+function TSecondHelper.ToMinute: specialize TQuantity<TMinuteUnit>;
 begin
   result.FValue := FValue / TMinuteUnit.Factor;
 end;
 
-function TSquareSecondHelper.AsSquareDay: specialize TQuantity<TSquareDayUnit>;
+function TSquareSecondHelper.ToSquareDay: specialize TQuantity<TSquareDayUnit>;
 begin
   result.FValue := FValue / TSquareDayUnit.Factor;
 end;
 
-function TSquareSecondHelper.AsSquareHour: specialize TQuantity<TSquareHourUnit>;
+function TSquareSecondHelper.ToSquareHour: specialize TQuantity<TSquareHourUnit>;
 begin
   result.FValue := FValue / TSquareHourUnit.Factor;
 end;
 
-function TSquareSecondHelper.AsSquareMinute: specialize TQuantity<TSquareMinuteUnit>;
+function TSquareSecondHelper.ToSquareMinute: specialize TQuantity<TSquareMinuteUnit>;
 begin
   result.FValue := FValue / TSquareMinuteUnit.Factor;
 end;
 
-function TMeterHelper.AsAstronomical: specialize TQuantity<TAstronomicalUnit>;
+function TMeterHelper.ToAstronomical: specialize TQuantity<TAstronomicalUnit>;
 begin
   result.FValue := FValue / TAstronomicalUnit.Factor;
 end;
 
-function TCubicMeterHelper.AsLitre: specialize TQuantity<TLitreUnit>;
+function TCubicMeterHelper.ToLitre: specialize TQuantity<TLitreUnit>;
 begin
   result.FValue := FValue / TLitreUnit.Factor;
 end;
 
-function TKilogramHelper.AsTon: specialize TQuantity<TTonUnit>;
+function TKilogramHelper.ToTon: specialize TQuantity<TTonUnit>;
 begin
   result.FValue := FValue / TTonUnit.Factor;
 end;
 
-function TDegreeCelsiusHelper.AsKelvin: specialize TQuantity<TKelvinUnit>;
+function TDegreeCelsiusHelper.ToKelvin: specialize TQuantity<TKelvinUnit>;
 begin
   result.FValue := FValue + 273.15;
 end;
 
-function TKelvinHelper.AsDegreeCelsius: specialize TQuantity<TDegreeCelsiusUnit>;
+function TKelvinHelper.ToDegreeCelsius: specialize TQuantity<TDegreeCelsiusUnit>;
 begin
   result.FValue := FValue - 273.15;
 end;
 
-function TDegreeFahrenheitHelper.AsKelvin: specialize TQuantity<TKelvinUnit>;
+function TDegreeFahrenheitHelper.ToKelvin: specialize TQuantity<TKelvinUnit>;
 begin
   result.FValue := 5/9 * (FValue - 32) + 273.15;
 end;
 
-function TKelvinHelper.AsDegreeFahrenheit: specialize TQuantity<TDegreeFahrenheitUnit>;
+function TKelvinHelper.ToDegreeFahrenheit: specialize TQuantity<TDegreeFahrenheitUnit>;
 begin
   result.FValue := 9/5 * FValue - 459.67;
 end;
 
-function TRadianHelper.AsDegree: specialize TQuantity<TDegreeUnit>;
+function TRadianHelper.ToDegree: specialize TQuantity<TDegreeUnit>;
 begin
   result.FValue := FValue / TDegreeUnit.Factor;
 end;
 
-function TSquareHertzHelper.AsRadianPerSquareSecond: specialize TQuantity<TRadianPerSquareSecondUnit>;
+function TSquareHertzHelper.ToRadianPerSquareSecond: specialize TQuantity<TRadianPerSquareSecondUnit>;
 begin
   result.FValue := FValue;
 end;
 
-function TSquareHertzHelper.AsSteradianPerSquareSecond: specialize TQuantity<TSteradianPerSquareSecondUnit>;
+function TSquareHertzHelper.ToSteradianPerSquareSecond: specialize TQuantity<TSteradianPerSquareSecondUnit>;
 begin
   result.FValue := FValue;
 end;
 
-function TMeterPerSquareSecondHelper.AsMeterPerSecondPerSecond: specialize TQuantity<TMeterPerSecondPerSecondUnit>;
+function TMeterPerSquareSecondHelper.ToMeterPerSecondPerSecond: specialize TQuantity<TMeterPerSecondPerSecondUnit>;
 begin
   result.FValue := FValue;
 end;
 
-function TKilogramMeterPerSecondHelper.AsNewtonSecond: specialize TQuantity<TNewtonSecondUnit>;
+function TKilogramMeterPerSecondHelper.ToNewtonSecond: specialize TQuantity<TNewtonSecondUnit>;
 begin
   result.FValue := FValue;
 end;
 
-function TJouleHelper.AsElettronvolt: specialize TQuantity<TElettronvoltUnit>;
+function TJouleHelper.ToElettronvolt: specialize TQuantity<TElettronvoltUnit>;
 begin
   result.FValue := FValue / TElettronvoltUnit.Factor;
 end;
 
-function THertzHelper.AsBequerel: specialize TQuantity<TBequerelUnit>;
+function THertzHelper.ToBequerel: specialize TQuantity<TBequerelUnit>;
 begin
   result.FValue := FValue;
 end;
 
-function TSquareMeterPerSquareSecondHelper.AsGray: specialize TQuantity<TGrayUnit>;
+function TSquareMeterPerSquareSecondHelper.ToGray: specialize TQuantity<TGrayUnit>;
 begin
   result.FValue := FValue;
 end;
 
-function TSquareMeterPerSquareSecondHelper.AsSievert: specialize TQuantity<TSievertUnit>;
+function TSquareMeterPerSquareSecondHelper.ToSievert: specialize TQuantity<TSievertUnit>;
 begin
   result.FValue := FValue;
 end;
 
-function TJouleHelper.AsNewtonMeter: specialize TQuantity<TNewtonMeterUnit>;
+function TJouleHelper.ToNewtonMeter: specialize TQuantity<TNewtonMeterUnit>;
 begin
   result.FValue := FValue;
 end;
 
-function TJoulePerRadianHelper.AsJoulePerDegree: specialize TQuantity<TJoulePerDegreeUnit>;
+function TJoulePerRadianHelper.ToJoulePerDegree: specialize TQuantity<TJoulePerDegreeUnit>;
 begin
   result.FValue := FValue / TJoulePerDegreeUnit.Factor;
 end;
 
-function TJoulePerRadianHelper.AsNewtonMeterPerRadian: specialize TQuantity<TNewtonMeterPerRadianUnit>;
+function TJoulePerRadianHelper.ToNewtonMeterPerRadian: specialize TQuantity<TNewtonMeterPerRadianUnit>;
 begin
   result.FValue := FValue;
 end;
 
-function TJoulePerRadianHelper.AsNewtonMeterPerDegree: specialize TQuantity<TNewtonMeterPerDegreeUnit>;
+function TJoulePerRadianHelper.ToNewtonMeterPerDegree: specialize TQuantity<TNewtonMeterPerDegreeUnit>;
 begin
   result.FValue := FValue / TNewtonMeterPerDegreeUnit.Factor;
 end;
 
-function TPoiseuilleHelper.AsPascalSecond: specialize TQuantity<TPascalSecondUnit>;
+function TPoiseuilleHelper.ToPascalSecond: specialize TQuantity<TPascalSecondUnit>;
 begin
   result.FValue := FValue;
 end;
 
-function TSquareMeterPerSquareKilogramHelper.AsJoulePerKilogram: specialize TQuantity<TJoulePerKilogramUnit>;
+function TSquareMeterPerSquareKilogramHelper.ToJoulePerKilogram: specialize TQuantity<TJoulePerKilogramUnit>;
 begin
   result.FValue := FValue;
 end;
 
-function TVoltPerMeterHelper.AsNewtonPerCoulomb: specialize TQuantity<TNewtonPerCoulombUnit>;
+function TVoltPerMeterHelper.ToNewtonPerCoulomb: specialize TQuantity<TNewtonPerCoulombUnit>;
 begin
   result.FValue := FValue;
 end;
 
-function TVoltMeterHelper.AsNewtonSquareMeterPerCoulomb: specialize TQuantity<TNewtonSquareMeterPerCoulombUnit>;
+function TVoltMeterHelper.ToNewtonSquareMeterPerCoulomb: specialize TQuantity<TNewtonSquareMeterPerCoulombUnit>;
 begin
   result.FValue := FValue;
 end;
 
-function TTeslaMeterHelper.AsNewtonPerAmpere: specialize TQuantity<TNewtonPerAmpereUnit>;
+function TTeslaMeterHelper.ToNewtonPerAmpere: specialize TQuantity<TNewtonPerAmpereUnit>;
 begin
   result.FValue := FValue;
 end;
 
-function THenryPerMeterHelper.AsTeslaMeterPerAmpere: specialize TQuantity<TTeslaMeterPerAmpereUnit>;
+function THenryPerMeterHelper.ToTeslaMeterPerAmpere: specialize TQuantity<TTeslaMeterPerAmpereUnit>;
 begin
   result.FValue := FValue;
 end;
 
-function THenryPerMeterHelper.AsNewtonPerSquareAmpere: specialize TQuantity<TNewtonPerSquareAmpereUnit>;
+function THenryPerMeterHelper.ToNewtonPerSquareAmpere: specialize TQuantity<TNewtonPerSquareAmpereUnit>;
 begin
   result.FValue := FValue;
 end;
 
-function TJouleSecondHelper.AsElettronvoltSecond: specialize TQuantity<TElettronvoltSecondUnit>;
+function TJouleSecondHelper.ToElettronvoltSecond: specialize TQuantity<TElettronvoltSecondUnit>;
 begin
   result.FValue := FValue / TElettronvoltSecondUnit.Factor;
 end;

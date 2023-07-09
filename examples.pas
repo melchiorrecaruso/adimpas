@@ -992,7 +992,7 @@ begin
   writeln('*** Relativistic energy:');
   writeln('The mass "m" is: ', mass.ToString(4, 4, []));
   writeln('The ligth speed c: ', lightspeed.ToString(4, 4, []));
-  writeln('The energy E is: ', energy.AsElettronvolt.ToString(4, 0, [pTera]));
+  writeln('The energy E is: ', energy.ToElettronvolt.ToString(4, 0, [pTera]));
   writeln('The energy E is: ', energy.ToString(4, 0, [pTera]));
   writeln;
 
@@ -1006,7 +1006,7 @@ begin
   writeln('The mass "m" is: ', mass.ToString(4, 4, []));
   writeln('The speed "v": ', speed.ToString(4, 4, []));
   writeln('The momentum "p" is: ', p.ToString(4, 4, []));
-  writeln('The energy E is: ', energy.AsElettronVolt.ToString(4, 0, [pTera]));
+  writeln('The energy E is: ', energy.ToElettronVolt.ToString(4, 0, [pTera]));
   writeln;
 
   // momentum of photon
@@ -1037,8 +1037,8 @@ begin
   writeln('*** Third Kepler''law: earth period');
   writeln('The mass of sun is:', mass1.toString(5, 0, []));
   writeln('The mass of earth is:', mass2.toString(5, 0, []));
-  writeln('The distance earth-sun is:', distance.AsAstronomical.toString(5, 0, []));
-  writeln('The earth period is:', time.AsDay.toString(5, 0, []));
+  writeln('The distance earth-sun is:', distance.ToAstronomical.toString(5, 0, []));
+  writeln('The earth period is:', time.ToDay.toString(5, 0, []));
   writeln;
 
   // Earth's gravity

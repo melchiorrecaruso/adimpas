@@ -593,16 +593,16 @@ begin
     SectionA2.Append('');
     SectionA2.Append('type');
     SectionA2.Append('  ' + GetUH(ABaseClass) + ' = record helper for ' + GetQT(ABaseClass));
-    SectionA2.Append('    function As' + GetNM(AClassName) + ': specialize TQuantity<' + GetUN(AClassName) + '>;');
+    SectionA2.Append('    function To' + GetNM(AClassName) + ': specialize TQuantity<' + GetUN(AClassName) + '>;');
     SectionA2.Append('  end;');
     SectionA2.Append('');
   end else
   begin
-    SectionA2.Insert(Index + 1, '    function As' + GetNM(AClassName) + ': specialize TQuantity<' + GetUN(AClassName) + '>;');
+    SectionA2.Insert(Index + 1, '    function To' + GetNM(AClassName) + ': specialize TQuantity<' + GetUN(AClassName) + '>;');
   end;
 
   SectionB2.Append('');
-  SectionB2.Append('function ' + GetUH(ABaseClass) + '.As' + GetNM(AClassName) + ': specialize TQuantity<' + GetUN(AClassName) + '>;');
+  SectionB2.Append('function ' + GetUH(ABaseClass) + '.To' + GetNM(AClassName) + ': specialize TQuantity<' + GetUN(AClassName) + '>;');
   SectionB2.Append('begin');
 
   if AFactor = '' then
