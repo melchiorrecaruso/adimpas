@@ -3441,28 +3441,27 @@ function ArcTan(const AValue: double): TRadians;
 function ArcTan2(const x, y: double): TRadians;
 
 const
-  Prefixes: array[0..14] of record Prefix: TPrefix; Symbol, Name: string; Factor: double end = (
-    (Prefix: pTera;   Symbol: 'T';   Name: 'tera';   Factor: 1E+12),
-    (Prefix: pGiga;   Symbol: 'G';   Name: 'giga';   Factor: 1E+9),
-    (Prefix: pMega;   Symbol: 'M';   Name: 'mega';   Factor: 1E+6),
-    (Prefix: pKilo;   Symbol: 'k';   Name: 'kilo';   Factor: 1E+3),
-    (Prefix: pHecto;  Symbol: 'h';   Name: 'hecto';  Factor: 1E+2),
-    (Prefix: pDeca;   Symbol: 'da';  Name: 'deca';   Factor: 1E+1),
-    (Prefix: pDeci;   Symbol: 'd';   Name: 'deci';   Factor: 1E-1),
-    (Prefix: pCenti;  Symbol: 'c';   Name: 'centi';  Factor: 1E-2),
-    (Prefix: pMilli;  Symbol: 'm';   Name: 'milli';  Factor: 1E-3),
-    (Prefix: pMicro;  Symbol: 'μ';   Name: 'micro';  Factor: 1E-6),
-    (Prefix: pNano;   Symbol: 'n';   Name: 'nano';   Factor: 1E-9),
-    (Prefix: pPico;   Symbol: 'p';   Name: 'pico';   Factor: 1E-12),
-    (Prefix: pDay;    Symbol: 'd';   Name: 'day';    Factor: 86400),
-    (Prefix: pHour;   Symbol: 'h';   Name: 'hour';   Factor: 3600),
-    (Prefix: pMinute; Symbol: 'min'; Name: 'minute'; Factor: 60)
+  PrefixTable: array[pTera..pMinute] of
+    record  Symbol, Name: string; Factor: double end = (
+    (Symbol: 'T';   Name: 'tera';   Factor: 1E+12),
+    (Symbol: 'G';   Name: 'giga';   Factor: 1E+09),
+    (Symbol: 'M';   Name: 'mega';   Factor: 1E+06),
+    (Symbol: 'k';   Name: 'kilo';   Factor: 1E+03),
+    (Symbol: 'h';   Name: 'hecto';  Factor: 1E+02),
+    (Symbol: 'da';  Name: 'deca';   Factor: 1E+01),
+    (Symbol: '';    Name:  '';      Factor: 1E+00),
+    (Symbol: 'd';   Name: 'deci';   Factor: 1E-01),
+    (Symbol: 'c';   Name: 'centi';  Factor: 1E-02),
+    (Symbol: 'm';   Name: 'milli';  Factor: 1E-03),
+    (Symbol: 'μ';   Name: 'micro';  Factor: 1E-06),
+    (Symbol: 'n';   Name: 'nano';   Factor: 1E-09),
+    (Symbol: 'p';   Name: 'pico';   Factor: 1E-12),
+    (Symbol: 'd';   Name: 'day';    Factor: 86400),
+    (Symbol: 'h';   Name: 'hour';   Factor: 3600 ),
+    (Symbol: 'min'; Name: 'minute'; Factor: 60   )
   );
 
 function Split(const AStr: string): TStringArray;
-function GetPrefixName(const APrefix: TPrefix): string;
-function GetPrefixSymbol(const APrefix: TPrefix): string;
-function GetPrefixFactor(const APrefix: TPrefix): double;
 
 implementation
 
@@ -3494,36 +3493,6 @@ begin
       result[Index] := result[Index] + AStr[I];
   end;
   SetLength(result, Index + 1);
-end;
-
-function GetPrefixName(const APrefix: TPrefix): string;
-var
-  I: longint;
-begin
-  for I := low(Prefixes) to high(Prefixes) do
-    if Prefixes[i].Prefix = APrefix then
-      exit(Prefixes[i].Name);
-  result := '';
-end;
-
-function GetPrefixSymbol(const APrefix: TPrefix): string;
-var
-  I: longint;
-begin
-  for I := low(Prefixes) to high(Prefixes) do
-    if Prefixes[i].Prefix = APrefix then
-      exit(Prefixes[i].Symbol);
-  result := '';
-end;
-
-function GetPrefixFactor(const APrefix: TPrefix): double;
-var
-  I: longint;
-begin
-  for I := low(Prefixes) to high(Prefixes) do
-    if Prefixes[i].Prefix = APrefix then
-      exit(Prefixes[i].Factor);
-  result := 1;
 end;
 
 { TQuantity }
@@ -3580,13 +3549,13 @@ begin
 
           if Prefix in [pDay, pHour, pMinute] then
           begin
-            SubStr[I] := GetPrefixSymbol(Prefix);
-            Return    := Return / IntPower(GetPrefixFactor(Prefix), Exponent);
+            SubStr[I] := PrefixTable[Prefix].Symbol;
+            Return    := Return / IntPower(PrefixTable[Prefix].Factor, Exponent);
           end else
             if Prefix in [pDeci, pCenti, pMilli, pMicro, pNano, pPico] then
             begin
-              SubStr[I] := GetPrefixSymbol(Prefix) + SubStr[I];
-              Return    := Return / IntPower(GetPrefixFactor(Prefix), Exponent);
+              SubStr[I] := PrefixTable[Prefix].Symbol + SubStr[I];
+              Return    := Return / IntPower(PrefixTable[Prefix].Factor, Exponent);
             end else
               Prefix := pNone;
 
@@ -3606,8 +3575,8 @@ begin
 
             if Prefix <> pNone then
             begin
-              SubStr[I] := GetPrefixSymbol(Prefix) + SubStr[I];
-              Return    := Return / IntPower(GetPrefixFactor(Prefix), Exponent);
+              SubStr[I] := PrefixTable[Prefix].Symbol + SubStr[I];
+              Return    := Return / IntPower(PrefixTable[Prefix].Factor, Exponent);
             end;
           end;
 
@@ -3662,13 +3631,13 @@ begin
 
           if Prefix in [pDay, pHour, pMinute] then
           begin
-            SubStr[I] := GetPrefixSymbol(Prefix);
-            Return    := Return / IntPower(GetPrefixFactor(Prefix), Exponent);
+            SubStr[I] := PrefixTable[Prefix].Symbol;
+            Return    := Return / IntPower(PrefixTable[Prefix].Factor, Exponent);
           end else
             if Prefix in [pDeci, pCenti, pMilli, pMicro, pNano, pPico] then
             begin
-              SubStr[I] := GetPrefixSymbol(Prefix) + SubStr[I];
-              Return    := Return / IntPower(GetPrefixFactor(Prefix), Exponent);
+              SubStr[I] := PrefixTable[Prefix].Symbol + SubStr[I];
+              Return    := Return / IntPower(PrefixTable[Prefix].Factor, Exponent);
             end else
               Prefix := pNone;
 
@@ -3688,8 +3657,8 @@ begin
 
             if Prefix <> pNone then
             begin
-              SubStr[I] := GetPrefixSymbol(Prefix) + SubStr[I];
-              Return := Return / IntPower(GetPrefixFactor(Prefix), Exponent);
+              SubStr[I] := PrefixTable[Prefix].Symbol + SubStr[I];
+              Return := Return / IntPower(PrefixTable[Prefix].Factor, Exponent);
             end;
           end;
 
