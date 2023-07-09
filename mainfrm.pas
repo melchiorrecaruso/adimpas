@@ -464,8 +464,8 @@ begin
 
   if LowerCase(AIdentifierSymbol) = 'siemens' then Params := 'LLLLLLLLLLLL';
 
-  if LowerCase(AIdentifierSymbol) = 'ton'     then Params := '------------';
-  if LowerCase(AIdentifierSymbol) = 'l'       then Params := '---SSSSSS---';
+  if LowerCase(AIdentifierSymbol) = 'tonne'   then Params := '-LLL--------';
+  if LowerCase(AIdentifierSymbol) = 'l'       then Params := 'SSLSSSSSSSSL';
   if LowerCase(AIdentifierSymbol) = 'degc'    then Params := '------------';
   if LowerCase(AIdentifierSymbol) = 'degf'    then Params := '------------';
 

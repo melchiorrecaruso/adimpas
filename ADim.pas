@@ -269,12 +269,18 @@ type
 
 const L: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03);
 
+const     TL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E+12);
+const     GL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E+09);
+const  megaL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E+06);
 const     kL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E+03);
 const     hL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E+02);
 const    daL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E+01);
 const     dL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-01);
 const     cL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-02);
 const     mL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-03);
+const    miL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-06);
+const     nL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-09);
+const  picoL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-12);
 
 type
   { Unit of QuarticMeter }
@@ -399,16 +405,20 @@ const  ng: specialize TQuantity<TKilogramUnit> = (FValue: 1E-12);
 const  pg: specialize TQuantity<TKilogramUnit> = (FValue: 1E-15);
 
 type
-  { Unit of Ton }
-  TTonUnit = record
+  { Unit of Tonne }
+  TTonneUnit = record
     const Symbol = 't';
-    const Name   = 'ton';
+    const Name   = 'tonne';
     const Factor = 1E+03;
   end;
-  TTons = specialize TQuantity<TKilogramUnit>;
-  TTonUnitId = specialize TUnitId<TTonUnit>;
+  TTonnes = specialize TQuantity<TKilogramUnit>;
+  TTonneUnitId = specialize TUnitId<TTonneUnit>;
 
-const ton: specialize TQuantity<TKilogramUnit> = (FValue: 1E+03);
+const tonne: specialize TQuantity<TKilogramUnit> = (FValue: 1E+03);
+
+const  gigatonne: specialize TQuantity<TKilogramUnit> = (FValue: 1E+03 * 1E+09);
+const  megatonne: specialize TQuantity<TKilogramUnit> = (FValue: 1E+03 * 1E+06);
+const  kilotonne: specialize TQuantity<TKilogramUnit> = (FValue: 1E+03 * 1E+03);
 
 type
   { Unit of SquareKilogram }
@@ -3271,7 +3281,7 @@ type
 
 type
   TKilogramHelper = record helper for TKilograms
-    function ToTon: specialize TQuantity<TTonUnit>;
+    function ToTonne: specialize TQuantity<TTonneUnit>;
   end;
 
 type
@@ -8247,9 +8257,9 @@ begin
   result.FValue := FValue / TLitreUnit.Factor;
 end;
 
-function TKilogramHelper.ToTon: specialize TQuantity<TTonUnit>;
+function TKilogramHelper.ToTonne: specialize TQuantity<TTonneUnit>;
 begin
-  result.FValue := FValue / TTonUnit.Factor;
+  result.FValue := FValue / TTonneUnit.Factor;
 end;
 
 function TDegreeCelsiusHelper.ToKelvin: specialize TQuantity<TKelvinUnit>;
