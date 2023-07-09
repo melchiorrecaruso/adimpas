@@ -258,6 +258,25 @@ operator /(const ALeft: TCubicMeters; const ARight: TSquareMeters): TMeters; inl
 operator /(const ALeft: TCubicMeters; const ARight: TMeters): TSquareMeters; inline;
 
 type
+  { Unit of Litre }
+  TLitreUnit = record
+    const Symbol = 'L';
+    const Name   = 'litre';
+    const Factor = 1E-03;
+  end;
+  TLitres = specialize TQuantity<TCubicMeterUnit>;
+  TLitreUnitId = specialize TUnitId<TLitreUnit>;
+
+const L: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03);
+
+const     kL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E+03);
+const     hL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E+02);
+const    daL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E+01);
+const     dL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-01);
+const     cL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-02);
+const     mL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-03);
+
+type
   { Unit of QuarticMeter }
   TQuarticMeterUnit = record
     const Symbol = 'm4';
@@ -380,6 +399,18 @@ const  ng: specialize TQuantity<TKilogramUnit> = (FValue: 1E-12);
 const  pg: specialize TQuantity<TKilogramUnit> = (FValue: 1E-15);
 
 type
+  { Unit of Ton }
+  TTonUnit = record
+    const Symbol = 't';
+    const Name   = 'ton';
+    const Factor = 1E+03;
+  end;
+  TTons = specialize TQuantity<TKilogramUnit>;
+  TTonUnitId = specialize TUnitId<TTonUnit>;
+
+const ton: specialize TQuantity<TKilogramUnit> = (FValue: 1E+03);
+
+type
   { Unit of SquareKilogram }
   TSquareKilogramUnit = record
     const Symbol = 'kg2';
@@ -479,6 +510,28 @@ const     mK: specialize TQuantity<TKelvinUnit> = (FValue: 1E-03);
 const    miK: specialize TQuantity<TKelvinUnit> = (FValue: 1E-06);
 const     nK: specialize TQuantity<TKelvinUnit> = (FValue: 1E-09);
 const     pK: specialize TQuantity<TKelvinUnit> = (FValue: 1E-12);
+
+type
+  { Unit of DegreeCelsius }
+  TDegreeCelsiusUnit = record
+    const Symbol = 'ºC';
+    const Name   = 'degree Celsius';
+  end;
+  TDegreesCelsius = specialize TQuantity<TDegreeCelsiusUnit>;
+  TDegreeCelsiusUnitId = specialize TUnitId<TDegreeCelsiusUnit>;
+
+var degC: TDegreeCelsiusUnitId;
+
+type
+  { Unit of DegreeFahrenheit }
+  TDegreeFahrenheitUnit = record
+    const Symbol = 'ºF';
+    const Name   = 'degree Fahrenheit';
+  end;
+  TDegreesFahrenheit = specialize TQuantity<TDegreeFahrenheitUnit>;
+  TDegreeFahrenheitUnitId = specialize TUnitId<TDegreeFahrenheitUnit>;
+
+var degF: TDegreeFahrenheitUnitId;
 
 type
   { Unit of SquareKelvin }
@@ -3209,6 +3262,32 @@ type
 type
   TMeterHelper = record helper for TMeters
     function AsAstronomical: specialize TQuantity<TAstronomicalUnit>;
+  end;
+
+type
+  TCubicMeterHelper = record helper for TCubicMeters
+    function AsLitre: specialize TQuantity<TLitreUnit>;
+  end;
+
+type
+  TKilogramHelper = record helper for TKilograms
+    function AsTon: specialize TQuantity<TTonUnit>;
+  end;
+
+type
+  TDegreeCelsiusHelper = record helper for TDegreesCelsius
+    function AsKelvin: specialize TQuantity<TKelvinUnit>;
+  end;
+
+type
+  TKelvinHelper = record helper for TKelvins
+    function AsDegreeFahrenheit: specialize TQuantity<TDegreeFahrenheitUnit>;
+    function AsDegreeCelsius: specialize TQuantity<TDegreeCelsiusUnit>;
+  end;
+
+type
+  TDegreeFahrenheitHelper = record helper for TDegreesFahrenheit
+    function AsKelvin: specialize TQuantity<TKelvinUnit>;
   end;
 
 type
@@ -8161,6 +8240,36 @@ end;
 function TMeterHelper.AsAstronomical: specialize TQuantity<TAstronomicalUnit>;
 begin
   result.FValue := FValue / TAstronomicalUnit.Factor;
+end;
+
+function TCubicMeterHelper.AsLitre: specialize TQuantity<TLitreUnit>;
+begin
+  result.FValue := FValue / TLitreUnit.Factor;
+end;
+
+function TKilogramHelper.AsTon: specialize TQuantity<TTonUnit>;
+begin
+  result.FValue := FValue / TTonUnit.Factor;
+end;
+
+function TDegreeCelsiusHelper.AsKelvin: specialize TQuantity<TKelvinUnit>;
+begin
+  result.FValue := FValue + 273.15;
+end;
+
+function TKelvinHelper.AsDegreeCelsius: specialize TQuantity<TDegreeCelsiusUnit>;
+begin
+  result.FValue := FValue - 273.15;
+end;
+
+function TDegreeFahrenheitHelper.AsKelvin: specialize TQuantity<TKelvinUnit>;
+begin
+  result.FValue := 5/9 * (FValue - 32) + 273.15;
+end;
+
+function TKelvinHelper.AsDegreeFahrenheit: specialize TQuantity<TDegreeFahrenheitUnit>;
+begin
+  result.FValue := 9/5 * FValue - 459.67;
 end;
 
 function TRadianHelper.AsDegree: specialize TQuantity<TDegreeUnit>;

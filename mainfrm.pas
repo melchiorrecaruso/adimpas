@@ -311,21 +311,44 @@ begin
         SectionA1.Append('  ' + GetUN(AClassName) + ' = record');
         SectionA1.Append('    const Symbol = ''' + AShortSymbol + ''';');
         SectionA1.Append('    const Name   = ''' + ALongSymbol  + ''';');
-        SectionA1.Append('    const Factor = '   + AFactor      + ';');
-        SectionA1.Append('  end;');
-        SectionA1.Append('  ' + GetQT(AClassName) + ' = specialize TQuantity<' + GetUN(ABaseClass) + '>;');
+        if Pos('%s', AFactor) = 0 then
+        begin
+          SectionA1.Append('    const Factor = '   + AFactor      + ';');
+          SectionA1.Append('  end;');
+          SectionA1.Append('  ' + GetQT(AClassName) + ' = specialize TQuantity<' + GetUN(ABaseClass) + '>;');
+        end else
+        begin
+          SectionA1.Append('  end;');
+          SectionA1.Append('  ' + GetQT(AClassName) + ' = specialize TQuantity<' + GetUN(AClassName) + '>;');
+        end;
         SectionA1.Append('  ' + GetID(AClassName) + ' = specialize TUnitId<' + GetUN(AClassName) + '>;');
         SectionA1.Append('');
+
         if (AIdentifierSymbol <> '') then
         begin
-          SectionA1.Append(Format('const %s: specialize TQuantity<%s> = (FValue: %s);', [AIdentifierSymbol, GetUN(ABaseClass), AFactor]));
-          SectionA1.Append('');
-          AddFactoredQuantity(ABaseClass, AIdentifierSymbol, AFactor);
-          SectionA1.Append('');
+          if Pos('%s', AFactor) = 0 then
+          begin
+            SectionA1.Append(Format('const %s: specialize TQuantity<%s> = (FValue: %s);', [AIdentifierSymbol, GetUN(ABaseClass), AFactor]));
+            SectionA1.Append('');
+            AddFactoredQuantity(ABaseClass, AIdentifierSymbol, AFactor);
+            SectionA1.Append('');
+          end else
+          begin
+            SectionA1.Append(Format('var %s: %s;', [AIdentifierSymbol, GetID(AClassName)]));
+            SectionA1.Append('');
+          end;
         end;
-        AddHelper(AClassName, ABaseClass, GetUN(AClassName) + '.Factor');
-      end;
 
+        if Pos('%s', AFactor) = 0 then
+        begin
+          AddHelper(AClassName, ABaseClass, 'FValue / ' + GetUN(AClassName) + '.Factor');
+        end else
+        begin
+          AddHelper(ABaseClass, AClassName, Format(Copy(AFactor, 1, Pos('|', AFactor) -1), ['FValue']));
+          AddHelper(AClassName, ABaseClass, Format(Copy(AFactor, Pos('|', AFactor) + 1, Length(AFactor)), ['FValue']));
+        end;
+
+      end;
     end;
   end;
 
@@ -440,6 +463,11 @@ begin
   if LowerCase(AIdentifierSymbol) = 'a2'      then Params := 'SSLSSSSSSSSL';
 
   if LowerCase(AIdentifierSymbol) = 'siemens' then Params := 'LLLLLLLLLLLL';
+
+  if LowerCase(AIdentifierSymbol) = 'ton'     then Params := '------------';
+  if LowerCase(AIdentifierSymbol) = 'l'       then Params := '---SSSSSS---';
+  if LowerCase(AIdentifierSymbol) = 'degc'    then Params := '------------';
+  if LowerCase(AIdentifierSymbol) = 'degf'    then Params := '------------';
 
 
   if (LowerCase(AIdentifierSymbol) <> 'kg' ) and
@@ -559,7 +587,6 @@ procedure TMainForm.AddHelper(AClassName, ABaseClass, AFactor: string);
 var
   Index: longint;
 begin
-
   Index := SectionA2.IndexOf('  ' + GetUH(ABaseClass) + ' = record helper for ' + GetQT(ABaseClass));
   if Index = -1 then
   begin
@@ -581,7 +608,7 @@ begin
   if AFactor = '' then
     SectionB2.Append('  result.FValue := FValue;')
   else
-    SectionB2.Append('  result.FValue := FValue / ' + AFactor + ';');
+    SectionB2.Append('  result.FValue := ' + AFactor + ';');
 
   SectionB2.Append('end;');
   SectionB2.Append('');
