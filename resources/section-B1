@@ -103,7 +103,8 @@ begin
         if SubStr[I][length(SubStr[I])] in ['2', '3', '4', '5', '6'] then
           Exponent := Exponent * StrToInt(SubStr[I][length(SubStr[I])]); 
            
-        if (SubStr[I] = 's' ) or (SubStr[I] = 's2') then
+        if (SubStr[I] = TSecondUnit.Symbol) or 
+           (SubStr[I] = TSquareSecondUnit.Symbol) then
         begin
 
           if Prefix in [pDay, pHour, pMinute] then
@@ -122,7 +123,8 @@ begin
           if not (Prefix in [pDay, pHour, pMinute]) then
           begin
           
-            if (SubStr[I] = 'kg' ) or (SubStr[I] = 'kg2') then
+            if (SubStr[I] = TKilogramUnit.Symbol) or 
+               (SubStr[I] = TSquareKilogramUnit.Symbol) then
             begin      
               if Prefix <> pKilo then
               begin
@@ -185,7 +187,7 @@ begin
       else
       begin
 
-        if (SubStr[I] = 'second') then
+        if (SubStr[I] = TSecondUnit.Name) then
         begin
 
           if Prefix in [pDay, pHour, pMinute] then
@@ -204,7 +206,7 @@ begin
           if not (Prefix in [pDay, pHour, pMinute]) then
           begin
           
-            if (SubStr[I] = 'kilogram') then
+            if (SubStr[I] = TKilogramUnit.Name) then
             begin      
               if Prefix <> pKilo then
               begin
