@@ -21,6 +21,7 @@ type
   public
     function Abs: TSelf;
     function Value: double;
+    function Value(const Prefixes: TPrefixes): double;    
     function ToString: string;
     function ToVerboseString: string;
     function ToString(Precision, Digits: longint; const Prefixes: TPrefixes): string;

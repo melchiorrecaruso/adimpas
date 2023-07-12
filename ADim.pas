@@ -40,6 +40,7 @@ type
   public
     function Abs: TSelf;
     function Value: double;
+    function Value(const Prefixes: TPrefixes): double;
     function ToString: string;
     function ToVerboseString: string;
     function ToString(Precision, Digits: longint; const Prefixes: TPrefixes): string;
@@ -3507,6 +3508,15 @@ begin
   result := FValue;
 end;
 
+function TQuantity.Value(const Prefixes: TPrefixes): double;
+var
+  i: longint;
+begin
+  result := FValue;
+  for i := low(Prefixes) to high(Prefixes) do
+    result := result / PrefixTable[Prefixes[i]].Factor;
+end;
+
 function TQuantity.ToString: string;
 begin
   result := FloatToStr(FValue) + ' ' + U.Symbol;
@@ -3540,7 +3550,6 @@ begin
     if (SubStr[I] = '.') then Exponent := +1
       else
       begin
-
         if SubStr[I][length(SubStr[I])] in ['2', '3', '4', '5', '6'] then
           Exponent := Exponent * StrToInt(SubStr[I][length(SubStr[I])]);
 
@@ -3564,16 +3573,21 @@ begin
           if not (Prefix in [pDay, pHour, pMinute]) then
           begin
 
-            if (SubStr[I] = TKilogramUnit.Symbol) or
-               (SubStr[I] = TSquareKilogramUnit.Symbol) then
-            begin
-              if Prefix <> pKilo then
+            if (SubStr[I] = TRadianUnit.Symbol) or
+               (SubStr[I] = TDegreeUnit.Symbol) or
+               (SubStr[I] = TAstronomicalUnit.Symbol) then
+              Prefix := pNone
+            else
+              if (SubStr[I] = TKilogramUnit.Symbol) or
+                 (SubStr[I] = TSquareKilogramUnit.Symbol) then
               begin
-                SubStr[I] := Copy(SubStr[I], 2, Length(SubStr[I]));
-                Return := Return * IntPower(1000, Exponent);
-              end else
-                Prefix := pNone;
-            end;
+                if Prefix <> pKilo then
+                begin
+                  SubStr[I] := Copy(SubStr[I], 2, Length(SubStr[I]));
+                  Return := Return * IntPower(1000, Exponent);
+                end else
+                  Prefix := pNone;
+              end;
 
             if Prefix <> pNone then
             begin
@@ -3647,15 +3661,20 @@ begin
           if not (Prefix in [pDay, pHour, pMinute]) then
           begin
 
-            if (SubStr[I] = TKilogramUnit.Name) then
-            begin
-              if Prefix <> pKilo then
+            if (SubStr[I] = TRadianUnit.Symbol) or
+               (SubStr[I] = TDegreeUnit.Symbol) or
+               (SubStr[I] = TAstronomicalUnit.Symbol) then
+              Prefix := pNone
+            else
+              if (SubStr[I] = TKilogramUnit.Name) then
               begin
-                SubStr[I] := 'gram';
-                Return := Return * IntPower(1000, Exponent);
-              end else
-                Prefix := pNone;
-            end;
+                if Prefix <> pKilo then
+                begin
+                  SubStr[I] := 'gram';
+                  Return := Return * IntPower(1000, Exponent);
+                end else
+                  Prefix := pNone;
+              end;
 
             if Prefix <> pNone then
             begin
