@@ -462,6 +462,7 @@ begin
   if LowerCase(AIdentifierSymbol) = 'a'       then Params := 'SSLSSSSSSSSL';
   if LowerCase(AIdentifierSymbol) = 'a2'      then Params := 'SSLSSSSSSSSL';
 
+  if LowerCase(AIdentifierSymbol) = 'pa'      then Params := 'SSSSSSSSLSSS';
   if LowerCase(AIdentifierSymbol) = 'siemens' then Params := 'LLLLLLLLLLLL';
 
   if LowerCase(AIdentifierSymbol) = 'tonne'   then Params := '-LLL--------';
