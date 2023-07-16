@@ -72,6 +72,7 @@ var
   I, Index: longint;
   Prefix: TPrefix;
   SubStr: TStringArray;
+  SubStrLen: longint;
 begin
   Result   := FValue;
   Exponent := 1;
@@ -88,22 +89,19 @@ begin
     if (SubStr[I] = '.') then Exponent := +1 
       else
       begin
-        if SubStr[I][length(SubStr[I])] in ['2', '3', '4', '5', '6'] then
-          Exponent := Exponent * StrToInt(SubStr[I][length(SubStr[I])]); 
+        SubStrLen := Length(SubStr[I]);
+        if SubStr[I][SubStrLen] in ['2', '3', '4', '5', '6'] then
+          Exponent := Exponent * (Ord(SubStr[I][SubStrLen]) - Ord('0')); 
            
         if (SubStr[I] = TSecondUnit.Symbol) or 
            (SubStr[I] = TSquareSecondUnit.Symbol) then
         begin
 
-          if Prefix in [pDay, pHour, pMinute] then
+          if Prefix in [pDay, pHour, pMinute, pDeci, pCenti, pMilli, pMicro, pNano, pPico] then
           begin
             Result := Result / IntPower(PrefixTable[Prefix].Factor, Exponent);
-          end else
-            if Prefix in [pDeci, pCenti, pMilli, pMicro, pNano, pPico] then
-            begin
-              Result := Result / IntPower(PrefixTable[Prefix].Factor, Exponent);
-            end else
-              Prefix := pNone;
+          end else            
+            Prefix := pNone;
 
         end else
           if not (Prefix in [pDay, pHour, pMinute]) then
@@ -159,6 +157,7 @@ var
   I, Index: longint;
   Prefix: TPrefix;
   SubStr: TStringArray;
+  SubStrLen: longint;
 begin
   Return   := FValue;
   Exponent := 1;
@@ -175,8 +174,9 @@ begin
     if (SubStr[I] = '.') then Exponent := +1 
       else
       begin
-        if SubStr[I][length(SubStr[I])] in ['2', '3', '4', '5', '6'] then
-          Exponent := Exponent * StrToInt(SubStr[I][length(SubStr[I])]); 
+        SubStrLen := Length(SubStr[I]);
+        if SubStr[I][SubStrLen] in ['2', '3', '4', '5', '6'] then
+          Exponent := Exponent * (Ord(SubStr[I][SubStrLen]) - Ord('0')); 
            
         if (SubStr[I] = TSecondUnit.Symbol) or 
            (SubStr[I] = TSquareSecondUnit.Symbol) then
