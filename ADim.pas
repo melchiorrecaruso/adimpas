@@ -27,14 +27,17 @@ interface
 uses SysUtils;
 
 type
+  { Prefix }
+  TPrefix = (pTera, pGiga, pMega, pKilo, pHecto, pDeca,
+    pNone, pDeci, pCenti, pMilli, pMicro, pNano, pPico);
+
+type
   { Prefixes }
-  TPrefix = (pTera, pGiga, pMega, pKilo, pHecto, pDeca, pNone, pDeci,
-    pCenti, pMilli, pMicro, pNano, pPico, pDay, pHour, pMinute);
+  TPrefixes = array of TPrefix;
 
   { TQuantity }
   generic TQuantity<U> = record
     type TSelf = specialize TQuantity<U>;
-    type TPrefixes = array of TPrefix;
   private
     FValue: double;
   public
@@ -71,8 +74,9 @@ type
 type
   { Unit of Second }
   TSecondUnit = record
-    const Symbol = 's';
-    const Name   = 'second';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSeconds = specialize TQuantity<TSecondUnit>;
   TSecondUnitId = specialize TUnitId<TSecondUnit>;
@@ -89,8 +93,9 @@ const     ps: specialize TQuantity<TSecondUnit> = (FValue: 1E-12);
 type
   { Unit of Day }
   TDayUnit = record
-    const Symbol = 'd';
-    const Name   = 'day';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
     const Factor = 86400;
   end;
   TDays = specialize TQuantity<TSecondUnit>;
@@ -101,8 +106,9 @@ const day: specialize TQuantity<TSecondUnit> = (FValue: 86400);
 type
   { Unit of Hour }
   THourUnit = record
-    const Symbol = 'h';
-    const Name   = 'hour';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
     const Factor = 3600;
   end;
   THours = specialize TQuantity<TSecondUnit>;
@@ -113,8 +119,9 @@ const hr: specialize TQuantity<TSecondUnit> = (FValue: 3600);
 type
   { Unit of Minute }
   TMinuteUnit = record
-    const Symbol = 'min';
-    const Name   = 'minute';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
     const Factor = 60;
   end;
   TMinutes = specialize TQuantity<TSecondUnit>;
@@ -125,8 +132,9 @@ const minute: specialize TQuantity<TSecondUnit> = (FValue: 60);
 type
   { Unit of SquareSecond }
   TSquareSecondUnit = record
-    const Symbol = 's2';
-    const Name   = 'square second';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSquareSeconds = specialize TQuantity<TSquareSecondUnit>;
   TSquareSecondUnitId = specialize TUnitId<TSquareSecondUnit>;
@@ -140,8 +148,9 @@ operator /(const ALeft: TSquareSeconds; const ARight: TSeconds): TSeconds; inlin
 type
   { Unit of SquareDay }
   TSquareDayUnit = record
-    const Symbol = 'd2';
-    const Name   = 'square day';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
     const Factor = 7464960000;
   end;
   TSquareDays = specialize TQuantity<TSquareSecondUnit>;
@@ -152,8 +161,9 @@ const day2: specialize TQuantity<TSquareSecondUnit> = (FValue: 7464960000);
 type
   { Unit of SquareHour }
   TSquareHourUnit = record
-    const Symbol = 'h2';
-    const Name   = 'square hour';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
     const Factor = 12960000;
   end;
   TSquareHours = specialize TQuantity<TSquareSecondUnit>;
@@ -164,8 +174,9 @@ const hr2: specialize TQuantity<TSquareSecondUnit> = (FValue: 12960000);
 type
   { Unit of SquareMinute }
   TSquareMinuteUnit = record
-    const Symbol = 'min2';
-    const Name   = 'square minute';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
     const Factor = 3600;
   end;
   TSquareMinutes = specialize TQuantity<TSquareSecondUnit>;
@@ -176,8 +187,9 @@ const minute2: specialize TQuantity<TSquareSecondUnit> = (FValue: 3600);
 type
   { Unit of Meter }
   TMeterUnit = record
-    const Symbol = 'm';
-    const Name   = 'meter';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TMeters = specialize TQuantity<TMeterUnit>;
   TMeterUnitId = specialize TUnitId<TMeterUnit>;
@@ -197,8 +209,9 @@ const     pm: specialize TQuantity<TMeterUnit> = (FValue: 1E-12);
 type
   { Unit of Astronomical }
   TAstronomicalUnit = record
-    const Symbol = 'au';
-    const Name   = 'astronomical unit';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
     const Factor = 149597870691;
   end;
   TAstronomical = specialize TQuantity<TMeterUnit>;
@@ -209,8 +222,9 @@ const au: specialize TQuantity<TMeterUnit> = (FValue: 149597870691);
 type
   { Unit of SquareMeter }
   TSquareMeterUnit = record
-    const Symbol = 'm2';
-    const Name   = 'square meter';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSquareMeters = specialize TQuantity<TSquareMeterUnit>;
   TSquareMeterUnitId = specialize TUnitId<TSquareMeterUnit>;
@@ -234,8 +248,9 @@ operator /(const ALeft: TSquareMeters; const ARight: TMeters): TMeters; inline;
 type
   { Unit of CubicMeter }
   TCubicMeterUnit = record
-    const Symbol = 'm3';
-    const Name   = 'cubic meter';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TCubicMeters = specialize TQuantity<TCubicMeterUnit>;
   TCubicMeterUnitId = specialize TUnitId<TCubicMeterUnit>;
@@ -261,8 +276,9 @@ operator /(const ALeft: TCubicMeters; const ARight: TMeters): TSquareMeters; inl
 type
   { Unit of Litre }
   TLitreUnit = record
-    const Symbol = 'L';
-    const Name   = 'litre';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
     const Factor = 1E-03;
   end;
   TLitres = specialize TQuantity<TCubicMeterUnit>;
@@ -286,8 +302,9 @@ const  picoL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-12);
 type
   { Unit of QuarticMeter }
   TQuarticMeterUnit = record
-    const Symbol = 'm4';
-    const Name   = 'quartic meter';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TQuarticMeters = specialize TQuantity<TQuarticMeterUnit>;
   TQuarticMeterUnitId = specialize TUnitId<TQuarticMeterUnit>;
@@ -317,8 +334,9 @@ operator /(const ALeft: TQuarticMeters; const ARight: TSquareMeters): TSquareMet
 type
   { Unit of QuinticMeter }
   TQuinticMeterUnit = record
-    const Symbol = 'm5';
-    const Name   = 'quintic meter';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TQuinticMeters = specialize TQuantity<TQuinticMeterUnit>;
   TQuinticMeterUnitId = specialize TUnitId<TQuinticMeterUnit>;
@@ -350,8 +368,9 @@ operator /(const ALeft: TQuinticMeters; const ARight: TSquareMeters): TCubicMete
 type
   { Unit of SexticMeter }
   TSexticMeterUnit = record
-    const Symbol = 'm6';
-    const Name   = 'sextic meter';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSexticMeters = specialize TQuantity<TSexticMeterUnit>;
   TSexticMeterUnitId = specialize TUnitId<TSexticMeterUnit>;
@@ -387,8 +406,9 @@ operator /(const ALeft: TSexticMeters; const ARight: TCubicMeters): TCubicMeters
 type
   { Unit of Kilogram }
   TKilogramUnit = record
-    const Symbol = 'kg';
-    const Name   = 'kilogram';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TKilograms = specialize TQuantity<TKilogramUnit>;
   TKilogramUnitId = specialize TUnitId<TKilogramUnit>;
@@ -408,8 +428,9 @@ const  pg: specialize TQuantity<TKilogramUnit> = (FValue: 1E-15);
 type
   { Unit of Tonne }
   TTonneUnit = record
-    const Symbol = 't';
-    const Name   = 'tonne';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
     const Factor = 1E+03;
   end;
   TTonnes = specialize TQuantity<TKilogramUnit>;
@@ -424,8 +445,9 @@ const  kilotonne: specialize TQuantity<TKilogramUnit> = (FValue: 1E+03 * 1E+03);
 type
   { Unit of SquareKilogram }
   TSquareKilogramUnit = record
-    const Symbol = 'kg2';
-    const Name   = 'square kilogram';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSquareKilograms = specialize TQuantity<TSquareKilogramUnit>;
   TSquareKilogramUnitId = specialize TUnitId<TSquareKilogramUnit>;
@@ -449,8 +471,9 @@ operator /(const ALeft: TSquareKilograms; const ARight: TKilograms): TKilograms;
 type
   { Unit of Ampere }
   TAmpereUnit = record
-    const Symbol = 'A';
-    const Name   = 'ampere';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TAmperes = specialize TQuantity<TAmpereUnit>;
   TAmpereUnitId = specialize TUnitId<TAmpereUnit>;
@@ -473,8 +496,9 @@ const  picoA: specialize TQuantity<TAmpereUnit> = (FValue: 1E-12);
 type
   { Unit of SquareAmpere }
   TSquareAmpereUnit = record
-    const Symbol = 'A2';
-    const Name   = 'square ampere';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSquareAmperes = specialize TQuantity<TSquareAmpereUnit>;
   TSquareAmpereUnitId = specialize TUnitId<TSquareAmpereUnit>;
@@ -501,8 +525,9 @@ operator /(const ALeft: TSquareAmperes; const ARight: TAmperes): TAmperes; inlin
 type
   { Unit of Kelvin }
   TKelvinUnit = record
-    const Symbol = 'K';
-    const Name   = 'kelvin';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TKelvins = specialize TQuantity<TKelvinUnit>;
   TKelvinUnitId = specialize TUnitId<TKelvinUnit>;
@@ -525,8 +550,9 @@ const     pK: specialize TQuantity<TKelvinUnit> = (FValue: 1E-12);
 type
   { Unit of DegreeCelsius }
   TDegreeCelsiusUnit = record
-    const Symbol = 'ºC';
-    const Name   = 'degree Celsius';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TDegreesCelsius = specialize TQuantity<TDegreeCelsiusUnit>;
   TDegreeCelsiusUnitId = specialize TUnitId<TDegreeCelsiusUnit>;
@@ -536,8 +562,9 @@ var degC: TDegreeCelsiusUnitId;
 type
   { Unit of DegreeFahrenheit }
   TDegreeFahrenheitUnit = record
-    const Symbol = 'ºF';
-    const Name   = 'degree Fahrenheit';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TDegreesFahrenheit = specialize TQuantity<TDegreeFahrenheitUnit>;
   TDegreeFahrenheitUnitId = specialize TUnitId<TDegreeFahrenheitUnit>;
@@ -547,8 +574,9 @@ var degF: TDegreeFahrenheitUnitId;
 type
   { Unit of SquareKelvin }
   TSquareKelvinUnit = record
-    const Symbol = 'K2';
-    const Name   = 'square kelvin';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSquareKelvins = specialize TQuantity<TSquareKelvinUnit>;
   TSquareKelvinUnitId = specialize TUnitId<TSquareKelvinUnit>;
@@ -575,8 +603,9 @@ operator /(const ALeft: TSquareKelvins; const ARight: TKelvins): TKelvins; inlin
 type
   { Unit of CubicKelvin }
   TCubicKelvinUnit = record
-    const Symbol = 'K3';
-    const Name   = 'cubic kelvin';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TCubicKelvins = specialize TQuantity<TCubicKelvinUnit>;
   TCubicKelvinUnitId = specialize TUnitId<TCubicKelvinUnit>;
@@ -605,8 +634,9 @@ operator /(const ALeft: TCubicKelvins; const ARight: TKelvins): TSquareKelvins; 
 type
   { Unit of QuarticKelvin }
   TQuarticKelvinUnit = record
-    const Symbol = 'K4';
-    const Name   = 'quartic kelvin';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TQuarticKelvins = specialize TQuantity<TQuarticKelvinUnit>;
   TQuarticKelvinUnitId = specialize TUnitId<TQuarticKelvinUnit>;
@@ -639,8 +669,9 @@ operator /(const ALeft: TQuarticKelvins; const ARight: TSquareKelvins): TSquareK
 type
   { Unit of Mole }
   TMoleUnit = record
-    const Symbol = 'mol';
-    const Name   = 'mole';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TMoles = specialize TQuantity<TMoleUnit>;
   TMoleUnitId = specialize TUnitId<TMoleUnit>;
@@ -663,8 +694,9 @@ const     pmol: specialize TQuantity<TMoleUnit> = (FValue: 1E-12);
 type
   { Unit of Candela }
   TCandelaUnit = record
-    const Symbol = 'cd';
-    const Name   = 'candela';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TCandelas = specialize TQuantity<TCandelaUnit>;
   TCandelaUnitId = specialize TUnitId<TCandelaUnit>;
@@ -687,8 +719,9 @@ const     pcd: specialize TQuantity<TCandelaUnit> = (FValue: 1E-12);
 type
   { Unit of Radian }
   TRadianUnit = record
-    const Symbol = 'rad';
-    const Name   = 'radian';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TRadians = specialize TQuantity<TRadianUnit>;
   TRadianUnitId = specialize TUnitId<TRadianUnit>;
@@ -711,8 +744,9 @@ const     prad: specialize TQuantity<TRadianUnit> = (FValue: 1E-12);
 type
   { Unit of Degree }
   TDegreeUnit = record
-    const Symbol = 'deg';
-    const Name   = 'degree';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
     const Factor = Pi/180;
   end;
   TDegrees = specialize TQuantity<TRadianUnit>;
@@ -736,8 +770,9 @@ const     pdeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E-12);
 type
   { Unit of Steradian }
   TSteradianUnit = record
-    const Symbol = 'sr';
-    const Name   = 'steradian';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSteradians = specialize TQuantity<TSteradianUnit>;
   TSteradianUnitId = specialize TUnitId<TSteradianUnit>;
@@ -764,8 +799,9 @@ operator /(const ALeft: TSteradians; const ARight: TRadians): TRadians; inline;
 type
   { Unit of Hertz }
   THertzUnit = record
-    const Symbol = 'Hz';
-    const Name   = 'hertz';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   THertz = specialize TQuantity<THertzUnit>;
   THertzUnitId = specialize TUnitId<THertzUnit>;
@@ -795,8 +831,9 @@ operator /(const ALeft: double; const {%H-}ARight: TSecondUnitId): THertz; inlin
 type
   { Unit of SquareHertz }
   TSquareHertzUnit = record
-    const Symbol = 'Hz2';
-    const Name   = 'square hertz';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSquareHertz = specialize TQuantity<TSquareHertzUnit>;
   TSquareHertzUnitId = specialize TUnitId<TSquareHertzUnit>;
@@ -836,8 +873,9 @@ operator /(const ALeft: TSquareHertz; const ARight: THertz): THertz; inline;
 type
   { Unit of RadianPerSecond }
   TRadianPerSecondUnit = record
-    const Symbol = 'rad/s';
-    const Name   = 'radian per second';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TRadiansPerSecond = specialize TQuantity<TRadianPerSecondUnit>;
   TRadianPerSecondUnitId = specialize TUnitId<TRadianPerSecondUnit>;
@@ -861,8 +899,9 @@ operator :=(const AQuantity: THertz): TRadiansPerSecond; inline;
 type
   { Unit of RadianPerSquareSecond }
   TRadianPerSquareSecondUnit = record
-    const Symbol = 'rad/s2';
-    const Name   = 'radian per square second';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TRadiansPerSquareSecond = specialize TQuantity<TSquareHertzUnit>;
   TRadianPerSquareSecondUnitId = specialize TUnitId<TSquareHertzUnit>;
@@ -883,8 +922,9 @@ operator /(const ALeft: TRadiansPerSquareSecond; const ARight: TSquareHertz): TR
 type
   { Unit of SteradianPerSquareSecond }
   TSteradianPerSquareSecondUnit = record
-    const Symbol = 'rad2/s2';
-    const Name   = 'square rad per square second';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSteradiansPerSquareSecond = specialize TQuantity<TSquareHertzUnit>;
   TSteradianPerSquareSecondUnitId = specialize TUnitId<TSquareHertzUnit>;
@@ -905,8 +945,9 @@ operator /(const ALeft: TSteradiansPerSquareSecond; const ARight: TSquareHertz):
 type
   { Unit of MeterPerSecond }
   TMeterPerSecondUnit = record
-    const Symbol = 'm/s';
-    const Name   = 'meter per second';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TMetersPerSecond = specialize TQuantity<TMeterPerSecondUnit>;
   TMeterPerSecondUnitId = specialize TUnitId<TMeterPerSecondUnit>;
@@ -926,10 +967,22 @@ operator /(const ALeft: TMetersPerSecond; const ARight: THertz): TMeters; inline
 operator *(const ALeft: TMeters; const {%H-}ARight: THertzUnitId): TMetersPerSecond; inline;
 
 type
+  { Unit of MeterPerHour }
+  TMeterPerHourUnit = record
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    const Factor = 1/3600;
+  end;
+  TMetersPerHour = specialize TQuantity<TMeterPerSecondUnit>;
+  TMeterPerHourUnitId = specialize TUnitId<TMeterPerHourUnit>;
+
+type
   { Unit of MeterPerSquareSecond }
   TMeterPerSquareSecondUnit = record
-    const Symbol = 'm/s2';
-    const Name   = 'meter per square second';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TMetersPerSquareSecond = specialize TQuantity<TMeterPerSquareSecondUnit>;
   TMeterPerSquareSecondUnitId = specialize TUnitId<TMeterPerSquareSecondUnit>;
@@ -957,17 +1010,30 @@ operator /(const ALeft: TMetersPerSquareSecond; const ARight: TMeters): TSquareH
 type
   { Unit of MeterPerSecondPerSecond }
   TMeterPerSecondPerSecondUnit = record
-    const Symbol = 'm/s/s';
-    const Name   = 'meter per second per second';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TMetersPerSecondPerSecond = specialize TQuantity<TMeterPerSquareSecondUnit>;
   TMeterPerSecondPerSecondUnitId = specialize TUnitId<TMeterPerSquareSecondUnit>;
 
 type
+  { Unit of MeterPerHourPerSecond }
+  TMeterPerHourPerSecondUnit = record
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    const Factor = 1/3600;
+  end;
+  TMetersPerHourPerSecond = specialize TQuantity<TMeterPerSquareSecondUnit>;
+  TMeterPerHourPerSecondUnitId = specialize TUnitId<TMeterPerHourPerSecondUnit>;
+
+type
   { Unit of SquareMeterPerSquareSecond }
   TSquareMeterPerSquareSecondUnit = record
-    const Symbol = 'm2/s2';
-    const Name   = 'square meter per square second';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSquareMetersPerSquareSecond = specialize TQuantity<TSquareMeterPerSquareSecondUnit>;
   TSquareMeterPerSquareSecondUnitId = specialize TUnitId<TSquareMeterPerSquareSecondUnit>;
@@ -992,8 +1058,9 @@ operator /(const ALeft: TSquareMetersPerSquareSecond; const ARight: TMeters): TM
 type
   { Unit of KilogramMeterPerSecond }
   TKilogramMeterPerSecondUnit = record
-    const Symbol = 'kg.m/s';
-    const Name   = 'kilogram meter per second';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TKilogramMetersPerSecond = specialize TQuantity<TKilogramMeterPerSecondUnit>;
   TKilogramMeterPerSecondUnitId = specialize TUnitId<TKilogramMeterPerSecondUnit>;
@@ -1008,8 +1075,9 @@ operator *(const ALeft: TKilograms; const {%H-}ARight: TMeterPerSecondUnitId): T
 type
   { Unit of NewtonSecond }
   TNewtonSecondUnit = record
-    const Symbol = 'N.s';
-    const Name   = 'newton second';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TNewtonSeconds = specialize TQuantity<TKilogramMeterPerSecondUnit>;
   TNewtonSecondUnitId = specialize TUnitId<TKilogramMeterPerSecondUnit>;
@@ -1017,8 +1085,9 @@ type
 type
   { Unit of KilogramSquareMeter }
   TKilogramSquareMeterUnit = record
-    const Symbol = 'kg.m2';
-    const Name   = 'kilogram square meter';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TKilogramSquareMeters = specialize TQuantity<TKilogramSquareMeterUnit>;
   TKilogramSquareMeterUnitId = specialize TUnitId<TKilogramSquareMeterUnit>;
@@ -1033,8 +1102,9 @@ operator *(const ALeft: TKilograms; const {%H-}ARight: TSquareMeterUnitId): TKil
 type
   { Unit of KilogramSquareMeterPerSecond }
   TKilogramSquareMeterPerSecondUnit = record
-    const Symbol = 'kg.m2 / s';
-    const Name   = 'kilogram square meter per second';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TKilogramSquareMetersPerSecond = specialize TQuantity<TKilogramSquareMeterPerSecondUnit>;
   TKilogramSquareMeterPerSecondUnitId = specialize TUnitId<TKilogramSquareMeterPerSecondUnit>;
@@ -1055,8 +1125,9 @@ operator /(const ALeft: TKilogramSquareMetersPerSecond; const ARight: THertz): T
 type
   { Unit of KilogramPerMeter }
   TKilogramPerMeterUnit = record
-    const Symbol = 'kg/m';
-    const Name   = 'kilogram per meter';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TKilogramsPerMeter = specialize TQuantity<TKilogramPerMeterUnit>;
   TKilogramPerMeterUnitId = specialize TUnitId<TKilogramPerMeterUnit>;
@@ -1071,8 +1142,9 @@ operator /(const ALeft: TKilograms; const {%H-}ARight: TMeterUnitId): TKilograms
 type
   { Unit of KilogramPerSquareMeter }
   TKilogramPerSquareMeterUnit = record
-    const Symbol = 'kg/m2';
-    const Name   = 'kilogram per square meter';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TKilogramsPerSquareMeter = specialize TQuantity<TKilogramPerSquareMeterUnit>;
   TKilogramPerSquareMeterUnitId = specialize TUnitId<TKilogramPerSquareMeterUnit>;
@@ -1087,8 +1159,9 @@ operator /(const ALeft: TKilograms; const {%H-}ARight: TSquareMeterUnitId): TKil
 type
   { Unit of KilogramPerCubicMeter }
   TKilogramPerCubicMeterUnit = record
-    const Symbol = 'kg/m3';
-    const Name   = 'kilogram per cubic meter';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TKilogramsPerCubicMeter = specialize TQuantity<TKilogramPerCubicMeterUnit>;
   TKilogramPerCubicMeterUnitId = specialize TUnitId<TKilogramPerCubicMeterUnit>;
@@ -1109,8 +1182,9 @@ operator /(const ALeft: TKilogramsPerSquareMeter; const ARight: TKilogramsPerCub
 type
   { Unit of Newton }
   TNewtonUnit = record
-    const Symbol = 'N';
-    const Name   = 'newton';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TNewtons = specialize TQuantity<TNewtonUnit>;
   TNewtonUnitId = specialize TUnitId<TNewtonUnit>;
@@ -1152,8 +1226,9 @@ operator /(const ALeft: TKilogramMetersPerSecond; const ARight: TNewtons): TSeco
 type
   { Unit of Pascal }
   TPascalUnit = record
-    const Symbol = 'Pa';
-    const Name   = 'pascal';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TPascals = specialize TQuantity<TPascalUnit>;
   TPascalUnitId = specialize TUnitId<TPascalUnit>;
@@ -1189,8 +1264,9 @@ operator /(const ALeft: TPascals; const ARight: TSquareMetersPerSquareSecond): T
 type
   { Unit of Joule }
   TJouleUnit = record
-    const Symbol = 'J';
-    const Name   = 'joule';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TJoules = specialize TQuantity<TJouleUnit>;
   TJouleUnitId = specialize TUnitId<TJouleUnit>;
@@ -1251,8 +1327,9 @@ operator /(const ALeft: TKilogramSquareMeters; const ARight: TJoules): TSquareSe
 type
   { Unit of Elettronvolt }
   TElettronvoltUnit = record
-    const Symbol = 'eV';
-    const Name   = 'elettronvolt ';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
     const Factor = 1.60217742320523E-019;
   end;
   TElettronvolts = specialize TQuantity<TJouleUnit>;
@@ -1276,8 +1353,9 @@ const     peV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019
 type
   { Unit of Watt }
   TWattUnit = record
-    const Symbol = 'W';
-    const Name   = 'watt';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TWatts = specialize TQuantity<TWattUnit>;
   TWattUnitId = specialize TUnitId<TWattUnit>;
@@ -1319,8 +1397,9 @@ operator /(const ALeft: TWatts; const ARight: TMetersPerSecond): TNewtons; inlin
 type
   { Unit of Coulomb }
   TCoulombUnit = record
-    const Symbol = 'C';
-    const Name   = 'coulomb';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TCoulombs = specialize TQuantity<TCoulombUnit>;
   TCoulombUnitId = specialize TUnitId<TCoulombUnit>;
@@ -1350,8 +1429,9 @@ operator *(const ALeft: TSeconds; const {%H-}ARight: TAmpereUnitId): TCoulombs; 
 type
   { Unit of SquareCoulomb }
   TSquareCoulombUnit = record
-    const Symbol = 'C2';
-    const Name   = 'square coulomb';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSquareCoulombs = specialize TQuantity<TSquareCoulombUnit>;
   TSquareCoulombUnitId = specialize TUnitId<TSquareCoulombUnit>;
@@ -1378,8 +1458,9 @@ operator /(const ALeft: TSquareCoulombs; const ARight: TCoulombs): TCoulombs; in
 type
   { Unit of Volt }
   TVoltUnit = record
-    const Symbol = 'V';
-    const Name   = 'volt';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TVolts = specialize TQuantity<TVoltUnit>;
   TVoltUnitId = specialize TUnitId<TVoltUnit>;
@@ -1416,8 +1497,9 @@ operator /(const ALeft: TJoules; const {%H-}ARight: TCoulombUnitId): TVolts; inl
 type
   { Unit of SquareVolt }
   TSquareVoltUnit = record
-    const Symbol = 'V2';
-    const Name   = 'square volt';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSquareVolts = specialize TQuantity<TSquareVoltUnit>;
   TSquareVoltUnitId = specialize TUnitId<TSquareVoltUnit>;
@@ -1444,8 +1526,9 @@ operator /(const ALeft: TSquareVolts; const ARight: TVolts): TVolts; inline;
 type
   { Unit of Farad }
   TFaradUnit = record
-    const Symbol = 'F';
-    const Name   = 'farad';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TFarads = specialize TQuantity<TFaradUnit>;
   TFaradUnitId = specialize TUnitId<TFaradUnit>;
@@ -1481,8 +1564,9 @@ operator /(const ALeft: TSquareCoulombs; const ARight: TFarads): TJoules; inline
 type
   { Unit of Ohm }
   TOhmUnit = record
-    const Symbol = 'Ω';
-    const Name   = 'ohm';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TOhms = specialize TQuantity<TOhmUnit>;
   TOhmUnitId = specialize TUnitId<TOhmUnit>;
@@ -1530,8 +1614,9 @@ operator /(const ALeft: TSquareVolts; const ARight: TOhms): TWatts; inline;
 type
   { Unit of Siemens }
   TSiemensUnit = record
-    const Symbol = 'S';
-    const Name   = 'siemens';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSiemens = specialize TQuantity<TSiemensUnit>;
   TSiemensUnitId = specialize TUnitId<TSiemensUnit>;
@@ -1561,8 +1646,9 @@ operator /(const ALeft: double; const {%H-}ARight: TOhmUnitId): TSiemens; inline
 type
   { Unit of Weber }
   TWeberUnit = record
-    const Symbol = 'Wb';
-    const Name   = 'weber';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TWebers = specialize TQuantity<TWeberUnit>;
   TWeberUnitId = specialize TUnitId<TWeberUnit>;
@@ -1592,8 +1678,9 @@ operator *(const ALeft: TVolts; const {%H-}ARight: TSecondUnitId): TWebers; inli
 type
   { Unit of Tesla }
   TTeslaUnit = record
-    const Symbol = 'T';
-    const Name   = 'tesla';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TTeslas = specialize TQuantity<TTeslaUnit>;
   TTeslaUnitId = specialize TUnitId<TTeslaUnit>;
@@ -1623,8 +1710,9 @@ operator /(const ALeft: TWebers; const {%H-}ARight: TSquareMeterUnitId): TTeslas
 type
   { Unit of Henry }
   THenryUnit = record
-    const Symbol = 'H';
-    const Name   = 'henry';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   THenrys = specialize TQuantity<THenryUnit>;
   THenryUnitId = specialize TUnitId<THenryUnit>;
@@ -1666,8 +1754,9 @@ operator /(const ALeft: TOhms; const ARight: THenrys): THertz; inline;
 type
   { Unit of Lumen }
   TLumenUnit = record
-    const Symbol = 'lm';
-    const Name   = 'lumen';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TLumens = specialize TQuantity<TLumenUnit>;
   TLumenUnitId = specialize TUnitId<TLumenUnit>;
@@ -1697,8 +1786,9 @@ operator *(const ALeft: TCandelas; const {%H-}ARight: TSteradianUnitId): TLumens
 type
   { Unit of Lux }
   TLuxUnit = record
-    const Symbol = 'lx';
-    const Name   = 'lux';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TLux = specialize TQuantity<TLuxUnit>;
   TLuxUnitId = specialize TUnitId<TLuxUnit>;
@@ -1728,8 +1818,9 @@ operator /(const ALeft: TLumens; const {%H-}ARight: TSquareMeterUnitId): TLux; i
 type
   { Unit of Bequerel }
   TBequerelUnit = record
-    const Symbol = 'Bq';
-    const Name   = 'bequerel';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TBequerels = specialize TQuantity<THertzUnit>;
   TBequerelUnitId = specialize TUnitId<THertzUnit>;
@@ -1752,8 +1843,9 @@ const     pBq: specialize TQuantity<THertzUnit> = (FValue: 1E-12);
 type
   { Unit of Gray }
   TGrayUnit = record
-    const Symbol = 'Gy';
-    const Name   = 'gray';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TGrays = specialize TQuantity<TSquareMeterPerSquareSecondUnit>;
   TGrayUnitId = specialize TUnitId<TSquareMeterPerSquareSecondUnit>;
@@ -1776,8 +1868,9 @@ const     pGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 
 type
   { Unit of Sievert }
   TSievertUnit = record
-    const Symbol = 'Sv';
-    const Name   = 'sievert';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSieverts = specialize TQuantity<TSquareMeterPerSquareSecondUnit>;
   TSievertUnitId = specialize TUnitId<TSquareMeterPerSquareSecondUnit>;
@@ -1800,8 +1893,9 @@ const     pSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 
 type
   { Unit of Katal }
   TKatalUnit = record
-    const Symbol = 'kat';
-    const Name   = 'katal';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TKatals = specialize TQuantity<TKatalUnit>;
   TKatalUnitId = specialize TUnitId<TKatalUnit>;
@@ -1831,8 +1925,9 @@ operator /(const ALeft: TMoles; const {%H-}ARight: TSecondUnitId): TKatals; inli
 type
   { Unit of NewtonMeter }
   TNewtonMeterUnit = record
-    const Symbol = 'N.m';
-    const Name   = 'newton meter';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TNewtonMeters = specialize TQuantity<TJouleUnit>;
   TNewtonMeterUnitId = specialize TUnitId<TJouleUnit>;
@@ -1840,8 +1935,9 @@ type
 type
   { Unit of JoulePerRadian }
   TJoulePerRadianUnit = record
-    const Symbol = 'J/rad';
-    const Name   = 'joule per radian';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TJoulesPerRadian = specialize TQuantity<TJoulePerRadianUnit>;
   TJoulePerRadianUnitId = specialize TUnitId<TJoulePerRadianUnit>;
@@ -1856,8 +1952,9 @@ operator /(const ALeft: TJoules; const {%H-}ARight: TRadianUnitId): TJoulesPerRa
 type
   { Unit of JoulePerDegree }
   TJoulePerDegreeUnit = record
-    const Symbol = 'J/deg';
-    const Name   = 'joule per degree';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
     const Factor = 180/Pi;
   end;
   TJoulesPerDegree = specialize TQuantity<TJoulePerRadianUnit>;
@@ -1866,8 +1963,9 @@ type
 type
   { Unit of NewtonMeterPerRadian }
   TNewtonMeterPerRadianUnit = record
-    const Symbol = 'N.m/rad';
-    const Name   = 'newton meter per radian';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TNewtonMetersPerRadian = specialize TQuantity<TJoulePerRadianUnit>;
   TNewtonMeterPerRadianUnitId = specialize TUnitId<TJoulePerRadianUnit>;
@@ -1875,8 +1973,9 @@ type
 type
   { Unit of NewtonMeterPerDegree }
   TNewtonMeterPerDegreeUnit = record
-    const Symbol = 'N.m/deg';
-    const Name   = 'newton meter per degree';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
     const Factor = 180/Pi;
   end;
   TNewtonMetersPerDegree = specialize TQuantity<TJoulePerRadianUnit>;
@@ -1885,8 +1984,9 @@ type
 type
   { Unit of NewtonPerCubicMeter }
   TNewtonPerCubicMeterUnit = record
-    const Symbol = 'N/m3';
-    const Name   = 'newton per cubic meter';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TNewtonsPerCubicMeter = specialize TQuantity<TNewtonPerCubicMeterUnit>;
   TNewtonPerCubicMeterUnitId = specialize TUnitId<TNewtonPerCubicMeterUnit>;
@@ -1913,8 +2013,9 @@ operator /(const ALeft: TNewtonsPerCubicMeter; const ARight: TMetersPerSquareSec
 type
   { Unit of NewtonPerMeter }
   TNewtonPerMeterUnit = record
-    const Symbol = 'N/m';
-    const Name   = 'newton per meter';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TNewtonsPerMeter = specialize TQuantity<TNewtonPerMeterUnit>;
   TNewtonPerMeterUnitId = specialize TUnitId<TNewtonPerMeterUnit>;
@@ -1947,8 +2048,9 @@ operator /(const ALeft: TNewtonsPerMeter; const ARight: TSquareHertz): TKilogram
 type
   { Unit of CubicMeterPerSecond }
   TCubicMeterPerSecondUnit = record
-    const Symbol = 'm3/s';
-    const Name   = 'cubic meter per second';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TCubicMetersPerSecond = specialize TQuantity<TCubicMeterPerSecondUnit>;
   TCubicMeterPerSecondUnitId = specialize TUnitId<TCubicMeterPerSecondUnit>;
@@ -1969,8 +2071,9 @@ operator /(const ALeft: TCubicMetersPerSecond; const ARight: TMetersPerSecond): 
 type
   { Unit of KilogramPerSecond }
   TKilogramPerSecondUnit = record
-    const Symbol = 'kg/s';
-    const Name   = 'kilogram per second';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TKilogramsPerSecond = specialize TQuantity<TKilogramPerSecondUnit>;
   TKilogramPerSecondUnitId = specialize TUnitId<TKilogramPerSecondUnit>;
@@ -1991,8 +2094,9 @@ operator /(const ALeft: TNewtons; const ARight: TKilogramsPerSecond): TMetersPer
 type
   { Unit of Poiseuille }
   TPoiseuilleUnit = record
-    const Symbol = 'Pl';
-    const Name   = 'poiseuille ';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TPoiseuilles = specialize TQuantity<TPoiseuilleUnit>;
   TPoiseuilleUnitId = specialize TUnitId<TPoiseuilleUnit>;
@@ -2035,8 +2139,9 @@ operator *(const ALeft: TPoiseuilles; const {%H-}ARight: TMeterUnitId): TKilogra
 type
   { Unit of PascalSecond }
   TPascalSecondUnit = record
-    const Symbol = 'Pa.s';
-    const Name   = 'pascal second';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TPascalSeconds = specialize TQuantity<TPoiseuilleUnit>;
   TPascalSecondUnitId = specialize TUnitId<TPoiseuilleUnit>;
@@ -2044,8 +2149,9 @@ type
 type
   { Unit of SquareMeterPerSecond }
   TSquareMeterPerSecondUnit = record
-    const Symbol = 'm2/s';
-    const Name   = 'square meter per second';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSquareMetersPerSecond = specialize TQuantity<TSquareMeterPerSecondUnit>;
   TSquareMeterPerSecondUnitId = specialize TUnitId<TSquareMeterPerSecondUnit>;
@@ -2066,8 +2172,9 @@ operator /(const ALeft: TPoiseuilles; const ARight: TSquareMetersPerSecond): TKi
 type
   { Unit of KilogramPerQuarticMeter }
   TKilogramPerQuarticMeterUnit = record
-    const Symbol = 'kg/m4';
-    const Name   = 'kilogram per quartic meter';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TKilogramsPerQuarticMeter = specialize TQuantity<TKilogramPerQuarticMeterUnit>;
   TKilogramPerQuarticMeterUnitId = specialize TUnitId<TKilogramPerQuarticMeterUnit>;
@@ -2082,8 +2189,9 @@ operator /(const ALeft: TKilograms; const {%H-}ARight: TQuarticMeterUnitId): TKi
 type
   { Unit of QuarticMeterSecond }
   TQuarticMeterSecondUnit = record
-    const Symbol = 'm4.s';
-    const Name   = 'quartic meter second';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TQuarticMeterSeconds = specialize TQuantity<TQuarticMeterSecondUnit>;
   TQuarticMeterSecondUnitId = specialize TUnitId<TQuarticMeterSecondUnit>;
@@ -2098,8 +2206,9 @@ operator *(const ALeft: TQuarticMeters; const {%H-}ARight: TSecondUnitId): TQuar
 type
   { Unit of KilogramPerQuarticMeterPerSecond }
   TKilogramPerQuarticMeterPerSecondUnit = record
-    const Symbol = 'kg/m4/s';
-    const Name   = 'kilogram per quartic meter per second';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TKilogramsPerQuarticMeterPerSecond = specialize TQuantity<TKilogramPerQuarticMeterPerSecondUnit>;
   TKilogramPerQuarticMeterPerSecondUnitId = specialize TUnitId<TKilogramPerQuarticMeterPerSecondUnit>;
@@ -2133,8 +2242,9 @@ operator /(const ALeft: TPascals; const ARight: TKilogramsPerQuarticMeterPerSeco
 type
   { Unit of CubicMeterPerKilogram }
   TCubicMeterPerKilogramUnit = record
-    const Symbol = 'm3/kg';
-    const Name   = 'cubic meter per kilogram';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TCubicMetersPerKilogram = specialize TQuantity<TCubicMeterPerKilogramUnit>;
   TCubicMeterPerKilogramUnitId = specialize TUnitId<TCubicMeterPerKilogramUnit>;
@@ -2149,8 +2259,9 @@ operator /(const ALeft: TCubicMeters; const {%H-}ARight: TKilogramUnitId): TCubi
 type
   { Unit of KilogramSquareSecond }
   TKilogramSquareSecondUnit = record
-    const Symbol = 'kg.s2';
-    const Name   = 'kilogram square second';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TKilogramSquareSeconds = specialize TQuantity<TKilogramSquareSecondUnit>;
   TKilogramSquareSecondUnitId = specialize TUnitId<TKilogramSquareSecondUnit>;
@@ -2165,8 +2276,9 @@ operator *(const ALeft: TKilograms; const {%H-}ARight: TSquareSecondUnitId): TKi
 type
   { Unit of CubicMeterPerSquareSecond }
   TCubicMeterPerSquareSecondUnit = record
-    const Symbol = 'm3/s2';
-    const Name   = 'cubic meter per square second';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TCubicMetersPerSquareSecond = specialize TQuantity<TCubicMeterPerSquareSecondUnit>;
   TCubicMeterPerSquareSecondUnitId = specialize TUnitId<TCubicMeterPerSquareSecondUnit>;
@@ -2187,8 +2299,9 @@ operator /(const ALeft: TCubicMetersPerSquareSecond; const ARight: TSquareMeters
 type
   { Unit of NewtonSquareMeter }
   TNewtonSquareMeterUnit = record
-    const Symbol = 'N.m2';
-    const Name   = 'newton square meter';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TNewtonSquareMeters = specialize TQuantity<TNewtonSquareMeterUnit>;
   TNewtonSquareMeterUnitId = specialize TUnitId<TNewtonSquareMeterUnit>;
@@ -2215,8 +2328,9 @@ operator /(const ALeft: TNewtonSquareMeters; const ARight: TQuarticMeters): TPas
 type
   { Unit of NewtonPerSquareKilogram }
   TNewtonPerSquareKilogramUnit = record
-    const Symbol = 'N/kg2';
-    const Name   = 'newton per square kilogram';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TNewtonsPerSquareKilogram = specialize TQuantity<TNewtonPerSquareKilogramUnit>;
   TNewtonPerSquareKilogramUnitId = specialize TUnitId<TNewtonPerSquareKilogramUnit>;
@@ -2231,8 +2345,9 @@ operator /(const ALeft: TNewtons; const {%H-}ARight: TSquareKilogramUnitId): TNe
 type
   { Unit of SquareKilogramPerMeter }
   TSquareKilogramPerMeterUnit = record
-    const Symbol = 'kg2/m';
-    const Name   = 'square kilogram per meter';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSquareKilogramsPerMeter = specialize TQuantity<TSquareKilogramPerMeterUnit>;
   TSquareKilogramPerMeterUnitId = specialize TUnitId<TSquareKilogramPerMeterUnit>;
@@ -2247,8 +2362,9 @@ operator /(const ALeft: TSquareKilograms; const {%H-}ARight: TMeterUnitId): TSqu
 type
   { Unit of SquareKilogramPerSquareMeter }
   TSquareKilogramPerSquareMeterUnit = record
-    const Symbol = 'kg2/m2';
-    const Name   = 'square kilogram per square meter';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSquareKilogramsPerSquareMeter = specialize TQuantity<TSquareKilogramPerSquareMeterUnit>;
   TSquareKilogramPerSquareMeterUnitId = specialize TUnitId<TSquareKilogramPerSquareMeterUnit>;
@@ -2263,8 +2379,9 @@ operator /(const ALeft: TSquareKilograms; const {%H-}ARight: TSquareMeterUnitId)
 type
   { Unit of SquareMeterPerSquareKilogram }
   TSquareMeterPerSquareKilogramUnit = record
-    const Symbol = 'm2/kg2';
-    const Name   = 'square meter per square kilogram';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSquareMetersPerSquareKilogram = specialize TQuantity<TSquareMeterPerSquareKilogramUnit>;
   TSquareMeterPerSquareKilogramUnitId = specialize TUnitId<TSquareMeterPerSquareKilogramUnit>;
@@ -2279,8 +2396,9 @@ operator /(const ALeft: TSquareMeters; const {%H-}ARight: TSquareKilogramUnitId)
 type
   { Unit of NewtonSquareMeterPerSquareKilogram }
   TNewtonSquareMeterPerSquareKilogramUnit = record
-    const Symbol = 'N.m2/kg2';
-    const Name   = 'newton square meter per square kilogram';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TNewtonSquareMetersPerSquareKilogram = specialize TQuantity<TNewtonSquareMeterPerSquareKilogramUnit>;
   TNewtonSquareMeterPerSquareKilogramUnitId = specialize TUnitId<TNewtonSquareMeterPerSquareKilogramUnit>;
@@ -2338,8 +2456,9 @@ operator /(const ALeft: TCubicMetersPerSquareSecond; const ARight: TNewtonSquare
 type
   { Unit of ReciprocalKelvin }
   TReciprocalKelvinUnit = record
-    const Symbol = '1/K';
-    const Name   = 'reciprocal kelvin';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TReciprocalKelvins = specialize TQuantity<TReciprocalKelvinUnit>;
   TReciprocalKelvinUnitId = specialize TUnitId<TReciprocalKelvinUnit>;
@@ -2354,8 +2473,9 @@ operator /(const ALeft: double; const {%H-}ARight: TKelvinUnitId): TReciprocalKe
 type
   { Unit of KilogramKelvin }
   TKilogramKelvinUnit = record
-    const Symbol = 'kg.K';
-    const Name   = 'kilogram kelvin';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TKilogramKelvins = specialize TQuantity<TKilogramKelvinUnit>;
   TKilogramKelvinUnitId = specialize TUnitId<TKilogramKelvinUnit>;
@@ -2370,8 +2490,9 @@ operator *(const ALeft: TKilograms; const {%H-}ARight: TKelvinUnitId): TKilogram
 type
   { Unit of JoulePerKelvin }
   TJoulePerKelvinUnit = record
-    const Symbol = 'J/K';
-    const Name   = 'joule per kelvin';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TJoulesPerKelvin = specialize TQuantity<TJoulePerKelvinUnit>;
   TJoulePerKelvinUnitId = specialize TUnitId<TJoulePerKelvinUnit>;
@@ -2386,8 +2507,9 @@ operator /(const ALeft: TJoules; const {%H-}ARight: TKelvinUnitId): TJoulesPerKe
 type
   { Unit of JoulePerKilogram }
   TJoulePerKilogramUnit = record
-    const Symbol = 'J/kg';
-    const Name   = 'joule per kilogram';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TJoulesPerKilogram = specialize TQuantity<TSquareMeterPerSquareKilogramUnit>;
   TJoulePerKilogramUnitId = specialize TUnitId<TSquareMeterPerSquareKilogramUnit>;
@@ -2395,8 +2517,9 @@ type
 type
   { Unit of JoulePerKilogramPerKelvin }
   TJoulePerKilogramPerKelvinUnit = record
-    const Symbol = 'J/kg/K';
-    const Name   = 'joule per kilogram per kelvin';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TJoulesPerKilogramPerKelvin = specialize TQuantity<TJoulePerKilogramPerKelvinUnit>;
   TJoulePerKilogramPerKelvinUnitId = specialize TUnitId<TJoulePerKilogramPerKelvinUnit>;
@@ -2424,8 +2547,9 @@ operator /(const ALeft: TJoulesPerKelvin; const {%H-}ARight: TKilogramUnitId): T
 type
   { Unit of MeterKelvin }
   TMeterKelvinUnit = record
-    const Symbol = 'm.K';
-    const Name   = 'meter kelvin';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TMeterKelvins = specialize TQuantity<TMeterKelvinUnit>;
   TMeterKelvinUnitId = specialize TUnitId<TMeterKelvinUnit>;
@@ -2440,8 +2564,9 @@ operator *(const ALeft: TMeters; const {%H-}ARight: TKelvinUnitId): TMeterKelvin
 type
   { Unit of KelvinPerMeter }
   TKelvinPerMeterUnit = record
-    const Symbol = 'K/m';
-    const Name   = 'kelvin per meter';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TKelvinsPerMeter = specialize TQuantity<TKelvinPerMeterUnit>;
   TKelvinPerMeterUnitId = specialize TUnitId<TKelvinPerMeterUnit>;
@@ -2456,8 +2581,9 @@ operator /(const ALeft: TKelvins; const {%H-}ARight: TMeterUnitId): TKelvinsPerM
 type
   { Unit of WattPerMeter }
   TWattPerMeterUnit = record
-    const Symbol = 'W/m';
-    const Name   = 'watt per meter';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TWattsPerMeter = specialize TQuantity<TWattPerMeterUnit>;
   TWattPerMeterUnitId = specialize TUnitId<TWattPerMeterUnit>;
@@ -2472,8 +2598,9 @@ operator /(const ALeft: TWatts; const {%H-}ARight: TMeterUnitId): TWattsPerMeter
 type
   { Unit of WattPerSquareMeter }
   TWattPerSquareMeterUnit = record
-    const Symbol = 'W/m2';
-    const Name   = 'watt per square meter';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TWattsPerSquareMeter = specialize TQuantity<TWattPerSquareMeterUnit>;
   TWattPerSquareMeterUnitId = specialize TUnitId<TWattPerSquareMeterUnit>;
@@ -2488,8 +2615,9 @@ operator /(const ALeft: TWatts; const {%H-}ARight: TSquareMeterUnitId): TWattsPe
 type
   { Unit of WattPerKelvin }
   TWattPerKelvinUnit = record
-    const Symbol = 'W/K';
-    const Name   = 'watt per kelvin';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TWattsPerKelvin = specialize TQuantity<TWattPerKelvinUnit>;
   TWattPerKelvinUnitId = specialize TUnitId<TWattPerKelvinUnit>;
@@ -2504,8 +2632,9 @@ operator /(const ALeft: TWatts; const {%H-}ARight: TKelvinUnitId): TWattsPerKelv
 type
   { Unit of WattPerMeterPerKelvin }
   TWattPerMeterPerKelvinUnit = record
-    const Symbol = 'W/m/K';
-    const Name   = 'watt per meter per kelvin';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TWattsPerMeterPerKelvin = specialize TQuantity<TWattPerMeterPerKelvinUnit>;
   TWattPerMeterPerKelvinUnitId = specialize TUnitId<TWattPerMeterPerKelvinUnit>;
@@ -2539,8 +2668,9 @@ operator /(const ALeft: TWattsPerSquareMeter; const ARight: TWattsPerMeterPerKel
 type
   { Unit of SquareMeterKelvin }
   TSquareMeterKelvinUnit = record
-    const Symbol = 'm2.K';
-    const Name   = 'square meter kelvin';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSquareMeterKelvins = specialize TQuantity<TSquareMeterKelvinUnit>;
   TSquareMeterKelvinUnitId = specialize TUnitId<TSquareMeterKelvinUnit>;
@@ -2555,8 +2685,9 @@ operator *(const ALeft: TSquareMeters; const {%H-}ARight: TKelvinUnitId): TSquar
 type
   { Unit of WattPerSquareMeterPerKelvin }
   TWattPerSquareMeterPerKelvinUnit = record
-    const Symbol = 'W/m2/K';
-    const Name   = 'watt per square meter per kelvin';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TWattsPerSquareMeterPerKelvin = specialize TQuantity<TWattPerSquareMeterPerKelvinUnit>;
   TWattPerSquareMeterPerKelvinUnitId = specialize TUnitId<TWattPerSquareMeterPerKelvinUnit>;
@@ -2584,8 +2715,9 @@ operator /(const ALeft: TWattsPerKelvin; const {%H-}ARight: TSquareMeterUnitId):
 type
   { Unit of SquareMeterQuarticKelvin }
   TSquareMeterQuarticKelvinUnit = record
-    const Symbol = 'm2.K4';
-    const Name   = 'square meter quartic kelvin';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSquareMeterQuarticKelvins = specialize TQuantity<TSquareMeterQuarticKelvinUnit>;
   TSquareMeterQuarticKelvinUnitId = specialize TUnitId<TSquareMeterQuarticKelvinUnit>;
@@ -2600,8 +2732,9 @@ operator *(const ALeft: TSquareMeters; const {%H-}ARight: TQuarticKelvinUnitId):
 type
   { Unit of WattPerQuarticKelvin }
   TWattPerQuarticKelvinUnit = record
-    const Symbol = 'W/K4';
-    const Name   = 'watt per quartic kelvin';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TWattsPerQuarticKelvin = specialize TQuantity<TWattPerQuarticKelvinUnit>;
   TWattPerQuarticKelvinUnitId = specialize TUnitId<TWattPerQuarticKelvinUnit>;
@@ -2616,8 +2749,9 @@ operator /(const ALeft: TWatts; const {%H-}ARight: TQuarticKelvinUnitId): TWatts
 type
   { Unit of WattPerSquareMeterPerQuarticKelvin }
   TWattPerSquareMeterPerQuarticKelvinUnit = record
-    const Symbol = 'W/m2/K4';
-    const Name   = 'watt per square meter per quartic kelvin';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TWattsPerSquareMeterPerQuarticKelvin = specialize TQuantity<TWattPerSquareMeterPerQuarticKelvinUnit>;
   TWattPerSquareMeterPerQuarticKelvinUnitId = specialize TUnitId<TWattPerSquareMeterPerQuarticKelvinUnit>;
@@ -2645,8 +2779,9 @@ operator /(const ALeft: TWattsPerQuarticKelvin; const {%H-}ARight: TSquareMeterU
 type
   { Unit of JoulePerMole }
   TJoulePerMoleUnit = record
-    const Symbol = 'J/mol';
-    const Name   = 'joule per mole';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TJoulesPerMole = specialize TQuantity<TJoulePerMoleUnit>;
   TJoulePerMoleUnitId = specialize TUnitId<TJoulePerMoleUnit>;
@@ -2661,8 +2796,9 @@ operator /(const ALeft: TJoules; const {%H-}ARight: TMoleUnitId): TJoulesPerMole
 type
   { Unit of MoleKelvin }
   TMoleKelvinUnit = record
-    const Symbol = 'mol.K';
-    const Name   = 'mole kelvin';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TMoleKelvins = specialize TQuantity<TMoleKelvinUnit>;
   TMoleKelvinUnitId = specialize TUnitId<TMoleKelvinUnit>;
@@ -2677,8 +2813,9 @@ operator *(const ALeft: TMoles; const {%H-}ARight: TKelvinUnitId): TMoleKelvins;
 type
   { Unit of JoulePerMolePerKelvin }
   TJoulePerMolePerKelvinUnit = record
-    const Symbol = 'J/mol/K';
-    const Name   = 'joule per mole per kelvin';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TJoulesPerMolePerKelvin = specialize TQuantity<TJoulePerMolePerKelvinUnit>;
   TJoulePerMolePerKelvinUnitId = specialize TUnitId<TJoulePerMolePerKelvinUnit>;
@@ -2706,8 +2843,9 @@ operator /(const ALeft: TJoulesPerMole; const {%H-}ARight: TKelvinUnitId): TJoul
 type
   { Unit of OhmMeter }
   TOhmMeterUnit = record
-    const Symbol = 'Ω.m';
-    const Name   = 'ohm meter';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TOhmMeters = specialize TQuantity<TOhmMeterUnit>;
   TOhmMeterUnitId = specialize TUnitId<TOhmMeterUnit>;
@@ -2722,8 +2860,9 @@ operator *(const ALeft: TOhms; const {%H-}ARight: TMeterUnitId): TOhmMeters; inl
 type
   { Unit of VoltPerMeter }
   TVoltPerMeterUnit = record
-    const Symbol = 'V/m';
-    const Name   = 'volt per meter';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TVoltsPerMeter = specialize TQuantity<TVoltPerMeterUnit>;
   TVoltPerMeterUnitId = specialize TUnitId<TVoltPerMeterUnit>;
@@ -2751,8 +2890,9 @@ operator /(const ALeft: TVoltsPerMeter; const ARight: TMetersPerSecond): TTeslas
 type
   { Unit of NewtonPerCoulomb }
   TNewtonPerCoulombUnit = record
-    const Symbol = 'N/C';
-    const Name   = 'newton per coulomb';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TNewtonsPerCoulomb = specialize TQuantity<TVoltPerMeterUnit>;
   TNewtonPerCoulombUnitId = specialize TUnitId<TVoltPerMeterUnit>;
@@ -2760,8 +2900,9 @@ type
 type
   { Unit of CoulombPerMeter }
   TCoulombPerMeterUnit = record
-    const Symbol = 'C/m';
-    const Name   = 'coulomb per meter';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TCoulombsPerMeter = specialize TQuantity<TCoulombPerMeterUnit>;
   TCoulombPerMeterUnitId = specialize TUnitId<TCoulombPerMeterUnit>;
@@ -2776,8 +2917,9 @@ operator /(const ALeft: TCoulombs; const {%H-}ARight: TMeterUnitId): TCoulombsPe
 type
   { Unit of SquareCoulombPerMeter }
   TSquareCoulombPerMeterUnit = record
-    const Symbol = 'C2/m';
-    const Name   = 'square coulomb per meter';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSquareCoulombsPerMeter = specialize TQuantity<TSquareCoulombPerMeterUnit>;
   TSquareCoulombPerMeterUnitId = specialize TUnitId<TSquareCoulombPerMeterUnit>;
@@ -2798,8 +2940,9 @@ operator /(const ALeft: TSquareCoulombsPerMeter; const ARight: TCoulombs): TCoul
 type
   { Unit of CoulombPerSquareMeter }
   TCoulombPerSquareMeterUnit = record
-    const Symbol = 'C/m2';
-    const Name   = 'coulomb per square meter';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TCoulombsPerSquareMeter = specialize TQuantity<TCoulombPerSquareMeterUnit>;
   TCoulombPerSquareMeterUnitId = specialize TUnitId<TCoulombPerSquareMeterUnit>;
@@ -2820,8 +2963,9 @@ operator /(const ALeft: TCoulombsPerMeter; const ARight: TCoulombsPerSquareMeter
 type
   { Unit of SquareMeterPerSquareCoulomb }
   TSquareMeterPerSquareCoulombUnit = record
-    const Symbol = 'm2/C2';
-    const Name   = 'square meter per square coulomb';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSquareMetersPerSquareCoulomb = specialize TQuantity<TSquareMeterPerSquareCoulombUnit>;
   TSquareMeterPerSquareCoulombUnitId = specialize TUnitId<TSquareMeterPerSquareCoulombUnit>;
@@ -2836,8 +2980,9 @@ operator /(const ALeft: TSquareMeters; const {%H-}ARight: TSquareCoulombUnitId):
 type
   { Unit of NewtonPerSquareCoulomb }
   TNewtonPerSquareCoulombUnit = record
-    const Symbol = 'N/C2';
-    const Name   = 'newton per square coulomb';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TNewtonsPerSquareCoulomb = specialize TQuantity<TNewtonPerSquareCoulombUnit>;
   TNewtonPerSquareCoulombUnitId = specialize TUnitId<TNewtonPerSquareCoulombUnit>;
@@ -2852,8 +2997,9 @@ operator /(const ALeft: TNewtons; const {%H-}ARight: TSquareCoulombUnitId): TNew
 type
   { Unit of NewtonSquareMeterPerSquareCoulomb }
   TNewtonSquareMeterPerSquareCoulombUnit = record
-    const Symbol = 'N.m2/C2';
-    const Name   = 'newton square meter per square coulomb';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TNewtonSquareMetersPerSquareCoulomb = specialize TQuantity<TNewtonSquareMeterPerSquareCoulombUnit>;
   TNewtonSquareMeterPerSquareCoulombUnitId = specialize TUnitId<TNewtonSquareMeterPerSquareCoulombUnit>;
@@ -2893,8 +3039,9 @@ operator /(const ALeft: TJoules; const ARight: TNewtonSquareMetersPerSquareCoulo
 type
   { Unit of VoltMeter }
   TVoltMeterUnit = record
-    const Symbol = 'V.m';
-    const Name   = 'volt meter';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TVoltMeters = specialize TQuantity<TVoltMeterUnit>;
   TVoltMeterUnitId = specialize TUnitId<TVoltMeterUnit>;
@@ -2915,8 +3062,9 @@ operator /(const ALeft: TVoltMeters; const ARight: TSquareMeters): TVoltsPerMete
 type
   { Unit of NewtonSquareMeterPerCoulomb }
   TNewtonSquareMeterPerCoulombUnit = record
-    const Symbol = 'N.m2/C';
-    const Name   = 'newton square meter per coulomb';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TNewtonSquareMetersPerCoulomb = specialize TQuantity<TVoltMeterUnit>;
   TNewtonSquareMeterPerCoulombUnitId = specialize TUnitId<TVoltMeterUnit>;
@@ -2924,8 +3072,9 @@ type
 type
   { Unit of VoltMeterPerSecond }
   TVoltMeterPerSecondUnit = record
-    const Symbol = 'V.m/s';
-    const Name   = 'volt meter per second';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TVoltMetersPerSecond = specialize TQuantity<TVoltMeterPerSecondUnit>;
   TVoltMeterPerSecondUnitId = specialize TUnitId<TVoltMeterPerSecondUnit>;
@@ -2940,8 +3089,9 @@ operator /(const ALeft: TVoltMeters; const {%H-}ARight: TSecondUnitId): TVoltMet
 type
   { Unit of FaradPerMeter }
   TFaradPerMeterUnit = record
-    const Symbol = 'F/m';
-    const Name   = 'farad per meter';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TFaradsPerMeter = specialize TQuantity<TFaradPerMeterUnit>;
   TFaradPerMeterUnitId = specialize TUnitId<TFaradPerMeterUnit>;
@@ -2974,8 +3124,9 @@ operator /(const ALeft: double; const ARight: TFaradsPerMeter): TNewtonSquareMet
 type
   { Unit of AmperePerMeter }
   TAmperePerMeterUnit = record
-    const Symbol = 'A/m';
-    const Name   = 'ampere per meter';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TAmperesPerMeter = specialize TQuantity<TAmperePerMeterUnit>;
   TAmperePerMeterUnitId = specialize TUnitId<TAmperePerMeterUnit>;
@@ -2990,8 +3141,9 @@ operator /(const ALeft: TAmperes; const {%H-}ARight: TMeterUnitId): TAmperesPerM
 type
   { Unit of MeterPerAmpere }
   TMeterPerAmpereUnit = record
-    const Symbol = 'm/A';
-    const Name   = 'meter per ampere';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TMetersPerAmpere = specialize TQuantity<TMeterPerAmpereUnit>;
   TMeterPerAmpereUnitId = specialize TUnitId<TMeterPerAmpereUnit>;
@@ -3006,8 +3158,9 @@ operator /(const ALeft: TMeters; const {%H-}ARight: TAmpereUnitId): TMetersPerAm
 type
   { Unit of TeslaMeter }
   TTeslaMeterUnit = record
-    const Symbol = 'T.m';
-    const Name   = 'tesla meter';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TTeslaMeters = specialize TQuantity<TTeslaMeterUnit>;
   TTeslaMeterUnitId = specialize TUnitId<TTeslaMeterUnit>;
@@ -3029,8 +3182,9 @@ operator /(const ALeft: TNewtons; const {%H-}ARight: TAmpereUnitId): TTeslaMeter
 type
   { Unit of NewtonPerAmpere }
   TNewtonPerAmpereUnit = record
-    const Symbol = 'N/A';
-    const Name   = 'newton per ampere';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TNewtonsPerAmpere = specialize TQuantity<TTeslaMeterUnit>;
   TNewtonPerAmpereUnitId = specialize TUnitId<TTeslaMeterUnit>;
@@ -3038,8 +3192,9 @@ type
 type
   { Unit of TeslaPerAmpere }
   TTeslaPerAmpereUnit = record
-    const Symbol = 'T/A';
-    const Name   = 'tesla per ampere';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TTeslasPerAmpere = specialize TQuantity<TTeslaPerAmpereUnit>;
   TTeslaPerAmpereUnitId = specialize TUnitId<TTeslaPerAmpereUnit>;
@@ -3054,8 +3209,9 @@ operator /(const ALeft: TTeslas; const {%H-}ARight: TAmpereUnitId): TTeslasPerAm
 type
   { Unit of HenryPerMeter }
   THenryPerMeterUnit = record
-    const Symbol = 'H/m';
-    const Name   = 'henry per meter';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   THenrysPerMeter = specialize TQuantity<THenryPerMeterUnit>;
   THenryPerMeterUnitId = specialize TUnitId<THenryPerMeterUnit>;
@@ -3102,8 +3258,9 @@ operator /(const ALeft: TNewtons; const ARight: THenrysPerMeter): TSquareAmperes
 type
   { Unit of TeslaMeterPerAmpere }
   TTeslaMeterPerAmpereUnit = record
-    const Symbol = 'T.m/A';
-    const Name   = 'tesla meter per ampere';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TTeslaMetersPerAmpere = specialize TQuantity<THenryPerMeterUnit>;
   TTeslaMeterPerAmpereUnitId = specialize TUnitId<THenryPerMeterUnit>;
@@ -3111,8 +3268,9 @@ type
 type
   { Unit of NewtonPerSquareAmpere }
   TNewtonPerSquareAmpereUnit = record
-    const Symbol = 'N/A2';
-    const Name   = 'newton per square ampere';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TNewtonsPerSquareAmpere = specialize TQuantity<THenryPerMeterUnit>;
   TNewtonPerSquareAmpereUnitId = specialize TUnitId<THenryPerMeterUnit>;
@@ -3120,8 +3278,9 @@ type
 type
   { Unit of RadianPerMeter }
   TRadianPerMeterUnit = record
-    const Symbol = 'rad/m';
-    const Name   = 'radian per meter';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TRadiansPerMeter = specialize TQuantity<TRadianPerMeterUnit>;
   TRadianPerMeterUnitId = specialize TUnitId<TRadianPerMeterUnit>;
@@ -3136,8 +3295,9 @@ operator /(const ALeft: TRadians; const {%H-}ARight: TMeterUnitId): TRadiansPerM
 type
   { Unit of SquareKilogramPerSquareSecond }
   TSquareKilogramPerSquareSecondUnit = record
-    const Symbol = 'kg2/s2';
-    const Name   = 'square kilogram per square second';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSquareKilogramsPerSquareSecond = specialize TQuantity<TSquareKilogramPerSquareSecondUnit>;
   TSquareKilogramPerSquareSecondUnitId = specialize TUnitId<TSquareKilogramPerSquareSecondUnit>;
@@ -3162,8 +3322,9 @@ operator /(const ALeft: TSquareKilogramsPerSquareSecond; const ARight: TNewtonsP
 type
   { Unit of SquareSecondPerSquareMeter }
   TSquareSecondPerSquareMeterUnit = record
-    const Symbol = 's2/m2';
-    const Name   = 'square second per square meter';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSquareSecondsPerSquareMeter = specialize TQuantity<TSquareSecondPerSquareMeterUnit>;
   TSquareSecondPerSquareMeterUnitId = specialize TUnitId<TSquareSecondPerSquareMeterUnit>;
@@ -3190,8 +3351,9 @@ operator /(const ALeft: TSquareSecondsPerSquareMeter; const ARight: THenrysPerMe
 type
   { Unit of SquareJoule }
   TSquareJouleUnit = record
-    const Symbol = 'J2';
-    const Name   = 'square joule';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSquareJoules = specialize TQuantity<TSquareJouleUnit>;
   TSquareJouleUnitId = specialize TUnitId<TSquareJouleUnit>;
@@ -3218,8 +3380,9 @@ operator /(const ALeft: TSquareJoules; const ARight: TJoules): TJoules; inline;
 type
   { Unit of JouleSecond }
   TJouleSecondUnit = record
-    const Symbol = 'J.s';
-    const Name   = 'joule second';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TJouleSeconds = specialize TQuantity<TJouleSecondUnit>;
   TJouleSecondUnitId = specialize TUnitId<TJouleSecondUnit>;
@@ -3247,8 +3410,9 @@ operator /(const ALeft: TJouleSeconds; const ARight: TMeters): TKilogramMetersPe
 type
   { Unit of ElettronvoltSecond }
   TElettronvoltSecondUnit = record
-    const Symbol = 'eV.s';
-    const Name   = 'elettronvolt second';
+    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
+    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
     const Factor = 1.60217742320523E-019;
   end;
   TElettronvoltSeconds = specialize TQuantity<TJouleSecondUnit>;
@@ -3313,7 +3477,13 @@ type
   end;
 
 type
+  TMeterPerSecondHelper = record helper for TMetersPerSecond
+    function ToMeterPerHour: specialize TQuantity<TMeterPerHourUnit>;
+  end;
+
+type
   TMeterPerSquareSecondHelper = record helper for TMetersPerSquareSecond
+    function ToMeterPerHourPerSecond: specialize TQuantity<TMeterPerHourPerSecondUnit>;
     function ToMeterPerSecondPerSecond: specialize TQuantity<TMeterPerSecondPerSecondUnit>;
   end;
 
@@ -3442,7 +3612,7 @@ function ArcTan(const AValue: double): TRadians;
 function ArcTan2(const x, y: double): TRadians;
 
 const
-  PrefixTable: array[pTera..pMinute] of
+  PrefixTable: array[pTera..pPico] of
     record  Symbol, Name: string; Factor: double end = (
     (Symbol: 'T';   Name: 'tera';   Factor: 1E+12),
     (Symbol: 'G';   Name: 'giga';   Factor: 1E+09),
@@ -3456,45 +3626,12 @@ const
     (Symbol: 'm';   Name: 'milli';  Factor: 1E-03),
     (Symbol: 'μ';   Name: 'micro';  Factor: 1E-06),
     (Symbol: 'n';   Name: 'nano';   Factor: 1E-09),
-    (Symbol: 'p';   Name: 'pico';   Factor: 1E-12),
-    (Symbol: 'd';   Name: 'day';    Factor: 86400),
-    (Symbol: 'h';   Name: 'hour';   Factor: 3600 ),
-    (Symbol: 'min'; Name: 'minute'; Factor: 60   )
+    (Symbol: 'p';   Name: 'pico';   Factor: 1E-12)
   );
-
-function Split(const AStr: string): TStringArray;
 
 implementation
 
 uses Math;
-
-function Split(const AStr: string): TStringArray;
-var
-  I, Index: longint;
-begin
-  result := nil;
-  Index  := 0;
-  SetLength(result, Index + 10);
-  for I := low(AStr) to high(AStr) do
-  begin
-    if (AStr[I] in ['.', '/', ' ']) then
-    begin
-      Inc(Index);
-      if Index = Length(result) then
-        SetLength(result, Index + 10);
-      if AStr[I] <> ' ' then
-      begin
-        result[Index] := AStr[I];
-        Inc(Index);
-        if Index = Length(result) then
-           SetLength(result, Index + 10);
-      end;
-      result[Index] := '';
-    end else
-      result[Index] := result[Index] + AStr[I];
-  end;
-  SetLength(result, Index + 1);
-end;
 
 { TQuantity }
 
@@ -3509,262 +3646,28 @@ begin
 end;
 
 function TQuantity.Value(const Prefixes: TPrefixes): double;
-var
-  Exponent: longint;
-  I, Index: longint;
-  Prefix: TPrefix;
-  SubStr: TStringArray;
 begin
-  Result   := FValue;
-  Exponent := 1;
-  Index    := Low(Prefixes);
-  if Index <= High(Prefixes) then
-    Prefix := Prefixes[Index]
-  else
-    Prefix := pNone;
-
-  SubStr := Split(U.Symbol);
-  for I := Low(SubStr) to High(SubStr) do
-  begin
-    if (SubStr[I] = '/') then Exponent := -1 else
-    if (SubStr[I] = '.') then Exponent := +1
-      else
-      begin
-        if SubStr[I][length(SubStr[I])] in ['2', '3', '4', '5', '6'] then
-          Exponent := Exponent * StrToInt(SubStr[I][length(SubStr[I])]);
-
-        if (SubStr[I] = TSecondUnit.Symbol) or
-           (SubStr[I] = TSquareSecondUnit.Symbol) then
-        begin
-
-          if Prefix in [pDay, pHour, pMinute] then
-          begin
-            Result := Result / IntPower(PrefixTable[Prefix].Factor, Exponent);
-          end else
-            if Prefix in [pDeci, pCenti, pMilli, pMicro, pNano, pPico] then
-            begin
-              Result := Result / IntPower(PrefixTable[Prefix].Factor, Exponent);
-            end else
-              Prefix := pNone;
-
-        end else
-          if not (Prefix in [pDay, pHour, pMinute]) then
-          begin
-
-            if (SubStr[I] = TRadianUnit.Symbol) or
-               (SubStr[I] = TDegreeUnit.Symbol) or
-               (SubStr[I] = TAstronomicalUnit.Symbol) then
-              Prefix := pNone
-            else
-              if (SubStr[I] = TKilogramUnit.Symbol) or
-                 (SubStr[I] = TSquareKilogramUnit.Symbol) then
-              begin
-                if Prefix <> pKilo then
-                begin
-                  Result := Result * IntPower(1000, Exponent);
-                end else
-                  Prefix := pNone;
-              end;
-
-            if Prefix <> pNone then
-            begin
-              Result := Result / IntPower(PrefixTable[Prefix].Factor, Exponent);
-            end;
-          end;
-
-        Exponent := 1;
-        Index    := Index + 1;
-        if Index <= High(Prefixes) then
-          Prefix := Prefixes[Index]
-        else
-          Prefix := pNone;
-      end;
-  end;
-
-  SubStr := nil;
+  result := U.Convert(FValue, Prefixes);
 end;
 
 function TQuantity.ToString: string;
 begin
-  result := FloatToStr(FValue) + ' ' + U.Symbol;
+  result := FloatToStr(FValue) + ' ' + U.Symbol([]);
 end;
 
 function TQuantity.ToVerboseString: string;
 begin
-  result := FloatToStr(FValue) + ' ' + U.Name;
+  result := FloatToStr(FValue) + ' ' + U.Name([]);
 end;
 
 function TQuantity.ToString(Precision, Digits: longint; const Prefixes: TPrefixes): string;
-var
-  Exponent: longint;
-  Return: double;
-  I, Index: longint;
-  Prefix: TPrefix;
-  SubStr: TStringArray;
 begin
-  Return   := FValue;
-  Exponent := 1;
-  Index    := Low(Prefixes);
-  if Index <= High(Prefixes) then
-    Prefix := Prefixes[Index]
-  else
-    Prefix := pNone;
-
-  SubStr := Split(U.Symbol);
-  for I := Low(SubStr) to High(SubStr) do
-  begin
-    if (SubStr[I] = '/') then Exponent := -1 else
-    if (SubStr[I] = '.') then Exponent := +1
-      else
-      begin
-        if SubStr[I][length(SubStr[I])] in ['2', '3', '4', '5', '6'] then
-          Exponent := Exponent * StrToInt(SubStr[I][length(SubStr[I])]);
-
-        if (SubStr[I] = TSecondUnit.Symbol) or
-           (SubStr[I] = TSquareSecondUnit.Symbol) then
-        begin
-
-          if Prefix in [pDay, pHour, pMinute] then
-          begin
-            SubStr[I] := PrefixTable[Prefix].Symbol;
-            Return    := Return / IntPower(PrefixTable[Prefix].Factor, Exponent);
-          end else
-            if Prefix in [pDeci, pCenti, pMilli, pMicro, pNano, pPico] then
-            begin
-              SubStr[I] := PrefixTable[Prefix].Symbol + SubStr[I];
-              Return    := Return / IntPower(PrefixTable[Prefix].Factor, Exponent);
-            end else
-              Prefix := pNone;
-
-        end else
-          if not (Prefix in [pDay, pHour, pMinute]) then
-          begin
-
-            if (SubStr[I] = TRadianUnit.Symbol) or
-               (SubStr[I] = TDegreeUnit.Symbol) or
-               (SubStr[I] = TAstronomicalUnit.Symbol) then
-              Prefix := pNone
-            else
-              if (SubStr[I] = TKilogramUnit.Symbol) or
-                 (SubStr[I] = TSquareKilogramUnit.Symbol) then
-              begin
-                if Prefix <> pKilo then
-                begin
-                  SubStr[I] := Copy(SubStr[I], 2, Length(SubStr[I]));
-                  Return := Return * IntPower(1000, Exponent);
-                end else
-                  Prefix := pNone;
-              end;
-
-            if Prefix <> pNone then
-            begin
-              SubStr[I] := PrefixTable[Prefix].Symbol + SubStr[I];
-              Return    := Return / IntPower(PrefixTable[Prefix].Factor, Exponent);
-            end;
-          end;
-
-        Exponent := 1;
-        Index    := Index + 1;
-        if Index <= High(Prefixes) then
-          Prefix := Prefixes[Index]
-        else
-          Prefix := pNone;
-      end;
-  end;
-
-  result := FloatToStrF(Return, ffGeneral, Precision, Digits) + ' ';
-  for I := Low(SubStr) to High(SubStr) do
-  begin
-    result := result + SubStr[I];
-  end;
-  SubStr := nil;
+  result := FloatToStrF(U.Convert(FValue, Prefixes), ffGeneral, Precision, Digits) + ' ' + U.Symbol(Prefixes);
 end;
 
 function TQuantity.ToVerboseString(Precision, Digits: longint; const Prefixes: TPrefixes): string;
-var
-  Exponent: longint;
-  Return: double;
-  I, Index: longint;
-  Prefix: TPrefix;
-  SubStr: TStringArray;
 begin
-  Return   := FValue;
-  Exponent := 1;
-  Index    := Low(Prefixes);
-  if Index <= High(Prefixes) then
-    Prefix := Prefixes[Index]
-  else
-    Prefix := pNone;
-
-  SubStr := Split(U.Name);
-  for I := Low(SubStr) to High(SubStr) do
-  begin
-
-    if (SubStr[I] = 'per'    ) then Exponent := -1           else
-    if (SubStr[I] = 'square' ) then Exponent := Exponent * 2 else
-    if (SubStr[I] = 'cubic'  ) then Exponent := Exponent * 3 else
-    if (SubStr[I] = 'quartic') then Exponent := Exponent * 4 else
-    if (SubStr[I] = 'quintic') then Exponent := Exponent * 5 else
-    if (SubStr[I] = 'sextic' ) then Exponent := Exponent * 6
-      else
-      begin
-
-        if (SubStr[I] = TSecondUnit.Name) then
-        begin
-
-          if Prefix in [pDay, pHour, pMinute] then
-          begin
-            SubStr[I] := PrefixTable[Prefix].Symbol;
-            Return    := Return / IntPower(PrefixTable[Prefix].Factor, Exponent);
-          end else
-            if Prefix in [pDeci, pCenti, pMilli, pMicro, pNano, pPico] then
-            begin
-              SubStr[I] := PrefixTable[Prefix].Symbol + SubStr[I];
-              Return    := Return / IntPower(PrefixTable[Prefix].Factor, Exponent);
-            end else
-              Prefix := pNone;
-
-        end else
-          if not (Prefix in [pDay, pHour, pMinute]) then
-          begin
-
-            if (SubStr[I] = TRadianUnit.Symbol) or
-               (SubStr[I] = TDegreeUnit.Symbol) or
-               (SubStr[I] = TAstronomicalUnit.Symbol) then
-              Prefix := pNone
-            else
-              if (SubStr[I] = TKilogramUnit.Name) then
-              begin
-                if Prefix <> pKilo then
-                begin
-                  SubStr[I] := 'gram';
-                  Return := Return * IntPower(1000, Exponent);
-                end else
-                  Prefix := pNone;
-              end;
-
-            if Prefix <> pNone then
-            begin
-              SubStr[I] := PrefixTable[Prefix].Symbol + SubStr[I];
-              Return := Return / IntPower(PrefixTable[Prefix].Factor, Exponent);
-            end;
-          end;
-
-        Exponent := 1;
-        Index    := Index + 1;
-        if Index <= High(Prefixes) then
-          Prefix := Prefixes[Index]
-        else
-          Prefix := pNone;
-      end;
-  end;
-
-  result := FloatToStrF(Return, ffGeneral, Precision, Digits);
-  for I := Low(SubStr) to High(SubStr) do
-  begin
-    result := result + ' ' + SubStr[I];
-  end;
-  SubStr := nil;
+  result := FloatToStrF(U.Convert(FValue, Prefixes), ffGeneral, Precision, Digits) + ' ' + U.Name(Prefixes);
 end;
 
 class operator TQuantity.+(const ALeft, ARight: TSelf): TSelf;
@@ -3839,7 +3742,111 @@ begin
   result.FValue := AValue;
 end;
 
+{ Unit of Second }
+
+class function TSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%ss', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 's';
+end;
+
+class function TSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%ssecond', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'second';
+end;
+
+class function TSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor)
+  else
+    result := AValue;
+end;
+
+{ Unit of Day }
+
+class function TDayUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  result := 'd';
+end;
+
+class function TDayUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  result := 'day';
+end;
+
+class function TDayUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  result := AValue;
+end;
+
+{ Unit of Hour }
+
+class function THourUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  result := 'h';
+end;
+
+class function THourUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  result := 'hour';
+end;
+
+class function THourUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  result := AValue;
+end;
+
+{ Unit of Minute }
+
+class function TMinuteUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  result := 'min';
+end;
+
+class function TMinuteUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  result := 'minute';
+end;
+
+class function TMinuteUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  result := AValue;
+end;
+
+{ Unit of SquareSecond }
+
+class function TSquareSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%ss2', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 's2';
+end;
+
+class function TSquareSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('square %ssecond', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'square second';
+end;
+
+class function TSquareSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 2))
+  else
+    result := AValue;
+end;
+
 // main definition [ s2 ] = [ s ] * [ s ]
+
 operator *(const ALeft: TSeconds; const ARight: TSeconds): TSquareSeconds;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -3850,7 +3857,128 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{ Unit of SquareDay }
+
+class function TSquareDayUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  result := 'd2';
+end;
+
+class function TSquareDayUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  result := 'square day';
+end;
+
+class function TSquareDayUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  result := AValue;
+end;
+
+{ Unit of SquareHour }
+
+class function TSquareHourUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  result := 'h2';
+end;
+
+class function TSquareHourUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  result := 'square hour';
+end;
+
+class function TSquareHourUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  result := AValue;
+end;
+
+{ Unit of SquareMinute }
+
+class function TSquareMinuteUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  result := 'min2';
+end;
+
+class function TSquareMinuteUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  result := 'square minute';
+end;
+
+class function TSquareMinuteUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  result := AValue;
+end;
+
+{ Unit of Meter }
+
+class function TMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sm', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'm';
+end;
+
+class function TMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%smeter', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'meter';
+end;
+
+class function TMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor)
+  else
+    result := AValue;
+end;
+
+{ Unit of Astronomical }
+
+class function TAstronomicalUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  result := 'au';
+end;
+
+class function TAstronomicalUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  result := 'astronomical unit';
+end;
+
+class function TAstronomicalUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  result := AValue;
+end;
+
+{ Unit of SquareMeter }
+
+class function TSquareMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sm2', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'm2';
+end;
+
+class function TSquareMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('square %smeter', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'square meter';
+end;
+
+class function TSquareMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 2))
+  else
+    result := AValue;
+end;
+
 // main definition [ m2 ] = [ m ] * [ m ]
+
 operator *(const ALeft: TMeters; const ARight: TMeters): TSquareMeters;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -3861,7 +3989,34 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{ Unit of CubicMeter }
+
+class function TCubicMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sm3', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'm3';
+end;
+
+class function TCubicMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('cubic %smeter', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'cubic meter';
+end;
+
+class function TCubicMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 3))
+  else
+    result := AValue;
+end;
+
 // main definition [ m3 ] = [ m2 ] * [ m ]
+
 operator *(const ALeft: TSquareMeters; const ARight: TMeters): TCubicMeters;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -3882,7 +4037,60 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{ Unit of Litre }
+
+class function TLitreUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sL', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'L';
+end;
+
+class function TLitreUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%slitre', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'litre';
+end;
+
+class function TLitreUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor)
+  else
+    result := AValue;
+end;
+
+{ Unit of QuarticMeter }
+
+class function TQuarticMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sm4', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'm4';
+end;
+
+class function TQuarticMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('quartic %smeter', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'quartic meter';
+end;
+
+class function TQuarticMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 4))
+  else
+    result := AValue;
+end;
+
 // main definition [ m4 ] = [ m3 ] * [ m ]
+
 operator *(const ALeft: TCubicMeters; const ARight: TMeters): TQuarticMeters;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -3904,6 +4112,7 @@ begin
 end;
 
 // alternative definition [ m4 ] = [ m2 ] * [ m2 ]
+
 operator *(const ALeft: TSquareMeters; const ARight: TSquareMeters): TQuarticMeters;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -3914,7 +4123,34 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{ Unit of QuinticMeter }
+
+class function TQuinticMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sm5', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'm5';
+end;
+
+class function TQuinticMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('quintic %smeter', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'quintic meter';
+end;
+
+class function TQuinticMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 5))
+  else
+    result := AValue;
+end;
+
 // main definition [ m5 ] = [ m4 ] * [ m ]
+
 operator *(const ALeft: TQuarticMeters; const ARight: TMeters): TQuinticMeters;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -3936,6 +4172,7 @@ begin
 end;
 
 // alternative definition [ m5 ] = [ m3 ] * [ m2 ]
+
 operator *(const ALeft: TCubicMeters; const ARight: TSquareMeters): TQuinticMeters;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -3956,7 +4193,34 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{ Unit of SexticMeter }
+
+class function TSexticMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sm6', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'm6';
+end;
+
+class function TSexticMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('sextic %smeter', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'sextic meter';
+end;
+
+class function TSexticMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 6))
+  else
+    result := AValue;
+end;
+
 // main definition [ m6 ] = [ m5 ] * [ m ]
+
 operator *(const ALeft: TQuinticMeters; const ARight: TMeters): TSexticMeters;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -3978,6 +4242,7 @@ begin
 end;
 
 // alternative definition [ m6 ] = [ m4 ] * [ m2 ]
+
 operator *(const ALeft: TQuarticMeters; const ARight: TSquareMeters): TSexticMeters;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -3999,6 +4264,7 @@ begin
 end;
 
 // alternative definition [ m6 ] = [ m3 ] * [ m3 ]
+
 operator *(const ALeft: TCubicMeters; const ARight: TCubicMeters): TSexticMeters;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -4009,7 +4275,86 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{ Unit of Kilogram }
+
+class function TKilogramUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sg', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'kg';
+end;
+
+class function TKilogramUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sgram', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'kilogram';
+end;
+
+class function TKilogramUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (1E-03 * PrefixTable[APrefixes[0]].Factor)
+  else
+    result := AValue;
+end;
+
+{ Unit of Tonne }
+
+class function TTonneUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%st', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 't';
+end;
+
+class function TTonneUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%stonne', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'tonne';
+end;
+
+class function TTonneUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor)
+  else
+    result := AValue;
+end;
+
+{ Unit of SquareKilogram }
+
+class function TSquareKilogramUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sg2', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'kg2';
+end;
+
+class function TSquareKilogramUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('square %sgram', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'square kilogram';
+end;
+
+class function TSquareKilogramUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (1E-06 * IntPower(PrefixTable[APrefixes[0]].Factor, 2))
+  else
+    result := AValue;
+end;
+
 // main definition [ kg2 ] = [ kg ] * [ kg ]
+
 operator *(const ALeft: TKilograms; const ARight: TKilograms): TSquareKilograms;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -4020,7 +4365,60 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{ Unit of Ampere }
+
+class function TAmpereUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sA', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'A';
+end;
+
+class function TAmpereUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sampere', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'ampere';
+end;
+
+class function TAmpereUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor)
+  else
+    result := AValue;
+end;
+
+{ Unit of SquareAmpere }
+
+class function TSquareAmpereUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sA2', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'A2';
+end;
+
+class function TSquareAmpereUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('square %sampere', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'square ampere';
+end;
+
+class function TSquareAmpereUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 2))
+  else
+    result := AValue;
+end;
+
 // main definition [ A2 ] = [ A ] * [ A ]
+
 operator *(const ALeft: TAmperes; const ARight: TAmperes): TSquareAmperes;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -4031,7 +4429,94 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{ Unit of Kelvin }
+
+class function TKelvinUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sK', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'K';
+end;
+
+class function TKelvinUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%skelvin', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'kelvin';
+end;
+
+class function TKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor)
+  else
+    result := AValue;
+end;
+
+{ Unit of DegreeCelsius }
+
+class function TDegreeCelsiusUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  result := 'ºC';
+end;
+
+class function TDegreeCelsiusUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  result := 'degree Celsius';
+end;
+
+class function TDegreeCelsiusUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  result := AValue;
+end;
+
+{ Unit of DegreeFahrenheit }
+
+class function TDegreeFahrenheitUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  result := 'ºF';
+end;
+
+class function TDegreeFahrenheitUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  result := 'degree Fahrenheit';
+end;
+
+class function TDegreeFahrenheitUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  result := AValue;
+end;
+
+{ Unit of SquareKelvin }
+
+class function TSquareKelvinUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sK2', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'K2';
+end;
+
+class function TSquareKelvinUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('square %skelvin', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'square kelvin';
+end;
+
+class function TSquareKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 2))
+  else
+    result := AValue;
+end;
+
 // main definition [ K2 ] = [ K ] * [ K ]
+
 operator *(const ALeft: TKelvins; const ARight: TKelvins): TSquareKelvins;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -4042,7 +4527,34 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{ Unit of CubicKelvin }
+
+class function TCubicKelvinUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sK3', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'K3';
+end;
+
+class function TCubicKelvinUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('cubic %skelvin', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'cubic kelvin';
+end;
+
+class function TCubicKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 3))
+  else
+    result := AValue;
+end;
+
 // main definition [ K3 ] = [ K2 ] * [ K ]
+
 operator *(const ALeft: TSquareKelvins; const ARight: TKelvins): TCubicKelvins;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -4063,7 +4575,34 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{ Unit of QuarticKelvin }
+
+class function TQuarticKelvinUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sK4', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'K4';
+end;
+
+class function TQuarticKelvinUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('quartic %skelvin', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'quartic kelvin';
+end;
+
+class function TQuarticKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 4))
+  else
+    result := AValue;
+end;
+
 // main definition [ K4 ] = [ K3 ] * [ K ]
+
 operator *(const ALeft: TCubicKelvins; const ARight: TKelvins): TQuarticKelvins;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -4085,6 +4624,7 @@ begin
 end;
 
 // alternative definition [ K4 ] = [ K2 ] * [ K2 ]
+
 operator *(const ALeft: TSquareKelvins; const ARight: TSquareKelvins): TQuarticKelvins;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -4095,7 +4635,111 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{ Unit of Mole }
+
+class function TMoleUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%smol', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'mol';
+end;
+
+class function TMoleUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%smole', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'mole';
+end;
+
+class function TMoleUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor)
+  else
+    result := AValue;
+end;
+
+{ Unit of Candela }
+
+class function TCandelaUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%scd', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'cd';
+end;
+
+class function TCandelaUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%scandela', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'candela';
+end;
+
+class function TCandelaUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor)
+  else
+    result := AValue;
+end;
+
+{ Unit of Radian }
+
+class function TRadianUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  result := 'rad';
+end;
+
+class function TRadianUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  result := 'radian';
+end;
+
+class function TRadianUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  result := AValue;
+end;
+
+{ Unit of Degree }
+
+class function TDegreeUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  result := 'deg';
+end;
+
+class function TDegreeUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  result := 'degree';
+end;
+
+class function TDegreeUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  result := AValue;
+end;
+
+{ Unit of Steradian }
+
+class function TSteradianUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  result := 'sr';
+end;
+
+class function TSteradianUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  result := 'steradian';
+end;
+
+class function TSteradianUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  result := AValue;
+end;
+
 // main definition [ sr ] = [ rad ] * [ rad ]
+
 operator *(const ALeft: TRadians; const ARight: TRadians): TSteradians;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -4106,7 +4750,34 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{ Unit of Hertz }
+
+class function THertzUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sHz', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'Hz';
+end;
+
+class function THertzUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%shertz', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'hertz';
+end;
+
+class function THertzUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ Hz ] = [ 1 ] / [ s ]
+
 operator /(const ALeft: double; const ARight: TSeconds): THertz;
 begin
   result.FValue := ALeft / ARight.FValue;
@@ -4132,7 +4803,34 @@ begin
   result.FValue := ALeft;
 end;
 
+{ Unit of SquareHertz }
+
+class function TSquareHertzUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sHz2', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'Hz2';
+end;
+
+class function TSquareHertzUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('square %shertz', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'square hertz';
+end;
+
+class function TSquareHertzUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 2))
+  else
+    result := AValue;
+end;
+
 // main definition [ Hz2 ] = [ 1 ] / [ s2 ]
+
 operator /(const ALeft: double; const ARight: TSquareSeconds): TSquareHertz;
 begin
   result.FValue := ALeft / ARight.FValue;
@@ -4159,6 +4857,7 @@ begin
 end;
 
 // alternative definition [ Hz2 ] = [ Hz ] / [ s ]
+
 operator /(const ALeft: THertz; const ARight: TSeconds): TSquareHertz;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -4180,6 +4879,7 @@ begin
 end;
 
 // alternative definition [ Hz2 ] = [ Hz ] * [ Hz ]
+
 operator *(const ALeft: THertz; const ARight: THertz): TSquareHertz;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -4190,7 +4890,34 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{ Unit of RadianPerSecond }
+
+class function TRadianPerSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('rad/%ss', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'rad/s';
+end;
+
+class function TRadianPerSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('radian per %ssecond', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'radian per second';
+end;
+
+class function TRadianPerSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ rad/s ] = [ rad ] / [ s ]
+
 operator /(const ALeft: TRadians; const ARight: TSeconds): TRadiansPerSecond;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -4217,6 +4944,7 @@ begin
 end;
 
 // alternative definition [ rad/s ] = [ rad ] * [ Hz ]
+
 operator *(const ALeft: TRadians; const ARight: THertz): TRadiansPerSecond;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -4247,7 +4975,34 @@ begin
   result.FValue := AQuantity.FValue;
 end;
 
+{ Unit of RadianPerSquareSecond }
+
+class function TRadianPerSquareSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('rad/%ss2', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'rad/s2';
+end;
+
+class function TRadianPerSquareSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('radian per square %ssecond', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'radian per square second';
+end;
+
+class function TRadianPerSquareSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 2))
+  else
+    result := AValue;
+end;
+
 // main definition [ rad/s2 ] = [ rad ] / [ s2 ]
+
 operator /(const ALeft: TRadians; const ARight: TSquareSeconds): TRadiansPerSquareSecond;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -4274,6 +5029,7 @@ begin
 end;
 
 // alternative definition [ rad/s2 ] = [ rad ] * [ Hz2 ]
+
 operator *(const ALeft: TRadians; const ARight: TSquareHertz): TRadiansPerSquareSecond;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -4294,7 +5050,34 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{ Unit of SteradianPerSquareSecond }
+
+class function TSteradianPerSquareSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('rad2/%ss2', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'rad2/s2';
+end;
+
+class function TSteradianPerSquareSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('square rad per square %ssecond', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'square rad per square second';
+end;
+
+class function TSteradianPerSquareSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 2))
+  else
+    result := AValue;
+end;
+
 // main definition [ sr/s2 ] = [ sr ] / [ s2 ]
+
 operator /(const ALeft: TSteradians; const ARight: TSquareSeconds): TSteradiansPerSquareSecond;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -4321,6 +5104,7 @@ begin
 end;
 
 // alternative definition [ sr/s2 ] = [ sr ] * [ Hz2 ]
+
 operator *(const ALeft: TSteradians; const ARight: TSquareHertz): TSteradiansPerSquareSecond;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -4341,7 +5125,34 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{ Unit of MeterPerSecond }
+
+class function TMeterPerSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sm/%ss', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'm/s';
+end;
+
+class function TMeterPerSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%smeter per %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'meter per second';
+end;
+
+class function TMeterPerSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor / PrefixTable[APrefixes[1]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ m/s ] = [ m ] / [ s ]
+
 operator /(const ALeft: TMeters; const ARight: TSeconds): TMetersPerSecond;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -4368,6 +5179,7 @@ begin
 end;
 
 // alternative definition [ m/s ] = [ m ] * [ Hz ]
+
 operator *(const ALeft: TMeters; const ARight: THertz): TMetersPerSecond;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -4393,7 +5205,60 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+{ Unit of MeterPerHour }
+
+class function TMeterPerHourUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sm/h', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'm/h';
+end;
+
+class function TMeterPerHourUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%smeter per hour', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'meter per hour';
+end;
+
+class function TMeterPerHourUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor)
+  else
+    result := AValue;
+end;
+
+{ Unit of MeterPerSquareSecond }
+
+class function TMeterPerSquareSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sm/%ss2', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'm/s2';
+end;
+
+class function TMeterPerSquareSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%smeter per square %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'meter per square second';
+end;
+
+class function TMeterPerSquareSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor / IntPower(PrefixTable[APrefixes[1]].Factor, 2))
+  else
+    result := AValue;
+end;
+
 // main definition [ m/s2 ] = [ m ] / [ s2 ]
+
 operator /(const ALeft: TMeters; const ARight: TSquareSeconds): TMetersPerSquareSecond;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -4420,6 +5285,7 @@ begin
 end;
 
 // alternative definition [ m/s2 ] = [ m/s ] / [ s ]
+
 operator /(const ALeft: TMetersPerSecond; const ARight: TSeconds): TMetersPerSquareSecond;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -4446,6 +5312,7 @@ begin
 end;
 
 // alternative definition [ m/s2 ] = [ Hz2 ] * [ m ]
+
 operator *(const ALeft: TSquareHertz; const ARight: TMeters): TMetersPerSquareSecond;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -4466,7 +5333,86 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{ Unit of MeterPerSecondPerSecond }
+
+class function TMeterPerSecondPerSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 3 then
+    result := Format('%sm/%ss/%ss', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
+  else
+    result := 'm/s/s';
+end;
+
+class function TMeterPerSecondPerSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 3 then
+    result := Format('%smeter per %ssecond per %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
+  else
+    result := 'meter per second per second';
+end;
+
+class function TMeterPerSecondPerSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 3 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor / PrefixTable[APrefixes[1]].Factor / PrefixTable[APrefixes[2]].Factor)
+  else
+    result := AValue;
+end;
+
+{ Unit of MeterPerHourPerSecond }
+
+class function TMeterPerHourPerSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sm/h/%ss', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'm/h/s';
+end;
+
+class function TMeterPerHourPerSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%smeter per hour per %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'meter per hour per second';
+end;
+
+class function TMeterPerHourPerSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor / PrefixTable[APrefixes[1]].Factor)
+  else
+    result := AValue;
+end;
+
+{ Unit of SquareMeterPerSquareSecond }
+
+class function TSquareMeterPerSquareSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sm2/%ss2', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'm2/s2';
+end;
+
+class function TSquareMeterPerSquareSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('square %smeter per square %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'square meter per square second';
+end;
+
+class function TSquareMeterPerSquareSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 2) / IntPower(PrefixTable[APrefixes[1]].Factor, 2))
+  else
+    result := AValue;
+end;
+
 // main definition [ m2/s2 ] = [ m2 ] / [ s2 ]
+
 operator /(const ALeft: TSquareMeters; const ARight: TSquareSeconds): TSquareMetersPerSquareSecond;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -4493,6 +5439,7 @@ begin
 end;
 
 // alternative definition [ m2/s2 ] = [ m/s ] / [ m/s ]
+
 operator *(const ALeft: TMetersPerSecond; const ARight: TMetersPerSecond): TSquareMetersPerSquareSecond;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -4504,6 +5451,7 @@ begin
 end;
 
 // alternative definition [ m2/s2 ] = [ m/s2 ] * [ m ]
+
 operator *(const ALeft: TMetersPerSquareSecond; const ARight: TMeters): TSquareMetersPerSquareSecond;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -4524,7 +5472,34 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{ Unit of KilogramMeterPerSecond }
+
+class function TKilogramMeterPerSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 3 then
+    result := Format('%sg.%sm/%ss', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
+  else
+    result := 'kg.m/s';
+end;
+
+class function TKilogramMeterPerSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 3 then
+    result := Format('%sgram %smeter per %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
+  else
+    result := 'kilogram meter per second';
+end;
+
+class function TKilogramMeterPerSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 3 then
+    result := AValue / (1E-03 * PrefixTable[APrefixes[0]].Factor * PrefixTable[APrefixes[1]].Factor / PrefixTable[APrefixes[2]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ kg*m/s ] = [kg ] * [ m/s ]
+
 operator *(const ALeft: TKilograms; const ARight: TMetersPerSecond): TKilogramMetersPerSecond;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -4550,7 +5525,60 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+{ Unit of NewtonSecond }
+
+class function TNewtonSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sN.%ss', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'N.s';
+end;
+
+class function TNewtonSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%snewton %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'newton second';
+end;
+
+class function TNewtonSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor * PrefixTable[APrefixes[1]].Factor)
+  else
+    result := AValue;
+end;
+
+{ Unit of KilogramSquareMeter }
+
+class function TKilogramSquareMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sg.%sm2', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'kg.m2';
+end;
+
+class function TKilogramSquareMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sgram square %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'kilogram square meter';
+end;
+
+class function TKilogramSquareMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (1E-03 * PrefixTable[APrefixes[0]].Factor * IntPower(PrefixTable[APrefixes[1]].Factor, 2))
+  else
+    result := AValue;
+end;
+
 // main definition [ kg*m2 ] = [ kg ] * [ m2 ]
+
 operator *(const ALeft: TKilograms; const ARight: TSquareMeters): TKilogramSquareMeters;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -4576,7 +5604,34 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+{ Unit of KilogramSquareMeterPerSecond }
+
+class function TKilogramSquareMeterPerSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 3 then
+    result := Format('%sg.%sm2/%ss', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
+  else
+    result := 'kg.m2/s';
+end;
+
+class function TKilogramSquareMeterPerSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 3 then
+    result := Format('%sgram square %smeter per %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
+  else
+    result := 'kilogram square meter per second';
+end;
+
+class function TKilogramSquareMeterPerSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 3 then
+    result := AValue / (1E-03 * PrefixTable[APrefixes[0]].Factor * IntPower(PrefixTable[APrefixes[1]].Factor, 2) / PrefixTable[APrefixes[2]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ kg*m2/s ] = [ kg*m2 ] / [ s ]
+
 operator /(const ALeft: TKilogramSquareMeters; const ARight: TSeconds): TKilogramSquareMetersPerSecond;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -4603,6 +5658,7 @@ begin
 end;
 
 // alternative definition [ kg*m2/s ] = [ kg*m2 ] * [ Hz ]
+
 operator *(const ALeft: TKilogramSquareMeters; const ARight: THertz): TKilogramSquareMetersPerSecond;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -4623,7 +5679,34 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{ Unit of KilogramPerMeter }
+
+class function TKilogramPerMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sg/%sm', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'kg/m';
+end;
+
+class function TKilogramPerMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sgram per %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'kilogram per meter';
+end;
+
+class function TKilogramPerMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (1E-03 * PrefixTable[APrefixes[0]].Factor / PrefixTable[APrefixes[1]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ kg/m ] = [ kg ] / [ m ]
+
 operator /(const ALeft: TKilograms; const ARight: TMeters): TKilogramsPerMeter;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -4649,7 +5732,34 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+{ Unit of KilogramPerSquareMeter }
+
+class function TKilogramPerSquareMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sg/%sm2', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'kg/m2';
+end;
+
+class function TKilogramPerSquareMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sgram per square %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'kilogram per square meter';
+end;
+
+class function TKilogramPerSquareMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (1E-03 * PrefixTable[APrefixes[0]].Factor / IntPower(PrefixTable[APrefixes[1]].Factor, 2))
+  else
+    result := AValue;
+end;
+
 // main definition [ kg/m2 ] = [ kg ] / [ m2 ]
+
 operator /(const ALeft: TKilograms; const ARight: TSquareMeters): TKilogramsPerSquareMeter;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -4675,7 +5785,34 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+{ Unit of KilogramPerCubicMeter }
+
+class function TKilogramPerCubicMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sg/%sm3', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'kg/m3';
+end;
+
+class function TKilogramPerCubicMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sgram per cubic %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'kilogram per cubic meter';
+end;
+
+class function TKilogramPerCubicMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (1E-03 * PrefixTable[APrefixes[0]].Factor / IntPower(PrefixTable[APrefixes[1]].Factor, 3))
+  else
+    result := AValue;
+end;
+
 // main definition [ kg/m3 ] = [ kg ] / [ m3 ]
+
 operator /(const ALeft: TKilograms; const ARight: TCubicMeters): TKilogramsPerCubicMeter;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -4702,6 +5839,7 @@ begin
 end;
 
 // alternative definition [ kg/m3 ] = [ kg/m2 ] / [ m ]
+
 operator /(const ALeft: TKilogramsPerSquareMeter; const ARight: TMeters): TKilogramsPerCubicMeter;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -4722,7 +5860,34 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{ Unit of Newton }
+
+class function TNewtonUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sN', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'N';
+end;
+
+class function TNewtonUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%snewton', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'newton';
+end;
+
+class function TNewtonUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ N ] = [ kg ] * [ m/s2 ]
+
 operator *(const ALeft: TKilograms; const ARight: TMetersPerSquareSecond): TNewtons;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -4749,6 +5914,7 @@ begin
 end;
 
 // alternative definition [ N ] = [ kg/m ] * [ m2/s2 ]
+
 operator *(const ALeft: TKilogramsPerMeter; const ARight: TSquareMetersPerSquareSecond): TNewtons;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -4770,6 +5936,7 @@ begin
 end;
 
 // alternative definition [ N ] = [ kg*m/s ] / [ s ]
+
 operator /(const ALeft: TKilogramMetersPerSecond; const ARight: TSeconds): TNewtons;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -4790,7 +5957,34 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{ Unit of Pascal }
+
+class function TPascalUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sPa', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'Pa';
+end;
+
+class function TPascalUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%spascal', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'pascal';
+end;
+
+class function TPascalUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ Pa ] = [ N ] / [ m2 ]
+
 operator /(const ALeft: TNewtons; const ARight: TSquareMeters): TPascals;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -4817,6 +6011,7 @@ begin
 end;
 
 // alternative definition [ Pa ] = [ kg/m3 ] * [ m2/s2 ]
+
 operator *(const ALeft: TKilogramsPerCubicMeter; const ARight: TSquareMetersPerSquareSecond): TPascals;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -4837,7 +6032,34 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{ Unit of Joule }
+
+class function TJouleUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sJ', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'J';
+end;
+
+class function TJouleUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sjoule', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'joule';
+end;
+
+class function TJouleUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ J ] = [ N ] * [ m ]
+
 operator *(const ALeft: TNewtons; const ARight: TMeters): TJoules;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -4864,6 +6086,7 @@ begin
 end;
 
 // alternative definition [ J ] = [ Pa ] * [ m3 ]
+
 operator *(const ALeft: TPascals; const ARight: TCubicMeters): TJoules;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -4885,6 +6108,7 @@ begin
 end;
 
 // alternative definition [ J ] = [ kg*m/s ] * [ m/s ]
+
 operator *(const ALeft: TKilogramMetersPerSecond; const ARight: TMetersPerSecond): TJoules;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -4906,6 +6130,7 @@ begin
 end;
 
 // alternative definition [ J ] = [ kg ] * [ m2/s2 ]
+
 operator *(const ALeft: TKilograms; const ARight: TSquareMetersPerSquareSecond): TJoules;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -4932,6 +6157,7 @@ begin
 end;
 
 // alternative definition [ J ] = [ kg*m2 ] * [ Hz2 ]
+
 operator *(const ALeft: TKilogramSquareMeters; const ARight: TSquareHertz): TJoules;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -4953,6 +6179,7 @@ begin
 end;
 
 // alternative definition [ J ] = [ kg*m2 ] / [ s2 ]
+
 operator /(const ALeft: TKilogramSquareMeters; const ARight: TSquareSeconds): TJoules;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -4973,7 +6200,60 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{ Unit of Elettronvolt }
+
+class function TElettronvoltUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%seV', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'eV';
+end;
+
+class function TElettronvoltUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%selettronvolt ', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'elettronvolt ';
+end;
+
+class function TElettronvoltUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor)
+  else
+    result := AValue;
+end;
+
+{ Unit of Watt }
+
+class function TWattUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sW', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'W';
+end;
+
+class function TWattUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%swatt', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'watt';
+end;
+
+class function TWattUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ W ] = [ J ] / [ s ]
+
 operator /(const ALeft: TJoules; const ARight: TSeconds): TWatts;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -5000,6 +6280,7 @@ begin
 end;
 
 // alternative definition [ W ] = [ J ] * [ Hz ]
+
 operator *(const ALeft: TJoules; const ARight: THertz): TWatts;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -5021,6 +6302,7 @@ begin
 end;
 
 // alternative definition [ W ] = [ N ] * [ m/s ]
+
 operator *(const ALeft: TNewtons; const ARight: TMetersPerSecond): TWatts;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -5041,7 +6323,34 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{ Unit of Coulomb }
+
+class function TCoulombUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sC', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'C';
+end;
+
+class function TCoulombUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%scoulomb', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'coulomb';
+end;
+
+class function TCoulombUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ C ] = [ s ] * [ A ]
+
 operator *(const ALeft: TSeconds; const ARight: TAmperes): TCoulombs;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -5067,7 +6376,34 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+{ Unit of SquareCoulomb }
+
+class function TSquareCoulombUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sC2', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'C2';
+end;
+
+class function TSquareCoulombUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('square %scoulomb', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'square coulomb';
+end;
+
+class function TSquareCoulombUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 2))
+  else
+    result := AValue;
+end;
+
 // main definition [ C2 ] = [ C ] * [ C ]
+
 operator *(const ALeft: TCoulombs; const ARight: TCoulombs): TSquareCoulombs;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -5078,7 +6414,34 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{ Unit of Volt }
+
+class function TVoltUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sV', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'V';
+end;
+
+class function TVoltUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%svolt', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'volt';
+end;
+
+class function TVoltUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ V ] = [ W ] / [ A ]
+
 operator /(const ALeft: TWatts; const ARight: TAmperes): TVolts;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -5105,6 +6468,7 @@ begin
 end;
 
 // alternative definition [ V ] = [ J ] / [ C ]
+
 operator /(const ALeft: TJoules; const ARight: TCoulombs): TVolts;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -5130,7 +6494,34 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+{ Unit of SquareVolt }
+
+class function TSquareVoltUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sV2', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'V2';
+end;
+
+class function TSquareVoltUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('square %svolt', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'square volt';
+end;
+
+class function TSquareVoltUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 2))
+  else
+    result := AValue;
+end;
+
 // main definition [ V2 ] = [ V ] * [ V ]
+
 operator *(const ALeft: TVolts; const ARight: TVolts): TSquareVolts;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -5141,7 +6532,34 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{ Unit of Farad }
+
+class function TFaradUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sF', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'F';
+end;
+
+class function TFaradUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sfarad', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'farad';
+end;
+
+class function TFaradUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ F ] = [ C ] / [ V ]
+
 operator /(const ALeft: TCoulombs; const ARight: TVolts): TFarads;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -5168,6 +6586,7 @@ begin
 end;
 
 // alternative definition [ F ] = [ C2 ] / [ J ]
+
 operator /(const ALeft: TSquareCoulombs; const ARight: TJoules): TFarads;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -5188,7 +6607,34 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{ Unit of Ohm }
+
+class function TOhmUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sΩ', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'Ω';
+end;
+
+class function TOhmUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sohm', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'ohm';
+end;
+
+class function TOhmUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ Ω ] = [ V ] / [ A ]
+
 operator /(const ALeft: TVolts; const ARight: TAmperes): TOhms;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -5215,6 +6661,7 @@ begin
 end;
 
 // alternative definition [ Ω ] = [ s ] / [ F ]
+
 operator /(const ALeft: TSeconds; const ARight: TFarads): TOhms;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -5236,6 +6683,7 @@ begin
 end;
 
 // alternative definition [ Ω ] = [ W ] / [ A2 ]
+
 operator /(const ALeft: TWatts; const ARight: TSquareAmperes): TOhms;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -5257,6 +6705,7 @@ begin
 end;
 
 // alternative definition [ Ω ] = [ V2 ] / [ W ]
+
 operator /(const ALeft: TSquareVolts; const ARight: TWatts): TOhms;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -5277,7 +6726,34 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{ Unit of Siemens }
+
+class function TSiemensUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sS', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'S';
+end;
+
+class function TSiemensUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%ssiemens', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'siemens';
+end;
+
+class function TSiemensUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ S ] = 1 / [ Ω ]
+
 operator /(const ALeft: double; const ARight: TOhms): TSiemens;
 begin
   result.FValue := ALeft / ARight.FValue;
@@ -5303,7 +6779,34 @@ begin
   result.FValue := ALeft;
 end;
 
+{ Unit of Weber }
+
+class function TWeberUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sWb', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'Wb';
+end;
+
+class function TWeberUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sweber', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'weber';
+end;
+
+class function TWeberUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ Wb ] = [ V ] * [ s ]
+
 operator *(const ALeft: TVolts; const ARight: TSeconds): TWebers;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -5329,7 +6832,34 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+{ Unit of Tesla }
+
+class function TTeslaUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sT', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'T';
+end;
+
+class function TTeslaUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%stesla', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'tesla';
+end;
+
+class function TTeslaUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ T ] = [ Wb ] / [ m2 ]
+
 operator /(const ALeft: TWebers; const ARight: TSquareMeters): TTeslas;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -5355,7 +6885,34 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+{ Unit of Henry }
+
+class function THenryUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sH', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'H';
+end;
+
+class function THenryUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%shenry', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'henry';
+end;
+
+class function THenryUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ H ] = [ Wb ] / [ A ]
+
 operator /(const ALeft: TWebers; const ARight: TAmperes): THenrys;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -5382,6 +6939,7 @@ begin
 end;
 
 // alternative definition [ H ] = [ Ω ] * [ s ]
+
 operator *(const ALeft: TOhms; const ARight: TSeconds): THenrys;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -5403,6 +6961,7 @@ begin
 end;
 
 // alternative definition [ H ] = [ Ω ] / [ Hz ]
+
 operator /(const ALeft: TOhms; const ARight: THertz): THenrys;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -5423,7 +6982,34 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{ Unit of Lumen }
+
+class function TLumenUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%slm', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'lm';
+end;
+
+class function TLumenUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%slumen', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'lumen';
+end;
+
+class function TLumenUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ lm ] = [ cd ] * [ sr ]
+
 operator *(const ALeft: TCandelas; const ARight: TSteradians): TLumens;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -5449,7 +7035,34 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+{ Unit of Lux }
+
+class function TLuxUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%slx', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'lx';
+end;
+
+class function TLuxUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%slux', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'lux';
+end;
+
+class function TLuxUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ lx ] = [ lm ] / [ m2 ]
+
 operator /(const ALeft: TLumens; const ARight: TSquareMeters): TLux;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -5475,7 +7088,112 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+{ Unit of Bequerel }
+
+class function TBequerelUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sBq', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'Bq';
+end;
+
+class function TBequerelUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sbequerel', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'bequerel';
+end;
+
+class function TBequerelUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor)
+  else
+    result := AValue;
+end;
+
+{ Unit of Gray }
+
+class function TGrayUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sGy', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'Gy';
+end;
+
+class function TGrayUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sgray', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'gray';
+end;
+
+class function TGrayUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor)
+  else
+    result := AValue;
+end;
+
+{ Unit of Sievert }
+
+class function TSievertUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sSv', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'Sv';
+end;
+
+class function TSievertUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%ssievert', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'sievert';
+end;
+
+class function TSievertUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor)
+  else
+    result := AValue;
+end;
+
+{ Unit of Katal }
+
+class function TKatalUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%skat', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'kat';
+end;
+
+class function TKatalUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%skatal', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'katal';
+end;
+
+class function TKatalUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ kat ] = [ mol ] / [ s ]
+
 operator /(const ALeft: TMoles; const ARight: TSeconds): TKatals;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -5501,7 +7219,60 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+{ Unit of NewtonMeter }
+
+class function TNewtonMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sN.%sm', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'N.m';
+end;
+
+class function TNewtonMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%snewton %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'newton meter';
+end;
+
+class function TNewtonMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor * PrefixTable[APrefixes[1]].Factor)
+  else
+    result := AValue;
+end;
+
+{ Unit of JoulePerRadian }
+
+class function TJoulePerRadianUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sJ/rad', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'J/rad';
+end;
+
+class function TJoulePerRadianUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sjoule per radian', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'joule per radian';
+end;
+
+class function TJoulePerRadianUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ J/rad ] = [ J ] / [ rad ]
+
 operator /(const ALeft: TJoules; const ARight: TRadians): TJoulesPerRadian;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -5527,7 +7298,112 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+{ Unit of JoulePerDegree }
+
+class function TJoulePerDegreeUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sJ/deg', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'J/deg';
+end;
+
+class function TJoulePerDegreeUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sjoule per degree', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'joule per degree';
+end;
+
+class function TJoulePerDegreeUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor)
+  else
+    result := AValue;
+end;
+
+{ Unit of NewtonMeterPerRadian }
+
+class function TNewtonMeterPerRadianUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sN.%sm/rad', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'N.m/rad';
+end;
+
+class function TNewtonMeterPerRadianUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%snewton %smeter per radian', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'newton meter per radian';
+end;
+
+class function TNewtonMeterPerRadianUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor * PrefixTable[APrefixes[1]].Factor)
+  else
+    result := AValue;
+end;
+
+{ Unit of NewtonMeterPerDegree }
+
+class function TNewtonMeterPerDegreeUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sN.%sm/deg', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'N.m/deg';
+end;
+
+class function TNewtonMeterPerDegreeUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%snewton %smeter per degree', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'newton meter per degree';
+end;
+
+class function TNewtonMeterPerDegreeUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor * PrefixTable[APrefixes[1]].Factor)
+  else
+    result := AValue;
+end;
+
+{ Unit of NewtonPerCubicMeter }
+
+class function TNewtonPerCubicMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sN/%sm3', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'N/m3';
+end;
+
+class function TNewtonPerCubicMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%snewton per cubic %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'newton per cubic meter';
+end;
+
+class function TNewtonPerCubicMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor / IntPower(PrefixTable[APrefixes[1]].Factor, 3))
+  else
+    result := AValue;
+end;
+
 // main definition [ N/m3 ] = [ N ] / [ m3 ]
+
 operator /(const ALeft: TNewtons; const ARight: TCubicMeters): TNewtonsPerCubicMeter;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -5554,6 +7430,7 @@ begin
 end;
 
 // alternative definition [ N/m3 ] = [ Pa ] / [ m ]
+
 operator /(const ALeft: TPascals; const ARight: TMeters): TNewtonsPerCubicMeter;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -5575,6 +7452,7 @@ begin
 end;
 
 // alternative definition [ N/m3 ] = [ kg/m3 ] * [ m/s2 ]
+
 operator *(const ALeft: TKilogramsPerCubicMeter; const ARight: TMetersPerSquareSecond): TNewtonsPerCubicMeter;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -5595,7 +7473,34 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{ Unit of NewtonPerMeter }
+
+class function TNewtonPerMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sN/%sm', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'N/m';
+end;
+
+class function TNewtonPerMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%snewton per %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'newton per meter';
+end;
+
+class function TNewtonPerMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor / PrefixTable[APrefixes[1]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ N/m ] = [ N ] / [ m ]
+
 operator /(const ALeft: TNewtons; const ARight: TMeters): TNewtonsPerMeter;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -5622,6 +7527,7 @@ begin
 end;
 
 // alternative definition [ N/m ] = [ J ] / [ m2 ]
+
 operator /(const ALeft: TJoules; const ARight: TSquareMeters): TNewtonsPerMeter;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -5643,6 +7549,7 @@ begin
 end;
 
 // alternative definition [ N/m ] = [ Pa ] * [ m ]
+
 operator *(const ALeft: TPascals; const ARight: TMeters): TNewtonsPerMeter;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -5664,6 +7571,7 @@ begin
 end;
 
 // alternative definition [ N/m ] = [ kg ] * [ Hz2 ]
+
 operator *(const ALeft: TKilograms; const ARight: TSquareHertz): TNewtonsPerMeter;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -5684,7 +7592,34 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{ Unit of CubicMeterPerSecond }
+
+class function TCubicMeterPerSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sm3/%ss', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'm3/s';
+end;
+
+class function TCubicMeterPerSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('cubic %smeter per %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'cubic meter per second';
+end;
+
+class function TCubicMeterPerSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 3) / PrefixTable[APrefixes[1]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ m3/s ] = [ m3 ] / [ s ]
+
 operator /(const ALeft: TCubicMeters; const ARight: TSeconds): TCubicMetersPerSecond;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -5711,6 +7646,7 @@ begin
 end;
 
 // alternative definition [ m3/s ] = [ m2 ] * [ m/s ]
+
 operator *(const ALeft: TSquareMeters; const ARight: TMetersPerSecond): TCubicMetersPerSecond;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -5731,7 +7667,34 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{ Unit of KilogramPerSecond }
+
+class function TKilogramPerSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sg/%ss', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'kg/s';
+end;
+
+class function TKilogramPerSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sgram per %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'kilogram per second';
+end;
+
+class function TKilogramPerSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (1E-03 * PrefixTable[APrefixes[0]].Factor / PrefixTable[APrefixes[1]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ kg/s ] = [ kg ] / [ s ]
+
 operator /(const ALeft: TKilograms; const ARight: TSeconds): TKilogramsPerSecond;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -5758,6 +7721,7 @@ begin
 end;
 
 // alternative definition [ kg/s ] = [ N ] / [ m/s ]
+
 operator /(const ALeft: TNewtons; const ARight: TMetersPerSecond): TKilogramsPerSecond;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -5778,7 +7742,34 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{ Unit of Poiseuille }
+
+class function TPoiseuilleUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sPl', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'Pl';
+end;
+
+class function TPoiseuilleUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%spoiseuille ', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'poiseuille ';
+end;
+
+class function TPoiseuilleUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ Pl ] = [ Pa ] * [ s ]
+
 operator *(const ALeft: TPascals; const ARight: TSeconds): TPoiseuilles;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -5805,6 +7796,7 @@ begin
 end;
 
 // alternative definition [ Pl ] = [ kg/m2 ] * [ m/s ]
+
 operator *(const ALeft: TKilogramsPerSquareMeter; const ARight: TMetersPerSecond): TPoiseuilles;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -5826,6 +7818,7 @@ begin
 end;
 
 // alternative definition [ Pl ] = [ kg/s ] / [ m ]
+
 operator /(const ALeft: TKilogramsPerSecond; const ARight: TMeters): TPoiseuilles;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -5851,7 +7844,60 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+{ Unit of PascalSecond }
+
+class function TPascalSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sPa.%ss', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'Pa.s';
+end;
+
+class function TPascalSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%spascal %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'pascal second';
+end;
+
+class function TPascalSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor * PrefixTable[APrefixes[1]].Factor)
+  else
+    result := AValue;
+end;
+
+{ Unit of SquareMeterPerSecond }
+
+class function TSquareMeterPerSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sm2/%ss', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'm2/s';
+end;
+
+class function TSquareMeterPerSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('square %smeter per %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'square meter per second';
+end;
+
+class function TSquareMeterPerSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 2) / PrefixTable[APrefixes[1]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ m2/s ] = [ m2 ] / [ s ]
+
 operator /(const ALeft: TSquareMeters; const ARight: TSeconds): TSquareMetersPerSecond;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -5878,6 +7924,7 @@ begin
 end;
 
 // alternative definition [ m2/s ] = [ Pl ] / [ kg/m3 ]
+
 operator /(const ALeft: TPoiseuilles; const ARight: TKilogramsPerCubicMeter): TSquareMetersPerSecond;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -5898,7 +7945,34 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{ Unit of KilogramPerQuarticMeter }
+
+class function TKilogramPerQuarticMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sg/%sm4', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'kg/m4';
+end;
+
+class function TKilogramPerQuarticMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sgram per quartic %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'kilogram per quartic meter';
+end;
+
+class function TKilogramPerQuarticMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (1E-03 * PrefixTable[APrefixes[0]].Factor / IntPower(PrefixTable[APrefixes[1]].Factor, 4))
+  else
+    result := AValue;
+end;
+
 // main definition [ kg/m4 ] = [ kg ] / [ m4 ]
+
 operator /(const ALeft: TKilograms; const ARight: TQuarticMeters): TKilogramsPerQuarticMeter;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -5924,7 +7998,34 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+{ Unit of QuarticMeterSecond }
+
+class function TQuarticMeterSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sm4.%ss', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'm4.s';
+end;
+
+class function TQuarticMeterSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('quartic %smeter %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'quartic meter second';
+end;
+
+class function TQuarticMeterSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 4) * PrefixTable[APrefixes[1]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ m4*s ] = [ m4 ] * [ s ]
+
 operator *(const ALeft: TQuarticMeters; const ARight: TSeconds): TQuarticMeterSeconds;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -5950,7 +8051,34 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+{ Unit of KilogramPerQuarticMeterPerSecond }
+
+class function TKilogramPerQuarticMeterPerSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 3 then
+    result := Format('%sg/%sm4/%ss', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
+  else
+    result := 'kg/m4/s';
+end;
+
+class function TKilogramPerQuarticMeterPerSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 3 then
+    result := Format('%sgram per quartic %smeter per %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
+  else
+    result := 'kilogram per quartic meter per second';
+end;
+
+class function TKilogramPerQuarticMeterPerSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 3 then
+    result := AValue / (1E-03 * PrefixTable[APrefixes[0]].Factor / IntPower(PrefixTable[APrefixes[1]].Factor, 4) / PrefixTable[APrefixes[2]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ kg/m4/s ] = [ kg/s ] / [ m4 ]
+
 operator /(const ALeft: TKilogramsPerSecond; const ARight: TQuarticMeters): TKilogramsPerQuarticMeterPerSecond;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -5977,6 +8105,7 @@ begin
 end;
 
 // alternative definition [ kg/m4/s ] = [ kg/m4 ] / [ s ]
+
 operator /(const ALeft: TKilogramsPerQuarticMeter; const ARight: TSeconds): TKilogramsPerQuarticMeterPerSecond;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -6003,6 +8132,7 @@ begin
 end;
 
 // alternative definition [ kg/m4/s ] = [ kg ] / [ m4*s ]
+
 operator /(const ALeft: TKilograms; const ARight: TQuarticMeterSeconds): TKilogramsPerQuarticMeterPerSecond;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -6024,6 +8154,7 @@ begin
 end;
 
 // alternative definition [ kg/m4/s ] = [ Pa ] / [ m3/s ]
+
 operator /(const ALeft: TPascals; const ARight: TCubicMetersPerSecond): TKilogramsPerQuarticMeterPerSecond;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -6044,7 +8175,34 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{ Unit of CubicMeterPerKilogram }
+
+class function TCubicMeterPerKilogramUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sm3/%sg', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'm3/kg';
+end;
+
+class function TCubicMeterPerKilogramUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('cubic %smeter per %sgram', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'cubic meter per kilogram';
+end;
+
+class function TCubicMeterPerKilogramUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 3) / 1E-03 / PrefixTable[APrefixes[1]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ m3/kg ] = [ m3 ] / [ kg ]
+
 operator /(const ALeft: TCubicMeters; const ARight: TKilograms): TCubicMetersPerKilogram;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -6070,7 +8228,34 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+{ Unit of KilogramSquareSecond }
+
+class function TKilogramSquareSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sg.%ss2', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'kg.s2';
+end;
+
+class function TKilogramSquareSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sgram square %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'kilogram square second';
+end;
+
+class function TKilogramSquareSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (1E-03 * PrefixTable[APrefixes[0]].Factor * IntPower(PrefixTable[APrefixes[1]].Factor, 2))
+  else
+    result := AValue;
+end;
+
 // main definition [ kg*s2 ] = [ kg ] * [ s2 ]
+
 operator *(const ALeft: TKilograms; const ARight: TSquareSeconds): TKilogramSquareSeconds;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -6096,7 +8281,34 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+{ Unit of CubicMeterPerSquareSecond }
+
+class function TCubicMeterPerSquareSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sm3/%ss2', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'm3/s2';
+end;
+
+class function TCubicMeterPerSquareSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('cubic %smeter per square %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'cubic meter per square second';
+end;
+
+class function TCubicMeterPerSquareSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 3) / IntPower(PrefixTable[APrefixes[1]].Factor, 2))
+  else
+    result := AValue;
+end;
+
 // main definitio [ m3/s2 ] = [ m3 ] / [ s2 ]
+
 operator /(const ALeft: TCubicMeters; const ARight: TSquareSeconds): TCubicMetersPerSquareSecond;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -6123,6 +8335,7 @@ begin
 end;
 
 // alternative definition [ m3/s2 ] = [ m/s2 ] * [ m2 ]
+
 operator *(const ALeft: TMetersPerSquareSecond; const ARight: TSquareMeters): TCubicMetersPerSquareSecond;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -6143,7 +8356,34 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{ Unit of NewtonSquareMeter }
+
+class function TNewtonSquareMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sN.%sm2', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'N.m2';
+end;
+
+class function TNewtonSquareMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%snewton square %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'newton square meter';
+end;
+
+class function TNewtonSquareMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor * IntPower(PrefixTable[APrefixes[1]].Factor, 2))
+  else
+    result := AValue;
+end;
+
 // main definition [ N*m2 ] = [ N ] * [ m2 ]
+
 operator *(const ALeft: TNewtons; const ARight: TSquareMeters): TNewtonSquareMeters;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -6170,6 +8410,7 @@ begin
 end;
 
 // alternative definition [ N*m2 ] = [ J ] * [ m ]
+
 operator *(const ALeft: TJoules; const ARight: TMeters): TNewtonSquareMeters;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -6191,6 +8432,7 @@ begin
 end;
 
 // alternative definition [ N*m2 ] = [ Pa ] * [ m4 ]
+
 operator *(const ALeft: TPascals; const ARight: TQuarticMeters): TNewtonSquareMeters;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -6211,7 +8453,34 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{ Unit of NewtonPerSquareKilogram }
+
+class function TNewtonPerSquareKilogramUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sN/%sg2', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'N/kg2';
+end;
+
+class function TNewtonPerSquareKilogramUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%snewton per square %sgram', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'newton per square kilogram';
+end;
+
+class function TNewtonPerSquareKilogramUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor / 1E-06 / IntPower(PrefixTable[APrefixes[1]].Factor, 2))
+  else
+    result := AValue;
+end;
+
 // main definition [ N/kg2 ] = [ N ] / [ kg2 ]
+
 operator /(const ALeft: TNewtons; const ARight: TSquareKilograms): TNewtonsPerSquareKilogram;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -6237,7 +8506,34 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+{ Unit of SquareKilogramPerMeter }
+
+class function TSquareKilogramPerMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sg2/%sm', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'kg2/m';
+end;
+
+class function TSquareKilogramPerMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('square %sgram per %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'square kilogram per meter';
+end;
+
+class function TSquareKilogramPerMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (1E-06 * IntPower(PrefixTable[APrefixes[0]].Factor, 2) / PrefixTable[APrefixes[1]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ kg2/m ] = [ kg2 ] / [ m ]
+
 operator /(const ALeft: TSquareKilograms; const ARight: TMeters): TSquareKilogramsPerMeter;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -6263,7 +8559,34 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+{ Unit of SquareKilogramPerSquareMeter }
+
+class function TSquareKilogramPerSquareMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sg2/%sm2', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'kg2/m2';
+end;
+
+class function TSquareKilogramPerSquareMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('square %sgram per square %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'square kilogram per square meter';
+end;
+
+class function TSquareKilogramPerSquareMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (1E-06 * IntPower(PrefixTable[APrefixes[0]].Factor, 2) / IntPower(PrefixTable[APrefixes[1]].Factor, 2))
+  else
+    result := AValue;
+end;
+
 // main definition [ kg2/m2 ] = [ kg2 ] / [ m2 ]
+
 operator /(const ALeft: TSquareKilograms; const ARight: TSquareMeters): TSquareKilogramsPerSquareMeter;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -6289,7 +8612,34 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+{ Unit of SquareMeterPerSquareKilogram }
+
+class function TSquareMeterPerSquareKilogramUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sm2/%sg2', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'm2/kg2';
+end;
+
+class function TSquareMeterPerSquareKilogramUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('square %smeter per square %sgram', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'square meter per square kilogram';
+end;
+
+class function TSquareMeterPerSquareKilogramUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 2) / 1E-06 / IntPower(PrefixTable[APrefixes[1]].Factor, 2))
+  else
+    result := AValue;
+end;
+
 // main definition [ m2/kg2 ] = [ m2 ] / [ kg2 ]
+
 operator /(const ALeft: TSquareMeters; const ARight: TSquareKilograms): TSquareMetersPerSquareKilogram;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -6315,7 +8665,34 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+{ Unit of NewtonSquareMeterPerSquareKilogram }
+
+class function TNewtonSquareMeterPerSquareKilogramUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 3 then
+    result := Format('%sN.%sm2/%sg2', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
+  else
+    result := 'N.m2/kg2';
+end;
+
+class function TNewtonSquareMeterPerSquareKilogramUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 3 then
+    result := Format('%snewton square %smeter per square %sgram', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
+  else
+    result := 'newton square meter per square kilogram';
+end;
+
+class function TNewtonSquareMeterPerSquareKilogramUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 3 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor * IntPower(PrefixTable[APrefixes[1]].Factor, 2) / 1E-06 / IntPower(PrefixTable[APrefixes[2]].Factor, 2))
+  else
+    result := AValue;
+end;
+
 // main definition [ N*m2/kg2 ] = [ N ] * [ m2/kg2 ]
+
 operator *(const ALeft: TNewtons; const ARight: TSquareMetersPerSquareKilogram): TNewtonSquareMetersPerSquareKilogram;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -6337,6 +8714,7 @@ begin
 end;
 
 // alternative definition [ N*m2/kg2 ] = [ N ] / [ kg2/m2 ]
+
 operator /(const ALeft: TNewtons; const ARight: TSquareKilogramsPerSquareMeter): TNewtonSquareMetersPerSquareKilogram;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -6358,6 +8736,7 @@ begin
 end;
 
 // alternative definition [ N*m2/kg2 ] = [ N*m2 ] / [ kg2 ]
+
 operator /(const ALeft: TNewtonSquareMeters; const ARight: TSquareKilograms): TNewtonSquareMetersPerSquareKilogram;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -6384,6 +8763,7 @@ begin
 end;
 
 // alternative definition [ N*m2/kg2 ] = [ N/kg2 ] * [ m2 ]
+
 operator *(const ALeft: TNewtonsPerSquareKilogram; const ARight: TSquareMeters): TNewtonSquareMetersPerSquareKilogram;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -6410,6 +8790,7 @@ begin
 end;
 
 // alternative definition [ N*m2/kg2 ] = [ J ] / [ kg2/m ]
+
 operator /(const ALeft: TJoules; const ARight: TSquareKilogramsPerMeter): TNewtonSquareMetersPerSquareKilogram;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -6431,6 +8812,7 @@ begin
 end;
 
 // alternative definition [ N*m2/kg2 ] = [ m3/kg ] / [ s2 ]
+
 operator /(const ALeft: TCubicMetersPerKilogram; const ARight: TSquareSeconds): TNewtonSquareMetersPerSquareKilogram;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -6452,6 +8834,7 @@ begin
 end;
 
 // alternative definition [ N*m2/kg2 ] = [ m3 ] / [ kg*s2 ]
+
 operator /(const ALeft: TCubicMeters; const ARight: TKilogramSquareSeconds): TNewtonSquareMetersPerSquareKilogram;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -6473,6 +8856,7 @@ begin
 end;
 
 // alternative definition [ N*m2/kg2 ] = [ m3/s2 ] / [ kg ]
+
 operator /(const ALeft: TCubicMetersPerSquareSecond; const ARight: TKilograms): TNewtonSquareMetersPerSquareKilogram;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -6493,7 +8877,34 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{ Unit of ReciprocalKelvin }
+
+class function TReciprocalKelvinUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('1/%sK', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := '1/K';
+end;
+
+class function TReciprocalKelvinUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('reciprocal %skelvin', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'reciprocal kelvin';
+end;
+
+class function TReciprocalKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ 1/K ] = 1 / [ K ]
+
 operator /(const ALeft: double; const ARight: TKelvins): TReciprocalKelvins;
 begin
   result.FValue := ALeft / ARight.FValue;
@@ -6519,7 +8930,34 @@ begin
   result.FValue := ALeft;
 end;
 
+{ Unit of KilogramKelvin }
+
+class function TKilogramKelvinUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sg.%sK', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'kg.K';
+end;
+
+class function TKilogramKelvinUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sgram %skelvin', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'kilogram kelvin';
+end;
+
+class function TKilogramKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (1E-03 * PrefixTable[APrefixes[0]].Factor * PrefixTable[APrefixes[1]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ kg*K] = [ kg ] * [ K ]
+
 operator *(const ALeft: TKilograms; const ARight: TKelvins): TKilogramKelvins;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -6545,7 +8983,34 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+{ Unit of JoulePerKelvin }
+
+class function TJoulePerKelvinUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sJ/K', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'J/K';
+end;
+
+class function TJoulePerKelvinUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sjoule per %skelvin', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'joule per kelvin';
+end;
+
+class function TJoulePerKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ J/K ] = [ J ] / [ K ]
+
 operator /(const ALeft: TJoules; const ARight: TKelvins): TJoulesPerKelvin;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -6571,7 +9036,60 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+{ Unit of JoulePerKilogram }
+
+class function TJoulePerKilogramUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sJ/%sg', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'J/kg';
+end;
+
+class function TJoulePerKilogramUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sjoule per %sgram', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'joule per kilogram';
+end;
+
+class function TJoulePerKilogramUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor / 1E-03 / PrefixTable[APrefixes[1]].Factor)
+  else
+    result := AValue;
+end;
+
+{ Unit of JoulePerKilogramPerKelvin }
+
+class function TJoulePerKilogramPerKelvinUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 3 then
+    result := Format('%sJ/%sg/%sK', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
+  else
+    result := 'J/kg/K';
+end;
+
+class function TJoulePerKilogramPerKelvinUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 3 then
+    result := Format('%sjoule per %sgram per %skelvin', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
+  else
+    result := 'joule per kilogram per kelvin';
+end;
+
+class function TJoulePerKilogramPerKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 3 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor / 1E-03 / PrefixTable[APrefixes[1]].Factor / PrefixTable[APrefixes[2]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ J/kg/K ] = [ J ] / [ kg*K ]
+
 operator /(const ALeft: TJoules; const ARight: TKilogramKelvins): TJoulesPerKilogramPerKelvin;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -6593,6 +9111,7 @@ begin
 end;
 
 // alternative definition [ J/kg/K ] = [ J/kg ] / [ K ]
+
 operator /(const ALeft: TSquareMetersPerSquareSecond; const ARight: TKelvins): TJoulesPerKilogramPerKelvin;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -6619,6 +9138,7 @@ begin
 end;
 
 // alternative definition [ J/kg/K ] = [ J/K ] / [ kg ]
+
 operator /(const ALeft: TJoulesPerKelvin; const ARight: TKilograms): TJoulesPerKilogramPerKelvin;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -6644,7 +9164,34 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+{ Unit of MeterKelvin }
+
+class function TMeterKelvinUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sm.%sK', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'm.K';
+end;
+
+class function TMeterKelvinUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%smeter %skelvin', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'meter kelvin';
+end;
+
+class function TMeterKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor * PrefixTable[APrefixes[1]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ m*K ] = [ m ] * [ K ]
+
 operator *(const ALeft: TMeters; const ARight: TKelvins): TMeterKelvins;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -6670,7 +9217,34 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+{ Unit of KelvinPerMeter }
+
+class function TKelvinPerMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sK/%sm', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'K/m';
+end;
+
+class function TKelvinPerMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%skelvin per %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'kelvin per meter';
+end;
+
+class function TKelvinPerMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor / PrefixTable[APrefixes[1]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ K/m ] = [ K ] / [ m ]
+
 operator /(const ALeft: TKelvins; const ARight: TMeters): TKelvinsPerMeter;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -6696,7 +9270,34 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+{ Unit of WattPerMeter }
+
+class function TWattPerMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sW/%sm', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'W/m';
+end;
+
+class function TWattPerMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%swatt per %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'watt per meter';
+end;
+
+class function TWattPerMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor / PrefixTable[APrefixes[1]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ W/m ] = [ W ] / [ m ]
+
 operator /(const ALeft: TWatts; const ARight: TMeters): TWattsPerMeter;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -6722,7 +9323,34 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+{ Unit of WattPerSquareMeter }
+
+class function TWattPerSquareMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sW/%sm2', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'W/m2';
+end;
+
+class function TWattPerSquareMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%swatt per square %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'watt per square meter';
+end;
+
+class function TWattPerSquareMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor / IntPower(PrefixTable[APrefixes[1]].Factor, 2))
+  else
+    result := AValue;
+end;
+
 // main definition [ W/m2 ] = [ W ] / [ m2 ]
+
 operator /(const ALeft: TWatts; const ARight: TSquareMeters): TWattsPerSquareMeter;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -6748,7 +9376,34 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+{ Unit of WattPerKelvin }
+
+class function TWattPerKelvinUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sW/%sK', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'W/K';
+end;
+
+class function TWattPerKelvinUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%swatt per %skelvin', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'watt per kelvin';
+end;
+
+class function TWattPerKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor / PrefixTable[APrefixes[1]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ W/K ] = [ W ] / [ K ]
+
 operator /(const ALeft: TWatts; const ARight: TKelvins): TWattsPerKelvin;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -6774,7 +9429,34 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+{ Unit of WattPerMeterPerKelvin }
+
+class function TWattPerMeterPerKelvinUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 3 then
+    result := Format('%sW/%sm/%sK', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
+  else
+    result := 'W/m/K';
+end;
+
+class function TWattPerMeterPerKelvinUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 3 then
+    result := Format('%swatt per %smeter per %skelvin', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
+  else
+    result := 'watt per meter per kelvin';
+end;
+
+class function TWattPerMeterPerKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 3 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor / PrefixTable[APrefixes[1]].Factor / PrefixTable[APrefixes[2]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ W/m/K ] = [ W ] / [ m*K ]
+
 operator /(const ALeft: TWatts; const ARight: TMeterKelvins): TWattsPerMeterPerKelvin;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -6796,6 +9478,7 @@ begin
 end;
 
 // alternative definition [ W/m/K ] = [ W/m ] / [ K ]
+
 operator /(const ALeft: TWattsPerMeter; const ARight: TKelvins): TWattsPerMeterPerKelvin;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -6822,6 +9505,7 @@ begin
 end;
 
 // alternative definition [ W/m/K ] = [ W/K ] / [ m ]
+
 operator /(const ALeft: TWattsPerKelvin; const ARight: TMeters): TWattsPerMeterPerKelvin;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -6848,6 +9532,7 @@ begin
 end;
 
 // alternative definition [ W/m/K ] = [ W/m2 ] / [ K/m ]
+
 operator /(const ALeft: TWattsPerSquareMeter; const ARight: TKelvinsPerMeter): TWattsPerMeterPerKelvin;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -6868,7 +9553,34 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{ Unit of SquareMeterKelvin }
+
+class function TSquareMeterKelvinUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sm2.%sK', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'm2.K';
+end;
+
+class function TSquareMeterKelvinUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('square %smeter %skelvin', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'square meter kelvin';
+end;
+
+class function TSquareMeterKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 2) * PrefixTable[APrefixes[1]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ m2*K ] = [ m2 ] * [ K ]
+
 operator *(const ALeft: TSquareMeters; const ARight: TKelvins): TSquareMeterKelvins;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -6894,7 +9606,34 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+{ Unit of WattPerSquareMeterPerKelvin }
+
+class function TWattPerSquareMeterPerKelvinUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 3 then
+    result := Format('%sW/%sm2/%sK', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
+  else
+    result := 'W/m2/K';
+end;
+
+class function TWattPerSquareMeterPerKelvinUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 3 then
+    result := Format('%swatt per square %smeter per %skelvin', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
+  else
+    result := 'watt per square meter per kelvin';
+end;
+
+class function TWattPerSquareMeterPerKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 3 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor / IntPower(PrefixTable[APrefixes[1]].Factor, 2) / PrefixTable[APrefixes[2]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ W/m2/K ] = [ W ] / [ m2*K ]
+
 operator /(const ALeft: TWatts; const ARight: TSquareMeterKelvins): TWattsPerSquareMeterPerKelvin;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -6916,6 +9655,7 @@ begin
 end;
 
 // alternative definition [ W/m2/K ] = [ W/m2 ] / [ K ]
+
 operator /(const ALeft: TWattsPerSquareMeter; const ARight: TKelvins): TWattsPerSquareMeterPerKelvin;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -6942,6 +9682,7 @@ begin
 end;
 
 // alternative definition [ W/m2/K ] = [ W/K ] / [ m2 ]
+
 operator /(const ALeft: TWattsPerKelvin; const ARight: TSquareMeters): TWattsPerSquareMeterPerKelvin;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -6967,7 +9708,34 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+{ Unit of SquareMeterQuarticKelvin }
+
+class function TSquareMeterQuarticKelvinUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sm2.%sK4', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'm2.K4';
+end;
+
+class function TSquareMeterQuarticKelvinUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('square %smeter quartic %skelvin', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'square meter quartic kelvin';
+end;
+
+class function TSquareMeterQuarticKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 2) * IntPower(PrefixTable[APrefixes[1]].Factor, 4))
+  else
+    result := AValue;
+end;
+
 // main definition [ m2*K4 ] = [ m2 ] * [ K4 ]
+
 operator *(const ALeft: TSquareMeters; const ARight: TQuarticKelvins): TSquareMeterQuarticKelvins;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -6993,7 +9761,34 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+{ Unit of WattPerQuarticKelvin }
+
+class function TWattPerQuarticKelvinUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sW/%sK4', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'W/K4';
+end;
+
+class function TWattPerQuarticKelvinUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%swatt per quartic %skelvin', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'watt per quartic kelvin';
+end;
+
+class function TWattPerQuarticKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor / IntPower(PrefixTable[APrefixes[1]].Factor, 4))
+  else
+    result := AValue;
+end;
+
 // main definition [ W/K4 ] = [ W ] / [ K4 ]
+
 operator /(const ALeft: TWatts; const ARight: TQuarticKelvins): TWattsPerQuarticKelvin;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -7019,7 +9814,34 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+{ Unit of WattPerSquareMeterPerQuarticKelvin }
+
+class function TWattPerSquareMeterPerQuarticKelvinUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 3 then
+    result := Format('%sW/%sm2/%sK4', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
+  else
+    result := 'W/m2/K4';
+end;
+
+class function TWattPerSquareMeterPerQuarticKelvinUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 3 then
+    result := Format('%swatt per square %smeter per quartic %skelvin', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
+  else
+    result := 'watt per square meter per quartic kelvin';
+end;
+
+class function TWattPerSquareMeterPerQuarticKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 3 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor / IntPower(PrefixTable[APrefixes[1]].Factor, 2) / IntPower(PrefixTable[APrefixes[2]].Factor, 4))
+  else
+    result := AValue;
+end;
+
 // main definition [ W/m2/K4 ] = [ W ] / [ m2*K4 ]
+
 operator /(const ALeft: TWatts; const ARight: TSquareMeterQuarticKelvins): TWattsPerSquareMeterPerQuarticKelvin;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -7041,6 +9863,7 @@ begin
 end;
 
 // alternative definition [ W/m2/K4 ] = [ W/m2 ] / [ K4 ]
+
 operator /(const ALeft: TWattsPerSquareMeter; const ARight: TQuarticKelvins): TWattsPerSquareMeterPerQuarticKelvin;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -7067,6 +9890,7 @@ begin
 end;
 
 // alternative definition [ W/m2/K4 ] = [ W/K4 ] / [ m2 ]
+
 operator /(const ALeft: TWattsPerQuarticKelvin; const ARight: TSquareMeters): TWattsPerSquareMeterPerQuarticKelvin;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -7092,7 +9916,34 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+{ Unit of JoulePerMole }
+
+class function TJoulePerMoleUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sJ/%smol', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'J/mol';
+end;
+
+class function TJoulePerMoleUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sjoule per %smole', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'joule per mole';
+end;
+
+class function TJoulePerMoleUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor / PrefixTable[APrefixes[1]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ J/mol ] = [ J ] / [ mol ]
+
 operator /(const ALeft: TJoules; const ARight: TMoles): TJoulesPerMole;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -7118,7 +9969,34 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+{ Unit of MoleKelvin }
+
+class function TMoleKelvinUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%smol.%sK', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'mol.K';
+end;
+
+class function TMoleKelvinUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%smole %skelvin', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'mole kelvin';
+end;
+
+class function TMoleKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor * PrefixTable[APrefixes[1]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ mol*K ] = [ mol ] * [ K ]
+
 operator *(const ALeft: TMoles; const ARight: TKelvins): TMoleKelvins;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -7144,7 +10022,34 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+{ Unit of JoulePerMolePerKelvin }
+
+class function TJoulePerMolePerKelvinUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 3 then
+    result := Format('%sJ/%smol/%sK', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
+  else
+    result := 'J/mol/K';
+end;
+
+class function TJoulePerMolePerKelvinUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 3 then
+    result := Format('%sjoule per %smole per %skelvin', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
+  else
+    result := 'joule per mole per kelvin';
+end;
+
+class function TJoulePerMolePerKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 3 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor / PrefixTable[APrefixes[1]].Factor / PrefixTable[APrefixes[2]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ J/mol/K ] = [ J ] / [ mol * K ]
+
 operator /(const ALeft: TJoules; const ARight: TMoleKelvins): TJoulesPerMolePerKelvin;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -7166,6 +10071,7 @@ begin
 end;
 
 // alternative definition [ J/mol/K ] = [ J/K ] / [ mol ]
+
 operator /(const ALeft: TJoulesPerKelvin; const ARight: TMoles): TJoulesPerMolePerKelvin;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -7192,6 +10098,7 @@ begin
 end;
 
 // alternative definition [ J/mol/K ] = [ J/mol ] / [ K ]
+
 operator /(const ALeft: TJoulesPerMole; const ARight: TKelvins): TJoulesPerMolePerKelvin;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -7217,7 +10124,34 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+{ Unit of OhmMeter }
+
+class function TOhmMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sΩ.%sm', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'Ω.m';
+end;
+
+class function TOhmMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sohm %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'ohm meter';
+end;
+
+class function TOhmMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor * PrefixTable[APrefixes[1]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ Ω*m ] = [ Ω ] * [ m ]
+
 operator *(const ALeft: TOhms; const ARight: TMeters): TOhmMeters;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -7243,7 +10177,34 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+{ Unit of VoltPerMeter }
+
+class function TVoltPerMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sV/%sm', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'V/m';
+end;
+
+class function TVoltPerMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%svolt per %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'volt per meter';
+end;
+
+class function TVoltPerMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor / PrefixTable[APrefixes[1]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ V/m ] = [ V ] / [ m ]
+
 operator /(const ALeft: TVolts; const ARight: TMeters): TVoltsPerMeter;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -7270,6 +10231,7 @@ begin
 end;
 
 // alternative definition [ V/m ] = [ N ] / [ C ]
+
 operator /(const ALeft: TNewtons; const ARight: TCoulombs): TVoltsPerMeter;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -7296,6 +10258,7 @@ begin
 end;
 
 // alternative definition [ V/m ] = [ T ] * [ m/s ]
+
 operator *(const ALeft: TTeslas; const ARight: TMetersPerSecond): TVoltsPerMeter;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -7316,7 +10279,60 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{ Unit of NewtonPerCoulomb }
+
+class function TNewtonPerCoulombUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sN/%sC', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'N/C';
+end;
+
+class function TNewtonPerCoulombUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%snewton per %scoulomb', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'newton per coulomb';
+end;
+
+class function TNewtonPerCoulombUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor / PrefixTable[APrefixes[1]].Factor)
+  else
+    result := AValue;
+end;
+
+{ Unit of CoulombPerMeter }
+
+class function TCoulombPerMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sC/%sm', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'C/m';
+end;
+
+class function TCoulombPerMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%scoulomb per %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'coulomb per meter';
+end;
+
+class function TCoulombPerMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor / PrefixTable[APrefixes[1]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ C/m ] = [ C ] / [ m ]
+
 operator /(const ALeft: TCoulombs; const ARight: TMeters): TCoulombsPerMeter;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -7342,7 +10358,34 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+{ Unit of SquareCoulombPerMeter }
+
+class function TSquareCoulombPerMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sC2/%sm', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'C2/m';
+end;
+
+class function TSquareCoulombPerMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('square %scoulomb per %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'square coulomb per meter';
+end;
+
+class function TSquareCoulombPerMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 2) / PrefixTable[APrefixes[1]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ C2/m ] = [ C2 ] / [ m ]
+
 operator /(const ALeft: TSquareCoulombs; const ARight: TMeters): TSquareCoulombsPerMeter;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -7369,6 +10412,7 @@ begin
 end;
 
 // alternative definition [ C2/m ] = [ C/m ] * [ C ]
+
 operator *(const ALeft: TCoulombsPerMeter; const ARight: TCoulombs): TSquareCoulombsPerMeter;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -7389,7 +10433,34 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{ Unit of CoulombPerSquareMeter }
+
+class function TCoulombPerSquareMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sC/%sm2', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'C/m2';
+end;
+
+class function TCoulombPerSquareMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%scoulomb per square %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'coulomb per square meter';
+end;
+
+class function TCoulombPerSquareMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor / IntPower(PrefixTable[APrefixes[1]].Factor, 2))
+  else
+    result := AValue;
+end;
+
 // main definition [ C/m2 ] = [ C ] / [ m2 ]
+
 operator /(const ALeft: TCoulombs; const ARight: TSquareMeters): TCoulombsPerSquareMeter;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -7416,6 +10487,7 @@ begin
 end;
 
 // alternative definition [ C/m2 ] = [ C/m ] / [ m ]
+
 operator /(const ALeft: TCoulombsPerMeter; const ARight: TMeters): TCoulombsPerSquareMeter;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -7436,7 +10508,34 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{ Unit of SquareMeterPerSquareCoulomb }
+
+class function TSquareMeterPerSquareCoulombUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sm2/%sC2', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'm2/C2';
+end;
+
+class function TSquareMeterPerSquareCoulombUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('square %smeter per square %scoulomb', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'square meter per square coulomb';
+end;
+
+class function TSquareMeterPerSquareCoulombUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 2) / IntPower(PrefixTable[APrefixes[1]].Factor, 2))
+  else
+    result := AValue;
+end;
+
 // main definition [ m2/C2 ] = [ m2 ] / [ C2 ]
+
 operator /(const ALeft: TSquareMeters; const ARight: TSquareCoulombs): TSquareMetersPerSquareCoulomb;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -7462,7 +10561,34 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+{ Unit of NewtonPerSquareCoulomb }
+
+class function TNewtonPerSquareCoulombUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sN/%sC2', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'N/C2';
+end;
+
+class function TNewtonPerSquareCoulombUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%snewton per square %scoulomb', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'newton per square coulomb';
+end;
+
+class function TNewtonPerSquareCoulombUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor / IntPower(PrefixTable[APrefixes[1]].Factor, 2))
+  else
+    result := AValue;
+end;
+
 // main definition [ N/C2 ] = [ N ] / [ C2 ]
+
 operator /(const ALeft: TNewtons; const ARight: TSquareCoulombs): TNewtonsPerSquareCoulomb;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -7488,7 +10614,34 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+{ Unit of NewtonSquareMeterPerSquareCoulomb }
+
+class function TNewtonSquareMeterPerSquareCoulombUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 3 then
+    result := Format('%sN.%sm2/%sC2', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
+  else
+    result := 'N.m2/C2';
+end;
+
+class function TNewtonSquareMeterPerSquareCoulombUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 3 then
+    result := Format('%snewton square %smeter per square %scoulomb', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
+  else
+    result := 'newton square meter per square coulomb';
+end;
+
+class function TNewtonSquareMeterPerSquareCoulombUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 3 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor * IntPower(PrefixTable[APrefixes[1]].Factor, 2) / IntPower(PrefixTable[APrefixes[2]].Factor, 2))
+  else
+    result := AValue;
+end;
+
 // main definition [ N*m2/C2 ] = [ N ] * [ m2/C2 ]
+
 operator *(const ALeft: TNewtons; const ARight: TSquareMetersPerSquareCoulomb): TNewtonSquareMetersPerSquareCoulomb;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -7510,6 +10663,7 @@ begin
 end;
 
 // alternative definition [ N*m2/C2 ] = [ N*m2 ] / [ C2 ]
+
 operator /(const ALeft: TNewtonSquareMeters; const ARight: TSquareCoulombs): TNewtonSquareMetersPerSquareCoulomb;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -7536,6 +10690,7 @@ begin
 end;
 
 // alternative definition [ N*m2/C2 ] = [ N/C2 ] * [ m2 ]
+
 operator *(const ALeft: TNewtonsPerSquareCoulomb; const ARight: TSquareMeters): TNewtonSquareMetersPerSquareCoulomb;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -7562,6 +10717,7 @@ begin
 end;
 
 // alternative definition [ N*m2/C2 ] = [ V/m ] / [ C/m2 ]
+
 operator /(const ALeft: TVoltsPerMeter; const ARight: TCoulombsPerSquareMeter): TNewtonSquareMetersPerSquareCoulomb;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -7583,6 +10739,7 @@ begin
 end;
 
 // alternative definition [ N*m2/C2 ] = [ J ] / [ C2/m ]
+
 operator /(const ALeft: TJoules; const ARight: TSquareCoulombsPerMeter): TNewtonSquareMetersPerSquareCoulomb;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -7603,7 +10760,34 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{ Unit of VoltMeter }
+
+class function TVoltMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sV.%sm', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'V.m';
+end;
+
+class function TVoltMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%svolt %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'volt meter';
+end;
+
+class function TVoltMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor * PrefixTable[APrefixes[1]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ V*m ] = [ V ] * [ m ]
+
 operator *(const ALeft: TVolts; const ARight: TMeters): TVoltMeters;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -7630,6 +10814,7 @@ begin
 end;
 
 // alternative definition [ V*m ] = [ V/m ] * [ m2 ]
+
 operator *(const ALeft: TVoltsPerMeter; const ARight: TSquareMeters): TVoltMeters;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -7650,7 +10835,60 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{ Unit of NewtonSquareMeterPerCoulomb }
+
+class function TNewtonSquareMeterPerCoulombUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 3 then
+    result := Format('%sN.%sm2/%sC', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
+  else
+    result := 'N.m2/C';
+end;
+
+class function TNewtonSquareMeterPerCoulombUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 3 then
+    result := Format('%snewton square %smeter per %scoulomb', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
+  else
+    result := 'newton square meter per coulomb';
+end;
+
+class function TNewtonSquareMeterPerCoulombUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 3 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor * IntPower(PrefixTable[APrefixes[1]].Factor, 2) / PrefixTable[APrefixes[2]].Factor)
+  else
+    result := AValue;
+end;
+
+{ Unit of VoltMeterPerSecond }
+
+class function TVoltMeterPerSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 3 then
+    result := Format('%sV.%sm/%ss', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
+  else
+    result := 'V.m/s';
+end;
+
+class function TVoltMeterPerSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 3 then
+    result := Format('%svolt %smeter per %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
+  else
+    result := 'volt meter per second';
+end;
+
+class function TVoltMeterPerSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 3 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor * PrefixTable[APrefixes[1]].Factor / PrefixTable[APrefixes[2]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ V*m/s ] = [ V*m ] / [ s ]
+
 operator /(const ALeft: TVoltMeters; const ARight: TSeconds): TVoltMetersPerSecond;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -7676,7 +10914,34 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+{ Unit of FaradPerMeter }
+
+class function TFaradPerMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sF/%sm', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'F/m';
+end;
+
+class function TFaradPerMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sfarad per %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'farad per meter';
+end;
+
+class function TFaradPerMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor / PrefixTable[APrefixes[1]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ F/m ] = [ F ] / [ m ]
+
 operator /(const ALeft: TFarads; const ARight: TMeters): TFaradsPerMeter;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -7703,6 +10968,7 @@ begin
 end;
 
 // alternative definition [ F/m ] = [ C ] / [ V*m ]
+
 operator /(const ALeft: TCoulombs; const ARight: TVoltMeters): TFaradsPerMeter;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -7724,6 +10990,7 @@ begin
 end;
 
 // alternative definition [ F/m ] = [ C/m2 ] / [ N/C ]
+
 operator /(const ALeft: TCoulombsPerSquareMeter; const ARight: TVoltsPerMeter): TFaradsPerMeter;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -7745,6 +11012,7 @@ begin
 end;
 
 // alternative definition [ F/m ] = [ 1 ] / [ N*m2/C2 ]
+
 operator /(const ALeft: double; const ARight: TNewtonSquareMetersPerSquareCoulomb): TFaradsPerMeter;
 begin
   result.FValue := ALeft / ARight.FValue;
@@ -7765,7 +11033,34 @@ begin
   result.FValue := ALeft / ARight.FValue;
 end;
 
+{ Unit of AmperePerMeter }
+
+class function TAmperePerMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sA/%sm', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'A/m';
+end;
+
+class function TAmperePerMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sampere per %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'ampere per meter';
+end;
+
+class function TAmperePerMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor / PrefixTable[APrefixes[1]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ A/m ] = [ A ] / [ m ]
+
 operator /(const ALeft: TAmperes; const ARight: TMeters): TAmperesPerMeter;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -7791,7 +11086,34 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+{ Unit of MeterPerAmpere }
+
+class function TMeterPerAmpereUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sm/%sA', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'm/A';
+end;
+
+class function TMeterPerAmpereUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%smeter per %sampere', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'meter per ampere';
+end;
+
+class function TMeterPerAmpereUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor / PrefixTable[APrefixes[1]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ m/A ] = [ m ] / [ A ]
+
 operator /(const ALeft: TMeters; const ARight: TAmperes): TMetersPerAmpere;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -7817,7 +11139,34 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+{ Unit of TeslaMeter }
+
+class function TTeslaMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sT.%sm', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'T.m';
+end;
+
+class function TTeslaMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%stesla %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'tesla meter';
+end;
+
+class function TTeslaMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor * PrefixTable[APrefixes[1]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ T*m ] = [ T ] * [ m ]
+
 operator *(const ALeft: TTeslas; const ARight: TMeters): TTeslaMeters;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -7844,6 +11193,7 @@ begin
 end;
 
 // alternative definition [ T*m ] = [ N/A ] = [ N ] / [ A ]
+
 operator /(const ALeft: TNewtons; const ARight: TAmperes): TTeslaMeters;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -7869,7 +11219,60 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+{ Unit of NewtonPerAmpere }
+
+class function TNewtonPerAmpereUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sN/%sA', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'N/A';
+end;
+
+class function TNewtonPerAmpereUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%snewton per %sampere', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'newton per ampere';
+end;
+
+class function TNewtonPerAmpereUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor / PrefixTable[APrefixes[1]].Factor)
+  else
+    result := AValue;
+end;
+
+{ Unit of TeslaPerAmpere }
+
+class function TTeslaPerAmpereUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sT/%sA', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'T/A';
+end;
+
+class function TTeslaPerAmpereUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%stesla per %sampere', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'tesla per ampere';
+end;
+
+class function TTeslaPerAmpereUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor / PrefixTable[APrefixes[1]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ T/A ] = [ T ] / [ A ]
+
 operator /(const ALeft: TTeslas; const ARight: TAmperes): TTeslasPerAmpere;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -7895,7 +11298,34 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+{ Unit of HenryPerMeter }
+
+class function THenryPerMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sH/%sm', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'H/m';
+end;
+
+class function THenryPerMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%shenry per %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'henry per meter';
+end;
+
+class function THenryPerMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor / PrefixTable[APrefixes[1]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ H/m ] = [ H ] / [ m ]
+
 operator /(const ALeft: THenrys; const ARight: TMeters): THenrysPerMeter;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -7922,6 +11352,7 @@ begin
 end;
 
 // alternative definition [ H/ m ] = [ T*m/A ] = [ T*m ] / [ A ]
+
 operator /(const ALeft: TTeslaMeters; const ARight: TAmperes): THenrysPerMeter;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -7948,6 +11379,7 @@ begin
 end;
 
 // alternative definition [ H/ m ] = [ T*m/A ] = [ T/A ] * [ m ]
+
 operator *(const ALeft: TTeslasPerAmpere; const ARight: TMeters): THenrysPerMeter;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -7974,6 +11406,7 @@ begin
 end;
 
 // alternative definition [ H/ m ] = [ T*m/A ] = [ T ] * [ m/A ]
+
 operator *(const ALeft: TTeslas; const ARight: TMetersPerAmpere): THenrysPerMeter;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -7995,6 +11428,7 @@ begin
 end;
 
 // alternative definition [ H/ m ] = [ T*m/A ] = [ T ] / [ A/m ]
+
 operator /(const ALeft: TTeslas; const ARight: TAmperesPerMeter): THenrysPerMeter;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -8016,6 +11450,7 @@ begin
 end;
 
 // alternative definition [ H/m ] = [ N/A2 ] = [ N ] / [ A2 ]
+
 operator /(const ALeft: TNewtons; const ARight: TSquareAmperes): THenrysPerMeter;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -8036,7 +11471,86 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{ Unit of TeslaMeterPerAmpere }
+
+class function TTeslaMeterPerAmpereUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 3 then
+    result := Format('%sT.%sm/%sA', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
+  else
+    result := 'T.m/A';
+end;
+
+class function TTeslaMeterPerAmpereUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 3 then
+    result := Format('%stesla %smeter per %sampere', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
+  else
+    result := 'tesla meter per ampere';
+end;
+
+class function TTeslaMeterPerAmpereUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 3 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor * PrefixTable[APrefixes[1]].Factor / PrefixTable[APrefixes[2]].Factor)
+  else
+    result := AValue;
+end;
+
+{ Unit of NewtonPerSquareAmpere }
+
+class function TNewtonPerSquareAmpereUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sN/%sA2', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'N/A2';
+end;
+
+class function TNewtonPerSquareAmpereUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%snewton per square %sampere', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'newton per square ampere';
+end;
+
+class function TNewtonPerSquareAmpereUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor / IntPower(PrefixTable[APrefixes[1]].Factor, 2))
+  else
+    result := AValue;
+end;
+
+{ Unit of RadianPerMeter }
+
+class function TRadianPerMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('rad/%sm', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'rad/m';
+end;
+
+class function TRadianPerMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('radian per %smeter', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'radian per meter';
+end;
+
+class function TRadianPerMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ rad/m ] = [ rad ] / [ m ]
+
 operator /(const ALeft: TRadians; const ARight: TMeters): TRadiansPerMeter;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -8062,7 +11576,34 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+{ Unit of SquareKilogramPerSquareSecond }
+
+class function TSquareKilogramPerSquareSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sg2/%ss2', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'kg2/s2';
+end;
+
+class function TSquareKilogramPerSquareSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('square %sgram per square %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'square kilogram per square second';
+end;
+
+class function TSquareKilogramPerSquareSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (1E-06 * IntPower(PrefixTable[APrefixes[0]].Factor, 2) / IntPower(PrefixTable[APrefixes[1]].Factor, 2))
+  else
+    result := AValue;
+end;
+
 // main definition [ kg2/s2 ] = [ kg2 ] / [ s2 ]
+
 operator /(const ALeft: TSquareKilograms; const ARight: TSquareSeconds): TSquareKilogramsPerSquareSecond;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -8089,6 +11630,7 @@ begin
 end;
 
 // alternative definition [ kg2/s2 ] = [ kg/s ] * [ kg/s ]
+
 operator *(const ALeft: TKilogramsPerSecond; const ARight: TKilogramsPerSecond): TSquareKilogramsPerSquareSecond;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -8100,6 +11642,7 @@ begin
 end;
 
 // alternative definition [ kg2/s2 ] = [ kg ] * [ N/m ]
+
 operator *(const ALeft: TKilograms; const ARight: TNewtonsPerMeter): TSquareKilogramsPerSquareSecond;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -8120,7 +11663,34 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{ Unit of SquareSecondPerSquareMeter }
+
+class function TSquareSecondPerSquareMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%ss2/%sm2', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 's2/m2';
+end;
+
+class function TSquareSecondPerSquareMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('square %ssecond per square %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'square second per square meter';
+end;
+
+class function TSquareSecondPerSquareMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 2) / IntPower(PrefixTable[APrefixes[1]].Factor, 2))
+  else
+    result := AValue;
+end;
+
 // main definition [ s2/m2 ] = [ s2 ] / [ m2 ]
+
 operator /(const ALeft: TSquareSeconds; const ARight: TSquareMeters): TSquareSecondsPerSquareMeter;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -8147,6 +11717,7 @@ begin
 end;
 
 // alternative definition [ s2/m2 ] = [ 1 ] / [ m2/s2 ]
+
 operator /(const ALeft: double; const ARight: TSquareMetersPerSquareSecond): TSquareSecondsPerSquareMeter;
 begin
   result.FValue := ALeft / ARight.FValue;
@@ -8168,6 +11739,7 @@ begin
 end;
 
 // alternative definition [ s2/m2 ] = [ F/m ] * [ H/m ]
+
 operator *(const ALeft: TFaradsPerMeter; const ARight: THenrysPerMeter): TSquareSecondsPerSquareMeter;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -8188,7 +11760,34 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{ Unit of SquareJoule }
+
+class function TSquareJouleUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sJ2', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'J2';
+end;
+
+class function TSquareJouleUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('square %sjoule', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'square joule';
+end;
+
+class function TSquareJouleUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 2))
+  else
+    result := AValue;
+end;
+
 // main definition [ J2 ] = [ J ] * [ J ]
+
 operator *(const ALeft: TJoules; const ARight: TJoules): TSquareJoules;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -8199,7 +11798,34 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{ Unit of JouleSecond }
+
+class function TJouleSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sJ.%ss', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'J.s';
+end;
+
+class function TJouleSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sjoule %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'joule second';
+end;
+
+class function TJouleSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor * PrefixTable[APrefixes[1]].Factor)
+  else
+    result := AValue;
+end;
+
 // main definition [ J*s ] = [ J ] * [ s ]
+
 operator *(const ALeft: TJoules; const ARight: TSeconds): TJouleSeconds;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -8226,6 +11852,7 @@ begin
 end;
 
 // alternative definition [ J*s ] = [ J ] / [ Hz ]
+
 operator /(const ALeft: TJoules; const ARight: THertz): TJouleSeconds;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -8252,6 +11879,7 @@ begin
 end;
 
 // alternative definition [ J*s ] = [ kg*m/s ] * [ m ]
+
 operator *(const ALeft: TKilogramMetersPerSecond; const ARight: TMeters): TJouleSeconds;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -8270,6 +11898,32 @@ end;
 operator /(const ALeft: TJouleSeconds; const ARight: TMeters): TKilogramMetersPerSecond;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+{ Unit of ElettronvoltSecond }
+
+class function TElettronvoltSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%seV.%ss', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'eV.s';
+end;
+
+class function TElettronvoltSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%selettronvolt %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'elettronvolt second';
+end;
+
+class function TElettronvoltSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := AValue / (PrefixTable[APrefixes[0]].Factor * PrefixTable[APrefixes[1]].Factor)
+  else
+    result := AValue;
 end;
 
 { Helpers }
@@ -8354,9 +12008,19 @@ begin
   result.FValue := FValue;
 end;
 
+function TMeterPerSecondHelper.ToMeterPerHour: specialize TQuantity<TMeterPerHourUnit>;
+begin
+  result.FValue := FValue / TMeterPerHourUnit.Factor;
+end;
+
 function TMeterPerSquareSecondHelper.ToMeterPerSecondPerSecond: specialize TQuantity<TMeterPerSecondPerSecondUnit>;
 begin
   result.FValue := FValue;
+end;
+
+function TMeterPerSquareSecondHelper.ToMeterPerHourPerSecond: specialize TQuantity<TMeterPerHourPerSecondUnit>;
+begin
+  result.FValue := FValue / TMeterPerHourPerSecondUnit.Factor;
 end;
 
 function TKilogramMeterPerSecondHelper.ToNewtonSecond: specialize TQuantity<TNewtonSecondUnit>;
