@@ -74,9 +74,9 @@ type
 type
   { Unit of Second }
   TSecondUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSeconds = specialize TQuantity<TSecondUnit>;
   TSecondUnitId = specialize TUnitId<TSecondUnit>;
@@ -93,9 +93,9 @@ const     ps: specialize TQuantity<TSecondUnit> = (FValue: 1E-12);
 type
   { Unit of Day }
   TDayUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
     const Factor = 86400;
   end;
   TDays = specialize TQuantity<TSecondUnit>;
@@ -106,9 +106,9 @@ const day: specialize TQuantity<TSecondUnit> = (FValue: 86400);
 type
   { Unit of Hour }
   THourUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
     const Factor = 3600;
   end;
   THours = specialize TQuantity<TSecondUnit>;
@@ -119,9 +119,9 @@ const hr: specialize TQuantity<TSecondUnit> = (FValue: 3600);
 type
   { Unit of Minute }
   TMinuteUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
     const Factor = 60;
   end;
   TMinutes = specialize TQuantity<TSecondUnit>;
@@ -132,9 +132,9 @@ const minute: specialize TQuantity<TSecondUnit> = (FValue: 60);
 type
   { Unit of SquareSecond }
   TSquareSecondUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSquareSeconds = specialize TQuantity<TSquareSecondUnit>;
   TSquareSecondUnitId = specialize TUnitId<TSquareSecondUnit>;
@@ -148,9 +148,9 @@ operator /(const ALeft: TSquareSeconds; const ARight: TSeconds): TSeconds; inlin
 type
   { Unit of SquareDay }
   TSquareDayUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
     const Factor = 7464960000;
   end;
   TSquareDays = specialize TQuantity<TSquareSecondUnit>;
@@ -161,9 +161,9 @@ const day2: specialize TQuantity<TSquareSecondUnit> = (FValue: 7464960000);
 type
   { Unit of SquareHour }
   TSquareHourUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
     const Factor = 12960000;
   end;
   TSquareHours = specialize TQuantity<TSquareSecondUnit>;
@@ -174,9 +174,9 @@ const hr2: specialize TQuantity<TSquareSecondUnit> = (FValue: 12960000);
 type
   { Unit of SquareMinute }
   TSquareMinuteUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
     const Factor = 3600;
   end;
   TSquareMinutes = specialize TQuantity<TSquareSecondUnit>;
@@ -187,9 +187,9 @@ const minute2: specialize TQuantity<TSquareSecondUnit> = (FValue: 3600);
 type
   { Unit of Meter }
   TMeterUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TMeters = specialize TQuantity<TMeterUnit>;
   TMeterUnitId = specialize TUnitId<TMeterUnit>;
@@ -209,9 +209,9 @@ const     pm: specialize TQuantity<TMeterUnit> = (FValue: 1E-12);
 type
   { Unit of Astronomical }
   TAstronomicalUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
     const Factor = 149597870691;
   end;
   TAstronomical = specialize TQuantity<TMeterUnit>;
@@ -222,9 +222,9 @@ const au: specialize TQuantity<TMeterUnit> = (FValue: 149597870691);
 type
   { Unit of SquareMeter }
   TSquareMeterUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSquareMeters = specialize TQuantity<TSquareMeterUnit>;
   TSquareMeterUnitId = specialize TUnitId<TSquareMeterUnit>;
@@ -248,9 +248,9 @@ operator /(const ALeft: TSquareMeters; const ARight: TMeters): TMeters; inline;
 type
   { Unit of CubicMeter }
   TCubicMeterUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TCubicMeters = specialize TQuantity<TCubicMeterUnit>;
   TCubicMeterUnitId = specialize TUnitId<TCubicMeterUnit>;
@@ -276,9 +276,9 @@ operator /(const ALeft: TCubicMeters; const ARight: TMeters): TSquareMeters; inl
 type
   { Unit of Litre }
   TLitreUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
     const Factor = 1E-03;
   end;
   TLitres = specialize TQuantity<TCubicMeterUnit>;
@@ -302,9 +302,9 @@ const  picoL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-12);
 type
   { Unit of QuarticMeter }
   TQuarticMeterUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TQuarticMeters = specialize TQuantity<TQuarticMeterUnit>;
   TQuarticMeterUnitId = specialize TUnitId<TQuarticMeterUnit>;
@@ -334,9 +334,9 @@ operator /(const ALeft: TQuarticMeters; const ARight: TSquareMeters): TSquareMet
 type
   { Unit of QuinticMeter }
   TQuinticMeterUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TQuinticMeters = specialize TQuantity<TQuinticMeterUnit>;
   TQuinticMeterUnitId = specialize TUnitId<TQuinticMeterUnit>;
@@ -368,9 +368,9 @@ operator /(const ALeft: TQuinticMeters; const ARight: TSquareMeters): TCubicMete
 type
   { Unit of SexticMeter }
   TSexticMeterUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSexticMeters = specialize TQuantity<TSexticMeterUnit>;
   TSexticMeterUnitId = specialize TUnitId<TSexticMeterUnit>;
@@ -406,9 +406,9 @@ operator /(const ALeft: TSexticMeters; const ARight: TCubicMeters): TCubicMeters
 type
   { Unit of Kilogram }
   TKilogramUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TKilograms = specialize TQuantity<TKilogramUnit>;
   TKilogramUnitId = specialize TUnitId<TKilogramUnit>;
@@ -428,9 +428,9 @@ const  pg: specialize TQuantity<TKilogramUnit> = (FValue: 1E-15);
 type
   { Unit of Tonne }
   TTonneUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
     const Factor = 1E+03;
   end;
   TTonnes = specialize TQuantity<TKilogramUnit>;
@@ -445,9 +445,9 @@ const  kilotonne: specialize TQuantity<TKilogramUnit> = (FValue: 1E+03 * 1E+03);
 type
   { Unit of SquareKilogram }
   TSquareKilogramUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSquareKilograms = specialize TQuantity<TSquareKilogramUnit>;
   TSquareKilogramUnitId = specialize TUnitId<TSquareKilogramUnit>;
@@ -471,9 +471,9 @@ operator /(const ALeft: TSquareKilograms; const ARight: TKilograms): TKilograms;
 type
   { Unit of Ampere }
   TAmpereUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TAmperes = specialize TQuantity<TAmpereUnit>;
   TAmpereUnitId = specialize TUnitId<TAmpereUnit>;
@@ -496,9 +496,9 @@ const  picoA: specialize TQuantity<TAmpereUnit> = (FValue: 1E-12);
 type
   { Unit of SquareAmpere }
   TSquareAmpereUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSquareAmperes = specialize TQuantity<TSquareAmpereUnit>;
   TSquareAmpereUnitId = specialize TUnitId<TSquareAmpereUnit>;
@@ -525,9 +525,9 @@ operator /(const ALeft: TSquareAmperes; const ARight: TAmperes): TAmperes; inlin
 type
   { Unit of Kelvin }
   TKelvinUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TKelvins = specialize TQuantity<TKelvinUnit>;
   TKelvinUnitId = specialize TUnitId<TKelvinUnit>;
@@ -550,9 +550,9 @@ const     pK: specialize TQuantity<TKelvinUnit> = (FValue: 1E-12);
 type
   { Unit of DegreeCelsius }
   TDegreeCelsiusUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TDegreesCelsius = specialize TQuantity<TDegreeCelsiusUnit>;
   TDegreeCelsiusUnitId = specialize TUnitId<TDegreeCelsiusUnit>;
@@ -562,9 +562,9 @@ var degC: TDegreeCelsiusUnitId;
 type
   { Unit of DegreeFahrenheit }
   TDegreeFahrenheitUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TDegreesFahrenheit = specialize TQuantity<TDegreeFahrenheitUnit>;
   TDegreeFahrenheitUnitId = specialize TUnitId<TDegreeFahrenheitUnit>;
@@ -574,9 +574,9 @@ var degF: TDegreeFahrenheitUnitId;
 type
   { Unit of SquareKelvin }
   TSquareKelvinUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSquareKelvins = specialize TQuantity<TSquareKelvinUnit>;
   TSquareKelvinUnitId = specialize TUnitId<TSquareKelvinUnit>;
@@ -603,9 +603,9 @@ operator /(const ALeft: TSquareKelvins; const ARight: TKelvins): TKelvins; inlin
 type
   { Unit of CubicKelvin }
   TCubicKelvinUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TCubicKelvins = specialize TQuantity<TCubicKelvinUnit>;
   TCubicKelvinUnitId = specialize TUnitId<TCubicKelvinUnit>;
@@ -634,9 +634,9 @@ operator /(const ALeft: TCubicKelvins; const ARight: TKelvins): TSquareKelvins; 
 type
   { Unit of QuarticKelvin }
   TQuarticKelvinUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TQuarticKelvins = specialize TQuantity<TQuarticKelvinUnit>;
   TQuarticKelvinUnitId = specialize TUnitId<TQuarticKelvinUnit>;
@@ -669,9 +669,9 @@ operator /(const ALeft: TQuarticKelvins; const ARight: TSquareKelvins): TSquareK
 type
   { Unit of Mole }
   TMoleUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TMoles = specialize TQuantity<TMoleUnit>;
   TMoleUnitId = specialize TUnitId<TMoleUnit>;
@@ -694,9 +694,9 @@ const     pmol: specialize TQuantity<TMoleUnit> = (FValue: 1E-12);
 type
   { Unit of Candela }
   TCandelaUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TCandelas = specialize TQuantity<TCandelaUnit>;
   TCandelaUnitId = specialize TUnitId<TCandelaUnit>;
@@ -719,9 +719,9 @@ const     pcd: specialize TQuantity<TCandelaUnit> = (FValue: 1E-12);
 type
   { Unit of Radian }
   TRadianUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TRadians = specialize TQuantity<TRadianUnit>;
   TRadianUnitId = specialize TUnitId<TRadianUnit>;
@@ -744,9 +744,9 @@ const     prad: specialize TQuantity<TRadianUnit> = (FValue: 1E-12);
 type
   { Unit of Degree }
   TDegreeUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
     const Factor = Pi/180;
   end;
   TDegrees = specialize TQuantity<TRadianUnit>;
@@ -770,9 +770,9 @@ const     pdeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E-12);
 type
   { Unit of Steradian }
   TSteradianUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSteradians = specialize TQuantity<TSteradianUnit>;
   TSteradianUnitId = specialize TUnitId<TSteradianUnit>;
@@ -799,9 +799,9 @@ operator /(const ALeft: TSteradians; const ARight: TRadians): TRadians; inline;
 type
   { Unit of Hertz }
   THertzUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   THertz = specialize TQuantity<THertzUnit>;
   THertzUnitId = specialize TUnitId<THertzUnit>;
@@ -831,9 +831,9 @@ operator /(const ALeft: double; const {%H-}ARight: TSecondUnitId): THertz; inlin
 type
   { Unit of SquareHertz }
   TSquareHertzUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSquareHertz = specialize TQuantity<TSquareHertzUnit>;
   TSquareHertzUnitId = specialize TUnitId<TSquareHertzUnit>;
@@ -873,9 +873,9 @@ operator /(const ALeft: TSquareHertz; const ARight: THertz): THertz; inline;
 type
   { Unit of RadianPerSecond }
   TRadianPerSecondUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TRadiansPerSecond = specialize TQuantity<TRadianPerSecondUnit>;
   TRadianPerSecondUnitId = specialize TUnitId<TRadianPerSecondUnit>;
@@ -899,9 +899,9 @@ operator :=(const AQuantity: THertz): TRadiansPerSecond; inline;
 type
   { Unit of RadianPerSquareSecond }
   TRadianPerSquareSecondUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TRadiansPerSquareSecond = specialize TQuantity<TSquareHertzUnit>;
   TRadianPerSquareSecondUnitId = specialize TUnitId<TSquareHertzUnit>;
@@ -922,9 +922,9 @@ operator /(const ALeft: TRadiansPerSquareSecond; const ARight: TSquareHertz): TR
 type
   { Unit of SteradianPerSquareSecond }
   TSteradianPerSquareSecondUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSteradiansPerSquareSecond = specialize TQuantity<TSquareHertzUnit>;
   TSteradianPerSquareSecondUnitId = specialize TUnitId<TSquareHertzUnit>;
@@ -945,9 +945,9 @@ operator /(const ALeft: TSteradiansPerSquareSecond; const ARight: TSquareHertz):
 type
   { Unit of MeterPerSecond }
   TMeterPerSecondUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TMetersPerSecond = specialize TQuantity<TMeterPerSecondUnit>;
   TMeterPerSecondUnitId = specialize TUnitId<TMeterPerSecondUnit>;
@@ -969,9 +969,9 @@ operator *(const ALeft: TMeters; const {%H-}ARight: THertzUnitId): TMetersPerSec
 type
   { Unit of MeterPerHour }
   TMeterPerHourUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
     const Factor = 1/3600;
   end;
   TMetersPerHour = specialize TQuantity<TMeterPerSecondUnit>;
@@ -980,9 +980,9 @@ type
 type
   { Unit of MeterPerSquareSecond }
   TMeterPerSquareSecondUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TMetersPerSquareSecond = specialize TQuantity<TMeterPerSquareSecondUnit>;
   TMeterPerSquareSecondUnitId = specialize TUnitId<TMeterPerSquareSecondUnit>;
@@ -1010,9 +1010,9 @@ operator /(const ALeft: TMetersPerSquareSecond; const ARight: TMeters): TSquareH
 type
   { Unit of MeterPerSecondPerSecond }
   TMeterPerSecondPerSecondUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TMetersPerSecondPerSecond = specialize TQuantity<TMeterPerSquareSecondUnit>;
   TMeterPerSecondPerSecondUnitId = specialize TUnitId<TMeterPerSquareSecondUnit>;
@@ -1020,9 +1020,9 @@ type
 type
   { Unit of MeterPerHourPerSecond }
   TMeterPerHourPerSecondUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
     const Factor = 1/3600;
   end;
   TMetersPerHourPerSecond = specialize TQuantity<TMeterPerSquareSecondUnit>;
@@ -1031,9 +1031,9 @@ type
 type
   { Unit of SquareMeterPerSquareSecond }
   TSquareMeterPerSquareSecondUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSquareMetersPerSquareSecond = specialize TQuantity<TSquareMeterPerSquareSecondUnit>;
   TSquareMeterPerSquareSecondUnitId = specialize TUnitId<TSquareMeterPerSquareSecondUnit>;
@@ -1058,9 +1058,9 @@ operator /(const ALeft: TSquareMetersPerSquareSecond; const ARight: TMeters): TM
 type
   { Unit of KilogramMeterPerSecond }
   TKilogramMeterPerSecondUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TKilogramMetersPerSecond = specialize TQuantity<TKilogramMeterPerSecondUnit>;
   TKilogramMeterPerSecondUnitId = specialize TUnitId<TKilogramMeterPerSecondUnit>;
@@ -1075,9 +1075,9 @@ operator *(const ALeft: TKilograms; const {%H-}ARight: TMeterPerSecondUnitId): T
 type
   { Unit of NewtonSecond }
   TNewtonSecondUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TNewtonSeconds = specialize TQuantity<TKilogramMeterPerSecondUnit>;
   TNewtonSecondUnitId = specialize TUnitId<TKilogramMeterPerSecondUnit>;
@@ -1085,9 +1085,9 @@ type
 type
   { Unit of KilogramSquareMeter }
   TKilogramSquareMeterUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TKilogramSquareMeters = specialize TQuantity<TKilogramSquareMeterUnit>;
   TKilogramSquareMeterUnitId = specialize TUnitId<TKilogramSquareMeterUnit>;
@@ -1102,9 +1102,9 @@ operator *(const ALeft: TKilograms; const {%H-}ARight: TSquareMeterUnitId): TKil
 type
   { Unit of KilogramSquareMeterPerSecond }
   TKilogramSquareMeterPerSecondUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TKilogramSquareMetersPerSecond = specialize TQuantity<TKilogramSquareMeterPerSecondUnit>;
   TKilogramSquareMeterPerSecondUnitId = specialize TUnitId<TKilogramSquareMeterPerSecondUnit>;
@@ -1125,9 +1125,9 @@ operator /(const ALeft: TKilogramSquareMetersPerSecond; const ARight: THertz): T
 type
   { Unit of KilogramPerMeter }
   TKilogramPerMeterUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TKilogramsPerMeter = specialize TQuantity<TKilogramPerMeterUnit>;
   TKilogramPerMeterUnitId = specialize TUnitId<TKilogramPerMeterUnit>;
@@ -1142,9 +1142,9 @@ operator /(const ALeft: TKilograms; const {%H-}ARight: TMeterUnitId): TKilograms
 type
   { Unit of KilogramPerSquareMeter }
   TKilogramPerSquareMeterUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TKilogramsPerSquareMeter = specialize TQuantity<TKilogramPerSquareMeterUnit>;
   TKilogramPerSquareMeterUnitId = specialize TUnitId<TKilogramPerSquareMeterUnit>;
@@ -1159,9 +1159,9 @@ operator /(const ALeft: TKilograms; const {%H-}ARight: TSquareMeterUnitId): TKil
 type
   { Unit of KilogramPerCubicMeter }
   TKilogramPerCubicMeterUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TKilogramsPerCubicMeter = specialize TQuantity<TKilogramPerCubicMeterUnit>;
   TKilogramPerCubicMeterUnitId = specialize TUnitId<TKilogramPerCubicMeterUnit>;
@@ -1182,9 +1182,9 @@ operator /(const ALeft: TKilogramsPerSquareMeter; const ARight: TKilogramsPerCub
 type
   { Unit of Newton }
   TNewtonUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TNewtons = specialize TQuantity<TNewtonUnit>;
   TNewtonUnitId = specialize TUnitId<TNewtonUnit>;
@@ -1226,9 +1226,9 @@ operator /(const ALeft: TKilogramMetersPerSecond; const ARight: TNewtons): TSeco
 type
   { Unit of Pascal }
   TPascalUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TPascals = specialize TQuantity<TPascalUnit>;
   TPascalUnitId = specialize TUnitId<TPascalUnit>;
@@ -1264,9 +1264,9 @@ operator /(const ALeft: TPascals; const ARight: TSquareMetersPerSquareSecond): T
 type
   { Unit of Joule }
   TJouleUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TJoules = specialize TQuantity<TJouleUnit>;
   TJouleUnitId = specialize TUnitId<TJouleUnit>;
@@ -1327,9 +1327,9 @@ operator /(const ALeft: TKilogramSquareMeters; const ARight: TJoules): TSquareSe
 type
   { Unit of Elettronvolt }
   TElettronvoltUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
     const Factor = 1.60217742320523E-019;
   end;
   TElettronvolts = specialize TQuantity<TJouleUnit>;
@@ -1353,9 +1353,9 @@ const     peV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019
 type
   { Unit of Watt }
   TWattUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TWatts = specialize TQuantity<TWattUnit>;
   TWattUnitId = specialize TUnitId<TWattUnit>;
@@ -1397,9 +1397,9 @@ operator /(const ALeft: TWatts; const ARight: TMetersPerSecond): TNewtons; inlin
 type
   { Unit of Coulomb }
   TCoulombUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TCoulombs = specialize TQuantity<TCoulombUnit>;
   TCoulombUnitId = specialize TUnitId<TCoulombUnit>;
@@ -1429,9 +1429,9 @@ operator *(const ALeft: TSeconds; const {%H-}ARight: TAmpereUnitId): TCoulombs; 
 type
   { Unit of SquareCoulomb }
   TSquareCoulombUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSquareCoulombs = specialize TQuantity<TSquareCoulombUnit>;
   TSquareCoulombUnitId = specialize TUnitId<TSquareCoulombUnit>;
@@ -1458,9 +1458,9 @@ operator /(const ALeft: TSquareCoulombs; const ARight: TCoulombs): TCoulombs; in
 type
   { Unit of Volt }
   TVoltUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TVolts = specialize TQuantity<TVoltUnit>;
   TVoltUnitId = specialize TUnitId<TVoltUnit>;
@@ -1497,9 +1497,9 @@ operator /(const ALeft: TJoules; const {%H-}ARight: TCoulombUnitId): TVolts; inl
 type
   { Unit of SquareVolt }
   TSquareVoltUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSquareVolts = specialize TQuantity<TSquareVoltUnit>;
   TSquareVoltUnitId = specialize TUnitId<TSquareVoltUnit>;
@@ -1526,9 +1526,9 @@ operator /(const ALeft: TSquareVolts; const ARight: TVolts): TVolts; inline;
 type
   { Unit of Farad }
   TFaradUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TFarads = specialize TQuantity<TFaradUnit>;
   TFaradUnitId = specialize TUnitId<TFaradUnit>;
@@ -1564,9 +1564,9 @@ operator /(const ALeft: TSquareCoulombs; const ARight: TFarads): TJoules; inline
 type
   { Unit of Ohm }
   TOhmUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TOhms = specialize TQuantity<TOhmUnit>;
   TOhmUnitId = specialize TUnitId<TOhmUnit>;
@@ -1614,9 +1614,9 @@ operator /(const ALeft: TSquareVolts; const ARight: TOhms): TWatts; inline;
 type
   { Unit of Siemens }
   TSiemensUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSiemens = specialize TQuantity<TSiemensUnit>;
   TSiemensUnitId = specialize TUnitId<TSiemensUnit>;
@@ -1646,9 +1646,9 @@ operator /(const ALeft: double; const {%H-}ARight: TOhmUnitId): TSiemens; inline
 type
   { Unit of Weber }
   TWeberUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TWebers = specialize TQuantity<TWeberUnit>;
   TWeberUnitId = specialize TUnitId<TWeberUnit>;
@@ -1678,9 +1678,9 @@ operator *(const ALeft: TVolts; const {%H-}ARight: TSecondUnitId): TWebers; inli
 type
   { Unit of Tesla }
   TTeslaUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TTeslas = specialize TQuantity<TTeslaUnit>;
   TTeslaUnitId = specialize TUnitId<TTeslaUnit>;
@@ -1710,9 +1710,9 @@ operator /(const ALeft: TWebers; const {%H-}ARight: TSquareMeterUnitId): TTeslas
 type
   { Unit of Henry }
   THenryUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   THenrys = specialize TQuantity<THenryUnit>;
   THenryUnitId = specialize TUnitId<THenryUnit>;
@@ -1754,9 +1754,9 @@ operator /(const ALeft: TOhms; const ARight: THenrys): THertz; inline;
 type
   { Unit of Lumen }
   TLumenUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TLumens = specialize TQuantity<TLumenUnit>;
   TLumenUnitId = specialize TUnitId<TLumenUnit>;
@@ -1786,9 +1786,9 @@ operator *(const ALeft: TCandelas; const {%H-}ARight: TSteradianUnitId): TLumens
 type
   { Unit of Lux }
   TLuxUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TLux = specialize TQuantity<TLuxUnit>;
   TLuxUnitId = specialize TUnitId<TLuxUnit>;
@@ -1818,9 +1818,9 @@ operator /(const ALeft: TLumens; const {%H-}ARight: TSquareMeterUnitId): TLux; i
 type
   { Unit of Bequerel }
   TBequerelUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TBequerels = specialize TQuantity<THertzUnit>;
   TBequerelUnitId = specialize TUnitId<THertzUnit>;
@@ -1843,9 +1843,9 @@ const     pBq: specialize TQuantity<THertzUnit> = (FValue: 1E-12);
 type
   { Unit of Gray }
   TGrayUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TGrays = specialize TQuantity<TSquareMeterPerSquareSecondUnit>;
   TGrayUnitId = specialize TUnitId<TSquareMeterPerSquareSecondUnit>;
@@ -1868,9 +1868,9 @@ const     pGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 
 type
   { Unit of Sievert }
   TSievertUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSieverts = specialize TQuantity<TSquareMeterPerSquareSecondUnit>;
   TSievertUnitId = specialize TUnitId<TSquareMeterPerSquareSecondUnit>;
@@ -1893,9 +1893,9 @@ const     pSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 
 type
   { Unit of Katal }
   TKatalUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TKatals = specialize TQuantity<TKatalUnit>;
   TKatalUnitId = specialize TUnitId<TKatalUnit>;
@@ -1925,9 +1925,9 @@ operator /(const ALeft: TMoles; const {%H-}ARight: TSecondUnitId): TKatals; inli
 type
   { Unit of NewtonMeter }
   TNewtonMeterUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TNewtonMeters = specialize TQuantity<TJouleUnit>;
   TNewtonMeterUnitId = specialize TUnitId<TJouleUnit>;
@@ -1935,9 +1935,9 @@ type
 type
   { Unit of JoulePerRadian }
   TJoulePerRadianUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TJoulesPerRadian = specialize TQuantity<TJoulePerRadianUnit>;
   TJoulePerRadianUnitId = specialize TUnitId<TJoulePerRadianUnit>;
@@ -1952,9 +1952,9 @@ operator /(const ALeft: TJoules; const {%H-}ARight: TRadianUnitId): TJoulesPerRa
 type
   { Unit of JoulePerDegree }
   TJoulePerDegreeUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
     const Factor = 180/Pi;
   end;
   TJoulesPerDegree = specialize TQuantity<TJoulePerRadianUnit>;
@@ -1963,9 +1963,9 @@ type
 type
   { Unit of NewtonMeterPerRadian }
   TNewtonMeterPerRadianUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TNewtonMetersPerRadian = specialize TQuantity<TJoulePerRadianUnit>;
   TNewtonMeterPerRadianUnitId = specialize TUnitId<TJoulePerRadianUnit>;
@@ -1973,9 +1973,9 @@ type
 type
   { Unit of NewtonMeterPerDegree }
   TNewtonMeterPerDegreeUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
     const Factor = 180/Pi;
   end;
   TNewtonMetersPerDegree = specialize TQuantity<TJoulePerRadianUnit>;
@@ -1984,9 +1984,9 @@ type
 type
   { Unit of NewtonPerCubicMeter }
   TNewtonPerCubicMeterUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TNewtonsPerCubicMeter = specialize TQuantity<TNewtonPerCubicMeterUnit>;
   TNewtonPerCubicMeterUnitId = specialize TUnitId<TNewtonPerCubicMeterUnit>;
@@ -2013,9 +2013,9 @@ operator /(const ALeft: TNewtonsPerCubicMeter; const ARight: TMetersPerSquareSec
 type
   { Unit of NewtonPerMeter }
   TNewtonPerMeterUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TNewtonsPerMeter = specialize TQuantity<TNewtonPerMeterUnit>;
   TNewtonPerMeterUnitId = specialize TUnitId<TNewtonPerMeterUnit>;
@@ -2048,9 +2048,9 @@ operator /(const ALeft: TNewtonsPerMeter; const ARight: TSquareHertz): TKilogram
 type
   { Unit of CubicMeterPerSecond }
   TCubicMeterPerSecondUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TCubicMetersPerSecond = specialize TQuantity<TCubicMeterPerSecondUnit>;
   TCubicMeterPerSecondUnitId = specialize TUnitId<TCubicMeterPerSecondUnit>;
@@ -2071,9 +2071,9 @@ operator /(const ALeft: TCubicMetersPerSecond; const ARight: TMetersPerSecond): 
 type
   { Unit of KilogramPerSecond }
   TKilogramPerSecondUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TKilogramsPerSecond = specialize TQuantity<TKilogramPerSecondUnit>;
   TKilogramPerSecondUnitId = specialize TUnitId<TKilogramPerSecondUnit>;
@@ -2094,9 +2094,9 @@ operator /(const ALeft: TNewtons; const ARight: TKilogramsPerSecond): TMetersPer
 type
   { Unit of Poiseuille }
   TPoiseuilleUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TPoiseuilles = specialize TQuantity<TPoiseuilleUnit>;
   TPoiseuilleUnitId = specialize TUnitId<TPoiseuilleUnit>;
@@ -2139,9 +2139,9 @@ operator *(const ALeft: TPoiseuilles; const {%H-}ARight: TMeterUnitId): TKilogra
 type
   { Unit of PascalSecond }
   TPascalSecondUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TPascalSeconds = specialize TQuantity<TPoiseuilleUnit>;
   TPascalSecondUnitId = specialize TUnitId<TPoiseuilleUnit>;
@@ -2149,9 +2149,9 @@ type
 type
   { Unit of SquareMeterPerSecond }
   TSquareMeterPerSecondUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSquareMetersPerSecond = specialize TQuantity<TSquareMeterPerSecondUnit>;
   TSquareMeterPerSecondUnitId = specialize TUnitId<TSquareMeterPerSecondUnit>;
@@ -2172,9 +2172,9 @@ operator /(const ALeft: TPoiseuilles; const ARight: TSquareMetersPerSecond): TKi
 type
   { Unit of KilogramPerQuarticMeter }
   TKilogramPerQuarticMeterUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TKilogramsPerQuarticMeter = specialize TQuantity<TKilogramPerQuarticMeterUnit>;
   TKilogramPerQuarticMeterUnitId = specialize TUnitId<TKilogramPerQuarticMeterUnit>;
@@ -2189,9 +2189,9 @@ operator /(const ALeft: TKilograms; const {%H-}ARight: TQuarticMeterUnitId): TKi
 type
   { Unit of QuarticMeterSecond }
   TQuarticMeterSecondUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TQuarticMeterSeconds = specialize TQuantity<TQuarticMeterSecondUnit>;
   TQuarticMeterSecondUnitId = specialize TUnitId<TQuarticMeterSecondUnit>;
@@ -2206,9 +2206,9 @@ operator *(const ALeft: TQuarticMeters; const {%H-}ARight: TSecondUnitId): TQuar
 type
   { Unit of KilogramPerQuarticMeterPerSecond }
   TKilogramPerQuarticMeterPerSecondUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TKilogramsPerQuarticMeterPerSecond = specialize TQuantity<TKilogramPerQuarticMeterPerSecondUnit>;
   TKilogramPerQuarticMeterPerSecondUnitId = specialize TUnitId<TKilogramPerQuarticMeterPerSecondUnit>;
@@ -2242,9 +2242,9 @@ operator /(const ALeft: TPascals; const ARight: TKilogramsPerQuarticMeterPerSeco
 type
   { Unit of CubicMeterPerKilogram }
   TCubicMeterPerKilogramUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TCubicMetersPerKilogram = specialize TQuantity<TCubicMeterPerKilogramUnit>;
   TCubicMeterPerKilogramUnitId = specialize TUnitId<TCubicMeterPerKilogramUnit>;
@@ -2259,9 +2259,9 @@ operator /(const ALeft: TCubicMeters; const {%H-}ARight: TKilogramUnitId): TCubi
 type
   { Unit of KilogramSquareSecond }
   TKilogramSquareSecondUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TKilogramSquareSeconds = specialize TQuantity<TKilogramSquareSecondUnit>;
   TKilogramSquareSecondUnitId = specialize TUnitId<TKilogramSquareSecondUnit>;
@@ -2276,9 +2276,9 @@ operator *(const ALeft: TKilograms; const {%H-}ARight: TSquareSecondUnitId): TKi
 type
   { Unit of CubicMeterPerSquareSecond }
   TCubicMeterPerSquareSecondUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TCubicMetersPerSquareSecond = specialize TQuantity<TCubicMeterPerSquareSecondUnit>;
   TCubicMeterPerSquareSecondUnitId = specialize TUnitId<TCubicMeterPerSquareSecondUnit>;
@@ -2299,9 +2299,9 @@ operator /(const ALeft: TCubicMetersPerSquareSecond; const ARight: TSquareMeters
 type
   { Unit of NewtonSquareMeter }
   TNewtonSquareMeterUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TNewtonSquareMeters = specialize TQuantity<TNewtonSquareMeterUnit>;
   TNewtonSquareMeterUnitId = specialize TUnitId<TNewtonSquareMeterUnit>;
@@ -2328,9 +2328,9 @@ operator /(const ALeft: TNewtonSquareMeters; const ARight: TQuarticMeters): TPas
 type
   { Unit of NewtonPerSquareKilogram }
   TNewtonPerSquareKilogramUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TNewtonsPerSquareKilogram = specialize TQuantity<TNewtonPerSquareKilogramUnit>;
   TNewtonPerSquareKilogramUnitId = specialize TUnitId<TNewtonPerSquareKilogramUnit>;
@@ -2345,9 +2345,9 @@ operator /(const ALeft: TNewtons; const {%H-}ARight: TSquareKilogramUnitId): TNe
 type
   { Unit of SquareKilogramPerMeter }
   TSquareKilogramPerMeterUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSquareKilogramsPerMeter = specialize TQuantity<TSquareKilogramPerMeterUnit>;
   TSquareKilogramPerMeterUnitId = specialize TUnitId<TSquareKilogramPerMeterUnit>;
@@ -2362,9 +2362,9 @@ operator /(const ALeft: TSquareKilograms; const {%H-}ARight: TMeterUnitId): TSqu
 type
   { Unit of SquareKilogramPerSquareMeter }
   TSquareKilogramPerSquareMeterUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSquareKilogramsPerSquareMeter = specialize TQuantity<TSquareKilogramPerSquareMeterUnit>;
   TSquareKilogramPerSquareMeterUnitId = specialize TUnitId<TSquareKilogramPerSquareMeterUnit>;
@@ -2379,9 +2379,9 @@ operator /(const ALeft: TSquareKilograms; const {%H-}ARight: TSquareMeterUnitId)
 type
   { Unit of SquareMeterPerSquareKilogram }
   TSquareMeterPerSquareKilogramUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSquareMetersPerSquareKilogram = specialize TQuantity<TSquareMeterPerSquareKilogramUnit>;
   TSquareMeterPerSquareKilogramUnitId = specialize TUnitId<TSquareMeterPerSquareKilogramUnit>;
@@ -2396,9 +2396,9 @@ operator /(const ALeft: TSquareMeters; const {%H-}ARight: TSquareKilogramUnitId)
 type
   { Unit of NewtonSquareMeterPerSquareKilogram }
   TNewtonSquareMeterPerSquareKilogramUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TNewtonSquareMetersPerSquareKilogram = specialize TQuantity<TNewtonSquareMeterPerSquareKilogramUnit>;
   TNewtonSquareMeterPerSquareKilogramUnitId = specialize TUnitId<TNewtonSquareMeterPerSquareKilogramUnit>;
@@ -2456,9 +2456,9 @@ operator /(const ALeft: TCubicMetersPerSquareSecond; const ARight: TNewtonSquare
 type
   { Unit of ReciprocalKelvin }
   TReciprocalKelvinUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TReciprocalKelvins = specialize TQuantity<TReciprocalKelvinUnit>;
   TReciprocalKelvinUnitId = specialize TUnitId<TReciprocalKelvinUnit>;
@@ -2473,9 +2473,9 @@ operator /(const ALeft: double; const {%H-}ARight: TKelvinUnitId): TReciprocalKe
 type
   { Unit of KilogramKelvin }
   TKilogramKelvinUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TKilogramKelvins = specialize TQuantity<TKilogramKelvinUnit>;
   TKilogramKelvinUnitId = specialize TUnitId<TKilogramKelvinUnit>;
@@ -2490,9 +2490,9 @@ operator *(const ALeft: TKilograms; const {%H-}ARight: TKelvinUnitId): TKilogram
 type
   { Unit of JoulePerKelvin }
   TJoulePerKelvinUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TJoulesPerKelvin = specialize TQuantity<TJoulePerKelvinUnit>;
   TJoulePerKelvinUnitId = specialize TUnitId<TJoulePerKelvinUnit>;
@@ -2507,9 +2507,9 @@ operator /(const ALeft: TJoules; const {%H-}ARight: TKelvinUnitId): TJoulesPerKe
 type
   { Unit of JoulePerKilogram }
   TJoulePerKilogramUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TJoulesPerKilogram = specialize TQuantity<TSquareMeterPerSquareKilogramUnit>;
   TJoulePerKilogramUnitId = specialize TUnitId<TSquareMeterPerSquareKilogramUnit>;
@@ -2517,9 +2517,9 @@ type
 type
   { Unit of JoulePerKilogramPerKelvin }
   TJoulePerKilogramPerKelvinUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TJoulesPerKilogramPerKelvin = specialize TQuantity<TJoulePerKilogramPerKelvinUnit>;
   TJoulePerKilogramPerKelvinUnitId = specialize TUnitId<TJoulePerKilogramPerKelvinUnit>;
@@ -2547,9 +2547,9 @@ operator /(const ALeft: TJoulesPerKelvin; const {%H-}ARight: TKilogramUnitId): T
 type
   { Unit of MeterKelvin }
   TMeterKelvinUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TMeterKelvins = specialize TQuantity<TMeterKelvinUnit>;
   TMeterKelvinUnitId = specialize TUnitId<TMeterKelvinUnit>;
@@ -2564,9 +2564,9 @@ operator *(const ALeft: TMeters; const {%H-}ARight: TKelvinUnitId): TMeterKelvin
 type
   { Unit of KelvinPerMeter }
   TKelvinPerMeterUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TKelvinsPerMeter = specialize TQuantity<TKelvinPerMeterUnit>;
   TKelvinPerMeterUnitId = specialize TUnitId<TKelvinPerMeterUnit>;
@@ -2581,9 +2581,9 @@ operator /(const ALeft: TKelvins; const {%H-}ARight: TMeterUnitId): TKelvinsPerM
 type
   { Unit of WattPerMeter }
   TWattPerMeterUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TWattsPerMeter = specialize TQuantity<TWattPerMeterUnit>;
   TWattPerMeterUnitId = specialize TUnitId<TWattPerMeterUnit>;
@@ -2598,9 +2598,9 @@ operator /(const ALeft: TWatts; const {%H-}ARight: TMeterUnitId): TWattsPerMeter
 type
   { Unit of WattPerSquareMeter }
   TWattPerSquareMeterUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TWattsPerSquareMeter = specialize TQuantity<TWattPerSquareMeterUnit>;
   TWattPerSquareMeterUnitId = specialize TUnitId<TWattPerSquareMeterUnit>;
@@ -2615,9 +2615,9 @@ operator /(const ALeft: TWatts; const {%H-}ARight: TSquareMeterUnitId): TWattsPe
 type
   { Unit of WattPerKelvin }
   TWattPerKelvinUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TWattsPerKelvin = specialize TQuantity<TWattPerKelvinUnit>;
   TWattPerKelvinUnitId = specialize TUnitId<TWattPerKelvinUnit>;
@@ -2632,9 +2632,9 @@ operator /(const ALeft: TWatts; const {%H-}ARight: TKelvinUnitId): TWattsPerKelv
 type
   { Unit of WattPerMeterPerKelvin }
   TWattPerMeterPerKelvinUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TWattsPerMeterPerKelvin = specialize TQuantity<TWattPerMeterPerKelvinUnit>;
   TWattPerMeterPerKelvinUnitId = specialize TUnitId<TWattPerMeterPerKelvinUnit>;
@@ -2668,9 +2668,9 @@ operator /(const ALeft: TWattsPerSquareMeter; const ARight: TWattsPerMeterPerKel
 type
   { Unit of SquareMeterKelvin }
   TSquareMeterKelvinUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSquareMeterKelvins = specialize TQuantity<TSquareMeterKelvinUnit>;
   TSquareMeterKelvinUnitId = specialize TUnitId<TSquareMeterKelvinUnit>;
@@ -2685,9 +2685,9 @@ operator *(const ALeft: TSquareMeters; const {%H-}ARight: TKelvinUnitId): TSquar
 type
   { Unit of WattPerSquareMeterPerKelvin }
   TWattPerSquareMeterPerKelvinUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TWattsPerSquareMeterPerKelvin = specialize TQuantity<TWattPerSquareMeterPerKelvinUnit>;
   TWattPerSquareMeterPerKelvinUnitId = specialize TUnitId<TWattPerSquareMeterPerKelvinUnit>;
@@ -2715,9 +2715,9 @@ operator /(const ALeft: TWattsPerKelvin; const {%H-}ARight: TSquareMeterUnitId):
 type
   { Unit of SquareMeterQuarticKelvin }
   TSquareMeterQuarticKelvinUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSquareMeterQuarticKelvins = specialize TQuantity<TSquareMeterQuarticKelvinUnit>;
   TSquareMeterQuarticKelvinUnitId = specialize TUnitId<TSquareMeterQuarticKelvinUnit>;
@@ -2732,9 +2732,9 @@ operator *(const ALeft: TSquareMeters; const {%H-}ARight: TQuarticKelvinUnitId):
 type
   { Unit of WattPerQuarticKelvin }
   TWattPerQuarticKelvinUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TWattsPerQuarticKelvin = specialize TQuantity<TWattPerQuarticKelvinUnit>;
   TWattPerQuarticKelvinUnitId = specialize TUnitId<TWattPerQuarticKelvinUnit>;
@@ -2749,9 +2749,9 @@ operator /(const ALeft: TWatts; const {%H-}ARight: TQuarticKelvinUnitId): TWatts
 type
   { Unit of WattPerSquareMeterPerQuarticKelvin }
   TWattPerSquareMeterPerQuarticKelvinUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TWattsPerSquareMeterPerQuarticKelvin = specialize TQuantity<TWattPerSquareMeterPerQuarticKelvinUnit>;
   TWattPerSquareMeterPerQuarticKelvinUnitId = specialize TUnitId<TWattPerSquareMeterPerQuarticKelvinUnit>;
@@ -2779,9 +2779,9 @@ operator /(const ALeft: TWattsPerQuarticKelvin; const {%H-}ARight: TSquareMeterU
 type
   { Unit of JoulePerMole }
   TJoulePerMoleUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TJoulesPerMole = specialize TQuantity<TJoulePerMoleUnit>;
   TJoulePerMoleUnitId = specialize TUnitId<TJoulePerMoleUnit>;
@@ -2796,9 +2796,9 @@ operator /(const ALeft: TJoules; const {%H-}ARight: TMoleUnitId): TJoulesPerMole
 type
   { Unit of MoleKelvin }
   TMoleKelvinUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TMoleKelvins = specialize TQuantity<TMoleKelvinUnit>;
   TMoleKelvinUnitId = specialize TUnitId<TMoleKelvinUnit>;
@@ -2813,9 +2813,9 @@ operator *(const ALeft: TMoles; const {%H-}ARight: TKelvinUnitId): TMoleKelvins;
 type
   { Unit of JoulePerMolePerKelvin }
   TJoulePerMolePerKelvinUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TJoulesPerMolePerKelvin = specialize TQuantity<TJoulePerMolePerKelvinUnit>;
   TJoulePerMolePerKelvinUnitId = specialize TUnitId<TJoulePerMolePerKelvinUnit>;
@@ -2843,9 +2843,9 @@ operator /(const ALeft: TJoulesPerMole; const {%H-}ARight: TKelvinUnitId): TJoul
 type
   { Unit of OhmMeter }
   TOhmMeterUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TOhmMeters = specialize TQuantity<TOhmMeterUnit>;
   TOhmMeterUnitId = specialize TUnitId<TOhmMeterUnit>;
@@ -2860,9 +2860,9 @@ operator *(const ALeft: TOhms; const {%H-}ARight: TMeterUnitId): TOhmMeters; inl
 type
   { Unit of VoltPerMeter }
   TVoltPerMeterUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TVoltsPerMeter = specialize TQuantity<TVoltPerMeterUnit>;
   TVoltPerMeterUnitId = specialize TUnitId<TVoltPerMeterUnit>;
@@ -2890,9 +2890,9 @@ operator /(const ALeft: TVoltsPerMeter; const ARight: TMetersPerSecond): TTeslas
 type
   { Unit of NewtonPerCoulomb }
   TNewtonPerCoulombUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TNewtonsPerCoulomb = specialize TQuantity<TVoltPerMeterUnit>;
   TNewtonPerCoulombUnitId = specialize TUnitId<TVoltPerMeterUnit>;
@@ -2900,9 +2900,9 @@ type
 type
   { Unit of CoulombPerMeter }
   TCoulombPerMeterUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TCoulombsPerMeter = specialize TQuantity<TCoulombPerMeterUnit>;
   TCoulombPerMeterUnitId = specialize TUnitId<TCoulombPerMeterUnit>;
@@ -2917,9 +2917,9 @@ operator /(const ALeft: TCoulombs; const {%H-}ARight: TMeterUnitId): TCoulombsPe
 type
   { Unit of SquareCoulombPerMeter }
   TSquareCoulombPerMeterUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSquareCoulombsPerMeter = specialize TQuantity<TSquareCoulombPerMeterUnit>;
   TSquareCoulombPerMeterUnitId = specialize TUnitId<TSquareCoulombPerMeterUnit>;
@@ -2940,9 +2940,9 @@ operator /(const ALeft: TSquareCoulombsPerMeter; const ARight: TCoulombs): TCoul
 type
   { Unit of CoulombPerSquareMeter }
   TCoulombPerSquareMeterUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TCoulombsPerSquareMeter = specialize TQuantity<TCoulombPerSquareMeterUnit>;
   TCoulombPerSquareMeterUnitId = specialize TUnitId<TCoulombPerSquareMeterUnit>;
@@ -2963,9 +2963,9 @@ operator /(const ALeft: TCoulombsPerMeter; const ARight: TCoulombsPerSquareMeter
 type
   { Unit of SquareMeterPerSquareCoulomb }
   TSquareMeterPerSquareCoulombUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSquareMetersPerSquareCoulomb = specialize TQuantity<TSquareMeterPerSquareCoulombUnit>;
   TSquareMeterPerSquareCoulombUnitId = specialize TUnitId<TSquareMeterPerSquareCoulombUnit>;
@@ -2980,9 +2980,9 @@ operator /(const ALeft: TSquareMeters; const {%H-}ARight: TSquareCoulombUnitId):
 type
   { Unit of NewtonPerSquareCoulomb }
   TNewtonPerSquareCoulombUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TNewtonsPerSquareCoulomb = specialize TQuantity<TNewtonPerSquareCoulombUnit>;
   TNewtonPerSquareCoulombUnitId = specialize TUnitId<TNewtonPerSquareCoulombUnit>;
@@ -2997,9 +2997,9 @@ operator /(const ALeft: TNewtons; const {%H-}ARight: TSquareCoulombUnitId): TNew
 type
   { Unit of NewtonSquareMeterPerSquareCoulomb }
   TNewtonSquareMeterPerSquareCoulombUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TNewtonSquareMetersPerSquareCoulomb = specialize TQuantity<TNewtonSquareMeterPerSquareCoulombUnit>;
   TNewtonSquareMeterPerSquareCoulombUnitId = specialize TUnitId<TNewtonSquareMeterPerSquareCoulombUnit>;
@@ -3039,9 +3039,9 @@ operator /(const ALeft: TJoules; const ARight: TNewtonSquareMetersPerSquareCoulo
 type
   { Unit of VoltMeter }
   TVoltMeterUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TVoltMeters = specialize TQuantity<TVoltMeterUnit>;
   TVoltMeterUnitId = specialize TUnitId<TVoltMeterUnit>;
@@ -3062,9 +3062,9 @@ operator /(const ALeft: TVoltMeters; const ARight: TSquareMeters): TVoltsPerMete
 type
   { Unit of NewtonSquareMeterPerCoulomb }
   TNewtonSquareMeterPerCoulombUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TNewtonSquareMetersPerCoulomb = specialize TQuantity<TVoltMeterUnit>;
   TNewtonSquareMeterPerCoulombUnitId = specialize TUnitId<TVoltMeterUnit>;
@@ -3072,9 +3072,9 @@ type
 type
   { Unit of VoltMeterPerSecond }
   TVoltMeterPerSecondUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TVoltMetersPerSecond = specialize TQuantity<TVoltMeterPerSecondUnit>;
   TVoltMeterPerSecondUnitId = specialize TUnitId<TVoltMeterPerSecondUnit>;
@@ -3089,9 +3089,9 @@ operator /(const ALeft: TVoltMeters; const {%H-}ARight: TSecondUnitId): TVoltMet
 type
   { Unit of FaradPerMeter }
   TFaradPerMeterUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TFaradsPerMeter = specialize TQuantity<TFaradPerMeterUnit>;
   TFaradPerMeterUnitId = specialize TUnitId<TFaradPerMeterUnit>;
@@ -3124,9 +3124,9 @@ operator /(const ALeft: double; const ARight: TFaradsPerMeter): TNewtonSquareMet
 type
   { Unit of AmperePerMeter }
   TAmperePerMeterUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TAmperesPerMeter = specialize TQuantity<TAmperePerMeterUnit>;
   TAmperePerMeterUnitId = specialize TUnitId<TAmperePerMeterUnit>;
@@ -3141,9 +3141,9 @@ operator /(const ALeft: TAmperes; const {%H-}ARight: TMeterUnitId): TAmperesPerM
 type
   { Unit of MeterPerAmpere }
   TMeterPerAmpereUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TMetersPerAmpere = specialize TQuantity<TMeterPerAmpereUnit>;
   TMeterPerAmpereUnitId = specialize TUnitId<TMeterPerAmpereUnit>;
@@ -3158,9 +3158,9 @@ operator /(const ALeft: TMeters; const {%H-}ARight: TAmpereUnitId): TMetersPerAm
 type
   { Unit of TeslaMeter }
   TTeslaMeterUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TTeslaMeters = specialize TQuantity<TTeslaMeterUnit>;
   TTeslaMeterUnitId = specialize TUnitId<TTeslaMeterUnit>;
@@ -3182,9 +3182,9 @@ operator /(const ALeft: TNewtons; const {%H-}ARight: TAmpereUnitId): TTeslaMeter
 type
   { Unit of NewtonPerAmpere }
   TNewtonPerAmpereUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TNewtonsPerAmpere = specialize TQuantity<TTeslaMeterUnit>;
   TNewtonPerAmpereUnitId = specialize TUnitId<TTeslaMeterUnit>;
@@ -3192,9 +3192,9 @@ type
 type
   { Unit of TeslaPerAmpere }
   TTeslaPerAmpereUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TTeslasPerAmpere = specialize TQuantity<TTeslaPerAmpereUnit>;
   TTeslaPerAmpereUnitId = specialize TUnitId<TTeslaPerAmpereUnit>;
@@ -3209,9 +3209,9 @@ operator /(const ALeft: TTeslas; const {%H-}ARight: TAmpereUnitId): TTeslasPerAm
 type
   { Unit of HenryPerMeter }
   THenryPerMeterUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   THenrysPerMeter = specialize TQuantity<THenryPerMeterUnit>;
   THenryPerMeterUnitId = specialize TUnitId<THenryPerMeterUnit>;
@@ -3258,9 +3258,9 @@ operator /(const ALeft: TNewtons; const ARight: THenrysPerMeter): TSquareAmperes
 type
   { Unit of TeslaMeterPerAmpere }
   TTeslaMeterPerAmpereUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TTeslaMetersPerAmpere = specialize TQuantity<THenryPerMeterUnit>;
   TTeslaMeterPerAmpereUnitId = specialize TUnitId<THenryPerMeterUnit>;
@@ -3268,9 +3268,9 @@ type
 type
   { Unit of NewtonPerSquareAmpere }
   TNewtonPerSquareAmpereUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TNewtonsPerSquareAmpere = specialize TQuantity<THenryPerMeterUnit>;
   TNewtonPerSquareAmpereUnitId = specialize TUnitId<THenryPerMeterUnit>;
@@ -3278,9 +3278,9 @@ type
 type
   { Unit of RadianPerMeter }
   TRadianPerMeterUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TRadiansPerMeter = specialize TQuantity<TRadianPerMeterUnit>;
   TRadianPerMeterUnitId = specialize TUnitId<TRadianPerMeterUnit>;
@@ -3295,9 +3295,9 @@ operator /(const ALeft: TRadians; const {%H-}ARight: TMeterUnitId): TRadiansPerM
 type
   { Unit of SquareKilogramPerSquareSecond }
   TSquareKilogramPerSquareSecondUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSquareKilogramsPerSquareSecond = specialize TQuantity<TSquareKilogramPerSquareSecondUnit>;
   TSquareKilogramPerSquareSecondUnitId = specialize TUnitId<TSquareKilogramPerSquareSecondUnit>;
@@ -3322,9 +3322,9 @@ operator /(const ALeft: TSquareKilogramsPerSquareSecond; const ARight: TNewtonsP
 type
   { Unit of SquareSecondPerSquareMeter }
   TSquareSecondPerSquareMeterUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSquareSecondsPerSquareMeter = specialize TQuantity<TSquareSecondPerSquareMeterUnit>;
   TSquareSecondPerSquareMeterUnitId = specialize TUnitId<TSquareSecondPerSquareMeterUnit>;
@@ -3351,9 +3351,9 @@ operator /(const ALeft: TSquareSecondsPerSquareMeter; const ARight: THenrysPerMe
 type
   { Unit of SquareJoule }
   TSquareJouleUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TSquareJoules = specialize TQuantity<TSquareJouleUnit>;
   TSquareJouleUnitId = specialize TUnitId<TSquareJouleUnit>;
@@ -3380,9 +3380,9 @@ operator /(const ALeft: TSquareJoules; const ARight: TJoules): TJoules; inline;
 type
   { Unit of JouleSecond }
   TJouleSecondUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
   TJouleSeconds = specialize TQuantity<TJouleSecondUnit>;
   TJouleSecondUnitId = specialize TUnitId<TJouleSecondUnit>;
@@ -3410,9 +3410,9 @@ operator /(const ALeft: TJouleSeconds; const ARight: TMeters): TKilogramMetersPe
 type
   { Unit of ElettronvoltSecond }
   TElettronvoltSecondUnit = record
-    class function Symbol (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Name   (const {%H-}APrefixes: TPrefixes): string; static;
-    class function Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
     const Factor = 1.60217742320523E-019;
   end;
   TElettronvoltSeconds = specialize TQuantity<TJouleSecondUnit>;
@@ -3647,27 +3647,27 @@ end;
 
 function TQuantity.Value(const Prefixes: TPrefixes): double;
 begin
-  result := U.Convert(FValue, Prefixes);
+  result := U.GetValue(FValue, Prefixes);
 end;
 
 function TQuantity.ToString: string;
 begin
-  result := FloatToStr(FValue) + ' ' + U.Symbol([]);
+  result := FloatToStr(FValue) + ' ' + U.GetSymbol([]);
 end;
 
 function TQuantity.ToVerboseString: string;
 begin
-  result := FloatToStr(FValue) + ' ' + U.Name([]);
+  result := FloatToStr(FValue) + ' ' + U.GetName([]);
 end;
 
 function TQuantity.ToString(Precision, Digits: longint; const Prefixes: TPrefixes): string;
 begin
-  result := FloatToStrF(U.Convert(FValue, Prefixes), ffGeneral, Precision, Digits) + ' ' + U.Symbol(Prefixes);
+  result := FloatToStrF(U.GetValue(FValue, Prefixes), ffGeneral, Precision, Digits) + ' ' + U.GetSymbol(Prefixes);
 end;
 
 function TQuantity.ToVerboseString(Precision, Digits: longint; const Prefixes: TPrefixes): string;
 begin
-  result := FloatToStrF(U.Convert(FValue, Prefixes), ffGeneral, Precision, Digits) + ' ' + U.Name(Prefixes);
+  result := FloatToStrF(U.GetValue(FValue, Prefixes), ffGeneral, Precision, Digits) + ' ' + U.GetName(Prefixes);
 end;
 
 class operator TQuantity.+(const ALeft, ARight: TSelf): TSelf;
@@ -3744,7 +3744,7 @@ end;
 
 { Unit of Second }
 
-class function TSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSecondUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%ss', [PrefixTable[APrefixes[0]].Symbol])
@@ -3752,7 +3752,7 @@ begin
     result := 's';
 end;
 
-class function TSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%ssecond', [PrefixTable[APrefixes[0]].Symbol])
@@ -3760,7 +3760,7 @@ begin
     result := 'second';
 end;
 
-class function TSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TSecondUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -3771,58 +3771,58 @@ end;
 
 { Unit of Day }
 
-class function TDayUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TDayUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   result := 'd';
 end;
 
-class function TDayUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TDayUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   result := 'day';
 end;
 
-class function TDayUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TDayUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
 end;
 
 { Unit of Hour }
 
-class function THourUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function THourUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   result := 'h';
 end;
 
-class function THourUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function THourUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   result := 'hour';
 end;
 
-class function THourUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function THourUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
 end;
 
 { Unit of Minute }
 
-class function TMinuteUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TMinuteUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   result := 'min';
 end;
 
-class function TMinuteUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TMinuteUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   result := 'minute';
 end;
 
-class function TMinuteUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TMinuteUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
 end;
 
 { Unit of SquareSecond }
 
-class function TSquareSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSquareSecondUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%ss2', [PrefixTable[APrefixes[0]].Symbol])
@@ -3830,7 +3830,7 @@ begin
     result := 's2';
 end;
 
-class function TSquareSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSquareSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('square %ssecond', [PrefixTable[APrefixes[0]].Symbol])
@@ -3838,7 +3838,7 @@ begin
     result := 'square second';
 end;
 
-class function TSquareSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TSquareSecondUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -3861,58 +3861,58 @@ end;
 
 { Unit of SquareDay }
 
-class function TSquareDayUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSquareDayUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   result := 'd2';
 end;
 
-class function TSquareDayUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSquareDayUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   result := 'square day';
 end;
 
-class function TSquareDayUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TSquareDayUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
 end;
 
 { Unit of SquareHour }
 
-class function TSquareHourUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSquareHourUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   result := 'h2';
 end;
 
-class function TSquareHourUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSquareHourUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   result := 'square hour';
 end;
 
-class function TSquareHourUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TSquareHourUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
 end;
 
 { Unit of SquareMinute }
 
-class function TSquareMinuteUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSquareMinuteUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   result := 'min2';
 end;
 
-class function TSquareMinuteUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSquareMinuteUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   result := 'square minute';
 end;
 
-class function TSquareMinuteUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TSquareMinuteUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
 end;
 
 { Unit of Meter }
 
-class function TMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TMeterUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sm', [PrefixTable[APrefixes[0]].Symbol])
@@ -3920,7 +3920,7 @@ begin
     result := 'm';
 end;
 
-class function TMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%smeter', [PrefixTable[APrefixes[0]].Symbol])
@@ -3928,7 +3928,7 @@ begin
     result := 'meter';
 end;
 
-class function TMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TMeterUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -3939,24 +3939,24 @@ end;
 
 { Unit of Astronomical }
 
-class function TAstronomicalUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TAstronomicalUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   result := 'au';
 end;
 
-class function TAstronomicalUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TAstronomicalUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   result := 'astronomical unit';
 end;
 
-class function TAstronomicalUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TAstronomicalUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
 end;
 
 { Unit of SquareMeter }
 
-class function TSquareMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSquareMeterUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sm2', [PrefixTable[APrefixes[0]].Symbol])
@@ -3964,7 +3964,7 @@ begin
     result := 'm2';
 end;
 
-class function TSquareMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSquareMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('square %smeter', [PrefixTable[APrefixes[0]].Symbol])
@@ -3972,7 +3972,7 @@ begin
     result := 'square meter';
 end;
 
-class function TSquareMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TSquareMeterUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -3995,7 +3995,7 @@ end;
 
 { Unit of CubicMeter }
 
-class function TCubicMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TCubicMeterUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sm3', [PrefixTable[APrefixes[0]].Symbol])
@@ -4003,7 +4003,7 @@ begin
     result := 'm3';
 end;
 
-class function TCubicMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TCubicMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('cubic %smeter', [PrefixTable[APrefixes[0]].Symbol])
@@ -4011,7 +4011,7 @@ begin
     result := 'cubic meter';
 end;
 
-class function TCubicMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TCubicMeterUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -4044,7 +4044,7 @@ end;
 
 { Unit of Litre }
 
-class function TLitreUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TLitreUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sL', [PrefixTable[APrefixes[0]].Symbol])
@@ -4052,7 +4052,7 @@ begin
     result := 'L';
 end;
 
-class function TLitreUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TLitreUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%slitre', [PrefixTable[APrefixes[0]].Symbol])
@@ -4060,7 +4060,7 @@ begin
     result := 'litre';
 end;
 
-class function TLitreUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TLitreUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -4071,7 +4071,7 @@ end;
 
 { Unit of QuarticMeter }
 
-class function TQuarticMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TQuarticMeterUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sm4', [PrefixTable[APrefixes[0]].Symbol])
@@ -4079,7 +4079,7 @@ begin
     result := 'm4';
 end;
 
-class function TQuarticMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TQuarticMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('quartic %smeter', [PrefixTable[APrefixes[0]].Symbol])
@@ -4087,7 +4087,7 @@ begin
     result := 'quartic meter';
 end;
 
-class function TQuarticMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TQuarticMeterUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -4132,7 +4132,7 @@ end;
 
 { Unit of QuinticMeter }
 
-class function TQuinticMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TQuinticMeterUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sm5', [PrefixTable[APrefixes[0]].Symbol])
@@ -4140,7 +4140,7 @@ begin
     result := 'm5';
 end;
 
-class function TQuinticMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TQuinticMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('quintic %smeter', [PrefixTable[APrefixes[0]].Symbol])
@@ -4148,7 +4148,7 @@ begin
     result := 'quintic meter';
 end;
 
-class function TQuinticMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TQuinticMeterUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -4203,7 +4203,7 @@ end;
 
 { Unit of SexticMeter }
 
-class function TSexticMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSexticMeterUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sm6', [PrefixTable[APrefixes[0]].Symbol])
@@ -4211,7 +4211,7 @@ begin
     result := 'm6';
 end;
 
-class function TSexticMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSexticMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('sextic %smeter', [PrefixTable[APrefixes[0]].Symbol])
@@ -4219,7 +4219,7 @@ begin
     result := 'sextic meter';
 end;
 
-class function TSexticMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TSexticMeterUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -4286,7 +4286,7 @@ end;
 
 { Unit of Kilogram }
 
-class function TKilogramUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TKilogramUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sg', [PrefixTable[APrefixes[0]].Symbol])
@@ -4294,7 +4294,7 @@ begin
     result := 'kg';
 end;
 
-class function TKilogramUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TKilogramUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sgram', [PrefixTable[APrefixes[0]].Symbol])
@@ -4302,7 +4302,7 @@ begin
     result := 'kilogram';
 end;
 
-class function TKilogramUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TKilogramUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -4314,7 +4314,7 @@ end;
 
 { Unit of Tonne }
 
-class function TTonneUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TTonneUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%st', [PrefixTable[APrefixes[0]].Symbol])
@@ -4322,7 +4322,7 @@ begin
     result := 't';
 end;
 
-class function TTonneUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TTonneUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%stonne', [PrefixTable[APrefixes[0]].Symbol])
@@ -4330,7 +4330,7 @@ begin
     result := 'tonne';
 end;
 
-class function TTonneUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TTonneUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -4341,7 +4341,7 @@ end;
 
 { Unit of SquareKilogram }
 
-class function TSquareKilogramUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSquareKilogramUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sg2', [PrefixTable[APrefixes[0]].Symbol])
@@ -4349,7 +4349,7 @@ begin
     result := 'kg2';
 end;
 
-class function TSquareKilogramUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSquareKilogramUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('square %sgram', [PrefixTable[APrefixes[0]].Symbol])
@@ -4357,7 +4357,7 @@ begin
     result := 'square kilogram';
 end;
 
-class function TSquareKilogramUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TSquareKilogramUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -4381,7 +4381,7 @@ end;
 
 { Unit of Ampere }
 
-class function TAmpereUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TAmpereUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sA', [PrefixTable[APrefixes[0]].Symbol])
@@ -4389,7 +4389,7 @@ begin
     result := 'A';
 end;
 
-class function TAmpereUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TAmpereUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sampere', [PrefixTable[APrefixes[0]].Symbol])
@@ -4397,7 +4397,7 @@ begin
     result := 'ampere';
 end;
 
-class function TAmpereUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TAmpereUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -4408,7 +4408,7 @@ end;
 
 { Unit of SquareAmpere }
 
-class function TSquareAmpereUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSquareAmpereUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sA2', [PrefixTable[APrefixes[0]].Symbol])
@@ -4416,7 +4416,7 @@ begin
     result := 'A2';
 end;
 
-class function TSquareAmpereUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSquareAmpereUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('square %sampere', [PrefixTable[APrefixes[0]].Symbol])
@@ -4424,7 +4424,7 @@ begin
     result := 'square ampere';
 end;
 
-class function TSquareAmpereUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TSquareAmpereUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -4447,7 +4447,7 @@ end;
 
 { Unit of Kelvin }
 
-class function TKelvinUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TKelvinUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sK', [PrefixTable[APrefixes[0]].Symbol])
@@ -4455,7 +4455,7 @@ begin
     result := 'K';
 end;
 
-class function TKelvinUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TKelvinUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%skelvin', [PrefixTable[APrefixes[0]].Symbol])
@@ -4463,7 +4463,7 @@ begin
     result := 'kelvin';
 end;
 
-class function TKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TKelvinUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -4474,41 +4474,41 @@ end;
 
 { Unit of DegreeCelsius }
 
-class function TDegreeCelsiusUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TDegreeCelsiusUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   result := 'ºC';
 end;
 
-class function TDegreeCelsiusUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TDegreeCelsiusUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   result := 'degree Celsius';
 end;
 
-class function TDegreeCelsiusUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TDegreeCelsiusUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
 end;
 
 { Unit of DegreeFahrenheit }
 
-class function TDegreeFahrenheitUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TDegreeFahrenheitUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   result := 'ºF';
 end;
 
-class function TDegreeFahrenheitUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TDegreeFahrenheitUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   result := 'degree Fahrenheit';
 end;
 
-class function TDegreeFahrenheitUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TDegreeFahrenheitUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
 end;
 
 { Unit of SquareKelvin }
 
-class function TSquareKelvinUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSquareKelvinUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sK2', [PrefixTable[APrefixes[0]].Symbol])
@@ -4516,7 +4516,7 @@ begin
     result := 'K2';
 end;
 
-class function TSquareKelvinUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSquareKelvinUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('square %skelvin', [PrefixTable[APrefixes[0]].Symbol])
@@ -4524,7 +4524,7 @@ begin
     result := 'square kelvin';
 end;
 
-class function TSquareKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TSquareKelvinUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -4547,7 +4547,7 @@ end;
 
 { Unit of CubicKelvin }
 
-class function TCubicKelvinUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TCubicKelvinUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sK3', [PrefixTable[APrefixes[0]].Symbol])
@@ -4555,7 +4555,7 @@ begin
     result := 'K3';
 end;
 
-class function TCubicKelvinUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TCubicKelvinUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('cubic %skelvin', [PrefixTable[APrefixes[0]].Symbol])
@@ -4563,7 +4563,7 @@ begin
     result := 'cubic kelvin';
 end;
 
-class function TCubicKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TCubicKelvinUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -4596,7 +4596,7 @@ end;
 
 { Unit of QuarticKelvin }
 
-class function TQuarticKelvinUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TQuarticKelvinUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sK4', [PrefixTable[APrefixes[0]].Symbol])
@@ -4604,7 +4604,7 @@ begin
     result := 'K4';
 end;
 
-class function TQuarticKelvinUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TQuarticKelvinUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('quartic %skelvin', [PrefixTable[APrefixes[0]].Symbol])
@@ -4612,7 +4612,7 @@ begin
     result := 'quartic kelvin';
 end;
 
-class function TQuarticKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TQuarticKelvinUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -4657,7 +4657,7 @@ end;
 
 { Unit of Mole }
 
-class function TMoleUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TMoleUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%smol', [PrefixTable[APrefixes[0]].Symbol])
@@ -4665,7 +4665,7 @@ begin
     result := 'mol';
 end;
 
-class function TMoleUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TMoleUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%smole', [PrefixTable[APrefixes[0]].Symbol])
@@ -4673,7 +4673,7 @@ begin
     result := 'mole';
 end;
 
-class function TMoleUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TMoleUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -4684,7 +4684,7 @@ end;
 
 { Unit of Candela }
 
-class function TCandelaUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TCandelaUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%scd', [PrefixTable[APrefixes[0]].Symbol])
@@ -4692,7 +4692,7 @@ begin
     result := 'cd';
 end;
 
-class function TCandelaUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TCandelaUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%scandela', [PrefixTable[APrefixes[0]].Symbol])
@@ -4700,7 +4700,7 @@ begin
     result := 'candela';
 end;
 
-class function TCandelaUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TCandelaUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -4711,51 +4711,51 @@ end;
 
 { Unit of Radian }
 
-class function TRadianUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TRadianUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   result := 'rad';
 end;
 
-class function TRadianUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TRadianUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   result := 'radian';
 end;
 
-class function TRadianUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TRadianUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
 end;
 
 { Unit of Degree }
 
-class function TDegreeUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TDegreeUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   result := 'deg';
 end;
 
-class function TDegreeUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TDegreeUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   result := 'degree';
 end;
 
-class function TDegreeUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TDegreeUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
 end;
 
 { Unit of Steradian }
 
-class function TSteradianUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSteradianUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   result := 'sr';
 end;
 
-class function TSteradianUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSteradianUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   result := 'steradian';
 end;
 
-class function TSteradianUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TSteradianUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
 end;
@@ -4774,7 +4774,7 @@ end;
 
 { Unit of Hertz }
 
-class function THertzUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function THertzUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sHz', [PrefixTable[APrefixes[0]].Symbol])
@@ -4782,7 +4782,7 @@ begin
     result := 'Hz';
 end;
 
-class function THertzUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function THertzUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%shertz', [PrefixTable[APrefixes[0]].Symbol])
@@ -4790,7 +4790,7 @@ begin
     result := 'hertz';
 end;
 
-class function THertzUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function THertzUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -4828,7 +4828,7 @@ end;
 
 { Unit of SquareHertz }
 
-class function TSquareHertzUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSquareHertzUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sHz2', [PrefixTable[APrefixes[0]].Symbol])
@@ -4836,7 +4836,7 @@ begin
     result := 'Hz2';
 end;
 
-class function TSquareHertzUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSquareHertzUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('square %shertz', [PrefixTable[APrefixes[0]].Symbol])
@@ -4844,7 +4844,7 @@ begin
     result := 'square hertz';
 end;
 
-class function TSquareHertzUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TSquareHertzUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -4916,7 +4916,7 @@ end;
 
 { Unit of RadianPerSecond }
 
-class function TRadianPerSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TRadianPerSecondUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('rad/%ss', [PrefixTable[APrefixes[0]].Symbol])
@@ -4924,7 +4924,7 @@ begin
     result := 'rad/s';
 end;
 
-class function TRadianPerSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TRadianPerSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('radian per %ssecond', [PrefixTable[APrefixes[0]].Symbol])
@@ -4932,7 +4932,7 @@ begin
     result := 'radian per second';
 end;
 
-class function TRadianPerSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TRadianPerSecondUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -5002,7 +5002,7 @@ end;
 
 { Unit of RadianPerSquareSecond }
 
-class function TRadianPerSquareSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TRadianPerSquareSecondUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('rad/%ss2', [PrefixTable[APrefixes[0]].Symbol])
@@ -5010,7 +5010,7 @@ begin
     result := 'rad/s2';
 end;
 
-class function TRadianPerSquareSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TRadianPerSquareSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('radian per square %ssecond', [PrefixTable[APrefixes[0]].Symbol])
@@ -5018,7 +5018,7 @@ begin
     result := 'radian per square second';
 end;
 
-class function TRadianPerSquareSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TRadianPerSquareSecondUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -5078,7 +5078,7 @@ end;
 
 { Unit of SteradianPerSquareSecond }
 
-class function TSteradianPerSquareSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSteradianPerSquareSecondUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('rad2/%ss2', [PrefixTable[APrefixes[0]].Symbol])
@@ -5086,7 +5086,7 @@ begin
     result := 'rad2/s2';
 end;
 
-class function TSteradianPerSquareSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSteradianPerSquareSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('square rad per square %ssecond', [PrefixTable[APrefixes[0]].Symbol])
@@ -5094,7 +5094,7 @@ begin
     result := 'square rad per square second';
 end;
 
-class function TSteradianPerSquareSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TSteradianPerSquareSecondUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -5154,7 +5154,7 @@ end;
 
 { Unit of MeterPerSecond }
 
-class function TMeterPerSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TMeterPerSecondUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sm/%ss', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -5162,7 +5162,7 @@ begin
     result := 'm/s';
 end;
 
-class function TMeterPerSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TMeterPerSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%smeter per %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -5170,7 +5170,7 @@ begin
     result := 'meter per second';
 end;
 
-class function TMeterPerSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TMeterPerSecondUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -5236,7 +5236,7 @@ end;
 
 { Unit of MeterPerHour }
 
-class function TMeterPerHourUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TMeterPerHourUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sm/h', [PrefixTable[APrefixes[0]].Symbol])
@@ -5244,7 +5244,7 @@ begin
     result := 'm/h';
 end;
 
-class function TMeterPerHourUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TMeterPerHourUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%smeter per hour', [PrefixTable[APrefixes[0]].Symbol])
@@ -5252,7 +5252,7 @@ begin
     result := 'meter per hour';
 end;
 
-class function TMeterPerHourUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TMeterPerHourUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -5263,7 +5263,7 @@ end;
 
 { Unit of MeterPerSquareSecond }
 
-class function TMeterPerSquareSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TMeterPerSquareSecondUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sm/%ss2', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -5271,7 +5271,7 @@ begin
     result := 'm/s2';
 end;
 
-class function TMeterPerSquareSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TMeterPerSquareSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%smeter per square %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -5279,7 +5279,7 @@ begin
     result := 'meter per square second';
 end;
 
-class function TMeterPerSquareSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TMeterPerSquareSecondUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -5367,7 +5367,7 @@ end;
 
 { Unit of MeterPerSecondPerSecond }
 
-class function TMeterPerSecondPerSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TMeterPerSecondPerSecondUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 3 then
     result := Format('%sm/%ss/%ss', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
@@ -5375,7 +5375,7 @@ begin
     result := 'm/s/s';
 end;
 
-class function TMeterPerSecondPerSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TMeterPerSecondPerSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 3 then
     result := Format('%smeter per %ssecond per %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
@@ -5383,7 +5383,7 @@ begin
     result := 'meter per second per second';
 end;
 
-class function TMeterPerSecondPerSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TMeterPerSecondPerSecondUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 3 then
@@ -5396,7 +5396,7 @@ end;
 
 { Unit of MeterPerHourPerSecond }
 
-class function TMeterPerHourPerSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TMeterPerHourPerSecondUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sm/h/%ss', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -5404,7 +5404,7 @@ begin
     result := 'm/h/s';
 end;
 
-class function TMeterPerHourPerSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TMeterPerHourPerSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%smeter per hour per %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -5412,7 +5412,7 @@ begin
     result := 'meter per hour per second';
 end;
 
-class function TMeterPerHourPerSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TMeterPerHourPerSecondUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -5424,7 +5424,7 @@ end;
 
 { Unit of SquareMeterPerSquareSecond }
 
-class function TSquareMeterPerSquareSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSquareMeterPerSquareSecondUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sm2/%ss2', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -5432,7 +5432,7 @@ begin
     result := 'm2/s2';
 end;
 
-class function TSquareMeterPerSquareSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSquareMeterPerSquareSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('square %smeter per square %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -5440,7 +5440,7 @@ begin
     result := 'square meter per square second';
 end;
 
-class function TSquareMeterPerSquareSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TSquareMeterPerSquareSecondUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -5513,7 +5513,7 @@ end;
 
 { Unit of KilogramMeterPerSecond }
 
-class function TKilogramMeterPerSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TKilogramMeterPerSecondUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 3 then
     result := Format('%sg.%sm/%ss', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
@@ -5521,7 +5521,7 @@ begin
     result := 'kg.m/s';
 end;
 
-class function TKilogramMeterPerSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TKilogramMeterPerSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 3 then
     result := Format('%sgram %smeter per %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
@@ -5529,7 +5529,7 @@ begin
     result := 'kilogram meter per second';
 end;
 
-class function TKilogramMeterPerSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TKilogramMeterPerSecondUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 3 then
@@ -5570,7 +5570,7 @@ end;
 
 { Unit of NewtonSecond }
 
-class function TNewtonSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TNewtonSecondUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sN.%ss', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -5578,7 +5578,7 @@ begin
     result := 'N.s';
 end;
 
-class function TNewtonSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TNewtonSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%snewton %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -5586,7 +5586,7 @@ begin
     result := 'newton second';
 end;
 
-class function TNewtonSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TNewtonSecondUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -5598,7 +5598,7 @@ end;
 
 { Unit of KilogramSquareMeter }
 
-class function TKilogramSquareMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TKilogramSquareMeterUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sg.%sm2', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -5606,7 +5606,7 @@ begin
     result := 'kg.m2';
 end;
 
-class function TKilogramSquareMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TKilogramSquareMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sgram square %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -5614,7 +5614,7 @@ begin
     result := 'kilogram square meter';
 end;
 
-class function TKilogramSquareMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TKilogramSquareMeterUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -5654,7 +5654,7 @@ end;
 
 { Unit of KilogramSquareMeterPerSecond }
 
-class function TKilogramSquareMeterPerSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TKilogramSquareMeterPerSecondUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 3 then
     result := Format('%sg.%sm2/%ss', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
@@ -5662,7 +5662,7 @@ begin
     result := 'kg.m2/s';
 end;
 
-class function TKilogramSquareMeterPerSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TKilogramSquareMeterPerSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 3 then
     result := Format('%sgram square %smeter per %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
@@ -5670,7 +5670,7 @@ begin
     result := 'kilogram square meter per second';
 end;
 
-class function TKilogramSquareMeterPerSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TKilogramSquareMeterPerSecondUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 3 then
@@ -5733,7 +5733,7 @@ end;
 
 { Unit of KilogramPerMeter }
 
-class function TKilogramPerMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TKilogramPerMeterUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sg/%sm', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -5741,7 +5741,7 @@ begin
     result := 'kg/m';
 end;
 
-class function TKilogramPerMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TKilogramPerMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sgram per %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -5749,7 +5749,7 @@ begin
     result := 'kilogram per meter';
 end;
 
-class function TKilogramPerMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TKilogramPerMeterUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -5789,7 +5789,7 @@ end;
 
 { Unit of KilogramPerSquareMeter }
 
-class function TKilogramPerSquareMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TKilogramPerSquareMeterUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sg/%sm2', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -5797,7 +5797,7 @@ begin
     result := 'kg/m2';
 end;
 
-class function TKilogramPerSquareMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TKilogramPerSquareMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sgram per square %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -5805,7 +5805,7 @@ begin
     result := 'kilogram per square meter';
 end;
 
-class function TKilogramPerSquareMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TKilogramPerSquareMeterUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -5845,7 +5845,7 @@ end;
 
 { Unit of KilogramPerCubicMeter }
 
-class function TKilogramPerCubicMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TKilogramPerCubicMeterUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sg/%sm3', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -5853,7 +5853,7 @@ begin
     result := 'kg/m3';
 end;
 
-class function TKilogramPerCubicMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TKilogramPerCubicMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sgram per cubic %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -5861,7 +5861,7 @@ begin
     result := 'kilogram per cubic meter';
 end;
 
-class function TKilogramPerCubicMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TKilogramPerCubicMeterUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -5923,7 +5923,7 @@ end;
 
 { Unit of Newton }
 
-class function TNewtonUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TNewtonUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sN', [PrefixTable[APrefixes[0]].Symbol])
@@ -5931,7 +5931,7 @@ begin
     result := 'N';
 end;
 
-class function TNewtonUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TNewtonUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%snewton', [PrefixTable[APrefixes[0]].Symbol])
@@ -5939,7 +5939,7 @@ begin
     result := 'newton';
 end;
 
-class function TNewtonUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TNewtonUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -6021,7 +6021,7 @@ end;
 
 { Unit of Pascal }
 
-class function TPascalUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TPascalUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sPa', [PrefixTable[APrefixes[0]].Symbol])
@@ -6029,7 +6029,7 @@ begin
     result := 'Pa';
 end;
 
-class function TPascalUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TPascalUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%spascal', [PrefixTable[APrefixes[0]].Symbol])
@@ -6037,7 +6037,7 @@ begin
     result := 'pascal';
 end;
 
-class function TPascalUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TPascalUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -6097,7 +6097,7 @@ end;
 
 { Unit of Joule }
 
-class function TJouleUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TJouleUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sJ', [PrefixTable[APrefixes[0]].Symbol])
@@ -6105,7 +6105,7 @@ begin
     result := 'J';
 end;
 
-class function TJouleUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TJouleUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sjoule', [PrefixTable[APrefixes[0]].Symbol])
@@ -6113,7 +6113,7 @@ begin
     result := 'joule';
 end;
 
-class function TJouleUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TJouleUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -6266,7 +6266,7 @@ end;
 
 { Unit of Elettronvolt }
 
-class function TElettronvoltUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TElettronvoltUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%seV', [PrefixTable[APrefixes[0]].Symbol])
@@ -6274,7 +6274,7 @@ begin
     result := 'eV';
 end;
 
-class function TElettronvoltUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TElettronvoltUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%selettronvolt ', [PrefixTable[APrefixes[0]].Symbol])
@@ -6282,7 +6282,7 @@ begin
     result := 'elettronvolt ';
 end;
 
-class function TElettronvoltUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TElettronvoltUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -6293,7 +6293,7 @@ end;
 
 { Unit of Watt }
 
-class function TWattUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TWattUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sW', [PrefixTable[APrefixes[0]].Symbol])
@@ -6301,7 +6301,7 @@ begin
     result := 'W';
 end;
 
-class function TWattUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TWattUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%swatt', [PrefixTable[APrefixes[0]].Symbol])
@@ -6309,7 +6309,7 @@ begin
     result := 'watt';
 end;
 
-class function TWattUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TWattUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -6391,7 +6391,7 @@ end;
 
 { Unit of Coulomb }
 
-class function TCoulombUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TCoulombUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sC', [PrefixTable[APrefixes[0]].Symbol])
@@ -6399,7 +6399,7 @@ begin
     result := 'C';
 end;
 
-class function TCoulombUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TCoulombUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%scoulomb', [PrefixTable[APrefixes[0]].Symbol])
@@ -6407,7 +6407,7 @@ begin
     result := 'coulomb';
 end;
 
-class function TCoulombUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TCoulombUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -6445,7 +6445,7 @@ end;
 
 { Unit of SquareCoulomb }
 
-class function TSquareCoulombUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSquareCoulombUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sC2', [PrefixTable[APrefixes[0]].Symbol])
@@ -6453,7 +6453,7 @@ begin
     result := 'C2';
 end;
 
-class function TSquareCoulombUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSquareCoulombUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('square %scoulomb', [PrefixTable[APrefixes[0]].Symbol])
@@ -6461,7 +6461,7 @@ begin
     result := 'square coulomb';
 end;
 
-class function TSquareCoulombUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TSquareCoulombUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -6484,7 +6484,7 @@ end;
 
 { Unit of Volt }
 
-class function TVoltUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TVoltUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sV', [PrefixTable[APrefixes[0]].Symbol])
@@ -6492,7 +6492,7 @@ begin
     result := 'V';
 end;
 
-class function TVoltUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TVoltUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%svolt', [PrefixTable[APrefixes[0]].Symbol])
@@ -6500,7 +6500,7 @@ begin
     result := 'volt';
 end;
 
-class function TVoltUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TVoltUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -6565,7 +6565,7 @@ end;
 
 { Unit of SquareVolt }
 
-class function TSquareVoltUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSquareVoltUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sV2', [PrefixTable[APrefixes[0]].Symbol])
@@ -6573,7 +6573,7 @@ begin
     result := 'V2';
 end;
 
-class function TSquareVoltUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSquareVoltUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('square %svolt', [PrefixTable[APrefixes[0]].Symbol])
@@ -6581,7 +6581,7 @@ begin
     result := 'square volt';
 end;
 
-class function TSquareVoltUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TSquareVoltUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -6604,7 +6604,7 @@ end;
 
 { Unit of Farad }
 
-class function TFaradUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TFaradUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sF', [PrefixTable[APrefixes[0]].Symbol])
@@ -6612,7 +6612,7 @@ begin
     result := 'F';
 end;
 
-class function TFaradUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TFaradUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sfarad', [PrefixTable[APrefixes[0]].Symbol])
@@ -6620,7 +6620,7 @@ begin
     result := 'farad';
 end;
 
-class function TFaradUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TFaradUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -6680,7 +6680,7 @@ end;
 
 { Unit of Ohm }
 
-class function TOhmUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TOhmUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sΩ', [PrefixTable[APrefixes[0]].Symbol])
@@ -6688,7 +6688,7 @@ begin
     result := 'Ω';
 end;
 
-class function TOhmUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TOhmUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sohm', [PrefixTable[APrefixes[0]].Symbol])
@@ -6696,7 +6696,7 @@ begin
     result := 'ohm';
 end;
 
-class function TOhmUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TOhmUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -6800,7 +6800,7 @@ end;
 
 { Unit of Siemens }
 
-class function TSiemensUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSiemensUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sS', [PrefixTable[APrefixes[0]].Symbol])
@@ -6808,7 +6808,7 @@ begin
     result := 'S';
 end;
 
-class function TSiemensUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSiemensUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%ssiemens', [PrefixTable[APrefixes[0]].Symbol])
@@ -6816,7 +6816,7 @@ begin
     result := 'siemens';
 end;
 
-class function TSiemensUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TSiemensUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -6854,7 +6854,7 @@ end;
 
 { Unit of Weber }
 
-class function TWeberUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TWeberUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sWb', [PrefixTable[APrefixes[0]].Symbol])
@@ -6862,7 +6862,7 @@ begin
     result := 'Wb';
 end;
 
-class function TWeberUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TWeberUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sweber', [PrefixTable[APrefixes[0]].Symbol])
@@ -6870,7 +6870,7 @@ begin
     result := 'weber';
 end;
 
-class function TWeberUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TWeberUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -6908,7 +6908,7 @@ end;
 
 { Unit of Tesla }
 
-class function TTeslaUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TTeslaUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sT', [PrefixTable[APrefixes[0]].Symbol])
@@ -6916,7 +6916,7 @@ begin
     result := 'T';
 end;
 
-class function TTeslaUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TTeslaUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%stesla', [PrefixTable[APrefixes[0]].Symbol])
@@ -6924,7 +6924,7 @@ begin
     result := 'tesla';
 end;
 
-class function TTeslaUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TTeslaUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -6962,7 +6962,7 @@ end;
 
 { Unit of Henry }
 
-class function THenryUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function THenryUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sH', [PrefixTable[APrefixes[0]].Symbol])
@@ -6970,7 +6970,7 @@ begin
     result := 'H';
 end;
 
-class function THenryUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function THenryUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%shenry', [PrefixTable[APrefixes[0]].Symbol])
@@ -6978,7 +6978,7 @@ begin
     result := 'henry';
 end;
 
-class function THenryUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function THenryUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -7060,7 +7060,7 @@ end;
 
 { Unit of Lumen }
 
-class function TLumenUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TLumenUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%slm', [PrefixTable[APrefixes[0]].Symbol])
@@ -7068,7 +7068,7 @@ begin
     result := 'lm';
 end;
 
-class function TLumenUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TLumenUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%slumen', [PrefixTable[APrefixes[0]].Symbol])
@@ -7076,7 +7076,7 @@ begin
     result := 'lumen';
 end;
 
-class function TLumenUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TLumenUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -7114,7 +7114,7 @@ end;
 
 { Unit of Lux }
 
-class function TLuxUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TLuxUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%slx', [PrefixTable[APrefixes[0]].Symbol])
@@ -7122,7 +7122,7 @@ begin
     result := 'lx';
 end;
 
-class function TLuxUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TLuxUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%slux', [PrefixTable[APrefixes[0]].Symbol])
@@ -7130,7 +7130,7 @@ begin
     result := 'lux';
 end;
 
-class function TLuxUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TLuxUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -7168,7 +7168,7 @@ end;
 
 { Unit of Bequerel }
 
-class function TBequerelUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TBequerelUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sBq', [PrefixTable[APrefixes[0]].Symbol])
@@ -7176,7 +7176,7 @@ begin
     result := 'Bq';
 end;
 
-class function TBequerelUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TBequerelUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sbequerel', [PrefixTable[APrefixes[0]].Symbol])
@@ -7184,7 +7184,7 @@ begin
     result := 'bequerel';
 end;
 
-class function TBequerelUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TBequerelUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -7195,7 +7195,7 @@ end;
 
 { Unit of Gray }
 
-class function TGrayUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TGrayUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sGy', [PrefixTable[APrefixes[0]].Symbol])
@@ -7203,7 +7203,7 @@ begin
     result := 'Gy';
 end;
 
-class function TGrayUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TGrayUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sgray', [PrefixTable[APrefixes[0]].Symbol])
@@ -7211,7 +7211,7 @@ begin
     result := 'gray';
 end;
 
-class function TGrayUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TGrayUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -7222,7 +7222,7 @@ end;
 
 { Unit of Sievert }
 
-class function TSievertUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSievertUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sSv', [PrefixTable[APrefixes[0]].Symbol])
@@ -7230,7 +7230,7 @@ begin
     result := 'Sv';
 end;
 
-class function TSievertUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSievertUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%ssievert', [PrefixTable[APrefixes[0]].Symbol])
@@ -7238,7 +7238,7 @@ begin
     result := 'sievert';
 end;
 
-class function TSievertUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TSievertUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -7249,7 +7249,7 @@ end;
 
 { Unit of Katal }
 
-class function TKatalUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TKatalUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%skat', [PrefixTable[APrefixes[0]].Symbol])
@@ -7257,7 +7257,7 @@ begin
     result := 'kat';
 end;
 
-class function TKatalUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TKatalUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%skatal', [PrefixTable[APrefixes[0]].Symbol])
@@ -7265,7 +7265,7 @@ begin
     result := 'katal';
 end;
 
-class function TKatalUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TKatalUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -7303,7 +7303,7 @@ end;
 
 { Unit of NewtonMeter }
 
-class function TNewtonMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TNewtonMeterUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sN.%sm', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -7311,7 +7311,7 @@ begin
     result := 'N.m';
 end;
 
-class function TNewtonMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TNewtonMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%snewton %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -7319,7 +7319,7 @@ begin
     result := 'newton meter';
 end;
 
-class function TNewtonMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TNewtonMeterUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -7331,7 +7331,7 @@ end;
 
 { Unit of JoulePerRadian }
 
-class function TJoulePerRadianUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TJoulePerRadianUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sJ/rad', [PrefixTable[APrefixes[0]].Symbol])
@@ -7339,7 +7339,7 @@ begin
     result := 'J/rad';
 end;
 
-class function TJoulePerRadianUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TJoulePerRadianUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sjoule per radian', [PrefixTable[APrefixes[0]].Symbol])
@@ -7347,7 +7347,7 @@ begin
     result := 'joule per radian';
 end;
 
-class function TJoulePerRadianUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TJoulePerRadianUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -7385,7 +7385,7 @@ end;
 
 { Unit of JoulePerDegree }
 
-class function TJoulePerDegreeUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TJoulePerDegreeUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sJ/deg', [PrefixTable[APrefixes[0]].Symbol])
@@ -7393,7 +7393,7 @@ begin
     result := 'J/deg';
 end;
 
-class function TJoulePerDegreeUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TJoulePerDegreeUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sjoule per degree', [PrefixTable[APrefixes[0]].Symbol])
@@ -7401,7 +7401,7 @@ begin
     result := 'joule per degree';
 end;
 
-class function TJoulePerDegreeUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TJoulePerDegreeUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -7412,7 +7412,7 @@ end;
 
 { Unit of NewtonMeterPerRadian }
 
-class function TNewtonMeterPerRadianUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TNewtonMeterPerRadianUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sN.%sm/rad', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -7420,7 +7420,7 @@ begin
     result := 'N.m/rad';
 end;
 
-class function TNewtonMeterPerRadianUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TNewtonMeterPerRadianUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%snewton %smeter per radian', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -7428,7 +7428,7 @@ begin
     result := 'newton meter per radian';
 end;
 
-class function TNewtonMeterPerRadianUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TNewtonMeterPerRadianUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -7440,7 +7440,7 @@ end;
 
 { Unit of NewtonMeterPerDegree }
 
-class function TNewtonMeterPerDegreeUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TNewtonMeterPerDegreeUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sN.%sm/deg', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -7448,7 +7448,7 @@ begin
     result := 'N.m/deg';
 end;
 
-class function TNewtonMeterPerDegreeUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TNewtonMeterPerDegreeUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%snewton %smeter per degree', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -7456,7 +7456,7 @@ begin
     result := 'newton meter per degree';
 end;
 
-class function TNewtonMeterPerDegreeUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TNewtonMeterPerDegreeUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -7468,7 +7468,7 @@ end;
 
 { Unit of NewtonPerCubicMeter }
 
-class function TNewtonPerCubicMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TNewtonPerCubicMeterUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sN/%sm3', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -7476,7 +7476,7 @@ begin
     result := 'N/m3';
 end;
 
-class function TNewtonPerCubicMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TNewtonPerCubicMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%snewton per cubic %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -7484,7 +7484,7 @@ begin
     result := 'newton per cubic meter';
 end;
 
-class function TNewtonPerCubicMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TNewtonPerCubicMeterUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -7567,7 +7567,7 @@ end;
 
 { Unit of NewtonPerMeter }
 
-class function TNewtonPerMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TNewtonPerMeterUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sN/%sm', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -7575,7 +7575,7 @@ begin
     result := 'N/m';
 end;
 
-class function TNewtonPerMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TNewtonPerMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%snewton per %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -7583,7 +7583,7 @@ begin
     result := 'newton per meter';
 end;
 
-class function TNewtonPerMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TNewtonPerMeterUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -7688,7 +7688,7 @@ end;
 
 { Unit of CubicMeterPerSecond }
 
-class function TCubicMeterPerSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TCubicMeterPerSecondUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sm3/%ss', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -7696,7 +7696,7 @@ begin
     result := 'm3/s';
 end;
 
-class function TCubicMeterPerSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TCubicMeterPerSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('cubic %smeter per %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -7704,7 +7704,7 @@ begin
     result := 'cubic meter per second';
 end;
 
-class function TCubicMeterPerSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TCubicMeterPerSecondUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -7765,7 +7765,7 @@ end;
 
 { Unit of KilogramPerSecond }
 
-class function TKilogramPerSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TKilogramPerSecondUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sg/%ss', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -7773,7 +7773,7 @@ begin
     result := 'kg/s';
 end;
 
-class function TKilogramPerSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TKilogramPerSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sgram per %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -7781,7 +7781,7 @@ begin
     result := 'kilogram per second';
 end;
 
-class function TKilogramPerSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TKilogramPerSecondUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -7843,7 +7843,7 @@ end;
 
 { Unit of Poiseuille }
 
-class function TPoiseuilleUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TPoiseuilleUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sPl', [PrefixTable[APrefixes[0]].Symbol])
@@ -7851,7 +7851,7 @@ begin
     result := 'Pl';
 end;
 
-class function TPoiseuilleUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TPoiseuilleUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%spoiseuille ', [PrefixTable[APrefixes[0]].Symbol])
@@ -7859,7 +7859,7 @@ begin
     result := 'poiseuille ';
 end;
 
-class function TPoiseuilleUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TPoiseuilleUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -7946,7 +7946,7 @@ end;
 
 { Unit of PascalSecond }
 
-class function TPascalSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TPascalSecondUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sPa.%ss', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -7954,7 +7954,7 @@ begin
     result := 'Pa.s';
 end;
 
-class function TPascalSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TPascalSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%spascal %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -7962,7 +7962,7 @@ begin
     result := 'pascal second';
 end;
 
-class function TPascalSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TPascalSecondUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -7974,7 +7974,7 @@ end;
 
 { Unit of SquareMeterPerSecond }
 
-class function TSquareMeterPerSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSquareMeterPerSecondUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sm2/%ss', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -7982,7 +7982,7 @@ begin
     result := 'm2/s';
 end;
 
-class function TSquareMeterPerSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSquareMeterPerSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('square %smeter per %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -7990,7 +7990,7 @@ begin
     result := 'square meter per second';
 end;
 
-class function TSquareMeterPerSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TSquareMeterPerSecondUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -8051,7 +8051,7 @@ end;
 
 { Unit of KilogramPerQuarticMeter }
 
-class function TKilogramPerQuarticMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TKilogramPerQuarticMeterUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sg/%sm4', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -8059,7 +8059,7 @@ begin
     result := 'kg/m4';
 end;
 
-class function TKilogramPerQuarticMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TKilogramPerQuarticMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sgram per quartic %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -8067,7 +8067,7 @@ begin
     result := 'kilogram per quartic meter';
 end;
 
-class function TKilogramPerQuarticMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TKilogramPerQuarticMeterUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -8107,7 +8107,7 @@ end;
 
 { Unit of QuarticMeterSecond }
 
-class function TQuarticMeterSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TQuarticMeterSecondUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sm4.%ss', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -8115,7 +8115,7 @@ begin
     result := 'm4.s';
 end;
 
-class function TQuarticMeterSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TQuarticMeterSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('quartic %smeter %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -8123,7 +8123,7 @@ begin
     result := 'quartic meter second';
 end;
 
-class function TQuarticMeterSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TQuarticMeterSecondUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -8162,7 +8162,7 @@ end;
 
 { Unit of KilogramPerQuarticMeterPerSecond }
 
-class function TKilogramPerQuarticMeterPerSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TKilogramPerQuarticMeterPerSecondUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 3 then
     result := Format('%sg/%sm4/%ss', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
@@ -8170,7 +8170,7 @@ begin
     result := 'kg/m4/s';
 end;
 
-class function TKilogramPerQuarticMeterPerSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TKilogramPerQuarticMeterPerSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 3 then
     result := Format('%sgram per quartic %smeter per %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
@@ -8178,7 +8178,7 @@ begin
     result := 'kilogram per quartic meter per second';
 end;
 
-class function TKilogramPerQuarticMeterPerSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TKilogramPerQuarticMeterPerSecondUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 3 then
@@ -8290,7 +8290,7 @@ end;
 
 { Unit of CubicMeterPerKilogram }
 
-class function TCubicMeterPerKilogramUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TCubicMeterPerKilogramUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sm3/%sg', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -8298,7 +8298,7 @@ begin
     result := 'm3/kg';
 end;
 
-class function TCubicMeterPerKilogramUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TCubicMeterPerKilogramUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('cubic %smeter per %sgram', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -8306,7 +8306,7 @@ begin
     result := 'cubic meter per kilogram';
 end;
 
-class function TCubicMeterPerKilogramUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TCubicMeterPerKilogramUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -8346,7 +8346,7 @@ end;
 
 { Unit of KilogramSquareSecond }
 
-class function TKilogramSquareSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TKilogramSquareSecondUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sg.%ss2', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -8354,7 +8354,7 @@ begin
     result := 'kg.s2';
 end;
 
-class function TKilogramSquareSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TKilogramSquareSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sgram square %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -8362,7 +8362,7 @@ begin
     result := 'kilogram square second';
 end;
 
-class function TKilogramSquareSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TKilogramSquareSecondUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -8402,7 +8402,7 @@ end;
 
 { Unit of CubicMeterPerSquareSecond }
 
-class function TCubicMeterPerSquareSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TCubicMeterPerSquareSecondUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sm3/%ss2', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -8410,7 +8410,7 @@ begin
     result := 'm3/s2';
 end;
 
-class function TCubicMeterPerSquareSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TCubicMeterPerSquareSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('cubic %smeter per square %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -8418,7 +8418,7 @@ begin
     result := 'cubic meter per square second';
 end;
 
-class function TCubicMeterPerSquareSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TCubicMeterPerSquareSecondUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -8479,7 +8479,7 @@ end;
 
 { Unit of NewtonSquareMeter }
 
-class function TNewtonSquareMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TNewtonSquareMeterUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sN.%sm2', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -8487,7 +8487,7 @@ begin
     result := 'N.m2';
 end;
 
-class function TNewtonSquareMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TNewtonSquareMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%snewton square %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -8495,7 +8495,7 @@ begin
     result := 'newton square meter';
 end;
 
-class function TNewtonSquareMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TNewtonSquareMeterUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -8578,7 +8578,7 @@ end;
 
 { Unit of NewtonPerSquareKilogram }
 
-class function TNewtonPerSquareKilogramUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TNewtonPerSquareKilogramUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sN/%sg2', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -8586,7 +8586,7 @@ begin
     result := 'N/kg2';
 end;
 
-class function TNewtonPerSquareKilogramUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TNewtonPerSquareKilogramUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%snewton per square %sgram', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -8594,7 +8594,7 @@ begin
     result := 'newton per square kilogram';
 end;
 
-class function TNewtonPerSquareKilogramUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TNewtonPerSquareKilogramUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -8634,7 +8634,7 @@ end;
 
 { Unit of SquareKilogramPerMeter }
 
-class function TSquareKilogramPerMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSquareKilogramPerMeterUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sg2/%sm', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -8642,7 +8642,7 @@ begin
     result := 'kg2/m';
 end;
 
-class function TSquareKilogramPerMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSquareKilogramPerMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('square %sgram per %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -8650,7 +8650,7 @@ begin
     result := 'square kilogram per meter';
 end;
 
-class function TSquareKilogramPerMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TSquareKilogramPerMeterUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -8690,7 +8690,7 @@ end;
 
 { Unit of SquareKilogramPerSquareMeter }
 
-class function TSquareKilogramPerSquareMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSquareKilogramPerSquareMeterUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sg2/%sm2', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -8698,7 +8698,7 @@ begin
     result := 'kg2/m2';
 end;
 
-class function TSquareKilogramPerSquareMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSquareKilogramPerSquareMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('square %sgram per square %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -8706,7 +8706,7 @@ begin
     result := 'square kilogram per square meter';
 end;
 
-class function TSquareKilogramPerSquareMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TSquareKilogramPerSquareMeterUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -8746,7 +8746,7 @@ end;
 
 { Unit of SquareMeterPerSquareKilogram }
 
-class function TSquareMeterPerSquareKilogramUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSquareMeterPerSquareKilogramUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sm2/%sg2', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -8754,7 +8754,7 @@ begin
     result := 'm2/kg2';
 end;
 
-class function TSquareMeterPerSquareKilogramUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSquareMeterPerSquareKilogramUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('square %smeter per square %sgram', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -8762,7 +8762,7 @@ begin
     result := 'square meter per square kilogram';
 end;
 
-class function TSquareMeterPerSquareKilogramUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TSquareMeterPerSquareKilogramUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -8802,7 +8802,7 @@ end;
 
 { Unit of NewtonSquareMeterPerSquareKilogram }
 
-class function TNewtonSquareMeterPerSquareKilogramUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TNewtonSquareMeterPerSquareKilogramUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 3 then
     result := Format('%sN.%sm2/%sg2', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
@@ -8810,7 +8810,7 @@ begin
     result := 'N.m2/kg2';
 end;
 
-class function TNewtonSquareMeterPerSquareKilogramUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TNewtonSquareMeterPerSquareKilogramUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 3 then
     result := Format('%snewton square %smeter per square %sgram', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
@@ -8818,7 +8818,7 @@ begin
     result := 'newton square meter per square kilogram';
 end;
 
-class function TNewtonSquareMeterPerSquareKilogramUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TNewtonSquareMeterPerSquareKilogramUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 3 then
@@ -9018,7 +9018,7 @@ end;
 
 { Unit of ReciprocalKelvin }
 
-class function TReciprocalKelvinUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TReciprocalKelvinUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('1/%sK', [PrefixTable[APrefixes[0]].Symbol])
@@ -9026,7 +9026,7 @@ begin
     result := '1/K';
 end;
 
-class function TReciprocalKelvinUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TReciprocalKelvinUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('reciprocal %skelvin', [PrefixTable[APrefixes[0]].Symbol])
@@ -9034,7 +9034,7 @@ begin
     result := 'reciprocal kelvin';
 end;
 
-class function TReciprocalKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TReciprocalKelvinUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -9072,7 +9072,7 @@ end;
 
 { Unit of KilogramKelvin }
 
-class function TKilogramKelvinUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TKilogramKelvinUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sg.%sK', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -9080,7 +9080,7 @@ begin
     result := 'kg.K';
 end;
 
-class function TKilogramKelvinUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TKilogramKelvinUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sgram %skelvin', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -9088,7 +9088,7 @@ begin
     result := 'kilogram kelvin';
 end;
 
-class function TKilogramKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TKilogramKelvinUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -9128,7 +9128,7 @@ end;
 
 { Unit of JoulePerKelvin }
 
-class function TJoulePerKelvinUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TJoulePerKelvinUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sJ/K', [PrefixTable[APrefixes[0]].Symbol])
@@ -9136,7 +9136,7 @@ begin
     result := 'J/K';
 end;
 
-class function TJoulePerKelvinUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TJoulePerKelvinUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sjoule per %skelvin', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -9144,7 +9144,7 @@ begin
     result := 'joule per kelvin';
 end;
 
-class function TJoulePerKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TJoulePerKelvinUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -9183,7 +9183,7 @@ end;
 
 { Unit of JoulePerKilogram }
 
-class function TJoulePerKilogramUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TJoulePerKilogramUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sJ/%sg', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -9191,7 +9191,7 @@ begin
     result := 'J/kg';
 end;
 
-class function TJoulePerKilogramUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TJoulePerKilogramUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sjoule per %sgram', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -9199,7 +9199,7 @@ begin
     result := 'joule per kilogram';
 end;
 
-class function TJoulePerKilogramUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TJoulePerKilogramUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -9212,7 +9212,7 @@ end;
 
 { Unit of JoulePerKilogramPerKelvin }
 
-class function TJoulePerKilogramPerKelvinUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TJoulePerKilogramPerKelvinUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 3 then
     result := Format('%sJ/%sg/%sK', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
@@ -9220,7 +9220,7 @@ begin
     result := 'J/kg/K';
 end;
 
-class function TJoulePerKilogramPerKelvinUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TJoulePerKilogramPerKelvinUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 3 then
     result := Format('%sjoule per %sgram per %skelvin', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
@@ -9228,7 +9228,7 @@ begin
     result := 'joule per kilogram per kelvin';
 end;
 
-class function TJoulePerKilogramPerKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TJoulePerKilogramPerKelvinUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 3 then
@@ -9318,7 +9318,7 @@ end;
 
 { Unit of MeterKelvin }
 
-class function TMeterKelvinUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TMeterKelvinUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sm.%sK', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -9326,7 +9326,7 @@ begin
     result := 'm.K';
 end;
 
-class function TMeterKelvinUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TMeterKelvinUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%smeter %skelvin', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -9334,7 +9334,7 @@ begin
     result := 'meter kelvin';
 end;
 
-class function TMeterKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TMeterKelvinUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -9373,7 +9373,7 @@ end;
 
 { Unit of KelvinPerMeter }
 
-class function TKelvinPerMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TKelvinPerMeterUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sK/%sm', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -9381,7 +9381,7 @@ begin
     result := 'K/m';
 end;
 
-class function TKelvinPerMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TKelvinPerMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%skelvin per %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -9389,7 +9389,7 @@ begin
     result := 'kelvin per meter';
 end;
 
-class function TKelvinPerMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TKelvinPerMeterUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -9428,7 +9428,7 @@ end;
 
 { Unit of WattPerMeter }
 
-class function TWattPerMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TWattPerMeterUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sW/%sm', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -9436,7 +9436,7 @@ begin
     result := 'W/m';
 end;
 
-class function TWattPerMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TWattPerMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%swatt per %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -9444,7 +9444,7 @@ begin
     result := 'watt per meter';
 end;
 
-class function TWattPerMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TWattPerMeterUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -9483,7 +9483,7 @@ end;
 
 { Unit of WattPerSquareMeter }
 
-class function TWattPerSquareMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TWattPerSquareMeterUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sW/%sm2', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -9491,7 +9491,7 @@ begin
     result := 'W/m2';
 end;
 
-class function TWattPerSquareMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TWattPerSquareMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%swatt per square %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -9499,7 +9499,7 @@ begin
     result := 'watt per square meter';
 end;
 
-class function TWattPerSquareMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TWattPerSquareMeterUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -9538,7 +9538,7 @@ end;
 
 { Unit of WattPerKelvin }
 
-class function TWattPerKelvinUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TWattPerKelvinUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sW/%sK', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -9546,7 +9546,7 @@ begin
     result := 'W/K';
 end;
 
-class function TWattPerKelvinUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TWattPerKelvinUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%swatt per %skelvin', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -9554,7 +9554,7 @@ begin
     result := 'watt per kelvin';
 end;
 
-class function TWattPerKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TWattPerKelvinUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -9593,7 +9593,7 @@ end;
 
 { Unit of WattPerMeterPerKelvin }
 
-class function TWattPerMeterPerKelvinUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TWattPerMeterPerKelvinUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 3 then
     result := Format('%sW/%sm/%sK', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
@@ -9601,7 +9601,7 @@ begin
     result := 'W/m/K';
 end;
 
-class function TWattPerMeterPerKelvinUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TWattPerMeterPerKelvinUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 3 then
     result := Format('%swatt per %smeter per %skelvin', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
@@ -9609,7 +9609,7 @@ begin
     result := 'watt per meter per kelvin';
 end;
 
-class function TWattPerMeterPerKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TWattPerMeterPerKelvinUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 3 then
@@ -9720,7 +9720,7 @@ end;
 
 { Unit of SquareMeterKelvin }
 
-class function TSquareMeterKelvinUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSquareMeterKelvinUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sm2.%sK', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -9728,7 +9728,7 @@ begin
     result := 'm2.K';
 end;
 
-class function TSquareMeterKelvinUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSquareMeterKelvinUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('square %smeter %skelvin', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -9736,7 +9736,7 @@ begin
     result := 'square meter kelvin';
 end;
 
-class function TSquareMeterKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TSquareMeterKelvinUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -9775,7 +9775,7 @@ end;
 
 { Unit of WattPerSquareMeterPerKelvin }
 
-class function TWattPerSquareMeterPerKelvinUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TWattPerSquareMeterPerKelvinUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 3 then
     result := Format('%sW/%sm2/%sK', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
@@ -9783,7 +9783,7 @@ begin
     result := 'W/m2/K';
 end;
 
-class function TWattPerSquareMeterPerKelvinUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TWattPerSquareMeterPerKelvinUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 3 then
     result := Format('%swatt per square %smeter per %skelvin', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
@@ -9791,7 +9791,7 @@ begin
     result := 'watt per square meter per kelvin';
 end;
 
-class function TWattPerSquareMeterPerKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TWattPerSquareMeterPerKelvinUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 3 then
@@ -9880,7 +9880,7 @@ end;
 
 { Unit of SquareMeterQuarticKelvin }
 
-class function TSquareMeterQuarticKelvinUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSquareMeterQuarticKelvinUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sm2.%sK4', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -9888,7 +9888,7 @@ begin
     result := 'm2.K4';
 end;
 
-class function TSquareMeterQuarticKelvinUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSquareMeterQuarticKelvinUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('square %smeter quartic %skelvin', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -9896,7 +9896,7 @@ begin
     result := 'square meter quartic kelvin';
 end;
 
-class function TSquareMeterQuarticKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TSquareMeterQuarticKelvinUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -9935,7 +9935,7 @@ end;
 
 { Unit of WattPerQuarticKelvin }
 
-class function TWattPerQuarticKelvinUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TWattPerQuarticKelvinUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sW/%sK4', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -9943,7 +9943,7 @@ begin
     result := 'W/K4';
 end;
 
-class function TWattPerQuarticKelvinUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TWattPerQuarticKelvinUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%swatt per quartic %skelvin', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -9951,7 +9951,7 @@ begin
     result := 'watt per quartic kelvin';
 end;
 
-class function TWattPerQuarticKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TWattPerQuarticKelvinUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -9990,7 +9990,7 @@ end;
 
 { Unit of WattPerSquareMeterPerQuarticKelvin }
 
-class function TWattPerSquareMeterPerQuarticKelvinUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TWattPerSquareMeterPerQuarticKelvinUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 3 then
     result := Format('%sW/%sm2/%sK4', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
@@ -9998,7 +9998,7 @@ begin
     result := 'W/m2/K4';
 end;
 
-class function TWattPerSquareMeterPerQuarticKelvinUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TWattPerSquareMeterPerQuarticKelvinUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 3 then
     result := Format('%swatt per square %smeter per quartic %skelvin', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
@@ -10006,7 +10006,7 @@ begin
     result := 'watt per square meter per quartic kelvin';
 end;
 
-class function TWattPerSquareMeterPerQuarticKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TWattPerSquareMeterPerQuarticKelvinUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 3 then
@@ -10095,7 +10095,7 @@ end;
 
 { Unit of JoulePerMole }
 
-class function TJoulePerMoleUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TJoulePerMoleUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sJ/%smol', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -10103,7 +10103,7 @@ begin
     result := 'J/mol';
 end;
 
-class function TJoulePerMoleUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TJoulePerMoleUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sjoule per %smole', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -10111,7 +10111,7 @@ begin
     result := 'joule per mole';
 end;
 
-class function TJoulePerMoleUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TJoulePerMoleUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -10150,7 +10150,7 @@ end;
 
 { Unit of MoleKelvin }
 
-class function TMoleKelvinUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TMoleKelvinUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%smol.%sK', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -10158,7 +10158,7 @@ begin
     result := 'mol.K';
 end;
 
-class function TMoleKelvinUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TMoleKelvinUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%smole %skelvin', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -10166,7 +10166,7 @@ begin
     result := 'mole kelvin';
 end;
 
-class function TMoleKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TMoleKelvinUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -10205,7 +10205,7 @@ end;
 
 { Unit of JoulePerMolePerKelvin }
 
-class function TJoulePerMolePerKelvinUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TJoulePerMolePerKelvinUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 3 then
     result := Format('%sJ/%smol/%sK', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
@@ -10213,7 +10213,7 @@ begin
     result := 'J/mol/K';
 end;
 
-class function TJoulePerMolePerKelvinUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TJoulePerMolePerKelvinUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 3 then
     result := Format('%sjoule per %smole per %skelvin', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
@@ -10221,7 +10221,7 @@ begin
     result := 'joule per mole per kelvin';
 end;
 
-class function TJoulePerMolePerKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TJoulePerMolePerKelvinUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 3 then
@@ -10310,7 +10310,7 @@ end;
 
 { Unit of OhmMeter }
 
-class function TOhmMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TOhmMeterUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sΩ.%sm', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -10318,7 +10318,7 @@ begin
     result := 'Ω.m';
 end;
 
-class function TOhmMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TOhmMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sohm %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -10326,7 +10326,7 @@ begin
     result := 'ohm meter';
 end;
 
-class function TOhmMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TOhmMeterUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -10365,7 +10365,7 @@ end;
 
 { Unit of VoltPerMeter }
 
-class function TVoltPerMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TVoltPerMeterUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sV/%sm', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -10373,7 +10373,7 @@ begin
     result := 'V/m';
 end;
 
-class function TVoltPerMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TVoltPerMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%svolt per %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -10381,7 +10381,7 @@ begin
     result := 'volt per meter';
 end;
 
-class function TVoltPerMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TVoltPerMeterUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -10469,7 +10469,7 @@ end;
 
 { Unit of NewtonPerCoulomb }
 
-class function TNewtonPerCoulombUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TNewtonPerCoulombUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sN/%sC', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -10477,7 +10477,7 @@ begin
     result := 'N/C';
 end;
 
-class function TNewtonPerCoulombUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TNewtonPerCoulombUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%snewton per %scoulomb', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -10485,7 +10485,7 @@ begin
     result := 'newton per coulomb';
 end;
 
-class function TNewtonPerCoulombUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TNewtonPerCoulombUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -10497,7 +10497,7 @@ end;
 
 { Unit of CoulombPerMeter }
 
-class function TCoulombPerMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TCoulombPerMeterUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sC/%sm', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -10505,7 +10505,7 @@ begin
     result := 'C/m';
 end;
 
-class function TCoulombPerMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TCoulombPerMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%scoulomb per %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -10513,7 +10513,7 @@ begin
     result := 'coulomb per meter';
 end;
 
-class function TCoulombPerMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TCoulombPerMeterUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -10552,7 +10552,7 @@ end;
 
 { Unit of SquareCoulombPerMeter }
 
-class function TSquareCoulombPerMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSquareCoulombPerMeterUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sC2/%sm', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -10560,7 +10560,7 @@ begin
     result := 'C2/m';
 end;
 
-class function TSquareCoulombPerMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSquareCoulombPerMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('square %scoulomb per %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -10568,7 +10568,7 @@ begin
     result := 'square coulomb per meter';
 end;
 
-class function TSquareCoulombPerMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TSquareCoulombPerMeterUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -10629,7 +10629,7 @@ end;
 
 { Unit of CoulombPerSquareMeter }
 
-class function TCoulombPerSquareMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TCoulombPerSquareMeterUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sC/%sm2', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -10637,7 +10637,7 @@ begin
     result := 'C/m2';
 end;
 
-class function TCoulombPerSquareMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TCoulombPerSquareMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%scoulomb per square %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -10645,7 +10645,7 @@ begin
     result := 'coulomb per square meter';
 end;
 
-class function TCoulombPerSquareMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TCoulombPerSquareMeterUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -10706,7 +10706,7 @@ end;
 
 { Unit of SquareMeterPerSquareCoulomb }
 
-class function TSquareMeterPerSquareCoulombUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSquareMeterPerSquareCoulombUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sm2/%sC2', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -10714,7 +10714,7 @@ begin
     result := 'm2/C2';
 end;
 
-class function TSquareMeterPerSquareCoulombUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSquareMeterPerSquareCoulombUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('square %smeter per square %scoulomb', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -10722,7 +10722,7 @@ begin
     result := 'square meter per square coulomb';
 end;
 
-class function TSquareMeterPerSquareCoulombUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TSquareMeterPerSquareCoulombUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -10761,7 +10761,7 @@ end;
 
 { Unit of NewtonPerSquareCoulomb }
 
-class function TNewtonPerSquareCoulombUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TNewtonPerSquareCoulombUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sN/%sC2', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -10769,7 +10769,7 @@ begin
     result := 'N/C2';
 end;
 
-class function TNewtonPerSquareCoulombUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TNewtonPerSquareCoulombUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%snewton per square %scoulomb', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -10777,7 +10777,7 @@ begin
     result := 'newton per square coulomb';
 end;
 
-class function TNewtonPerSquareCoulombUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TNewtonPerSquareCoulombUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -10816,7 +10816,7 @@ end;
 
 { Unit of NewtonSquareMeterPerSquareCoulomb }
 
-class function TNewtonSquareMeterPerSquareCoulombUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TNewtonSquareMeterPerSquareCoulombUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 3 then
     result := Format('%sN.%sm2/%sC2', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
@@ -10824,7 +10824,7 @@ begin
     result := 'N.m2/C2';
 end;
 
-class function TNewtonSquareMeterPerSquareCoulombUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TNewtonSquareMeterPerSquareCoulombUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 3 then
     result := Format('%snewton square %smeter per square %scoulomb', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
@@ -10832,7 +10832,7 @@ begin
     result := 'newton square meter per square coulomb';
 end;
 
-class function TNewtonSquareMeterPerSquareCoulombUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TNewtonSquareMeterPerSquareCoulombUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 3 then
@@ -10965,7 +10965,7 @@ end;
 
 { Unit of VoltMeter }
 
-class function TVoltMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TVoltMeterUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sV.%sm', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -10973,7 +10973,7 @@ begin
     result := 'V.m';
 end;
 
-class function TVoltMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TVoltMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%svolt %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -10981,7 +10981,7 @@ begin
     result := 'volt meter';
 end;
 
-class function TVoltMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TVoltMeterUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -11042,7 +11042,7 @@ end;
 
 { Unit of NewtonSquareMeterPerCoulomb }
 
-class function TNewtonSquareMeterPerCoulombUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TNewtonSquareMeterPerCoulombUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 3 then
     result := Format('%sN.%sm2/%sC', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
@@ -11050,7 +11050,7 @@ begin
     result := 'N.m2/C';
 end;
 
-class function TNewtonSquareMeterPerCoulombUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TNewtonSquareMeterPerCoulombUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 3 then
     result := Format('%snewton square %smeter per %scoulomb', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
@@ -11058,7 +11058,7 @@ begin
     result := 'newton square meter per coulomb';
 end;
 
-class function TNewtonSquareMeterPerCoulombUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TNewtonSquareMeterPerCoulombUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 3 then
@@ -11071,7 +11071,7 @@ end;
 
 { Unit of VoltMeterPerSecond }
 
-class function TVoltMeterPerSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TVoltMeterPerSecondUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 3 then
     result := Format('%sV.%sm/%ss', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
@@ -11079,7 +11079,7 @@ begin
     result := 'V.m/s';
 end;
 
-class function TVoltMeterPerSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TVoltMeterPerSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 3 then
     result := Format('%svolt %smeter per %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
@@ -11087,7 +11087,7 @@ begin
     result := 'volt meter per second';
 end;
 
-class function TVoltMeterPerSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TVoltMeterPerSecondUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 3 then
@@ -11127,7 +11127,7 @@ end;
 
 { Unit of FaradPerMeter }
 
-class function TFaradPerMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TFaradPerMeterUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sF/%sm', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -11135,7 +11135,7 @@ begin
     result := 'F/m';
 end;
 
-class function TFaradPerMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TFaradPerMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sfarad per %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -11143,7 +11143,7 @@ begin
     result := 'farad per meter';
 end;
 
-class function TFaradPerMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TFaradPerMeterUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -11248,7 +11248,7 @@ end;
 
 { Unit of AmperePerMeter }
 
-class function TAmperePerMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TAmperePerMeterUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sA/%sm', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -11256,7 +11256,7 @@ begin
     result := 'A/m';
 end;
 
-class function TAmperePerMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TAmperePerMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sampere per %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -11264,7 +11264,7 @@ begin
     result := 'ampere per meter';
 end;
 
-class function TAmperePerMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TAmperePerMeterUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -11303,7 +11303,7 @@ end;
 
 { Unit of MeterPerAmpere }
 
-class function TMeterPerAmpereUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TMeterPerAmpereUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sm/%sA', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -11311,7 +11311,7 @@ begin
     result := 'm/A';
 end;
 
-class function TMeterPerAmpereUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TMeterPerAmpereUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%smeter per %sampere', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -11319,7 +11319,7 @@ begin
     result := 'meter per ampere';
 end;
 
-class function TMeterPerAmpereUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TMeterPerAmpereUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -11358,7 +11358,7 @@ end;
 
 { Unit of TeslaMeter }
 
-class function TTeslaMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TTeslaMeterUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sT.%sm', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -11366,7 +11366,7 @@ begin
     result := 'T.m';
 end;
 
-class function TTeslaMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TTeslaMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%stesla %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -11374,7 +11374,7 @@ begin
     result := 'tesla meter';
 end;
 
-class function TTeslaMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TTeslaMeterUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -11440,7 +11440,7 @@ end;
 
 { Unit of NewtonPerAmpere }
 
-class function TNewtonPerAmpereUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TNewtonPerAmpereUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sN/%sA', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -11448,7 +11448,7 @@ begin
     result := 'N/A';
 end;
 
-class function TNewtonPerAmpereUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TNewtonPerAmpereUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%snewton per %sampere', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -11456,7 +11456,7 @@ begin
     result := 'newton per ampere';
 end;
 
-class function TNewtonPerAmpereUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TNewtonPerAmpereUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -11468,7 +11468,7 @@ end;
 
 { Unit of TeslaPerAmpere }
 
-class function TTeslaPerAmpereUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TTeslaPerAmpereUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sT/%sA', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -11476,7 +11476,7 @@ begin
     result := 'T/A';
 end;
 
-class function TTeslaPerAmpereUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TTeslaPerAmpereUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%stesla per %sampere', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -11484,7 +11484,7 @@ begin
     result := 'tesla per ampere';
 end;
 
-class function TTeslaPerAmpereUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TTeslaPerAmpereUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -11523,7 +11523,7 @@ end;
 
 { Unit of HenryPerMeter }
 
-class function THenryPerMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function THenryPerMeterUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sH/%sm', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -11531,7 +11531,7 @@ begin
     result := 'H/m';
 end;
 
-class function THenryPerMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function THenryPerMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%shenry per %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -11539,7 +11539,7 @@ begin
     result := 'henry per meter';
 end;
 
-class function THenryPerMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function THenryPerMeterUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -11698,7 +11698,7 @@ end;
 
 { Unit of TeslaMeterPerAmpere }
 
-class function TTeslaMeterPerAmpereUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TTeslaMeterPerAmpereUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 3 then
     result := Format('%sT.%sm/%sA', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
@@ -11706,7 +11706,7 @@ begin
     result := 'T.m/A';
 end;
 
-class function TTeslaMeterPerAmpereUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TTeslaMeterPerAmpereUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 3 then
     result := Format('%stesla %smeter per %sampere', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
@@ -11714,7 +11714,7 @@ begin
     result := 'tesla meter per ampere';
 end;
 
-class function TTeslaMeterPerAmpereUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TTeslaMeterPerAmpereUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 3 then
@@ -11727,7 +11727,7 @@ end;
 
 { Unit of NewtonPerSquareAmpere }
 
-class function TNewtonPerSquareAmpereUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TNewtonPerSquareAmpereUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sN/%sA2', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -11735,7 +11735,7 @@ begin
     result := 'N/A2';
 end;
 
-class function TNewtonPerSquareAmpereUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TNewtonPerSquareAmpereUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%snewton per square %sampere', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -11743,7 +11743,7 @@ begin
     result := 'newton per square ampere';
 end;
 
-class function TNewtonPerSquareAmpereUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TNewtonPerSquareAmpereUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -11755,7 +11755,7 @@ end;
 
 { Unit of RadianPerMeter }
 
-class function TRadianPerMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TRadianPerMeterUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('rad/%sm', [PrefixTable[APrefixes[0]].Symbol])
@@ -11763,7 +11763,7 @@ begin
     result := 'rad/m';
 end;
 
-class function TRadianPerMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TRadianPerMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('radian per %smeter', [PrefixTable[APrefixes[0]].Symbol])
@@ -11771,7 +11771,7 @@ begin
     result := 'radian per meter';
 end;
 
-class function TRadianPerMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TRadianPerMeterUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -11809,7 +11809,7 @@ end;
 
 { Unit of SquareKilogramPerSquareSecond }
 
-class function TSquareKilogramPerSquareSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSquareKilogramPerSquareSecondUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sg2/%ss2', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -11817,7 +11817,7 @@ begin
     result := 'kg2/s2';
 end;
 
-class function TSquareKilogramPerSquareSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSquareKilogramPerSquareSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('square %sgram per square %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -11825,7 +11825,7 @@ begin
     result := 'square kilogram per square second';
 end;
 
-class function TSquareKilogramPerSquareSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TSquareKilogramPerSquareSecondUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -11899,7 +11899,7 @@ end;
 
 { Unit of SquareSecondPerSquareMeter }
 
-class function TSquareSecondPerSquareMeterUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSquareSecondPerSquareMeterUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%ss2/%sm2', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -11907,7 +11907,7 @@ begin
     result := 's2/m2';
 end;
 
-class function TSquareSecondPerSquareMeterUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSquareSecondPerSquareMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('square %ssecond per square %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -11915,7 +11915,7 @@ begin
     result := 'square second per square meter';
 end;
 
-class function TSquareSecondPerSquareMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TSquareSecondPerSquareMeterUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -11998,7 +11998,7 @@ end;
 
 { Unit of SquareJoule }
 
-class function TSquareJouleUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSquareJouleUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('%sJ2', [PrefixTable[APrefixes[0]].Symbol])
@@ -12006,7 +12006,7 @@ begin
     result := 'J2';
 end;
 
-class function TSquareJouleUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TSquareJouleUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
     result := Format('square %sjoule', [PrefixTable[APrefixes[0]].Symbol])
@@ -12014,7 +12014,7 @@ begin
     result := 'square joule';
 end;
 
-class function TSquareJouleUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TSquareJouleUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -12037,7 +12037,7 @@ end;
 
 { Unit of JouleSecond }
 
-class function TJouleSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TJouleSecondUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sJ.%ss', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -12045,7 +12045,7 @@ begin
     result := 'J.s';
 end;
 
-class function TJouleSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TJouleSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%sjoule %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -12053,7 +12053,7 @@ begin
     result := 'joule second';
 end;
 
-class function TJouleSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TJouleSecondUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
@@ -12141,7 +12141,7 @@ end;
 
 { Unit of ElettronvoltSecond }
 
-class function TElettronvoltSecondUnit.Symbol(const {%H-}APrefixes: TPrefixes): string; static;
+class function TElettronvoltSecondUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%seV.%ss', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -12149,7 +12149,7 @@ begin
     result := 'eV.s';
 end;
 
-class function TElettronvoltSecondUnit.Name(const {%H-}APrefixes: TPrefixes): string; static;
+class function TElettronvoltSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
     result := Format('%selettronvolt %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
@@ -12157,7 +12157,7 @@ begin
     result := 'elettronvolt second';
 end;
 
-class function TElettronvoltSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+class function TElettronvoltSecondUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 2 then
