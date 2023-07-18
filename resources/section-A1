@@ -8,14 +8,17 @@ interface
 uses SysUtils;
 
 type 
-  { Prefixes }
-  TPrefix = (pTera, pGiga, pMega, pKilo, pHecto, pDeca, pNone, pDeci, 
-    pCenti, pMilli, pMicro, pNano, pPico, pDay, pHour, pMinute);
+  { Prefix }
+  TPrefix = (pTera, pGiga, pMega, pKilo, pHecto, pDeca, 
+    pNone, pDeci, pCenti, pMilli, pMicro, pNano, pPico);
+ 
+type 
+  { Prefixes } 
+  TPrefixes = array of TPrefix;    
 
   { TQuantity }
   generic TQuantity<U> = record
-    type TSelf = specialize TQuantity<U>;
-    type TPrefixes = array of TPrefix; 
+    type TSelf = specialize TQuantity<U>;    
   private
     FValue: double;
   public
@@ -48,4 +51,3 @@ type
     class function From(const AQuantity: TBaseQuantity): TBaseQuantity; inline; static;
     class operator *(const AValue: double; const {%H-}ASelf: TSelf): TBaseQuantity;
   end;
-  

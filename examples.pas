@@ -1094,30 +1094,34 @@ begin
   writeln('ToString - TEST');
 
   writeln;
-  writeln('TEST PASSED: ', (1.0*mg  ).ToString       (10, 10, [pKilo]) = '1E-6 kg');
-  writeln('TEST PASSED: ', (1.0*mg2 ).ToString       (10, 0,  [pKilo]) = '1E-12 kg2');
-  writeln('TEST PASSED: ', (1.0*mg  ).ToString       (10, 10, [pMega]) = '1E-9 Mg');
-  writeln('TEST PASSED: ', (1.0*mg2 ).ToString       (10, 0,  [pMega]) = '1E-18 Mg2');
-  writeln('TEST PASSED: ', (1.0*kg  ).ToString       (10, 0,       []) = '1000 g');
-  writeln('TEST PASSED: ', (1.0*kg  ).ToString       (10, 0,  [pKilo]) = '1 kg');
-  writeln('TEST PASSED: ', (1.0*kg2 ).ToString       (10, 0,       []) = '1000000 g2');
-  writeln('TEST PASSED: ', (1.0*kg2 ).ToString       (10, 0,  [pKilo]) = '1 kg2');
-  writeln('TEST PASSED: ', (1.0*km  ).ToString       (10, 0,       []) = '1000 m');
-  writeln('TEST PASSED: ', (1.0*km2 ).ToString       (10, 0,       []) = '1000000 m2');
-  writeln('TEST PASSED: ', (1.0*kg  ).ToVerboseString(10, 0,       []) = '1000 gram');
-  writeln('TEST PASSED: ', (1.0*kg2 ).ToVerboseString(10, 0,       []) = '1000000 square gram');
-  writeln('TEST PASSED: ', (1.0*km  ).ToVerboseString(10, 0,       []) = '1000 meter');
-  writeln('TEST PASSED: ', (1.0*km2 ).ToVerboseString(10, 0,       []) = '1000000 square meter');
-  writeln('TEST PASSED: ', (1.0*km3 ).ToVerboseString(10, 0,       []) = '1000000000 cubic meter');
-  writeln('TEST PASSED: ', (1.0*km4 ).ToVerboseString(10, 0,       []) = '1E12 quartic meter');
-  writeln('TEST PASSED: ', (1.0*day ).ToVerboseString(10, 0,       []) = '86400 second');
-  writeln('TEST PASSED: ', (1.0*hr  ).ToVerboseString(10, 0,       []) = '3600 second');
-  writeln('TEST PASSED: ', (1.0*day ).ToString       (10, 0,       []) = '86400 s');
-  writeln('TEST PASSED: ', (1.0*hr  ).ToString       (10, 0,       []) = '3600 s');
-  writeln('TEST PASSED: ', (1.0*day2).ToVerboseString(10, 0,       []) = '7464960000 square second');
-  writeln('TEST PASSED: ', (1.0*hr2 ).ToVerboseString(10, 0,       []) = '12960000 square second');
-  writeln('TEST PASSED: ', (1.0*day2).ToString       (10, 0,       []) = '7464960000 s2');
-  writeln('TEST PASSED: ', (1.0*hr2 ).ToString       (10, 0,       []) = '12960000 s2');
+  writeln('TEST PASSED: <',   (1.0*mg  ).ToString(10, 10, [pKilo]),'>');
+
+  writeln('TEST PASSED: <',   (1.0*m/s2).ToMeterPerHourPerSecond.ToString(10, 10, [pKilo, pNone]),'>');
+
+  writeln('TEST PASSED-00: ', (1.0*mg  ).ToString       (10, 10, [pKilo]) = '1E-6 kg');
+  writeln('TEST PASSED-01: ', (1.0*mg2 ).ToString       (10, 0,  [pKilo]) = '1E-12 kg2');
+  writeln('TEST PASSED-02: ', (1.0*mg  ).ToString       (10, 10, [pMega]) = '1E-9 Mg');
+  writeln('TEST PASSED-03: ', (1.0*mg2 ).ToString       (10, 0,  [pMega]) = '1E-18 Mg2');
+  writeln('TEST PASSED-04: ', (1.0*kg  ).ToString       (10, 0,  [pNone]) = '1000 g');
+  writeln('TEST PASSED-05: ', (1.0*kg  ).ToString       (10, 0,  [pKilo]) = '1 kg');
+  writeln('TEST PASSED-06: ', (1.0*kg2 ).ToString       (10, 0,  [pNone]) = '1000000 g2');
+  writeln('TEST PASSED-07: ', (1.0*kg2 ).ToString       (10, 0,  [pKilo]) = '1 kg2');
+  writeln('TEST PASSED-08: ', (1.0*km  ).ToString       (10, 0,       []) = '1000 m');
+  writeln('TEST PASSED-09: ', (1.0*km2 ).ToString       (10, 0,       []) = '1000000 m2');
+  writeln('TEST PASSED-10: ', (1.0*kg  ).ToVerboseString(10, 0,  [pNone]) = '1000 gram');
+  writeln('TEST PASSED-11: ', (1.0*kg2 ).ToVerboseString(10, 0,  [pNone]) = '1000000 square gram');
+  writeln('TEST PASSED-12: ', (1.0*km  ).ToVerboseString(10, 0,       []) = '1000 meter');
+  writeln('TEST PASSED-13: ', (1.0*km2 ).ToVerboseString(10, 0,       []) = '1000000 square meter');
+  writeln('TEST PASSED-14: ', (1.0*km3 ).ToVerboseString(10, 0,       []) = '1000000000 cubic meter');
+  writeln('TEST PASSED-15: ', (1.0*km4 ).ToVerboseString(10, 0,       []) = '1E12 quartic meter');
+  writeln('TEST PASSED-16: ', (1.0*day ).ToVerboseString(10, 0,       []) = '86400 second');
+  writeln('TEST PASSED-17: ', (1.0*hr  ).ToVerboseString(10, 0,       []) = '3600 second');
+  writeln('TEST PASSED-18: ', (1.0*day ).ToString       (10, 0,       []) = '86400 s');
+  writeln('TEST PASSED-19: ', (1.0*hr  ).ToString       (10, 0,       []) = '3600 s');
+  writeln('TEST PASSED-20: ', (1.0*day2).ToVerboseString(10, 0,       []) = '7464960000 square second');
+  writeln('TEST PASSED-21: ', (1.0*hr2 ).ToVerboseString(10, 0,       []) = '12960000 square second');
+  writeln('TEST PASSED-22: ', (1.0*day2).ToString       (10, 0,       []) = '7464960000 s2');
+  writeln('TEST PASSED-23: ', (1.0*hr2 ).ToString       (10, 0,       []) = '12960000 s2');
 
   writeln;
   writeln('Press ENTER to exit.');

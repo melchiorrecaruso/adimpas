@@ -1,6 +1,6 @@
 
 const
-  PrefixTable: array[pTera..pMinute] of 
+  PrefixTable: array[pTera..pPico] of 
     record  Symbol, Name: string; Factor: double end = (
     (Symbol: 'T';   Name: 'tera';   Factor: 1E+12),
     (Symbol: 'G';   Name: 'giga';   Factor: 1E+09),
@@ -14,45 +14,12 @@ const
     (Symbol: 'm';   Name: 'milli';  Factor: 1E-03),
     (Symbol: 'μ';   Name: 'micro';  Factor: 1E-06),
     (Symbol: 'n';   Name: 'nano';   Factor: 1E-09),
-    (Symbol: 'p';   Name: 'pico';   Factor: 1E-12),
-    (Symbol: 'd';   Name: 'day';    Factor: 86400),
-    (Symbol: 'h';   Name: 'hour';   Factor: 3600 ),
-    (Symbol: 'min'; Name: 'minute'; Factor: 60   )
+    (Symbol: 'p';   Name: 'pico';   Factor: 1E-12)
   );
-
-function Split(const AStr: string): TStringArray;
 
 implementation
 
 uses Math;
-
-function Split(const AStr: string): TStringArray;
-var
-  I, Index: longint;
-begin
-  result := nil;
-  Index  := 0;
-  SetLength(result, Index + 10);
-  for I := low(AStr) to high(AStr) do
-  begin
-    if (AStr[I] in ['.', '/', ' ']) then
-    begin
-      Inc(Index);
-      if Index = Length(result) then
-        SetLength(result, Index + 10);
-      if AStr[I] <> ' ' then
-      begin
-        result[Index] := AStr[I];
-        Inc(Index);
-        if Index = Length(result) then
-           SetLength(result, Index + 10);
-      end;
-      result[Index] := '';
-    end else
-      result[Index] := result[Index] + AStr[I];
-  end;
-  SetLength(result, Index + 1);
-end;
 
 { TQuantity }
 
@@ -67,262 +34,28 @@ begin
 end;
 
 function TQuantity.Value(const Prefixes: TPrefixes): double;
-var
-  Exponent: longint;
-  I, Index: longint;
-  Prefix: TPrefix;
-  SubStr: TStringArray;
-  SubStrLen: longint;
 begin
-  Result   := FValue;
-  Exponent := 1;
-  Index    := Low(Prefixes);
-  if Index <= High(Prefixes) then
-    Prefix := Prefixes[Index]
-  else
-    Prefix := pNone;
-
-  SubStr := Split(U.Symbol);
-  for I := Low(SubStr) to High(SubStr) do
-  begin
-    if (SubStr[I] = '/') then Exponent := -1 else
-    if (SubStr[I] = '.') then Exponent := +1 
-      else
-      begin
-        SubStrLen := Length(SubStr[I]);
-        if SubStr[I][SubStrLen] in ['2', '3', '4', '5', '6'] then
-          Exponent := Exponent * (Ord(SubStr[I][SubStrLen]) - Ord('0')); 
-           
-        if (SubStr[I] = TSecondUnit.Symbol) or 
-           (SubStr[I] = TSquareSecondUnit.Symbol) then
-        begin
-
-          if Prefix in [pDay, pHour, pMinute, pDeci, pCenti, pMilli, pMicro, pNano, pPico] then
-          begin
-            Result := Result / IntPower(PrefixTable[Prefix].Factor, Exponent);
-          end else            
-            Prefix := pNone;
-
-        end else
-          if not (Prefix in [pDay, pHour, pMinute]) then
-          begin
-                        
-            if (SubStr[I] = TRadianUnit.Symbol) or
-               (SubStr[I] = TDegreeUnit.Symbol) or
-               (SubStr[I] = TAstronomicalUnit.Symbol) then
-              Prefix := pNone
-            else  
-              if (SubStr[I] = TKilogramUnit.Symbol) or 
-                 (SubStr[I] = TSquareKilogramUnit.Symbol) then
-              begin      
-                if Prefix <> pKilo then
-                begin
-                  Result := Result * IntPower(1000, Exponent); 
-                end else
-                  Prefix := pNone; 
-              end;
-
-            if Prefix <> pNone then 
-            begin
-              Result := Result / IntPower(PrefixTable[Prefix].Factor, Exponent);
-            end;  
-          end;
-        
-        Exponent := 1;
-        Index    := Index + 1;
-        if Index <= High(Prefixes) then
-          Prefix := Prefixes[Index]
-        else
-          Prefix := pNone;
-      end;
-  end;
-
-  SubStr := nil;
+  result := U.GetValue(FValue, Prefixes);
 end; 
 
 function TQuantity.ToString: string;
 begin
-  result := FloatToStr(FValue) + ' ' + U.Symbol;
+  result := FloatToStr(FValue) + ' ' + U.GetSymbol([]);
 end;
 
 function TQuantity.ToVerboseString: string;
 begin
-  result := FloatToStr(FValue) + ' ' + U.Name;
+  result := FloatToStr(FValue) + ' ' + U.GetName([]);
 end;
 
 function TQuantity.ToString(Precision, Digits: longint; const Prefixes: TPrefixes): string;
-var
-  Exponent: longint;
-  Return: double;
-  I, Index: longint;
-  Prefix: TPrefix;
-  SubStr: TStringArray;
-  SubStrLen: longint;
 begin
-  Return   := FValue;
-  Exponent := 1;
-  Index    := Low(Prefixes);
-  if Index <= High(Prefixes) then
-    Prefix := Prefixes[Index]
-  else
-    Prefix := pNone;
-
-  SubStr := Split(U.Symbol);
-  for I := Low(SubStr) to High(SubStr) do
-  begin
-    if (SubStr[I] = '/') then Exponent := -1 else
-    if (SubStr[I] = '.') then Exponent := +1 
-      else
-      begin
-        SubStrLen := Length(SubStr[I]);
-        if SubStr[I][SubStrLen] in ['2', '3', '4', '5', '6'] then
-          Exponent := Exponent * (Ord(SubStr[I][SubStrLen]) - Ord('0')); 
-           
-        if (SubStr[I] = TSecondUnit.Symbol) or 
-           (SubStr[I] = TSquareSecondUnit.Symbol) then
-        begin
-
-          if Prefix in [pDay, pHour, pMinute] then
-          begin
-            SubStr[I] := PrefixTable[Prefix].Symbol;
-            Return    := Return / IntPower(PrefixTable[Prefix].Factor, Exponent);
-          end else
-            if Prefix in [pDeci, pCenti, pMilli, pMicro, pNano, pPico] then
-            begin
-              SubStr[I] := PrefixTable[Prefix].Symbol + SubStr[I];
-              Return    := Return / IntPower(PrefixTable[Prefix].Factor, Exponent);
-            end else
-              Prefix := pNone;
-
-        end else
-          if not (Prefix in [pDay, pHour, pMinute]) then
-          begin
-                        
-            if (SubStr[I] = TRadianUnit.Symbol) or
-               (SubStr[I] = TDegreeUnit.Symbol) or
-               (SubStr[I] = TAstronomicalUnit.Symbol) then
-              Prefix := pNone
-            else  
-              if (SubStr[I] = TKilogramUnit.Symbol) or 
-                 (SubStr[I] = TSquareKilogramUnit.Symbol) then
-              begin      
-                if Prefix <> pKilo then
-                begin
-                  SubStr[I] := Copy(SubStr[I], 2, Length(SubStr[I]));  
-                  Return := Return * IntPower(1000, Exponent); 
-                end else
-                  Prefix := pNone; 
-              end;
-
-            if Prefix <> pNone then 
-            begin
-              SubStr[I] := PrefixTable[Prefix].Symbol + SubStr[I];
-              Return    := Return / IntPower(PrefixTable[Prefix].Factor, Exponent);
-            end;  
-          end;
-        
-        Exponent := 1;
-        Index    := Index + 1;
-        if Index <= High(Prefixes) then
-          Prefix := Prefixes[Index]
-        else
-          Prefix := pNone;
-      end;
-  end;
-
-  result := FloatToStrF(Return, ffGeneral, Precision, Digits) + ' ';
-  for I := Low(SubStr) to High(SubStr) do
-  begin
-    result := result + SubStr[I];
-  end;
-  SubStr := nil;
+  result := FloatToStrF(U.GetValue(FValue, Prefixes), ffGeneral, Precision, Digits) + ' ' + U.GetSymbol(Prefixes);
 end;
 
 function TQuantity.ToVerboseString(Precision, Digits: longint; const Prefixes: TPrefixes): string;
-var
-  Exponent: longint;
-  Return: double;
-  I, Index: longint;
-  Prefix: TPrefix;
-  SubStr: TStringArray;
 begin
-  Return   := FValue;
-  Exponent := 1;
-  Index    := Low(Prefixes);
-  if Index <= High(Prefixes) then
-    Prefix := Prefixes[Index]
-  else
-    Prefix := pNone;
-
-  SubStr := Split(U.Name);
-  for I := Low(SubStr) to High(SubStr) do
-  begin
-
-    if (SubStr[I] = 'per'    ) then Exponent := -1           else
-    if (SubStr[I] = 'square' ) then Exponent := Exponent * 2 else
-    if (SubStr[I] = 'cubic'  ) then Exponent := Exponent * 3 else
-    if (SubStr[I] = 'quartic') then Exponent := Exponent * 4 else
-    if (SubStr[I] = 'quintic') then Exponent := Exponent * 5 else
-    if (SubStr[I] = 'sextic' ) then Exponent := Exponent * 6
-      else
-      begin
-
-        if (SubStr[I] = TSecondUnit.Name) then
-        begin
-
-          if Prefix in [pDay, pHour, pMinute] then
-          begin
-            SubStr[I] := PrefixTable[Prefix].Symbol;
-            Return    := Return / IntPower(PrefixTable[Prefix].Factor, Exponent);
-          end else
-            if Prefix in [pDeci, pCenti, pMilli, pMicro, pNano, pPico] then
-            begin
-              SubStr[I] := PrefixTable[Prefix].Symbol + SubStr[I];
-              Return    := Return / IntPower(PrefixTable[Prefix].Factor, Exponent);
-            end else
-              Prefix := pNone;        
-
-        end else
-          if not (Prefix in [pDay, pHour, pMinute]) then
-          begin
-          
-            if (SubStr[I] = TRadianUnit.Symbol) or
-               (SubStr[I] = TDegreeUnit.Symbol) or
-               (SubStr[I] = TAstronomicalUnit.Symbol) then
-              Prefix := pNone
-            else  
-              if (SubStr[I] = TKilogramUnit.Name) then
-              begin      
-                if Prefix <> pKilo then
-                begin
-                  SubStr[I] := 'gram';
-                  Return := Return * IntPower(1000, Exponent); 
-                end else
-                  Prefix := pNone;                 
-              end;
-
-            if Prefix <> pNone then 
-            begin
-              SubStr[I] := PrefixTable[Prefix].Symbol + SubStr[I];
-              Return := Return / IntPower(PrefixTable[Prefix].Factor, Exponent);
-            end;  
-          end;
-
-        Exponent := 1;
-        Index    := Index + 1;
-        if Index <= High(Prefixes) then
-          Prefix := Prefixes[Index]
-        else
-          Prefix := pNone;
-      end;
-  end;
-
-  result := FloatToStrF(Return, ffGeneral, Precision, Digits);
-  for I := Low(SubStr) to High(SubStr) do
-  begin
-    result := result + ' ' + SubStr[I];
-  end;
-  SubStr := nil;
+  result := FloatToStrF(U.GetValue(FValue, Prefixes), ffGeneral, Precision, Digits) + ' ' + U.GetName(Prefixes);
 end;                                             
 
 class operator TQuantity.+(const ALeft, ARight: TSelf): TSelf;

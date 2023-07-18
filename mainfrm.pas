@@ -46,6 +46,7 @@ type
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
     TabSheet4: TTabSheet;
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure LoadBtnClick(Sender: TObject);
     procedure ExportBtnClick(Sender: TObject);
@@ -71,6 +72,7 @@ type
     procedure AddClass(const AClassName, AOperator, AClassParent1, AClassParent2,
       AComment, ALongSymbol, AShortSymbol, AIdentifierSymbol, ABaseClass, AFactor: string);
 
+    procedure AddClassFunction(const AClassName, ALongSymbol, AShortSymbol: string);
     procedure AddFactoredQuantity(ABaseClass, AIdentifierSymbol, AFactor: string);
 
     procedure AddPower(AOperator, AQuantity, AResult: string);
@@ -266,8 +268,9 @@ begin
       SectionA1.Append('type');
       SectionA1.Append('  { Unit of ' + GetNM(AClassName) + ' }');
       SectionA1.Append('  ' + GetUN(AClassName) + ' = record');
-      SectionA1.Append('    const Symbol = ''' + AShortSymbol + ''';');
-      SectionA1.Append('    const Name   = ''' + ALongSymbol + ''';');
+      SectionA1.Append('    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;');
+      SectionA1.Append('    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;');
+      SectionA1.Append('    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;');
       SectionA1.Append('  end;');
       SectionA1.Append('  ' + GetQT(AClassName) + ' = specialize TQuantity<' + GetUN(AClassName) + '>;');
       SectionA1.Append('  ' + GetID(AClassName) + ' = specialize TUnitId<' + GetUN(AClassName) + '>;');
@@ -279,7 +282,7 @@ begin
         AddFactoredQuantity(AClassName, AIdentifierSymbol, '');
         SectionA1.Append('');
       end;
-
+      AddClassFunction(AClassName, ALongSymbol, AShortSymbol);
     end else
     begin
 
@@ -289,8 +292,9 @@ begin
         SectionA1.Append('type');
         SectionA1.Append('  { Unit of ' + GetNM(AClassName) + ' }');
         SectionA1.Append('  ' + GetUN(AClassName) + ' = record');
-        SectionA1.Append('    const Symbol = ''' + AShortSymbol + ''';');
-        SectionA1.Append('    const Name   = ''' + ALongSymbol  + ''';');
+        SectionA1.Append('    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;');
+        SectionA1.Append('    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;');
+        SectionA1.Append('    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;');
         SectionA1.Append('  end;');
         SectionA1.Append('  ' + GetQT(AClassName) + ' = specialize TQuantity<' + GetUN(ABaseClass) + '>;');
         SectionA1.Append('  ' + GetID(AClassName) + ' = specialize TUnitId<' + GetUN(ABaseClass) + '>;');
@@ -302,18 +306,21 @@ begin
           AddFactoredQuantity(ABaseClass, AIdentifierSymbol, AFactor);
           SectionA1.Append('');
         end;
+        AddClassFunction(AClassName, ALongSymbol, AShortSymbol);
         AddHelper(AClassName, ABaseClass, '');
+
       end else
       begin
         SectionA1.Append('');
         SectionA1.Append('type');
         SectionA1.Append('  { Unit of ' + GetNM(AClassName) + ' }');
         SectionA1.Append('  ' + GetUN(AClassName) + ' = record');
-        SectionA1.Append('    const Symbol = ''' + AShortSymbol + ''';');
-        SectionA1.Append('    const Name   = ''' + ALongSymbol  + ''';');
+        SectionA1.Append('    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;');
+        SectionA1.Append('    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;');
+        SectionA1.Append('    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;');
         if Pos('%s', AFactor) = 0 then
         begin
-          SectionA1.Append('    const Factor = '   + AFactor      + ';');
+          SectionA1.Append('    const Factor = ' + AFactor + ';');
           SectionA1.Append('  end;');
           SectionA1.Append('  ' + GetQT(AClassName) + ' = specialize TQuantity<' + GetUN(ABaseClass) + '>;');
         end else
@@ -347,6 +354,7 @@ begin
           AddHelper(ABaseClass, AClassName, Format(Copy(AFactor, 1, Pos('|', AFactor) -1), ['FValue']));
           AddHelper(AClassName, ABaseClass, Format(Copy(AFactor, Pos('|', AFactor) + 1, Length(AFactor)), ['FValue']));
         end;
+        AddClassFunction(AClassName, ALongSymbol, AShortSymbol);
 
       end;
     end;
@@ -360,6 +368,7 @@ begin
       SectionA1.Append('// ' + AComment);
       SectionB1.Append('');
       SectionB1.Append('// ' + AComment);
+      SectionB1.Append('');
 
       AddQuantityOperator('*', AClassParent1, AClassParent2, AClassName);
       if AClassParent1 <> AClassParent2 then
@@ -385,6 +394,7 @@ begin
         SectionA1.Append('// ' + AComment);
         SectionB1.Append('');
         SectionB1.Append('// ' + AComment);
+        SectionB1.Append('');
 
         AddQuantityOperator('/', AClassParent1, AClassParent2, AClassName);
         AddQuantityOperator('*', AClassParent2, AClassName,    AClassParent1);
@@ -422,6 +432,166 @@ begin
         SectionA1.Append('');
       end;
 
+end;
+
+function Split(const AStr: string): TStringArray;
+var
+  I, Index: longint;
+begin
+  result := nil;
+  Index  := 0;
+  SetLength(result, Index + 10);
+  for I := low(AStr) to high(AStr) do
+  begin
+    if (AStr[I] in ['.', '/', ' ']) then
+    begin
+      Inc(Index);
+      if Index = Length(result) then
+        SetLength(result, Index + 10);
+      if AStr[I] <> ' ' then
+      begin
+        result[Index] := AStr[I];
+        Inc(Index);
+        if Index = Length(result) then
+           SetLength(result, Index + 10);
+      end;
+      result[Index] := '';
+    end else
+      result[Index] := result[Index] + AStr[I];
+  end;
+  SetLength(result, Index + 1);
+end;
+
+procedure TMainForm.AddClassFunction(const AClassName, ALongSymbol, AShortSymbol: string);
+var
+  SubStr: string;
+  StrArray, S: TStringArray;
+  I, Index, Count: longint;
+  Exponent: longint;
+begin
+  // Symbol
+  Count  := 0;
+  SubStr := AShortSymbol;
+  while Pos('%s', SubStr) > 0 do
+  begin
+    SubStr := StringReplace(SubStr, '%s', '88', []);
+    Inc(Count);
+  end;
+
+  SubStr := '';
+  for I := 0 to Count -1 do
+    SubStr := SubStr + 'PrefixTable[APrefixes[' + IntToStr(I) + ']].Symbol, ';
+  SetLength(SubStr, Length(SubStr) -2);
+
+  SectionB1.Append('');
+  SectionB1.Append('{ Unit of ' + GetNM(AClassName) + ' }');
+  SectionB1.Append('');
+  SectionB1.Append('class function ' + GetUN(AClassName) + '.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;');
+  SectionB1.Append('begin');
+  if Count > 0 then
+  begin
+  SectionB1.Append('  if Length(APrefixes) = ' + IntToStr(Count) + ' then');
+  SectionB1.Append('    result := Format(''' + AShortSymbol + ''', [' + Substr + '])');
+  SectionB1.Append('  else');
+  SectionB1.Append('    result := ''' + StringReplace(StringReplace(AShortSymbol, '%sg', 'kg', [rfReplaceAll]), '%s','', [rfReplaceAll]) + ''';');
+  end else
+  begin
+  SectionB1.Append('  result := ''' + StringReplace(StringReplace(AShortSymbol, '%sg', 'kg', [rfReplaceAll]), '%s','', [rfReplaceAll]) + ''';');
+  end;
+  SectionB1.Append('end;');
+  SectionB1.Append('');
+
+  // Name
+  Count  := 0;
+  SubStr := ALongSymbol;
+  while Pos('%s', SubStr) > 0 do
+  begin
+    SubStr := StringReplace(SubStr, '%s', '88', []);
+    Inc(Count);
+  end;
+
+  SubStr := '';
+  for I := 0 to Count -1 do
+    SubStr := SubStr + 'PrefixTable[APrefixes[' + IntToStr(I) + ']].Symbol, ';
+  SetLength(SubStr, Length(SubStr) -2);
+
+  SectionB1.Append('');
+  SectionB1.Append('class function ' + GetUN(AClassName) + '.GetName(const {%H-}APrefixes: TPrefixes): string; static;');
+  SectionB1.Append('begin');
+  if Count > 0 then
+  begin
+  SectionB1.Append('  if Length(APrefixes) = ' + IntToStr(Count) + ' then');
+  SectionB1.Append('    result := Format(''' + ALongSymbol + ''', [' + Substr + '])');
+  SectionB1.Append('  else');
+  SectionB1.Append('    result := ''' + StringReplace(StringReplace(ALongSymbol, '%sgram', 'kilogram', [rfReplaceAll]), '%s', '', [rfReplaceAll]) + ''';');
+  end else
+  begin
+  SectionB1.Append('  result := ''' + StringReplace(StringReplace(ALongSymbol, '%sgram', 'kilogram', [rfReplaceAll]), '%s', '', [rfReplaceAll]) + ''';');
+  end;
+  SectionB1.Append('end;');
+  SectionB1.Append('');
+
+  // Factor
+  Exponent := 1;
+  Index    := 0;
+  SubStr   := '';
+  StrArray := Split(AShortSymbol);
+  SetLength(S, 10);
+
+  for I := Low(StrArray) to High(StrArray) do
+  begin
+    if (StrArray[I] = '.') then
+      Exponent := +1
+    else
+      if (StrArray[I] = '/') then
+        Exponent := -1
+      else
+        if Pos('%s', StrArray[I]) > 0 then
+        begin
+          if StrArray[I][Length(StrArray[I])] in ['2', '3', '4', '5', '6', '7', '8', '9'] then
+            Exponent := Exponent * (Ord(StrArray[I][Length(StrArray[I])]) - Ord('0'));
+
+          if (StrArray[I] = '%sg' ) then SubStr := '* 1E+03';
+          if (StrArray[I] = '%sg2') then SubStr := '* 1E+06';
+
+          if Exponent > 1 then
+            S[Index] := '/ IntPower(PrefixTable[APrefixes[' + IntToStr(Index) + ']].Factor, ' + IntToStr(Abs(Exponent)) + ')'
+          else
+            if Exponent = 1 then
+              S[Index] := '/ PrefixTable[APrefixes[' + IntToStr(Index) + ']].Factor'
+            else
+              if Exponent = -1 then
+                S[Index] := '* PrefixTable[APrefixes[' + IntToStr(Index) + ']].Factor'
+              else
+                if Exponent < -1 then
+                  S[Index] := '* IntPower(PrefixTable[APrefixes[' + IntToStr(Index) + ']].Factor, ' + IntToStr(Abs(Exponent)) + ')';
+
+          Exponent := 1;
+          Inc(Index);
+        end;
+
+  end;
+
+  SectionB1.Append('');
+  SectionB1.Append('class function ' + GetUN(AClassName) + '.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;');
+  SectionB1.Append('begin');
+  SectionB1.Append('  result := AValue;');
+  if Index > 0 then
+  begin
+  SectionB1.Append('  if Length(APrefixes) = ' + IntToStr(Index) + ' then');
+  SectionB1.Append('  begin');
+  if SubStr <> '' then
+  SectionB1.Append('    result := result ' + SubStr + ';');
+  if Count > 0 then
+  SectionB1.Append('    if (APrefixes[0] <> pNone) then result := result ' + S[0] + ';');
+  if Count > 1 then
+  SectionB1.Append('    if (APrefixes[1] <> pNone) then result := result ' + S[1] + ';');
+  if Count > 2 then
+  SectionB1.Append('    if (APrefixes[2] <> pNone) then result := result ' + S[2] + ';');
+  SectionB1.Append('  end;');
+  end;
+  SectionB1.Append('end;');
+  SectionB1.Append('');
 end;
 
 procedure TMainForm.AddFactoredQuantity(ABaseClass, AIdentifierSymbol, AFactor: string);
@@ -643,6 +813,10 @@ begin
   WorksheetGrid.AutoFillColumns := True;
 end;
 
+procedure TMainForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+begin
+
+end;
 
 procedure TMainForm.LoadBtnClick(Sender: TObject);
 begin
@@ -651,7 +825,7 @@ begin
     WorksheetGrid.BeginUpdate;
     WorksheetGrid.AutoFillColumns   := True;
     WorkbookSource.AutoDetectFormat := True;
-    WorksheetGrid.LoadFromSpreadsheetFile(OpenDialog.FileName);
+    WorksheetGrid.LoadFromSpreadSheetFile(OpenDialog.FileName);
     WorksheetGrid.AutoFillColumns   := False;
     WorksheetGrid.EndUpdate(True);
   end;
@@ -759,8 +933,6 @@ begin
 
   Document.Append('');
   Document.Append('end.');
-  CleanDocument(Document);
-  CleanDocument(Document);
   CleanDocument(Document);
 
   SynEdit.BeginUpdate(True);
