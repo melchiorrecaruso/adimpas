@@ -3762,10 +3762,11 @@ end;
 
 class function TSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+  end;
 end;
 
 { Unit of Day }
@@ -3839,10 +3840,11 @@ end;
 
 class function TSquareSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 2))
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / IntPower(PrefixTable[APrefixes[0]].Factor, 2);
+  end;
 end;
 
 // main definition [ s2 ] = [ s ] * [ s ]
@@ -3928,10 +3930,11 @@ end;
 
 class function TMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+  end;
 end;
 
 { Unit of Astronomical }
@@ -3971,10 +3974,11 @@ end;
 
 class function TSquareMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 2))
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / IntPower(PrefixTable[APrefixes[0]].Factor, 2);
+  end;
 end;
 
 // main definition [ m2 ] = [ m ] * [ m ]
@@ -4009,10 +4013,11 @@ end;
 
 class function TCubicMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 3))
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / IntPower(PrefixTable[APrefixes[0]].Factor, 3);
+  end;
 end;
 
 // main definition [ m3 ] = [ m2 ] * [ m ]
@@ -4057,10 +4062,11 @@ end;
 
 class function TLitreUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+  end;
 end;
 
 { Unit of QuarticMeter }
@@ -4083,10 +4089,11 @@ end;
 
 class function TQuarticMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 4))
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / IntPower(PrefixTable[APrefixes[0]].Factor, 4);
+  end;
 end;
 
 // main definition [ m4 ] = [ m3 ] * [ m ]
@@ -4143,10 +4150,11 @@ end;
 
 class function TQuinticMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 5))
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / IntPower(PrefixTable[APrefixes[0]].Factor, 5);
+  end;
 end;
 
 // main definition [ m5 ] = [ m4 ] * [ m ]
@@ -4213,10 +4221,11 @@ end;
 
 class function TSexticMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 6))
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / IntPower(PrefixTable[APrefixes[0]].Factor, 6);
+  end;
 end;
 
 // main definition [ m6 ] = [ m5 ] * [ m ]
@@ -4295,10 +4304,12 @@ end;
 
 class function TKilogramUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (1E-03 * PrefixTable[APrefixes[0]].Factor)
-  else
-    result := AValue;
+  begin
+    result := result * 1E+03;
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+  end;
 end;
 
 { Unit of Tonne }
@@ -4321,10 +4332,11 @@ end;
 
 class function TTonneUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+  end;
 end;
 
 { Unit of SquareKilogram }
@@ -4347,10 +4359,12 @@ end;
 
 class function TSquareKilogramUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (1E-06 * IntPower(PrefixTable[APrefixes[0]].Factor, 2))
-  else
-    result := AValue;
+  begin
+    result := result * 1E+06;
+    if (APrefixes[0] <> pNone) then result := result / IntPower(PrefixTable[APrefixes[0]].Factor, 2);
+  end;
 end;
 
 // main definition [ kg2 ] = [ kg ] * [ kg ]
@@ -4385,10 +4399,11 @@ end;
 
 class function TAmpereUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+  end;
 end;
 
 { Unit of SquareAmpere }
@@ -4411,10 +4426,11 @@ end;
 
 class function TSquareAmpereUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 2))
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / IntPower(PrefixTable[APrefixes[0]].Factor, 2);
+  end;
 end;
 
 // main definition [ A2 ] = [ A ] * [ A ]
@@ -4449,10 +4465,11 @@ end;
 
 class function TKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+  end;
 end;
 
 { Unit of DegreeCelsius }
@@ -4509,10 +4526,11 @@ end;
 
 class function TSquareKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 2))
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / IntPower(PrefixTable[APrefixes[0]].Factor, 2);
+  end;
 end;
 
 // main definition [ K2 ] = [ K ] * [ K ]
@@ -4547,10 +4565,11 @@ end;
 
 class function TCubicKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 3))
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / IntPower(PrefixTable[APrefixes[0]].Factor, 3);
+  end;
 end;
 
 // main definition [ K3 ] = [ K2 ] * [ K ]
@@ -4595,10 +4614,11 @@ end;
 
 class function TQuarticKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 4))
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / IntPower(PrefixTable[APrefixes[0]].Factor, 4);
+  end;
 end;
 
 // main definition [ K4 ] = [ K3 ] * [ K ]
@@ -4655,10 +4675,11 @@ end;
 
 class function TMoleUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+  end;
 end;
 
 { Unit of Candela }
@@ -4681,10 +4702,11 @@ end;
 
 class function TCandelaUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+  end;
 end;
 
 { Unit of Radian }
@@ -4770,10 +4792,11 @@ end;
 
 class function THertzUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+  end;
 end;
 
 // main definition [ Hz ] = [ 1 ] / [ s ]
@@ -4823,10 +4846,11 @@ end;
 
 class function TSquareHertzUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 2))
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / IntPower(PrefixTable[APrefixes[0]].Factor, 2);
+  end;
 end;
 
 // main definition [ Hz2 ] = [ 1 ] / [ s2 ]
@@ -4910,10 +4934,11 @@ end;
 
 class function TRadianPerSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result * PrefixTable[APrefixes[0]].Factor;
+  end;
 end;
 
 // main definition [ rad/s ] = [ rad ] / [ s ]
@@ -4995,10 +5020,11 @@ end;
 
 class function TRadianPerSquareSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 2))
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result * IntPower(PrefixTable[APrefixes[0]].Factor, 2);
+  end;
 end;
 
 // main definition [ rad/s2 ] = [ rad ] / [ s2 ]
@@ -5070,10 +5096,11 @@ end;
 
 class function TSteradianPerSquareSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 2))
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result * IntPower(PrefixTable[APrefixes[0]].Factor, 2);
+  end;
 end;
 
 // main definition [ sr/s2 ] = [ sr ] / [ s2 ]
@@ -5145,10 +5172,12 @@ end;
 
 class function TMeterPerSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor / PrefixTable[APrefixes[1]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result * PrefixTable[APrefixes[1]].Factor;
+  end;
 end;
 
 // main definition [ m/s ] = [ m ] / [ s ]
@@ -5225,10 +5254,11 @@ end;
 
 class function TMeterPerHourUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+  end;
 end;
 
 { Unit of MeterPerSquareSecond }
@@ -5251,10 +5281,12 @@ end;
 
 class function TMeterPerSquareSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor / IntPower(PrefixTable[APrefixes[1]].Factor, 2))
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result * IntPower(PrefixTable[APrefixes[1]].Factor, 2);
+  end;
 end;
 
 // main definition [ m/s2 ] = [ m ] / [ s2 ]
@@ -5353,10 +5385,13 @@ end;
 
 class function TMeterPerSecondPerSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 3 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor / PrefixTable[APrefixes[1]].Factor / PrefixTable[APrefixes[2]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result * PrefixTable[APrefixes[1]].Factor;
+    if (APrefixes[2] <> pNone) then result := result * PrefixTable[APrefixes[2]].Factor;
+  end;
 end;
 
 { Unit of MeterPerHourPerSecond }
@@ -5379,10 +5414,12 @@ end;
 
 class function TMeterPerHourPerSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor / PrefixTable[APrefixes[1]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result * PrefixTable[APrefixes[1]].Factor;
+  end;
 end;
 
 { Unit of SquareMeterPerSquareSecond }
@@ -5405,10 +5442,12 @@ end;
 
 class function TSquareMeterPerSquareSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 2) / IntPower(PrefixTable[APrefixes[1]].Factor, 2))
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / IntPower(PrefixTable[APrefixes[0]].Factor, 2);
+    if (APrefixes[1] <> pNone) then result := result * IntPower(PrefixTable[APrefixes[1]].Factor, 2);
+  end;
 end;
 
 // main definition [ m2/s2 ] = [ m2 ] / [ s2 ]
@@ -5492,10 +5531,14 @@ end;
 
 class function TKilogramMeterPerSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 3 then
-    result := AValue / (1E-03 * PrefixTable[APrefixes[0]].Factor * PrefixTable[APrefixes[1]].Factor / PrefixTable[APrefixes[2]].Factor)
-  else
-    result := AValue;
+  begin
+    result := result * 1E+03;
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result / PrefixTable[APrefixes[1]].Factor;
+    if (APrefixes[2] <> pNone) then result := result * PrefixTable[APrefixes[2]].Factor;
+  end;
 end;
 
 // main definition [ kg*m/s ] = [kg ] * [ m/s ]
@@ -5545,10 +5588,12 @@ end;
 
 class function TNewtonSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor * PrefixTable[APrefixes[1]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result / PrefixTable[APrefixes[1]].Factor;
+  end;
 end;
 
 { Unit of KilogramSquareMeter }
@@ -5571,10 +5616,13 @@ end;
 
 class function TKilogramSquareMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (1E-03 * PrefixTable[APrefixes[0]].Factor * IntPower(PrefixTable[APrefixes[1]].Factor, 2))
-  else
-    result := AValue;
+  begin
+    result := result * 1E+03;
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result / IntPower(PrefixTable[APrefixes[1]].Factor, 2);
+  end;
 end;
 
 // main definition [ kg*m2 ] = [ kg ] * [ m2 ]
@@ -5624,10 +5672,14 @@ end;
 
 class function TKilogramSquareMeterPerSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 3 then
-    result := AValue / (1E-03 * PrefixTable[APrefixes[0]].Factor * IntPower(PrefixTable[APrefixes[1]].Factor, 2) / PrefixTable[APrefixes[2]].Factor)
-  else
-    result := AValue;
+  begin
+    result := result * 1E+03;
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result / IntPower(PrefixTable[APrefixes[1]].Factor, 2);
+    if (APrefixes[2] <> pNone) then result := result * PrefixTable[APrefixes[2]].Factor;
+  end;
 end;
 
 // main definition [ kg*m2/s ] = [ kg*m2 ] / [ s ]
@@ -5699,10 +5751,13 @@ end;
 
 class function TKilogramPerMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (1E-03 * PrefixTable[APrefixes[0]].Factor / PrefixTable[APrefixes[1]].Factor)
-  else
-    result := AValue;
+  begin
+    result := result * 1E+03;
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result * PrefixTable[APrefixes[1]].Factor;
+  end;
 end;
 
 // main definition [ kg/m ] = [ kg ] / [ m ]
@@ -5752,10 +5807,13 @@ end;
 
 class function TKilogramPerSquareMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (1E-03 * PrefixTable[APrefixes[0]].Factor / IntPower(PrefixTable[APrefixes[1]].Factor, 2))
-  else
-    result := AValue;
+  begin
+    result := result * 1E+03;
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result * IntPower(PrefixTable[APrefixes[1]].Factor, 2);
+  end;
 end;
 
 // main definition [ kg/m2 ] = [ kg ] / [ m2 ]
@@ -5805,10 +5863,13 @@ end;
 
 class function TKilogramPerCubicMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (1E-03 * PrefixTable[APrefixes[0]].Factor / IntPower(PrefixTable[APrefixes[1]].Factor, 3))
-  else
-    result := AValue;
+  begin
+    result := result * 1E+03;
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result * IntPower(PrefixTable[APrefixes[1]].Factor, 3);
+  end;
 end;
 
 // main definition [ kg/m3 ] = [ kg ] / [ m3 ]
@@ -5880,10 +5941,11 @@ end;
 
 class function TNewtonUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+  end;
 end;
 
 // main definition [ N ] = [ kg ] * [ m/s2 ]
@@ -5977,10 +6039,11 @@ end;
 
 class function TPascalUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+  end;
 end;
 
 // main definition [ Pa ] = [ N ] / [ m2 ]
@@ -6052,10 +6115,11 @@ end;
 
 class function TJouleUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+  end;
 end;
 
 // main definition [ J ] = [ N ] * [ m ]
@@ -6220,10 +6284,11 @@ end;
 
 class function TElettronvoltUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+  end;
 end;
 
 { Unit of Watt }
@@ -6246,10 +6311,11 @@ end;
 
 class function TWattUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+  end;
 end;
 
 // main definition [ W ] = [ J ] / [ s ]
@@ -6343,10 +6409,11 @@ end;
 
 class function TCoulombUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+  end;
 end;
 
 // main definition [ C ] = [ s ] * [ A ]
@@ -6396,10 +6463,11 @@ end;
 
 class function TSquareCoulombUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 2))
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / IntPower(PrefixTable[APrefixes[0]].Factor, 2);
+  end;
 end;
 
 // main definition [ C2 ] = [ C ] * [ C ]
@@ -6434,10 +6502,11 @@ end;
 
 class function TVoltUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+  end;
 end;
 
 // main definition [ V ] = [ W ] / [ A ]
@@ -6514,10 +6583,11 @@ end;
 
 class function TSquareVoltUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 2))
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / IntPower(PrefixTable[APrefixes[0]].Factor, 2);
+  end;
 end;
 
 // main definition [ V2 ] = [ V ] * [ V ]
@@ -6552,10 +6622,11 @@ end;
 
 class function TFaradUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+  end;
 end;
 
 // main definition [ F ] = [ C ] / [ V ]
@@ -6627,10 +6698,11 @@ end;
 
 class function TOhmUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+  end;
 end;
 
 // main definition [ Ω ] = [ V ] / [ A ]
@@ -6746,10 +6818,11 @@ end;
 
 class function TSiemensUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+  end;
 end;
 
 // main definition [ S ] = 1 / [ Ω ]
@@ -6799,10 +6872,11 @@ end;
 
 class function TWeberUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+  end;
 end;
 
 // main definition [ Wb ] = [ V ] * [ s ]
@@ -6852,10 +6926,11 @@ end;
 
 class function TTeslaUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+  end;
 end;
 
 // main definition [ T ] = [ Wb ] / [ m2 ]
@@ -6905,10 +6980,11 @@ end;
 
 class function THenryUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+  end;
 end;
 
 // main definition [ H ] = [ Wb ] / [ A ]
@@ -7002,10 +7078,11 @@ end;
 
 class function TLumenUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+  end;
 end;
 
 // main definition [ lm ] = [ cd ] * [ sr ]
@@ -7055,10 +7132,11 @@ end;
 
 class function TLuxUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+  end;
 end;
 
 // main definition [ lx ] = [ lm ] / [ m2 ]
@@ -7108,10 +7186,11 @@ end;
 
 class function TBequerelUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+  end;
 end;
 
 { Unit of Gray }
@@ -7134,10 +7213,11 @@ end;
 
 class function TGrayUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+  end;
 end;
 
 { Unit of Sievert }
@@ -7160,10 +7240,11 @@ end;
 
 class function TSievertUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+  end;
 end;
 
 { Unit of Katal }
@@ -7186,10 +7267,11 @@ end;
 
 class function TKatalUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+  end;
 end;
 
 // main definition [ kat ] = [ mol ] / [ s ]
@@ -7239,10 +7321,12 @@ end;
 
 class function TNewtonMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor * PrefixTable[APrefixes[1]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result / PrefixTable[APrefixes[1]].Factor;
+  end;
 end;
 
 { Unit of JoulePerRadian }
@@ -7265,10 +7349,11 @@ end;
 
 class function TJoulePerRadianUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+  end;
 end;
 
 // main definition [ J/rad ] = [ J ] / [ rad ]
@@ -7318,10 +7403,11 @@ end;
 
 class function TJoulePerDegreeUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+  end;
 end;
 
 { Unit of NewtonMeterPerRadian }
@@ -7344,10 +7430,12 @@ end;
 
 class function TNewtonMeterPerRadianUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor * PrefixTable[APrefixes[1]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result / PrefixTable[APrefixes[1]].Factor;
+  end;
 end;
 
 { Unit of NewtonMeterPerDegree }
@@ -7370,10 +7458,12 @@ end;
 
 class function TNewtonMeterPerDegreeUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor * PrefixTable[APrefixes[1]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result / PrefixTable[APrefixes[1]].Factor;
+  end;
 end;
 
 { Unit of NewtonPerCubicMeter }
@@ -7396,10 +7486,12 @@ end;
 
 class function TNewtonPerCubicMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor / IntPower(PrefixTable[APrefixes[1]].Factor, 3))
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result * IntPower(PrefixTable[APrefixes[1]].Factor, 3);
+  end;
 end;
 
 // main definition [ N/m3 ] = [ N ] / [ m3 ]
@@ -7493,10 +7585,12 @@ end;
 
 class function TNewtonPerMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor / PrefixTable[APrefixes[1]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result * PrefixTable[APrefixes[1]].Factor;
+  end;
 end;
 
 // main definition [ N/m ] = [ N ] / [ m ]
@@ -7612,10 +7706,12 @@ end;
 
 class function TCubicMeterPerSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 3) / PrefixTable[APrefixes[1]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / IntPower(PrefixTable[APrefixes[0]].Factor, 3);
+    if (APrefixes[1] <> pNone) then result := result * PrefixTable[APrefixes[1]].Factor;
+  end;
 end;
 
 // main definition [ m3/s ] = [ m3 ] / [ s ]
@@ -7687,10 +7783,13 @@ end;
 
 class function TKilogramPerSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (1E-03 * PrefixTable[APrefixes[0]].Factor / PrefixTable[APrefixes[1]].Factor)
-  else
-    result := AValue;
+  begin
+    result := result * 1E+03;
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result * PrefixTable[APrefixes[1]].Factor;
+  end;
 end;
 
 // main definition [ kg/s ] = [ kg ] / [ s ]
@@ -7762,10 +7861,11 @@ end;
 
 class function TPoiseuilleUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+  end;
 end;
 
 // main definition [ Pl ] = [ Pa ] * [ s ]
@@ -7864,10 +7964,12 @@ end;
 
 class function TPascalSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor * PrefixTable[APrefixes[1]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result / PrefixTable[APrefixes[1]].Factor;
+  end;
 end;
 
 { Unit of SquareMeterPerSecond }
@@ -7890,10 +7992,12 @@ end;
 
 class function TSquareMeterPerSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 2) / PrefixTable[APrefixes[1]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / IntPower(PrefixTable[APrefixes[0]].Factor, 2);
+    if (APrefixes[1] <> pNone) then result := result * PrefixTable[APrefixes[1]].Factor;
+  end;
 end;
 
 // main definition [ m2/s ] = [ m2 ] / [ s ]
@@ -7965,10 +8069,13 @@ end;
 
 class function TKilogramPerQuarticMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (1E-03 * PrefixTable[APrefixes[0]].Factor / IntPower(PrefixTable[APrefixes[1]].Factor, 4))
-  else
-    result := AValue;
+  begin
+    result := result * 1E+03;
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result * IntPower(PrefixTable[APrefixes[1]].Factor, 4);
+  end;
 end;
 
 // main definition [ kg/m4 ] = [ kg ] / [ m4 ]
@@ -8018,10 +8125,12 @@ end;
 
 class function TQuarticMeterSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 4) * PrefixTable[APrefixes[1]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / IntPower(PrefixTable[APrefixes[0]].Factor, 4);
+    if (APrefixes[1] <> pNone) then result := result / PrefixTable[APrefixes[1]].Factor;
+  end;
 end;
 
 // main definition [ m4*s ] = [ m4 ] * [ s ]
@@ -8071,10 +8180,14 @@ end;
 
 class function TKilogramPerQuarticMeterPerSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 3 then
-    result := AValue / (1E-03 * PrefixTable[APrefixes[0]].Factor / IntPower(PrefixTable[APrefixes[1]].Factor, 4) / PrefixTable[APrefixes[2]].Factor)
-  else
-    result := AValue;
+  begin
+    result := result * 1E+03;
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result * IntPower(PrefixTable[APrefixes[1]].Factor, 4);
+    if (APrefixes[2] <> pNone) then result := result * PrefixTable[APrefixes[2]].Factor;
+  end;
 end;
 
 // main definition [ kg/m4/s ] = [ kg/s ] / [ m4 ]
@@ -8195,10 +8308,13 @@ end;
 
 class function TCubicMeterPerKilogramUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 3) / 1E-03 / PrefixTable[APrefixes[1]].Factor)
-  else
-    result := AValue;
+  begin
+    result := result * 1E+03;
+    if (APrefixes[0] <> pNone) then result := result / IntPower(PrefixTable[APrefixes[0]].Factor, 3);
+    if (APrefixes[1] <> pNone) then result := result * PrefixTable[APrefixes[1]].Factor;
+  end;
 end;
 
 // main definition [ m3/kg ] = [ m3 ] / [ kg ]
@@ -8248,10 +8364,13 @@ end;
 
 class function TKilogramSquareSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (1E-03 * PrefixTable[APrefixes[0]].Factor * IntPower(PrefixTable[APrefixes[1]].Factor, 2))
-  else
-    result := AValue;
+  begin
+    result := result * 1E+03;
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result / IntPower(PrefixTable[APrefixes[1]].Factor, 2);
+  end;
 end;
 
 // main definition [ kg*s2 ] = [ kg ] * [ s2 ]
@@ -8301,10 +8420,12 @@ end;
 
 class function TCubicMeterPerSquareSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 3) / IntPower(PrefixTable[APrefixes[1]].Factor, 2))
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / IntPower(PrefixTable[APrefixes[0]].Factor, 3);
+    if (APrefixes[1] <> pNone) then result := result * IntPower(PrefixTable[APrefixes[1]].Factor, 2);
+  end;
 end;
 
 // main definitio [ m3/s2 ] = [ m3 ] / [ s2 ]
@@ -8376,10 +8497,12 @@ end;
 
 class function TNewtonSquareMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor * IntPower(PrefixTable[APrefixes[1]].Factor, 2))
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result / IntPower(PrefixTable[APrefixes[1]].Factor, 2);
+  end;
 end;
 
 // main definition [ N*m2 ] = [ N ] * [ m2 ]
@@ -8473,10 +8596,13 @@ end;
 
 class function TNewtonPerSquareKilogramUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor / 1E-06 / IntPower(PrefixTable[APrefixes[1]].Factor, 2))
-  else
-    result := AValue;
+  begin
+    result := result * 1E+06;
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result * IntPower(PrefixTable[APrefixes[1]].Factor, 2);
+  end;
 end;
 
 // main definition [ N/kg2 ] = [ N ] / [ kg2 ]
@@ -8526,10 +8652,13 @@ end;
 
 class function TSquareKilogramPerMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (1E-06 * IntPower(PrefixTable[APrefixes[0]].Factor, 2) / PrefixTable[APrefixes[1]].Factor)
-  else
-    result := AValue;
+  begin
+    result := result * 1E+06;
+    if (APrefixes[0] <> pNone) then result := result / IntPower(PrefixTable[APrefixes[0]].Factor, 2);
+    if (APrefixes[1] <> pNone) then result := result * PrefixTable[APrefixes[1]].Factor;
+  end;
 end;
 
 // main definition [ kg2/m ] = [ kg2 ] / [ m ]
@@ -8579,10 +8708,13 @@ end;
 
 class function TSquareKilogramPerSquareMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (1E-06 * IntPower(PrefixTable[APrefixes[0]].Factor, 2) / IntPower(PrefixTable[APrefixes[1]].Factor, 2))
-  else
-    result := AValue;
+  begin
+    result := result * 1E+06;
+    if (APrefixes[0] <> pNone) then result := result / IntPower(PrefixTable[APrefixes[0]].Factor, 2);
+    if (APrefixes[1] <> pNone) then result := result * IntPower(PrefixTable[APrefixes[1]].Factor, 2);
+  end;
 end;
 
 // main definition [ kg2/m2 ] = [ kg2 ] / [ m2 ]
@@ -8632,10 +8764,13 @@ end;
 
 class function TSquareMeterPerSquareKilogramUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 2) / 1E-06 / IntPower(PrefixTable[APrefixes[1]].Factor, 2))
-  else
-    result := AValue;
+  begin
+    result := result * 1E+06;
+    if (APrefixes[0] <> pNone) then result := result / IntPower(PrefixTable[APrefixes[0]].Factor, 2);
+    if (APrefixes[1] <> pNone) then result := result * IntPower(PrefixTable[APrefixes[1]].Factor, 2);
+  end;
 end;
 
 // main definition [ m2/kg2 ] = [ m2 ] / [ kg2 ]
@@ -8685,10 +8820,14 @@ end;
 
 class function TNewtonSquareMeterPerSquareKilogramUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 3 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor * IntPower(PrefixTable[APrefixes[1]].Factor, 2) / 1E-06 / IntPower(PrefixTable[APrefixes[2]].Factor, 2))
-  else
-    result := AValue;
+  begin
+    result := result * 1E+06;
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result / IntPower(PrefixTable[APrefixes[1]].Factor, 2);
+    if (APrefixes[2] <> pNone) then result := result * IntPower(PrefixTable[APrefixes[2]].Factor, 2);
+  end;
 end;
 
 // main definition [ N*m2/kg2 ] = [ N ] * [ m2/kg2 ]
@@ -8897,10 +9036,11 @@ end;
 
 class function TReciprocalKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result * PrefixTable[APrefixes[0]].Factor;
+  end;
 end;
 
 // main definition [ 1/K ] = 1 / [ K ]
@@ -8950,10 +9090,13 @@ end;
 
 class function TKilogramKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (1E-03 * PrefixTable[APrefixes[0]].Factor * PrefixTable[APrefixes[1]].Factor)
-  else
-    result := AValue;
+  begin
+    result := result * 1E+03;
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result / PrefixTable[APrefixes[1]].Factor;
+  end;
 end;
 
 // main definition [ kg*K] = [ kg ] * [ K ]
@@ -9003,10 +9146,12 @@ end;
 
 class function TJoulePerKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result ;
+  end;
 end;
 
 // main definition [ J/K ] = [ J ] / [ K ]
@@ -9056,10 +9201,13 @@ end;
 
 class function TJoulePerKilogramUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor / 1E-03 / PrefixTable[APrefixes[1]].Factor)
-  else
-    result := AValue;
+  begin
+    result := result * 1E+03;
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result * PrefixTable[APrefixes[1]].Factor;
+  end;
 end;
 
 { Unit of JoulePerKilogramPerKelvin }
@@ -9082,10 +9230,14 @@ end;
 
 class function TJoulePerKilogramPerKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 3 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor / 1E-03 / PrefixTable[APrefixes[1]].Factor / PrefixTable[APrefixes[2]].Factor)
-  else
-    result := AValue;
+  begin
+    result := result * 1E+03;
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result * PrefixTable[APrefixes[1]].Factor;
+    if (APrefixes[2] <> pNone) then result := result * PrefixTable[APrefixes[2]].Factor;
+  end;
 end;
 
 // main definition [ J/kg/K ] = [ J ] / [ kg*K ]
@@ -9184,10 +9336,12 @@ end;
 
 class function TMeterKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor * PrefixTable[APrefixes[1]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result / PrefixTable[APrefixes[1]].Factor;
+  end;
 end;
 
 // main definition [ m*K ] = [ m ] * [ K ]
@@ -9237,10 +9391,12 @@ end;
 
 class function TKelvinPerMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor / PrefixTable[APrefixes[1]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result * PrefixTable[APrefixes[1]].Factor;
+  end;
 end;
 
 // main definition [ K/m ] = [ K ] / [ m ]
@@ -9290,10 +9446,12 @@ end;
 
 class function TWattPerMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor / PrefixTable[APrefixes[1]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result * PrefixTable[APrefixes[1]].Factor;
+  end;
 end;
 
 // main definition [ W/m ] = [ W ] / [ m ]
@@ -9343,10 +9501,12 @@ end;
 
 class function TWattPerSquareMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor / IntPower(PrefixTable[APrefixes[1]].Factor, 2))
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result * IntPower(PrefixTable[APrefixes[1]].Factor, 2);
+  end;
 end;
 
 // main definition [ W/m2 ] = [ W ] / [ m2 ]
@@ -9396,10 +9556,12 @@ end;
 
 class function TWattPerKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor / PrefixTable[APrefixes[1]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result * PrefixTable[APrefixes[1]].Factor;
+  end;
 end;
 
 // main definition [ W/K ] = [ W ] / [ K ]
@@ -9449,10 +9611,13 @@ end;
 
 class function TWattPerMeterPerKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 3 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor / PrefixTable[APrefixes[1]].Factor / PrefixTable[APrefixes[2]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result * PrefixTable[APrefixes[1]].Factor;
+    if (APrefixes[2] <> pNone) then result := result * PrefixTable[APrefixes[2]].Factor;
+  end;
 end;
 
 // main definition [ W/m/K ] = [ W ] / [ m*K ]
@@ -9573,10 +9738,12 @@ end;
 
 class function TSquareMeterKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 2) * PrefixTable[APrefixes[1]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / IntPower(PrefixTable[APrefixes[0]].Factor, 2);
+    if (APrefixes[1] <> pNone) then result := result / PrefixTable[APrefixes[1]].Factor;
+  end;
 end;
 
 // main definition [ m2*K ] = [ m2 ] * [ K ]
@@ -9626,10 +9793,13 @@ end;
 
 class function TWattPerSquareMeterPerKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 3 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor / IntPower(PrefixTable[APrefixes[1]].Factor, 2) / PrefixTable[APrefixes[2]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result * IntPower(PrefixTable[APrefixes[1]].Factor, 2);
+    if (APrefixes[2] <> pNone) then result := result * PrefixTable[APrefixes[2]].Factor;
+  end;
 end;
 
 // main definition [ W/m2/K ] = [ W ] / [ m2*K ]
@@ -9728,10 +9898,12 @@ end;
 
 class function TSquareMeterQuarticKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 2) * IntPower(PrefixTable[APrefixes[1]].Factor, 4))
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / IntPower(PrefixTable[APrefixes[0]].Factor, 2);
+    if (APrefixes[1] <> pNone) then result := result / IntPower(PrefixTable[APrefixes[1]].Factor, 4);
+  end;
 end;
 
 // main definition [ m2*K4 ] = [ m2 ] * [ K4 ]
@@ -9781,10 +9953,12 @@ end;
 
 class function TWattPerQuarticKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor / IntPower(PrefixTable[APrefixes[1]].Factor, 4))
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result * IntPower(PrefixTable[APrefixes[1]].Factor, 4);
+  end;
 end;
 
 // main definition [ W/K4 ] = [ W ] / [ K4 ]
@@ -9834,10 +10008,13 @@ end;
 
 class function TWattPerSquareMeterPerQuarticKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 3 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor / IntPower(PrefixTable[APrefixes[1]].Factor, 2) / IntPower(PrefixTable[APrefixes[2]].Factor, 4))
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result * IntPower(PrefixTable[APrefixes[1]].Factor, 2);
+    if (APrefixes[2] <> pNone) then result := result * IntPower(PrefixTable[APrefixes[2]].Factor, 4);
+  end;
 end;
 
 // main definition [ W/m2/K4 ] = [ W ] / [ m2*K4 ]
@@ -9936,10 +10113,12 @@ end;
 
 class function TJoulePerMoleUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor / PrefixTable[APrefixes[1]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result * PrefixTable[APrefixes[1]].Factor;
+  end;
 end;
 
 // main definition [ J/mol ] = [ J ] / [ mol ]
@@ -9989,10 +10168,12 @@ end;
 
 class function TMoleKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor * PrefixTable[APrefixes[1]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result / PrefixTable[APrefixes[1]].Factor;
+  end;
 end;
 
 // main definition [ mol*K ] = [ mol ] * [ K ]
@@ -10042,10 +10223,13 @@ end;
 
 class function TJoulePerMolePerKelvinUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 3 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor / PrefixTable[APrefixes[1]].Factor / PrefixTable[APrefixes[2]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result * PrefixTable[APrefixes[1]].Factor;
+    if (APrefixes[2] <> pNone) then result := result * PrefixTable[APrefixes[2]].Factor;
+  end;
 end;
 
 // main definition [ J/mol/K ] = [ J ] / [ mol * K ]
@@ -10144,10 +10328,12 @@ end;
 
 class function TOhmMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor * PrefixTable[APrefixes[1]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result / PrefixTable[APrefixes[1]].Factor;
+  end;
 end;
 
 // main definition [ Ω*m ] = [ Ω ] * [ m ]
@@ -10197,10 +10383,12 @@ end;
 
 class function TVoltPerMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor / PrefixTable[APrefixes[1]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result * PrefixTable[APrefixes[1]].Factor;
+  end;
 end;
 
 // main definition [ V/m ] = [ V ] / [ m ]
@@ -10299,10 +10487,12 @@ end;
 
 class function TNewtonPerCoulombUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor / PrefixTable[APrefixes[1]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result * PrefixTable[APrefixes[1]].Factor;
+  end;
 end;
 
 { Unit of CoulombPerMeter }
@@ -10325,10 +10515,12 @@ end;
 
 class function TCoulombPerMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor / PrefixTable[APrefixes[1]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result * PrefixTable[APrefixes[1]].Factor;
+  end;
 end;
 
 // main definition [ C/m ] = [ C ] / [ m ]
@@ -10378,10 +10570,12 @@ end;
 
 class function TSquareCoulombPerMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 2) / PrefixTable[APrefixes[1]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / IntPower(PrefixTable[APrefixes[0]].Factor, 2);
+    if (APrefixes[1] <> pNone) then result := result * PrefixTable[APrefixes[1]].Factor;
+  end;
 end;
 
 // main definition [ C2/m ] = [ C2 ] / [ m ]
@@ -10453,10 +10647,12 @@ end;
 
 class function TCoulombPerSquareMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor / IntPower(PrefixTable[APrefixes[1]].Factor, 2))
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result * IntPower(PrefixTable[APrefixes[1]].Factor, 2);
+  end;
 end;
 
 // main definition [ C/m2 ] = [ C ] / [ m2 ]
@@ -10528,10 +10724,12 @@ end;
 
 class function TSquareMeterPerSquareCoulombUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 2) / IntPower(PrefixTable[APrefixes[1]].Factor, 2))
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / IntPower(PrefixTable[APrefixes[0]].Factor, 2);
+    if (APrefixes[1] <> pNone) then result := result * IntPower(PrefixTable[APrefixes[1]].Factor, 2);
+  end;
 end;
 
 // main definition [ m2/C2 ] = [ m2 ] / [ C2 ]
@@ -10581,10 +10779,12 @@ end;
 
 class function TNewtonPerSquareCoulombUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor / IntPower(PrefixTable[APrefixes[1]].Factor, 2))
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result * IntPower(PrefixTable[APrefixes[1]].Factor, 2);
+  end;
 end;
 
 // main definition [ N/C2 ] = [ N ] / [ C2 ]
@@ -10634,10 +10834,13 @@ end;
 
 class function TNewtonSquareMeterPerSquareCoulombUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 3 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor * IntPower(PrefixTable[APrefixes[1]].Factor, 2) / IntPower(PrefixTable[APrefixes[2]].Factor, 2))
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result / IntPower(PrefixTable[APrefixes[1]].Factor, 2);
+    if (APrefixes[2] <> pNone) then result := result * IntPower(PrefixTable[APrefixes[2]].Factor, 2);
+  end;
 end;
 
 // main definition [ N*m2/C2 ] = [ N ] * [ m2/C2 ]
@@ -10780,10 +10983,12 @@ end;
 
 class function TVoltMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor * PrefixTable[APrefixes[1]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result / PrefixTable[APrefixes[1]].Factor;
+  end;
 end;
 
 // main definition [ V*m ] = [ V ] * [ m ]
@@ -10855,10 +11060,13 @@ end;
 
 class function TNewtonSquareMeterPerCoulombUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 3 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor * IntPower(PrefixTable[APrefixes[1]].Factor, 2) / PrefixTable[APrefixes[2]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result / IntPower(PrefixTable[APrefixes[1]].Factor, 2);
+    if (APrefixes[2] <> pNone) then result := result * PrefixTable[APrefixes[2]].Factor;
+  end;
 end;
 
 { Unit of VoltMeterPerSecond }
@@ -10881,10 +11089,13 @@ end;
 
 class function TVoltMeterPerSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 3 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor * PrefixTable[APrefixes[1]].Factor / PrefixTable[APrefixes[2]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result / PrefixTable[APrefixes[1]].Factor;
+    if (APrefixes[2] <> pNone) then result := result * PrefixTable[APrefixes[2]].Factor;
+  end;
 end;
 
 // main definition [ V*m/s ] = [ V*m ] / [ s ]
@@ -10934,10 +11145,12 @@ end;
 
 class function TFaradPerMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor / PrefixTable[APrefixes[1]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result * PrefixTable[APrefixes[1]].Factor;
+  end;
 end;
 
 // main definition [ F/m ] = [ F ] / [ m ]
@@ -11053,10 +11266,12 @@ end;
 
 class function TAmperePerMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor / PrefixTable[APrefixes[1]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result * PrefixTable[APrefixes[1]].Factor;
+  end;
 end;
 
 // main definition [ A/m ] = [ A ] / [ m ]
@@ -11106,10 +11321,12 @@ end;
 
 class function TMeterPerAmpereUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor / PrefixTable[APrefixes[1]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result * PrefixTable[APrefixes[1]].Factor;
+  end;
 end;
 
 // main definition [ m/A ] = [ m ] / [ A ]
@@ -11159,10 +11376,12 @@ end;
 
 class function TTeslaMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor * PrefixTable[APrefixes[1]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result / PrefixTable[APrefixes[1]].Factor;
+  end;
 end;
 
 // main definition [ T*m ] = [ T ] * [ m ]
@@ -11239,10 +11458,12 @@ end;
 
 class function TNewtonPerAmpereUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor / PrefixTable[APrefixes[1]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result * PrefixTable[APrefixes[1]].Factor;
+  end;
 end;
 
 { Unit of TeslaPerAmpere }
@@ -11265,10 +11486,12 @@ end;
 
 class function TTeslaPerAmpereUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor / PrefixTable[APrefixes[1]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result * PrefixTable[APrefixes[1]].Factor;
+  end;
 end;
 
 // main definition [ T/A ] = [ T ] / [ A ]
@@ -11318,10 +11541,12 @@ end;
 
 class function THenryPerMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor / PrefixTable[APrefixes[1]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result * PrefixTable[APrefixes[1]].Factor;
+  end;
 end;
 
 // main definition [ H/m ] = [ H ] / [ m ]
@@ -11491,10 +11716,13 @@ end;
 
 class function TTeslaMeterPerAmpereUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 3 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor * PrefixTable[APrefixes[1]].Factor / PrefixTable[APrefixes[2]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result / PrefixTable[APrefixes[1]].Factor;
+    if (APrefixes[2] <> pNone) then result := result * PrefixTable[APrefixes[2]].Factor;
+  end;
 end;
 
 { Unit of NewtonPerSquareAmpere }
@@ -11517,10 +11745,12 @@ end;
 
 class function TNewtonPerSquareAmpereUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor / IntPower(PrefixTable[APrefixes[1]].Factor, 2))
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result * IntPower(PrefixTable[APrefixes[1]].Factor, 2);
+  end;
 end;
 
 { Unit of RadianPerMeter }
@@ -11543,10 +11773,11 @@ end;
 
 class function TRadianPerMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result * PrefixTable[APrefixes[0]].Factor;
+  end;
 end;
 
 // main definition [ rad/m ] = [ rad ] / [ m ]
@@ -11596,10 +11827,13 @@ end;
 
 class function TSquareKilogramPerSquareSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (1E-06 * IntPower(PrefixTable[APrefixes[0]].Factor, 2) / IntPower(PrefixTable[APrefixes[1]].Factor, 2))
-  else
-    result := AValue;
+  begin
+    result := result * 1E+06;
+    if (APrefixes[0] <> pNone) then result := result / IntPower(PrefixTable[APrefixes[0]].Factor, 2);
+    if (APrefixes[1] <> pNone) then result := result * IntPower(PrefixTable[APrefixes[1]].Factor, 2);
+  end;
 end;
 
 // main definition [ kg2/s2 ] = [ kg2 ] / [ s2 ]
@@ -11683,10 +11917,12 @@ end;
 
 class function TSquareSecondPerSquareMeterUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 2) / IntPower(PrefixTable[APrefixes[1]].Factor, 2))
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / IntPower(PrefixTable[APrefixes[0]].Factor, 2);
+    if (APrefixes[1] <> pNone) then result := result * IntPower(PrefixTable[APrefixes[1]].Factor, 2);
+  end;
 end;
 
 // main definition [ s2/m2 ] = [ s2 ] / [ m2 ]
@@ -11780,10 +12016,11 @@ end;
 
 class function TSquareJouleUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 1 then
-    result := AValue / (IntPower(PrefixTable[APrefixes[0]].Factor, 2))
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / IntPower(PrefixTable[APrefixes[0]].Factor, 2);
+  end;
 end;
 
 // main definition [ J2 ] = [ J ] * [ J ]
@@ -11818,10 +12055,12 @@ end;
 
 class function TJouleSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor * PrefixTable[APrefixes[1]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result / PrefixTable[APrefixes[1]].Factor;
+  end;
 end;
 
 // main definition [ J*s ] = [ J ] * [ s ]
@@ -11920,10 +12159,12 @@ end;
 
 class function TElettronvoltSecondUnit.Convert(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
+  result := AValue;
   if Length(APrefixes) = 2 then
-    result := AValue / (PrefixTable[APrefixes[0]].Factor * PrefixTable[APrefixes[1]].Factor)
-  else
-    result := AValue;
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result / PrefixTable[APrefixes[1]].Factor;
+  end;
 end;
 
 { Helpers }
