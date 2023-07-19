@@ -26,9 +26,8 @@
       <Unit>
         <Filename Value="examples.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <TopLine Value="376"/>
-        <CursorPos X="29" Y="262"/>
+        <TopLine Value="136"/>
+        <CursorPos X="24" Y="155"/>
         <UsageCount Value="192"/>
         <Loaded Value="True"/>
       </Unit>
@@ -111,10 +110,12 @@
       </Unit>
       <Unit>
         <Filename Value="ADim.pas"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="3630"/>
-        <CursorPos X="28" Y="3639"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="5528"/>
+        <CursorPos X="35" Y="5539"/>
         <UsageCount Value="28"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../../../../../FPC/3.2.2/source/rtl/objpas/math.pp"/>
@@ -210,7 +211,7 @@
         <UsageCount Value="10"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="19">
+    <JumpHistory HistoryIndex="25">
       <Position>
         <Filename Value="examples.pas"/>
         <Caret Line="983" Column="138" TopLine="967"/>
@@ -290,6 +291,30 @@
       <Position>
         <Filename Value="examples.pas"/>
         <Caret Line="1100" Column="30" TopLine="1086"/>
+      </Position>
+      <Position>
+        <Filename Value="ADim.pas"/>
+        <Caret Line="411" Column="28" TopLine="401"/>
+      </Position>
+      <Position>
+        <Filename Value="ADim.pas"/>
+        <Caret Line="4310" Column="53" TopLine="4297"/>
+      </Position>
+      <Position>
+        <Filename Value="examples.pas"/>
+        <Caret Line="155" Column="24" TopLine="136"/>
+      </Position>
+      <Position>
+        <Filename Value="ADim.pas"/>
+        <Caret Line="1090" Column="28" TopLine="1072"/>
+      </Position>
+      <Position>
+        <Filename Value="ADim.pas"/>
+        <Caret Line="5631" Column="16" TopLine="5615"/>
+      </Position>
+      <Position>
+        <Filename Value="ADim.pas"/>
+        <Caret Line="1063" Column="28" TopLine="1046"/>
       </Position>
     </JumpHistory>
   </ProjectOptions>

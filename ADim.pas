@@ -4307,8 +4307,8 @@ begin
   result := AValue;
   if Length(APrefixes) = 1 then
   begin
-    result := result * 1E+03;
-    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[0] <> pKilo) then
+      result := result * 1E+03 / PrefixTable[APrefixes[0]].Factor;
   end;
 end;
 
@@ -4362,8 +4362,8 @@ begin
   result := AValue;
   if Length(APrefixes) = 1 then
   begin
-    result := result * 1E+06;
-    if (APrefixes[0] <> pNone) then result := result / IntPower(PrefixTable[APrefixes[0]].Factor, 2);
+    if (APrefixes[0] <> pKilo) then
+      result := result * 1E+06 / IntPower(PrefixTable[APrefixes[0]].Factor, 2);
   end;
 end;
 
@@ -5534,8 +5534,9 @@ begin
   result := AValue;
   if Length(APrefixes) = 3 then
   begin
-    result := result * 1E+03;
-    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[0] <> pKilo) then
+      result := result * 1E+03 / PrefixTable[APrefixes[0]].Factor;
+
     if (APrefixes[1] <> pNone) then result := result / PrefixTable[APrefixes[1]].Factor;
     if (APrefixes[2] <> pNone) then result := result * PrefixTable[APrefixes[2]].Factor;
   end;
@@ -5619,8 +5620,9 @@ begin
   result := AValue;
   if Length(APrefixes) = 2 then
   begin
-    result := result * 1E+03;
-    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[0] <> pKilo) then
+      result := result * 1E+03 / PrefixTable[APrefixes[0]].Factor;
+
     if (APrefixes[1] <> pNone) then result := result / IntPower(PrefixTable[APrefixes[1]].Factor, 2);
   end;
 end;
@@ -5675,8 +5677,9 @@ begin
   result := AValue;
   if Length(APrefixes) = 3 then
   begin
-    result := result * 1E+03;
-    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[0] <> pKilo) then
+      result := result * 1E+03 / PrefixTable[APrefixes[0]].Factor;
+
     if (APrefixes[1] <> pNone) then result := result / IntPower(PrefixTable[APrefixes[1]].Factor, 2);
     if (APrefixes[2] <> pNone) then result := result * PrefixTable[APrefixes[2]].Factor;
   end;
@@ -5754,8 +5757,9 @@ begin
   result := AValue;
   if Length(APrefixes) = 2 then
   begin
-    result := result * 1E+03;
-    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[0] <> pKilo) then
+      result := result * 1E+03 / PrefixTable[APrefixes[0]].Factor;
+
     if (APrefixes[1] <> pNone) then result := result * PrefixTable[APrefixes[1]].Factor;
   end;
 end;
@@ -5810,8 +5814,9 @@ begin
   result := AValue;
   if Length(APrefixes) = 2 then
   begin
-    result := result * 1E+03;
-    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[0] <> pKilo) then
+      result := result * 1E+03 / PrefixTable[APrefixes[0]].Factor;
+
     if (APrefixes[1] <> pNone) then result := result * IntPower(PrefixTable[APrefixes[1]].Factor, 2);
   end;
 end;
@@ -5866,8 +5871,9 @@ begin
   result := AValue;
   if Length(APrefixes) = 2 then
   begin
-    result := result * 1E+03;
-    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[0] <> pKilo) then
+      result := result * 1E+03 / PrefixTable[APrefixes[0]].Factor;
+
     if (APrefixes[1] <> pNone) then result := result * IntPower(PrefixTable[APrefixes[1]].Factor, 3);
   end;
 end;
@@ -7786,8 +7792,9 @@ begin
   result := AValue;
   if Length(APrefixes) = 2 then
   begin
-    result := result * 1E+03;
-    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[0] <> pKilo) then
+      result := result * 1E+03 / PrefixTable[APrefixes[0]].Factor;
+
     if (APrefixes[1] <> pNone) then result := result * PrefixTable[APrefixes[1]].Factor;
   end;
 end;
@@ -8072,8 +8079,9 @@ begin
   result := AValue;
   if Length(APrefixes) = 2 then
   begin
-    result := result * 1E+03;
-    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[0] <> pKilo) then
+      result := result * 1E+03 / PrefixTable[APrefixes[0]].Factor;
+
     if (APrefixes[1] <> pNone) then result := result * IntPower(PrefixTable[APrefixes[1]].Factor, 4);
   end;
 end;
@@ -8183,8 +8191,9 @@ begin
   result := AValue;
   if Length(APrefixes) = 3 then
   begin
-    result := result * 1E+03;
-    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[0] <> pKilo) then
+      result := result * 1E+03 / PrefixTable[APrefixes[0]].Factor;
+
     if (APrefixes[1] <> pNone) then result := result * IntPower(PrefixTable[APrefixes[1]].Factor, 4);
     if (APrefixes[2] <> pNone) then result := result * PrefixTable[APrefixes[2]].Factor;
   end;
@@ -8311,9 +8320,9 @@ begin
   result := AValue;
   if Length(APrefixes) = 2 then
   begin
-    result := result * 1E+03;
     if (APrefixes[0] <> pNone) then result := result / IntPower(PrefixTable[APrefixes[0]].Factor, 3);
-    if (APrefixes[1] <> pNone) then result := result * PrefixTable[APrefixes[1]].Factor;
+    if (APrefixes[1] <> pKilo) then
+      result := result * 1E+03 * PrefixTable[APrefixes[1]].Factor;
   end;
 end;
 
@@ -8367,8 +8376,9 @@ begin
   result := AValue;
   if Length(APrefixes) = 2 then
   begin
-    result := result * 1E+03;
-    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[0] <> pKilo) then
+      result := result * 1E+03 / PrefixTable[APrefixes[0]].Factor;
+
     if (APrefixes[1] <> pNone) then result := result / IntPower(PrefixTable[APrefixes[1]].Factor, 2);
   end;
 end;
@@ -8599,9 +8609,9 @@ begin
   result := AValue;
   if Length(APrefixes) = 2 then
   begin
-    result := result * 1E+06;
     if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
-    if (APrefixes[1] <> pNone) then result := result * IntPower(PrefixTable[APrefixes[1]].Factor, 2);
+    if (APrefixes[1] <> pKilo) then
+      result := result * 1E+06 * IntPower(PrefixTable[APrefixes[1]].Factor, 2);
   end;
 end;
 
@@ -8655,8 +8665,9 @@ begin
   result := AValue;
   if Length(APrefixes) = 2 then
   begin
-    result := result * 1E+06;
-    if (APrefixes[0] <> pNone) then result := result / IntPower(PrefixTable[APrefixes[0]].Factor, 2);
+    if (APrefixes[0] <> pKilo) then
+      result := result * 1E+06 / IntPower(PrefixTable[APrefixes[0]].Factor, 2);
+
     if (APrefixes[1] <> pNone) then result := result * PrefixTable[APrefixes[1]].Factor;
   end;
 end;
@@ -8711,8 +8722,9 @@ begin
   result := AValue;
   if Length(APrefixes) = 2 then
   begin
-    result := result * 1E+06;
-    if (APrefixes[0] <> pNone) then result := result / IntPower(PrefixTable[APrefixes[0]].Factor, 2);
+    if (APrefixes[0] <> pKilo) then
+      result := result * 1E+06 / IntPower(PrefixTable[APrefixes[0]].Factor, 2);
+
     if (APrefixes[1] <> pNone) then result := result * IntPower(PrefixTable[APrefixes[1]].Factor, 2);
   end;
 end;
@@ -8767,9 +8779,9 @@ begin
   result := AValue;
   if Length(APrefixes) = 2 then
   begin
-    result := result * 1E+06;
     if (APrefixes[0] <> pNone) then result := result / IntPower(PrefixTable[APrefixes[0]].Factor, 2);
-    if (APrefixes[1] <> pNone) then result := result * IntPower(PrefixTable[APrefixes[1]].Factor, 2);
+    if (APrefixes[1] <> pKilo) then
+      result := result * 1E+06 * IntPower(PrefixTable[APrefixes[1]].Factor, 2);
   end;
 end;
 
@@ -8823,10 +8835,10 @@ begin
   result := AValue;
   if Length(APrefixes) = 3 then
   begin
-    result := result * 1E+06;
     if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
     if (APrefixes[1] <> pNone) then result := result / IntPower(PrefixTable[APrefixes[1]].Factor, 2);
-    if (APrefixes[2] <> pNone) then result := result * IntPower(PrefixTable[APrefixes[2]].Factor, 2);
+    if (APrefixes[2] <> pKilo) then
+      result := result * 1E+06 * IntPower(PrefixTable[APrefixes[2]].Factor, 2);
   end;
 end;
 
@@ -9093,8 +9105,9 @@ begin
   result := AValue;
   if Length(APrefixes) = 2 then
   begin
-    result := result * 1E+03;
-    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[0] <> pKilo) then
+      result := result * 1E+03 / PrefixTable[APrefixes[0]].Factor;
+
     if (APrefixes[1] <> pNone) then result := result / PrefixTable[APrefixes[1]].Factor;
   end;
 end;
@@ -9204,9 +9217,9 @@ begin
   result := AValue;
   if Length(APrefixes) = 2 then
   begin
-    result := result * 1E+03;
     if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
-    if (APrefixes[1] <> pNone) then result := result * PrefixTable[APrefixes[1]].Factor;
+    if (APrefixes[1] <> pKilo) then
+      result := result * 1E+03 * PrefixTable[APrefixes[1]].Factor;
   end;
 end;
 
@@ -9233,9 +9246,10 @@ begin
   result := AValue;
   if Length(APrefixes) = 3 then
   begin
-    result := result * 1E+03;
     if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
-    if (APrefixes[1] <> pNone) then result := result * PrefixTable[APrefixes[1]].Factor;
+    if (APrefixes[1] <> pKilo) then
+      result := result * 1E+03 * PrefixTable[APrefixes[1]].Factor;
+
     if (APrefixes[2] <> pNone) then result := result * PrefixTable[APrefixes[2]].Factor;
   end;
 end;
@@ -11830,8 +11844,9 @@ begin
   result := AValue;
   if Length(APrefixes) = 2 then
   begin
-    result := result * 1E+06;
-    if (APrefixes[0] <> pNone) then result := result / IntPower(PrefixTable[APrefixes[0]].Factor, 2);
+    if (APrefixes[0] <> pKilo) then
+      result := result * 1E+06 / IntPower(PrefixTable[APrefixes[0]].Factor, 2);
+
     if (APrefixes[1] <> pNone) then result := result * IntPower(PrefixTable[APrefixes[1]].Factor, 2);
   end;
 end;

@@ -464,24 +464,27 @@ end;
 
 procedure TMainForm.AddClassFunction(const AClassName, ALongSymbol, AShortSymbol: string);
 var
-  SubStr: string;
-  StrArray, S: TStringArray;
-  I, Index, Count: longint;
+  FormatArgs: string;
+  Factors, StrArray: TStringArray;
+  I, Index, J, Count, Offset: longint;
   Exponent: longint;
 begin
-  // Symbol
   Count  := 0;
-  SubStr := AShortSymbol;
-  while Pos('%s', SubStr) > 0 do
+  Offset := PosEx('%s', AShortSymbol, 1);
+  while OffSet <> 0 do
   begin
-    SubStr := StringReplace(SubStr, '%s', '88', []);
-    Inc(Count);
+    Count  := Count + 1;
+    Offset := PosEx('%s', AShortSymbol, Offset + Length('&s'));
   end;
 
-  SubStr := '';
-  for I := 0 to Count -1 do
-    SubStr := SubStr + 'PrefixTable[APrefixes[' + IntToStr(I) + ']].Symbol, ';
-  SetLength(SubStr, Length(SubStr) -2);
+  // Symbol
+  if Count > 0 then
+  begin
+    FormatArgs := '';
+    for I := 0 to Count - 1 do
+      FormatArgs := FormatArgs + 'PrefixTable[APrefixes[' + IntToStr(I) + ']].Symbol, ';
+    SetLength(FormatArgs, Max(0, Length(FormatArgs) - 2));
+  end;
 
   SectionB1.Append('');
   SectionB1.Append('{ Unit of ' + GetNM(AClassName) + ' }');
@@ -491,7 +494,7 @@ begin
   if Count > 0 then
   begin
   SectionB1.Append('  if Length(APrefixes) = ' + IntToStr(Count) + ' then');
-  SectionB1.Append('    result := Format(''' + AShortSymbol + ''', [' + Substr + '])');
+  SectionB1.Append('    result := Format(''' + AShortSymbol + ''', [' + FormatArgs + '])');
   SectionB1.Append('  else');
   SectionB1.Append('    result := ''' + StringReplace(StringReplace(AShortSymbol, '%sg', 'kg', [rfReplaceAll]), '%s','', [rfReplaceAll]) + ''';');
   end else
@@ -502,18 +505,13 @@ begin
   SectionB1.Append('');
 
   // Name
-  Count  := 0;
-  SubStr := ALongSymbol;
-  while Pos('%s', SubStr) > 0 do
+  if Count > 0 then
   begin
-    SubStr := StringReplace(SubStr, '%s', '88', []);
-    Inc(Count);
+    FormatArgs := '';
+    for I := 0 to Count - 1 do
+      FormatArgs := FormatArgs + 'PrefixTable[APrefixes[' + IntToStr(I) + ']].Name, ';
+    SetLength(FormatArgs, Max(0, Length(FormatArgs) - 2));
   end;
-
-  SubStr := '';
-  for I := 0 to Count -1 do
-    SubStr := SubStr + 'PrefixTable[APrefixes[' + IntToStr(I) + ']].Symbol, ';
-  SetLength(SubStr, Length(SubStr) -2);
 
   SectionB1.Append('');
   SectionB1.Append('class function ' + GetUN(AClassName) + '.GetName(const {%H-}APrefixes: TPrefixes): string; static;');
@@ -521,7 +519,7 @@ begin
   if Count > 0 then
   begin
   SectionB1.Append('  if Length(APrefixes) = ' + IntToStr(Count) + ' then');
-  SectionB1.Append('    result := Format(''' + ALongSymbol + ''', [' + Substr + '])');
+  SectionB1.Append('    result := Format(''' + ALongSymbol + ''', [' + FormatArgs + '])');
   SectionB1.Append('  else');
   SectionB1.Append('    result := ''' + StringReplace(StringReplace(ALongSymbol, '%sgram', 'kilogram', [rfReplaceAll]), '%s', '', [rfReplaceAll]) + ''';');
   end else
@@ -532,12 +530,13 @@ begin
   SectionB1.Append('');
 
   // Factor
-  Exponent := 1;
-  Index    := 0;
-  SubStr   := '';
   StrArray := Split(AShortSymbol);
-  SetLength(S, 10);
+  SetLength(Factors, Count);
+  FormatArgs := '';
+  Exponent   := 1;
 
+  J := -1;
+  Index :=  0;
   for I := Low(StrArray) to High(StrArray) do
   begin
     if (StrArray[I] = '.') then
@@ -551,20 +550,25 @@ begin
           if StrArray[I][Length(StrArray[I])] in ['2', '3', '4', '5', '6', '7', '8', '9'] then
             Exponent := Exponent * (Ord(StrArray[I][Length(StrArray[I])]) - Ord('0'));
 
-          if (StrArray[I] = '%sg' ) then SubStr := '* 1E+03';
-          if (StrArray[I] = '%sg2') then SubStr := '* 1E+06';
+          if (StrArray[I] = '%sg' ) or
+             (StrArray[I] = '%sg2') then
+          begin
+            if (StrArray[I] = '%sg' ) then FormatArgs := '* 1E+03';
+            if (StrArray[I] = '%sg2') then FormatArgs := '* 1E+06';
+            J := Index;
+          end;
 
           if Exponent > 1 then
-            S[Index] := '/ IntPower(PrefixTable[APrefixes[' + IntToStr(Index) + ']].Factor, ' + IntToStr(Abs(Exponent)) + ')'
+            Factors[Index] := '/ IntPower(PrefixTable[APrefixes[' + IntToStr(Index) + ']].Factor, ' + IntToStr(Abs(Exponent)) + ')'
           else
             if Exponent = 1 then
-              S[Index] := '/ PrefixTable[APrefixes[' + IntToStr(Index) + ']].Factor'
+              Factors[Index] := '/ PrefixTable[APrefixes[' + IntToStr(Index) + ']].Factor'
             else
               if Exponent = -1 then
-                S[Index] := '* PrefixTable[APrefixes[' + IntToStr(Index) + ']].Factor'
+                Factors[Index] := '* PrefixTable[APrefixes[' + IntToStr(Index) + ']].Factor'
               else
                 if Exponent < -1 then
-                  S[Index] := '* IntPower(PrefixTable[APrefixes[' + IntToStr(Index) + ']].Factor, ' + IntToStr(Abs(Exponent)) + ')';
+                  Factors[Index] := '* IntPower(PrefixTable[APrefixes[' + IntToStr(Index) + ']].Factor, ' + IntToStr(Abs(Exponent)) + ')';
 
           Exponent := 1;
           Inc(Index);
@@ -576,22 +580,28 @@ begin
   SectionB1.Append('class function ' + GetUN(AClassName) + '.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;');
   SectionB1.Append('begin');
   SectionB1.Append('  result := AValue;');
-  if Index > 0 then
-  begin
-  SectionB1.Append('  if Length(APrefixes) = ' + IntToStr(Index) + ' then');
-  SectionB1.Append('  begin');
-  if SubStr <> '' then
-  SectionB1.Append('    result := result ' + SubStr + ';');
   if Count > 0 then
-  SectionB1.Append('    if (APrefixes[0] <> pNone) then result := result ' + S[0] + ';');
-  if Count > 1 then
-  SectionB1.Append('    if (APrefixes[1] <> pNone) then result := result ' + S[1] + ';');
-  if Count > 2 then
-  SectionB1.Append('    if (APrefixes[2] <> pNone) then result := result ' + S[2] + ';');
-  SectionB1.Append('  end;');
+  begin
+    SectionB1.Append('  if Length(APrefixes) = ' + IntToStr(Index) + ' then');
+    SectionB1.Append('  begin');
+    for I := 0 to Count -1 do
+    begin
+      if I = J then
+      begin
+        SectionB1.Append('    if (APrefixes[' + IntToStr(I) + '] <> pKilo) then');
+        SectionB1.Append('      result := result ' + FormatArgs + ' ' + Factors[I] + ';');
+
+        if I < (Count -1) then SectionB1.Append('');
+      end else
+      begin
+        SectionB1.Append('    if (APrefixes[' + IntToStr(I) + '] <> pNone) then result := result ' + Factors[I] + ';');
+      end;
+    end;
+    SectionB1.Append('  end;');
   end;
   SectionB1.Append('end;');
   SectionB1.Append('');
+  Factors := nil;
 end;
 
 procedure TMainForm.AddFactoredQuantity(ABaseClass, AIdentifierSymbol, AFactor: string);
