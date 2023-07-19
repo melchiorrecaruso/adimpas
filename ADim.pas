@@ -3755,7 +3755,7 @@ end;
 class function TSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('%ssecond', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('%ssecond', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'second';
 end;
@@ -3833,7 +3833,7 @@ end;
 class function TSquareSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('square %ssecond', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('square %ssecond', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'square second';
 end;
@@ -3923,7 +3923,7 @@ end;
 class function TMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('%smeter', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('%smeter', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'meter';
 end;
@@ -3967,7 +3967,7 @@ end;
 class function TSquareMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('square %smeter', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('square %smeter', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'square meter';
 end;
@@ -4006,7 +4006,7 @@ end;
 class function TCubicMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('cubic %smeter', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('cubic %smeter', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'cubic meter';
 end;
@@ -4055,7 +4055,7 @@ end;
 class function TLitreUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('%slitre', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('%slitre', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'litre';
 end;
@@ -4082,7 +4082,7 @@ end;
 class function TQuarticMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('quartic %smeter', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('quartic %smeter', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'quartic meter';
 end;
@@ -4143,7 +4143,7 @@ end;
 class function TQuinticMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('quintic %smeter', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('quintic %smeter', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'quintic meter';
 end;
@@ -4214,7 +4214,7 @@ end;
 class function TSexticMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('sextic %smeter', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('sextic %smeter', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'sextic meter';
 end;
@@ -4297,7 +4297,7 @@ end;
 class function TKilogramUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('%sgram', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('%sgram', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'kilogram';
 end;
@@ -4325,7 +4325,7 @@ end;
 class function TTonneUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('%stonne', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('%stonne', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'tonne';
 end;
@@ -4352,7 +4352,7 @@ end;
 class function TSquareKilogramUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('square %sgram', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('square %sgram', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'square kilogram';
 end;
@@ -4392,7 +4392,7 @@ end;
 class function TAmpereUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('%sampere', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('%sampere', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'ampere';
 end;
@@ -4419,7 +4419,7 @@ end;
 class function TSquareAmpereUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('square %sampere', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('square %sampere', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'square ampere';
 end;
@@ -4458,7 +4458,7 @@ end;
 class function TKelvinUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('%skelvin', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('%skelvin', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'kelvin';
 end;
@@ -4519,7 +4519,7 @@ end;
 class function TSquareKelvinUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('square %skelvin', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('square %skelvin', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'square kelvin';
 end;
@@ -4558,7 +4558,7 @@ end;
 class function TCubicKelvinUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('cubic %skelvin', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('cubic %skelvin', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'cubic kelvin';
 end;
@@ -4607,7 +4607,7 @@ end;
 class function TQuarticKelvinUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('quartic %skelvin', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('quartic %skelvin', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'quartic kelvin';
 end;
@@ -4668,7 +4668,7 @@ end;
 class function TMoleUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('%smole', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('%smole', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'mole';
 end;
@@ -4695,7 +4695,7 @@ end;
 class function TCandelaUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('%scandela', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('%scandela', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'candela';
 end;
@@ -4785,7 +4785,7 @@ end;
 class function THertzUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('%shertz', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('%shertz', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'hertz';
 end;
@@ -4839,7 +4839,7 @@ end;
 class function TSquareHertzUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('square %shertz', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('square %shertz', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'square hertz';
 end;
@@ -4927,7 +4927,7 @@ end;
 class function TRadianPerSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('radian per %ssecond', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('radian per %ssecond', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'radian per second';
 end;
@@ -5013,7 +5013,7 @@ end;
 class function TRadianPerSquareSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('radian per square %ssecond', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('radian per square %ssecond', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'radian per square second';
 end;
@@ -5089,7 +5089,7 @@ end;
 class function TSteradianPerSquareSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('square rad per square %ssecond', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('square rad per square %ssecond', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'square rad per square second';
 end;
@@ -5165,7 +5165,7 @@ end;
 class function TMeterPerSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%smeter per %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%smeter per %ssecond', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'meter per second';
 end;
@@ -5247,7 +5247,7 @@ end;
 class function TMeterPerHourUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('%smeter per hour', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('%smeter per hour', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'meter per hour';
 end;
@@ -5274,7 +5274,7 @@ end;
 class function TMeterPerSquareSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%smeter per square %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%smeter per square %ssecond', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'meter per square second';
 end;
@@ -5378,7 +5378,7 @@ end;
 class function TMeterPerSecondPerSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 3 then
-    result := Format('%smeter per %ssecond per %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
+    result := Format('%smeter per %ssecond per %ssecond', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name, PrefixTable[APrefixes[2]].Name])
   else
     result := 'meter per second per second';
 end;
@@ -5407,7 +5407,7 @@ end;
 class function TMeterPerHourPerSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%smeter per hour per %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%smeter per hour per %ssecond', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'meter per hour per second';
 end;
@@ -5435,7 +5435,7 @@ end;
 class function TSquareMeterPerSquareSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('square %smeter per square %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('square %smeter per square %ssecond', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'square meter per square second';
 end;
@@ -5524,7 +5524,7 @@ end;
 class function TKilogramMeterPerSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 3 then
-    result := Format('%sgram %smeter per %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
+    result := Format('%sgram %smeter per %ssecond', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name, PrefixTable[APrefixes[2]].Name])
   else
     result := 'kilogram meter per second';
 end;
@@ -5581,7 +5581,7 @@ end;
 class function TNewtonSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%snewton %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%snewton %ssecond', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'newton second';
 end;
@@ -5609,7 +5609,7 @@ end;
 class function TKilogramSquareMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%sgram square %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%sgram square %smeter', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'kilogram square meter';
 end;
@@ -5665,7 +5665,7 @@ end;
 class function TKilogramSquareMeterPerSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 3 then
-    result := Format('%sgram square %smeter per %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
+    result := Format('%sgram square %smeter per %ssecond', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name, PrefixTable[APrefixes[2]].Name])
   else
     result := 'kilogram square meter per second';
 end;
@@ -5744,7 +5744,7 @@ end;
 class function TKilogramPerMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%sgram per %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%sgram per %smeter', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'kilogram per meter';
 end;
@@ -5800,7 +5800,7 @@ end;
 class function TKilogramPerSquareMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%sgram per square %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%sgram per square %smeter', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'kilogram per square meter';
 end;
@@ -5856,7 +5856,7 @@ end;
 class function TKilogramPerCubicMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%sgram per cubic %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%sgram per cubic %smeter', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'kilogram per cubic meter';
 end;
@@ -5934,7 +5934,7 @@ end;
 class function TNewtonUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('%snewton', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('%snewton', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'newton';
 end;
@@ -6032,7 +6032,7 @@ end;
 class function TPascalUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('%spascal', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('%spascal', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'pascal';
 end;
@@ -6108,7 +6108,7 @@ end;
 class function TJouleUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('%sjoule', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('%sjoule', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'joule';
 end;
@@ -6277,7 +6277,7 @@ end;
 class function TElettronvoltUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('%selettronvolt ', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('%selettronvolt ', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'elettronvolt ';
 end;
@@ -6304,7 +6304,7 @@ end;
 class function TWattUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('%swatt', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('%swatt', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'watt';
 end;
@@ -6402,7 +6402,7 @@ end;
 class function TCoulombUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('%scoulomb', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('%scoulomb', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'coulomb';
 end;
@@ -6456,7 +6456,7 @@ end;
 class function TSquareCoulombUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('square %scoulomb', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('square %scoulomb', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'square coulomb';
 end;
@@ -6495,7 +6495,7 @@ end;
 class function TVoltUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('%svolt', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('%svolt', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'volt';
 end;
@@ -6576,7 +6576,7 @@ end;
 class function TSquareVoltUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('square %svolt', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('square %svolt', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'square volt';
 end;
@@ -6615,7 +6615,7 @@ end;
 class function TFaradUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('%sfarad', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('%sfarad', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'farad';
 end;
@@ -6691,7 +6691,7 @@ end;
 class function TOhmUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('%sohm', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('%sohm', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'ohm';
 end;
@@ -6811,7 +6811,7 @@ end;
 class function TSiemensUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('%ssiemens', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('%ssiemens', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'siemens';
 end;
@@ -6865,7 +6865,7 @@ end;
 class function TWeberUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('%sweber', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('%sweber', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'weber';
 end;
@@ -6919,7 +6919,7 @@ end;
 class function TTeslaUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('%stesla', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('%stesla', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'tesla';
 end;
@@ -6973,7 +6973,7 @@ end;
 class function THenryUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('%shenry', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('%shenry', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'henry';
 end;
@@ -7071,7 +7071,7 @@ end;
 class function TLumenUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('%slumen', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('%slumen', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'lumen';
 end;
@@ -7125,7 +7125,7 @@ end;
 class function TLuxUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('%slux', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('%slux', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'lux';
 end;
@@ -7179,7 +7179,7 @@ end;
 class function TBequerelUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('%sbequerel', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('%sbequerel', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'bequerel';
 end;
@@ -7206,7 +7206,7 @@ end;
 class function TGrayUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('%sgray', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('%sgray', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'gray';
 end;
@@ -7233,7 +7233,7 @@ end;
 class function TSievertUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('%ssievert', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('%ssievert', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'sievert';
 end;
@@ -7260,7 +7260,7 @@ end;
 class function TKatalUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('%skatal', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('%skatal', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'katal';
 end;
@@ -7314,7 +7314,7 @@ end;
 class function TNewtonMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%snewton %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%snewton %smeter', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'newton meter';
 end;
@@ -7342,7 +7342,7 @@ end;
 class function TJoulePerRadianUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('%sjoule per radian', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('%sjoule per radian', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'joule per radian';
 end;
@@ -7396,7 +7396,7 @@ end;
 class function TJoulePerDegreeUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('%sjoule per degree', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('%sjoule per degree', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'joule per degree';
 end;
@@ -7423,7 +7423,7 @@ end;
 class function TNewtonMeterPerRadianUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%snewton %smeter per radian', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%snewton %smeter per radian', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'newton meter per radian';
 end;
@@ -7451,7 +7451,7 @@ end;
 class function TNewtonMeterPerDegreeUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%snewton %smeter per degree', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%snewton %smeter per degree', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'newton meter per degree';
 end;
@@ -7479,7 +7479,7 @@ end;
 class function TNewtonPerCubicMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%snewton per cubic %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%snewton per cubic %smeter', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'newton per cubic meter';
 end;
@@ -7578,7 +7578,7 @@ end;
 class function TNewtonPerMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%snewton per %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%snewton per %smeter', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'newton per meter';
 end;
@@ -7699,7 +7699,7 @@ end;
 class function TCubicMeterPerSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('cubic %smeter per %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('cubic %smeter per %ssecond', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'cubic meter per second';
 end;
@@ -7776,7 +7776,7 @@ end;
 class function TKilogramPerSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%sgram per %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%sgram per %ssecond', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'kilogram per second';
 end;
@@ -7854,7 +7854,7 @@ end;
 class function TPoiseuilleUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('%spoiseuille ', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('%spoiseuille ', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'poiseuille ';
 end;
@@ -7957,7 +7957,7 @@ end;
 class function TPascalSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%spascal %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%spascal %ssecond', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'pascal second';
 end;
@@ -7985,7 +7985,7 @@ end;
 class function TSquareMeterPerSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('square %smeter per %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('square %smeter per %ssecond', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'square meter per second';
 end;
@@ -8062,7 +8062,7 @@ end;
 class function TKilogramPerQuarticMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%sgram per quartic %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%sgram per quartic %smeter', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'kilogram per quartic meter';
 end;
@@ -8118,7 +8118,7 @@ end;
 class function TQuarticMeterSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('quartic %smeter %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('quartic %smeter %ssecond', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'quartic meter second';
 end;
@@ -8173,7 +8173,7 @@ end;
 class function TKilogramPerQuarticMeterPerSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 3 then
-    result := Format('%sgram per quartic %smeter per %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
+    result := Format('%sgram per quartic %smeter per %ssecond', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name, PrefixTable[APrefixes[2]].Name])
   else
     result := 'kilogram per quartic meter per second';
 end;
@@ -8301,7 +8301,7 @@ end;
 class function TCubicMeterPerKilogramUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('cubic %smeter per %sgram', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('cubic %smeter per %sgram', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'cubic meter per kilogram';
 end;
@@ -8357,7 +8357,7 @@ end;
 class function TKilogramSquareSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%sgram square %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%sgram square %ssecond', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'kilogram square second';
 end;
@@ -8413,7 +8413,7 @@ end;
 class function TCubicMeterPerSquareSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('cubic %smeter per square %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('cubic %smeter per square %ssecond', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'cubic meter per square second';
 end;
@@ -8490,7 +8490,7 @@ end;
 class function TNewtonSquareMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%snewton square %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%snewton square %smeter', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'newton square meter';
 end;
@@ -8589,7 +8589,7 @@ end;
 class function TNewtonPerSquareKilogramUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%snewton per square %sgram', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%snewton per square %sgram', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'newton per square kilogram';
 end;
@@ -8645,7 +8645,7 @@ end;
 class function TSquareKilogramPerMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('square %sgram per %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('square %sgram per %smeter', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'square kilogram per meter';
 end;
@@ -8701,7 +8701,7 @@ end;
 class function TSquareKilogramPerSquareMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('square %sgram per square %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('square %sgram per square %smeter', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'square kilogram per square meter';
 end;
@@ -8757,7 +8757,7 @@ end;
 class function TSquareMeterPerSquareKilogramUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('square %smeter per square %sgram', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('square %smeter per square %sgram', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'square meter per square kilogram';
 end;
@@ -8813,7 +8813,7 @@ end;
 class function TNewtonSquareMeterPerSquareKilogramUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 3 then
-    result := Format('%snewton square %smeter per square %sgram', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
+    result := Format('%snewton square %smeter per square %sgram', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name, PrefixTable[APrefixes[2]].Name])
   else
     result := 'newton square meter per square kilogram';
 end;
@@ -9029,7 +9029,7 @@ end;
 class function TReciprocalKelvinUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('reciprocal %skelvin', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('reciprocal %skelvin', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'reciprocal kelvin';
 end;
@@ -9083,7 +9083,7 @@ end;
 class function TKilogramKelvinUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%sgram %skelvin', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%sgram %skelvin', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'kilogram kelvin';
 end;
@@ -9130,8 +9130,8 @@ end;
 
 class function TJoulePerKelvinUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
 begin
-  if Length(APrefixes) = 1 then
-    result := Format('%sJ/K', [PrefixTable[APrefixes[0]].Symbol])
+  if Length(APrefixes) = 2 then
+    result := Format('%sJ/%sK', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
   else
     result := 'J/K';
 end;
@@ -9139,7 +9139,7 @@ end;
 class function TJoulePerKelvinUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%sjoule per %skelvin', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%sjoule per %skelvin', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'joule per kelvin';
 end;
@@ -9147,10 +9147,10 @@ end;
 class function TJoulePerKelvinUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
-  if Length(APrefixes) = 1 then
+  if Length(APrefixes) = 2 then
   begin
     if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
-    if (APrefixes[1] <> pNone) then result := result ;
+    if (APrefixes[1] <> pNone) then result := result * PrefixTable[APrefixes[1]].Factor;
   end;
 end;
 
@@ -9194,7 +9194,7 @@ end;
 class function TJoulePerKilogramUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%sjoule per %sgram', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%sjoule per %sgram', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'joule per kilogram';
 end;
@@ -9223,7 +9223,7 @@ end;
 class function TJoulePerKilogramPerKelvinUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 3 then
-    result := Format('%sjoule per %sgram per %skelvin', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
+    result := Format('%sjoule per %sgram per %skelvin', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name, PrefixTable[APrefixes[2]].Name])
   else
     result := 'joule per kilogram per kelvin';
 end;
@@ -9329,7 +9329,7 @@ end;
 class function TMeterKelvinUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%smeter %skelvin', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%smeter %skelvin', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'meter kelvin';
 end;
@@ -9384,7 +9384,7 @@ end;
 class function TKelvinPerMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%skelvin per %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%skelvin per %smeter', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'kelvin per meter';
 end;
@@ -9439,7 +9439,7 @@ end;
 class function TWattPerMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%swatt per %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%swatt per %smeter', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'watt per meter';
 end;
@@ -9494,7 +9494,7 @@ end;
 class function TWattPerSquareMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%swatt per square %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%swatt per square %smeter', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'watt per square meter';
 end;
@@ -9549,7 +9549,7 @@ end;
 class function TWattPerKelvinUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%swatt per %skelvin', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%swatt per %skelvin', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'watt per kelvin';
 end;
@@ -9604,7 +9604,7 @@ end;
 class function TWattPerMeterPerKelvinUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 3 then
-    result := Format('%swatt per %smeter per %skelvin', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
+    result := Format('%swatt per %smeter per %skelvin', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name, PrefixTable[APrefixes[2]].Name])
   else
     result := 'watt per meter per kelvin';
 end;
@@ -9731,7 +9731,7 @@ end;
 class function TSquareMeterKelvinUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('square %smeter %skelvin', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('square %smeter %skelvin', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'square meter kelvin';
 end;
@@ -9786,7 +9786,7 @@ end;
 class function TWattPerSquareMeterPerKelvinUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 3 then
-    result := Format('%swatt per square %smeter per %skelvin', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
+    result := Format('%swatt per square %smeter per %skelvin', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name, PrefixTable[APrefixes[2]].Name])
   else
     result := 'watt per square meter per kelvin';
 end;
@@ -9891,7 +9891,7 @@ end;
 class function TSquareMeterQuarticKelvinUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('square %smeter quartic %skelvin', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('square %smeter quartic %skelvin', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'square meter quartic kelvin';
 end;
@@ -9946,7 +9946,7 @@ end;
 class function TWattPerQuarticKelvinUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%swatt per quartic %skelvin', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%swatt per quartic %skelvin', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'watt per quartic kelvin';
 end;
@@ -10001,7 +10001,7 @@ end;
 class function TWattPerSquareMeterPerQuarticKelvinUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 3 then
-    result := Format('%swatt per square %smeter per quartic %skelvin', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
+    result := Format('%swatt per square %smeter per quartic %skelvin', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name, PrefixTable[APrefixes[2]].Name])
   else
     result := 'watt per square meter per quartic kelvin';
 end;
@@ -10106,7 +10106,7 @@ end;
 class function TJoulePerMoleUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%sjoule per %smole', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%sjoule per %smole', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'joule per mole';
 end;
@@ -10161,7 +10161,7 @@ end;
 class function TMoleKelvinUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%smole %skelvin', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%smole %skelvin', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'mole kelvin';
 end;
@@ -10216,7 +10216,7 @@ end;
 class function TJoulePerMolePerKelvinUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 3 then
-    result := Format('%sjoule per %smole per %skelvin', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
+    result := Format('%sjoule per %smole per %skelvin', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name, PrefixTable[APrefixes[2]].Name])
   else
     result := 'joule per mole per kelvin';
 end;
@@ -10321,7 +10321,7 @@ end;
 class function TOhmMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%sohm %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%sohm %smeter', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'ohm meter';
 end;
@@ -10376,7 +10376,7 @@ end;
 class function TVoltPerMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%svolt per %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%svolt per %smeter', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'volt per meter';
 end;
@@ -10480,7 +10480,7 @@ end;
 class function TNewtonPerCoulombUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%snewton per %scoulomb', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%snewton per %scoulomb', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'newton per coulomb';
 end;
@@ -10508,7 +10508,7 @@ end;
 class function TCoulombPerMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%scoulomb per %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%scoulomb per %smeter', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'coulomb per meter';
 end;
@@ -10563,7 +10563,7 @@ end;
 class function TSquareCoulombPerMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('square %scoulomb per %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('square %scoulomb per %smeter', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'square coulomb per meter';
 end;
@@ -10640,7 +10640,7 @@ end;
 class function TCoulombPerSquareMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%scoulomb per square %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%scoulomb per square %smeter', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'coulomb per square meter';
 end;
@@ -10717,7 +10717,7 @@ end;
 class function TSquareMeterPerSquareCoulombUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('square %smeter per square %scoulomb', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('square %smeter per square %scoulomb', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'square meter per square coulomb';
 end;
@@ -10772,7 +10772,7 @@ end;
 class function TNewtonPerSquareCoulombUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%snewton per square %scoulomb', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%snewton per square %scoulomb', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'newton per square coulomb';
 end;
@@ -10827,7 +10827,7 @@ end;
 class function TNewtonSquareMeterPerSquareCoulombUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 3 then
-    result := Format('%snewton square %smeter per square %scoulomb', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
+    result := Format('%snewton square %smeter per square %scoulomb', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name, PrefixTable[APrefixes[2]].Name])
   else
     result := 'newton square meter per square coulomb';
 end;
@@ -10976,7 +10976,7 @@ end;
 class function TVoltMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%svolt %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%svolt %smeter', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'volt meter';
 end;
@@ -11053,7 +11053,7 @@ end;
 class function TNewtonSquareMeterPerCoulombUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 3 then
-    result := Format('%snewton square %smeter per %scoulomb', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
+    result := Format('%snewton square %smeter per %scoulomb', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name, PrefixTable[APrefixes[2]].Name])
   else
     result := 'newton square meter per coulomb';
 end;
@@ -11082,7 +11082,7 @@ end;
 class function TVoltMeterPerSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 3 then
-    result := Format('%svolt %smeter per %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
+    result := Format('%svolt %smeter per %ssecond', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name, PrefixTable[APrefixes[2]].Name])
   else
     result := 'volt meter per second';
 end;
@@ -11138,7 +11138,7 @@ end;
 class function TFaradPerMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%sfarad per %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%sfarad per %smeter', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'farad per meter';
 end;
@@ -11259,7 +11259,7 @@ end;
 class function TAmperePerMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%sampere per %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%sampere per %smeter', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'ampere per meter';
 end;
@@ -11314,7 +11314,7 @@ end;
 class function TMeterPerAmpereUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%smeter per %sampere', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%smeter per %sampere', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'meter per ampere';
 end;
@@ -11369,7 +11369,7 @@ end;
 class function TTeslaMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%stesla %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%stesla %smeter', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'tesla meter';
 end;
@@ -11451,7 +11451,7 @@ end;
 class function TNewtonPerAmpereUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%snewton per %sampere', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%snewton per %sampere', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'newton per ampere';
 end;
@@ -11479,7 +11479,7 @@ end;
 class function TTeslaPerAmpereUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%stesla per %sampere', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%stesla per %sampere', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'tesla per ampere';
 end;
@@ -11534,7 +11534,7 @@ end;
 class function THenryPerMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%shenry per %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%shenry per %smeter', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'henry per meter';
 end;
@@ -11709,7 +11709,7 @@ end;
 class function TTeslaMeterPerAmpereUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 3 then
-    result := Format('%stesla %smeter per %sampere', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
+    result := Format('%stesla %smeter per %sampere', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name, PrefixTable[APrefixes[2]].Name])
   else
     result := 'tesla meter per ampere';
 end;
@@ -11738,7 +11738,7 @@ end;
 class function TNewtonPerSquareAmpereUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%snewton per square %sampere', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%snewton per square %sampere', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'newton per square ampere';
 end;
@@ -11766,7 +11766,7 @@ end;
 class function TRadianPerMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('radian per %smeter', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('radian per %smeter', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'radian per meter';
 end;
@@ -11820,7 +11820,7 @@ end;
 class function TSquareKilogramPerSquareSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('square %sgram per square %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('square %sgram per square %ssecond', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'square kilogram per square second';
 end;
@@ -11910,7 +11910,7 @@ end;
 class function TSquareSecondPerSquareMeterUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('square %ssecond per square %smeter', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('square %ssecond per square %smeter', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'square second per square meter';
 end;
@@ -12009,7 +12009,7 @@ end;
 class function TSquareJouleUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('square %sjoule', [PrefixTable[APrefixes[0]].Symbol])
+    result := Format('square %sjoule', [PrefixTable[APrefixes[0]].Name])
   else
     result := 'square joule';
 end;
@@ -12048,7 +12048,7 @@ end;
 class function TJouleSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%sjoule %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%sjoule %ssecond', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'joule second';
 end;
@@ -12152,7 +12152,7 @@ end;
 class function TElettronvoltSecondUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%selettronvolt %ssecond', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%selettronvolt %ssecond', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
   else
     result := 'elettronvolt second';
 end;
