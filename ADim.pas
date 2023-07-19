@@ -2256,6 +2256,12 @@ operator *(const ALeft: TCubicMetersPerKilogram; const ARight: TKilograms): TCub
 operator /(const ALeft: TCubicMeters; const ARight: TCubicMetersPerKilogram): TKilograms; inline;
 operator /(const ALeft: TCubicMeters; const {%H-}ARight: TKilogramUnitId): TCubicMetersPerKilogram; inline;
 
+// alternative definition [ m3/kg ] = 1 / [ kg/m3 ]
+operator /(const ALeft: double; const ARight: TKilogramsPerCubicMeter): TCubicMetersPerKilogram; inline;
+operator *(const ALeft: TKilogramsPerCubicMeter; const ARight: TCubicMetersPerKilogram): double; inline;
+operator *(const ALeft: TCubicMetersPerKilogram; const ARight: TKilogramsPerCubicMeter): double; inline;
+operator /(const ALeft: double; const ARight: TCubicMetersPerKilogram): TKilogramsPerCubicMeter; inline;
+
 type
   { Unit of KilogramSquareSecond }
   TKilogramSquareSecondUnit = record
@@ -8351,6 +8357,28 @@ end;
 operator /(const ALeft: TCubicMeters; const {%H-}ARight: TKilogramUnitId): TCubicMetersPerKilogram;
 begin
   result.FValue := ALeft.FValue;
+end;
+
+// alternative definition [ m3/kg ] = 1 / [ kg/m3 ]
+
+operator /(const ALeft: double; const ARight: TKilogramsPerCubicMeter): TCubicMetersPerKilogram;
+begin
+  result.FValue := ALeft / ARight.FValue;
+end;
+
+operator *(const ALeft: TKilogramsPerCubicMeter; const ARight: TCubicMetersPerKilogram): double;
+begin
+  result := ALeft.FValue * ARight.FValue;
+end;
+
+operator *(const ALeft: TCubicMetersPerKilogram; const ARight: TKilogramsPerCubicMeter): double;
+begin
+  result := ALeft.FValue * ARight.FValue;
+end;
+
+operator /(const ALeft: double; const ARight: TCubicMetersPerKilogram): TKilogramsPerCubicMeter;
+begin
+  result.FValue := ALeft / ARight.FValue;
 end;
 
 { Unit of KilogramSquareSecond }
