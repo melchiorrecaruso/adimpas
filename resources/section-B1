@@ -1,20 +1,32 @@
 
 const
-  PrefixTable: array[pTera..pPico] of 
+  PrefixTable: array[pQuetta..pQuecto] of 
     record  Symbol, Name: string; Factor: double end = (
-    (Symbol: 'T';   Name: 'tera';   Factor: 1E+12),
-    (Symbol: 'G';   Name: 'giga';   Factor: 1E+09),
-    (Symbol: 'M';   Name: 'mega';   Factor: 1E+06),
-    (Symbol: 'k';   Name: 'kilo';   Factor: 1E+03),
-    (Symbol: 'h';   Name: 'hecto';  Factor: 1E+02),
-    (Symbol: 'da';  Name: 'deca';   Factor: 1E+01),
-    (Symbol: '';    Name:  '';      Factor: 1E+00),
-    (Symbol: 'd';   Name: 'deci';   Factor: 1E-01),
-    (Symbol: 'c';   Name: 'centi';  Factor: 1E-02),
-    (Symbol: 'm';   Name: 'milli';  Factor: 1E-03),
-    (Symbol: 'μ';   Name: 'micro';  Factor: 1E-06),
-    (Symbol: 'n';   Name: 'nano';   Factor: 1E-09),
-    (Symbol: 'p';   Name: 'pico';   Factor: 1E-12)
+    (Symbol: 'Q';   Name: 'quetta';  Factor: 1E+30),
+    (Symbol: 'R';   Name: 'ronna';   Factor: 1E+27),
+    (Symbol: 'Y';   Name: 'yotta';   Factor: 1E+24),
+    (Symbol: 'Z';   Name: 'zetta';   Factor: 1E+21),
+    (Symbol: 'E';   Name: 'exa';     Factor: 1E+18),  
+    (Symbol: 'P';   Name: 'peta';    Factor: 1E+15),
+    (Symbol: 'T';   Name: 'tera';    Factor: 1E+12),
+    (Symbol: 'G';   Name: 'giga';    Factor: 1E+09),
+    (Symbol: 'M';   Name: 'mega';    Factor: 1E+06),
+    (Symbol: 'k';   Name: 'kilo';    Factor: 1E+03),
+    (Symbol: 'h';   Name: 'hecto';   Factor: 1E+02),
+    (Symbol: 'da';  Name: 'deca';    Factor: 1E+01),
+    (Symbol: '';    Name:  '';       Factor: 1E+00),
+    (Symbol: 'd';   Name: 'deci';    Factor: 1E-01),
+    (Symbol: 'c';   Name: 'centi';   Factor: 1E-02),
+    (Symbol: 'm';   Name: 'milli';   Factor: 1E-03),
+    (Symbol: 'μ';   Name: 'micro';   Factor: 1E-06),
+    (Symbol: 'n';   Name: 'nano';    Factor: 1E-09),
+    (Symbol: 'p';   Name: 'pico';    Factor: 1E-12),
+    (Symbol: 'f';   Name: 'femto';   Factor: 1E-15),
+    (Symbol: 'a';   Name: 'atto';    Factor: 1E-18),
+    (Symbol: 'z';   Name: 'zepto';   Factor: 1E-21),
+    (Symbol: 'y';   Name: 'yocto';   Factor: 1E-24),
+    (Symbol: 'r';   Name: 'ronto';   Factor: 1E-27),
+    (Symbol: 'q';   Name: 'quecto';  Factor: 1E-30)
   );
 
 implementation

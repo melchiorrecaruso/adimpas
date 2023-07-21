@@ -9,8 +9,8 @@ uses SysUtils;
 
 type 
   { Prefix }
-  TPrefix = (pTera, pGiga, pMega, pKilo, pHecto, pDeca, 
-    pNone, pDeci, pCenti, pMilli, pMicro, pNano, pPico);
+  TPrefix = (pQuetta, pRonna, pYotta, pZetta, pExa, pPeta, pTera, pGiga, pMega, pKilo, pHecto, pDeca, 
+    pNone, pDeci, pCenti, pMilli, pMicro, pNano, pPico, pFemto, pAtto, pZepto, pYocto, pRonto, pQuecto);
  
 type 
   { Prefixes } 

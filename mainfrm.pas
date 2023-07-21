@@ -614,70 +614,93 @@ begin
     AFactor := AFactor + ' * ';
 
   Str    := 'const %s: specialize TQuantity<%s> = (FValue: %s);';
-  Params := 'SSLSSSSSSSSS';
+  Params := 'LLLLSLSSLSSSSSSSSSSSLLLL';
   Power  := 1;
   if Pos('2', AIdentifierSymbol) > 0 then Power := 2;
   if Pos('3', AIdentifierSymbol) > 0 then Power := 3;
   if Pos('4', AIdentifierSymbol) > 0 then Power := 4;
   if Pos('5', AIdentifierSymbol) > 0 then Power := 5;
   if Pos('6', AIdentifierSymbol) > 0 then Power := 6;
+  if Pos('7', AIdentifierSymbol) > 0 then Power := 7;
+  if Pos('8', AIdentifierSymbol) > 0 then Power := 8;
+  if Pos('9', AIdentifierSymbol) > 0 then Power := 9;
 
-  if LowerCase(AIdentifierSymbol) = 'day'     then Params := '------------';
-  if LowerCase(AIdentifierSymbol) = 'day2'    then Params := '------------';
-  if LowerCase(AIdentifierSymbol) = 'hr'      then Params := '------------';
-  if LowerCase(AIdentifierSymbol) = 'hr2'     then Params := '------------';
-  if LowerCase(AIdentifierSymbol) = 'minute'  then Params := '------------';
-  if LowerCase(AIdentifierSymbol) = 'minute2' then Params := '------------';
-  if LowerCase(AIdentifierSymbol) = 's'       then Params := '------SSSSSS';
-  if LowerCase(AIdentifierSymbol) = 's2'      then Params := '------------';
+  if LowerCase(AIdentifierSymbol) = 'day'           then Params := '------------------------';
+  if LowerCase(AIdentifierSymbol) = 'day2'          then Params := '------------------------';
+  if LowerCase(AIdentifierSymbol) = 'hr'            then Params := '------------------------';
+  if LowerCase(AIdentifierSymbol) = 'hr2'           then Params := '------------------------';
+  if LowerCase(AIdentifierSymbol) = 'minute'        then Params := '------------------------';
+  if LowerCase(AIdentifierSymbol) = 'minute2'       then Params := '------------------------';
+  if LowerCase(AIdentifierSymbol) = 's'             then Params := 'LLLLSLSSLSSSSSSSSSSLLLLL';
 
-  if LowerCase(AIdentifierSymbol) = 'm'       then Params := '---SSSSSSSSS';
-  if LowerCase(AIdentifierSymbol) = 'm2'      then Params := '---SSSSSSSSS';
-  if LowerCase(AIdentifierSymbol) = 'm3'      then Params := '---SSSSSSSSS';
-  if LowerCase(AIdentifierSymbol) = 'm4'      then Params := '---SSSSSSSSS';
-  if LowerCase(AIdentifierSymbol) = 'm5'      then Params := '---SSSSSSSSS';
-  if LowerCase(AIdentifierSymbol) = 'm6'      then Params := '---SSSSSSSSS';
-  if LowerCase(AIdentifierSymbol) = 'au'      then Params := '------------';
+  if LowerCase(AIdentifierSymbol) = 'au'            then Params := '------------------------';
 
-  if LowerCase(AIdentifierSymbol) = 'a'       then Params := 'SSLSSSSSSSSL';
-  if LowerCase(AIdentifierSymbol) = 'a2'      then Params := 'SSLSSSSSSSSL';
+  if LowerCase(AIdentifierSymbol) = 'a'             then Params := 'LLLLSLSSLSSSSSSSSLSSLLLL';
+  if LowerCase(AIdentifierSymbol) = 'a2'            then Params := 'LLLLSLSSLSSSSSSSSLSSLLLL';
 
-  if LowerCase(AIdentifierSymbol) = 'pa'      then Params := 'SSSSSSSSLSSS';
-  if LowerCase(AIdentifierSymbol) = 'siemens' then Params := 'LLLLLLLLLLLL';
+  if LowerCase(AIdentifierSymbol) = 'pa'            then Params := 'LLLLSLSSSSSSSSLSSSSSLLLL';
+  if LowerCase(AIdentifierSymbol) = 'siemens'       then Params := 'LLLLSLLLLLLLLLLLLLSSLLLL';
 
-  if LowerCase(AIdentifierSymbol) = 'tonne'   then Params := '-LLL--------';
-  if LowerCase(AIdentifierSymbol) = 'l'       then Params := 'SSLSSSSSSSSL';
-  if LowerCase(AIdentifierSymbol) = 'degc'    then Params := '------------';
-  if LowerCase(AIdentifierSymbol) = 'degf'    then Params := '------------';
+  if LowerCase(AIdentifierSymbol) = 'tonne'         then Params := '-------LLL--------------';
+  if LowerCase(AIdentifierSymbol) = 'l'             then Params := 'LLLLSLSSLSSSSSSSSLSSLLLL';
+  if LowerCase(AIdentifierSymbol) = 'degc'          then Params := '------------------------';
+  if LowerCase(AIdentifierSymbol) = 'degf'          then Params := '------------------------';
+  if LowerCase(AIdentifierSymbol) = 'v'             then Params := 'LLLLLLSSLSSSSSSSSSSSLLLL';
 
 
   if (LowerCase(AIdentifierSymbol) <> 'kg' ) and
      (LowerCase(AIdentifierSymbol) <> 'kg2') then
   begin
-    if Params[ 1] = 'L' then SectionA1.Append(Format(Str, [' tera'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +12*Power))]));
-    if Params[ 1] = 'S' then SectionA1.Append(Format(Str, ['    T'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +12*Power))]));
-    if Params[ 2] = 'L' then SectionA1.Append(Format(Str, [' giga'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 9*Power))]));
-    if Params[ 2] = 'S' then SectionA1.Append(Format(Str, ['    G'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 9*Power))]));
-    if Params[ 3] = 'L' then SectionA1.Append(Format(Str, [' mega'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 6*Power))]));
-    if Params[ 3] = 'S' then SectionA1.Append(Format(Str, ['    M'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 6*Power))]));
-    if Params[ 4] = 'L' then SectionA1.Append(Format(Str, [' kilo'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 3*Power))]));
-    if Params[ 4] = 'S' then SectionA1.Append(Format(Str, ['    k'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 3*Power))]));
-    if Params[ 5] = 'L' then SectionA1.Append(Format(Str, ['hecto'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 2*Power))]));
-    if Params[ 5] = 'S' then SectionA1.Append(Format(Str, ['    h'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 2*Power))]));
-    if Params[ 6] = 'L' then SectionA1.Append(Format(Str, [' deca'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 1*Power))]));
-    if Params[ 6] = 'S' then SectionA1.Append(Format(Str, ['   da'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 1*Power))]));
-    if Params[ 7] = 'L' then SectionA1.Append(Format(Str, [' deci'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 1*Power))]));
-    if Params[ 7] = 'S' then SectionA1.Append(Format(Str, ['    d'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 1*Power))]));
-    if Params[ 8] = 'L' then SectionA1.Append(Format(Str, ['centi'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 2*Power))]));
-    if Params[ 8] = 'S' then SectionA1.Append(Format(Str, ['    c'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 2*Power))]));
-    if Params[ 9] = 'L' then SectionA1.Append(Format(Str, ['milli'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 3*Power))]));
-    if Params[ 9] = 'S' then SectionA1.Append(Format(Str, ['    m'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 3*Power))]));
-    if Params[10] = 'L' then SectionA1.Append(Format(Str, ['micro'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 6*Power))]));
-    if Params[10] = 'S' then SectionA1.Append(Format(Str, ['   mi'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 6*Power))]));
-    if Params[11] = 'L' then SectionA1.Append(Format(Str, [' nano'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 9*Power))]));
-    if Params[11] = 'S' then SectionA1.Append(Format(Str, ['    n'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 9*Power))]));
-    if Params[12] = 'L' then SectionA1.Append(Format(Str, [' pico'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -12*Power))]));
-    if Params[12] = 'S' then SectionA1.Append(Format(Str, ['    p'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -12*Power))]));
+    if Params[ 1] = 'L' then SectionA1.Append(Format(Str, ['quetta'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +30*Power))]));
+    if Params[ 1] = 'S' then SectionA1.Append(Format(Str, ['     Q'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +30*Power))]));
+    if Params[ 2] = 'L' then SectionA1.Append(Format(Str, [' ronna'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +27*Power))]));
+    if Params[ 2] = 'S' then SectionA1.Append(Format(Str, ['     R'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +27*Power))]));
+    if Params[ 3] = 'L' then SectionA1.Append(Format(Str, [' yotta'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +24*Power))]));
+    if Params[ 3] = 'S' then SectionA1.Append(Format(Str, ['     Y'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +24*Power))]));
+    if Params[ 4] = 'L' then SectionA1.Append(Format(Str, [' zetta'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +21*Power))]));
+    if Params[ 4] = 'S' then SectionA1.Append(Format(Str, ['     Z'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +21*Power))]));
+    if Params[ 5] = 'L' then SectionA1.Append(Format(Str, ['   exa'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +18*Power))]));
+    if Params[ 5] = 'S' then SectionA1.Append(Format(Str, ['     E'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +18*Power))]));
+    if Params[ 6] = 'L' then SectionA1.Append(Format(Str, ['  peta'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +15*Power))]));
+    if Params[ 6] = 'S' then SectionA1.Append(Format(Str, ['     P'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +15*Power))]));
+
+    if Params[ 7] = 'L' then SectionA1.Append(Format(Str, ['  tera'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +12*Power))]));
+    if Params[ 7] = 'S' then SectionA1.Append(Format(Str, ['     T'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +12*Power))]));
+    if Params[ 8] = 'L' then SectionA1.Append(Format(Str, ['  giga'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 9*Power))]));
+    if Params[ 8] = 'S' then SectionA1.Append(Format(Str, ['     G'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 9*Power))]));
+    if Params[ 9] = 'L' then SectionA1.Append(Format(Str, ['  mega'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 6*Power))]));
+    if Params[ 9] = 'S' then SectionA1.Append(Format(Str, ['     M'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 6*Power))]));
+    if Params[10] = 'L' then SectionA1.Append(Format(Str, ['  kilo'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 3*Power))]));
+    if Params[10] = 'S' then SectionA1.Append(Format(Str, ['     k'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 3*Power))]));
+    if Params[11] = 'L' then SectionA1.Append(Format(Str, [' hecto'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 2*Power))]));
+    if Params[11] = 'S' then SectionA1.Append(Format(Str, ['     h'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 2*Power))]));
+    if Params[12] = 'L' then SectionA1.Append(Format(Str, ['  deca'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 1*Power))]));
+    if Params[12] = 'S' then SectionA1.Append(Format(Str, ['    da'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 1*Power))]));
+    if Params[13] = 'L' then SectionA1.Append(Format(Str, ['  deci'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 1*Power))]));
+    if Params[13] = 'S' then SectionA1.Append(Format(Str, ['     d'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 1*Power))]));
+    if Params[14] = 'L' then SectionA1.Append(Format(Str, [' centi'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 2*Power))]));
+    if Params[14] = 'S' then SectionA1.Append(Format(Str, ['     c'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 2*Power))]));
+    if Params[15] = 'L' then SectionA1.Append(Format(Str, [' milli'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 3*Power))]));
+    if Params[15] = 'S' then SectionA1.Append(Format(Str, ['     m'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 3*Power))]));
+    if Params[16] = 'L' then SectionA1.Append(Format(Str, [' micro'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 6*Power))]));
+    if Params[16] = 'S' then SectionA1.Append(Format(Str, ['    mi'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 6*Power))]));
+    if Params[17] = 'L' then SectionA1.Append(Format(Str, ['  nano'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 9*Power))]));
+    if Params[17] = 'S' then SectionA1.Append(Format(Str, ['     n'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 9*Power))]));
+    if Params[18] = 'L' then SectionA1.Append(Format(Str, ['  pico'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -12*Power))]));
+    if Params[18] = 'S' then SectionA1.Append(Format(Str, ['     p'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -12*Power))]));
+
+    if Params[19] = 'L' then SectionA1.Append(Format(Str, [' femto'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -15*Power))]));
+    if Params[19] = 'S' then SectionA1.Append(Format(Str, ['     f'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -15*Power))]));
+    if Params[20] = 'L' then SectionA1.Append(Format(Str, ['  atto'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -18*Power))]));
+    if Params[20] = 'S' then SectionA1.Append(Format(Str, ['     a'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -18*Power))]));
+    if Params[21] = 'L' then SectionA1.Append(Format(Str, [' zepto'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -21*Power))]));
+    if Params[21] = 'S' then SectionA1.Append(Format(Str, ['     z'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -21*Power))]));
+    if Params[22] = 'L' then SectionA1.Append(Format(Str, [' yocto'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -24*Power))]));
+    if Params[22] = 'S' then SectionA1.Append(Format(Str, ['     y'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -24*Power))]));
+    if Params[23] = 'L' then SectionA1.Append(Format(Str, [' ronto'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -27*Power))]));
+    if Params[23] = 'S' then SectionA1.Append(Format(Str, ['     r'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -27*Power))]));
+    if Params[24] = 'L' then SectionA1.Append(Format(Str, ['quecto'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -30*Power))]));
+    if Params[24] = 'S' then SectionA1.Append(Format(Str, ['     q'  + AIdentifierSymbol, GetUN(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -30*Power))]));
   end else
     if (LowerCase(AIdentifierSymbol) = 'kg') then
     begin

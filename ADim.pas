@@ -28,8 +28,8 @@ uses SysUtils;
 
 type
   { Prefix }
-  TPrefix = (pTera, pGiga, pMega, pKilo, pHecto, pDeca,
-    pNone, pDeci, pCenti, pMilli, pMicro, pNano, pPico);
+  TPrefix = (pQuetta, pRonna, pYotta, pZetta, pExa, pPeta, pTera, pGiga, pMega, pKilo, pHecto, pDeca,
+    pNone, pDeci, pCenti, pMilli, pMicro, pNano, pPico, pFemto, pAtto, pZepto, pYocto, pRonto, pQuecto);
 
 type
   { Prefixes }
@@ -83,12 +83,30 @@ type
 
 var s: TSecondUnitId;
 
-const     ds: specialize TQuantity<TSecondUnit> = (FValue: 1E-01);
-const     cs: specialize TQuantity<TSecondUnit> = (FValue: 1E-02);
-const     ms: specialize TQuantity<TSecondUnit> = (FValue: 1E-03);
-const    mis: specialize TQuantity<TSecondUnit> = (FValue: 1E-06);
-const     ns: specialize TQuantity<TSecondUnit> = (FValue: 1E-09);
-const     ps: specialize TQuantity<TSecondUnit> = (FValue: 1E-12);
+const quettas: specialize TQuantity<TSecondUnit> = (FValue: 1E+30);
+const  ronnas: specialize TQuantity<TSecondUnit> = (FValue: 1E+27);
+const  yottas: specialize TQuantity<TSecondUnit> = (FValue: 1E+24);
+const  zettas: specialize TQuantity<TSecondUnit> = (FValue: 1E+21);
+const      Es: specialize TQuantity<TSecondUnit> = (FValue: 1E+18);
+const   petas: specialize TQuantity<TSecondUnit> = (FValue: 1E+15);
+const      Ts: specialize TQuantity<TSecondUnit> = (FValue: 1E+12);
+const      Gs: specialize TQuantity<TSecondUnit> = (FValue: 1E+09);
+const   megas: specialize TQuantity<TSecondUnit> = (FValue: 1E+06);
+const      ks: specialize TQuantity<TSecondUnit> = (FValue: 1E+03);
+const      hs: specialize TQuantity<TSecondUnit> = (FValue: 1E+02);
+const     das: specialize TQuantity<TSecondUnit> = (FValue: 1E+01);
+const      ds: specialize TQuantity<TSecondUnit> = (FValue: 1E-01);
+const      cs: specialize TQuantity<TSecondUnit> = (FValue: 1E-02);
+const      ms: specialize TQuantity<TSecondUnit> = (FValue: 1E-03);
+const     mis: specialize TQuantity<TSecondUnit> = (FValue: 1E-06);
+const      ns: specialize TQuantity<TSecondUnit> = (FValue: 1E-09);
+const      ps: specialize TQuantity<TSecondUnit> = (FValue: 1E-12);
+const      fs: specialize TQuantity<TSecondUnit> = (FValue: 1E-15);
+const   attos: specialize TQuantity<TSecondUnit> = (FValue: 1E-18);
+const  zeptos: specialize TQuantity<TSecondUnit> = (FValue: 1E-21);
+const  yoctos: specialize TQuantity<TSecondUnit> = (FValue: 1E-24);
+const  rontos: specialize TQuantity<TSecondUnit> = (FValue: 1E-27);
+const quectos: specialize TQuantity<TSecondUnit> = (FValue: 1E-30);
 
 type
   { Unit of Day }
@@ -140,6 +158,31 @@ type
   TSquareSecondUnitId = specialize TUnitId<TSquareSecondUnit>;
 
 var s2: TSquareSecondUnitId;
+
+const quettas2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E+60);
+const  ronnas2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E+54);
+const  yottas2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E+48);
+const  zettas2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E+42);
+const      Es2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E+36);
+const   petas2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E+30);
+const      Ts2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E+24);
+const      Gs2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E+18);
+const   megas2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E+12);
+const      ks2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E+06);
+const      hs2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E+04);
+const     das2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E+02);
+const      ds2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E-02);
+const      cs2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E-04);
+const      ms2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E-06);
+const     mis2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E-12);
+const      ns2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E-18);
+const      ps2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E-24);
+const      fs2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E-30);
+const      as2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E-36);
+const  zeptos2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E-42);
+const  yoctos2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E-48);
+const  rontos2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E-54);
+const quectos2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E-60);
 
 // main definition [ s2 ] = [ s ] * [ s ]
 operator *(const ALeft: TSeconds; const ARight: TSeconds): TSquareSeconds; inline;
@@ -196,15 +239,30 @@ type
 
 var m: TMeterUnitId;
 
-const     km: specialize TQuantity<TMeterUnit> = (FValue: 1E+03);
-const     hm: specialize TQuantity<TMeterUnit> = (FValue: 1E+02);
-const    dam: specialize TQuantity<TMeterUnit> = (FValue: 1E+01);
-const     dm: specialize TQuantity<TMeterUnit> = (FValue: 1E-01);
-const     cm: specialize TQuantity<TMeterUnit> = (FValue: 1E-02);
-const     mm: specialize TQuantity<TMeterUnit> = (FValue: 1E-03);
-const    mim: specialize TQuantity<TMeterUnit> = (FValue: 1E-06);
-const     nm: specialize TQuantity<TMeterUnit> = (FValue: 1E-09);
-const     pm: specialize TQuantity<TMeterUnit> = (FValue: 1E-12);
+const quettam: specialize TQuantity<TMeterUnit> = (FValue: 1E+30);
+const  ronnam: specialize TQuantity<TMeterUnit> = (FValue: 1E+27);
+const  yottam: specialize TQuantity<TMeterUnit> = (FValue: 1E+24);
+const  zettam: specialize TQuantity<TMeterUnit> = (FValue: 1E+21);
+const      Em: specialize TQuantity<TMeterUnit> = (FValue: 1E+18);
+const   petam: specialize TQuantity<TMeterUnit> = (FValue: 1E+15);
+const      Tm: specialize TQuantity<TMeterUnit> = (FValue: 1E+12);
+const      Gm: specialize TQuantity<TMeterUnit> = (FValue: 1E+09);
+const   megam: specialize TQuantity<TMeterUnit> = (FValue: 1E+06);
+const      km: specialize TQuantity<TMeterUnit> = (FValue: 1E+03);
+const      hm: specialize TQuantity<TMeterUnit> = (FValue: 1E+02);
+const     dam: specialize TQuantity<TMeterUnit> = (FValue: 1E+01);
+const      dm: specialize TQuantity<TMeterUnit> = (FValue: 1E-01);
+const      cm: specialize TQuantity<TMeterUnit> = (FValue: 1E-02);
+const      mm: specialize TQuantity<TMeterUnit> = (FValue: 1E-03);
+const     mim: specialize TQuantity<TMeterUnit> = (FValue: 1E-06);
+const      nm: specialize TQuantity<TMeterUnit> = (FValue: 1E-09);
+const      pm: specialize TQuantity<TMeterUnit> = (FValue: 1E-12);
+const      fm: specialize TQuantity<TMeterUnit> = (FValue: 1E-15);
+const      am: specialize TQuantity<TMeterUnit> = (FValue: 1E-18);
+const  zeptom: specialize TQuantity<TMeterUnit> = (FValue: 1E-21);
+const  yoctom: specialize TQuantity<TMeterUnit> = (FValue: 1E-24);
+const  rontom: specialize TQuantity<TMeterUnit> = (FValue: 1E-27);
+const quectom: specialize TQuantity<TMeterUnit> = (FValue: 1E-30);
 
 type
   { Unit of Astronomical }
@@ -231,15 +289,30 @@ type
 
 var m2: TSquareMeterUnitId;
 
-const     km2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E+06);
-const     hm2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E+04);
-const    dam2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E+02);
-const     dm2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E-02);
-const     cm2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E-04);
-const     mm2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E-06);
-const    mim2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E-12);
-const     nm2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E-18);
-const     pm2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E-24);
+const quettam2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E+60);
+const  ronnam2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E+54);
+const  yottam2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E+48);
+const  zettam2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E+42);
+const      Em2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E+36);
+const   petam2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E+30);
+const      Tm2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E+24);
+const      Gm2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E+18);
+const   megam2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E+12);
+const      km2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E+06);
+const      hm2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E+04);
+const     dam2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E+02);
+const      dm2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E-02);
+const      cm2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E-04);
+const      mm2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E-06);
+const     mim2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E-12);
+const      nm2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E-18);
+const      pm2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E-24);
+const      fm2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E-30);
+const      am2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E-36);
+const  zeptom2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E-42);
+const  yoctom2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E-48);
+const  rontom2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E-54);
+const quectom2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E-60);
 
 // main definition [ m2 ] = [ m ] * [ m ]
 operator *(const ALeft: TMeters; const ARight: TMeters): TSquareMeters; inline;
@@ -257,15 +330,30 @@ type
 
 var m3: TCubicMeterUnitId;
 
-const     km3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E+09);
-const     hm3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E+06);
-const    dam3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E+03);
-const     dm3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03);
-const     cm3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-06);
-const     mm3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-09);
-const    mim3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-18);
-const     nm3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-27);
-const     pm3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-36);
+const quettam3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E+90);
+const  ronnam3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E+81);
+const  yottam3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E+72);
+const  zettam3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E+63);
+const      Em3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E+54);
+const   petam3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E+45);
+const      Tm3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E+36);
+const      Gm3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E+27);
+const   megam3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E+18);
+const      km3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E+09);
+const      hm3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E+06);
+const     dam3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E+03);
+const      dm3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03);
+const      cm3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-06);
+const      mm3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-09);
+const     mim3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-18);
+const      nm3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-27);
+const      pm3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-36);
+const      fm3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-45);
+const      am3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-54);
+const  zeptom3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-63);
+const  yoctom3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-72);
+const  rontom3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-81);
+const quectom3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-90);
 
 // main definition [ m3 ] = [ m2 ] * [ m ]
 operator *(const ALeft: TSquareMeters; const ARight: TMeters): TCubicMeters; inline;
@@ -286,18 +374,30 @@ type
 
 const L: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03);
 
-const     TL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E+12);
-const     GL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E+09);
-const  megaL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E+06);
-const     kL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E+03);
-const     hL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E+02);
-const    daL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E+01);
-const     dL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-01);
-const     cL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-02);
-const     mL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-03);
-const    miL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-06);
-const     nL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-09);
-const  picoL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-12);
+const quettaL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E+30);
+const  ronnaL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E+27);
+const  yottaL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E+24);
+const  zettaL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E+21);
+const      EL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E+18);
+const   petaL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E+15);
+const      TL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E+12);
+const      GL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E+09);
+const   megaL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E+06);
+const      kL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E+03);
+const      hL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E+02);
+const     daL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E+01);
+const      dL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-01);
+const      cL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-02);
+const      mL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-03);
+const     miL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-06);
+const      nL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-09);
+const   picoL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-12);
+const      fL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-15);
+const      aL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-18);
+const  zeptoL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-21);
+const  yoctoL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-24);
+const  rontoL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-27);
+const quectoL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-30);
 
 type
   { Unit of QuarticMeter }
@@ -311,15 +411,30 @@ type
 
 var m4: TQuarticMeterUnitId;
 
-const     km4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E+12);
-const     hm4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E+08);
-const    dam4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E+04);
-const     dm4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E-04);
-const     cm4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E-08);
-const     mm4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E-12);
-const    mim4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E-24);
-const     nm4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E-36);
-const     pm4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E-48);
+const quettam4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E+120);
+const  ronnam4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E+108);
+const  yottam4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E+96);
+const  zettam4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E+84);
+const      Em4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E+72);
+const   petam4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E+60);
+const      Tm4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E+48);
+const      Gm4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E+36);
+const   megam4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E+24);
+const      km4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E+12);
+const      hm4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E+08);
+const     dam4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E+04);
+const      dm4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E-04);
+const      cm4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E-08);
+const      mm4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E-12);
+const     mim4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E-24);
+const      nm4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E-36);
+const      pm4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E-48);
+const      fm4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E-60);
+const      am4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E-72);
+const  zeptom4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E-84);
+const  yoctom4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E-96);
+const  rontom4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E-108);
+const quectom4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E-120);
 
 // main definition [ m4 ] = [ m3 ] * [ m ]
 operator *(const ALeft: TCubicMeters; const ARight: TMeters): TQuarticMeters; inline;
@@ -343,15 +458,30 @@ type
 
 var m5: TQuinticMeterUnitId;
 
-const     km5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E+15);
-const     hm5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E+10);
-const    dam5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E+05);
-const     dm5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E-05);
-const     cm5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E-10);
-const     mm5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E-15);
-const    mim5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E-30);
-const     nm5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E-45);
-const     pm5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E-60);
+const quettam5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E+150);
+const  ronnam5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E+135);
+const  yottam5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E+120);
+const  zettam5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E+105);
+const      Em5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E+90);
+const   petam5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E+75);
+const      Tm5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E+60);
+const      Gm5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E+45);
+const   megam5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E+30);
+const      km5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E+15);
+const      hm5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E+10);
+const     dam5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E+05);
+const      dm5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E-05);
+const      cm5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E-10);
+const      mm5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E-15);
+const     mim5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E-30);
+const      nm5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E-45);
+const      pm5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E-60);
+const      fm5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E-75);
+const      am5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E-90);
+const  zeptom5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E-105);
+const  yoctom5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E-120);
+const  rontom5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E-135);
+const quectom5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E-150);
 
 // main definition [ m5 ] = [ m4 ] * [ m ]
 operator *(const ALeft: TQuarticMeters; const ARight: TMeters): TQuinticMeters; inline;
@@ -377,15 +507,30 @@ type
 
 var m6: TSexticMeterUnitId;
 
-const     km6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E+18);
-const     hm6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E+12);
-const    dam6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E+06);
-const     dm6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E-06);
-const     cm6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E-12);
-const     mm6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E-18);
-const    mim6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E-36);
-const     nm6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E-54);
-const     pm6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E-72);
+const quettam6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E+180);
+const  ronnam6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E+162);
+const  yottam6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E+144);
+const  zettam6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E+126);
+const      Em6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E+108);
+const   petam6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E+90);
+const      Tm6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E+72);
+const      Gm6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E+54);
+const   megam6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E+36);
+const      km6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E+18);
+const      hm6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E+12);
+const     dam6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E+06);
+const      dm6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E-06);
+const      cm6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E-12);
+const      mm6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E-18);
+const     mim6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E-36);
+const      nm6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E-54);
+const      pm6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E-72);
+const      fm6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E-90);
+const      am6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E-108);
+const  zeptom6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E-126);
+const  yoctom6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E-144);
+const  rontom6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E-162);
+const quectom6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E-180);
 
 // main definition [ m6 ] = [ m5 ] * [ m ]
 operator *(const ALeft: TQuinticMeters; const ARight: TMeters): TSexticMeters; inline;
@@ -438,9 +583,9 @@ type
 
 const tonne: specialize TQuantity<TKilogramUnit> = (FValue: 1E+03);
 
-const  gigatonne: specialize TQuantity<TKilogramUnit> = (FValue: 1E+03 * 1E+09);
-const  megatonne: specialize TQuantity<TKilogramUnit> = (FValue: 1E+03 * 1E+06);
-const  kilotonne: specialize TQuantity<TKilogramUnit> = (FValue: 1E+03 * 1E+03);
+const   gigatonne: specialize TQuantity<TKilogramUnit> = (FValue: 1E+03 * 1E+09);
+const   megatonne: specialize TQuantity<TKilogramUnit> = (FValue: 1E+03 * 1E+06);
+const   kilotonne: specialize TQuantity<TKilogramUnit> = (FValue: 1E+03 * 1E+03);
 
 type
   { Unit of SquareKilogram }
@@ -480,18 +625,30 @@ type
 
 var A: TAmpereUnitId;
 
-const     TA: specialize TQuantity<TAmpereUnit> = (FValue: 1E+12);
-const     GA: specialize TQuantity<TAmpereUnit> = (FValue: 1E+09);
-const  megaA: specialize TQuantity<TAmpereUnit> = (FValue: 1E+06);
-const     kA: specialize TQuantity<TAmpereUnit> = (FValue: 1E+03);
-const     hA: specialize TQuantity<TAmpereUnit> = (FValue: 1E+02);
-const    daA: specialize TQuantity<TAmpereUnit> = (FValue: 1E+01);
-const     dA: specialize TQuantity<TAmpereUnit> = (FValue: 1E-01);
-const     cA: specialize TQuantity<TAmpereUnit> = (FValue: 1E-02);
-const     mA: specialize TQuantity<TAmpereUnit> = (FValue: 1E-03);
-const    miA: specialize TQuantity<TAmpereUnit> = (FValue: 1E-06);
-const     nA: specialize TQuantity<TAmpereUnit> = (FValue: 1E-09);
-const  picoA: specialize TQuantity<TAmpereUnit> = (FValue: 1E-12);
+const quettaA: specialize TQuantity<TAmpereUnit> = (FValue: 1E+30);
+const  ronnaA: specialize TQuantity<TAmpereUnit> = (FValue: 1E+27);
+const  yottaA: specialize TQuantity<TAmpereUnit> = (FValue: 1E+24);
+const  zettaA: specialize TQuantity<TAmpereUnit> = (FValue: 1E+21);
+const      EA: specialize TQuantity<TAmpereUnit> = (FValue: 1E+18);
+const   petaA: specialize TQuantity<TAmpereUnit> = (FValue: 1E+15);
+const      TA: specialize TQuantity<TAmpereUnit> = (FValue: 1E+12);
+const      GA: specialize TQuantity<TAmpereUnit> = (FValue: 1E+09);
+const   megaA: specialize TQuantity<TAmpereUnit> = (FValue: 1E+06);
+const      kA: specialize TQuantity<TAmpereUnit> = (FValue: 1E+03);
+const      hA: specialize TQuantity<TAmpereUnit> = (FValue: 1E+02);
+const     daA: specialize TQuantity<TAmpereUnit> = (FValue: 1E+01);
+const      dA: specialize TQuantity<TAmpereUnit> = (FValue: 1E-01);
+const      cA: specialize TQuantity<TAmpereUnit> = (FValue: 1E-02);
+const      mA: specialize TQuantity<TAmpereUnit> = (FValue: 1E-03);
+const     miA: specialize TQuantity<TAmpereUnit> = (FValue: 1E-06);
+const      nA: specialize TQuantity<TAmpereUnit> = (FValue: 1E-09);
+const   picoA: specialize TQuantity<TAmpereUnit> = (FValue: 1E-12);
+const      fA: specialize TQuantity<TAmpereUnit> = (FValue: 1E-15);
+const      aA: specialize TQuantity<TAmpereUnit> = (FValue: 1E-18);
+const  zeptoA: specialize TQuantity<TAmpereUnit> = (FValue: 1E-21);
+const  yoctoA: specialize TQuantity<TAmpereUnit> = (FValue: 1E-24);
+const  rontoA: specialize TQuantity<TAmpereUnit> = (FValue: 1E-27);
+const quectoA: specialize TQuantity<TAmpereUnit> = (FValue: 1E-30);
 
 type
   { Unit of SquareAmpere }
@@ -505,18 +662,30 @@ type
 
 var A2: TSquareAmpereUnitId;
 
-const     TA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E+24);
-const     GA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E+18);
-const  megaA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E+12);
-const     kA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E+06);
-const     hA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E+04);
-const    daA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E+02);
-const     dA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E-02);
-const     cA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E-04);
-const     mA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E-06);
-const    miA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E-12);
-const     nA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E-18);
-const  picoA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E-24);
+const quettaA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E+60);
+const  ronnaA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E+54);
+const  yottaA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E+48);
+const  zettaA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E+42);
+const      EA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E+36);
+const   petaA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E+30);
+const      TA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E+24);
+const      GA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E+18);
+const   megaA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E+12);
+const      kA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E+06);
+const      hA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E+04);
+const     daA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E+02);
+const      dA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E-02);
+const      cA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E-04);
+const      mA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E-06);
+const     miA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E-12);
+const      nA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E-18);
+const   picoA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E-24);
+const      fA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E-30);
+const      aA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E-36);
+const  zeptoA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E-42);
+const  yoctoA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E-48);
+const  rontoA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E-54);
+const quectoA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E-60);
 
 // main definition [ A2 ] = [ A ] * [ A ]
 operator *(const ALeft: TAmperes; const ARight: TAmperes): TSquareAmperes; inline;
@@ -534,18 +703,30 @@ type
 
 var K: TKelvinUnitId;
 
-const     TK: specialize TQuantity<TKelvinUnit> = (FValue: 1E+12);
-const     GK: specialize TQuantity<TKelvinUnit> = (FValue: 1E+09);
-const  megaK: specialize TQuantity<TKelvinUnit> = (FValue: 1E+06);
-const     kK: specialize TQuantity<TKelvinUnit> = (FValue: 1E+03);
-const     hK: specialize TQuantity<TKelvinUnit> = (FValue: 1E+02);
-const    daK: specialize TQuantity<TKelvinUnit> = (FValue: 1E+01);
-const     dK: specialize TQuantity<TKelvinUnit> = (FValue: 1E-01);
-const     cK: specialize TQuantity<TKelvinUnit> = (FValue: 1E-02);
-const     mK: specialize TQuantity<TKelvinUnit> = (FValue: 1E-03);
-const    miK: specialize TQuantity<TKelvinUnit> = (FValue: 1E-06);
-const     nK: specialize TQuantity<TKelvinUnit> = (FValue: 1E-09);
-const     pK: specialize TQuantity<TKelvinUnit> = (FValue: 1E-12);
+const quettaK: specialize TQuantity<TKelvinUnit> = (FValue: 1E+30);
+const  ronnaK: specialize TQuantity<TKelvinUnit> = (FValue: 1E+27);
+const  yottaK: specialize TQuantity<TKelvinUnit> = (FValue: 1E+24);
+const  zettaK: specialize TQuantity<TKelvinUnit> = (FValue: 1E+21);
+const      EK: specialize TQuantity<TKelvinUnit> = (FValue: 1E+18);
+const   petaK: specialize TQuantity<TKelvinUnit> = (FValue: 1E+15);
+const      TK: specialize TQuantity<TKelvinUnit> = (FValue: 1E+12);
+const      GK: specialize TQuantity<TKelvinUnit> = (FValue: 1E+09);
+const   megaK: specialize TQuantity<TKelvinUnit> = (FValue: 1E+06);
+const      kK: specialize TQuantity<TKelvinUnit> = (FValue: 1E+03);
+const      hK: specialize TQuantity<TKelvinUnit> = (FValue: 1E+02);
+const     daK: specialize TQuantity<TKelvinUnit> = (FValue: 1E+01);
+const      dK: specialize TQuantity<TKelvinUnit> = (FValue: 1E-01);
+const      cK: specialize TQuantity<TKelvinUnit> = (FValue: 1E-02);
+const      mK: specialize TQuantity<TKelvinUnit> = (FValue: 1E-03);
+const     miK: specialize TQuantity<TKelvinUnit> = (FValue: 1E-06);
+const      nK: specialize TQuantity<TKelvinUnit> = (FValue: 1E-09);
+const      pK: specialize TQuantity<TKelvinUnit> = (FValue: 1E-12);
+const      fK: specialize TQuantity<TKelvinUnit> = (FValue: 1E-15);
+const      aK: specialize TQuantity<TKelvinUnit> = (FValue: 1E-18);
+const  zeptoK: specialize TQuantity<TKelvinUnit> = (FValue: 1E-21);
+const  yoctoK: specialize TQuantity<TKelvinUnit> = (FValue: 1E-24);
+const  rontoK: specialize TQuantity<TKelvinUnit> = (FValue: 1E-27);
+const quectoK: specialize TQuantity<TKelvinUnit> = (FValue: 1E-30);
 
 type
   { Unit of DegreeCelsius }
@@ -583,18 +764,30 @@ type
 
 var K2: TSquareKelvinUnitId;
 
-const     TK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E+24);
-const     GK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E+18);
-const  megaK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E+12);
-const     kK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E+06);
-const     hK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E+04);
-const    daK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E+02);
-const     dK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E-02);
-const     cK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E-04);
-const     mK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E-06);
-const    miK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E-12);
-const     nK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E-18);
-const     pK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E-24);
+const quettaK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E+60);
+const  ronnaK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E+54);
+const  yottaK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E+48);
+const  zettaK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E+42);
+const      EK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E+36);
+const   petaK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E+30);
+const      TK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E+24);
+const      GK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E+18);
+const   megaK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E+12);
+const      kK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E+06);
+const      hK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E+04);
+const     daK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E+02);
+const      dK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E-02);
+const      cK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E-04);
+const      mK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E-06);
+const     miK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E-12);
+const      nK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E-18);
+const      pK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E-24);
+const      fK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E-30);
+const      aK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E-36);
+const  zeptoK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E-42);
+const  yoctoK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E-48);
+const  rontoK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E-54);
+const quectoK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E-60);
 
 // main definition [ K2 ] = [ K ] * [ K ]
 operator *(const ALeft: TKelvins; const ARight: TKelvins): TSquareKelvins; inline;
@@ -612,18 +805,30 @@ type
 
 var K3: TCubicKelvinUnitId;
 
-const     TK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E+36);
-const     GK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E+27);
-const  megaK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E+18);
-const     kK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E+09);
-const     hK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E+06);
-const    daK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E+03);
-const     dK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E-03);
-const     cK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E-06);
-const     mK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E-09);
-const    miK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E-18);
-const     nK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E-27);
-const     pK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E-36);
+const quettaK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E+90);
+const  ronnaK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E+81);
+const  yottaK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E+72);
+const  zettaK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E+63);
+const      EK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E+54);
+const   petaK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E+45);
+const      TK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E+36);
+const      GK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E+27);
+const   megaK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E+18);
+const      kK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E+09);
+const      hK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E+06);
+const     daK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E+03);
+const      dK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E-03);
+const      cK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E-06);
+const      mK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E-09);
+const     miK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E-18);
+const      nK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E-27);
+const      pK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E-36);
+const      fK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E-45);
+const      aK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E-54);
+const  zeptoK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E-63);
+const  yoctoK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E-72);
+const  rontoK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E-81);
+const quectoK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E-90);
 
 // main definition [ K3 ] = [ K2 ] * [ K ]
 operator *(const ALeft: TSquareKelvins; const ARight: TKelvins): TCubicKelvins; inline;
@@ -643,18 +848,30 @@ type
 
 var K4: TQuarticKelvinUnitId;
 
-const     TK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E+48);
-const     GK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E+36);
-const  megaK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E+24);
-const     kK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E+12);
-const     hK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E+08);
-const    daK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E+04);
-const     dK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E-04);
-const     cK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E-08);
-const     mK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E-12);
-const    miK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E-24);
-const     nK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E-36);
-const     pK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E-48);
+const quettaK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E+120);
+const  ronnaK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E+108);
+const  yottaK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E+96);
+const  zettaK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E+84);
+const      EK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E+72);
+const   petaK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E+60);
+const      TK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E+48);
+const      GK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E+36);
+const   megaK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E+24);
+const      kK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E+12);
+const      hK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E+08);
+const     daK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E+04);
+const      dK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E-04);
+const      cK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E-08);
+const      mK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E-12);
+const     miK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E-24);
+const      nK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E-36);
+const      pK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E-48);
+const      fK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E-60);
+const      aK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E-72);
+const  zeptoK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E-84);
+const  yoctoK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E-96);
+const  rontoK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E-108);
+const quectoK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E-120);
 
 // main definition [ K4 ] = [ K3 ] * [ K ]
 operator *(const ALeft: TCubicKelvins; const ARight: TKelvins): TQuarticKelvins; inline;
@@ -678,18 +895,30 @@ type
 
 var mol: TMoleUnitId;
 
-const     Tmol: specialize TQuantity<TMoleUnit> = (FValue: 1E+12);
-const     Gmol: specialize TQuantity<TMoleUnit> = (FValue: 1E+09);
-const  megamol: specialize TQuantity<TMoleUnit> = (FValue: 1E+06);
-const     kmol: specialize TQuantity<TMoleUnit> = (FValue: 1E+03);
-const     hmol: specialize TQuantity<TMoleUnit> = (FValue: 1E+02);
-const    damol: specialize TQuantity<TMoleUnit> = (FValue: 1E+01);
-const     dmol: specialize TQuantity<TMoleUnit> = (FValue: 1E-01);
-const     cmol: specialize TQuantity<TMoleUnit> = (FValue: 1E-02);
-const     mmol: specialize TQuantity<TMoleUnit> = (FValue: 1E-03);
-const    mimol: specialize TQuantity<TMoleUnit> = (FValue: 1E-06);
-const     nmol: specialize TQuantity<TMoleUnit> = (FValue: 1E-09);
-const     pmol: specialize TQuantity<TMoleUnit> = (FValue: 1E-12);
+const quettamol: specialize TQuantity<TMoleUnit> = (FValue: 1E+30);
+const  ronnamol: specialize TQuantity<TMoleUnit> = (FValue: 1E+27);
+const  yottamol: specialize TQuantity<TMoleUnit> = (FValue: 1E+24);
+const  zettamol: specialize TQuantity<TMoleUnit> = (FValue: 1E+21);
+const      Emol: specialize TQuantity<TMoleUnit> = (FValue: 1E+18);
+const   petamol: specialize TQuantity<TMoleUnit> = (FValue: 1E+15);
+const      Tmol: specialize TQuantity<TMoleUnit> = (FValue: 1E+12);
+const      Gmol: specialize TQuantity<TMoleUnit> = (FValue: 1E+09);
+const   megamol: specialize TQuantity<TMoleUnit> = (FValue: 1E+06);
+const      kmol: specialize TQuantity<TMoleUnit> = (FValue: 1E+03);
+const      hmol: specialize TQuantity<TMoleUnit> = (FValue: 1E+02);
+const     damol: specialize TQuantity<TMoleUnit> = (FValue: 1E+01);
+const      dmol: specialize TQuantity<TMoleUnit> = (FValue: 1E-01);
+const      cmol: specialize TQuantity<TMoleUnit> = (FValue: 1E-02);
+const      mmol: specialize TQuantity<TMoleUnit> = (FValue: 1E-03);
+const     mimol: specialize TQuantity<TMoleUnit> = (FValue: 1E-06);
+const      nmol: specialize TQuantity<TMoleUnit> = (FValue: 1E-09);
+const      pmol: specialize TQuantity<TMoleUnit> = (FValue: 1E-12);
+const      fmol: specialize TQuantity<TMoleUnit> = (FValue: 1E-15);
+const      amol: specialize TQuantity<TMoleUnit> = (FValue: 1E-18);
+const  zeptomol: specialize TQuantity<TMoleUnit> = (FValue: 1E-21);
+const  yoctomol: specialize TQuantity<TMoleUnit> = (FValue: 1E-24);
+const  rontomol: specialize TQuantity<TMoleUnit> = (FValue: 1E-27);
+const quectomol: specialize TQuantity<TMoleUnit> = (FValue: 1E-30);
 
 type
   { Unit of Candela }
@@ -703,18 +932,30 @@ type
 
 var cd: TCandelaUnitId;
 
-const     Tcd: specialize TQuantity<TCandelaUnit> = (FValue: 1E+12);
-const     Gcd: specialize TQuantity<TCandelaUnit> = (FValue: 1E+09);
-const  megacd: specialize TQuantity<TCandelaUnit> = (FValue: 1E+06);
-const     kcd: specialize TQuantity<TCandelaUnit> = (FValue: 1E+03);
-const     hcd: specialize TQuantity<TCandelaUnit> = (FValue: 1E+02);
-const    dacd: specialize TQuantity<TCandelaUnit> = (FValue: 1E+01);
-const     dcd: specialize TQuantity<TCandelaUnit> = (FValue: 1E-01);
-const     ccd: specialize TQuantity<TCandelaUnit> = (FValue: 1E-02);
-const     mcd: specialize TQuantity<TCandelaUnit> = (FValue: 1E-03);
-const    micd: specialize TQuantity<TCandelaUnit> = (FValue: 1E-06);
-const     ncd: specialize TQuantity<TCandelaUnit> = (FValue: 1E-09);
-const     pcd: specialize TQuantity<TCandelaUnit> = (FValue: 1E-12);
+const quettacd: specialize TQuantity<TCandelaUnit> = (FValue: 1E+30);
+const  ronnacd: specialize TQuantity<TCandelaUnit> = (FValue: 1E+27);
+const  yottacd: specialize TQuantity<TCandelaUnit> = (FValue: 1E+24);
+const  zettacd: specialize TQuantity<TCandelaUnit> = (FValue: 1E+21);
+const      Ecd: specialize TQuantity<TCandelaUnit> = (FValue: 1E+18);
+const   petacd: specialize TQuantity<TCandelaUnit> = (FValue: 1E+15);
+const      Tcd: specialize TQuantity<TCandelaUnit> = (FValue: 1E+12);
+const      Gcd: specialize TQuantity<TCandelaUnit> = (FValue: 1E+09);
+const   megacd: specialize TQuantity<TCandelaUnit> = (FValue: 1E+06);
+const      kcd: specialize TQuantity<TCandelaUnit> = (FValue: 1E+03);
+const      hcd: specialize TQuantity<TCandelaUnit> = (FValue: 1E+02);
+const     dacd: specialize TQuantity<TCandelaUnit> = (FValue: 1E+01);
+const      dcd: specialize TQuantity<TCandelaUnit> = (FValue: 1E-01);
+const      ccd: specialize TQuantity<TCandelaUnit> = (FValue: 1E-02);
+const      mcd: specialize TQuantity<TCandelaUnit> = (FValue: 1E-03);
+const     micd: specialize TQuantity<TCandelaUnit> = (FValue: 1E-06);
+const      ncd: specialize TQuantity<TCandelaUnit> = (FValue: 1E-09);
+const      pcd: specialize TQuantity<TCandelaUnit> = (FValue: 1E-12);
+const      fcd: specialize TQuantity<TCandelaUnit> = (FValue: 1E-15);
+const      acd: specialize TQuantity<TCandelaUnit> = (FValue: 1E-18);
+const  zeptocd: specialize TQuantity<TCandelaUnit> = (FValue: 1E-21);
+const  yoctocd: specialize TQuantity<TCandelaUnit> = (FValue: 1E-24);
+const  rontocd: specialize TQuantity<TCandelaUnit> = (FValue: 1E-27);
+const quectocd: specialize TQuantity<TCandelaUnit> = (FValue: 1E-30);
 
 type
   { Unit of Radian }
@@ -728,18 +969,30 @@ type
 
 var rad: TRadianUnitId;
 
-const     Trad: specialize TQuantity<TRadianUnit> = (FValue: 1E+12);
-const     Grad: specialize TQuantity<TRadianUnit> = (FValue: 1E+09);
-const  megarad: specialize TQuantity<TRadianUnit> = (FValue: 1E+06);
-const     krad: specialize TQuantity<TRadianUnit> = (FValue: 1E+03);
-const     hrad: specialize TQuantity<TRadianUnit> = (FValue: 1E+02);
-const    darad: specialize TQuantity<TRadianUnit> = (FValue: 1E+01);
-const     drad: specialize TQuantity<TRadianUnit> = (FValue: 1E-01);
-const     crad: specialize TQuantity<TRadianUnit> = (FValue: 1E-02);
-const     mrad: specialize TQuantity<TRadianUnit> = (FValue: 1E-03);
-const    mirad: specialize TQuantity<TRadianUnit> = (FValue: 1E-06);
-const     nrad: specialize TQuantity<TRadianUnit> = (FValue: 1E-09);
-const     prad: specialize TQuantity<TRadianUnit> = (FValue: 1E-12);
+const quettarad: specialize TQuantity<TRadianUnit> = (FValue: 1E+30);
+const  ronnarad: specialize TQuantity<TRadianUnit> = (FValue: 1E+27);
+const  yottarad: specialize TQuantity<TRadianUnit> = (FValue: 1E+24);
+const  zettarad: specialize TQuantity<TRadianUnit> = (FValue: 1E+21);
+const      Erad: specialize TQuantity<TRadianUnit> = (FValue: 1E+18);
+const   petarad: specialize TQuantity<TRadianUnit> = (FValue: 1E+15);
+const      Trad: specialize TQuantity<TRadianUnit> = (FValue: 1E+12);
+const      Grad: specialize TQuantity<TRadianUnit> = (FValue: 1E+09);
+const   megarad: specialize TQuantity<TRadianUnit> = (FValue: 1E+06);
+const      krad: specialize TQuantity<TRadianUnit> = (FValue: 1E+03);
+const      hrad: specialize TQuantity<TRadianUnit> = (FValue: 1E+02);
+const     darad: specialize TQuantity<TRadianUnit> = (FValue: 1E+01);
+const      drad: specialize TQuantity<TRadianUnit> = (FValue: 1E-01);
+const      crad: specialize TQuantity<TRadianUnit> = (FValue: 1E-02);
+const      mrad: specialize TQuantity<TRadianUnit> = (FValue: 1E-03);
+const     mirad: specialize TQuantity<TRadianUnit> = (FValue: 1E-06);
+const      nrad: specialize TQuantity<TRadianUnit> = (FValue: 1E-09);
+const      prad: specialize TQuantity<TRadianUnit> = (FValue: 1E-12);
+const      frad: specialize TQuantity<TRadianUnit> = (FValue: 1E-15);
+const      arad: specialize TQuantity<TRadianUnit> = (FValue: 1E-18);
+const  zeptorad: specialize TQuantity<TRadianUnit> = (FValue: 1E-21);
+const  yoctorad: specialize TQuantity<TRadianUnit> = (FValue: 1E-24);
+const  rontorad: specialize TQuantity<TRadianUnit> = (FValue: 1E-27);
+const quectorad: specialize TQuantity<TRadianUnit> = (FValue: 1E-30);
 
 type
   { Unit of Degree }
@@ -754,18 +1007,30 @@ type
 
 const deg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180);
 
-const     Tdeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E+12);
-const     Gdeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E+09);
-const  megadeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E+06);
-const     kdeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E+03);
-const     hdeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E+02);
-const    dadeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E+01);
-const     ddeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E-01);
-const     cdeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E-02);
-const     mdeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E-03);
-const    mideg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E-06);
-const     ndeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E-09);
-const     pdeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E-12);
+const quettadeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E+30);
+const  ronnadeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E+27);
+const  yottadeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E+24);
+const  zettadeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E+21);
+const      Edeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E+18);
+const   petadeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E+15);
+const      Tdeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E+12);
+const      Gdeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E+09);
+const   megadeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E+06);
+const      kdeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E+03);
+const      hdeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E+02);
+const     dadeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E+01);
+const      ddeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E-01);
+const      cdeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E-02);
+const      mdeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E-03);
+const     mideg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E-06);
+const      ndeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E-09);
+const      pdeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E-12);
+const      fdeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E-15);
+const      adeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E-18);
+const  zeptodeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E-21);
+const  yoctodeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E-24);
+const  rontodeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E-27);
+const quectodeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E-30);
 
 type
   { Unit of Steradian }
@@ -779,18 +1044,30 @@ type
 
 var sr: TSteradianUnitId;
 
-const     Tsr: specialize TQuantity<TSteradianUnit> = (FValue: 1E+12);
-const     Gsr: specialize TQuantity<TSteradianUnit> = (FValue: 1E+09);
-const  megasr: specialize TQuantity<TSteradianUnit> = (FValue: 1E+06);
-const     ksr: specialize TQuantity<TSteradianUnit> = (FValue: 1E+03);
-const     hsr: specialize TQuantity<TSteradianUnit> = (FValue: 1E+02);
-const    dasr: specialize TQuantity<TSteradianUnit> = (FValue: 1E+01);
-const     dsr: specialize TQuantity<TSteradianUnit> = (FValue: 1E-01);
-const     csr: specialize TQuantity<TSteradianUnit> = (FValue: 1E-02);
-const     msr: specialize TQuantity<TSteradianUnit> = (FValue: 1E-03);
-const    misr: specialize TQuantity<TSteradianUnit> = (FValue: 1E-06);
-const     nsr: specialize TQuantity<TSteradianUnit> = (FValue: 1E-09);
-const     psr: specialize TQuantity<TSteradianUnit> = (FValue: 1E-12);
+const quettasr: specialize TQuantity<TSteradianUnit> = (FValue: 1E+30);
+const  ronnasr: specialize TQuantity<TSteradianUnit> = (FValue: 1E+27);
+const  yottasr: specialize TQuantity<TSteradianUnit> = (FValue: 1E+24);
+const  zettasr: specialize TQuantity<TSteradianUnit> = (FValue: 1E+21);
+const      Esr: specialize TQuantity<TSteradianUnit> = (FValue: 1E+18);
+const   petasr: specialize TQuantity<TSteradianUnit> = (FValue: 1E+15);
+const      Tsr: specialize TQuantity<TSteradianUnit> = (FValue: 1E+12);
+const      Gsr: specialize TQuantity<TSteradianUnit> = (FValue: 1E+09);
+const   megasr: specialize TQuantity<TSteradianUnit> = (FValue: 1E+06);
+const      ksr: specialize TQuantity<TSteradianUnit> = (FValue: 1E+03);
+const      hsr: specialize TQuantity<TSteradianUnit> = (FValue: 1E+02);
+const     dasr: specialize TQuantity<TSteradianUnit> = (FValue: 1E+01);
+const      dsr: specialize TQuantity<TSteradianUnit> = (FValue: 1E-01);
+const      csr: specialize TQuantity<TSteradianUnit> = (FValue: 1E-02);
+const      msr: specialize TQuantity<TSteradianUnit> = (FValue: 1E-03);
+const     misr: specialize TQuantity<TSteradianUnit> = (FValue: 1E-06);
+const      nsr: specialize TQuantity<TSteradianUnit> = (FValue: 1E-09);
+const      psr: specialize TQuantity<TSteradianUnit> = (FValue: 1E-12);
+const      fsr: specialize TQuantity<TSteradianUnit> = (FValue: 1E-15);
+const      asr: specialize TQuantity<TSteradianUnit> = (FValue: 1E-18);
+const  zeptosr: specialize TQuantity<TSteradianUnit> = (FValue: 1E-21);
+const  yoctosr: specialize TQuantity<TSteradianUnit> = (FValue: 1E-24);
+const  rontosr: specialize TQuantity<TSteradianUnit> = (FValue: 1E-27);
+const quectosr: specialize TQuantity<TSteradianUnit> = (FValue: 1E-30);
 
 // main definition [ sr ] = [ rad ] * [ rad ]
 operator *(const ALeft: TRadians; const ARight: TRadians): TSteradians; inline;
@@ -808,18 +1085,30 @@ type
 
 var Hz: THertzUnitId;
 
-const     THz: specialize TQuantity<THertzUnit> = (FValue: 1E+12);
-const     GHz: specialize TQuantity<THertzUnit> = (FValue: 1E+09);
-const  megaHz: specialize TQuantity<THertzUnit> = (FValue: 1E+06);
-const     kHz: specialize TQuantity<THertzUnit> = (FValue: 1E+03);
-const     hHz: specialize TQuantity<THertzUnit> = (FValue: 1E+02);
-const    daHz: specialize TQuantity<THertzUnit> = (FValue: 1E+01);
-const     dHz: specialize TQuantity<THertzUnit> = (FValue: 1E-01);
-const     cHz: specialize TQuantity<THertzUnit> = (FValue: 1E-02);
-const     mHz: specialize TQuantity<THertzUnit> = (FValue: 1E-03);
-const    miHz: specialize TQuantity<THertzUnit> = (FValue: 1E-06);
-const     nHz: specialize TQuantity<THertzUnit> = (FValue: 1E-09);
-const     pHz: specialize TQuantity<THertzUnit> = (FValue: 1E-12);
+const quettaHz: specialize TQuantity<THertzUnit> = (FValue: 1E+30);
+const  ronnaHz: specialize TQuantity<THertzUnit> = (FValue: 1E+27);
+const  yottaHz: specialize TQuantity<THertzUnit> = (FValue: 1E+24);
+const  zettaHz: specialize TQuantity<THertzUnit> = (FValue: 1E+21);
+const      EHz: specialize TQuantity<THertzUnit> = (FValue: 1E+18);
+const   petaHz: specialize TQuantity<THertzUnit> = (FValue: 1E+15);
+const      THz: specialize TQuantity<THertzUnit> = (FValue: 1E+12);
+const      GHz: specialize TQuantity<THertzUnit> = (FValue: 1E+09);
+const   megaHz: specialize TQuantity<THertzUnit> = (FValue: 1E+06);
+const      kHz: specialize TQuantity<THertzUnit> = (FValue: 1E+03);
+const      hHz: specialize TQuantity<THertzUnit> = (FValue: 1E+02);
+const     daHz: specialize TQuantity<THertzUnit> = (FValue: 1E+01);
+const      dHz: specialize TQuantity<THertzUnit> = (FValue: 1E-01);
+const      cHz: specialize TQuantity<THertzUnit> = (FValue: 1E-02);
+const      mHz: specialize TQuantity<THertzUnit> = (FValue: 1E-03);
+const     miHz: specialize TQuantity<THertzUnit> = (FValue: 1E-06);
+const      nHz: specialize TQuantity<THertzUnit> = (FValue: 1E-09);
+const      pHz: specialize TQuantity<THertzUnit> = (FValue: 1E-12);
+const      fHz: specialize TQuantity<THertzUnit> = (FValue: 1E-15);
+const      aHz: specialize TQuantity<THertzUnit> = (FValue: 1E-18);
+const  zeptoHz: specialize TQuantity<THertzUnit> = (FValue: 1E-21);
+const  yoctoHz: specialize TQuantity<THertzUnit> = (FValue: 1E-24);
+const  rontoHz: specialize TQuantity<THertzUnit> = (FValue: 1E-27);
+const quectoHz: specialize TQuantity<THertzUnit> = (FValue: 1E-30);
 
 // main definition [ Hz ] = [ 1 ] / [ s ]
 operator /(const ALeft: double; const ARight: TSeconds): THertz; inline;
@@ -840,18 +1129,30 @@ type
 
 var Hz2: TSquareHertzUnitId;
 
-const     THz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E+24);
-const     GHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E+18);
-const  megaHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E+12);
-const     kHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E+06);
-const     hHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E+04);
-const    daHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E+02);
-const     dHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E-02);
-const     cHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E-04);
-const     mHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E-06);
-const    miHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E-12);
-const     nHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E-18);
-const     pHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E-24);
+const quettaHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E+60);
+const  ronnaHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E+54);
+const  yottaHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E+48);
+const  zettaHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E+42);
+const      EHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E+36);
+const   petaHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E+30);
+const      THz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E+24);
+const      GHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E+18);
+const   megaHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E+12);
+const      kHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E+06);
+const      hHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E+04);
+const     daHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E+02);
+const      dHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E-02);
+const      cHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E-04);
+const      mHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E-06);
+const     miHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E-12);
+const      nHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E-18);
+const      pHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E-24);
+const      fHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E-30);
+const      aHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E-36);
+const  zeptoHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E-42);
+const  yoctoHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E-48);
+const  rontoHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E-54);
+const quectoHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E-60);
 
 // main definition [ Hz2 ] = [ 1 ] / [ s2 ]
 operator /(const ALeft: double; const ARight: TSquareSeconds): TSquareHertz; inline;
@@ -1191,18 +1492,30 @@ type
 
 var N: TNewtonUnitId;
 
-const     TN: specialize TQuantity<TNewtonUnit> = (FValue: 1E+12);
-const     GN: specialize TQuantity<TNewtonUnit> = (FValue: 1E+09);
-const  megaN: specialize TQuantity<TNewtonUnit> = (FValue: 1E+06);
-const     kN: specialize TQuantity<TNewtonUnit> = (FValue: 1E+03);
-const     hN: specialize TQuantity<TNewtonUnit> = (FValue: 1E+02);
-const    daN: specialize TQuantity<TNewtonUnit> = (FValue: 1E+01);
-const     dN: specialize TQuantity<TNewtonUnit> = (FValue: 1E-01);
-const     cN: specialize TQuantity<TNewtonUnit> = (FValue: 1E-02);
-const     mN: specialize TQuantity<TNewtonUnit> = (FValue: 1E-03);
-const    miN: specialize TQuantity<TNewtonUnit> = (FValue: 1E-06);
-const     nN: specialize TQuantity<TNewtonUnit> = (FValue: 1E-09);
-const     pN: specialize TQuantity<TNewtonUnit> = (FValue: 1E-12);
+const quettaN: specialize TQuantity<TNewtonUnit> = (FValue: 1E+30);
+const  ronnaN: specialize TQuantity<TNewtonUnit> = (FValue: 1E+27);
+const  yottaN: specialize TQuantity<TNewtonUnit> = (FValue: 1E+24);
+const  zettaN: specialize TQuantity<TNewtonUnit> = (FValue: 1E+21);
+const      EN: specialize TQuantity<TNewtonUnit> = (FValue: 1E+18);
+const   petaN: specialize TQuantity<TNewtonUnit> = (FValue: 1E+15);
+const      TN: specialize TQuantity<TNewtonUnit> = (FValue: 1E+12);
+const      GN: specialize TQuantity<TNewtonUnit> = (FValue: 1E+09);
+const   megaN: specialize TQuantity<TNewtonUnit> = (FValue: 1E+06);
+const      kN: specialize TQuantity<TNewtonUnit> = (FValue: 1E+03);
+const      hN: specialize TQuantity<TNewtonUnit> = (FValue: 1E+02);
+const     daN: specialize TQuantity<TNewtonUnit> = (FValue: 1E+01);
+const      dN: specialize TQuantity<TNewtonUnit> = (FValue: 1E-01);
+const      cN: specialize TQuantity<TNewtonUnit> = (FValue: 1E-02);
+const      mN: specialize TQuantity<TNewtonUnit> = (FValue: 1E-03);
+const     miN: specialize TQuantity<TNewtonUnit> = (FValue: 1E-06);
+const      nN: specialize TQuantity<TNewtonUnit> = (FValue: 1E-09);
+const      pN: specialize TQuantity<TNewtonUnit> = (FValue: 1E-12);
+const      fN: specialize TQuantity<TNewtonUnit> = (FValue: 1E-15);
+const      aN: specialize TQuantity<TNewtonUnit> = (FValue: 1E-18);
+const  zeptoN: specialize TQuantity<TNewtonUnit> = (FValue: 1E-21);
+const  yoctoN: specialize TQuantity<TNewtonUnit> = (FValue: 1E-24);
+const  rontoN: specialize TQuantity<TNewtonUnit> = (FValue: 1E-27);
+const quectoN: specialize TQuantity<TNewtonUnit> = (FValue: 1E-30);
 
 // main definition [ N ] = [ kg ] * [ m/s2 ]
 operator *(const ALeft: TKilograms; const ARight: TMetersPerSquareSecond): TNewtons; inline;
@@ -1235,18 +1548,30 @@ type
 
 var Pa: TPascalUnitId;
 
-const     TPa: specialize TQuantity<TPascalUnit> = (FValue: 1E+12);
-const     GPa: specialize TQuantity<TPascalUnit> = (FValue: 1E+09);
-const     MPa: specialize TQuantity<TPascalUnit> = (FValue: 1E+06);
-const     kPa: specialize TQuantity<TPascalUnit> = (FValue: 1E+03);
-const     hPa: specialize TQuantity<TPascalUnit> = (FValue: 1E+02);
-const    daPa: specialize TQuantity<TPascalUnit> = (FValue: 1E+01);
-const     dPa: specialize TQuantity<TPascalUnit> = (FValue: 1E-01);
-const     cPa: specialize TQuantity<TPascalUnit> = (FValue: 1E-02);
-const milliPa: specialize TQuantity<TPascalUnit> = (FValue: 1E-03);
-const    miPa: specialize TQuantity<TPascalUnit> = (FValue: 1E-06);
-const     nPa: specialize TQuantity<TPascalUnit> = (FValue: 1E-09);
-const     pPa: specialize TQuantity<TPascalUnit> = (FValue: 1E-12);
+const quettaPa: specialize TQuantity<TPascalUnit> = (FValue: 1E+30);
+const  ronnaPa: specialize TQuantity<TPascalUnit> = (FValue: 1E+27);
+const  yottaPa: specialize TQuantity<TPascalUnit> = (FValue: 1E+24);
+const  zettaPa: specialize TQuantity<TPascalUnit> = (FValue: 1E+21);
+const      EPa: specialize TQuantity<TPascalUnit> = (FValue: 1E+18);
+const   petaPa: specialize TQuantity<TPascalUnit> = (FValue: 1E+15);
+const      TPa: specialize TQuantity<TPascalUnit> = (FValue: 1E+12);
+const      GPa: specialize TQuantity<TPascalUnit> = (FValue: 1E+09);
+const      MPa: specialize TQuantity<TPascalUnit> = (FValue: 1E+06);
+const      kPa: specialize TQuantity<TPascalUnit> = (FValue: 1E+03);
+const      hPa: specialize TQuantity<TPascalUnit> = (FValue: 1E+02);
+const     daPa: specialize TQuantity<TPascalUnit> = (FValue: 1E+01);
+const      dPa: specialize TQuantity<TPascalUnit> = (FValue: 1E-01);
+const      cPa: specialize TQuantity<TPascalUnit> = (FValue: 1E-02);
+const  milliPa: specialize TQuantity<TPascalUnit> = (FValue: 1E-03);
+const     miPa: specialize TQuantity<TPascalUnit> = (FValue: 1E-06);
+const      nPa: specialize TQuantity<TPascalUnit> = (FValue: 1E-09);
+const      pPa: specialize TQuantity<TPascalUnit> = (FValue: 1E-12);
+const      fPa: specialize TQuantity<TPascalUnit> = (FValue: 1E-15);
+const      aPa: specialize TQuantity<TPascalUnit> = (FValue: 1E-18);
+const  zeptoPa: specialize TQuantity<TPascalUnit> = (FValue: 1E-21);
+const  yoctoPa: specialize TQuantity<TPascalUnit> = (FValue: 1E-24);
+const  rontoPa: specialize TQuantity<TPascalUnit> = (FValue: 1E-27);
+const quectoPa: specialize TQuantity<TPascalUnit> = (FValue: 1E-30);
 
 // main definition [ Pa ] = [ N ] / [ m2 ]
 operator /(const ALeft: TNewtons; const ARight: TSquareMeters): TPascals; inline;
@@ -1273,18 +1598,30 @@ type
 
 var J: TJouleUnitId;
 
-const     TJ: specialize TQuantity<TJouleUnit> = (FValue: 1E+12);
-const     GJ: specialize TQuantity<TJouleUnit> = (FValue: 1E+09);
-const  megaJ: specialize TQuantity<TJouleUnit> = (FValue: 1E+06);
-const     kJ: specialize TQuantity<TJouleUnit> = (FValue: 1E+03);
-const     hJ: specialize TQuantity<TJouleUnit> = (FValue: 1E+02);
-const    daJ: specialize TQuantity<TJouleUnit> = (FValue: 1E+01);
-const     dJ: specialize TQuantity<TJouleUnit> = (FValue: 1E-01);
-const     cJ: specialize TQuantity<TJouleUnit> = (FValue: 1E-02);
-const     mJ: specialize TQuantity<TJouleUnit> = (FValue: 1E-03);
-const    miJ: specialize TQuantity<TJouleUnit> = (FValue: 1E-06);
-const     nJ: specialize TQuantity<TJouleUnit> = (FValue: 1E-09);
-const     pJ: specialize TQuantity<TJouleUnit> = (FValue: 1E-12);
+const quettaJ: specialize TQuantity<TJouleUnit> = (FValue: 1E+30);
+const  ronnaJ: specialize TQuantity<TJouleUnit> = (FValue: 1E+27);
+const  yottaJ: specialize TQuantity<TJouleUnit> = (FValue: 1E+24);
+const  zettaJ: specialize TQuantity<TJouleUnit> = (FValue: 1E+21);
+const      EJ: specialize TQuantity<TJouleUnit> = (FValue: 1E+18);
+const   petaJ: specialize TQuantity<TJouleUnit> = (FValue: 1E+15);
+const      TJ: specialize TQuantity<TJouleUnit> = (FValue: 1E+12);
+const      GJ: specialize TQuantity<TJouleUnit> = (FValue: 1E+09);
+const   megaJ: specialize TQuantity<TJouleUnit> = (FValue: 1E+06);
+const      kJ: specialize TQuantity<TJouleUnit> = (FValue: 1E+03);
+const      hJ: specialize TQuantity<TJouleUnit> = (FValue: 1E+02);
+const     daJ: specialize TQuantity<TJouleUnit> = (FValue: 1E+01);
+const      dJ: specialize TQuantity<TJouleUnit> = (FValue: 1E-01);
+const      cJ: specialize TQuantity<TJouleUnit> = (FValue: 1E-02);
+const      mJ: specialize TQuantity<TJouleUnit> = (FValue: 1E-03);
+const     miJ: specialize TQuantity<TJouleUnit> = (FValue: 1E-06);
+const      nJ: specialize TQuantity<TJouleUnit> = (FValue: 1E-09);
+const      pJ: specialize TQuantity<TJouleUnit> = (FValue: 1E-12);
+const      fJ: specialize TQuantity<TJouleUnit> = (FValue: 1E-15);
+const      aJ: specialize TQuantity<TJouleUnit> = (FValue: 1E-18);
+const  zeptoJ: specialize TQuantity<TJouleUnit> = (FValue: 1E-21);
+const  yoctoJ: specialize TQuantity<TJouleUnit> = (FValue: 1E-24);
+const  rontoJ: specialize TQuantity<TJouleUnit> = (FValue: 1E-27);
+const quectoJ: specialize TQuantity<TJouleUnit> = (FValue: 1E-30);
 
 // main definition [ J ] = [ N ] * [ m ]
 operator *(const ALeft: TNewtons; const ARight: TMeters): TJoules; inline;
@@ -1337,18 +1674,30 @@ type
 
 const eV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019);
 
-const     TeV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E+12);
-const     GeV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E+09);
-const  megaeV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E+06);
-const     keV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E+03);
-const     heV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E+02);
-const    daeV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E+01);
-const     deV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E-01);
-const     ceV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E-02);
-const     meV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E-03);
-const    mieV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E-06);
-const     neV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E-09);
-const     peV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E-12);
+const quettaeV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E+30);
+const  ronnaeV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E+27);
+const  yottaeV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E+24);
+const  zettaeV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E+21);
+const      EeV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E+18);
+const   petaeV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E+15);
+const      TeV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E+12);
+const      GeV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E+09);
+const   megaeV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E+06);
+const      keV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E+03);
+const      heV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E+02);
+const     daeV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E+01);
+const      deV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E-01);
+const      ceV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E-02);
+const      meV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E-03);
+const     mieV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E-06);
+const      neV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E-09);
+const      peV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E-12);
+const      feV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E-15);
+const      aeV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E-18);
+const  zeptoeV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E-21);
+const  yoctoeV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E-24);
+const  rontoeV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E-27);
+const quectoeV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E-30);
 
 type
   { Unit of Watt }
@@ -1362,18 +1711,30 @@ type
 
 var W: TWattUnitId;
 
-const     TW: specialize TQuantity<TWattUnit> = (FValue: 1E+12);
-const     GW: specialize TQuantity<TWattUnit> = (FValue: 1E+09);
-const  megaW: specialize TQuantity<TWattUnit> = (FValue: 1E+06);
-const     kW: specialize TQuantity<TWattUnit> = (FValue: 1E+03);
-const     hW: specialize TQuantity<TWattUnit> = (FValue: 1E+02);
-const    daW: specialize TQuantity<TWattUnit> = (FValue: 1E+01);
-const     dW: specialize TQuantity<TWattUnit> = (FValue: 1E-01);
-const     cW: specialize TQuantity<TWattUnit> = (FValue: 1E-02);
-const     mW: specialize TQuantity<TWattUnit> = (FValue: 1E-03);
-const    miW: specialize TQuantity<TWattUnit> = (FValue: 1E-06);
-const     nW: specialize TQuantity<TWattUnit> = (FValue: 1E-09);
-const     pW: specialize TQuantity<TWattUnit> = (FValue: 1E-12);
+const quettaW: specialize TQuantity<TWattUnit> = (FValue: 1E+30);
+const  ronnaW: specialize TQuantity<TWattUnit> = (FValue: 1E+27);
+const  yottaW: specialize TQuantity<TWattUnit> = (FValue: 1E+24);
+const  zettaW: specialize TQuantity<TWattUnit> = (FValue: 1E+21);
+const      EW: specialize TQuantity<TWattUnit> = (FValue: 1E+18);
+const   petaW: specialize TQuantity<TWattUnit> = (FValue: 1E+15);
+const      TW: specialize TQuantity<TWattUnit> = (FValue: 1E+12);
+const      GW: specialize TQuantity<TWattUnit> = (FValue: 1E+09);
+const   megaW: specialize TQuantity<TWattUnit> = (FValue: 1E+06);
+const      kW: specialize TQuantity<TWattUnit> = (FValue: 1E+03);
+const      hW: specialize TQuantity<TWattUnit> = (FValue: 1E+02);
+const     daW: specialize TQuantity<TWattUnit> = (FValue: 1E+01);
+const      dW: specialize TQuantity<TWattUnit> = (FValue: 1E-01);
+const      cW: specialize TQuantity<TWattUnit> = (FValue: 1E-02);
+const      mW: specialize TQuantity<TWattUnit> = (FValue: 1E-03);
+const     miW: specialize TQuantity<TWattUnit> = (FValue: 1E-06);
+const      nW: specialize TQuantity<TWattUnit> = (FValue: 1E-09);
+const      pW: specialize TQuantity<TWattUnit> = (FValue: 1E-12);
+const      fW: specialize TQuantity<TWattUnit> = (FValue: 1E-15);
+const      aW: specialize TQuantity<TWattUnit> = (FValue: 1E-18);
+const  zeptoW: specialize TQuantity<TWattUnit> = (FValue: 1E-21);
+const  yoctoW: specialize TQuantity<TWattUnit> = (FValue: 1E-24);
+const  rontoW: specialize TQuantity<TWattUnit> = (FValue: 1E-27);
+const quectoW: specialize TQuantity<TWattUnit> = (FValue: 1E-30);
 
 // main definition [ W ] = [ J ] / [ s ]
 operator /(const ALeft: TJoules; const ARight: TSeconds): TWatts; inline;
@@ -1406,18 +1767,30 @@ type
 
 var C: TCoulombUnitId;
 
-const     TC: specialize TQuantity<TCoulombUnit> = (FValue: 1E+12);
-const     GC: specialize TQuantity<TCoulombUnit> = (FValue: 1E+09);
-const  megaC: specialize TQuantity<TCoulombUnit> = (FValue: 1E+06);
-const     kC: specialize TQuantity<TCoulombUnit> = (FValue: 1E+03);
-const     hC: specialize TQuantity<TCoulombUnit> = (FValue: 1E+02);
-const    daC: specialize TQuantity<TCoulombUnit> = (FValue: 1E+01);
-const     dC: specialize TQuantity<TCoulombUnit> = (FValue: 1E-01);
-const     cC: specialize TQuantity<TCoulombUnit> = (FValue: 1E-02);
-const     mC: specialize TQuantity<TCoulombUnit> = (FValue: 1E-03);
-const    miC: specialize TQuantity<TCoulombUnit> = (FValue: 1E-06);
-const     nC: specialize TQuantity<TCoulombUnit> = (FValue: 1E-09);
-const     pC: specialize TQuantity<TCoulombUnit> = (FValue: 1E-12);
+const quettaC: specialize TQuantity<TCoulombUnit> = (FValue: 1E+30);
+const  ronnaC: specialize TQuantity<TCoulombUnit> = (FValue: 1E+27);
+const  yottaC: specialize TQuantity<TCoulombUnit> = (FValue: 1E+24);
+const  zettaC: specialize TQuantity<TCoulombUnit> = (FValue: 1E+21);
+const      EC: specialize TQuantity<TCoulombUnit> = (FValue: 1E+18);
+const   petaC: specialize TQuantity<TCoulombUnit> = (FValue: 1E+15);
+const      TC: specialize TQuantity<TCoulombUnit> = (FValue: 1E+12);
+const      GC: specialize TQuantity<TCoulombUnit> = (FValue: 1E+09);
+const   megaC: specialize TQuantity<TCoulombUnit> = (FValue: 1E+06);
+const      kC: specialize TQuantity<TCoulombUnit> = (FValue: 1E+03);
+const      hC: specialize TQuantity<TCoulombUnit> = (FValue: 1E+02);
+const     daC: specialize TQuantity<TCoulombUnit> = (FValue: 1E+01);
+const      dC: specialize TQuantity<TCoulombUnit> = (FValue: 1E-01);
+const      cC: specialize TQuantity<TCoulombUnit> = (FValue: 1E-02);
+const      mC: specialize TQuantity<TCoulombUnit> = (FValue: 1E-03);
+const     miC: specialize TQuantity<TCoulombUnit> = (FValue: 1E-06);
+const      nC: specialize TQuantity<TCoulombUnit> = (FValue: 1E-09);
+const      pC: specialize TQuantity<TCoulombUnit> = (FValue: 1E-12);
+const      fC: specialize TQuantity<TCoulombUnit> = (FValue: 1E-15);
+const      aC: specialize TQuantity<TCoulombUnit> = (FValue: 1E-18);
+const  zeptoC: specialize TQuantity<TCoulombUnit> = (FValue: 1E-21);
+const  yoctoC: specialize TQuantity<TCoulombUnit> = (FValue: 1E-24);
+const  rontoC: specialize TQuantity<TCoulombUnit> = (FValue: 1E-27);
+const quectoC: specialize TQuantity<TCoulombUnit> = (FValue: 1E-30);
 
 // main definition [ C ] = [ s ] * [ A ]
 operator *(const ALeft: TSeconds; const ARight: TAmperes): TCoulombs; inline;
@@ -1438,18 +1811,30 @@ type
 
 var C2: TSquareCoulombUnitId;
 
-const     TC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E+24);
-const     GC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E+18);
-const  megaC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E+12);
-const     kC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E+06);
-const     hC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E+04);
-const    daC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E+02);
-const     dC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E-02);
-const     cC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E-04);
-const     mC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E-06);
-const    miC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E-12);
-const     nC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E-18);
-const     pC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E-24);
+const quettaC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E+60);
+const  ronnaC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E+54);
+const  yottaC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E+48);
+const  zettaC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E+42);
+const      EC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E+36);
+const   petaC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E+30);
+const      TC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E+24);
+const      GC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E+18);
+const   megaC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E+12);
+const      kC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E+06);
+const      hC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E+04);
+const     daC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E+02);
+const      dC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E-02);
+const      cC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E-04);
+const      mC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E-06);
+const     miC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E-12);
+const      nC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E-18);
+const      pC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E-24);
+const      fC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E-30);
+const      aC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E-36);
+const  zeptoC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E-42);
+const  yoctoC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E-48);
+const  rontoC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E-54);
+const quectoC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E-60);
 
 // main definition [ C2 ] = [ C ] * [ C ]
 operator *(const ALeft: TCoulombs; const ARight: TCoulombs): TSquareCoulombs; inline;
@@ -1467,18 +1852,30 @@ type
 
 var V: TVoltUnitId;
 
-const     TV: specialize TQuantity<TVoltUnit> = (FValue: 1E+12);
-const     GV: specialize TQuantity<TVoltUnit> = (FValue: 1E+09);
-const  megaV: specialize TQuantity<TVoltUnit> = (FValue: 1E+06);
-const     kV: specialize TQuantity<TVoltUnit> = (FValue: 1E+03);
-const     hV: specialize TQuantity<TVoltUnit> = (FValue: 1E+02);
-const    daV: specialize TQuantity<TVoltUnit> = (FValue: 1E+01);
-const     dV: specialize TQuantity<TVoltUnit> = (FValue: 1E-01);
-const     cV: specialize TQuantity<TVoltUnit> = (FValue: 1E-02);
-const     mV: specialize TQuantity<TVoltUnit> = (FValue: 1E-03);
-const    miV: specialize TQuantity<TVoltUnit> = (FValue: 1E-06);
-const     nV: specialize TQuantity<TVoltUnit> = (FValue: 1E-09);
-const     pV: specialize TQuantity<TVoltUnit> = (FValue: 1E-12);
+const quettaV: specialize TQuantity<TVoltUnit> = (FValue: 1E+30);
+const  ronnaV: specialize TQuantity<TVoltUnit> = (FValue: 1E+27);
+const  yottaV: specialize TQuantity<TVoltUnit> = (FValue: 1E+24);
+const  zettaV: specialize TQuantity<TVoltUnit> = (FValue: 1E+21);
+const    exaV: specialize TQuantity<TVoltUnit> = (FValue: 1E+18);
+const   petaV: specialize TQuantity<TVoltUnit> = (FValue: 1E+15);
+const      TV: specialize TQuantity<TVoltUnit> = (FValue: 1E+12);
+const      GV: specialize TQuantity<TVoltUnit> = (FValue: 1E+09);
+const   megaV: specialize TQuantity<TVoltUnit> = (FValue: 1E+06);
+const      kV: specialize TQuantity<TVoltUnit> = (FValue: 1E+03);
+const      hV: specialize TQuantity<TVoltUnit> = (FValue: 1E+02);
+const     daV: specialize TQuantity<TVoltUnit> = (FValue: 1E+01);
+const      dV: specialize TQuantity<TVoltUnit> = (FValue: 1E-01);
+const      cV: specialize TQuantity<TVoltUnit> = (FValue: 1E-02);
+const      mV: specialize TQuantity<TVoltUnit> = (FValue: 1E-03);
+const     miV: specialize TQuantity<TVoltUnit> = (FValue: 1E-06);
+const      nV: specialize TQuantity<TVoltUnit> = (FValue: 1E-09);
+const      pV: specialize TQuantity<TVoltUnit> = (FValue: 1E-12);
+const      fV: specialize TQuantity<TVoltUnit> = (FValue: 1E-15);
+const      aV: specialize TQuantity<TVoltUnit> = (FValue: 1E-18);
+const  zeptoV: specialize TQuantity<TVoltUnit> = (FValue: 1E-21);
+const  yoctoV: specialize TQuantity<TVoltUnit> = (FValue: 1E-24);
+const  rontoV: specialize TQuantity<TVoltUnit> = (FValue: 1E-27);
+const quectoV: specialize TQuantity<TVoltUnit> = (FValue: 1E-30);
 
 // main definition [ V ] = [ W ] / [ A ]
 operator /(const ALeft: TWatts; const ARight: TAmperes): TVolts; inline;
@@ -1506,18 +1903,30 @@ type
 
 var V2: TSquareVoltUnitId;
 
-const     TV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E+24);
-const     GV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E+18);
-const  megaV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E+12);
-const     kV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E+06);
-const     hV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E+04);
-const    daV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E+02);
-const     dV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E-02);
-const     cV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E-04);
-const     mV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E-06);
-const    miV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E-12);
-const     nV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E-18);
-const     pV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E-24);
+const quettaV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E+60);
+const  ronnaV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E+54);
+const  yottaV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E+48);
+const  zettaV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E+42);
+const      EV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E+36);
+const   petaV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E+30);
+const      TV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E+24);
+const      GV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E+18);
+const   megaV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E+12);
+const      kV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E+06);
+const      hV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E+04);
+const     daV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E+02);
+const      dV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E-02);
+const      cV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E-04);
+const      mV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E-06);
+const     miV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E-12);
+const      nV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E-18);
+const      pV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E-24);
+const      fV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E-30);
+const      aV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E-36);
+const  zeptoV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E-42);
+const  yoctoV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E-48);
+const  rontoV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E-54);
+const quectoV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E-60);
 
 // main definition [ V2 ] = [ V ] * [ V ]
 operator *(const ALeft: TVolts; const ARight: TVolts): TSquareVolts; inline;
@@ -1535,18 +1944,30 @@ type
 
 var F: TFaradUnitId;
 
-const     TF: specialize TQuantity<TFaradUnit> = (FValue: 1E+12);
-const     GF: specialize TQuantity<TFaradUnit> = (FValue: 1E+09);
-const  megaF: specialize TQuantity<TFaradUnit> = (FValue: 1E+06);
-const     kF: specialize TQuantity<TFaradUnit> = (FValue: 1E+03);
-const     hF: specialize TQuantity<TFaradUnit> = (FValue: 1E+02);
-const    daF: specialize TQuantity<TFaradUnit> = (FValue: 1E+01);
-const     dF: specialize TQuantity<TFaradUnit> = (FValue: 1E-01);
-const     cF: specialize TQuantity<TFaradUnit> = (FValue: 1E-02);
-const     mF: specialize TQuantity<TFaradUnit> = (FValue: 1E-03);
-const    miF: specialize TQuantity<TFaradUnit> = (FValue: 1E-06);
-const     nF: specialize TQuantity<TFaradUnit> = (FValue: 1E-09);
-const     pF: specialize TQuantity<TFaradUnit> = (FValue: 1E-12);
+const quettaF: specialize TQuantity<TFaradUnit> = (FValue: 1E+30);
+const  ronnaF: specialize TQuantity<TFaradUnit> = (FValue: 1E+27);
+const  yottaF: specialize TQuantity<TFaradUnit> = (FValue: 1E+24);
+const  zettaF: specialize TQuantity<TFaradUnit> = (FValue: 1E+21);
+const      EF: specialize TQuantity<TFaradUnit> = (FValue: 1E+18);
+const   petaF: specialize TQuantity<TFaradUnit> = (FValue: 1E+15);
+const      TF: specialize TQuantity<TFaradUnit> = (FValue: 1E+12);
+const      GF: specialize TQuantity<TFaradUnit> = (FValue: 1E+09);
+const   megaF: specialize TQuantity<TFaradUnit> = (FValue: 1E+06);
+const      kF: specialize TQuantity<TFaradUnit> = (FValue: 1E+03);
+const      hF: specialize TQuantity<TFaradUnit> = (FValue: 1E+02);
+const     daF: specialize TQuantity<TFaradUnit> = (FValue: 1E+01);
+const      dF: specialize TQuantity<TFaradUnit> = (FValue: 1E-01);
+const      cF: specialize TQuantity<TFaradUnit> = (FValue: 1E-02);
+const      mF: specialize TQuantity<TFaradUnit> = (FValue: 1E-03);
+const     miF: specialize TQuantity<TFaradUnit> = (FValue: 1E-06);
+const      nF: specialize TQuantity<TFaradUnit> = (FValue: 1E-09);
+const      pF: specialize TQuantity<TFaradUnit> = (FValue: 1E-12);
+const      fF: specialize TQuantity<TFaradUnit> = (FValue: 1E-15);
+const      aF: specialize TQuantity<TFaradUnit> = (FValue: 1E-18);
+const  zeptoF: specialize TQuantity<TFaradUnit> = (FValue: 1E-21);
+const  yoctoF: specialize TQuantity<TFaradUnit> = (FValue: 1E-24);
+const  rontoF: specialize TQuantity<TFaradUnit> = (FValue: 1E-27);
+const quectoF: specialize TQuantity<TFaradUnit> = (FValue: 1E-30);
 
 // main definition [ F ] = [ C ] / [ V ]
 operator /(const ALeft: TCoulombs; const ARight: TVolts): TFarads; inline;
@@ -1573,18 +1994,30 @@ type
 
 var ohm: TOhmUnitId;
 
-const     Tohm: specialize TQuantity<TOhmUnit> = (FValue: 1E+12);
-const     Gohm: specialize TQuantity<TOhmUnit> = (FValue: 1E+09);
-const  megaohm: specialize TQuantity<TOhmUnit> = (FValue: 1E+06);
-const     kohm: specialize TQuantity<TOhmUnit> = (FValue: 1E+03);
-const     hohm: specialize TQuantity<TOhmUnit> = (FValue: 1E+02);
-const    daohm: specialize TQuantity<TOhmUnit> = (FValue: 1E+01);
-const     dohm: specialize TQuantity<TOhmUnit> = (FValue: 1E-01);
-const     cohm: specialize TQuantity<TOhmUnit> = (FValue: 1E-02);
-const     mohm: specialize TQuantity<TOhmUnit> = (FValue: 1E-03);
-const    miohm: specialize TQuantity<TOhmUnit> = (FValue: 1E-06);
-const     nohm: specialize TQuantity<TOhmUnit> = (FValue: 1E-09);
-const     pohm: specialize TQuantity<TOhmUnit> = (FValue: 1E-12);
+const quettaohm: specialize TQuantity<TOhmUnit> = (FValue: 1E+30);
+const  ronnaohm: specialize TQuantity<TOhmUnit> = (FValue: 1E+27);
+const  yottaohm: specialize TQuantity<TOhmUnit> = (FValue: 1E+24);
+const  zettaohm: specialize TQuantity<TOhmUnit> = (FValue: 1E+21);
+const      Eohm: specialize TQuantity<TOhmUnit> = (FValue: 1E+18);
+const   petaohm: specialize TQuantity<TOhmUnit> = (FValue: 1E+15);
+const      Tohm: specialize TQuantity<TOhmUnit> = (FValue: 1E+12);
+const      Gohm: specialize TQuantity<TOhmUnit> = (FValue: 1E+09);
+const   megaohm: specialize TQuantity<TOhmUnit> = (FValue: 1E+06);
+const      kohm: specialize TQuantity<TOhmUnit> = (FValue: 1E+03);
+const      hohm: specialize TQuantity<TOhmUnit> = (FValue: 1E+02);
+const     daohm: specialize TQuantity<TOhmUnit> = (FValue: 1E+01);
+const      dohm: specialize TQuantity<TOhmUnit> = (FValue: 1E-01);
+const      cohm: specialize TQuantity<TOhmUnit> = (FValue: 1E-02);
+const      mohm: specialize TQuantity<TOhmUnit> = (FValue: 1E-03);
+const     miohm: specialize TQuantity<TOhmUnit> = (FValue: 1E-06);
+const      nohm: specialize TQuantity<TOhmUnit> = (FValue: 1E-09);
+const      pohm: specialize TQuantity<TOhmUnit> = (FValue: 1E-12);
+const      fohm: specialize TQuantity<TOhmUnit> = (FValue: 1E-15);
+const      aohm: specialize TQuantity<TOhmUnit> = (FValue: 1E-18);
+const  zeptoohm: specialize TQuantity<TOhmUnit> = (FValue: 1E-21);
+const  yoctoohm: specialize TQuantity<TOhmUnit> = (FValue: 1E-24);
+const  rontoohm: specialize TQuantity<TOhmUnit> = (FValue: 1E-27);
+const quectoohm: specialize TQuantity<TOhmUnit> = (FValue: 1E-30);
 
 // main definition [ Ω ] = [ V ] / [ A ]
 operator /(const ALeft: TVolts; const ARight: TAmperes): TOhms; inline;
@@ -1623,18 +2056,30 @@ type
 
 var siemens: TSiemensUnitId;
 
-const  terasiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E+12);
-const  gigasiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E+09);
-const  megasiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E+06);
-const  kilosiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E+03);
-const hectosiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E+02);
-const  decasiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E+01);
-const  decisiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E-01);
-const centisiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E-02);
-const millisiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E-03);
-const microsiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E-06);
-const  nanosiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E-09);
-const  picosiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E-12);
+const quettasiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E+30);
+const  ronnasiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E+27);
+const  yottasiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E+24);
+const  zettasiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E+21);
+const      Esiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E+18);
+const   petasiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E+15);
+const   terasiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E+12);
+const   gigasiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E+09);
+const   megasiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E+06);
+const   kilosiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E+03);
+const  hectosiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E+02);
+const   decasiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E+01);
+const   decisiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E-01);
+const  centisiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E-02);
+const  millisiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E-03);
+const  microsiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E-06);
+const   nanosiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E-09);
+const   picosiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E-12);
+const      fsiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E-15);
+const      asiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E-18);
+const  zeptosiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E-21);
+const  yoctosiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E-24);
+const  rontosiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E-27);
+const quectosiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E-30);
 
 // main definition [ S ] = 1 / [ Ω ]
 operator /(const ALeft: double; const ARight: TOhms): TSiemens; inline;
@@ -1655,18 +2100,30 @@ type
 
 var Wb: TWeberUnitId;
 
-const     TWb: specialize TQuantity<TWeberUnit> = (FValue: 1E+12);
-const     GWb: specialize TQuantity<TWeberUnit> = (FValue: 1E+09);
-const  megaWb: specialize TQuantity<TWeberUnit> = (FValue: 1E+06);
-const     kWb: specialize TQuantity<TWeberUnit> = (FValue: 1E+03);
-const     hWb: specialize TQuantity<TWeberUnit> = (FValue: 1E+02);
-const    daWb: specialize TQuantity<TWeberUnit> = (FValue: 1E+01);
-const     dWb: specialize TQuantity<TWeberUnit> = (FValue: 1E-01);
-const     cWb: specialize TQuantity<TWeberUnit> = (FValue: 1E-02);
-const     mWb: specialize TQuantity<TWeberUnit> = (FValue: 1E-03);
-const    miWb: specialize TQuantity<TWeberUnit> = (FValue: 1E-06);
-const     nWb: specialize TQuantity<TWeberUnit> = (FValue: 1E-09);
-const     pWb: specialize TQuantity<TWeberUnit> = (FValue: 1E-12);
+const quettaWb: specialize TQuantity<TWeberUnit> = (FValue: 1E+30);
+const  ronnaWb: specialize TQuantity<TWeberUnit> = (FValue: 1E+27);
+const  yottaWb: specialize TQuantity<TWeberUnit> = (FValue: 1E+24);
+const  zettaWb: specialize TQuantity<TWeberUnit> = (FValue: 1E+21);
+const      EWb: specialize TQuantity<TWeberUnit> = (FValue: 1E+18);
+const   petaWb: specialize TQuantity<TWeberUnit> = (FValue: 1E+15);
+const      TWb: specialize TQuantity<TWeberUnit> = (FValue: 1E+12);
+const      GWb: specialize TQuantity<TWeberUnit> = (FValue: 1E+09);
+const   megaWb: specialize TQuantity<TWeberUnit> = (FValue: 1E+06);
+const      kWb: specialize TQuantity<TWeberUnit> = (FValue: 1E+03);
+const      hWb: specialize TQuantity<TWeberUnit> = (FValue: 1E+02);
+const     daWb: specialize TQuantity<TWeberUnit> = (FValue: 1E+01);
+const      dWb: specialize TQuantity<TWeberUnit> = (FValue: 1E-01);
+const      cWb: specialize TQuantity<TWeberUnit> = (FValue: 1E-02);
+const      mWb: specialize TQuantity<TWeberUnit> = (FValue: 1E-03);
+const     miWb: specialize TQuantity<TWeberUnit> = (FValue: 1E-06);
+const      nWb: specialize TQuantity<TWeberUnit> = (FValue: 1E-09);
+const      pWb: specialize TQuantity<TWeberUnit> = (FValue: 1E-12);
+const      fWb: specialize TQuantity<TWeberUnit> = (FValue: 1E-15);
+const      aWb: specialize TQuantity<TWeberUnit> = (FValue: 1E-18);
+const  zeptoWb: specialize TQuantity<TWeberUnit> = (FValue: 1E-21);
+const  yoctoWb: specialize TQuantity<TWeberUnit> = (FValue: 1E-24);
+const  rontoWb: specialize TQuantity<TWeberUnit> = (FValue: 1E-27);
+const quectoWb: specialize TQuantity<TWeberUnit> = (FValue: 1E-30);
 
 // main definition [ Wb ] = [ V ] * [ s ]
 operator *(const ALeft: TVolts; const ARight: TSeconds): TWebers; inline;
@@ -1687,18 +2144,30 @@ type
 
 var T: TTeslaUnitId;
 
-const     TT: specialize TQuantity<TTeslaUnit> = (FValue: 1E+12);
-const     GT: specialize TQuantity<TTeslaUnit> = (FValue: 1E+09);
-const  megaT: specialize TQuantity<TTeslaUnit> = (FValue: 1E+06);
-const     kT: specialize TQuantity<TTeslaUnit> = (FValue: 1E+03);
-const     hT: specialize TQuantity<TTeslaUnit> = (FValue: 1E+02);
-const    daT: specialize TQuantity<TTeslaUnit> = (FValue: 1E+01);
-const     dT: specialize TQuantity<TTeslaUnit> = (FValue: 1E-01);
-const     cT: specialize TQuantity<TTeslaUnit> = (FValue: 1E-02);
-const     mT: specialize TQuantity<TTeslaUnit> = (FValue: 1E-03);
-const    miT: specialize TQuantity<TTeslaUnit> = (FValue: 1E-06);
-const     nT: specialize TQuantity<TTeslaUnit> = (FValue: 1E-09);
-const     pT: specialize TQuantity<TTeslaUnit> = (FValue: 1E-12);
+const quettaT: specialize TQuantity<TTeslaUnit> = (FValue: 1E+30);
+const  ronnaT: specialize TQuantity<TTeslaUnit> = (FValue: 1E+27);
+const  yottaT: specialize TQuantity<TTeslaUnit> = (FValue: 1E+24);
+const  zettaT: specialize TQuantity<TTeslaUnit> = (FValue: 1E+21);
+const      ET: specialize TQuantity<TTeslaUnit> = (FValue: 1E+18);
+const   petaT: specialize TQuantity<TTeslaUnit> = (FValue: 1E+15);
+const      TT: specialize TQuantity<TTeslaUnit> = (FValue: 1E+12);
+const      GT: specialize TQuantity<TTeslaUnit> = (FValue: 1E+09);
+const   megaT: specialize TQuantity<TTeslaUnit> = (FValue: 1E+06);
+const      kT: specialize TQuantity<TTeslaUnit> = (FValue: 1E+03);
+const      hT: specialize TQuantity<TTeslaUnit> = (FValue: 1E+02);
+const     daT: specialize TQuantity<TTeslaUnit> = (FValue: 1E+01);
+const      dT: specialize TQuantity<TTeslaUnit> = (FValue: 1E-01);
+const      cT: specialize TQuantity<TTeslaUnit> = (FValue: 1E-02);
+const      mT: specialize TQuantity<TTeslaUnit> = (FValue: 1E-03);
+const     miT: specialize TQuantity<TTeslaUnit> = (FValue: 1E-06);
+const      nT: specialize TQuantity<TTeslaUnit> = (FValue: 1E-09);
+const      pT: specialize TQuantity<TTeslaUnit> = (FValue: 1E-12);
+const      fT: specialize TQuantity<TTeslaUnit> = (FValue: 1E-15);
+const      aT: specialize TQuantity<TTeslaUnit> = (FValue: 1E-18);
+const  zeptoT: specialize TQuantity<TTeslaUnit> = (FValue: 1E-21);
+const  yoctoT: specialize TQuantity<TTeslaUnit> = (FValue: 1E-24);
+const  rontoT: specialize TQuantity<TTeslaUnit> = (FValue: 1E-27);
+const quectoT: specialize TQuantity<TTeslaUnit> = (FValue: 1E-30);
 
 // main definition [ T ] = [ Wb ] / [ m2 ]
 operator /(const ALeft: TWebers; const ARight: TSquareMeters): TTeslas; inline;
@@ -1719,18 +2188,30 @@ type
 
 var H: THenryUnitId;
 
-const     TH: specialize TQuantity<THenryUnit> = (FValue: 1E+12);
-const     GH: specialize TQuantity<THenryUnit> = (FValue: 1E+09);
-const  megaH: specialize TQuantity<THenryUnit> = (FValue: 1E+06);
-const     kH: specialize TQuantity<THenryUnit> = (FValue: 1E+03);
-const     hH: specialize TQuantity<THenryUnit> = (FValue: 1E+02);
-const    daH: specialize TQuantity<THenryUnit> = (FValue: 1E+01);
-const     dH: specialize TQuantity<THenryUnit> = (FValue: 1E-01);
-const     cH: specialize TQuantity<THenryUnit> = (FValue: 1E-02);
-const     mH: specialize TQuantity<THenryUnit> = (FValue: 1E-03);
-const    miH: specialize TQuantity<THenryUnit> = (FValue: 1E-06);
-const     nH: specialize TQuantity<THenryUnit> = (FValue: 1E-09);
-const     pH: specialize TQuantity<THenryUnit> = (FValue: 1E-12);
+const quettaH: specialize TQuantity<THenryUnit> = (FValue: 1E+30);
+const  ronnaH: specialize TQuantity<THenryUnit> = (FValue: 1E+27);
+const  yottaH: specialize TQuantity<THenryUnit> = (FValue: 1E+24);
+const  zettaH: specialize TQuantity<THenryUnit> = (FValue: 1E+21);
+const      EH: specialize TQuantity<THenryUnit> = (FValue: 1E+18);
+const   petaH: specialize TQuantity<THenryUnit> = (FValue: 1E+15);
+const      TH: specialize TQuantity<THenryUnit> = (FValue: 1E+12);
+const      GH: specialize TQuantity<THenryUnit> = (FValue: 1E+09);
+const   megaH: specialize TQuantity<THenryUnit> = (FValue: 1E+06);
+const      kH: specialize TQuantity<THenryUnit> = (FValue: 1E+03);
+const      hH: specialize TQuantity<THenryUnit> = (FValue: 1E+02);
+const     daH: specialize TQuantity<THenryUnit> = (FValue: 1E+01);
+const      dH: specialize TQuantity<THenryUnit> = (FValue: 1E-01);
+const      cH: specialize TQuantity<THenryUnit> = (FValue: 1E-02);
+const      mH: specialize TQuantity<THenryUnit> = (FValue: 1E-03);
+const     miH: specialize TQuantity<THenryUnit> = (FValue: 1E-06);
+const      nH: specialize TQuantity<THenryUnit> = (FValue: 1E-09);
+const      pH: specialize TQuantity<THenryUnit> = (FValue: 1E-12);
+const      fH: specialize TQuantity<THenryUnit> = (FValue: 1E-15);
+const      aH: specialize TQuantity<THenryUnit> = (FValue: 1E-18);
+const  zeptoH: specialize TQuantity<THenryUnit> = (FValue: 1E-21);
+const  yoctoH: specialize TQuantity<THenryUnit> = (FValue: 1E-24);
+const  rontoH: specialize TQuantity<THenryUnit> = (FValue: 1E-27);
+const quectoH: specialize TQuantity<THenryUnit> = (FValue: 1E-30);
 
 // main definition [ H ] = [ Wb ] / [ A ]
 operator /(const ALeft: TWebers; const ARight: TAmperes): THenrys; inline;
@@ -1763,18 +2244,30 @@ type
 
 var lm: TLumenUnitId;
 
-const     Tlm: specialize TQuantity<TLumenUnit> = (FValue: 1E+12);
-const     Glm: specialize TQuantity<TLumenUnit> = (FValue: 1E+09);
-const  megalm: specialize TQuantity<TLumenUnit> = (FValue: 1E+06);
-const     klm: specialize TQuantity<TLumenUnit> = (FValue: 1E+03);
-const     hlm: specialize TQuantity<TLumenUnit> = (FValue: 1E+02);
-const    dalm: specialize TQuantity<TLumenUnit> = (FValue: 1E+01);
-const     dlm: specialize TQuantity<TLumenUnit> = (FValue: 1E-01);
-const     clm: specialize TQuantity<TLumenUnit> = (FValue: 1E-02);
-const     mlm: specialize TQuantity<TLumenUnit> = (FValue: 1E-03);
-const    milm: specialize TQuantity<TLumenUnit> = (FValue: 1E-06);
-const     nlm: specialize TQuantity<TLumenUnit> = (FValue: 1E-09);
-const     plm: specialize TQuantity<TLumenUnit> = (FValue: 1E-12);
+const quettalm: specialize TQuantity<TLumenUnit> = (FValue: 1E+30);
+const  ronnalm: specialize TQuantity<TLumenUnit> = (FValue: 1E+27);
+const  yottalm: specialize TQuantity<TLumenUnit> = (FValue: 1E+24);
+const  zettalm: specialize TQuantity<TLumenUnit> = (FValue: 1E+21);
+const      Elm: specialize TQuantity<TLumenUnit> = (FValue: 1E+18);
+const   petalm: specialize TQuantity<TLumenUnit> = (FValue: 1E+15);
+const      Tlm: specialize TQuantity<TLumenUnit> = (FValue: 1E+12);
+const      Glm: specialize TQuantity<TLumenUnit> = (FValue: 1E+09);
+const   megalm: specialize TQuantity<TLumenUnit> = (FValue: 1E+06);
+const      klm: specialize TQuantity<TLumenUnit> = (FValue: 1E+03);
+const      hlm: specialize TQuantity<TLumenUnit> = (FValue: 1E+02);
+const     dalm: specialize TQuantity<TLumenUnit> = (FValue: 1E+01);
+const      dlm: specialize TQuantity<TLumenUnit> = (FValue: 1E-01);
+const      clm: specialize TQuantity<TLumenUnit> = (FValue: 1E-02);
+const      mlm: specialize TQuantity<TLumenUnit> = (FValue: 1E-03);
+const     milm: specialize TQuantity<TLumenUnit> = (FValue: 1E-06);
+const      nlm: specialize TQuantity<TLumenUnit> = (FValue: 1E-09);
+const      plm: specialize TQuantity<TLumenUnit> = (FValue: 1E-12);
+const      flm: specialize TQuantity<TLumenUnit> = (FValue: 1E-15);
+const      alm: specialize TQuantity<TLumenUnit> = (FValue: 1E-18);
+const  zeptolm: specialize TQuantity<TLumenUnit> = (FValue: 1E-21);
+const  yoctolm: specialize TQuantity<TLumenUnit> = (FValue: 1E-24);
+const  rontolm: specialize TQuantity<TLumenUnit> = (FValue: 1E-27);
+const quectolm: specialize TQuantity<TLumenUnit> = (FValue: 1E-30);
 
 // main definition [ lm ] = [ cd ] * [ sr ]
 operator *(const ALeft: TCandelas; const ARight: TSteradians): TLumens; inline;
@@ -1795,18 +2288,30 @@ type
 
 var lx: TLuxUnitId;
 
-const     Tlx: specialize TQuantity<TLuxUnit> = (FValue: 1E+12);
-const     Glx: specialize TQuantity<TLuxUnit> = (FValue: 1E+09);
-const  megalx: specialize TQuantity<TLuxUnit> = (FValue: 1E+06);
-const     klx: specialize TQuantity<TLuxUnit> = (FValue: 1E+03);
-const     hlx: specialize TQuantity<TLuxUnit> = (FValue: 1E+02);
-const    dalx: specialize TQuantity<TLuxUnit> = (FValue: 1E+01);
-const     dlx: specialize TQuantity<TLuxUnit> = (FValue: 1E-01);
-const     clx: specialize TQuantity<TLuxUnit> = (FValue: 1E-02);
-const     mlx: specialize TQuantity<TLuxUnit> = (FValue: 1E-03);
-const    milx: specialize TQuantity<TLuxUnit> = (FValue: 1E-06);
-const     nlx: specialize TQuantity<TLuxUnit> = (FValue: 1E-09);
-const     plx: specialize TQuantity<TLuxUnit> = (FValue: 1E-12);
+const quettalx: specialize TQuantity<TLuxUnit> = (FValue: 1E+30);
+const  ronnalx: specialize TQuantity<TLuxUnit> = (FValue: 1E+27);
+const  yottalx: specialize TQuantity<TLuxUnit> = (FValue: 1E+24);
+const  zettalx: specialize TQuantity<TLuxUnit> = (FValue: 1E+21);
+const      Elx: specialize TQuantity<TLuxUnit> = (FValue: 1E+18);
+const   petalx: specialize TQuantity<TLuxUnit> = (FValue: 1E+15);
+const      Tlx: specialize TQuantity<TLuxUnit> = (FValue: 1E+12);
+const      Glx: specialize TQuantity<TLuxUnit> = (FValue: 1E+09);
+const   megalx: specialize TQuantity<TLuxUnit> = (FValue: 1E+06);
+const      klx: specialize TQuantity<TLuxUnit> = (FValue: 1E+03);
+const      hlx: specialize TQuantity<TLuxUnit> = (FValue: 1E+02);
+const     dalx: specialize TQuantity<TLuxUnit> = (FValue: 1E+01);
+const      dlx: specialize TQuantity<TLuxUnit> = (FValue: 1E-01);
+const      clx: specialize TQuantity<TLuxUnit> = (FValue: 1E-02);
+const      mlx: specialize TQuantity<TLuxUnit> = (FValue: 1E-03);
+const     milx: specialize TQuantity<TLuxUnit> = (FValue: 1E-06);
+const      nlx: specialize TQuantity<TLuxUnit> = (FValue: 1E-09);
+const      plx: specialize TQuantity<TLuxUnit> = (FValue: 1E-12);
+const      flx: specialize TQuantity<TLuxUnit> = (FValue: 1E-15);
+const      alx: specialize TQuantity<TLuxUnit> = (FValue: 1E-18);
+const  zeptolx: specialize TQuantity<TLuxUnit> = (FValue: 1E-21);
+const  yoctolx: specialize TQuantity<TLuxUnit> = (FValue: 1E-24);
+const  rontolx: specialize TQuantity<TLuxUnit> = (FValue: 1E-27);
+const quectolx: specialize TQuantity<TLuxUnit> = (FValue: 1E-30);
 
 // main definition [ lx ] = [ lm ] / [ m2 ]
 operator /(const ALeft: TLumens; const ARight: TSquareMeters): TLux; inline;
@@ -1827,18 +2332,30 @@ type
 
 var Bq: TBequerelUnitId;
 
-const     TBq: specialize TQuantity<THertzUnit> = (FValue: 1E+12);
-const     GBq: specialize TQuantity<THertzUnit> = (FValue: 1E+09);
-const  megaBq: specialize TQuantity<THertzUnit> = (FValue: 1E+06);
-const     kBq: specialize TQuantity<THertzUnit> = (FValue: 1E+03);
-const     hBq: specialize TQuantity<THertzUnit> = (FValue: 1E+02);
-const    daBq: specialize TQuantity<THertzUnit> = (FValue: 1E+01);
-const     dBq: specialize TQuantity<THertzUnit> = (FValue: 1E-01);
-const     cBq: specialize TQuantity<THertzUnit> = (FValue: 1E-02);
-const     mBq: specialize TQuantity<THertzUnit> = (FValue: 1E-03);
-const    miBq: specialize TQuantity<THertzUnit> = (FValue: 1E-06);
-const     nBq: specialize TQuantity<THertzUnit> = (FValue: 1E-09);
-const     pBq: specialize TQuantity<THertzUnit> = (FValue: 1E-12);
+const quettaBq: specialize TQuantity<THertzUnit> = (FValue: 1E+30);
+const  ronnaBq: specialize TQuantity<THertzUnit> = (FValue: 1E+27);
+const  yottaBq: specialize TQuantity<THertzUnit> = (FValue: 1E+24);
+const  zettaBq: specialize TQuantity<THertzUnit> = (FValue: 1E+21);
+const      EBq: specialize TQuantity<THertzUnit> = (FValue: 1E+18);
+const   petaBq: specialize TQuantity<THertzUnit> = (FValue: 1E+15);
+const      TBq: specialize TQuantity<THertzUnit> = (FValue: 1E+12);
+const      GBq: specialize TQuantity<THertzUnit> = (FValue: 1E+09);
+const   megaBq: specialize TQuantity<THertzUnit> = (FValue: 1E+06);
+const      kBq: specialize TQuantity<THertzUnit> = (FValue: 1E+03);
+const      hBq: specialize TQuantity<THertzUnit> = (FValue: 1E+02);
+const     daBq: specialize TQuantity<THertzUnit> = (FValue: 1E+01);
+const      dBq: specialize TQuantity<THertzUnit> = (FValue: 1E-01);
+const      cBq: specialize TQuantity<THertzUnit> = (FValue: 1E-02);
+const      mBq: specialize TQuantity<THertzUnit> = (FValue: 1E-03);
+const     miBq: specialize TQuantity<THertzUnit> = (FValue: 1E-06);
+const      nBq: specialize TQuantity<THertzUnit> = (FValue: 1E-09);
+const      pBq: specialize TQuantity<THertzUnit> = (FValue: 1E-12);
+const      fBq: specialize TQuantity<THertzUnit> = (FValue: 1E-15);
+const      aBq: specialize TQuantity<THertzUnit> = (FValue: 1E-18);
+const  zeptoBq: specialize TQuantity<THertzUnit> = (FValue: 1E-21);
+const  yoctoBq: specialize TQuantity<THertzUnit> = (FValue: 1E-24);
+const  rontoBq: specialize TQuantity<THertzUnit> = (FValue: 1E-27);
+const quectoBq: specialize TQuantity<THertzUnit> = (FValue: 1E-30);
 
 type
   { Unit of Gray }
@@ -1852,18 +2369,30 @@ type
 
 var Gy: TGrayUnitId;
 
-const     TGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+12);
-const     GGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+09);
-const  megaGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+06);
-const     kGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+03);
-const     hGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+02);
-const    daGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+01);
-const     dGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-01);
-const     cGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-02);
-const     mGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-03);
-const    miGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-06);
-const     nGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-09);
-const     pGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-12);
+const quettaGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+30);
+const  ronnaGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+27);
+const  yottaGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+24);
+const  zettaGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+21);
+const      EGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+18);
+const   petaGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+15);
+const      TGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+12);
+const      GGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+09);
+const   megaGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+06);
+const      kGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+03);
+const      hGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+02);
+const     daGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+01);
+const      dGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-01);
+const      cGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-02);
+const      mGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-03);
+const     miGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-06);
+const      nGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-09);
+const      pGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-12);
+const      fGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-15);
+const      aGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-18);
+const  zeptoGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-21);
+const  yoctoGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-24);
+const  rontoGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-27);
+const quectoGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-30);
 
 type
   { Unit of Sievert }
@@ -1877,18 +2406,30 @@ type
 
 var Sv: TSievertUnitId;
 
-const     TSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+12);
-const     GSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+09);
-const  megaSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+06);
-const     kSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+03);
-const     hSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+02);
-const    daSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+01);
-const     dSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-01);
-const     cSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-02);
-const     mSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-03);
-const    miSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-06);
-const     nSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-09);
-const     pSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-12);
+const quettaSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+30);
+const  ronnaSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+27);
+const  yottaSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+24);
+const  zettaSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+21);
+const      ESv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+18);
+const   petaSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+15);
+const      TSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+12);
+const      GSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+09);
+const   megaSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+06);
+const      kSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+03);
+const      hSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+02);
+const     daSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+01);
+const      dSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-01);
+const      cSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-02);
+const      mSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-03);
+const     miSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-06);
+const      nSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-09);
+const      pSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-12);
+const      fSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-15);
+const      aSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-18);
+const  zeptoSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-21);
+const  yoctoSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-24);
+const  rontoSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-27);
+const quectoSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-30);
 
 type
   { Unit of Katal }
@@ -1902,18 +2443,30 @@ type
 
 var kat: TKatalUnitId;
 
-const     Tkat: specialize TQuantity<TKatalUnit> = (FValue: 1E+12);
-const     Gkat: specialize TQuantity<TKatalUnit> = (FValue: 1E+09);
-const  megakat: specialize TQuantity<TKatalUnit> = (FValue: 1E+06);
-const     kkat: specialize TQuantity<TKatalUnit> = (FValue: 1E+03);
-const     hkat: specialize TQuantity<TKatalUnit> = (FValue: 1E+02);
-const    dakat: specialize TQuantity<TKatalUnit> = (FValue: 1E+01);
-const     dkat: specialize TQuantity<TKatalUnit> = (FValue: 1E-01);
-const     ckat: specialize TQuantity<TKatalUnit> = (FValue: 1E-02);
-const     mkat: specialize TQuantity<TKatalUnit> = (FValue: 1E-03);
-const    mikat: specialize TQuantity<TKatalUnit> = (FValue: 1E-06);
-const     nkat: specialize TQuantity<TKatalUnit> = (FValue: 1E-09);
-const     pkat: specialize TQuantity<TKatalUnit> = (FValue: 1E-12);
+const quettakat: specialize TQuantity<TKatalUnit> = (FValue: 1E+30);
+const  ronnakat: specialize TQuantity<TKatalUnit> = (FValue: 1E+27);
+const  yottakat: specialize TQuantity<TKatalUnit> = (FValue: 1E+24);
+const  zettakat: specialize TQuantity<TKatalUnit> = (FValue: 1E+21);
+const      Ekat: specialize TQuantity<TKatalUnit> = (FValue: 1E+18);
+const   petakat: specialize TQuantity<TKatalUnit> = (FValue: 1E+15);
+const      Tkat: specialize TQuantity<TKatalUnit> = (FValue: 1E+12);
+const      Gkat: specialize TQuantity<TKatalUnit> = (FValue: 1E+09);
+const   megakat: specialize TQuantity<TKatalUnit> = (FValue: 1E+06);
+const      kkat: specialize TQuantity<TKatalUnit> = (FValue: 1E+03);
+const      hkat: specialize TQuantity<TKatalUnit> = (FValue: 1E+02);
+const     dakat: specialize TQuantity<TKatalUnit> = (FValue: 1E+01);
+const      dkat: specialize TQuantity<TKatalUnit> = (FValue: 1E-01);
+const      ckat: specialize TQuantity<TKatalUnit> = (FValue: 1E-02);
+const      mkat: specialize TQuantity<TKatalUnit> = (FValue: 1E-03);
+const     mikat: specialize TQuantity<TKatalUnit> = (FValue: 1E-06);
+const      nkat: specialize TQuantity<TKatalUnit> = (FValue: 1E-09);
+const      pkat: specialize TQuantity<TKatalUnit> = (FValue: 1E-12);
+const      fkat: specialize TQuantity<TKatalUnit> = (FValue: 1E-15);
+const      akat: specialize TQuantity<TKatalUnit> = (FValue: 1E-18);
+const  zeptokat: specialize TQuantity<TKatalUnit> = (FValue: 1E-21);
+const  yoctokat: specialize TQuantity<TKatalUnit> = (FValue: 1E-24);
+const  rontokat: specialize TQuantity<TKatalUnit> = (FValue: 1E-27);
+const quectokat: specialize TQuantity<TKatalUnit> = (FValue: 1E-30);
 
 // main definition [ kat ] = [ mol ] / [ s ]
 operator /(const ALeft: TMoles; const ARight: TSeconds): TKatals; inline;
@@ -2103,18 +2656,30 @@ type
 
 var Pl: TPoiseuilleUnitId;
 
-const     TPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E+12);
-const     GPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E+09);
-const  megaPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E+06);
-const     kPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E+03);
-const     hPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E+02);
-const    daPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E+01);
-const     dPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E-01);
-const     cPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E-02);
-const     mPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E-03);
-const    miPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E-06);
-const     nPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E-09);
-const     pPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E-12);
+const quettaPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E+30);
+const  ronnaPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E+27);
+const  yottaPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E+24);
+const  zettaPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E+21);
+const      EPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E+18);
+const   petaPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E+15);
+const      TPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E+12);
+const      GPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E+09);
+const   megaPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E+06);
+const      kPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E+03);
+const      hPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E+02);
+const     daPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E+01);
+const      dPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E-01);
+const      cPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E-02);
+const      mPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E-03);
+const     miPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E-06);
+const      nPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E-09);
+const      pPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E-12);
+const      fPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E-15);
+const      aPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E-18);
+const  zeptoPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E-21);
+const  yoctoPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E-24);
+const  rontoPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E-27);
+const quectoPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E-30);
 
 // main definition [ Pl ] = [ Pa ] * [ s ]
 operator *(const ALeft: TPascals; const ARight: TSeconds): TPoiseuilles; inline;
@@ -3366,18 +3931,30 @@ type
 
 var J2: TSquareJouleUnitId;
 
-const     TJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E+24);
-const     GJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E+18);
-const  megaJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E+12);
-const     kJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E+06);
-const     hJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E+04);
-const    daJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E+02);
-const     dJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E-02);
-const     cJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E-04);
-const     mJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E-06);
-const    miJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E-12);
-const     nJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E-18);
-const     pJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E-24);
+const quettaJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E+60);
+const  ronnaJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E+54);
+const  yottaJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E+48);
+const  zettaJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E+42);
+const      EJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E+36);
+const   petaJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E+30);
+const      TJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E+24);
+const      GJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E+18);
+const   megaJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E+12);
+const      kJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E+06);
+const      hJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E+04);
+const     daJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E+02);
+const      dJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E-02);
+const      cJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E-04);
+const      mJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E-06);
+const     miJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E-12);
+const      nJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E-18);
+const      pJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E-24);
+const      fJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E-30);
+const      aJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E-36);
+const  zeptoJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E-42);
+const  yoctoJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E-48);
+const  rontoJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E-54);
+const quectoJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E-60);
 
 // main definition [ J2 ] = [ J ] * [ J ]
 operator *(const ALeft: TJoules; const ARight: TJoules): TSquareJoules; inline;
@@ -3618,21 +4195,33 @@ function ArcTan(const AValue: double): TRadians;
 function ArcTan2(const x, y: double): TRadians;
 
 const
-  PrefixTable: array[pTera..pPico] of
+  PrefixTable: array[pQuetta..pQuecto] of
     record  Symbol, Name: string; Factor: double end = (
-    (Symbol: 'T';   Name: 'tera';   Factor: 1E+12),
-    (Symbol: 'G';   Name: 'giga';   Factor: 1E+09),
-    (Symbol: 'M';   Name: 'mega';   Factor: 1E+06),
-    (Symbol: 'k';   Name: 'kilo';   Factor: 1E+03),
-    (Symbol: 'h';   Name: 'hecto';  Factor: 1E+02),
-    (Symbol: 'da';  Name: 'deca';   Factor: 1E+01),
-    (Symbol: '';    Name:  '';      Factor: 1E+00),
-    (Symbol: 'd';   Name: 'deci';   Factor: 1E-01),
-    (Symbol: 'c';   Name: 'centi';  Factor: 1E-02),
-    (Symbol: 'm';   Name: 'milli';  Factor: 1E-03),
-    (Symbol: 'μ';   Name: 'micro';  Factor: 1E-06),
-    (Symbol: 'n';   Name: 'nano';   Factor: 1E-09),
-    (Symbol: 'p';   Name: 'pico';   Factor: 1E-12)
+    (Symbol: 'Q';   Name: 'quetta';  Factor: 1E+30),
+    (Symbol: 'R';   Name: 'ronna';   Factor: 1E+27),
+    (Symbol: 'Y';   Name: 'yotta';   Factor: 1E+24),
+    (Symbol: 'Z';   Name: 'zetta';   Factor: 1E+21),
+    (Symbol: 'E';   Name: 'exa';     Factor: 1E+18),
+    (Symbol: 'P';   Name: 'peta';    Factor: 1E+15),
+    (Symbol: 'T';   Name: 'tera';    Factor: 1E+12),
+    (Symbol: 'G';   Name: 'giga';    Factor: 1E+09),
+    (Symbol: 'M';   Name: 'mega';    Factor: 1E+06),
+    (Symbol: 'k';   Name: 'kilo';    Factor: 1E+03),
+    (Symbol: 'h';   Name: 'hecto';   Factor: 1E+02),
+    (Symbol: 'da';  Name: 'deca';    Factor: 1E+01),
+    (Symbol: '';    Name:  '';       Factor: 1E+00),
+    (Symbol: 'd';   Name: 'deci';    Factor: 1E-01),
+    (Symbol: 'c';   Name: 'centi';   Factor: 1E-02),
+    (Symbol: 'm';   Name: 'milli';   Factor: 1E-03),
+    (Symbol: 'μ';   Name: 'micro';   Factor: 1E-06),
+    (Symbol: 'n';   Name: 'nano';    Factor: 1E-09),
+    (Symbol: 'p';   Name: 'pico';    Factor: 1E-12),
+    (Symbol: 'f';   Name: 'femto';   Factor: 1E-15),
+    (Symbol: 'a';   Name: 'atto';    Factor: 1E-18),
+    (Symbol: 'z';   Name: 'zepto';   Factor: 1E-21),
+    (Symbol: 'y';   Name: 'yocto';   Factor: 1E-24),
+    (Symbol: 'r';   Name: 'ronto';   Factor: 1E-27),
+    (Symbol: 'q';   Name: 'quecto';  Factor: 1E-30)
   );
 
 implementation
