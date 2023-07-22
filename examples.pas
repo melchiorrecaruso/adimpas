@@ -1094,7 +1094,7 @@ begin
   writeln('ToString - TEST');
 
   writeln;
-  writeln('TEST PASSED: <',   (1.0*mg  ).ToString(10, 10, [pKilo]),'>');
+  writeln('TEST PASSED: <',   (-(1.0*mg  )).ToString(10, 10, [pKilo]),'>');
 
   writeln('TEST PASSED: <',   (1.0*m/s2).ToMeterPerHourPerSecond.ToString(10, 10, [pKilo, pNone]),'>');
 

@@ -70,6 +70,16 @@ begin
   result := FloatToStrF(U.GetValue(FValue, Prefixes), ffGeneral, Precision, Digits) + ' ' + U.GetName(Prefixes);
 end;                                             
 
+class operator TQuantity.+(const AValue: TSelf): TSelf;
+begin
+  result.FValue := AValue.FValue;
+end;
+
+class operator TQuantity.-(const AValue: TSelf): TSelf;
+begin
+  result.FValue := -AValue.FValue;
+end;
+
 class operator TQuantity.+(const ALeft, ARight: TSelf): TSelf;
 begin
   result.FValue := ALeft.FValue + ARight.FValue;

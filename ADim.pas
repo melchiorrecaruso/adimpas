@@ -48,6 +48,8 @@ type
     function ToVerboseString: string;
     function ToString(Precision, Digits: longint; const Prefixes: TPrefixes): string;
     function ToVerboseString(Precision, Digits: longint; const Prefixes: TPrefixes): string;
+    class operator +  (const AValue: TSelf): TSelf;
+    class operator -  (const AValue: TSelf): TSelf;
     class operator +  (const ALeft, ARight: TSelf): TSelf;
     class operator -  (const ALeft, ARight: TSelf): TSelf;
     class operator *  (const AValue: double; const ASelf: TSelf): TSelf;
@@ -4263,6 +4265,16 @@ end;
 function TQuantity.ToVerboseString(Precision, Digits: longint; const Prefixes: TPrefixes): string;
 begin
   result := FloatToStrF(U.GetValue(FValue, Prefixes), ffGeneral, Precision, Digits) + ' ' + U.GetName(Prefixes);
+end;
+
+class operator TQuantity.+(const AValue: TSelf): TSelf;
+begin
+  result.FValue := AValue.FValue;
+end;
+
+class operator TQuantity.-(const AValue: TSelf): TSelf;
+begin
+  result.FValue := -AValue.FValue;
 end;
 
 class operator TQuantity.+(const ALeft, ARight: TSelf): TSelf;

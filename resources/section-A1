@@ -29,6 +29,8 @@ type
     function ToVerboseString: string;
     function ToString(Precision, Digits: longint; const Prefixes: TPrefixes): string;
     function ToVerboseString(Precision, Digits: longint; const Prefixes: TPrefixes): string;
+    class operator +  (const AValue: TSelf): TSelf;
+    class operator -  (const AValue: TSelf): TSelf;
     class operator +  (const ALeft, ARight: TSelf): TSelf;
     class operator -  (const ALeft, ARight: TSelf): TSelf;
     class operator *  (const AValue: double; const ASelf: TSelf): TSelf;
