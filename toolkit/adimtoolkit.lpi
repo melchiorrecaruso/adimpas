@@ -46,9 +46,8 @@
     </RequiredPackages>
     <Units>
       <Unit>
-        <Filename Value="adimpas.lpr"/>
+        <Filename Value="adimtoolkit.lpr"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="ADimPas"/>
         <TopLine Value="8"/>
         <CursorPos X="3" Y="33"/>
         <UsageCount Value="118"/>
@@ -65,7 +64,6 @@
         <EditorIndex Value="1"/>
         <TopLine Value="612"/>
         <CursorPos X="89" Y="634"/>
-        <FoldState Value=" T3jL076 picjG0W2 plHmC0Q022]Kfpe0Gl"/>
         <UsageCount Value="118"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -442,7 +440,7 @@
     <Version Value="11"/>
     <PathDelim Value="\"/>
     <Target>
-      <Filename Value="build\ADimPas"/>
+      <Filename Value="build\adimtoolkit"/>
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
@@ -460,6 +458,11 @@
         <DebugInfoType Value="dsDwarf3"/>
         <UseLineInfoUnit Value="False"/>
       </Debugging>
+      <Options>
+        <Win32>
+          <GraphicApplication Value="True"/>
+        </Win32>
+      </Options>
     </Linking>
   </CompilerOptions>
   <Debugging>

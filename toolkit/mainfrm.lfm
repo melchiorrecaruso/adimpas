@@ -3,7 +3,7 @@ object MainForm: TMainForm
   Height = 530
   Top = 111
   Width = 766
-  Caption = 'ADimPas Unit Toolkit'
+  Caption = 'ADimPas Toolkit'
   ClientHeight = 530
   ClientWidth = 766
   OnClose = FormClose
