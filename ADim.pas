@@ -1539,6 +1539,47 @@ operator *(const ALeft: TNewtons; const ARight: TSeconds): TKilogramMetersPerSec
 operator /(const ALeft: TKilogramMetersPerSecond; const ARight: TNewtons): TSeconds; inline;
 
 type
+  { Unit of SquareNewton }
+  TSquareNewtonUnit = record
+    class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+  end;
+  TSquareNewtons = specialize TQuantity<TSquareNewtonUnit>;
+  TSquareNewtonUnitId = specialize TUnitId<TSquareNewtonUnit>;
+
+var N2: TSquareNewtonUnitId;
+
+const quettaN2: specialize TQuantity<TSquareNewtonUnit> = (FValue: 1E+60);
+const  ronnaN2: specialize TQuantity<TSquareNewtonUnit> = (FValue: 1E+54);
+const  yottaN2: specialize TQuantity<TSquareNewtonUnit> = (FValue: 1E+48);
+const  zettaN2: specialize TQuantity<TSquareNewtonUnit> = (FValue: 1E+42);
+const      EN2: specialize TQuantity<TSquareNewtonUnit> = (FValue: 1E+36);
+const   petaN2: specialize TQuantity<TSquareNewtonUnit> = (FValue: 1E+30);
+const      TN2: specialize TQuantity<TSquareNewtonUnit> = (FValue: 1E+24);
+const      GN2: specialize TQuantity<TSquareNewtonUnit> = (FValue: 1E+18);
+const   megaN2: specialize TQuantity<TSquareNewtonUnit> = (FValue: 1E+12);
+const      kN2: specialize TQuantity<TSquareNewtonUnit> = (FValue: 1E+06);
+const      hN2: specialize TQuantity<TSquareNewtonUnit> = (FValue: 1E+04);
+const     daN2: specialize TQuantity<TSquareNewtonUnit> = (FValue: 1E+02);
+const      dN2: specialize TQuantity<TSquareNewtonUnit> = (FValue: 1E-02);
+const      cN2: specialize TQuantity<TSquareNewtonUnit> = (FValue: 1E-04);
+const      mN2: specialize TQuantity<TSquareNewtonUnit> = (FValue: 1E-06);
+const     miN2: specialize TQuantity<TSquareNewtonUnit> = (FValue: 1E-12);
+const      nN2: specialize TQuantity<TSquareNewtonUnit> = (FValue: 1E-18);
+const      pN2: specialize TQuantity<TSquareNewtonUnit> = (FValue: 1E-24);
+const      fN2: specialize TQuantity<TSquareNewtonUnit> = (FValue: 1E-30);
+const      aN2: specialize TQuantity<TSquareNewtonUnit> = (FValue: 1E-36);
+const  zeptoN2: specialize TQuantity<TSquareNewtonUnit> = (FValue: 1E-42);
+const  yoctoN2: specialize TQuantity<TSquareNewtonUnit> = (FValue: 1E-48);
+const  rontoN2: specialize TQuantity<TSquareNewtonUnit> = (FValue: 1E-54);
+const quectoN2: specialize TQuantity<TSquareNewtonUnit> = (FValue: 1E-60);
+
+// main definition [ N2 ] = [ N ] * [ N ]
+operator *(const ALeft: TNewtons; const ARight: TNewtons): TSquareNewtons; inline;
+operator /(const ALeft: TSquareNewtons; const ARight: TNewtons): TNewtons; inline;
+
+type
   { Unit of Pascal }
   TPascalUnit = record
     class function GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
@@ -3084,8 +3125,8 @@ type
     class function GetName  (const {%H-}APrefixes: TPrefixes): string; static;
     class function GetValue (const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
   end;
-  TJoulesPerKilogram = specialize TQuantity<TSquareMeterPerSquareKilogramUnit>;
-  TJoulePerKilogramUnitId = specialize TUnitId<TSquareMeterPerSquareKilogramUnit>;
+  TJoulesPerKilogram = specialize TQuantity<TSquareMeterPerSquareSecondUnit>;
+  TJoulePerKilogramUnitId = specialize TUnitId<TSquareMeterPerSquareSecondUnit>;
 
 type
   { Unit of JoulePerKilogramPerKelvin }
@@ -4090,6 +4131,7 @@ type
 
 type
   TSquareMeterPerSquareSecondHelper = record helper for TSquareMetersPerSquareSecond
+    function ToJoulePerKilogram: specialize TQuantity<TJoulePerKilogramUnit>;
     function ToSievert: specialize TQuantity<TSievertUnit>;
     function ToGray: specialize TQuantity<TGrayUnit>;
   end;
@@ -4104,11 +4146,6 @@ type
 type
   TPoiseuilleHelper = record helper for TPoiseuilles
     function ToPascalSecond: specialize TQuantity<TPascalSecondUnit>;
-  end;
-
-type
-  TSquareMeterPerSquareKilogramHelper = record helper for TSquareMetersPerSquareKilogram
-    function ToJoulePerKilogram: specialize TQuantity<TJoulePerKilogramUnit>;
   end;
 
 type
@@ -4173,6 +4210,8 @@ function SquarePower(AQuantity: THertz): TSquareHertz;
 function SquareRoot(AQuantity: TSquareHertz): THertz;
 function SquarePower(AQuantity: TMetersPerSecond): TSquareMetersPerSquareSecond;
 function SquareRoot(AQuantity: TSquareMetersPerSquareSecond): TMetersPerSecond;
+function SquarePower(AQuantity: TNewtons): TSquareNewtons;
+function SquareRoot(AQuantity: TSquareNewtons): TNewtons;
 function SquarePower(AQuantity: TCoulombs): TSquareCoulombs;
 function SquareRoot(AQuantity: TSquareCoulombs): TCoulombs;
 function SquarePower(AQuantity: TVolts): TSquareVolts;
@@ -6628,6 +6667,45 @@ begin
 end;
 
 operator /(const ALeft: TKilogramMetersPerSecond; const ARight: TNewtons): TSeconds;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+{ Unit of SquareNewton }
+
+class function TSquareNewtonUnit.GetSymbol(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sN2', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'N2';
+end;
+
+class function TSquareNewtonUnit.GetName(const {%H-}APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('square %snewton', [PrefixTable[APrefixes[0]].Name])
+  else
+    result := 'square newton';
+end;
+
+class function TSquareNewtonUnit.GetValue(const AValue: double; const {%H-}APrefixes: TPrefixes): double; static;
+begin
+  result := AValue;
+  if Length(APrefixes) = 1 then
+  begin
+    if (APrefixes[0] <> pNone) then result := result / IntPower(PrefixTable[APrefixes[0]].Factor, 2);
+  end;
+end;
+
+// main definition [ N2 ] = [ N ] * [ N ]
+
+operator *(const ALeft: TNewtons; const ARight: TNewtons): TSquareNewtons;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator /(const ALeft: TSquareNewtons; const ARight: TNewtons): TNewtons;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
@@ -12958,7 +13036,7 @@ begin
   result.FValue := FValue;
 end;
 
-function TSquareMeterPerSquareKilogramHelper.ToJoulePerKilogram: specialize TQuantity<TJoulePerKilogramUnit>;
+function TSquareMeterPerSquareSecondHelper.ToJoulePerKilogram: specialize TQuantity<TJoulePerKilogramUnit>;
 begin
   result.FValue := FValue;
 end;
@@ -13161,6 +13239,16 @@ begin
 end;
 
 function SquareRoot(AQuantity: TSquareMetersPerSquareSecond): TMetersPerSecond;
+begin
+  result.FValue := Power(AQuantity.FValue, 1/2);
+end;
+
+function SquarePower(AQuantity: TNewtons): TSquareNewtons;
+begin
+  result.FValue := Power(AQuantity.FValue, 2);
+end;
+
+function SquareRoot(AQuantity: TSquareNewtons): TNewtons;
 begin
   result.FValue := Power(AQuantity.FValue, 1/2);
 end;
