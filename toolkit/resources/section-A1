@@ -1,7 +1,9 @@
 unit ADim;
 
-{$H+}{$modeSwitch advancedRecords}  
-{$WARN NO_RETVAL OFF}
+{$H+}
+{$modeSwitch advancedRecords}
+{$WARN 05024 OFF}
+{$WARN 05033 OFF}
 
 interface
 
