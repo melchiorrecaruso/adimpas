@@ -62,8 +62,8 @@
         <UnitName Value="MainFrm"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="612"/>
-        <CursorPos X="89" Y="634"/>
+        <CursorPos X="3" Y="28"/>
+        <FoldState Value=" T3jL077 PiGiF04"/>
         <UsageCount Value="118"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -316,114 +316,6 @@
     <JumpHistory HistoryIndex="29">
       <Position>
         <Filename Value="mainfrm.pas"/>
-        <Caret Line="159" Column="44" TopLine="136"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="146" Column="11" TopLine="143"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="153" Column="31" TopLine="143"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="732" Column="24" TopLine="720"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="153" Column="33" TopLine="134"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="733" Column="27" TopLine="706"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="253" Column="59" TopLine="19"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="203" Column="22" TopLine="191"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="201" Column="48" TopLine="200"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="542" Column="18" TopLine="531"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="169" Column="11" TopLine="142"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="146" Column="24" TopLine="136"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="741" Column="27" TopLine="727"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="146" Column="24" TopLine="145"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="74" TopLine="53"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="465" Column="38" TopLine="141"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="257" Column="25" TopLine="132"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="75" Column="31" TopLine="54"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="473" Column="20" TopLine="210"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="478" Column="20" TopLine="437"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="474" Column="41" TopLine="437"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="478" Column="62" TopLine="437"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="467" Column="13" TopLine="437"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="468" Column="20" TopLine="437"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="533" Column="3" TopLine="517"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="510" Column="5" TopLine="492"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="558" Column="13" TopLine="526"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
         <Caret Line="587" Column="66" TopLine="569"/>
       </Position>
       <Position>
@@ -433,6 +325,114 @@
       <Position>
         <Filename Value="mainfrm.pas"/>
         <Caret Line="468" Column="40" TopLine="257"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="160" Column="22" TopLine="106"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="152" Column="30" TopLine="124"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="159" Column="14" TopLine="133"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="287" Column="46" TopLine="282"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="108" Column="28" TopLine="89"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="288" Column="36" TopLine="283"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="117" Column="26" TopLine="98"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="293" Column="36" TopLine="278"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="141" Column="25" TopLine="122"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="294" Column="36" TopLine="279"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="133" Column="27" TopLine="114"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="812" Column="42" TopLine="806"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="125" Column="32" TopLine="106"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="966" Column="20" TopLine="958"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="157" Column="23" TopLine="132"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="967" Column="22" TopLine="959"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="148" Column="10" TopLine="108"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="962" Column="20" TopLine="948"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="213" Column="138" TopLine="208"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="241" Column="90" TopLine="213"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="291" Column="82" TopLine="271"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="315" Column="84" TopLine="295"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="598" Column="110" TopLine="580"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="552" Column="20" TopLine="503"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="80" Column="30" TopLine="64"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="448" Column="24" TopLine="420"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="839" Column="36" TopLine="821"/>
       </Position>
     </JumpHistory>
   </ProjectOptions>
@@ -453,16 +453,10 @@
     </CodeGeneration>
     <Linking>
       <Debugging>
-        <GenerateDebugInfo Value="False"/>
         <RunWithoutDebug Value="True"/>
         <DebugInfoType Value="dsDwarf3"/>
-        <UseLineInfoUnit Value="False"/>
+        <UseHeaptrc Value="True"/>
       </Debugging>
-      <Options>
-        <Win32>
-          <GraphicApplication Value="True"/>
-        </Win32>
-      </Options>
     </Linking>
   </CompilerOptions>
   <Debugging>
