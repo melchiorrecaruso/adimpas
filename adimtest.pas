@@ -802,7 +802,7 @@ begin
   time   := 2*pi*SquareRoot(I/(mass*acc*radius));
   if time.ToString(4, 2, []) <> '14.19 s' then halt(1);
   writeln('* TEST-69: PASSED');
-             oi
+
   // TEST-70
   if (1.0*mg  ).ToString       (10, 10, [pKilo]) <> '1E-6 kg'                  then halt(01);
   if (1.0*mg2 ).ToString       (10, 0,  [pKilo]) <> '1E-12 kg2'                then halt(02);
@@ -830,5 +830,6 @@ begin
   if (1.0*hr2 ).ToString       (10, 0,       []) <> '12960000 s2'              then halt(23);
   writeln('* TEST-70: PASSED');
 
+  ExitCode := 1;
   writeln('ADIM-TEST DONE.');
 end.
