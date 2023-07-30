@@ -1,0 +1,23 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install Lazarus
+      run: |
+        sudo apt-get update
+        sudo apt-get install lazarus
+
+    - name: Build project
+      run: |
+        lazbuild examples.lpi
