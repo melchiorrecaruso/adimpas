@@ -120,8 +120,6 @@ var
 
   lambda2: TWattsPerMeterPerKelvin;
 
-
-
   E: TVoltsPerMeter;
   e0: TFaradsPerMeter;
   er: double;
