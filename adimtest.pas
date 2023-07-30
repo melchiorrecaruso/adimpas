@@ -19,6 +19,8 @@
 
 program adimtest;
 
+{$codepage utf8}
+
 uses
   {$IFDEF WINDOWS}
   Windows,
@@ -156,9 +158,6 @@ var
   Re: double;
 begin
   ExitCode := 0;
-  {$IFDEF WINDOWS}
-  SetConsoleOutputCP(CP_UTF8);
-  {$ENDIF}
   DefaultFormatSettings.DecimalSeparator := '.';
   writeln('ADIM-TEST STARTING ...');
 

@@ -27,8 +27,8 @@
         <Filename Value="adimtest.pas"/>
         <IsPartOfProject Value="True"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="803"/>
-        <CursorPos Y="832"/>
+        <TopLine Value="147"/>
+        <CursorPos X="17" Y="160"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit>
@@ -113,8 +113,7 @@
         <Filename Value="adim.pas"/>
         <UnitName Value="ADim"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="15"/>
-        <CursorPos X="79" Y="33"/>
+        <CursorPos X="16" Y="19"/>
         <UsageCount Value="31"/>
         <Loaded Value="True"/>
       </Unit>
@@ -225,36 +224,15 @@
         <CursorPos X="3" Y="106"/>
         <UsageCount Value="10"/>
       </Unit>
+      <Unit>
+        <Filename Value="../../../../../fpcupdeluxe-trunk/fpcsrc/rtl/inc/ustringh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="136"/>
+        <CursorPos X="10" Y="152"/>
+        <UsageCount Value="10"/>
+      </Unit>
     </Units>
-    <JumpHistory HistoryIndex="28">
-      <Position>
-        <Filename Value="adimtest.pas"/>
-        <Caret Line="635" Column="34" TopLine="613"/>
-      </Position>
-      <Position>
-        <Filename Value="adimtest.pas"/>
-        <Caret Line="655" Column="34" TopLine="631"/>
-      </Position>
-      <Position>
-        <Filename Value="adimtest.pas"/>
-        <Caret Line="653" Column="42" TopLine="631"/>
-      </Position>
-      <Position>
-        <Filename Value="adimtest.pas"/>
-        <Caret Line="655" Column="34" TopLine="631"/>
-      </Position>
-      <Position>
-        <Filename Value="adimtest.pas"/>
-        <Caret Line="161" Column="29" TopLine="151"/>
-      </Position>
-      <Position>
-        <Filename Value="adimtest.pas"/>
-        <Caret Line="692" Column="46" TopLine="671"/>
-      </Position>
-      <Position>
-        <Filename Value="adimtest.pas"/>
-        <Caret Line="725" Column="10" TopLine="709"/>
-      </Position>
+    <JumpHistory HistoryIndex="26">
       <Position>
         <Filename Value="adimtest.pas"/>
         <Caret Line="724" Column="72" TopLine="708"/>
@@ -262,10 +240,6 @@
       <Position>
         <Filename Value="adimtest.pas"/>
         <Caret Line="725" Column="27" TopLine="709"/>
-      </Position>
-      <Position>
-        <Filename Value="ADim.pas"/>
-        <Caret Line="4228" Column="10" TopLine="4212"/>
       </Position>
       <Position>
         <Filename Value="adimtest.pas"/>
@@ -342,6 +316,30 @@
       <Position>
         <Filename Value="adimtest.pas"/>
         <Caret Line="801" Column="36" TopLine="784"/>
+      </Position>
+      <Position>
+        <Filename Value="adimtest.pas"/>
+        <Caret Line="831" Column="3" TopLine="805"/>
+      </Position>
+      <Position>
+        <Filename Value="adimtest.pas"/>
+        <Caret Line="27" Column="14" TopLine="13"/>
+      </Position>
+      <Position>
+        <Filename Value="adimtest.pas"/>
+        <Caret Line="22" Column="18" TopLine="11"/>
+      </Position>
+      <Position>
+        <Filename Value="adimtest.pas"/>
+        <Caret Line="834" Column="56" TopLine="807"/>
+      </Position>
+      <Position>
+        <Filename Value="adimtest.pas"/>
+        <Caret Line="673" Column="46" TopLine="657"/>
+      </Position>
+      <Position>
+        <Filename Value="adim.pas"/>
+        <Caret Line="22" Column="19"/>
       </Position>
     </JumpHistory>
   </ProjectOptions>
