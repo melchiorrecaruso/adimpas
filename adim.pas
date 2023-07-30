@@ -19,8 +19,6 @@
 
 unit ADim;
 
-{$codepage utf8}
-
 {$H+}
 {$modeSwitch advancedRecords}
 {$WARN 05024 OFF}

@@ -27,8 +27,8 @@
         <Filename Value="adimtest.pas"/>
         <IsPartOfProject Value="True"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="147"/>
-        <CursorPos X="17" Y="160"/>
+        <TopLine Value="798"/>
+        <CursorPos Y="827"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit>
@@ -112,10 +112,10 @@
       <Unit>
         <Filename Value="adim.pas"/>
         <UnitName Value="ADim"/>
-        <EditorIndex Value="1"/>
-        <CursorPos X="16" Y="19"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="4242"/>
+        <CursorPos X="16" Y="4259"/>
         <UsageCount Value="31"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../../../../../FPC/3.2.2/source/rtl/objpas/math.pp"/>
@@ -232,7 +232,7 @@
         <UsageCount Value="10"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="26">
+    <JumpHistory HistoryIndex="28">
       <Position>
         <Filename Value="adimtest.pas"/>
         <Caret Line="724" Column="72" TopLine="708"/>
@@ -338,8 +338,16 @@
         <Caret Line="673" Column="46" TopLine="657"/>
       </Position>
       <Position>
-        <Filename Value="adim.pas"/>
-        <Caret Line="22" Column="19"/>
+        <Filename Value="adimtest.pas"/>
+        <Caret Line="828" Column="25" TopLine="801"/>
+      </Position>
+      <Position>
+        <Filename Value="adimtest.pas"/>
+        <Caret Line="26" Column="21"/>
+      </Position>
+      <Position>
+        <Filename Value="adimtest.pas"/>
+        <Caret Line="828" Column="20" TopLine="801"/>
       </Position>
     </JumpHistory>
   </ProjectOptions>
