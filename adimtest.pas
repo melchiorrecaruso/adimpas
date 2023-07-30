@@ -665,7 +665,12 @@ begin
   R        := 50*cm;
   z        := 0*cm;
   B        := m0/(2*pi) * (current / (SquareRoot(CubicPower(SquarePower(z)+SquarePower(R)))/SquarePower(R) ));
+  {$IFDEF WINDOWS}
   if Utf8ToAnsi(B.ToString(4, 2, [pMicro])) <> Utf8ToAnsi('1.2 µT') then halt(1);
+  {$ENDIF}
+  {$IFDEF UNIX}
+  if B.ToString(4, 2, [pMicro]) <> '1.2 µT' then halt(1);
+  {$ENDIF}
   writeln('* TEST-55: PASSED');
 
   // TEST-56 - MAGNETIC FIELD PRODUCED BY A CURRENT-CARRYING SOLENOID
