@@ -669,7 +669,7 @@ begin
   if Utf8ToAnsi(B.ToString(4, 2, [pMicro])) <> Utf8ToAnsi('1.2 µT') then halt(1);
   {$ENDIF}
   {$IFDEF UNIX}
-  if B.ToVerboseString(4, 2, [pMicro]) <> '1.2 teslameter' then halt(1);
+  if B.ToVerboseString(4, 2, [pMicro]) <> '1.2 microtesla' then halt(1);
   {$ENDIF}
   writeln('* TEST-55: PASSED');
 
