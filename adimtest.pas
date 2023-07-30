@@ -830,6 +830,5 @@ begin
   if (1.0*hr2 ).ToString       (10, 0,       []) <> '12960000 s2'              then halt(23);
   writeln('* TEST-70: PASSED');
 
-  ExitCode := 1;
   writeln('ADIM-TEST DONE.');
 end.
