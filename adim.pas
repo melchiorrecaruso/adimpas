@@ -1211,7 +1211,7 @@ type
   TRadiansPerSquareSecond = specialize TQuantity<TSquareHertzUnit>;
   TRadianPerSquareSecondUnitId = specialize TUnitId<TSquareHertzUnit>;
 
-// main definition [ rad/s2 ] = [ rad ] / [ s2 ]
+// alternative definition [ rad/s2 ] = [ rad ] / [ s2 ]
 operator /(const ALeft: TRadians; const ARight: TSquareSeconds): TRadiansPerSquareSecond; inline;
 operator *(const ALeft: TSquareSeconds; const ARight: TRadiansPerSquareSecond): TRadians; inline;
 operator *(const ALeft: TRadiansPerSquareSecond; const ARight: TSquareSeconds): TRadians; inline;
@@ -5675,7 +5675,7 @@ begin
   end;
 end;
 
-// main definition [ rad/s2 ] = [ rad ] / [ s2 ]
+// alternative definition [ rad/s2 ] = [ rad ] / [ s2 ]
 
 operator /(const ALeft: TRadians; const ARight: TSquareSeconds): TRadiansPerSquareSecond;
 begin
@@ -5737,9 +5737,9 @@ end;
 class function TSteradianPerSquareSecondUnit.GetName(const APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('square rad per square %ssecond', [PrefixTable[APrefixes[0]].Name])
+    result := Format('square radian per square %ssecond', [PrefixTable[APrefixes[0]].Name])
   else
-    result := 'square rad per square second';
+    result := 'square radian per square second';
 end;
 
 class function TSteradianPerSquareSecondUnit.GetValue(const AValue: double; const APrefixes: TPrefixes): double; static;
