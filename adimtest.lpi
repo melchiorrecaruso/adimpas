@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectOptions>
+    <Version Value="12"/>
+    <General>
+      <Flags>
+        <MainUnitHasCreateFormStatements Value="False"/>
+        <MainUnitHasTitleStatement Value="False"/>
+        <MainUnitHasScaledStatement Value="False"/>
+      </Flags>
+      <Title Value="adimtest"/>
+      <UseAppBundle Value="False"/>
+      <ResourceType Value="res"/>
+    </General>
+    <BuildModes Active="Default">
+      <Item Name="Default" Default="True"/>
+    </BuildModes>
+    <PublishOptions>
+      <Version Value="2"/>
+      <UseFileFilters Value="True"/>
+    </PublishOptions>
+    <RunParams>
+      <FormatVersion Value="2"/>
+    </RunParams>
+    <Units>
+      <Unit>
+        <Filename Value="adimtest.pas"/>
+        <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="803"/>
+        <CursorPos Y="832"/>
+        <UsageCount Value="200"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="dim.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Dim"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="138"/>
+        <CursorPos X="7" Y="153"/>
+        <UsageCount Value="200"/>
+      </Unit>
+      <Unit>
+        <Filename Value="code.inc"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="46"/>
+      </Unit>
+      <Unit>
+        <Filename Value="dimensioned.pas"/>
+        <UnitName Value="Dimensioned"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="85"/>
+        <CursorPos X="5" Y="103"/>
+        <UsageCount Value="6"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../qk2/SpringLIB/src/EN13906.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="744"/>
+        <CursorPos X="35" Y="757"/>
+        <UsageCount Value="7"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../qk2/SpringLIB/src/EN10270.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="81"/>
+        <CursorPos X="56" Y="65"/>
+        <UsageCount Value="6"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../qk/SpringLIB/src/ADim.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="28"/>
+        <UsageCount Value="7"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../qk/SpringLIB/src/EN15800.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="216"/>
+        <CursorPos X="24" Y="166"/>
+        <UsageCount Value="7"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../qk/SpringLIB/src/EN10270.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="206"/>
+        <CursorPos X="32" Y="238"/>
+        <UsageCount Value="7"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../qk/SpringLIB/src/EN13906.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="132"/>
+        <CursorPos X="38" Y="147"/>
+        <UsageCount Value="7"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../../FPC/3.2.2/source/rtl/inc/mathh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="89"/>
+        <CursorPos X="14" Y="108"/>
+        <UsageCount Value="8"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../../FPC/3.2.2/source/rtl/objpas/sysutils/syshelph.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="89"/>
+        <CursorPos X="14" Y="107"/>
+        <UsageCount Value="8"/>
+      </Unit>
+      <Unit>
+        <Filename Value="adim.pas"/>
+        <UnitName Value="ADim"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="15"/>
+        <CursorPos X="79" Y="33"/>
+        <UsageCount Value="31"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../../FPC/3.2.2/source/rtl/objpas/math.pp"/>
+        <UnitName Value="Math"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="332"/>
+        <CursorPos X="10" Y="361"/>
+        <UsageCount Value="8"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../qk/SpringLIB/src/UtilsBase.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="286"/>
+        <CursorPos X="63" Y="308"/>
+        <UsageCount Value="8"/>
+      </Unit>
+      <Unit>
+        <Filename Value="resources/section-A1"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos Y="17"/>
+        <UsageCount Value="9"/>
+        <DefaultSyntaxHighlighter Value="None"/>
+      </Unit>
+      <Unit>
+        <Filename Value="resources/section-A6"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="50" Y="13"/>
+        <UsageCount Value="9"/>
+        <DefaultSyntaxHighlighter Value="None"/>
+      </Unit>
+      <Unit>
+        <Filename Value="resources/section-B1"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="5" Y="15"/>
+        <UsageCount Value="9"/>
+        <DefaultSyntaxHighlighter Value="None"/>
+      </Unit>
+      <Unit>
+        <Filename Value="resources/section-B6"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="17"/>
+        <CursorPos X="21" Y="20"/>
+        <UsageCount Value="9"/>
+        <DefaultSyntaxHighlighter Value="None"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../../fpcupdeluxe/fpcsrc/rtl/win/wininc/func.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="982"/>
+        <CursorPos X="10" Y="1001"/>
+        <UsageCount Value="9"/>
+      </Unit>
+      <Unit>
+        <Filename Value="ADim2.pas"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="11" Y="20"/>
+        <UsageCount Value="9"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../../fpcupdeluxe/fpcsrc/packages/rtl-objpas/src/inc/strutils.pp"/>
+        <UnitName Value="StrUtils"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="65"/>
+        <CursorPos X="10" Y="81"/>
+        <UsageCount Value="9"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../../fpcupdeluxe/fpcsrc/rtl/objpas/types.pp"/>
+        <UnitName Value="Types"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="11" Y="15"/>
+        <UsageCount Value="9"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../../fpcupdeluxe/fpcsrc/rtl/win32/system.pp"/>
+        <UnitName Value="System"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="15" Y="445"/>
+        <UsageCount Value="9"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../../fpcupdeluxe/fpcsrc/rtl/objpas/math.pp"/>
+        <UnitName Value="Math"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="564"/>
+        <CursorPos X="18" Y="584"/>
+        <UsageCount Value="9"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../../fpcupdeluxe/fpcsrc/rtl/objpas/sysutils/syshelph.inc"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="3" Y="4"/>
+        <UsageCount Value="9"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../../fpcupdeluxe-trunk/fpcsrc/rtl/inc/systemh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="443"/>
+        <CursorPos X="3" Y="462"/>
+        <UsageCount Value="9"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../../fpcupdeluxe-trunk/fpcsrc/rtl/win/wininc/redef.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="57"/>
+        <CursorPos X="3" Y="106"/>
+        <UsageCount Value="10"/>
+      </Unit>
+    </Units>
+    <JumpHistory HistoryIndex="28">
+      <Position>
+        <Filename Value="adimtest.pas"/>
+        <Caret Line="635" Column="34" TopLine="613"/>
+      </Position>
+      <Position>
+        <Filename Value="adimtest.pas"/>
+        <Caret Line="655" Column="34" TopLine="631"/>
+      </Position>
+      <Position>
+        <Filename Value="adimtest.pas"/>
+        <Caret Line="653" Column="42" TopLine="631"/>
+      </Position>
+      <Position>
+        <Filename Value="adimtest.pas"/>
+        <Caret Line="655" Column="34" TopLine="631"/>
+      </Position>
+      <Position>
+        <Filename Value="adimtest.pas"/>
+        <Caret Line="161" Column="29" TopLine="151"/>
+      </Position>
+      <Position>
+        <Filename Value="adimtest.pas"/>
+        <Caret Line="692" Column="46" TopLine="671"/>
+      </Position>
+      <Position>
+        <Filename Value="adimtest.pas"/>
+        <Caret Line="725" Column="10" TopLine="709"/>
+      </Position>
+      <Position>
+        <Filename Value="adimtest.pas"/>
+        <Caret Line="724" Column="72" TopLine="708"/>
+      </Position>
+      <Position>
+        <Filename Value="adimtest.pas"/>
+        <Caret Line="725" Column="27" TopLine="709"/>
+      </Position>
+      <Position>
+        <Filename Value="ADim.pas"/>
+        <Caret Line="4228" Column="10" TopLine="4212"/>
+      </Position>
+      <Position>
+        <Filename Value="adimtest.pas"/>
+        <Caret Line="727" Column="40" TopLine="709"/>
+      </Position>
+      <Position>
+        <Filename Value="adimtest.pas"/>
+        <Caret Line="148" Column="3" TopLine="132"/>
+      </Position>
+      <Position>
+        <Filename Value="adimtest.pas"/>
+        <Caret Line="725" Column="72" TopLine="709"/>
+      </Position>
+      <Position>
+        <Filename Value="adimtest.pas"/>
+        <Caret Line="726" Column="13" TopLine="707"/>
+      </Position>
+      <Position>
+        <Filename Value="adimtest.pas"/>
+        <Caret Line="733" Column="101" TopLine="714"/>
+      </Position>
+      <Position>
+        <Filename Value="adimtest.pas"/>
+        <Caret Line="727" Column="75" TopLine="713"/>
+      </Position>
+      <Position>
+        <Filename Value="adimtest.pas"/>
+        <Caret Line="732" Column="10" TopLine="706"/>
+      </Position>
+      <Position>
+        <Filename Value="adimtest.pas"/>
+        <Caret Line="151" Column="20" TopLine="133"/>
+      </Position>
+      <Position>
+        <Filename Value="adimtest.pas"/>
+        <Caret Line="152" Column="28" TopLine="124"/>
+      </Position>
+      <Position>
+        <Filename Value="adimtest.pas"/>
+        <Caret Line="733" Column="18" TopLine="716"/>
+      </Position>
+      <Position>
+        <Filename Value="adimtest.pas"/>
+        <Caret Line="153" Column="32" TopLine="133"/>
+      </Position>
+      <Position>
+        <Filename Value="adimtest.pas"/>
+        <Caret Line="741" Column="54" TopLine="720"/>
+      </Position>
+      <Position>
+        <Filename Value="adimtest.pas"/>
+        <Caret Line="752" Column="54" TopLine="732"/>
+      </Position>
+      <Position>
+        <Filename Value="adimtest.pas"/>
+        <Caret Line="745" Column="61" TopLine="732"/>
+      </Position>
+      <Position>
+        <Filename Value="adimtest.pas"/>
+        <Caret Line="785" Column="9" TopLine="758"/>
+      </Position>
+      <Position>
+        <Filename Value="adimtest.pas"/>
+        <Caret Line="789" Column="44" TopLine="772"/>
+      </Position>
+      <Position>
+        <Filename Value="adimtest.pas"/>
+        <Caret Line="101" Column="44" TopLine="86"/>
+      </Position>
+      <Position>
+        <Filename Value="adimtest.pas"/>
+        <Caret Line="80" Column="31" TopLine="44"/>
+      </Position>
+      <Position>
+        <Filename Value="adimtest.pas"/>
+        <Caret Line="801" Column="36" TopLine="784"/>
+      </Position>
+    </JumpHistory>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="11"/>
+    <Target>
+      <Filename Value="build/adimtest"/>
+    </Target>
+    <SearchPaths>
+      <IncludeFiles Value="$(ProjOutDir)"/>
+      <UnitOutputDirectory Value="build/lib"/>
+    </SearchPaths>
+    <CodeGeneration>
+      <Optimizations>
+        <OptimizationLevel Value="0"/>
+      </Optimizations>
+    </CodeGeneration>
+    <Linking>
+      <Debugging>
+        <DebugInfoType Value="dsDwarf2Set"/>
+        <UseHeaptrc Value="True"/>
+      </Debugging>
+    </Linking>
+  </CompilerOptions>
+  <Debugging>
+    <Exceptions>
+      <Item>
+        <Name Value="EAbort"/>
+      </Item>
+      <Item>
+        <Name Value="ECodetoolError"/>
+      </Item>
+      <Item>
+        <Name Value="EFOpenError"/>
+      </Item>
+    </Exceptions>
+  </Debugging>
+</CONFIG>
