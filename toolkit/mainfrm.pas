@@ -46,7 +46,6 @@ type
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
     TabSheet4: TTabSheet;
-    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure LoadBtnClick(Sender: TObject);
     procedure ExportBtnClick(Sender: TObject);
@@ -108,8 +107,8 @@ const
 function GetUnitDescription(const S: string): string;
 begin
   Result := S;
-  while Pos('?', Result) > 0 do
-    Delete(Result, Pos('?', Result), 1);
+  Result := StringReplace(Result, '!',  '', [rfReplaceAll]);
+  Result := StringReplace(Result, '?',  '', [rfReplaceAll]);
   if Pos('T', Result) = 1 then
     Delete(Result, 1, 1);
 end;
@@ -117,32 +116,32 @@ end;
 function GetUnitClassName(const S: string): string;
 begin
   Result := S;
-  while Pos('?', Result) > 0 do
-    Delete(Result, Pos('?', Result), 1);
+  Result := StringReplace(Result, '!',  '', [rfReplaceAll]);
+  Result := StringReplace(Result, '?',  '', [rfReplaceAll]);
   Result := Result + 'Unit';
 end;
 
 function GetUnitClassNameHelper(const S: string): string;
 begin
   Result := S;
-  while Pos('?', Result) > 0 do
-    Delete(Result, Pos('?', Result), 1);
+  Result := StringReplace(Result, '!',  '', [rfReplaceAll]);
+  Result := StringReplace(Result, '?',  '', [rfReplaceAll]);
   Result := Result + 'Helper';
 end;
 
 function GetUnitIdentifier(const S: string): string;
 begin
   Result := S;
-  while Pos('?', Result) > 0 do
-    Delete(Result, Pos('?', Result), 1);
+  Result := StringReplace(Result, '!',  '', [rfReplaceAll]);
+  Result := StringReplace(Result, '?',  '', [rfReplaceAll]);
   Result := Result + 'UnitId';
 end;
 
 function GetUnitQuantity(const S: string): string;
 begin
   Result := S;
-  while Pos('?', Result) > 0 do
-    Result[Pos('?', Result)] := 's';
+  Result := StringReplace(Result, 'y!', 'ies', [rfReplaceAll]);
+  Result := StringReplace(Result, '?',  's',   [rfReplaceAll]);
 end;
 
 function CleanUnitName(const S: string): string;
@@ -170,7 +169,7 @@ begin
   i := 0;
   while i < S.Count do
   begin
-    if (IsEmptyStr(S[i], [' '])) then
+    if IsEmptyStr(S[i], [' ']) then
     begin
       S.Delete(i);
     end else
@@ -179,7 +178,8 @@ begin
 
   while (i + 1) < S.Count do
   begin
-    if (IsEmptyStr(S[i], [' ']) and IsEmptyStr(S[i + 1], [' '])) then
+    if IsEmptyStr(S[i],     [' ']) and
+       IsEmptyStr(S[i + 1], [' ']) then
     begin
       S.Delete(i + 1);
     end else
@@ -456,12 +456,13 @@ function Split(const AStr: string): TStringArray;
 var
   I, Index: longint;
 begin
-  result := nil;
   Index  := 0;
+  result := nil;
   SetLength(result, Index + 10);
-  for I := low(AStr) to high(AStr) do
+  for I := Low(AStr) to High(AStr) do
   begin
-    if (AStr[I] in ['.', '/', ' ']) then
+
+    if AStr[I] in ['/', '.'] then
     begin
       Inc(Index);
       if Index = Length(result) then
@@ -476,6 +477,7 @@ begin
       result[Index] := '';
     end else
       result[Index] := result[Index] + AStr[I];
+
   end;
   SetLength(result, Index + 1);
 end;
@@ -486,13 +488,15 @@ var
   Factors, StrArray: TStringArray;
   I, Index, J, Count, Offset: longint;
   Exponent: longint;
+  ShortSymbol: string;
+  LongSymbol: string;
 begin
   Count  := 0;
-  Offset := PosEx('%s', AShortSymbol, 1);
+  Offset := Pos('%s', AShortSymbol, 1);
   while OffSet <> 0 do
   begin
     Count  := Count + 1;
-    Offset := PosEx('%s', AShortSymbol, Offset + Length('&s'));
+    Offset := Pos('%s', AShortSymbol, Offset + Length('&s'));
   end;
 
   // Symbol
@@ -504,6 +508,9 @@ begin
     SetLength(FormatArgs, Max(0, Length(FormatArgs) - 2));
   end;
 
+  ShortSymbol := AShortSymbol;
+  ShortSymbol := StringReplace(ShortSymbol, '.', '·', [rfReplaceAll]);
+
   SectionB1.Append('');
   SectionB1.Append('{ Unit of ' + GetUnitDescription(AClassName) + ' }');
   SectionB1.Append('');
@@ -512,12 +519,12 @@ begin
   if Count > 0 then
   begin
   SectionB1.Append('  if Length(APrefixes) = ' + IntToStr(Count) + ' then');
-  SectionB1.Append('    result := Format(''' + AShortSymbol + ''', [' + FormatArgs + '])');
+  SectionB1.Append('    result := Format(''' + ShortSymbol + ''', [' + FormatArgs + '])');
   SectionB1.Append('  else');
-  SectionB1.Append('    result := ''' + StringReplace(StringReplace(AShortSymbol, '%sg', 'kg', [rfReplaceAll]), '%s','', [rfReplaceAll]) + ''';');
+  SectionB1.Append('    result := ''' + StringReplace(StringReplace(ShortSymbol, '%sg', 'kg', [rfReplaceAll]), '%s','', [rfReplaceAll]) + ''';');
   end else
   begin
-  SectionB1.Append('  result := ''' + StringReplace(StringReplace(AShortSymbol, '%sg', 'kg', [rfReplaceAll]), '%s','', [rfReplaceAll]) + ''';');
+  SectionB1.Append('  result := ''' + StringReplace(StringReplace(ShortSymbol, '%sg', 'kg', [rfReplaceAll]), '%s','', [rfReplaceAll]) + ''';');
   end;
   SectionB1.Append('end;');
   SectionB1.Append('');
@@ -531,18 +538,21 @@ begin
     SetLength(FormatArgs, Max(0, Length(FormatArgs) - 2));
   end;
 
+  LongSymbol := ALongSymbol;
+  LongSymbol := StringReplace(LongSymbol, '!', '', [rfReplaceAll]);
+  LongSymbol := StringReplace(LongSymbol, '?', '', [rfReplaceAll]);
   SectionB1.Append('');
   SectionB1.Append('class function ' + GetUnitClassName(AClassName) + '.GetName(const APrefixes: TPrefixes): string; static;');
   SectionB1.Append('begin');
   if Count > 0 then
   begin
   SectionB1.Append('  if Length(APrefixes) = ' + IntToStr(Count) + ' then');
-  SectionB1.Append('    result := Format(''' + ALongSymbol + ''', [' + FormatArgs + '])');
+  SectionB1.Append('    result := Format(''' + LongSymbol + ''', [' + FormatArgs + '])');
   SectionB1.Append('  else');
-  SectionB1.Append('    result := ''' + StringReplace(StringReplace(ALongSymbol, '%sgram', 'kilogram', [rfReplaceAll]), '%s', '', [rfReplaceAll]) + ''';');
+  SectionB1.Append('    result := ''' + StringReplace(StringReplace(LongSymbol, '%sgram', 'kilogram', [rfReplaceAll]), '%s', '', [rfReplaceAll]) + ''';');
   end else
   begin
-  SectionB1.Append('  result := ''' + StringReplace(StringReplace(ALongSymbol, '%sgram', 'kilogram', [rfReplaceAll]), '%s', '', [rfReplaceAll]) + ''';');
+  SectionB1.Append('  result := ''' + StringReplace(StringReplace(LongSymbol, '%sgram', 'kilogram', [rfReplaceAll]), '%s', '', [rfReplaceAll]) + ''';');
   end;
   SectionB1.Append('end;');
   SectionB1.Append('');
@@ -862,11 +872,6 @@ begin
   PageControl.TabIndex          := 0;
   WindowState                   := wsMaximized;
   WorksheetGrid.AutoFillColumns := True;
-end;
-
-procedure TMainForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
-begin
-
 end;
 
 procedure TMainForm.LoadBtnClick(Sender: TObject);

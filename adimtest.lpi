@@ -27,8 +27,8 @@
         <Filename Value="adimtest.pas"/>
         <IsPartOfProject Value="True"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="798"/>
-        <CursorPos Y="827"/>
+        <TopLine Value="797"/>
+        <CursorPos Y="832"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit>
@@ -232,11 +232,7 @@
         <UsageCount Value="10"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="28">
-      <Position>
-        <Filename Value="adimtest.pas"/>
-        <Caret Line="724" Column="72" TopLine="708"/>
-      </Position>
+    <JumpHistory HistoryIndex="29">
       <Position>
         <Filename Value="adimtest.pas"/>
         <Caret Line="725" Column="27" TopLine="709"/>
@@ -349,6 +345,14 @@
         <Filename Value="adimtest.pas"/>
         <Caret Line="828" Column="20" TopLine="801"/>
       </Position>
+      <Position>
+        <Filename Value="adimtest.pas"/>
+        <Caret Line="833" Column="10" TopLine="803"/>
+      </Position>
+      <Position>
+        <Filename Value="adimtest.pas"/>
+        <Caret Line="60" Column="23" TopLine="44"/>
+      </Position>
     </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>
@@ -367,8 +371,10 @@
     </CodeGeneration>
     <Linking>
       <Debugging>
+        <GenerateDebugInfo Value="False"/>
+        <RunWithoutDebug Value="True"/>
         <DebugInfoType Value="dsDwarf2Set"/>
-        <UseHeaptrc Value="True"/>
+        <UseLineInfoUnit Value="False"/>
       </Debugging>
     </Linking>
   </CompilerOptions>

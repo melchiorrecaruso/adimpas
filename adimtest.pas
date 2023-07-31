@@ -57,7 +57,7 @@ var
   flux: TWebers;
   fluxdensity: TTeslas;
 
-  inductance: THenrys;
+  inductance: THenries;
   resistance: TOhms;
   conductance: TSiemens;
 
@@ -125,7 +125,7 @@ var
   er: double;
   sigma: TCoulombsPerSquareMeter;
 
-  m0: THenrysPerMeter;
+  m0: THenriesPerMeter;
   B: TTeslas;
   len: TMeters;
   r: TMeters;
@@ -504,7 +504,7 @@ begin
   mass  := 10*kg;
   speed := 5*m/s;
   p     := mass*speed;
-  if p.ToString(4, 2, []) <> '50 kg.m/s' then halt(1);
+  if p.ToString(4, 2, []) <> '50 kg·m/s' then halt(1);
   writeln('* TEST-37: PASSED');
 
   // TEST-38 - IMPULSE
@@ -512,7 +512,7 @@ begin
   time    := 5*ms;
   impulse := p;
   impulse := force*time;
-  if impulse.ToNewtonSecond.ToString(4, 2, [pNone, pMilli]) <> '50 N.ms' then halt(1);
+  if impulse.ToNewtonSecond.ToString(4, 2, [pNone, pMilli]) <> '50 N·ms' then halt(1);
   writeln('* TEST-38: PASSED');
 
   // TEST-39 - STEVINO'S LAW
@@ -744,7 +744,7 @@ begin
   speed      := 10800000*km/hr;
   p          := mass*speed;
   energy     := SquareRoot(SquarePower(p*lightspeed)+ SquarePower(mass*SquarePower(lightspeed)));
-  if p                    .ToString(4, 2, [pPico, pPico, pNone]) <> '2733 pg.pm/s' then halt(1);
+  if p                    .ToString(4, 2, [pPico, pPico, pNone]) <> '2733 pg·pm/s' then halt(1);
   if energy.ToElettronvolt.ToString(4, 2, [pKilo])               <> '511.1 keV'    then halt(2);
   writeln('* TEST-63: PASSED');
 
@@ -757,7 +757,7 @@ begin
   p      := plank/len;
   speed  := len*freq;
   if energy.ToElettronvolt.ToString(4, 2, [                   ]) <> '1.24 eV'        then halt(1);
-  if p                    .ToString(4, 2, [pPico, pPico, pNone]) <> '0.6626 pg.pm/s' then halt(2);
+  if p                    .ToString(4, 2, [pPico, pPico, pNone]) <> '0.6626 pg·pm/s' then halt(2);
   if speed                .ToString(9, 2, [pPico, pNone       ]) <> '1000000 pm/s'   then halt(3);
   writeln('* TEST-64: PASSED');
 

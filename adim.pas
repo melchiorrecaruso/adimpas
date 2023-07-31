@@ -2228,7 +2228,7 @@ type
     class function GetName  (const APrefixes: TPrefixes): string; static;
     class function GetValue (const AValue: double; const APrefixes: TPrefixes): double; static;
   end;
-  THenrys = specialize TQuantity<THenryUnit>;
+  THenries = specialize TQuantity<THenryUnit>;
   THenryUnitId = specialize TUnitId<THenryUnit>;
 
 var H: THenryUnitId;
@@ -2259,23 +2259,23 @@ const  rontoH: specialize TQuantity<THenryUnit> = (FValue: 1E-27);
 const quectoH: specialize TQuantity<THenryUnit> = (FValue: 1E-30);
 
 // main definition [ H ] = [ Wb ] / [ A ]
-operator /(const ALeft: TWebers; const ARight: TAmperes): THenrys; inline;
-operator *(const ALeft: TAmperes; const ARight: THenrys): TWebers; inline;
-operator *(const ALeft: THenrys; const ARight: TAmperes): TWebers; inline;
-operator /(const ALeft: TWebers; const ARight: THenrys): TAmperes; inline;
-operator /(const ALeft: TWebers; const ARight: TAmpereUnitId): THenrys; inline;
+operator /(const ALeft: TWebers; const ARight: TAmperes): THenries; inline;
+operator *(const ALeft: TAmperes; const ARight: THenries): TWebers; inline;
+operator *(const ALeft: THenries; const ARight: TAmperes): TWebers; inline;
+operator /(const ALeft: TWebers; const ARight: THenries): TAmperes; inline;
+operator /(const ALeft: TWebers; const ARight: TAmpereUnitId): THenries; inline;
 
 // alternative definition [ H ] = [ Ω ] * [ s ]
-operator *(const ALeft: TOhms; const ARight: TSeconds): THenrys; inline;
-operator *(const ALeft: TSeconds; const ARight: TOhms): THenrys; inline;
-operator /(const ALeft: THenrys; const ARight: TOhms): TSeconds; inline;
-operator /(const ALeft: THenrys; const ARight: TSeconds): TOhms; inline;
+operator *(const ALeft: TOhms; const ARight: TSeconds): THenries; inline;
+operator *(const ALeft: TSeconds; const ARight: TOhms): THenries; inline;
+operator /(const ALeft: THenries; const ARight: TOhms): TSeconds; inline;
+operator /(const ALeft: THenries; const ARight: TSeconds): TOhms; inline;
 
 // alternative definition [ H ] = [ Ω ] / [ Hz ]
-operator /(const ALeft: TOhms; const ARight: THertz): THenrys; inline;
-operator *(const ALeft: THertz; const ARight: THenrys): TOhms; inline;
-operator *(const ALeft: THenrys; const ARight: THertz): TOhms; inline;
-operator /(const ALeft: TOhms; const ARight: THenrys): THertz; inline;
+operator /(const ALeft: TOhms; const ARight: THertz): THenries; inline;
+operator *(const ALeft: THertz; const ARight: THenries): TOhms; inline;
+operator *(const ALeft: THenries; const ARight: THertz): TOhms; inline;
+operator /(const ALeft: TOhms; const ARight: THenries): THertz; inline;
 
 type
   { Unit of Lumen }
@@ -3829,47 +3829,47 @@ type
     class function GetName  (const APrefixes: TPrefixes): string; static;
     class function GetValue (const AValue: double; const APrefixes: TPrefixes): double; static;
   end;
-  THenrysPerMeter = specialize TQuantity<THenryPerMeterUnit>;
+  THenriesPerMeter = specialize TQuantity<THenryPerMeterUnit>;
   THenryPerMeterUnitId = specialize TUnitId<THenryPerMeterUnit>;
 
 // main definition [ H/m ] = [ H ] / [ m ]
-operator /(const ALeft: THenrys; const ARight: TMeters): THenrysPerMeter; inline;
-operator *(const ALeft: TMeters; const ARight: THenrysPerMeter): THenrys; inline;
-operator *(const ALeft: THenrysPerMeter; const ARight: TMeters): THenrys; inline;
-operator /(const ALeft: THenrys; const ARight: THenrysPerMeter): TMeters; inline;
-operator /(const ALeft: THenrys; const ARight: TMeterUnitId): THenrysPerMeter; inline;
+operator /(const ALeft: THenries; const ARight: TMeters): THenriesPerMeter; inline;
+operator *(const ALeft: TMeters; const ARight: THenriesPerMeter): THenries; inline;
+operator *(const ALeft: THenriesPerMeter; const ARight: TMeters): THenries; inline;
+operator /(const ALeft: THenries; const ARight: THenriesPerMeter): TMeters; inline;
+operator /(const ALeft: THenries; const ARight: TMeterUnitId): THenriesPerMeter; inline;
 
 // alternative definition [ H/ m ] = [ T*m/A ] = [ T*m ] / [ A ]
-operator /(const ALeft: TTeslaMeters; const ARight: TAmperes): THenrysPerMeter; inline;
-operator *(const ALeft: TAmperes; const ARight: THenrysPerMeter): TTeslaMeters; inline;
-operator *(const ALeft: THenrysPerMeter; const ARight: TAmperes): TTeslaMeters; inline;
-operator /(const ALeft: TTeslaMeters; const ARight: THenrysPerMeter): TAmperes; inline;
-operator /(const ALeft: TTeslaMeters; const ARight: TAmpereUnitId): THenrysPerMeter; inline;
+operator /(const ALeft: TTeslaMeters; const ARight: TAmperes): THenriesPerMeter; inline;
+operator *(const ALeft: TAmperes; const ARight: THenriesPerMeter): TTeslaMeters; inline;
+operator *(const ALeft: THenriesPerMeter; const ARight: TAmperes): TTeslaMeters; inline;
+operator /(const ALeft: TTeslaMeters; const ARight: THenriesPerMeter): TAmperes; inline;
+operator /(const ALeft: TTeslaMeters; const ARight: TAmpereUnitId): THenriesPerMeter; inline;
 
 // alternative definition [ H/ m ] = [ T*m/A ] = [ T/A ] * [ m ]
-operator *(const ALeft: TTeslasPerAmpere; const ARight: TMeters): THenrysPerMeter; inline;
-operator *(const ALeft: TMeters; const ARight: TTeslasPerAmpere): THenrysPerMeter; inline;
-operator /(const ALeft: THenrysPerMeter; const ARight: TTeslasPerAmpere): TMeters; inline;
-operator /(const ALeft: THenrysPerMeter; const ARight: TMeters): TTeslasPerAmpere; inline;
-operator *(const ALeft: TTeslasPerAmpere; const ARight: TMeterUnitId): THenrysPerMeter; inline;
+operator *(const ALeft: TTeslasPerAmpere; const ARight: TMeters): THenriesPerMeter; inline;
+operator *(const ALeft: TMeters; const ARight: TTeslasPerAmpere): THenriesPerMeter; inline;
+operator /(const ALeft: THenriesPerMeter; const ARight: TTeslasPerAmpere): TMeters; inline;
+operator /(const ALeft: THenriesPerMeter; const ARight: TMeters): TTeslasPerAmpere; inline;
+operator *(const ALeft: TTeslasPerAmpere; const ARight: TMeterUnitId): THenriesPerMeter; inline;
 
 // alternative definition [ H/ m ] = [ T*m/A ] = [ T ] * [ m/A ]
-operator *(const ALeft: TTeslas; const ARight: TMetersPerAmpere): THenrysPerMeter; inline;
-operator *(const ALeft: TMetersPerAmpere; const ARight: TTeslas): THenrysPerMeter; inline;
-operator /(const ALeft: THenrysPerMeter; const ARight: TTeslas): TMetersPerAmpere; inline;
-operator /(const ALeft: THenrysPerMeter; const ARight: TMetersPerAmpere): TTeslas; inline;
+operator *(const ALeft: TTeslas; const ARight: TMetersPerAmpere): THenriesPerMeter; inline;
+operator *(const ALeft: TMetersPerAmpere; const ARight: TTeslas): THenriesPerMeter; inline;
+operator /(const ALeft: THenriesPerMeter; const ARight: TTeslas): TMetersPerAmpere; inline;
+operator /(const ALeft: THenriesPerMeter; const ARight: TMetersPerAmpere): TTeslas; inline;
 
 // alternative definition [ H/ m ] = [ T*m/A ] = [ T ] / [ A/m ]
-operator /(const ALeft: TTeslas; const ARight: TAmperesPerMeter): THenrysPerMeter; inline;
-operator *(const ALeft: TAmperesPerMeter; const ARight: THenrysPerMeter): TTeslas; inline;
-operator *(const ALeft: THenrysPerMeter; const ARight: TAmperesPerMeter): TTeslas; inline;
-operator /(const ALeft: TTeslas; const ARight: THenrysPerMeter): TAmperesPerMeter; inline;
+operator /(const ALeft: TTeslas; const ARight: TAmperesPerMeter): THenriesPerMeter; inline;
+operator *(const ALeft: TAmperesPerMeter; const ARight: THenriesPerMeter): TTeslas; inline;
+operator *(const ALeft: THenriesPerMeter; const ARight: TAmperesPerMeter): TTeslas; inline;
+operator /(const ALeft: TTeslas; const ARight: THenriesPerMeter): TAmperesPerMeter; inline;
 
 // alternative definition [ H/m ] = [ N/A2 ] = [ N ] / [ A2 ]
-operator /(const ALeft: TNewtons; const ARight: TSquareAmperes): THenrysPerMeter; inline;
-operator *(const ALeft: TSquareAmperes; const ARight: THenrysPerMeter): TNewtons; inline;
-operator *(const ALeft: THenrysPerMeter; const ARight: TSquareAmperes): TNewtons; inline;
-operator /(const ALeft: TNewtons; const ARight: THenrysPerMeter): TSquareAmperes; inline;
+operator /(const ALeft: TNewtons; const ARight: TSquareAmperes): THenriesPerMeter; inline;
+operator *(const ALeft: TSquareAmperes; const ARight: THenriesPerMeter): TNewtons; inline;
+operator *(const ALeft: THenriesPerMeter; const ARight: TSquareAmperes): TNewtons; inline;
+operator /(const ALeft: TNewtons; const ARight: THenriesPerMeter): TSquareAmperes; inline;
 
 type
   { Unit of TeslaMeterPerAmpere }
@@ -3959,10 +3959,10 @@ operator *(const ALeft: TSquareSecondsPerSquareMeter; const ARight: TSquareMeter
 operator /(const ALeft: double; const ARight: TSquareSecondsPerSquareMeter): TSquareMetersPerSquareSecond; inline;
 
 // alternative definition [ s2/m2 ] = [ F/m ] * [ H/m ]
-operator *(const ALeft: TFaradsPerMeter; const ARight: THenrysPerMeter): TSquareSecondsPerSquareMeter; inline;
-operator *(const ALeft: THenrysPerMeter; const ARight: TFaradsPerMeter): TSquareSecondsPerSquareMeter; inline;
-operator /(const ALeft: TSquareSecondsPerSquareMeter; const ARight: TFaradsPerMeter): THenrysPerMeter; inline;
-operator /(const ALeft: TSquareSecondsPerSquareMeter; const ARight: THenrysPerMeter): TFaradsPerMeter; inline;
+operator *(const ALeft: TFaradsPerMeter; const ARight: THenriesPerMeter): TSquareSecondsPerSquareMeter; inline;
+operator *(const ALeft: THenriesPerMeter; const ARight: TFaradsPerMeter): TSquareSecondsPerSquareMeter; inline;
+operator /(const ALeft: TSquareSecondsPerSquareMeter; const ARight: TFaradsPerMeter): THenriesPerMeter; inline;
+operator /(const ALeft: TSquareSecondsPerSquareMeter; const ARight: THenriesPerMeter): TFaradsPerMeter; inline;
 
 type
   { Unit of SquareJoule }
@@ -4166,7 +4166,7 @@ type
   end;
 
 type
-  THenryPerMeterHelper = record helper for THenrysPerMeter
+  THenryPerMeterHelper = record helper for THenriesPerMeter
     function ToNewtonPerSquareAmpere: specialize TQuantity<TNewtonPerSquareAmpereUnit>;
     function ToTeslaMeterPerAmpere: specialize TQuantity<TTeslaMeterPerAmpereUnit>;
   end;
@@ -6164,9 +6164,9 @@ end;
 class function TKilogramMeterPerSecondUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 3 then
-    result := Format('%sg.%sm/%ss', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
+    result := Format('%sg·%sm/%ss', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
   else
-    result := 'kg.m/s';
+    result := 'kg·m/s';
 end;
 
 class function TKilogramMeterPerSecondUnit.GetName(const APrefixes: TPrefixes): string; static;
@@ -6222,9 +6222,9 @@ end;
 class function TNewtonSecondUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%sN.%ss', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%sN·%ss', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
   else
-    result := 'N.s';
+    result := 'N·s';
 end;
 
 class function TNewtonSecondUnit.GetName(const APrefixes: TPrefixes): string; static;
@@ -6250,9 +6250,9 @@ end;
 class function TKilogramSquareMeterUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%sg.%sm2', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%sg·%sm2', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
   else
-    result := 'kg.m2';
+    result := 'kg·m2';
 end;
 
 class function TKilogramSquareMeterUnit.GetName(const APrefixes: TPrefixes): string; static;
@@ -6307,9 +6307,9 @@ end;
 class function TKilogramSquareMeterPerSecondUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 3 then
-    result := Format('%sg.%sm2/%ss', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
+    result := Format('%sg·%sm2/%ss', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
   else
-    result := 'kg.m2/s';
+    result := 'kg·m2/s';
 end;
 
 class function TKilogramSquareMeterPerSecondUnit.GetName(const APrefixes: TPrefixes): string; static;
@@ -6970,9 +6970,9 @@ end;
 class function TElettronvoltUnit.GetName(const APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('%selettronvolt ', [PrefixTable[APrefixes[0]].Name])
+    result := Format('%selettronvolt', [PrefixTable[APrefixes[0]].Name])
   else
-    result := 'elettronvolt ';
+    result := 'elettronvolt';
 end;
 
 class function TElettronvoltUnit.GetValue(const AValue: double; const APrefixes: TPrefixes): double; static;
@@ -7682,71 +7682,71 @@ end;
 
 // main definition [ H ] = [ Wb ] / [ A ]
 
-operator /(const ALeft: TWebers; const ARight: TAmperes): THenrys;
+operator /(const ALeft: TWebers; const ARight: TAmperes): THenries;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-operator *(const ALeft: TAmperes; const ARight: THenrys): TWebers;
+operator *(const ALeft: TAmperes; const ARight: THenries): TWebers;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator *(const ALeft: THenrys; const ARight: TAmperes): TWebers;
+operator *(const ALeft: THenries; const ARight: TAmperes): TWebers;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TWebers; const ARight: THenrys): TAmperes;
+operator /(const ALeft: TWebers; const ARight: THenries): TAmperes;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-operator /(const ALeft: TWebers; const ARight: TAmpereUnitId): THenrys;
+operator /(const ALeft: TWebers; const ARight: TAmpereUnitId): THenries;
 begin
   result.FValue := ALeft.FValue;
 end;
 
 // alternative definition [ H ] = [ Ω ] * [ s ]
 
-operator *(const ALeft: TOhms; const ARight: TSeconds): THenrys;
+operator *(const ALeft: TOhms; const ARight: TSeconds): THenries;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator *(const ALeft: TSeconds; const ARight: TOhms): THenrys;
+operator *(const ALeft: TSeconds; const ARight: TOhms): THenries;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: THenrys; const ARight: TOhms): TSeconds;
+operator /(const ALeft: THenries; const ARight: TOhms): TSeconds;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-operator /(const ALeft: THenrys; const ARight: TSeconds): TOhms;
+operator /(const ALeft: THenries; const ARight: TSeconds): TOhms;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
 // alternative definition [ H ] = [ Ω ] / [ Hz ]
 
-operator /(const ALeft: TOhms; const ARight: THertz): THenrys;
+operator /(const ALeft: TOhms; const ARight: THertz): THenries;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-operator *(const ALeft: THertz; const ARight: THenrys): TOhms;
+operator *(const ALeft: THertz; const ARight: THenries): TOhms;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator *(const ALeft: THenrys; const ARight: THertz): TOhms;
+operator *(const ALeft: THenries; const ARight: THertz): TOhms;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TOhms; const ARight: THenrys): THertz;
+operator /(const ALeft: TOhms; const ARight: THenries): THertz;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
@@ -7999,9 +7999,9 @@ end;
 class function TNewtonMeterUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%sN.%sm', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%sN·%sm', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
   else
-    result := 'N.m';
+    result := 'N·m';
 end;
 
 class function TNewtonMeterUnit.GetName(const APrefixes: TPrefixes): string; static;
@@ -8108,9 +8108,9 @@ end;
 class function TNewtonMeterPerRadianUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%sN.%sm/rad', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%sN·%sm/rad', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
   else
-    result := 'N.m/rad';
+    result := 'N·m/rad';
 end;
 
 class function TNewtonMeterPerRadianUnit.GetName(const APrefixes: TPrefixes): string; static;
@@ -8136,9 +8136,9 @@ end;
 class function TNewtonMeterPerDegreeUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%sN.%sm/deg', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%sN·%sm/deg', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
   else
-    result := 'N.m/deg';
+    result := 'N·m/deg';
 end;
 
 class function TNewtonMeterPerDegreeUnit.GetName(const APrefixes: TPrefixes): string; static;
@@ -8548,9 +8548,9 @@ end;
 class function TPoiseuilleUnit.GetName(const APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-    result := Format('%spoiseuille ', [PrefixTable[APrefixes[0]].Name])
+    result := Format('%spoiseuille', [PrefixTable[APrefixes[0]].Name])
   else
-    result := 'poiseuille ';
+    result := 'poiseuille';
 end;
 
 class function TPoiseuilleUnit.GetValue(const AValue: double; const APrefixes: TPrefixes): double; static;
@@ -8643,9 +8643,9 @@ end;
 class function TPascalSecondUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%sPa.%ss', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%sPa·%ss', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
   else
-    result := 'Pa.s';
+    result := 'Pa·s';
 end;
 
 class function TPascalSecondUnit.GetName(const APrefixes: TPrefixes): string; static;
@@ -8805,9 +8805,9 @@ end;
 class function TQuarticMeterSecondUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%sm4.%ss', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%sm4·%ss', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
   else
-    result := 'm4.s';
+    result := 'm4·s';
 end;
 
 class function TQuarticMeterSecondUnit.GetName(const APrefixes: TPrefixes): string; static;
@@ -9067,9 +9067,9 @@ end;
 class function TKilogramSquareSecondUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%sg.%ss2', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%sg·%ss2', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
   else
-    result := 'kg.s2';
+    result := 'kg·s2';
 end;
 
 class function TKilogramSquareSecondUnit.GetName(const APrefixes: TPrefixes): string; static;
@@ -9201,9 +9201,9 @@ end;
 class function TNewtonSquareMeterUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%sN.%sm2', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%sN·%sm2', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
   else
-    result := 'N.m2';
+    result := 'N·m2';
 end;
 
 class function TNewtonSquareMeterUnit.GetName(const APrefixes: TPrefixes): string; static;
@@ -9526,9 +9526,9 @@ end;
 class function TNewtonSquareMeterPerSquareKilogramUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 3 then
-    result := Format('%sN.%sm2/%sg2', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
+    result := Format('%sN·%sm2/%sg2', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
   else
-    result := 'N.m2/kg2';
+    result := 'N·m2/kg2';
 end;
 
 class function TNewtonSquareMeterPerSquareKilogramUnit.GetName(const APrefixes: TPrefixes): string; static;
@@ -9796,9 +9796,9 @@ end;
 class function TKilogramKelvinUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%sg.%sK', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%sg·%sK', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
   else
-    result := 'kg.K';
+    result := 'kg·K';
 end;
 
 class function TKilogramKelvinUnit.GetName(const APrefixes: TPrefixes): string; static;
@@ -10044,9 +10044,9 @@ end;
 class function TMeterKelvinUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%sm.%sK', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%sm·%sK', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
   else
-    result := 'm.K';
+    result := 'm·K';
 end;
 
 class function TMeterKelvinUnit.GetName(const APrefixes: TPrefixes): string; static;
@@ -10446,9 +10446,9 @@ end;
 class function TSquareMeterKelvinUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%sm2.%sK', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%sm2·%sK', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
   else
-    result := 'm2.K';
+    result := 'm2·K';
 end;
 
 class function TSquareMeterKelvinUnit.GetName(const APrefixes: TPrefixes): string; static;
@@ -10606,9 +10606,9 @@ end;
 class function TSquareMeterQuarticKelvinUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%sm2.%sK4', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%sm2·%sK4', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
   else
-    result := 'm2.K4';
+    result := 'm2·K4';
 end;
 
 class function TSquareMeterQuarticKelvinUnit.GetName(const APrefixes: TPrefixes): string; static;
@@ -10876,9 +10876,9 @@ end;
 class function TMoleKelvinUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%smol.%sK', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%smol·%sK', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
   else
-    result := 'mol.K';
+    result := 'mol·K';
 end;
 
 class function TMoleKelvinUnit.GetName(const APrefixes: TPrefixes): string; static;
@@ -11036,9 +11036,9 @@ end;
 class function TOhmMeterUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%sΩ.%sm', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%sΩ·%sm', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
   else
-    result := 'Ω.m';
+    result := 'Ω·m';
 end;
 
 class function TOhmMeterUnit.GetName(const APrefixes: TPrefixes): string; static;
@@ -11542,9 +11542,9 @@ end;
 class function TNewtonSquareMeterPerSquareCoulombUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 3 then
-    result := Format('%sN.%sm2/%sC2', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
+    result := Format('%sN·%sm2/%sC2', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
   else
-    result := 'N.m2/C2';
+    result := 'N·m2/C2';
 end;
 
 class function TNewtonSquareMeterPerSquareCoulombUnit.GetName(const APrefixes: TPrefixes): string; static;
@@ -11691,9 +11691,9 @@ end;
 class function TVoltMeterUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%sV.%sm', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%sV·%sm', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
   else
-    result := 'V.m';
+    result := 'V·m';
 end;
 
 class function TVoltMeterUnit.GetName(const APrefixes: TPrefixes): string; static;
@@ -11768,9 +11768,9 @@ end;
 class function TNewtonSquareMeterPerCoulombUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 3 then
-    result := Format('%sN.%sm2/%sC', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
+    result := Format('%sN·%sm2/%sC', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
   else
-    result := 'N.m2/C';
+    result := 'N·m2/C';
 end;
 
 class function TNewtonSquareMeterPerCoulombUnit.GetName(const APrefixes: TPrefixes): string; static;
@@ -11797,9 +11797,9 @@ end;
 class function TVoltMeterPerSecondUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 3 then
-    result := Format('%sV.%sm/%ss', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
+    result := Format('%sV·%sm/%ss', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
   else
-    result := 'V.m/s';
+    result := 'V·m/s';
 end;
 
 class function TVoltMeterPerSecondUnit.GetName(const APrefixes: TPrefixes): string; static;
@@ -12084,9 +12084,9 @@ end;
 class function TTeslaMeterUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%sT.%sm', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%sT·%sm', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
   else
-    result := 'T.m';
+    result := 'T·m';
 end;
 
 class function TTeslaMeterUnit.GetName(const APrefixes: TPrefixes): string; static;
@@ -12274,147 +12274,147 @@ end;
 
 // main definition [ H/m ] = [ H ] / [ m ]
 
-operator /(const ALeft: THenrys; const ARight: TMeters): THenrysPerMeter;
+operator /(const ALeft: THenries; const ARight: TMeters): THenriesPerMeter;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-operator *(const ALeft: TMeters; const ARight: THenrysPerMeter): THenrys;
+operator *(const ALeft: TMeters; const ARight: THenriesPerMeter): THenries;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator *(const ALeft: THenrysPerMeter; const ARight: TMeters): THenrys;
+operator *(const ALeft: THenriesPerMeter; const ARight: TMeters): THenries;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: THenrys; const ARight: THenrysPerMeter): TMeters;
+operator /(const ALeft: THenries; const ARight: THenriesPerMeter): TMeters;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-operator /(const ALeft: THenrys; const ARight: TMeterUnitId): THenrysPerMeter;
+operator /(const ALeft: THenries; const ARight: TMeterUnitId): THenriesPerMeter;
 begin
   result.FValue := ALeft.FValue;
 end;
 
 // alternative definition [ H/ m ] = [ T*m/A ] = [ T*m ] / [ A ]
 
-operator /(const ALeft: TTeslaMeters; const ARight: TAmperes): THenrysPerMeter;
+operator /(const ALeft: TTeslaMeters; const ARight: TAmperes): THenriesPerMeter;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-operator *(const ALeft: TAmperes; const ARight: THenrysPerMeter): TTeslaMeters;
+operator *(const ALeft: TAmperes; const ARight: THenriesPerMeter): TTeslaMeters;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator *(const ALeft: THenrysPerMeter; const ARight: TAmperes): TTeslaMeters;
+operator *(const ALeft: THenriesPerMeter; const ARight: TAmperes): TTeslaMeters;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TTeslaMeters; const ARight: THenrysPerMeter): TAmperes;
+operator /(const ALeft: TTeslaMeters; const ARight: THenriesPerMeter): TAmperes;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-operator /(const ALeft: TTeslaMeters; const ARight: TAmpereUnitId): THenrysPerMeter;
+operator /(const ALeft: TTeslaMeters; const ARight: TAmpereUnitId): THenriesPerMeter;
 begin
   result.FValue := ALeft.FValue;
 end;
 
 // alternative definition [ H/ m ] = [ T*m/A ] = [ T/A ] * [ m ]
 
-operator *(const ALeft: TTeslasPerAmpere; const ARight: TMeters): THenrysPerMeter;
+operator *(const ALeft: TTeslasPerAmpere; const ARight: TMeters): THenriesPerMeter;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator *(const ALeft: TMeters; const ARight: TTeslasPerAmpere): THenrysPerMeter;
+operator *(const ALeft: TMeters; const ARight: TTeslasPerAmpere): THenriesPerMeter;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: THenrysPerMeter; const ARight: TTeslasPerAmpere): TMeters;
+operator /(const ALeft: THenriesPerMeter; const ARight: TTeslasPerAmpere): TMeters;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-operator /(const ALeft: THenrysPerMeter; const ARight: TMeters): TTeslasPerAmpere;
+operator /(const ALeft: THenriesPerMeter; const ARight: TMeters): TTeslasPerAmpere;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-operator *(const ALeft: TTeslasPerAmpere; const ARight: TMeterUnitId): THenrysPerMeter;
+operator *(const ALeft: TTeslasPerAmpere; const ARight: TMeterUnitId): THenriesPerMeter;
 begin
   result.FValue := ALeft.FValue;
 end;
 
 // alternative definition [ H/ m ] = [ T*m/A ] = [ T ] * [ m/A ]
 
-operator *(const ALeft: TTeslas; const ARight: TMetersPerAmpere): THenrysPerMeter;
+operator *(const ALeft: TTeslas; const ARight: TMetersPerAmpere): THenriesPerMeter;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator *(const ALeft: TMetersPerAmpere; const ARight: TTeslas): THenrysPerMeter;
+operator *(const ALeft: TMetersPerAmpere; const ARight: TTeslas): THenriesPerMeter;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: THenrysPerMeter; const ARight: TTeslas): TMetersPerAmpere;
+operator /(const ALeft: THenriesPerMeter; const ARight: TTeslas): TMetersPerAmpere;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-operator /(const ALeft: THenrysPerMeter; const ARight: TMetersPerAmpere): TTeslas;
+operator /(const ALeft: THenriesPerMeter; const ARight: TMetersPerAmpere): TTeslas;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
 // alternative definition [ H/ m ] = [ T*m/A ] = [ T ] / [ A/m ]
 
-operator /(const ALeft: TTeslas; const ARight: TAmperesPerMeter): THenrysPerMeter;
+operator /(const ALeft: TTeslas; const ARight: TAmperesPerMeter): THenriesPerMeter;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-operator *(const ALeft: TAmperesPerMeter; const ARight: THenrysPerMeter): TTeslas;
+operator *(const ALeft: TAmperesPerMeter; const ARight: THenriesPerMeter): TTeslas;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator *(const ALeft: THenrysPerMeter; const ARight: TAmperesPerMeter): TTeslas;
+operator *(const ALeft: THenriesPerMeter; const ARight: TAmperesPerMeter): TTeslas;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TTeslas; const ARight: THenrysPerMeter): TAmperesPerMeter;
+operator /(const ALeft: TTeslas; const ARight: THenriesPerMeter): TAmperesPerMeter;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
 // alternative definition [ H/m ] = [ N/A2 ] = [ N ] / [ A2 ]
 
-operator /(const ALeft: TNewtons; const ARight: TSquareAmperes): THenrysPerMeter;
+operator /(const ALeft: TNewtons; const ARight: TSquareAmperes): THenriesPerMeter;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-operator *(const ALeft: TSquareAmperes; const ARight: THenrysPerMeter): TNewtons;
+operator *(const ALeft: TSquareAmperes; const ARight: THenriesPerMeter): TNewtons;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator *(const ALeft: THenrysPerMeter; const ARight: TSquareAmperes): TNewtons;
+operator *(const ALeft: THenriesPerMeter; const ARight: TSquareAmperes): TNewtons;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TNewtons; const ARight: THenrysPerMeter): TSquareAmperes;
+operator /(const ALeft: TNewtons; const ARight: THenriesPerMeter): TSquareAmperes;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
@@ -12424,9 +12424,9 @@ end;
 class function TTeslaMeterPerAmpereUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 3 then
-    result := Format('%sT.%sm/%sA', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
+    result := Format('%sT·%sm/%sA', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol, PrefixTable[APrefixes[2]].Symbol])
   else
-    result := 'T.m/A';
+    result := 'T·m/A';
 end;
 
 class function TTeslaMeterPerAmpereUnit.GetName(const APrefixes: TPrefixes): string; static;
@@ -12700,22 +12700,22 @@ end;
 
 // alternative definition [ s2/m2 ] = [ F/m ] * [ H/m ]
 
-operator *(const ALeft: TFaradsPerMeter; const ARight: THenrysPerMeter): TSquareSecondsPerSquareMeter;
+operator *(const ALeft: TFaradsPerMeter; const ARight: THenriesPerMeter): TSquareSecondsPerSquareMeter;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator *(const ALeft: THenrysPerMeter; const ARight: TFaradsPerMeter): TSquareSecondsPerSquareMeter;
+operator *(const ALeft: THenriesPerMeter; const ARight: TFaradsPerMeter): TSquareSecondsPerSquareMeter;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TSquareSecondsPerSquareMeter; const ARight: TFaradsPerMeter): THenrysPerMeter;
+operator /(const ALeft: TSquareSecondsPerSquareMeter; const ARight: TFaradsPerMeter): THenriesPerMeter;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-operator /(const ALeft: TSquareSecondsPerSquareMeter; const ARight: THenrysPerMeter): TFaradsPerMeter;
+operator /(const ALeft: TSquareSecondsPerSquareMeter; const ARight: THenriesPerMeter): TFaradsPerMeter;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
@@ -12764,9 +12764,9 @@ end;
 class function TJouleSecondUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%sJ.%ss', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%sJ·%ss', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
   else
-    result := 'J.s';
+    result := 'J·s';
 end;
 
 class function TJouleSecondUnit.GetName(const APrefixes: TPrefixes): string; static;
@@ -12868,9 +12868,9 @@ end;
 class function TElettronvoltSecondUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 2 then
-    result := Format('%seV.%ss', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+    result := Format('%seV·%ss', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
   else
-    result := 'eV.s';
+    result := 'eV·s';
 end;
 
 class function TElettronvoltSecondUnit.GetName(const APrefixes: TPrefixes): string; static;

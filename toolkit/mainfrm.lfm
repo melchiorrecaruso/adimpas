@@ -6,7 +6,6 @@ object MainForm: TMainForm
   Caption = 'ADimPas Toolkit'
   ClientHeight = 530
   ClientWidth = 766
-  OnClose = FormClose
   OnCreate = FormCreate
   LCLVersion = '3.99.0.0'
   object PageControl: TPageControl

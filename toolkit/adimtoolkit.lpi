@@ -63,7 +63,6 @@
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <CursorPos X="3" Y="28"/>
-        <FoldState Value=" T3jL077 PiGiF04"/>
         <UsageCount Value="118"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -453,10 +452,16 @@
     </CodeGeneration>
     <Linking>
       <Debugging>
+        <GenerateDebugInfo Value="False"/>
         <RunWithoutDebug Value="True"/>
         <DebugInfoType Value="dsDwarf3"/>
-        <UseHeaptrc Value="True"/>
+        <UseLineInfoUnit Value="False"/>
       </Debugging>
+      <Options>
+        <Win32>
+          <GraphicApplication Value="True"/>
+        </Win32>
+      </Options>
     </Linking>
   </CompilerOptions>
   <Debugging>
