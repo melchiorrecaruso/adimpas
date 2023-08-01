@@ -1,6 +1,8 @@
 # ADimPas
 
-[![Actions Status](https://github.com/melchiorrecaruso/ADimPas/workflows/build-test/badge.svg)](https://github.com/melchiorrecaruso/ADimPas/actions)
+[![Actions Status](https://github.com/melchiorrecaruso/ADimPas/workflows/linux/badge.svg)](https://github.com/melchiorrecaruso/ADimPas/actions)
+[![Actions Status](https://github.com/melchiorrecaruso/ADimPas/workflows/win/badge.svg)](https://github.com/melchiorrecaruso/ADimPas/actions)
+[![Actions Status](https://github.com/melchiorrecaruso/ADimPas/workflows/macos/badge.svg)](https://github.com/melchiorrecaruso/ADimPas/actions)
 
 Another unit for type checking of dimensioned quantities at compile time in FreePascal. From a [circular's](https://github.com/circular17/DimPas) idea.
 

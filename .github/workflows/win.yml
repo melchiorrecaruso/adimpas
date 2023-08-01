@@ -1,4 +1,4 @@
-name: build-test
+name: Win
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - name: Checkout repository
@@ -15,8 +15,7 @@ jobs:
 
     - name: Install Lazarus
       run: |
-        sudo apt-get update
-        sudo apt-get install lazarus
+        choco install lazarus -y
 
     - name: Build project
       run: |
@@ -24,11 +23,10 @@ jobs:
 
     - name: Test project
       run: |
-        ./build/adimtest
-        exit_code=$?
+        .\build\adimtest.exe
+        $exit_code = $LastExitCode
 
-        if [ $exit_code -ne 0 ]; then
-          echo "Test exited with a non-zero exit code: $exit_code"
+        if ($exit_code -ne 0) {
+          Write-Error "Test exited with a non-zero exit code: $exit_code"
           exit 1
-        fi
-
+        }
