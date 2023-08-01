@@ -57,7 +57,7 @@ end;
 
 function TQuantity.ToVerboseString: string;
 begin
-  result := FloatToStr(FValue) + ' ' + U.GetName([]);
+  result := FloatToStr(FValue) + ' ' + U.GetName(FValue, []);
 end;
 
 function TQuantity.ToString(Precision, Digits: longint; const Prefixes: TPrefixes): string;
@@ -66,8 +66,13 @@ begin
 end;
 
 function TQuantity.ToVerboseString(Precision, Digits: longint; const Prefixes: TPrefixes): string;
+var
+  FactoredValue: double;
 begin
-  result := FloatToStrF(U.GetValue(FValue, Prefixes), ffGeneral, Precision, Digits) + ' ' + U.GetName(Prefixes);
+  FactoredValue := U.GetValue(FValue, Prefixes);
+  begin
+    result := FloatToStrF(FactoredValue, ffGeneral, Precision, Digits) + ' ' + U.GetName(FactoredValue, Prefixes);
+  end;  
 end;                                             
 
 class operator TQuantity.+(const AValue: TSelf): TSelf;

@@ -50,7 +50,7 @@
         <IsPartOfProject Value="True"/>
         <TopLine Value="8"/>
         <CursorPos X="3" Y="33"/>
-        <UsageCount Value="118"/>
+        <UsageCount Value="122"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -62,8 +62,9 @@
         <UnitName Value="MainFrm"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <CursorPos X="3" Y="28"/>
-        <UsageCount Value="118"/>
+        <TopLine Value="536"/>
+        <CursorPos X="75" Y="540"/>
+        <UsageCount Value="122"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -311,48 +312,31 @@
         <CursorPos X="3" Y="548"/>
         <UsageCount Value="10"/>
       </Unit>
+      <Unit>
+        <Filename Value="C:\fpcupdeluxe-trunk\fpcsrc\packages\rtl-objpas\src\inc\strutils.pp"/>
+        <UnitName Value="StrUtils"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="859"/>
+        <CursorPos X="3" Y="863"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\fpcupdeluxe-trunk\fpcsrc\rtl\objpas\sysutils\sysstrh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="234"/>
+        <CursorPos X="23" Y="253"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\fpcupdeluxe-trunk\fpcsrc\rtl\objpas\sysutils\syssr.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="58"/>
+        <CursorPos X="3" Y="8"/>
+        <UsageCount Value="10"/>
+      </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="587" Column="66" TopLine="569"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="987" Column="3" TopLine="927"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="468" Column="40" TopLine="257"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="160" Column="22" TopLine="106"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="152" Column="30" TopLine="124"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="159" Column="14" TopLine="133"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="287" Column="46" TopLine="282"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="108" Column="28" TopLine="89"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="288" Column="36" TopLine="283"/>
-      </Position>
-      <Position>
-        <Filename Value="mainfrm.pas"/>
-        <Caret Line="117" Column="26" TopLine="98"/>
-      </Position>
       <Position>
         <Filename Value="mainfrm.pas"/>
         <Caret Line="293" Column="36" TopLine="278"/>
@@ -432,6 +416,46 @@
       <Position>
         <Filename Value="mainfrm.pas"/>
         <Caret Line="839" Column="36" TopLine="821"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="546" Column="37" TopLine="529"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="539" Column="89" TopLine="505"/>
+      </Position>
+      <Position>
+        <Filename Value="C:\fpcupdeluxe-trunk\fpcsrc\packages\rtl-objpas\src\inc\strutils.pp"/>
+        <Caret Line="282" Column="23" TopLine="265"/>
+      </Position>
+      <Position>
+        <Filename Value="C:\fpcupdeluxe-trunk\fpcsrc\packages\rtl-objpas\src\inc\strutils.pp"/>
+        <Caret Line="863" Column="3" TopLine="859"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="562" Column="149" TopLine="544"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="564" Column="148" TopLine="546"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="584" Column="3" TopLine="552"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="485" Column="33" TopLine="479"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="564" Column="69" TopLine="546"/>
+      </Position>
+      <Position>
+        <Filename Value="mainfrm.pas"/>
+        <Caret Line="593" Column="43" TopLine="572"/>
       </Position>
     </JumpHistory>
   </ProjectOptions>

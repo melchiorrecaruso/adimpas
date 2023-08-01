@@ -1,11 +1,11 @@
 object MainForm: TMainForm
-  Left = 313
+  Left = 280
   Height = 530
-  Top = 111
-  Width = 766
+  Top = 124
+  Width = 856
   Caption = 'ADimPas Toolkit'
   ClientHeight = 530
-  ClientWidth = 766
+  ClientWidth = 856
   OnCreate = FormCreate
   LCLVersion = '3.99.0.0'
   object PageControl: TPageControl
@@ -18,7 +18,7 @@ object MainForm: TMainForm
     Left = 0
     Height = 490
     Top = 40
-    Width = 766
+    Width = 856
     ActivePage = TabSheet1
     Anchors = [akTop, akLeft, akRight, akBottom]
     BorderSpacing.Top = 4
@@ -27,12 +27,12 @@ object MainForm: TMainForm
     object TabSheet1: TTabSheet
       Caption = 'Unit of measurement'
       ClientHeight = 462
-      ClientWidth = 758
+      ClientWidth = 848
       object WorksheetGrid: TsWorksheetGrid
         Left = 4
         Height = 454
         Top = 4
-        Width = 750
+        Width = 840
         FrozenCols = 0
         FrozenRows = 0
         PageBreakPen.Color = clBlue
@@ -56,7 +56,7 @@ object MainForm: TMainForm
     object TabSheet2: TTabSheet
       Caption = 'Unit Source Code'
       ClientHeight = 462
-      ClientWidth = 758
+      ClientWidth = 848
       inline SynEdit: TSynEdit
         AnchorSideLeft.Control = TabSheet2
         AnchorSideTop.Control = TabSheet2
@@ -67,7 +67,7 @@ object MainForm: TMainForm
         Left = 4
         Height = 454
         Top = 4
-        Width = 750
+        Width = 840
         BorderSpacing.Left = 4
         BorderSpacing.Top = 4
         BorderSpacing.Right = 4
@@ -663,7 +663,7 @@ object MainForm: TMainForm
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Side = asrBottom
-    Left = 662
+    Left = 752
     Height = 32
     Top = 8
     Width = 100
@@ -755,7 +755,7 @@ object MainForm: TMainForm
     AnchorSideRight.Control = RunBtn
     AnchorSideBottom.Control = RunBtn
     AnchorSideBottom.Side = asrBottom
-    Left = 558
+    Left = 648
     Height = 32
     Top = 8
     Width = 100
@@ -771,17 +771,32 @@ object MainForm: TMainForm
     AnchorSideRight.Control = ExportBtn
     AnchorSideBottom.Control = ExportBtn
     AnchorSideBottom.Side = asrBottom
-    Left = 379
+    Left = 469
     Height = 32
     Top = 8
     Width = 169
     Anchors = [akTop, akRight, akBottom]
-    BorderSpacing.Left = 12
+    BorderSpacing.Left = 20
     BorderSpacing.Right = 10
     Caption = 'Add trigonometric functions'
     Checked = True
     State = cbChecked
     TabOrder = 4
+  end
+  object AddPluralName: TCheckBox
+    AnchorSideTop.Control = TrigonometricCheckBox
+    AnchorSideRight.Control = TrigonometricCheckBox
+    AnchorSideBottom.Control = TrigonometricCheckBox
+    AnchorSideBottom.Side = asrBottom
+    Left = 143
+    Height = 32
+    Top = 8
+    Width = 306
+    Anchors = [akTop, akRight, akBottom]
+    Caption = 'Add unit name in plural for quantities greater than one'
+    Checked = True
+    State = cbChecked
+    TabOrder = 5
   end
   object SaveDialog: TSaveDialog
     Left = 104

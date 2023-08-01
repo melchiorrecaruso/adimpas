@@ -165,9 +165,9 @@ begin
   area  := side1*side2;
   side1 := area/side2;
   side2 := area/side1;
-  if side1.ToVerboseString <> '10 meter'        then halt(1);
-  if side2.ToVerboseString <> '5 meter'         then halt(2);
-  if area .ToVerboseString <> '50 square meter' then halt(3);
+  if side1.ToVerboseString <> '10 meters'        then halt(1);
+  if side2.ToVerboseString <> '5 meters'         then halt(2);
+  if area .ToVerboseString <> '50 square meters' then halt(3);
   writeln('* TEST-00: PASSED');
 
   // TEST-01 - VOLUME
@@ -178,10 +178,10 @@ begin
   side1  := volume/side2/side3;
   side2  := volume/side1/side3;
   side3  := volume/side1/side2;
-  if side1 .ToVerboseString <> '10 meter'        then halt(1);
-  if side2 .ToVerboseString <> '5 meter'         then halt(2);
-  if side3 .ToVerboseString <> '2 meter'         then halt(3);
-  if volume.ToVerboseString <> '100 cubic meter' then halt(4);
+  if side1 .ToVerboseString <> '10 meters'        then halt(1);
+  if side2 .ToVerboseString <> '5 meters'         then halt(2);
+  if side3 .ToVerboseString <> '2 meters'         then halt(3);
+  if volume.ToVerboseString <> '100 cubic meters' then halt(4);
   writeln('* TEST-01: PASSED');
 
   // TEST-02 - HYPER VOLUME
@@ -194,11 +194,11 @@ begin
   side2 := hypervolume/side1/side3/side4;
   side3 := hypervolume/side1/side2/side4;
   side4 := hypervolume/side1/side2/side3;
-  if side1      .ToVerboseString <> '10 meter'          then halt(1);
-  if side2      .ToVerboseString <> '5 meter'           then halt(2);
-  if side3      .ToVerboseString <> '2 meter'           then halt(3);
-  if side4      .ToVerboseString <> '7 meter'           then halt(4);
-  if hypervolume.ToVerboseString <> '700 quartic meter' then halt(5);
+  if side1      .ToVerboseString <> '10 meters'          then halt(1);
+  if side2      .ToVerboseString <> '5 meters'           then halt(2);
+  if side3      .ToVerboseString <> '2 meters'           then halt(3);
+  if side4      .ToVerboseString <> '7 meters'           then halt(4);
+  if hypervolume.ToVerboseString <> '700 quartic meters' then halt(5);
   writeln('* TEST-02: PASSED');
 
   // TEST-03 - SPEED
@@ -207,9 +207,9 @@ begin
   speed    := distance/time;
   time     := distance/speed;
   distance := speed*time;
-  if speed   .ToMeterPerHour.ToVerboseString(5, 0, [pKilo]) <> '10 kilometer per hour' then halt(1);
-  if time    .ToHour        .ToVerboseString                <> '2 hour'                then halt(2);
-  if distance               .ToVerboseString(5, 0, [pKilo]) <> '20 kilometer'          then halt(3);
+  if speed   .ToMeterPerHour.ToVerboseString(5, 0, [pKilo]) <> '10 kilometers per hour' then halt(1);
+  if time    .ToHour        .ToVerboseString                <> '2 hours'                then halt(2);
+  if distance               .ToVerboseString(5, 0, [pKilo]) <> '20 kilometers'          then halt(3);
   writeln('* TEST-03: PASSED');
 
   // TEST-04 - ACCELERATION
@@ -218,9 +218,9 @@ begin
   acc   := speed/time;
   time  := speed/acc;
   speed := acc*time;
-  if speed.ToMeterPerHour         .ToVerboseString(5, 0, [pKilo       ]) <> '100 kilometer per hour'           then halt(1);
-  if time                         .ToVerboseString(5, 0, [            ]) <> '5 second'                         then halt(2);
-  if acc  .ToMeterPerHourPerSecond.ToVerboseString(5, 0, [pKilo, pNone]) <> '20 kilometer per hour per second' then halt(3);
+  if speed.ToMeterPerHour         .ToVerboseString(5, 0, [pKilo       ]) <> '100 kilometers per hour'           then halt(1);
+  if time                         .ToVerboseString(5, 0, [            ]) <> '5 seconds'                         then halt(2);
+  if acc  .ToMeterPerHourPerSecond.ToVerboseString(5, 0, [pKilo, pNone]) <> '20 kilometers per hour per second' then halt(3);
   writeln('* TEST-04: PASSED');
 
   // TEST-05 - FORCE
@@ -229,9 +229,9 @@ begin
   force := mass*acc;
   mass  := force/acc;
   acc   := force/mass;
-  if mass .ToVerboseString(5, 0, []) <> '5 kilogram' then halt(1);
+  if mass .ToVerboseString(5, 0, []) <> '5 kilograms' then halt(1);
   if acc  .ToString       (5, 0, []) <> '10 m/s2'    then halt(2);
-  if force.ToVerboseString(5, 0, []) <> '50 newton'  then halt(3);
+  if force.ToVerboseString(5, 0, []) <> '50 newtons'  then halt(3);
   writeln('* TEST-05: PASSED');
 
   // TEST-06 - ANGULAR SPEED
@@ -241,8 +241,8 @@ begin
   radius       := 2*m;
   speed        := angularspeed*radius;
   angularspeed := speed/radius;
-  if angularspeed .ToVerboseString(5, 1, []) <> '2.5 radian per second' then halt(1);
-  if speed        .ToVerboseString(5, 1, []) <> '5 meter per second'    then halt(2);
+  if angularspeed .ToVerboseString(5, 1, []) <> '2.5 radians per second' then halt(1);
+  if speed        .ToVerboseString(5, 1, []) <> '5 meters per second'    then halt(2);
   writeln('* TEST-06: PASSED');
 
   // TEST-07 - CENTRIFUGAL FORCE
@@ -283,8 +283,8 @@ begin
   force    := 10*N;
   distance := 5*m;
   work     := force*distance;
-  if work.ToString       (5, 0, [pDeca]) <> '5 daJ'       then halt(1);
-  if work.ToVerboseString(5, 0, [pDeca]) <> '5 decajoule' then halt(2);
+  if work.ToString       (5, 0, [pDeca]) <> '5 daJ'        then halt(1);
+  if work.ToVerboseString(5, 0, [pDeca]) <> '5 decajoules' then halt(2);
   writeln('* TEST-10: PASSED');
 
   // TEST-11 - POWER (J/s)
@@ -344,29 +344,29 @@ begin
   charge      :=  10*C;
   potential   :=  5*V;
   capacitance := charge/potential;
-  if capacitance.ToVerboseString <> '2 farad' then halt(1);
+  if capacitance.ToVerboseString <> '2 farads' then halt(1);
   writeln('* TEST-18: PASSED');
 
   // TEST-19 - WEBER
   potential := 5*V;
   time      := 10*s;
   flux      := potential*time;
-  if flux.ToVerboseString <> '50 weber' then halt(1);
+  if flux.ToVerboseString <> '50 webers' then halt(1);
   writeln('* TEST-19: PASSED');
 
   // TEST-20 - TESLA
   flux        := 25*Wb;
   area        := 10*m2;
   fluxdensity := flux/area;
-  if fluxdensity.ToVerboseString <> '2.5 tesla' then halt(1);
+  if fluxdensity.ToVerboseString <> '2.5 teslas' then halt(1);
   writeln('* TEST-20: PASSED');
 
   // TEST-21 - HENRY
   flux       := 30*Wb;
   current    := 10*A;
   inductance := flux/current;
-  if inductance.ToString        <> '3 H'     then halt(1);
-  if inductance.ToVerboseString <> '3 henry' then halt(2);
+  if inductance.ToString        <> '3 H'       then halt(1);
+  if inductance.ToVerboseString <> '3 henries' then halt(2);
   writeln('* TEST-21: PASSED');
 
   // TEST-22 - SIEMENS
@@ -379,8 +379,8 @@ begin
   current := 5*A;
   time    := 5*s;
   charge  := current*time;
-  if charge.ToVerboseString <> '25 coulomb' then halt(1);
-  if charge.ToString        <> '25 C'       then halt(2);
+  if charge.ToVerboseString <> '25 coulombs' then halt(1);
+  if charge.ToString        <> '25 C'        then halt(2);
   writeln('* TEST-23: PASSED');
 
   // TEST-24 - LUMEN
@@ -679,7 +679,7 @@ begin
   loops    := 2000;
   len      := 2.0*m;
   B        := m0*loops*(current/len);
-  if B.ToVerboseString(4, 2, []) <> '2.011 tesla' then halt(1);
+  if B.ToVerboseString(4, 2, []) <> '2.011 teslas' then halt(1);
   writeln('* TEST-56: PASSED');
 
   // TEST-57 - FORCES BETWEEN PARALLEL CONDUCTORS
@@ -689,7 +689,7 @@ begin
   r     := 4*cm;
   len   := 1.0*m;
   force := (m0/(2*pi)*(len/r)) * (i1*i2);
-  if force.ToVerboseString(4, 2, [pMicro]) <> '18.75 micronewton' then halt(1);
+  if force.ToVerboseString(4, 2, [pMicro]) <> '18.75 micronewtons' then halt(1);
   writeln('* TEST-57: PASSED');
 
   // TEST-58 - MAGNETIC FLUX
@@ -697,14 +697,14 @@ begin
   Area         := 100*cm2;
   angle        := 70*deg;
   magneticflux := B*Area*cos(angle);
-  if magneticflux.ToVerboseString(4, 2, [pMicro]) <> '1368 microweber' then halt(1);
+  if magneticflux.ToVerboseString(4, 2, [pMicro]) <> '1368 microwebers' then halt(1);
   writeln('* TEST-58: PASSED');
 
   // TEST-59 - ELECTROMAGNETIC INDUCTION
   magneticflux := 6*1E-5*Wb;
   time         := 0.1*s;
   potential    := magneticflux/time;
-  if potential.ToVerboseString(4, 2, [pMicro]) <> '600 microvolt' then halt(1);
+  if potential.ToVerboseString(4, 2, [pMicro]) <> '600 microvolts' then halt(1);
   writeln('* TEST-59: PASSED');
 
   // TEST-60 - DISPLACEMENT CURRENT
@@ -713,7 +713,7 @@ begin
   DeltaE   := 6.0E10*N/C;
   time     := 1*s;
   current  := (e0*DeltaE*Area)/time;
-  if current.ToVerboseString(4, 2, [pMicro]) <> '5313 microampere' then halt(1);
+  if current.ToVerboseString(4, 2, [pMicro]) <> '5313 microamperes' then halt(1);
   writeln('* TEST-60: PASSED');
 
   // TEST-61 - HARMONIC WAVE
@@ -804,30 +804,30 @@ begin
   writeln('* TEST-69: PASSED');
 
   // TEST-70
-  if (1.0*mg  ).ToString       (10, 10, [pKilo]) <> '1E-6 kg'                  then halt(01);
-  if (1.0*mg2 ).ToString       (10, 0,  [pKilo]) <> '1E-12 kg2'                then halt(02);
-  if (1.0*mg  ).ToString       (10, 10, [pMega]) <> '1E-9 Mg'                  then halt(03);
-  if (1.0*mg2 ).ToString       (10, 0,  [pMega]) <> '1E-18 Mg2'                then halt(04);
-  if (1.0*kg  ).ToString       (10, 0,  [pNone]) <> '1000 g'                   then halt(05);
-  if (1.0*kg  ).ToString       (10, 0,  [pKilo]) <> '1 kg'                     then halt(06);
-  if (1.0*kg2 ).ToString       (10, 0,  [pNone]) <> '1000000 g2'               then halt(07);
-  if (1.0*kg2 ).ToString       (10, 0,  [pKilo]) <> '1 kg2'                    then halt(08);
-  if (1.0*km  ).ToString       (10, 0,       []) <> '1000 m'                   then halt(09);
-  if (1.0*km2 ).ToString       (10, 0,       []) <> '1000000 m2'               then halt(10);
-  if (1.0*kg  ).ToVerboseString(10, 0,  [pNone]) <> '1000 gram'                then halt(11);
-  if (1.0*kg2 ).ToVerboseString(10, 0,  [pNone]) <> '1000000 square gram'      then halt(12);
-  if (1.0*km  ).ToVerboseString(10, 0,       []) <> '1000 meter'               then halt(13);
-  if (1.0*km2 ).ToVerboseString(10, 0,       []) <> '1000000 square meter'     then halt(14);
-  if (1.0*km3 ).ToVerboseString(10, 0,       []) <> '1000000000 cubic meter'   then halt(15);
-  if (1.0*km4 ).ToVerboseString(10, 0,       []) <> '1E12 quartic meter'       then halt(16);
-  if (1.0*day ).ToVerboseString(10, 0,       []) <> '86400 second'             then halt(16);
-  if (1.0*hr  ).ToVerboseString(10, 0,       []) <> '3600 second'              then halt(17);
-  if (1.0*day ).ToString       (10, 0,       []) <> '86400 s'                  then halt(18);
-  if (1.0*hr  ).ToString       (10, 0,       []) <> '3600 s'                   then halt(19);
-  if (1.0*day2).ToVerboseString(10, 0,       []) <> '7464960000 square second' then halt(20);
-  if (1.0*hr2 ).ToVerboseString(10, 0,       []) <> '12960000 square second'   then halt(21);
-  if (1.0*day2).ToString       (10, 0,       []) <> '7464960000 s2'            then halt(22);
-  if (1.0*hr2 ).ToString       (10, 0,       []) <> '12960000 s2'              then halt(23);
+  if (1.0*mg  ).ToString       (10, 10, [pKilo]) <> '1E-6 kg'                   then halt(01);
+  if (1.0*mg2 ).ToString       (10, 0,  [pKilo]) <> '1E-12 kg2'                 then halt(02);
+  if (1.0*mg  ).ToString       (10, 10, [pMega]) <> '1E-9 Mg'                   then halt(03);
+  if (1.0*mg2 ).ToString       (10, 0,  [pMega]) <> '1E-18 Mg2'                 then halt(04);
+  if (1.0*kg  ).ToString       (10, 0,  [pNone]) <> '1000 g'                    then halt(05);
+  if (1.0*kg  ).ToString       (10, 0,  [pKilo]) <> '1 kg'                      then halt(06);
+  if (1.0*kg2 ).ToString       (10, 0,  [pNone]) <> '1000000 g2'                then halt(07);
+  if (1.0*kg2 ).ToString       (10, 0,  [pKilo]) <> '1 kg2'                     then halt(08);
+  if (1.0*km  ).ToString       (10, 0,       []) <> '1000 m'                    then halt(09);
+  if (1.0*km2 ).ToString       (10, 0,       []) <> '1000000 m2'                then halt(10);
+  if (1.0*kg  ).ToVerboseString(10, 0,  [pNone]) <> '1000 grams'                then halt(11);
+  if (1.0*kg2 ).ToVerboseString(10, 0,  [pNone]) <> '1000000 square grams'      then halt(12);
+  if (1.0*km  ).ToVerboseString(10, 0,       []) <> '1000 meters'               then halt(13);
+  if (1.0*km2 ).ToVerboseString(10, 0,       []) <> '1000000 square meters'     then halt(14);
+  if (1.0*km3 ).ToVerboseString(10, 0,       []) <> '1000000000 cubic meters'   then halt(15);
+  if (1.0*km4 ).ToVerboseString(10, 0,       []) <> '1E12 quartic meters'       then halt(16);
+  if (1.0*day ).ToVerboseString(10, 0,       []) <> '86400 seconds'             then halt(16);
+  if (1.0*hr  ).ToVerboseString(10, 0,       []) <> '3600 seconds'              then halt(17);
+  if (1.0*day ).ToString       (10, 0,       []) <> '86400 s'                   then halt(18);
+  if (1.0*hr  ).ToString       (10, 0,       []) <> '3600 s'                    then halt(19);
+  if (1.0*day2).ToVerboseString(10, 0,       []) <> '7464960000 square seconds' then halt(20);
+  if (1.0*hr2 ).ToVerboseString(10, 0,       []) <> '12960000 square seconds'   then halt(21);
+  if (1.0*day2).ToString       (10, 0,       []) <> '7464960000 s2'             then halt(22);
+  if (1.0*hr2 ).ToString       (10, 0,       []) <> '12960000 s2'               then halt(23);
   writeln('* TEST-70: PASSED');
 
   writeln('ADIM-TEST DONE.');

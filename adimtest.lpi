@@ -28,7 +28,7 @@
         <IsPartOfProject Value="True"/>
         <IsVisibleTab Value="True"/>
         <TopLine Value="797"/>
-        <CursorPos Y="832"/>
+        <CursorPos X="65" Y="817"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit>
@@ -113,7 +113,7 @@
         <Filename Value="adim.pas"/>
         <UnitName Value="ADim"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="4242"/>
+        <TopLine Value="8974"/>
         <CursorPos X="16" Y="4259"/>
         <UsageCount Value="31"/>
       </Unit>
