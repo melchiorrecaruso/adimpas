@@ -491,6 +491,7 @@ var
   Exponent: longint;
   ShortSymbol: string;
   LongSymbol: TStringArray;
+  PluralName: boolean;
 begin
   Count  := 0;
   Offset := Pos('%s', AShortSymbol, 1);
@@ -555,8 +556,8 @@ begin
   LongSymbol[3] := StringReplace(StringReplace(LongSymbol[3], '!',      '',         [rfReplaceAll]), '?',  '',  [rfReplaceAll]);
   LongSymbol[3] := StringReplace(StringReplace(LongSymbol[3], '%sgram', 'kilogram', [rfReplaceAll]), '%s', '',  [rfReplaceAll]);
 
-
-  if AddPluralName.Checked then
+  PluralName := AddPluralName.Checked and (LongSymbol[0] <> LongSymbol[1]);
+  if PluralName then
   begin
     if Count > 0 then
     begin

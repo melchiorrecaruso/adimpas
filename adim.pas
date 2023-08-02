@@ -5654,18 +5654,9 @@ end;
 class function THertzUnit.GetName(const AValue: double; const APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-  begin
-    if (AValue > 1) or (AValue < -1) then
-      result := Format('%shertz', [PrefixTable[APrefixes[0]].Name])
-    else
-      result := Format('%shertz', [PrefixTable[APrefixes[0]].Name]);
-  end else
-  begin
-    if (AValue > 1) or (AValue < -1) then
-      result := 'hertz'
-    else
-      result := 'hertz';
-  end;
+    result := Format('%shertz', [PrefixTable[APrefixes[0]].Name])
+  else
+    result := 'hertz';
 end;
 
 class function THertzUnit.GetValue(const AValue: double; const APrefixes: TPrefixes): double; static;
@@ -5717,18 +5708,9 @@ end;
 class function TSquareHertzUnit.GetName(const AValue: double; const APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-  begin
-    if (AValue > 1) or (AValue < -1) then
-      result := Format('square %shertz', [PrefixTable[APrefixes[0]].Name])
-    else
-      result := Format('square %shertz', [PrefixTable[APrefixes[0]].Name]);
-  end else
-  begin
-    if (AValue > 1) or (AValue < -1) then
-      result := 'square hertz'
-    else
-      result := 'square hertz';
-  end;
+    result := Format('square %shertz', [PrefixTable[APrefixes[0]].Name])
+  else
+    result := 'square hertz';
 end;
 
 class function TSquareHertzUnit.GetValue(const AValue: double; const APrefixes: TPrefixes): double; static;
@@ -7995,18 +7977,9 @@ end;
 class function TSiemensUnit.GetName(const AValue: double; const APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-  begin
-    if (AValue > 1) or (AValue < -1) then
-      result := Format('%ssiemens', [PrefixTable[APrefixes[0]].Name])
-    else
-      result := Format('%ssiemens', [PrefixTable[APrefixes[0]].Name]);
-  end else
-  begin
-    if (AValue > 1) or (AValue < -1) then
-      result := 'siemens'
-    else
-      result := 'siemens';
-  end;
+    result := Format('%ssiemens', [PrefixTable[APrefixes[0]].Name])
+  else
+    result := 'siemens';
 end;
 
 class function TSiemensUnit.GetValue(const AValue: double; const APrefixes: TPrefixes): double; static;
@@ -8354,18 +8327,9 @@ end;
 class function TLuxUnit.GetName(const AValue: double; const APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-  begin
-    if (AValue > 1) or (AValue < -1) then
-      result := Format('%slux', [PrefixTable[APrefixes[0]].Name])
-    else
-      result := Format('%slux', [PrefixTable[APrefixes[0]].Name]);
-  end else
-  begin
-    if (AValue > 1) or (AValue < -1) then
-      result := 'lux'
-    else
-      result := 'lux';
-  end;
+    result := Format('%slux', [PrefixTable[APrefixes[0]].Name])
+  else
+    result := 'lux';
 end;
 
 class function TLuxUnit.GetValue(const AValue: double; const APrefixes: TPrefixes): double; static;
@@ -10547,18 +10511,9 @@ end;
 class function TReciprocalKelvinUnit.GetName(const AValue: double; const APrefixes: TPrefixes): string; static;
 begin
   if Length(APrefixes) = 1 then
-  begin
-    if (AValue > 1) or (AValue < -1) then
-      result := Format('reciprocal %skelvin', [PrefixTable[APrefixes[0]].Name])
-    else
-      result := Format('reciprocal %skelvin', [PrefixTable[APrefixes[0]].Name]);
-  end else
-  begin
-    if (AValue > 1) or (AValue < -1) then
-      result := 'reciprocal kelvin'
-    else
-      result := 'reciprocal kelvin';
-  end;
+    result := Format('reciprocal %skelvin', [PrefixTable[APrefixes[0]].Name])
+  else
+    result := 'reciprocal kelvin';
 end;
 
 class function TReciprocalKelvinUnit.GetValue(const AValue: double; const APrefixes: TPrefixes): double; static;
