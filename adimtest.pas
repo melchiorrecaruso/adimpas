@@ -41,7 +41,7 @@ var
   distance: TMeters;
   time: TSeconds;
   speed: TMetersPerSecond;
-  acc: TMetersPerSquareSecond;
+  acc: TMetersPerSecondSquared;
   density: TKilogramsPerCubicMeter;
   specificw: TNewtonsPerCubicMeter;
   force, normal: TNewtons;
@@ -73,7 +73,6 @@ var
   kA: double;
   kAr: TMeters;
   radius: TMeters;
-
 
   mass: TKilograms;
   eta: TPascalSeconds;
@@ -145,7 +144,7 @@ var
 
   wavelen: TMeters;
   yspeed: TMetersperSecond;
-  yacc: TMetersPerSquareSecond;
+  yacc: TMetersPerSecondSquared;
 
   lightspeed: TMetersPerSecond;
   energy: TJoules;
