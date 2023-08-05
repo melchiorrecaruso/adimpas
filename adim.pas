@@ -5893,15 +5893,15 @@ begin
   if Length(APrefixes) = 1 then
   begin
     if (AValue > 1) or (AValue < -1) then
-      result := Format('radians per square %ssecond', [PrefixTable[APrefixes[0]].Name])
+      result := Format('radians per %ssecond squared', [PrefixTable[APrefixes[0]].Name])
     else
-      result := Format('radian per square %ssecond', [PrefixTable[APrefixes[0]].Name]);
+      result := Format('radian per %ssecond squared', [PrefixTable[APrefixes[0]].Name]);
   end else
   begin
     if (AValue > 1) or (AValue < -1) then
-      result := 'radians per square second'
+      result := 'radians per second squared'
     else
-      result := 'radian per square second';
+      result := 'radian per second squared';
   end;
 end;
 
@@ -6190,15 +6190,15 @@ begin
   if Length(APrefixes) = 2 then
   begin
     if (AValue > 1) or (AValue < -1) then
-      result := Format('%smeters per square %ssecond', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
+      result := Format('%smeters per %ssecond squared', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
     else
-      result := Format('%smeter per square %ssecond', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name]);
+      result := Format('%smeter per %ssecond squared', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name]);
   end else
   begin
     if (AValue > 1) or (AValue < -1) then
-      result := 'meters per square second'
+      result := 'meters per second squared'
     else
-      result := 'meter per square second';
+      result := 'meter per second squared';
   end;
 end;
 

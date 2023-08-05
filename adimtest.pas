@@ -221,6 +221,7 @@ begin
   if speed.ToMeterPerHour         .ToVerboseString(5, 0, [pKilo       ]) <> '100 kilometers per hour'           then halt(1);
   if time                         .ToVerboseString(5, 0, [            ]) <> '5 seconds'                         then halt(2);
   if acc  .ToMeterPerHourPerSecond.ToVerboseString(5, 0, [pKilo, pNone]) <> '20 kilometers per hour per second' then halt(3);
+  if acc                          .ToVerboseString(5, 0, [            ]) <> '5.5556 meters per second squared'  then halt(4);
   writeln('* TEST-04: PASSED');
 
   // TEST-05 - FORCE
