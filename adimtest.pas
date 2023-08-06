@@ -20,11 +20,7 @@
 program adimtest;
 
 uses
-  {$IFDEF WINDOWS}
-  Windows,
-  {$ENDIF}
-  SysUtils,
-  ADim;
+  SysUtils, ADim;
 
 var
   side1, side2, side3, side4: TMeters;
