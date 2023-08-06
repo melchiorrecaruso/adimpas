@@ -847,7 +847,7 @@ begin
 
   SectionB3.Append('function ' + S1 + 'Power(AQuantity: ' + AQuantity + '): ' + AResult + ';');
   SectionB3.Append('begin');
-  SectionB3.Append('  result.FValue := Power(AQuantity.FValue, ' + S2 + ');');
+  SectionB3.Append('  result.FValue := IntPower(AQuantity.FValue, ' + S2 + ');');
   SectionB3.Append('end;');
   SectionB3.Append('');
 

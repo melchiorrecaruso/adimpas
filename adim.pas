@@ -14295,7 +14295,7 @@ end;
 
 function SquarePower(AQuantity: TSeconds): TSquareSeconds;
 begin
-  result.FValue := Power(AQuantity.FValue, 2);
+  result.FValue := IntPower(AQuantity.FValue, 2);
 end;
 
 function SquareRoot(AQuantity: TSquareSeconds): TSeconds;
@@ -14305,7 +14305,7 @@ end;
 
 function SquarePower(AQuantity: TMeters): TSquareMeters;
 begin
-  result.FValue := Power(AQuantity.FValue, 2);
+  result.FValue := IntPower(AQuantity.FValue, 2);
 end;
 
 function SquareRoot(AQuantity: TSquareMeters): TMeters;
@@ -14315,7 +14315,7 @@ end;
 
 function CubicPower(AQuantity: TMeters): TCubicMeters;
 begin
-  result.FValue := Power(AQuantity.FValue, 3);
+  result.FValue := IntPower(AQuantity.FValue, 3);
 end;
 
 function CubicRoot(AQuantity: TCubicMeters): TMeters;
@@ -14325,7 +14325,7 @@ end;
 
 function SquarePower(AQuantity: TSquareMeters): TQuarticMeters;
 begin
-  result.FValue := Power(AQuantity.FValue, 2);
+  result.FValue := IntPower(AQuantity.FValue, 2);
 end;
 
 function SquareRoot(AQuantity: TQuarticMeters): TSquareMeters;
@@ -14335,7 +14335,7 @@ end;
 
 function QuarticPower(AQuantity: TMeters): TQuarticMeters;
 begin
-  result.FValue := Power(AQuantity.FValue, 4);
+  result.FValue := IntPower(AQuantity.FValue, 4);
 end;
 
 function QuarticRoot(AQuantity: TQuarticMeters): TMeters;
@@ -14345,7 +14345,7 @@ end;
 
 function QuinticPower(AQuantity: TMeters): TQuinticMeters;
 begin
-  result.FValue := Power(AQuantity.FValue, 5);
+  result.FValue := IntPower(AQuantity.FValue, 5);
 end;
 
 function QuinticRoot(AQuantity: TQuinticMeters): TMeters;
@@ -14355,7 +14355,7 @@ end;
 
 function SquarePower(AQuantity: TCubicMeters): TSexticMeters;
 begin
-  result.FValue := Power(AQuantity.FValue, 2);
+  result.FValue := IntPower(AQuantity.FValue, 2);
 end;
 
 function SquareRoot(AQuantity: TSexticMeters): TCubicMeters;
@@ -14365,7 +14365,7 @@ end;
 
 function CubicPower(AQuantity: TSquareMeters): TSexticMeters;
 begin
-  result.FValue := Power(AQuantity.FValue, 3);
+  result.FValue := IntPower(AQuantity.FValue, 3);
 end;
 
 function CubicRoot(AQuantity: TSexticMeters): TSquareMeters;
@@ -14375,7 +14375,7 @@ end;
 
 function SexticPower(AQuantity: TMeters): TSexticMeters;
 begin
-  result.FValue := Power(AQuantity.FValue, 6);
+  result.FValue := IntPower(AQuantity.FValue, 6);
 end;
 
 function SexticRoot(AQuantity: TSexticMeters): TMeters;
@@ -14385,7 +14385,7 @@ end;
 
 function SquarePower(AQuantity: TAmperes): TSquareAmperes;
 begin
-  result.FValue := Power(AQuantity.FValue, 2);
+  result.FValue := IntPower(AQuantity.FValue, 2);
 end;
 
 function SquareRoot(AQuantity: TSquareAmperes): TAmperes;
@@ -14395,7 +14395,7 @@ end;
 
 function SquarePower(AQuantity: TKelvins): TSquareKelvins;
 begin
-  result.FValue := Power(AQuantity.FValue, 2);
+  result.FValue := IntPower(AQuantity.FValue, 2);
 end;
 
 function SquareRoot(AQuantity: TSquareKelvins): TKelvins;
@@ -14405,7 +14405,7 @@ end;
 
 function CubicPower(AQuantity: TKelvins): TCubicKelvins;
 begin
-  result.FValue := Power(AQuantity.FValue, 3);
+  result.FValue := IntPower(AQuantity.FValue, 3);
 end;
 
 function CubicRoot(AQuantity: TCubicKelvins): TKelvins;
@@ -14415,7 +14415,7 @@ end;
 
 function SquarePower(AQuantity: TSquareKelvins): TQuarticKelvins;
 begin
-  result.FValue := Power(AQuantity.FValue, 2);
+  result.FValue := IntPower(AQuantity.FValue, 2);
 end;
 
 function SquareRoot(AQuantity: TQuarticKelvins): TSquareKelvins;
@@ -14425,7 +14425,7 @@ end;
 
 function QuarticPower(AQuantity: TKelvins): TQuarticKelvins;
 begin
-  result.FValue := Power(AQuantity.FValue, 4);
+  result.FValue := IntPower(AQuantity.FValue, 4);
 end;
 
 function QuarticRoot(AQuantity: TQuarticKelvins): TKelvins;
@@ -14435,7 +14435,7 @@ end;
 
 function SquarePower(AQuantity: TRadians): TSteradians;
 begin
-  result.FValue := Power(AQuantity.FValue, 2);
+  result.FValue := IntPower(AQuantity.FValue, 2);
 end;
 
 function SquareRoot(AQuantity: TSteradians): TRadians;
@@ -14445,7 +14445,7 @@ end;
 
 function SquarePower(AQuantity: THertz): TSquareHertz;
 begin
-  result.FValue := Power(AQuantity.FValue, 2);
+  result.FValue := IntPower(AQuantity.FValue, 2);
 end;
 
 function SquareRoot(AQuantity: TSquareHertz): THertz;
@@ -14455,7 +14455,7 @@ end;
 
 function SquarePower(AQuantity: TMetersPerSecond): TSquareMetersPerSquareSecond;
 begin
-  result.FValue := Power(AQuantity.FValue, 2);
+  result.FValue := IntPower(AQuantity.FValue, 2);
 end;
 
 function SquareRoot(AQuantity: TSquareMetersPerSquareSecond): TMetersPerSecond;
@@ -14465,7 +14465,7 @@ end;
 
 function SquarePower(AQuantity: TNewtons): TSquareNewtons;
 begin
-  result.FValue := Power(AQuantity.FValue, 2);
+  result.FValue := IntPower(AQuantity.FValue, 2);
 end;
 
 function SquareRoot(AQuantity: TSquareNewtons): TNewtons;
@@ -14475,7 +14475,7 @@ end;
 
 function SquarePower(AQuantity: TCoulombs): TSquareCoulombs;
 begin
-  result.FValue := Power(AQuantity.FValue, 2);
+  result.FValue := IntPower(AQuantity.FValue, 2);
 end;
 
 function SquareRoot(AQuantity: TSquareCoulombs): TCoulombs;
@@ -14485,7 +14485,7 @@ end;
 
 function SquarePower(AQuantity: TVolts): TSquareVolts;
 begin
-  result.FValue := Power(AQuantity.FValue, 2);
+  result.FValue := IntPower(AQuantity.FValue, 2);
 end;
 
 function SquareRoot(AQuantity: TSquareVolts): TVolts;
@@ -14495,7 +14495,7 @@ end;
 
 function SquarePower(AQuantity: TKilogramsPerSecond): TSquareKilogramsPerSquareSecond;
 begin
-  result.FValue := Power(AQuantity.FValue, 2);
+  result.FValue := IntPower(AQuantity.FValue, 2);
 end;
 
 function SquareRoot(AQuantity: TSquareKilogramsPerSquareSecond): TKilogramsPerSecond;
@@ -14505,7 +14505,7 @@ end;
 
 function SquarePower(AQuantity: TJoules): TSquareJoules;
 begin
-  result.FValue := Power(AQuantity.FValue, 2);
+  result.FValue := IntPower(AQuantity.FValue, 2);
 end;
 
 function SquareRoot(AQuantity: TSquareJoules): TJoules;
