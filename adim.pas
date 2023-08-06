@@ -1011,31 +1011,6 @@ type
 
 const deg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180);
 
-const quettadeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E+30);
-const  ronnadeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E+27);
-const  yottadeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E+24);
-const  zettadeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E+21);
-const      Edeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E+18);
-const   petadeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E+15);
-const      Tdeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E+12);
-const      Gdeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E+09);
-const   megadeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E+06);
-const      kdeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E+03);
-const      hdeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E+02);
-const     dadeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E+01);
-const      ddeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E-01);
-const      cdeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E-02);
-const      mdeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E-03);
-const     mideg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E-06);
-const      ndeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E-09);
-const      pdeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E-12);
-const      fdeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E-15);
-const      adeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E-18);
-const  zeptodeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E-21);
-const  yoctodeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E-24);
-const  rontodeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E-27);
-const quectodeg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180 * 1E-30);
-
 type
   { Unit of Steradian }
   TSteradianUnit = record
@@ -1076,6 +1051,19 @@ const quectosr: specialize TQuantity<TSteradianUnit> = (FValue: 1E-30);
 // main definition [ sr ] = [ rad ] * [ rad ]
 operator *(const ALeft: TRadians; const ARight: TRadians): TSteradians; inline;
 operator /(const ALeft: TSteradians; const ARight: TRadians): TRadians; inline;
+
+type
+  { Unit of SquareDegree }
+  TSquareDegreeUnit = record
+    class function GetSymbol(const APrefixes: TPrefixes): string; static;
+    class function GetName  (const AValue: double; const APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const APrefixes: TPrefixes): double; static;
+    const Factor = Pi*Pi/32400;
+  end;
+  TSquareDegrees = specialize TQuantity<TSteradianUnit>;
+  TSquareDegreeUnitId = specialize TUnitId<TSquareDegreeUnit>;
+
+const deg2: specialize TQuantity<TSteradianUnit> = (FValue: Pi*Pi/32400);
 
 type
   { Unit of Hertz }
@@ -4106,6 +4094,11 @@ type
   end;
 
 type
+  TSteradianHelper = record helper for TSteradians
+    function ToSquareDegree: specialize TQuantity<TSquareDegreeUnit>;
+  end;
+
+type
   TSquareHertzHelper = record helper for TSquareHertz
     function ToSteradianPerSquareSecond: specialize TQuantity<TSteradianPerSquareSecondUnit>;
     function ToRadianPerSecondSquared: specialize TQuantity<TRadianPerSecondSquaredUnit>;
@@ -5646,6 +5639,26 @@ end;
 operator /(const ALeft: TSteradians; const ARight: TRadians): TRadians;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+{ Unit of SquareDegree }
+
+class function TSquareDegreeUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
+begin
+  result := 'deg2';
+end;
+
+class function TSquareDegreeUnit.GetName(const AValue: double; const APrefixes: TPrefixes): string; static;
+begin
+  if (AValue > 1) or (AValue < -1) then
+    result := 'square degrees'
+  else
+    result := 'square degree';
+end;
+
+class function TSquareDegreeUnit.GetValue(const AValue: double; const APrefixes: TPrefixes): double; static;
+begin
+  result := AValue;
 end;
 
 { Unit of Hertz }
@@ -14161,6 +14174,11 @@ end;
 function TRadianHelper.ToDegree: specialize TQuantity<TDegreeUnit>;
 begin
   result.FValue := FValue / TDegreeUnit.Factor;
+end;
+
+function TSteradianHelper.ToSquareDegree: specialize TQuantity<TSquareDegreeUnit>;
+begin
+  result.FValue := FValue / TSquareDegreeUnit.Factor;
 end;
 
 function TSquareHertzHelper.ToRadianPerSecondSquared: specialize TQuantity<TRadianPerSecondSquaredUnit>;

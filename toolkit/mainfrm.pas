@@ -714,6 +714,8 @@ begin
   if LowerCase(AIdentifierSymbol) = 'l'             then Params := 'LLLLSLSSLSSSSSSSSLSSLLLL';
   if LowerCase(AIdentifierSymbol) = 'degc'          then Params := '------------------------';
   if LowerCase(AIdentifierSymbol) = 'degf'          then Params := '------------------------';
+  if LowerCase(AIdentifierSymbol) = 'deg2'          then Params := '------------------------';
+  if LowerCase(AIdentifierSymbol) = 'deg'           then Params := '------------------------';
   if LowerCase(AIdentifierSymbol) = 'v'             then Params := 'LLLLLLSSLSSSSSSSSSSSLLLL';
 
 
