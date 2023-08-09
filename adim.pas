@@ -1702,6 +1702,17 @@ operator *(const ALeft: TJoules; const ARight: TSquareSeconds): TKilogramSquareM
 operator /(const ALeft: TKilogramSquareMeters; const ARight: TJoules): TSquareSeconds; inline;
 
 type
+  { Unit of WattHour }
+  TWattHourUnit = record
+    class function GetSymbol(const APrefixes: TPrefixes): string; static;
+    class function GetName  (const AValue: double; const APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const APrefixes: TPrefixes): double; static;
+    const Factor = 3600;
+  end;
+  TWattHours = specialize TQuantity<TJouleUnit>;
+  TWattHourUnitId = specialize TUnitId<TWattHourUnit>;
+
+type
   { Unit of Elettronvolt }
   TElettronvoltUnit = record
     class function GetSymbol(const APrefixes: TPrefixes): string; static;
@@ -1838,6 +1849,17 @@ operator *(const ALeft: TAmperes; const ARight: TSeconds): TCoulombs; inline;
 operator /(const ALeft: TCoulombs; const ARight: TSeconds): TAmperes; inline;
 operator /(const ALeft: TCoulombs; const ARight: TAmperes): TSeconds; inline;
 operator *(const ALeft: TSeconds; const ARight: TAmpereUnitId): TCoulombs; inline;
+
+type
+  { Unit of AmpereHour }
+  TAmpereHourUnit = record
+    class function GetSymbol(const APrefixes: TPrefixes): string; static;
+    class function GetName  (const AValue: double; const APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const APrefixes: TPrefixes): double; static;
+    const Factor = 3600;
+  end;
+  TAmpereHours = specialize TQuantity<TCoulombUnit>;
+  TAmpereHourUnitId = specialize TUnitId<TAmpereHourUnit>;
 
 type
   { Unit of SquareCoulomb }
@@ -4124,6 +4146,12 @@ type
   TJouleHelper = record helper for TJoules
     function ToNewtonMeter: specialize TQuantity<TNewtonMeterUnit>;
     function ToElettronvolt: specialize TQuantity<TElettronvoltUnit>;
+    function ToWattHour: specialize TQuantity<TWattHourUnit>;
+  end;
+
+type
+  TCoulombHelper = record helper for TCoulombs
+    function ToAmpereHour: specialize TQuantity<TAmpereHourUnit>;
   end;
 
 type
@@ -7405,6 +7433,42 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{ Unit of WattHour }
+
+class function TWattHourUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sW·h', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'W·h';
+end;
+
+class function TWattHourUnit.GetName(const AValue: double; const APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+  begin
+    if (AValue > 1) or (AValue < -1) then
+      result := Format('%swatt hours', [PrefixTable[APrefixes[0]].Name])
+    else
+      result := Format('%swatt hour', [PrefixTable[APrefixes[0]].Name]);
+  end else
+  begin
+    if (AValue > 1) or (AValue < -1) then
+      result := 'watt hours'
+    else
+      result := 'watt hour';
+  end;
+end;
+
+class function TWattHourUnit.GetValue(const AValue: double; const APrefixes: TPrefixes): double; static;
+begin
+  result := AValue;
+  if Length(APrefixes) = 1 then
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+  end;
+end;
+
 { Unit of Elettronvolt }
 
 class function TElettronvoltUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
@@ -7609,6 +7673,42 @@ end;
 operator *(const ALeft: TSeconds; const ARight: TAmpereUnitId): TCoulombs;
 begin
   result.FValue := ALeft.FValue;
+end;
+
+{ Unit of AmpereHour }
+
+class function TAmpereHourUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sA·h', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'A·h';
+end;
+
+class function TAmpereHourUnit.GetName(const AValue: double; const APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+  begin
+    if (AValue > 1) or (AValue < -1) then
+      result := Format('%sampere hours', [PrefixTable[APrefixes[0]].Name])
+    else
+      result := Format('%sampere hour', [PrefixTable[APrefixes[0]].Name]);
+  end else
+  begin
+    if (AValue > 1) or (AValue < -1) then
+      result := 'ampere hours'
+    else
+      result := 'ampere hour';
+  end;
+end;
+
+class function TAmpereHourUnit.GetValue(const AValue: double; const APrefixes: TPrefixes): double; static;
+begin
+  result := AValue;
+  if Length(APrefixes) = 1 then
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+  end;
 end;
 
 { Unit of SquareCoulomb }
@@ -14211,9 +14311,19 @@ begin
   result.FValue := FValue;
 end;
 
+function TJouleHelper.ToWattHour: specialize TQuantity<TWattHourUnit>;
+begin
+  result.FValue := FValue / TWattHourUnit.Factor;
+end;
+
 function TJouleHelper.ToElettronvolt: specialize TQuantity<TElettronvoltUnit>;
 begin
   result.FValue := FValue / TElettronvoltUnit.Factor;
+end;
+
+function TCoulombHelper.ToAmpereHour: specialize TQuantity<TAmpereHourUnit>;
+begin
+  result.FValue := FValue / TAmpereHourUnit.Factor;
 end;
 
 function THertzHelper.ToBequerel: specialize TQuantity<TBequerelUnit>;

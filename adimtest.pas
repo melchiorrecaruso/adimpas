@@ -826,5 +826,10 @@ begin
   if (1.0*hr2 ).ToString       (10, 0,       []) <> '12960000 s2'               then halt(23);
   writeln('* TEST-70: PASSED');
 
+  // TEST-71
+  if (1.0*J).ToWattHour  .ToString(4, 0, [pMilli]) <> '0.2778 mW·h' then halt(1);
+  if (1.0*C).ToAmpereHour.ToString(4, 0, [pMilli]) <> '0.2778 mA·h' then halt(2);
+  writeln('* TEST-71: PASSED');
+
   writeln('ADIM-TEST DONE.');
 end.
