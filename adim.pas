@@ -282,6 +282,58 @@ type
 const au: specialize TQuantity<TMeterUnit> = (FValue: 149597870691);
 
 type
+  { Unit of Inch }
+  TInchUnit = record
+    class function GetSymbol(const APrefixes: TPrefixes): string; static;
+    class function GetName  (const AValue: double; const APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const APrefixes: TPrefixes): double; static;
+    const Factor = 0.0254;
+  end;
+  TInches = specialize TQuantity<TMeterUnit>;
+  TInchUnitId = specialize TUnitId<TInchUnit>;
+
+const inch: specialize TQuantity<TMeterUnit> = (FValue: 0.0254);
+
+type
+  { Unit of Foot }
+  TFootUnit = record
+    class function GetSymbol(const APrefixes: TPrefixes): string; static;
+    class function GetName  (const AValue: double; const APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const APrefixes: TPrefixes): double; static;
+    const Factor = 0.3048;
+  end;
+  TFeet = specialize TQuantity<TMeterUnit>;
+  TFootUnitId = specialize TUnitId<TFootUnit>;
+
+const ft: specialize TQuantity<TMeterUnit> = (FValue: 0.3048);
+
+type
+  { Unit of Yard }
+  TYardUnit = record
+    class function GetSymbol(const APrefixes: TPrefixes): string; static;
+    class function GetName  (const AValue: double; const APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const APrefixes: TPrefixes): double; static;
+    const Factor = 0.9144;
+  end;
+  TYards = specialize TQuantity<TMeterUnit>;
+  TYardUnitId = specialize TUnitId<TYardUnit>;
+
+const yd: specialize TQuantity<TMeterUnit> = (FValue: 0.9144);
+
+type
+  { Unit of Mile }
+  TMileUnit = record
+    class function GetSymbol(const APrefixes: TPrefixes): string; static;
+    class function GetName  (const AValue: double; const APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const APrefixes: TPrefixes): double; static;
+    const Factor = 1609.344;
+  end;
+  TMiles = specialize TQuantity<TMeterUnit>;
+  TMileUnitId = specialize TUnitId<TMileUnit>;
+
+const mi: specialize TQuantity<TMeterUnit> = (FValue: 1609.344);
+
+type
   { Unit of SquareMeter }
   TSquareMeterUnit = record
     class function GetSymbol(const APrefixes: TPrefixes): string; static;
@@ -2240,8 +2292,8 @@ const      mT: specialize TQuantity<TTeslaUnit> = (FValue: 1E-03);
 const     miT: specialize TQuantity<TTeslaUnit> = (FValue: 1E-06);
 const      nT: specialize TQuantity<TTeslaUnit> = (FValue: 1E-09);
 const      pT: specialize TQuantity<TTeslaUnit> = (FValue: 1E-12);
-const      fT: specialize TQuantity<TTeslaUnit> = (FValue: 1E-15);
-const      aT: specialize TQuantity<TTeslaUnit> = (FValue: 1E-18);
+const  femtoT: specialize TQuantity<TTeslaUnit> = (FValue: 1E-15);
+const   attoT: specialize TQuantity<TTeslaUnit> = (FValue: 1E-18);
 const  zeptoT: specialize TQuantity<TTeslaUnit> = (FValue: 1E-21);
 const  yoctoT: specialize TQuantity<TTeslaUnit> = (FValue: 1E-24);
 const  rontoT: specialize TQuantity<TTeslaUnit> = (FValue: 1E-27);
@@ -4097,6 +4149,10 @@ type
 
 type
   TMeterHelper = record helper for TMeters
+    function ToMile: specialize TQuantity<TMileUnit>;
+    function ToYard: specialize TQuantity<TYardUnit>;
+    function ToFoot: specialize TQuantity<TFootUnit>;
+    function ToInch: specialize TQuantity<TInchUnit>;
     function ToAstronomical: specialize TQuantity<TAstronomicalUnit>;
   end;
 
@@ -4700,6 +4756,86 @@ begin
 end;
 
 class function TAstronomicalUnit.GetValue(const AValue: double; const APrefixes: TPrefixes): double; static;
+begin
+  result := AValue;
+end;
+
+{ Unit of Inch }
+
+class function TInchUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
+begin
+  result := 'in';
+end;
+
+class function TInchUnit.GetName(const AValue: double; const APrefixes: TPrefixes): string; static;
+begin
+  if (AValue > 1) or (AValue < -1) then
+    result := 'inches'
+  else
+    result := 'inch';
+end;
+
+class function TInchUnit.GetValue(const AValue: double; const APrefixes: TPrefixes): double; static;
+begin
+  result := AValue;
+end;
+
+{ Unit of Foot }
+
+class function TFootUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
+begin
+  result := 'ft';
+end;
+
+class function TFootUnit.GetName(const AValue: double; const APrefixes: TPrefixes): string; static;
+begin
+  if (AValue > 1) or (AValue < -1) then
+    result := 'feet'
+  else
+    result := 'foot';
+end;
+
+class function TFootUnit.GetValue(const AValue: double; const APrefixes: TPrefixes): double; static;
+begin
+  result := AValue;
+end;
+
+{ Unit of Yard }
+
+class function TYardUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
+begin
+  result := 'yd';
+end;
+
+class function TYardUnit.GetName(const AValue: double; const APrefixes: TPrefixes): string; static;
+begin
+  if (AValue > 1) or (AValue < -1) then
+    result := 'yards'
+  else
+    result := 'yard';
+end;
+
+class function TYardUnit.GetValue(const AValue: double; const APrefixes: TPrefixes): double; static;
+begin
+  result := AValue;
+end;
+
+{ Unit of Mile }
+
+class function TMileUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
+begin
+  result := 'mi';
+end;
+
+class function TMileUnit.GetName(const AValue: double; const APrefixes: TPrefixes): string; static;
+begin
+  if (AValue > 1) or (AValue < -1) then
+    result := 'miles'
+  else
+    result := 'mile';
+end;
+
+class function TMileUnit.GetValue(const AValue: double; const APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
 end;
@@ -14296,6 +14432,26 @@ end;
 function TMeterHelper.ToAstronomical: specialize TQuantity<TAstronomicalUnit>;
 begin
   result.FValue := FValue / TAstronomicalUnit.Factor;
+end;
+
+function TMeterHelper.ToInch: specialize TQuantity<TInchUnit>;
+begin
+  result.FValue := FValue / TInchUnit.Factor;
+end;
+
+function TMeterHelper.ToFoot: specialize TQuantity<TFootUnit>;
+begin
+  result.FValue := FValue / TFootUnit.Factor;
+end;
+
+function TMeterHelper.ToYard: specialize TQuantity<TYardUnit>;
+begin
+  result.FValue := FValue / TYardUnit.Factor;
+end;
+
+function TMeterHelper.ToMile: specialize TQuantity<TMileUnit>;
+begin
+  result.FValue := FValue / TMileUnit.Factor;
 end;
 
 function TCubicMeterHelper.ToLitre: specialize TQuantity<TLitreUnit>;

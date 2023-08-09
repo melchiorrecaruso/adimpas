@@ -141,8 +141,10 @@ end;
 function GetUnitQuantity(const S: string): string;
 begin
   Result := S;
-  Result := StringReplace(Result, 'y!', 'ies', [rfReplaceAll]);
-  Result := StringReplace(Result, '?',  's',   [rfReplaceAll]);
+  Result := StringReplace(Result, 'Foot!', 'Feet',   [rfReplaceAll]);
+  Result := StringReplace(Result, 'Inch!', 'Inches', [rfReplaceAll]);
+  Result := StringReplace(Result, 'y!',    'ies',    [rfReplaceAll]);
+  Result := StringReplace(Result, '?',     's',      [rfReplaceAll]);
 end;
 
 function CleanUnitName(const S: string): string;
@@ -545,10 +547,12 @@ begin
   SectionB1.Append('begin');
 
   SetLength(LongSymbol, 4);
+  LongSymbol[0] := StringReplace(StringReplace(ALongSymbol,   'inch!',  'inches',   [rfReplaceAll]), 'foot!', 'feet', [rfReplaceAll]);
   LongSymbol[0] := StringReplace(StringReplace(ALongSymbol,   'y!',     'ies',      [rfReplaceAll]), '?',  's', [rfReplaceAll]);
   LongSymbol[1] := StringReplace(StringReplace(ALongSymbol,   '!',      '',         [rfReplaceAll]), '?',  '',  [rfReplaceAll]);
 
   LongSymbol[2] := ALongSymbol;
+  LongSymbol[2] := StringReplace(StringReplace(ALongSymbol,   'inch!',  'inches',   [rfReplaceAll]), 'foot!', 'feet', [rfReplaceAll]);
   LongSymbol[2] := StringReplace(StringReplace(LongSymbol[2], 'y!',     'ies',      [rfReplaceAll]), '?',  's', [rfReplaceAll]);
   LongSymbol[2] := StringReplace(StringReplace(LongSymbol[2], '%sgram', 'kilogram', [rfReplaceAll]), '%s', '',  [rfReplaceAll]);
 
@@ -709,6 +713,7 @@ begin
 
   if LowerCase(AIdentifierSymbol) = 'pa'            then Params := 'LLLLSLSSSSSSSSLSSSSSLLLL';
   if LowerCase(AIdentifierSymbol) = 'siemens'       then Params := 'LLLLSLLLLLLLLLLLLLSSLLLL';
+  if LowerCase(AIdentifierSymbol) = 't'             then Params := 'LLLLSLSSLSSSSSSSSSLLLLLL';
 
   if LowerCase(AIdentifierSymbol) = 'tonne'         then Params := '-------LLL--------------';
   if LowerCase(AIdentifierSymbol) = 'l'             then Params := 'LLLLSLSSLSSSSSSSSLSSLLLL';
@@ -718,7 +723,10 @@ begin
   if LowerCase(AIdentifierSymbol) = 'deg'           then Params := '------------------------';
   if LowerCase(AIdentifierSymbol) = 'v'             then Params := 'LLLLLLSSLSSSSSSSSSSSLLLL';
   if LowerCase(AIdentifierSymbol) = 'bar'           then Params := '---------S----S---------';
-
+  if LowerCase(AIdentifierSymbol) = 'inch'          then Params := '------------------------';
+  if LowerCase(AIdentifierSymbol) = 'ft'            then Params := '------------------------';
+  if LowerCase(AIdentifierSymbol) = 'yd'            then Params := '------------------------';
+  if LowerCase(AIdentifierSymbol) = 'mi'            then Params := '------------------------';
 
   if (LowerCase(AIdentifierSymbol) <> 'kg' ) and
      (LowerCase(AIdentifierSymbol) <> 'kg2') then
@@ -907,7 +915,6 @@ begin
 
   SectionB1.Append('end;');
 end;
-
 
 { TMainForm }
 
