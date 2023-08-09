@@ -1627,6 +1627,22 @@ operator /(const ALeft: TPascals; const ARight: TKilogramsPerCubicMeter): TSquar
 operator /(const ALeft: TPascals; const ARight: TSquareMetersPerSquareSecond): TKilogramsPerCubicMeter; inline;
 
 type
+  { Unit of Bar }
+  TBarUnit = record
+    class function GetSymbol(const APrefixes: TPrefixes): string; static;
+    class function GetName  (const AValue: double; const APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const APrefixes: TPrefixes): double; static;
+    const Factor = 1E+05;
+  end;
+  TBars = specialize TQuantity<TPascalUnit>;
+  TBarUnitId = specialize TUnitId<TBarUnit>;
+
+const bar: specialize TQuantity<TPascalUnit> = (FValue: 1E+05);
+
+const      kbar: specialize TQuantity<TPascalUnit> = (FValue: 1E+05 * 1E+03);
+const      mbar: specialize TQuantity<TPascalUnit> = (FValue: 1E+05 * 1E-03);
+
+type
   { Unit of Joule }
   TJouleUnit = record
     class function GetSymbol(const APrefixes: TPrefixes): string; static;
@@ -4140,6 +4156,11 @@ type
 type
   TKilogramMeterPerSecondHelper = record helper for TKilogramMetersPerSecond
     function ToNewtonSecond: specialize TQuantity<TNewtonSecondUnit>;
+  end;
+
+type
+  TPascalHelper = record helper for TPascals
+    function ToBar: specialize TQuantity<TBarUnit>;
   end;
 
 type
@@ -7253,6 +7274,42 @@ end;
 operator /(const ALeft: TPascals; const ARight: TSquareMetersPerSquareSecond): TKilogramsPerCubicMeter;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+{ Unit of Bar }
+
+class function TBarUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%sbar', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'bar';
+end;
+
+class function TBarUnit.GetName(const AValue: double; const APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+  begin
+    if (AValue > 1) or (AValue < -1) then
+      result := Format('%sbars', [PrefixTable[APrefixes[0]].Name])
+    else
+      result := Format('%sbar', [PrefixTable[APrefixes[0]].Name]);
+  end else
+  begin
+    if (AValue > 1) or (AValue < -1) then
+      result := 'bars'
+    else
+      result := 'bar';
+  end;
+end;
+
+class function TBarUnit.GetValue(const AValue: double; const APrefixes: TPrefixes): double; static;
+begin
+  result := AValue;
+  if Length(APrefixes) = 1 then
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+  end;
 end;
 
 { Unit of Joule }
@@ -14309,6 +14366,11 @@ end;
 function TKilogramMeterPerSecondHelper.ToNewtonSecond: specialize TQuantity<TNewtonSecondUnit>;
 begin
   result.FValue := FValue;
+end;
+
+function TPascalHelper.ToBar: specialize TQuantity<TBarUnit>;
+begin
+  result.FValue := FValue / TBarUnit.Factor;
 end;
 
 function TJouleHelper.ToWattHour: specialize TQuantity<TWattHourUnit>;

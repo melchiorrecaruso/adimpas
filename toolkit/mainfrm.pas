@@ -717,6 +717,7 @@ begin
   if LowerCase(AIdentifierSymbol) = 'deg2'          then Params := '------------------------';
   if LowerCase(AIdentifierSymbol) = 'deg'           then Params := '------------------------';
   if LowerCase(AIdentifierSymbol) = 'v'             then Params := 'LLLLLLSSLSSSSSSSSSSSLLLL';
+  if LowerCase(AIdentifierSymbol) = 'bar'           then Params := '---------S----S---------';
 
 
   if (LowerCase(AIdentifierSymbol) <> 'kg' ) and
