@@ -1779,6 +1779,19 @@ operator *(const ALeft: TNewtons; const ARight: TSeconds): TKilogramMetersPerSec
 operator /(const ALeft: TKilogramMetersPerSecond; const ARight: TNewtons): TSeconds; inline;
 
 type
+  { Unit of PoundForce }
+  TPoundForceUnit = record
+    class function GetSymbol(const APrefixes: TPrefixes): string; static;
+    class function GetName  (const AValue: double; const APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const APrefixes: TPrefixes): double; static;
+    const Factor = 4.4482216152605;
+  end;
+  TPoundsForce = specialize TQuantity<TNewtonUnit>;
+  TPoundForceUnitId = specialize TUnitId<TPoundForceUnit>;
+
+const lbf: specialize TQuantity<TNewtonUnit> = (FValue: TPoundForceUnit.Factor);
+
+type
   { Unit of SquareNewton }
   TSquareNewtonUnit = record
     class function GetSymbol(const APrefixes: TPrefixes): string; static;
@@ -2023,6 +2036,27 @@ const  zeptoeV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-01
 const  yoctoeV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E-24);
 const  rontoeV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E-27);
 const quectoeV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E-30);
+
+type
+  { Unit of NewtonMeter }
+  TNewtonMeterUnit = record
+    class function GetSymbol(const APrefixes: TPrefixes): string; static;
+    class function GetName  (const AValue: double; const APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const APrefixes: TPrefixes): double; static;
+  end;
+  TNewtonMeters = specialize TQuantity<TJouleUnit>;
+  TNewtonMeterUnitId = specialize TUnitId<TJouleUnit>;
+
+type
+  { Unit of PoundForceInch }
+  TPoundForceInchUnit = record
+    class function GetSymbol(const APrefixes: TPrefixes): string; static;
+    class function GetName  (const AValue: double; const APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const APrefixes: TPrefixes): double; static;
+    const Factor = 0.112984829027617;
+  end;
+  TPoundForceInches = specialize TQuantity<TJouleUnit>;
+  TPoundForceInchUnitId = specialize TUnitId<TPoundForceInchUnit>;
 
 type
   { Unit of Watt }
@@ -2812,16 +2846,6 @@ operator /(const ALeft: TMoles; const ARight: TKatals): TSeconds; inline;
 operator /(const ALeft: TMoles; const ARight: TSecondUnitId): TKatals; inline;
 
 type
-  { Unit of NewtonMeter }
-  TNewtonMeterUnit = record
-    class function GetSymbol(const APrefixes: TPrefixes): string; static;
-    class function GetName  (const AValue: double; const APrefixes: TPrefixes): string; static;
-    class function GetValue (const AValue: double; const APrefixes: TPrefixes): double; static;
-  end;
-  TNewtonMeters = specialize TQuantity<TJouleUnit>;
-  TNewtonMeterUnitId = specialize TUnitId<TJouleUnit>;
-
-type
   { Unit of JoulePerRadian }
   TJoulePerRadianUnit = record
     class function GetSymbol(const APrefixes: TPrefixes): string; static;
@@ -2933,6 +2957,17 @@ operator *(const ALeft: TKilograms; const ARight: TSquareHertz): TNewtonsPerMete
 operator *(const ALeft: TSquareHertz; const ARight: TKilograms): TNewtonsPerMeter; inline;
 operator /(const ALeft: TNewtonsPerMeter; const ARight: TKilograms): TSquareHertz; inline;
 operator /(const ALeft: TNewtonsPerMeter; const ARight: TSquareHertz): TKilograms; inline;
+
+type
+  { Unit of PoundForcePerInch }
+  TPoundForcePerInchUnit = record
+    class function GetSymbol(const APrefixes: TPrefixes): string; static;
+    class function GetName  (const AValue: double; const APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const APrefixes: TPrefixes): double; static;
+    const Factor = 175.126835246476;
+  end;
+  TPoundsForcePerInch = specialize TQuantity<TNewtonPerMeterUnit>;
+  TPoundForcePerInchUnitId = specialize TUnitId<TPoundForcePerInchUnit>;
 
 type
   { Unit of CubicMeterPerSecond }
@@ -4440,6 +4475,11 @@ type
   end;
 
 type
+  TNewtonHelper = record helper for TNewtons
+    function ToPoundForce: specialize TQuantity<TPoundForceUnit>;
+  end;
+
+type
   TPascalHelper = record helper for TPascals
     function ToPoundPerSquareInch: specialize TQuantity<TPoundPerSquareInchUnit>;
     function ToBar: specialize TQuantity<TBarUnit>;
@@ -4447,6 +4487,7 @@ type
 
 type
   TJouleHelper = record helper for TJoules
+    function ToPoundForceInch: specialize TQuantity<TPoundForceInchUnit>;
     function ToNewtonMeter: specialize TQuantity<TNewtonMeterUnit>;
     function ToElettronvolt: specialize TQuantity<TElettronvoltUnit>;
     function ToWattHour: specialize TQuantity<TWattHourUnit>;
@@ -4474,6 +4515,11 @@ type
     function ToNewtonMeterPerDegree: specialize TQuantity<TNewtonMeterPerDegreeUnit>;
     function ToNewtonMeterPerRadian: specialize TQuantity<TNewtonMeterPerRadianUnit>;
     function ToJoulePerDegree: specialize TQuantity<TJoulePerDegreeUnit>;
+  end;
+
+type
+  TNewtonPerMeterHelper = record helper for TNewtonsPerMeter
+    function ToPoundForcePerInch: specialize TQuantity<TPoundForcePerInchUnit>;
   end;
 
 type
@@ -7805,6 +7851,26 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{ Unit of PoundForce }
+
+class function TPoundForceUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
+begin
+  result := 'lbf';
+end;
+
+class function TPoundForceUnit.GetName(const AValue: double; const APrefixes: TPrefixes): string; static;
+begin
+  if (AValue > 1) or (AValue < -1) then
+    result := 'pounds-force'
+  else
+    result := 'pound-force';
+end;
+
+class function TPoundForceUnit.GetValue(const AValue: double; const APrefixes: TPrefixes): double; static;
+begin
+  result := AValue;
+end;
+
 { Unit of SquareNewton }
 
 class function TSquareNewtonUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
@@ -8258,6 +8324,63 @@ begin
   begin
     if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
   end;
+end;
+
+{ Unit of NewtonMeter }
+
+class function TNewtonMeterUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+    result := Format('%sN·%sm', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
+  else
+    result := 'N·m';
+end;
+
+class function TNewtonMeterUnit.GetName(const AValue: double; const APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 2 then
+  begin
+    if (AValue > 1) or (AValue < -1) then
+      result := Format('%snewton %smeters', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
+    else
+      result := Format('%snewton %smeter', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name]);
+  end else
+  begin
+    if (AValue > 1) or (AValue < -1) then
+      result := 'newton meters'
+    else
+      result := 'newton meter';
+  end;
+end;
+
+class function TNewtonMeterUnit.GetValue(const AValue: double; const APrefixes: TPrefixes): double; static;
+begin
+  result := AValue;
+  if Length(APrefixes) = 2 then
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+    if (APrefixes[1] <> pNone) then result := result / PrefixTable[APrefixes[1]].Factor;
+  end;
+end;
+
+{ Unit of PoundForceInch }
+
+class function TPoundForceInchUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
+begin
+  result := 'lbf·in';
+end;
+
+class function TPoundForceInchUnit.GetName(const AValue: double; const APrefixes: TPrefixes): string; static;
+begin
+  if (AValue > 1) or (AValue < -1) then
+    result := 'pound-force inches'
+  else
+    result := 'pound-force inch';
+end;
+
+class function TPoundForceInchUnit.GetValue(const AValue: double; const APrefixes: TPrefixes): double; static;
+begin
+  result := AValue;
 end;
 
 { Unit of Watt }
@@ -9441,43 +9564,6 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
-{ Unit of NewtonMeter }
-
-class function TNewtonMeterUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
-begin
-  if Length(APrefixes) = 2 then
-    result := Format('%sN·%sm', [PrefixTable[APrefixes[0]].Symbol, PrefixTable[APrefixes[1]].Symbol])
-  else
-    result := 'N·m';
-end;
-
-class function TNewtonMeterUnit.GetName(const AValue: double; const APrefixes: TPrefixes): string; static;
-begin
-  if Length(APrefixes) = 2 then
-  begin
-    if (AValue > 1) or (AValue < -1) then
-      result := Format('%snewton %smeters', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name])
-    else
-      result := Format('%snewton %smeter', [PrefixTable[APrefixes[0]].Name, PrefixTable[APrefixes[1]].Name]);
-  end else
-  begin
-    if (AValue > 1) or (AValue < -1) then
-      result := 'newton meters'
-    else
-      result := 'newton meter';
-  end;
-end;
-
-class function TNewtonMeterUnit.GetValue(const AValue: double; const APrefixes: TPrefixes): double; static;
-begin
-  result := AValue;
-  if Length(APrefixes) = 2 then
-  begin
-    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
-    if (APrefixes[1] <> pNone) then result := result / PrefixTable[APrefixes[1]].Factor;
-  end;
-end;
-
 { Unit of JoulePerRadian }
 
 class function TJoulePerRadianUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
@@ -9887,6 +9973,26 @@ end;
 operator /(const ALeft: TNewtonsPerMeter; const ARight: TSquareHertz): TKilograms;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+{ Unit of PoundForcePerInch }
+
+class function TPoundForcePerInchUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
+begin
+  result := 'lbf/in';
+end;
+
+class function TPoundForcePerInchUnit.GetName(const AValue: double; const APrefixes: TPrefixes): string; static;
+begin
+  if (AValue > 1) or (AValue < -1) then
+    result := 'pounds-force per inch'
+  else
+    result := 'pound-force per inch';
+end;
+
+class function TPoundForcePerInchUnit.GetValue(const AValue: double; const APrefixes: TPrefixes): double; static;
+begin
+  result := AValue;
 end;
 
 { Unit of CubicMeterPerSecond }
@@ -15161,6 +15267,11 @@ begin
   result.FValue := FValue;
 end;
 
+function TNewtonHelper.ToPoundForce: specialize TQuantity<TPoundForceUnit>;
+begin
+  result.FValue := FValue / TPoundForceUnit.Factor;
+end;
+
 function TPascalHelper.ToBar: specialize TQuantity<TBarUnit>;
 begin
   result.FValue := FValue / TBarUnit.Factor;
@@ -15179,6 +15290,16 @@ end;
 function TJouleHelper.ToElettronvolt: specialize TQuantity<TElettronvoltUnit>;
 begin
   result.FValue := FValue / TElettronvoltUnit.Factor;
+end;
+
+function TJouleHelper.ToNewtonMeter: specialize TQuantity<TNewtonMeterUnit>;
+begin
+  result.FValue := FValue;
+end;
+
+function TJouleHelper.ToPoundForceInch: specialize TQuantity<TPoundForceInchUnit>;
+begin
+  result.FValue := FValue / TPoundForceInchUnit.Factor;
 end;
 
 function TCoulombHelper.ToAmpereHour: specialize TQuantity<TAmpereHourUnit>;
@@ -15201,11 +15322,6 @@ begin
   result.FValue := FValue;
 end;
 
-function TJouleHelper.ToNewtonMeter: specialize TQuantity<TNewtonMeterUnit>;
-begin
-  result.FValue := FValue;
-end;
-
 function TJoulePerRadianHelper.ToJoulePerDegree: specialize TQuantity<TJoulePerDegreeUnit>;
 begin
   result.FValue := FValue / TJoulePerDegreeUnit.Factor;
@@ -15219,6 +15335,11 @@ end;
 function TJoulePerRadianHelper.ToNewtonMeterPerDegree: specialize TQuantity<TNewtonMeterPerDegreeUnit>;
 begin
   result.FValue := FValue / TNewtonMeterPerDegreeUnit.Factor;
+end;
+
+function TNewtonPerMeterHelper.ToPoundForcePerInch: specialize TQuantity<TPoundForcePerInchUnit>;
+begin
+  result.FValue := FValue / TPoundForcePerInchUnit.Factor;
 end;
 
 function TPoiseuilleHelper.ToPascalSecond: specialize TQuantity<TPascalSecondUnit>;
