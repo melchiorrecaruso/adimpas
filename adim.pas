@@ -1849,6 +1849,21 @@ const      kbar: specialize TQuantity<TPascalUnit> = (FValue: 1E+05 * 1E+03);
 const      mbar: specialize TQuantity<TPascalUnit> = (FValue: 1E+05 * 1E-03);
 
 type
+  { Unit of PoundPerSquareInch }
+  TPoundPerSquareInchUnit = record
+    class function GetSymbol(const APrefixes: TPrefixes): string; static;
+    class function GetName  (const AValue: double; const APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const APrefixes: TPrefixes): double; static;
+    const Factor = 6894.75729316836;
+  end;
+  TPoundsPerSquareInch = specialize TQuantity<TPascalUnit>;
+  TPoundPerSquareInchUnitId = specialize TUnitId<TPoundPerSquareInchUnit>;
+
+const psi: specialize TQuantity<TPascalUnit> = (FValue: 6894.75729316836);
+
+const      kpsi: specialize TQuantity<TPascalUnit> = (FValue: 6894.75729316836 * 1E+03);
+
+type
   { Unit of Joule }
   TJouleUnit = record
     class function GetSymbol(const APrefixes: TPrefixes): string; static;
@@ -4386,6 +4401,7 @@ type
 
 type
   TPascalHelper = record helper for TPascals
+    function ToPoundPerSquareInch: specialize TQuantity<TPoundPerSquareInchUnit>;
     function ToBar: specialize TQuantity<TBarUnit>;
   end;
 
@@ -7850,6 +7866,42 @@ begin
 end;
 
 class function TBarUnit.GetValue(const AValue: double; const APrefixes: TPrefixes): double; static;
+begin
+  result := AValue;
+  if Length(APrefixes) = 1 then
+  begin
+    if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
+  end;
+end;
+
+{ Unit of PoundPerSquareInch }
+
+class function TPoundPerSquareInchUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+    result := Format('%spsi', [PrefixTable[APrefixes[0]].Symbol])
+  else
+    result := 'psi';
+end;
+
+class function TPoundPerSquareInchUnit.GetName(const AValue: double; const APrefixes: TPrefixes): string; static;
+begin
+  if Length(APrefixes) = 1 then
+  begin
+    if (AValue > 1) or (AValue < -1) then
+      result := Format('%spounds per square inch', [PrefixTable[APrefixes[0]].Name])
+    else
+      result := Format('%spound per square inch', [PrefixTable[APrefixes[0]].Name]);
+  end else
+  begin
+    if (AValue > 1) or (AValue < -1) then
+      result := 'pounds per square inch'
+    else
+      result := 'pound per square inch';
+  end;
+end;
+
+class function TPoundPerSquareInchUnit.GetValue(const AValue: double; const APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
   if Length(APrefixes) = 1 then
@@ -14997,6 +15049,11 @@ end;
 function TPascalHelper.ToBar: specialize TQuantity<TBarUnit>;
 begin
   result.FValue := FValue / TBarUnit.Factor;
+end;
+
+function TPascalHelper.ToPoundPerSquareInch: specialize TQuantity<TPoundPerSquareInchUnit>;
+begin
+  result.FValue := FValue / TPoundPerSquareInchUnit.Factor;
 end;
 
 function TJouleHelper.ToWattHour: specialize TQuantity<TWattHourUnit>;

@@ -754,6 +754,8 @@ begin
   if LowerCase(AIdentifierSymbol) = 'oz'            then Params := '------------------------';
   if LowerCase(AIdentifierSymbol) = 'st'            then Params := '------------------------';
 
+  if LowerCase(AIdentifierSymbol) = 'psi'           then Params := '---------S--------------';
+
 
   if (LowerCase(AIdentifierSymbol) <> 'kg' ) and
      (LowerCase(AIdentifierSymbol) <> 'kg2') then
