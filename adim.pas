@@ -1510,6 +1510,17 @@ type
   TMilePerHourUnitId = specialize TUnitId<TMilePerHourUnit>;
 
 type
+  { Unit of NauticalMilePerHour }
+  TNauticalMilePerHourUnit = record
+    class function GetSymbol(const APrefixes: TPrefixes): string; static;
+    class function GetName  (const AValue: double; const APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const APrefixes: TPrefixes): double; static;
+    const Factor = 463/900;
+  end;
+  TNauticalMilesPerHour = specialize TQuantity<TMeterPerSecondUnit>;
+  TNauticalMilePerHourUnitId = specialize TUnitId<TNauticalMilePerHourUnit>;
+
+type
   { Unit of MeterPerSecondSquared }
   TMeterPerSecondSquaredUnit = record
     class function GetSymbol(const APrefixes: TPrefixes): string; static;
@@ -4412,6 +4423,7 @@ type
 
 type
   TMeterPerSecondHelper = record helper for TMetersPerSecond
+    function ToNauticalMilePerHour: specialize TQuantity<TNauticalMilePerHourUnit>;
     function ToMilePerHour: specialize TQuantity<TMilePerHourUnit>;
     function ToMeterPerHour: specialize TQuantity<TMeterPerHourUnit>;
   end;
@@ -6897,6 +6909,26 @@ begin
 end;
 
 class function TMilePerHourUnit.GetValue(const AValue: double; const APrefixes: TPrefixes): double; static;
+begin
+  result := AValue;
+end;
+
+{ Unit of NauticalMilePerHour }
+
+class function TNauticalMilePerHourUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
+begin
+  result := 'nmi/h';
+end;
+
+class function TNauticalMilePerHourUnit.GetName(const AValue: double; const APrefixes: TPrefixes): string; static;
+begin
+  if (AValue > 1) or (AValue < -1) then
+    result := 'nautical miles per hour'
+  else
+    result := 'nautical mile per hour';
+end;
+
+class function TNauticalMilePerHourUnit.GetValue(const AValue: double; const APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
 end;
@@ -15107,6 +15139,11 @@ end;
 function TMeterPerSecondHelper.ToMilePerHour: specialize TQuantity<TMilePerHourUnit>;
 begin
   result.FValue := FValue / TMilePerHourUnit.Factor;
+end;
+
+function TMeterPerSecondHelper.ToNauticalMilePerHour: specialize TQuantity<TNauticalMilePerHourUnit>;
+begin
+  result.FValue := FValue / TNauticalMilePerHourUnit.Factor;
 end;
 
 function TMeterPerSecondSquaredHelper.ToMeterPerSecondPerSecond: specialize TQuantity<TMeterPerSecondPerSecondUnit>;
