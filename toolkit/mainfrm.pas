@@ -722,22 +722,33 @@ begin
 
   if LowerCase(AIdentifierSymbol) = 'tonne'         then Params := '-------LLL--------------';
   if LowerCase(AIdentifierSymbol) = 'l'             then Params := 'LLLLSLSSLSSSSSSSSLSSLLLL';
+  if LowerCase(AIdentifierSymbol) = 'gal'           then Params := '------------------------';
   if LowerCase(AIdentifierSymbol) = 'degc'          then Params := '------------------------';
   if LowerCase(AIdentifierSymbol) = 'degf'          then Params := '------------------------';
   if LowerCase(AIdentifierSymbol) = 'deg2'          then Params := '------------------------';
   if LowerCase(AIdentifierSymbol) = 'deg'           then Params := '------------------------';
   if LowerCase(AIdentifierSymbol) = 'v'             then Params := 'LLLLLLSSLSSSSSSSSSSSLLLL';
   if LowerCase(AIdentifierSymbol) = 'bar'           then Params := '---------S----S---------';
+
   if LowerCase(AIdentifierSymbol) = 'inch'          then Params := '------------------------';
-  if LowerCase(AIdentifierSymbol) = 'ft'            then Params := '------------------------';
-  if LowerCase(AIdentifierSymbol) = 'yd'            then Params := '------------------------';
-  if LowerCase(AIdentifierSymbol) = 'mi'            then Params := '------------------------';
   if LowerCase(AIdentifierSymbol) = 'inch2'         then Params := '------------------------';
+  if LowerCase(AIdentifierSymbol) = 'inch3'         then Params := '------------------------';
+  if LowerCase(AIdentifierSymbol) = 'inch4'         then Params := '------------------------';
+
+  if LowerCase(AIdentifierSymbol) = 'ft'            then Params := '------------------------';
   if LowerCase(AIdentifierSymbol) = 'ft2'           then Params := '------------------------';
+  if LowerCase(AIdentifierSymbol) = 'ft3'           then Params := '------------------------';
+  if LowerCase(AIdentifierSymbol) = 'ft4'           then Params := '------------------------';
+
+  if LowerCase(AIdentifierSymbol) = 'yd'            then Params := '------------------------';
   if LowerCase(AIdentifierSymbol) = 'yd2'           then Params := '------------------------';
+  if LowerCase(AIdentifierSymbol) = 'yd3'           then Params := '------------------------';
+  if LowerCase(AIdentifierSymbol) = 'yd4'           then Params := '------------------------';
+
+  if LowerCase(AIdentifierSymbol) = 'mi'            then Params := '------------------------';
   if LowerCase(AIdentifierSymbol) = 'mi2'           then Params := '------------------------';
-
-
+  if LowerCase(AIdentifierSymbol) = 'mi3'           then Params := '------------------------';
+  if LowerCase(AIdentifierSymbol) = 'mi4'           then Params := '------------------------';
 
   if (LowerCase(AIdentifierSymbol) <> 'kg' ) and
      (LowerCase(AIdentifierSymbol) <> 'kg2') then
