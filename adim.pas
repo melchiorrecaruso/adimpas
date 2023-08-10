@@ -748,6 +748,45 @@ const   megatonne: specialize TQuantity<TKilogramUnit> = (FValue: 1E+03 * 1E+06)
 const   kilotonne: specialize TQuantity<TKilogramUnit> = (FValue: 1E+03 * 1E+03);
 
 type
+  { Unit of Pound }
+  TPoundUnit = record
+    class function GetSymbol(const APrefixes: TPrefixes): string; static;
+    class function GetName  (const AValue: double; const APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const APrefixes: TPrefixes): double; static;
+    const Factor = 0.45359237;
+  end;
+  TPounds = specialize TQuantity<TKilogramUnit>;
+  TPoundUnitId = specialize TUnitId<TPoundUnit>;
+
+const lb: specialize TQuantity<TKilogramUnit> = (FValue: 0.45359237);
+
+type
+  { Unit of Ounce }
+  TOunceUnit = record
+    class function GetSymbol(const APrefixes: TPrefixes): string; static;
+    class function GetName  (const AValue: double; const APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const APrefixes: TPrefixes): double; static;
+    const Factor = 0.028349523125;
+  end;
+  TOunces = specialize TQuantity<TKilogramUnit>;
+  TOunceUnitId = specialize TUnitId<TOunceUnit>;
+
+const oz: specialize TQuantity<TKilogramUnit> = (FValue: 0.028349523125);
+
+type
+  { Unit of Stone }
+  TStoneUnit = record
+    class function GetSymbol(const APrefixes: TPrefixes): string; static;
+    class function GetName  (const AValue: double; const APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const APrefixes: TPrefixes): double; static;
+    const Factor = 6.35029318;
+  end;
+  TStones = specialize TQuantity<TKilogramUnit>;
+  TStoneUnitId = specialize TUnitId<TStoneUnit>;
+
+const st: specialize TQuantity<TKilogramUnit> = (FValue: 6.35029318);
+
+type
   { Unit of SquareKilogram }
   TSquareKilogramUnit = record
     class function GetSymbol(const APrefixes: TPrefixes): string; static;
@@ -4279,6 +4318,9 @@ type
 
 type
   TKilogramHelper = record helper for TKilograms
+    function ToStone: specialize TQuantity<TStoneUnit>;
+    function ToOunce: specialize TQuantity<TOunceUnit>;
+    function ToPound: specialize TQuantity<TPoundUnit>;
     function ToTonne: specialize TQuantity<TTonneUnit>;
   end;
 
@@ -5571,6 +5613,66 @@ begin
   begin
     if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
   end;
+end;
+
+{ Unit of Pound }
+
+class function TPoundUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
+begin
+  result := 'lb';
+end;
+
+class function TPoundUnit.GetName(const AValue: double; const APrefixes: TPrefixes): string; static;
+begin
+  if (AValue > 1) or (AValue < -1) then
+    result := 'pounds'
+  else
+    result := 'pound';
+end;
+
+class function TPoundUnit.GetValue(const AValue: double; const APrefixes: TPrefixes): double; static;
+begin
+  result := AValue;
+end;
+
+{ Unit of Ounce }
+
+class function TOunceUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
+begin
+  result := 'oz';
+end;
+
+class function TOunceUnit.GetName(const AValue: double; const APrefixes: TPrefixes): string; static;
+begin
+  if (AValue > 1) or (AValue < -1) then
+    result := 'ounces'
+  else
+    result := 'ounce';
+end;
+
+class function TOunceUnit.GetValue(const AValue: double; const APrefixes: TPrefixes): double; static;
+begin
+  result := AValue;
+end;
+
+{ Unit of Stone }
+
+class function TStoneUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
+begin
+  result := 'st';
+end;
+
+class function TStoneUnit.GetName(const AValue: double; const APrefixes: TPrefixes): string; static;
+begin
+  if (AValue > 1) or (AValue < -1) then
+    result := 'stones'
+  else
+    result := 'stone';
+end;
+
+class function TStoneUnit.GetValue(const AValue: double; const APrefixes: TPrefixes): double; static;
+begin
+  result := AValue;
 end;
 
 { Unit of SquareKilogram }
@@ -14778,6 +14880,21 @@ end;
 function TKilogramHelper.ToTonne: specialize TQuantity<TTonneUnit>;
 begin
   result.FValue := FValue / TTonneUnit.Factor;
+end;
+
+function TKilogramHelper.ToPound: specialize TQuantity<TPoundUnit>;
+begin
+  result.FValue := FValue / TPoundUnit.Factor;
+end;
+
+function TKilogramHelper.ToOunce: specialize TQuantity<TOunceUnit>;
+begin
+  result.FValue := FValue / TOunceUnit.Factor;
+end;
+
+function TKilogramHelper.ToStone: specialize TQuantity<TStoneUnit>;
+begin
+  result.FValue := FValue / TStoneUnit.Factor;
 end;
 
 function TDegreeCelsiusHelper.ToKelvin: specialize TQuantity<TKelvinUnit>;

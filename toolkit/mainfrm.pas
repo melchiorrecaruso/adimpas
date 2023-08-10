@@ -720,7 +720,6 @@ begin
   if LowerCase(AIdentifierSymbol) = 'siemens'       then Params := 'LLLLSLLLLLLLLLLLLLSSLLLL';
   if LowerCase(AIdentifierSymbol) = 't'             then Params := 'LLLLSLSSLSSSSSSSSSLLLLLL';
 
-  if LowerCase(AIdentifierSymbol) = 'tonne'         then Params := '-------LLL--------------';
   if LowerCase(AIdentifierSymbol) = 'l'             then Params := 'LLLLSLSSLSSSSSSSSLSSLLLL';
   if LowerCase(AIdentifierSymbol) = 'gal'           then Params := '------------------------';
   if LowerCase(AIdentifierSymbol) = 'degc'          then Params := '------------------------';
@@ -749,6 +748,12 @@ begin
   if LowerCase(AIdentifierSymbol) = 'mi2'           then Params := '------------------------';
   if LowerCase(AIdentifierSymbol) = 'mi3'           then Params := '------------------------';
   if LowerCase(AIdentifierSymbol) = 'mi4'           then Params := '------------------------';
+
+  if LowerCase(AIdentifierSymbol) = 'tonne'         then Params := '-------LLL--------------';
+  if LowerCase(AIdentifierSymbol) = 'lb'            then Params := '------------------------';
+  if LowerCase(AIdentifierSymbol) = 'oz'            then Params := '------------------------';
+  if LowerCase(AIdentifierSymbol) = 'st'            then Params := '------------------------';
+
 
   if (LowerCase(AIdentifierSymbol) <> 'kg' ) and
      (LowerCase(AIdentifierSymbol) <> 'kg2') then
