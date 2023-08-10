@@ -1473,6 +1473,17 @@ type
   TMeterPerHourUnitId = specialize TUnitId<TMeterPerHourUnit>;
 
 type
+  { Unit of MilePerHour }
+  TMilePerHourUnit = record
+    class function GetSymbol(const APrefixes: TPrefixes): string; static;
+    class function GetName  (const AValue: double; const APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const APrefixes: TPrefixes): double; static;
+    const Factor = 0.44704;
+  end;
+  TMilesPerHour = specialize TQuantity<TMeterPerSecondUnit>;
+  TMilePerHourUnitId = specialize TUnitId<TMilePerHourUnit>;
+
+type
   { Unit of MeterPerSecondSquared }
   TMeterPerSecondSquaredUnit = record
     class function GetSymbol(const APrefixes: TPrefixes): string; static;
@@ -4358,6 +4369,7 @@ type
 
 type
   TMeterPerSecondHelper = record helper for TMetersPerSecond
+    function ToMilePerHour: specialize TQuantity<TMilePerHourUnit>;
     function ToMeterPerHour: specialize TQuantity<TMeterPerHourUnit>;
   end;
 
@@ -6783,6 +6795,26 @@ begin
   begin
     if (APrefixes[0] <> pNone) then result := result / PrefixTable[APrefixes[0]].Factor;
   end;
+end;
+
+{ Unit of MilePerHour }
+
+class function TMilePerHourUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
+begin
+  result := 'mi/h';
+end;
+
+class function TMilePerHourUnit.GetName(const AValue: double; const APrefixes: TPrefixes): string; static;
+begin
+  if (AValue > 1) or (AValue < -1) then
+    result := 'miles per hour'
+  else
+    result := 'mile per hour';
+end;
+
+class function TMilePerHourUnit.GetValue(const AValue: double; const APrefixes: TPrefixes): double; static;
+begin
+  result := AValue;
 end;
 
 { Unit of MeterPerSecondSquared }
@@ -14940,6 +14972,11 @@ end;
 function TMeterPerSecondHelper.ToMeterPerHour: specialize TQuantity<TMeterPerHourUnit>;
 begin
   result.FValue := FValue / TMeterPerHourUnit.Factor;
+end;
+
+function TMeterPerSecondHelper.ToMilePerHour: specialize TQuantity<TMilePerHourUnit>;
+begin
+  result.FValue := FValue / TMilePerHourUnit.Factor;
 end;
 
 function TMeterPerSecondSquaredHelper.ToMeterPerSecondPerSecond: specialize TQuantity<TMeterPerSecondPerSecondUnit>;
