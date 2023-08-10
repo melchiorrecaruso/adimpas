@@ -749,12 +749,18 @@ begin
   if LowerCase(AIdentifierSymbol) = 'mi3'           then Params := '------------------------';
   if LowerCase(AIdentifierSymbol) = 'mi4'           then Params := '------------------------';
 
+  if LowerCase(AIdentifierSymbol) = 'nmi'           then Params := '------------------------';
+  if LowerCase(AIdentifierSymbol) = 'nmi2'          then Params := '------------------------';
+  if LowerCase(AIdentifierSymbol) = 'nmi3'          then Params := '------------------------';
+  if LowerCase(AIdentifierSymbol) = 'nmi4'          then Params := '------------------------';
+
   if LowerCase(AIdentifierSymbol) = 'tonne'         then Params := '-------LLL--------------';
   if LowerCase(AIdentifierSymbol) = 'lb'            then Params := '------------------------';
   if LowerCase(AIdentifierSymbol) = 'oz'            then Params := '------------------------';
   if LowerCase(AIdentifierSymbol) = 'st'            then Params := '------------------------';
 
   if LowerCase(AIdentifierSymbol) = 'psi'           then Params := '---------S--------------';
+  if LowerCase(AIdentifierSymbol) = 'ton'           then Params := '------------------------';
 
 
   if (LowerCase(AIdentifierSymbol) <> 'kg' ) and

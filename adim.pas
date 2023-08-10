@@ -334,6 +334,19 @@ type
 const mi: specialize TQuantity<TMeterUnit> = (FValue: 1609.344);
 
 type
+  { Unit of NauticalMile }
+  TNauticalMileUnit = record
+    class function GetSymbol(const APrefixes: TPrefixes): string; static;
+    class function GetName  (const AValue: double; const APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const APrefixes: TPrefixes): double; static;
+    const Factor = 1852;
+  end;
+  TNauticalMiles = specialize TQuantity<TMeterUnit>;
+  TNauticalMileUnitId = specialize TUnitId<TNauticalMileUnit>;
+
+const nmi: specialize TQuantity<TMeterUnit> = (FValue: 1852);
+
+type
   { Unit of SquareMeter }
   TSquareMeterUnit = record
     class function GetSymbol(const APrefixes: TPrefixes): string; static;
@@ -785,6 +798,19 @@ type
   TStoneUnitId = specialize TUnitId<TStoneUnit>;
 
 const st: specialize TQuantity<TKilogramUnit> = (FValue: 6.35029318);
+
+type
+  { Unit of Ton }
+  TTonUnit = record
+    class function GetSymbol(const APrefixes: TPrefixes): string; static;
+    class function GetName  (const AValue: double; const APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const APrefixes: TPrefixes): double; static;
+    const Factor = 907.18474;
+  end;
+  TTons = specialize TQuantity<TKilogramUnit>;
+  TTonUnitId = specialize TUnitId<TTonUnit>;
+
+const ton: specialize TQuantity<TKilogramUnit> = (FValue: 907.18474);
 
 type
   { Unit of SquareKilogram }
@@ -4318,6 +4344,7 @@ type
 
 type
   TMeterHelper = record helper for TMeters
+    function ToNauticalMile: specialize TQuantity<TNauticalMileUnit>;
     function ToMile: specialize TQuantity<TMileUnit>;
     function ToYard: specialize TQuantity<TYardUnit>;
     function ToFoot: specialize TQuantity<TFootUnit>;
@@ -4344,6 +4371,7 @@ type
 
 type
   TKilogramHelper = record helper for TKilograms
+    function ToTon: specialize TQuantity<TTonUnit>;
     function ToStone: specialize TQuantity<TStoneUnit>;
     function ToOunce: specialize TQuantity<TOunceUnit>;
     function ToPound: specialize TQuantity<TPoundUnit>;
@@ -5026,6 +5054,26 @@ begin
   result := AValue;
 end;
 
+{ Unit of NauticalMile }
+
+class function TNauticalMileUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
+begin
+  result := 'nmi';
+end;
+
+class function TNauticalMileUnit.GetName(const AValue: double; const APrefixes: TPrefixes): string; static;
+begin
+  if (AValue > 1) or (AValue < -1) then
+    result := 'nautical miles'
+  else
+    result := 'nautical mile';
+end;
+
+class function TNauticalMileUnit.GetValue(const AValue: double; const APrefixes: TPrefixes): double; static;
+begin
+  result := AValue;
+end;
+
 { Unit of SquareMeter }
 
 class function TSquareMeterUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
@@ -5699,6 +5747,26 @@ begin
 end;
 
 class function TStoneUnit.GetValue(const AValue: double; const APrefixes: TPrefixes): double; static;
+begin
+  result := AValue;
+end;
+
+{ Unit of Ton }
+
+class function TTonUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
+begin
+  result := 'ton';
+end;
+
+class function TTonUnit.GetName(const AValue: double; const APrefixes: TPrefixes): string; static;
+begin
+  if (AValue > 1) or (AValue < -1) then
+    result := 'tons'
+  else
+    result := 'ton';
+end;
+
+class function TTonUnit.GetValue(const AValue: double; const APrefixes: TPrefixes): double; static;
 begin
   result := AValue;
 end;
@@ -14916,6 +14984,11 @@ begin
   result.FValue := FValue / TMileUnit.Factor;
 end;
 
+function TMeterHelper.ToNauticalMile: specialize TQuantity<TNauticalMileUnit>;
+begin
+  result.FValue := FValue / TNauticalMileUnit.Factor;
+end;
+
 function TSquareMeterHelper.ToSquareInch: specialize TQuantity<TSquareInchUnit>;
 begin
   result.FValue := FValue / TSquareInchUnit.Factor;
@@ -14979,6 +15052,11 @@ end;
 function TKilogramHelper.ToStone: specialize TQuantity<TStoneUnit>;
 begin
   result.FValue := FValue / TStoneUnit.Factor;
+end;
+
+function TKilogramHelper.ToTon: specialize TQuantity<TTonUnit>;
+begin
+  result.FValue := FValue / TTonUnit.Factor;
 end;
 
 function TDegreeCelsiusHelper.ToKelvin: specialize TQuantity<TKelvinUnit>;
