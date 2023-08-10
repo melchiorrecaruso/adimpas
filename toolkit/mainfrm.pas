@@ -361,7 +361,8 @@ begin
         begin
           if Pos('%s', AFactor) = 0 then
           begin
-            SectionA1.Append(Format('const %s: specialize TQuantity<%s> = (FValue: %s);', [AIdentifierSymbol, GetUnitClassName(ABaseClass), AFactor]));
+            SectionA1.Append(Format('const %s: specialize TQuantity<%s> = (FValue: %s);',
+              [AIdentifierSymbol, GetUnitClassName(ABaseClass), GetUnitClassName(AClassName) + '.Factor']));
             SectionA1.Append('');
             AddFactoredQuantity(ABaseClass, AIdentifierSymbol, AFactor);
             SectionA1.Append('');

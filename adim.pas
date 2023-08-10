@@ -123,7 +123,7 @@ type
   TDays = specialize TQuantity<TSecondUnit>;
   TDayUnitId = specialize TUnitId<TDayUnit>;
 
-const day: specialize TQuantity<TSecondUnit> = (FValue: 86400);
+const day: specialize TQuantity<TSecondUnit> = (FValue: TDayUnit.Factor);
 
 type
   { Unit of Hour }
@@ -136,7 +136,7 @@ type
   THours = specialize TQuantity<TSecondUnit>;
   THourUnitId = specialize TUnitId<THourUnit>;
 
-const hr: specialize TQuantity<TSecondUnit> = (FValue: 3600);
+const hr: specialize TQuantity<TSecondUnit> = (FValue: THourUnit.Factor);
 
 type
   { Unit of Minute }
@@ -149,7 +149,7 @@ type
   TMinutes = specialize TQuantity<TSecondUnit>;
   TMinuteUnitId = specialize TUnitId<TMinuteUnit>;
 
-const minute: specialize TQuantity<TSecondUnit> = (FValue: 60);
+const minute: specialize TQuantity<TSecondUnit> = (FValue: TMinuteUnit.Factor);
 
 type
   { Unit of SquareSecond }
@@ -203,7 +203,7 @@ type
   TSquareDays = specialize TQuantity<TSquareSecondUnit>;
   TSquareDayUnitId = specialize TUnitId<TSquareDayUnit>;
 
-const day2: specialize TQuantity<TSquareSecondUnit> = (FValue: 7464960000);
+const day2: specialize TQuantity<TSquareSecondUnit> = (FValue: TSquareDayUnit.Factor);
 
 type
   { Unit of SquareHour }
@@ -216,7 +216,7 @@ type
   TSquareHours = specialize TQuantity<TSquareSecondUnit>;
   TSquareHourUnitId = specialize TUnitId<TSquareHourUnit>;
 
-const hr2: specialize TQuantity<TSquareSecondUnit> = (FValue: 12960000);
+const hr2: specialize TQuantity<TSquareSecondUnit> = (FValue: TSquareHourUnit.Factor);
 
 type
   { Unit of SquareMinute }
@@ -229,7 +229,7 @@ type
   TSquareMinutes = specialize TQuantity<TSquareSecondUnit>;
   TSquareMinuteUnitId = specialize TUnitId<TSquareMinuteUnit>;
 
-const minute2: specialize TQuantity<TSquareSecondUnit> = (FValue: 3600);
+const minute2: specialize TQuantity<TSquareSecondUnit> = (FValue: TSquareMinuteUnit.Factor);
 
 type
   { Unit of Meter }
@@ -279,7 +279,7 @@ type
   TAstronomical = specialize TQuantity<TMeterUnit>;
   TAstronomicalUnitId = specialize TUnitId<TAstronomicalUnit>;
 
-const au: specialize TQuantity<TMeterUnit> = (FValue: 149597870691);
+const au: specialize TQuantity<TMeterUnit> = (FValue: TAstronomicalUnit.Factor);
 
 type
   { Unit of Inch }
@@ -292,7 +292,7 @@ type
   TInches = specialize TQuantity<TMeterUnit>;
   TInchUnitId = specialize TUnitId<TInchUnit>;
 
-const inch: specialize TQuantity<TMeterUnit> = (FValue: 0.0254);
+const inch: specialize TQuantity<TMeterUnit> = (FValue: TInchUnit.Factor);
 
 type
   { Unit of Foot }
@@ -305,7 +305,7 @@ type
   TFeet = specialize TQuantity<TMeterUnit>;
   TFootUnitId = specialize TUnitId<TFootUnit>;
 
-const ft: specialize TQuantity<TMeterUnit> = (FValue: 0.3048);
+const ft: specialize TQuantity<TMeterUnit> = (FValue: TFootUnit.Factor);
 
 type
   { Unit of Yard }
@@ -318,7 +318,7 @@ type
   TYards = specialize TQuantity<TMeterUnit>;
   TYardUnitId = specialize TUnitId<TYardUnit>;
 
-const yd: specialize TQuantity<TMeterUnit> = (FValue: 0.9144);
+const yd: specialize TQuantity<TMeterUnit> = (FValue: TYardUnit.Factor);
 
 type
   { Unit of Mile }
@@ -331,7 +331,7 @@ type
   TMiles = specialize TQuantity<TMeterUnit>;
   TMileUnitId = specialize TUnitId<TMileUnit>;
 
-const mi: specialize TQuantity<TMeterUnit> = (FValue: 1609.344);
+const mi: specialize TQuantity<TMeterUnit> = (FValue: TMileUnit.Factor);
 
 type
   { Unit of NauticalMile }
@@ -344,7 +344,7 @@ type
   TNauticalMiles = specialize TQuantity<TMeterUnit>;
   TNauticalMileUnitId = specialize TUnitId<TNauticalMileUnit>;
 
-const nmi: specialize TQuantity<TMeterUnit> = (FValue: 1852);
+const nmi: specialize TQuantity<TMeterUnit> = (FValue: TNauticalMileUnit.Factor);
 
 type
   { Unit of SquareMeter }
@@ -398,7 +398,7 @@ type
   TSquareInches = specialize TQuantity<TSquareMeterUnit>;
   TSquareInchUnitId = specialize TUnitId<TSquareInchUnit>;
 
-const inch2: specialize TQuantity<TSquareMeterUnit> = (FValue: 0.00064516);
+const inch2: specialize TQuantity<TSquareMeterUnit> = (FValue: TSquareInchUnit.Factor);
 
 type
   { Unit of SquareFoot }
@@ -411,7 +411,7 @@ type
   TSquareFeet = specialize TQuantity<TSquareMeterUnit>;
   TSquareFootUnitId = specialize TUnitId<TSquareFootUnit>;
 
-const ft2: specialize TQuantity<TSquareMeterUnit> = (FValue: 0.09290304);
+const ft2: specialize TQuantity<TSquareMeterUnit> = (FValue: TSquareFootUnit.Factor);
 
 type
   { Unit of SquareYard }
@@ -424,7 +424,7 @@ type
   TSquareYards = specialize TQuantity<TSquareMeterUnit>;
   TSquareYardUnitId = specialize TUnitId<TSquareYardUnit>;
 
-const yd2: specialize TQuantity<TSquareMeterUnit> = (FValue: 0.83612736);
+const yd2: specialize TQuantity<TSquareMeterUnit> = (FValue: TSquareYardUnit.Factor);
 
 type
   { Unit of SquareMile }
@@ -437,7 +437,7 @@ type
   TSquareMiles = specialize TQuantity<TSquareMeterUnit>;
   TSquareMileUnitId = specialize TUnitId<TSquareMileUnit>;
 
-const mi2: specialize TQuantity<TSquareMeterUnit> = (FValue: 2589988.110336);
+const mi2: specialize TQuantity<TSquareMeterUnit> = (FValue: TSquareMileUnit.Factor);
 
 type
   { Unit of CubicMeter }
@@ -493,7 +493,7 @@ type
   TCubicInches = specialize TQuantity<TCubicMeterUnit>;
   TCubicInchUnitId = specialize TUnitId<TCubicInchUnit>;
 
-const inch3: specialize TQuantity<TCubicMeterUnit> = (FValue: 0.000016387064);
+const inch3: specialize TQuantity<TCubicMeterUnit> = (FValue: TCubicInchUnit.Factor);
 
 type
   { Unit of CubicFoot }
@@ -506,7 +506,7 @@ type
   TCubicFeet = specialize TQuantity<TCubicMeterUnit>;
   TCubicFootUnitId = specialize TUnitId<TCubicFootUnit>;
 
-const ft3: specialize TQuantity<TCubicMeterUnit> = (FValue: 0.028316846592);
+const ft3: specialize TQuantity<TCubicMeterUnit> = (FValue: TCubicFootUnit.Factor);
 
 type
   { Unit of CubicYard }
@@ -519,7 +519,7 @@ type
   TCubicYards = specialize TQuantity<TCubicMeterUnit>;
   TCubicYardUnitId = specialize TUnitId<TCubicYardUnit>;
 
-const yd3: specialize TQuantity<TCubicMeterUnit> = (FValue: 0.764554857984);
+const yd3: specialize TQuantity<TCubicMeterUnit> = (FValue: TCubicYardUnit.Factor);
 
 type
   { Unit of Litre }
@@ -532,7 +532,7 @@ type
   TLitres = specialize TQuantity<TCubicMeterUnit>;
   TLitreUnitId = specialize TUnitId<TLitreUnit>;
 
-const L: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03);
+const L: specialize TQuantity<TCubicMeterUnit> = (FValue: TLitreUnit.Factor);
 
 const quettaL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E+30);
 const  ronnaL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E+27);
@@ -570,7 +570,7 @@ type
   TGallons = specialize TQuantity<TCubicMeterUnit>;
   TGallonUnitId = specialize TUnitId<TGallonUnit>;
 
-const gal: specialize TQuantity<TCubicMeterUnit> = (FValue: 0.0037854119678);
+const gal: specialize TQuantity<TCubicMeterUnit> = (FValue: TGallonUnit.Factor);
 
 type
   { Unit of QuarticMeter }
@@ -754,7 +754,7 @@ type
   TTonnes = specialize TQuantity<TKilogramUnit>;
   TTonneUnitId = specialize TUnitId<TTonneUnit>;
 
-const tonne: specialize TQuantity<TKilogramUnit> = (FValue: 1E+03);
+const tonne: specialize TQuantity<TKilogramUnit> = (FValue: TTonneUnit.Factor);
 
 const   gigatonne: specialize TQuantity<TKilogramUnit> = (FValue: 1E+03 * 1E+09);
 const   megatonne: specialize TQuantity<TKilogramUnit> = (FValue: 1E+03 * 1E+06);
@@ -771,7 +771,7 @@ type
   TPounds = specialize TQuantity<TKilogramUnit>;
   TPoundUnitId = specialize TUnitId<TPoundUnit>;
 
-const lb: specialize TQuantity<TKilogramUnit> = (FValue: 0.45359237);
+const lb: specialize TQuantity<TKilogramUnit> = (FValue: TPoundUnit.Factor);
 
 type
   { Unit of Ounce }
@@ -784,7 +784,7 @@ type
   TOunces = specialize TQuantity<TKilogramUnit>;
   TOunceUnitId = specialize TUnitId<TOunceUnit>;
 
-const oz: specialize TQuantity<TKilogramUnit> = (FValue: 0.028349523125);
+const oz: specialize TQuantity<TKilogramUnit> = (FValue: TOunceUnit.Factor);
 
 type
   { Unit of Stone }
@@ -797,7 +797,7 @@ type
   TStones = specialize TQuantity<TKilogramUnit>;
   TStoneUnitId = specialize TUnitId<TStoneUnit>;
 
-const st: specialize TQuantity<TKilogramUnit> = (FValue: 6.35029318);
+const st: specialize TQuantity<TKilogramUnit> = (FValue: TStoneUnit.Factor);
 
 type
   { Unit of Ton }
@@ -810,7 +810,7 @@ type
   TTons = specialize TQuantity<TKilogramUnit>;
   TTonUnitId = specialize TUnitId<TTonUnit>;
 
-const ton: specialize TQuantity<TKilogramUnit> = (FValue: 907.18474);
+const ton: specialize TQuantity<TKilogramUnit> = (FValue: TTonUnit.Factor);
 
 type
   { Unit of SquareKilogram }
@@ -1230,7 +1230,7 @@ type
   TDegrees = specialize TQuantity<TRadianUnit>;
   TDegreeUnitId = specialize TUnitId<TDegreeUnit>;
 
-const deg: specialize TQuantity<TRadianUnit> = (FValue: Pi/180);
+const deg: specialize TQuantity<TRadianUnit> = (FValue: TDegreeUnit.Factor);
 
 type
   { Unit of Steradian }
@@ -1284,7 +1284,7 @@ type
   TSquareDegrees = specialize TQuantity<TSteradianUnit>;
   TSquareDegreeUnitId = specialize TUnitId<TSquareDegreeUnit>;
 
-const deg2: specialize TQuantity<TSteradianUnit> = (FValue: Pi*Pi/32400);
+const deg2: specialize TQuantity<TSteradianUnit> = (FValue: TSquareDegreeUnit.Factor);
 
 type
   { Unit of Hertz }
@@ -1869,7 +1869,7 @@ type
   TBars = specialize TQuantity<TPascalUnit>;
   TBarUnitId = specialize TUnitId<TBarUnit>;
 
-const bar: specialize TQuantity<TPascalUnit> = (FValue: 1E+05);
+const bar: specialize TQuantity<TPascalUnit> = (FValue: TBarUnit.Factor);
 
 const      kbar: specialize TQuantity<TPascalUnit> = (FValue: 1E+05 * 1E+03);
 const      mbar: specialize TQuantity<TPascalUnit> = (FValue: 1E+05 * 1E-03);
@@ -1885,7 +1885,7 @@ type
   TPoundsPerSquareInch = specialize TQuantity<TPascalUnit>;
   TPoundPerSquareInchUnitId = specialize TUnitId<TPoundPerSquareInchUnit>;
 
-const psi: specialize TQuantity<TPascalUnit> = (FValue: 6894.75729316836);
+const psi: specialize TQuantity<TPascalUnit> = (FValue: TPoundPerSquareInchUnit.Factor);
 
 const      kpsi: specialize TQuantity<TPascalUnit> = (FValue: 6894.75729316836 * 1E+03);
 
@@ -1986,7 +1986,7 @@ type
   TElettronvolts = specialize TQuantity<TJouleUnit>;
   TElettronvoltUnitId = specialize TUnitId<TElettronvoltUnit>;
 
-const eV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019);
+const eV: specialize TQuantity<TJouleUnit> = (FValue: TElettronvoltUnit.Factor);
 
 const quettaeV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E+30);
 const  ronnaeV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E+27);
