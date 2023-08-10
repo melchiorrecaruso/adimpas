@@ -375,6 +375,58 @@ operator *(const ALeft: TMeters; const ARight: TMeters): TSquareMeters; inline;
 operator /(const ALeft: TSquareMeters; const ARight: TMeters): TMeters; inline;
 
 type
+  { Unit of SquareInch }
+  TSquareInchUnit = record
+    class function GetSymbol(const APrefixes: TPrefixes): string; static;
+    class function GetName  (const AValue: double; const APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const APrefixes: TPrefixes): double; static;
+    const Factor = 0.00064516;
+  end;
+  TSquareInches = specialize TQuantity<TSquareMeterUnit>;
+  TSquareInchUnitId = specialize TUnitId<TSquareInchUnit>;
+
+const inch2: specialize TQuantity<TSquareMeterUnit> = (FValue: 0.00064516);
+
+type
+  { Unit of SquareFoot }
+  TSquareFootUnit = record
+    class function GetSymbol(const APrefixes: TPrefixes): string; static;
+    class function GetName  (const AValue: double; const APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const APrefixes: TPrefixes): double; static;
+    const Factor = 0.09290304;
+  end;
+  TSquareFeet = specialize TQuantity<TSquareMeterUnit>;
+  TSquareFootUnitId = specialize TUnitId<TSquareFootUnit>;
+
+const ft2: specialize TQuantity<TSquareMeterUnit> = (FValue: 0.09290304);
+
+type
+  { Unit of SquareYard }
+  TSquareYardUnit = record
+    class function GetSymbol(const APrefixes: TPrefixes): string; static;
+    class function GetName  (const AValue: double; const APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const APrefixes: TPrefixes): double; static;
+    const Factor = 0.83612736;
+  end;
+  TSquareYards = specialize TQuantity<TSquareMeterUnit>;
+  TSquareYardUnitId = specialize TUnitId<TSquareYardUnit>;
+
+const yd2: specialize TQuantity<TSquareMeterUnit> = (FValue: 0.83612736);
+
+type
+  { Unit of SquareMile }
+  TSquareMileUnit = record
+    class function GetSymbol(const APrefixes: TPrefixes): string; static;
+    class function GetName  (const AValue: double; const APrefixes: TPrefixes): string; static;
+    class function GetValue (const AValue: double; const APrefixes: TPrefixes): double; static;
+    const Factor = 2589988.110336;
+  end;
+  TSquareMiles = specialize TQuantity<TSquareMeterUnit>;
+  TSquareMileUnitId = specialize TUnitId<TSquareMileUnit>;
+
+const mi2: specialize TQuantity<TSquareMeterUnit> = (FValue: 2589988.110336);
+
+type
   { Unit of CubicMeter }
   TCubicMeterUnit = record
     class function GetSymbol(const APrefixes: TPrefixes): string; static;
@@ -4157,6 +4209,14 @@ type
   end;
 
 type
+  TSquareMeterHelper = record helper for TSquareMeters
+    function ToSquareMile: specialize TQuantity<TSquareMileUnit>;
+    function ToSquareYard: specialize TQuantity<TSquareYardUnit>;
+    function ToSquareFoot: specialize TQuantity<TSquareFootUnit>;
+    function ToSquareInch: specialize TQuantity<TSquareInchUnit>;
+  end;
+
+type
   TCubicMeterHelper = record helper for TCubicMeters
     function ToLitre: specialize TQuantity<TLitreUnit>;
   end;
@@ -4886,6 +4946,86 @@ end;
 operator /(const ALeft: TSquareMeters; const ARight: TMeters): TMeters;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+{ Unit of SquareInch }
+
+class function TSquareInchUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
+begin
+  result := 'in2';
+end;
+
+class function TSquareInchUnit.GetName(const AValue: double; const APrefixes: TPrefixes): string; static;
+begin
+  if (AValue > 1) or (AValue < -1) then
+    result := 'square inches'
+  else
+    result := 'square inch';
+end;
+
+class function TSquareInchUnit.GetValue(const AValue: double; const APrefixes: TPrefixes): double; static;
+begin
+  result := AValue;
+end;
+
+{ Unit of SquareFoot }
+
+class function TSquareFootUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
+begin
+  result := 'ft2';
+end;
+
+class function TSquareFootUnit.GetName(const AValue: double; const APrefixes: TPrefixes): string; static;
+begin
+  if (AValue > 1) or (AValue < -1) then
+    result := 'square feet'
+  else
+    result := 'square foot';
+end;
+
+class function TSquareFootUnit.GetValue(const AValue: double; const APrefixes: TPrefixes): double; static;
+begin
+  result := AValue;
+end;
+
+{ Unit of SquareYard }
+
+class function TSquareYardUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
+begin
+  result := 'yd2';
+end;
+
+class function TSquareYardUnit.GetName(const AValue: double; const APrefixes: TPrefixes): string; static;
+begin
+  if (AValue > 1) or (AValue < -1) then
+    result := 'square yards'
+  else
+    result := 'square yard';
+end;
+
+class function TSquareYardUnit.GetValue(const AValue: double; const APrefixes: TPrefixes): double; static;
+begin
+  result := AValue;
+end;
+
+{ Unit of SquareMile }
+
+class function TSquareMileUnit.GetSymbol(const APrefixes: TPrefixes): string; static;
+begin
+  result := 'mi2';
+end;
+
+class function TSquareMileUnit.GetName(const AValue: double; const APrefixes: TPrefixes): string; static;
+begin
+  if (AValue > 1) or (AValue < -1) then
+    result := 'square miles'
+  else
+    result := 'square mile';
+end;
+
+class function TSquareMileUnit.GetValue(const AValue: double; const APrefixes: TPrefixes): double; static;
+begin
+  result := AValue;
 end;
 
 { Unit of CubicMeter }
@@ -14452,6 +14592,26 @@ end;
 function TMeterHelper.ToMile: specialize TQuantity<TMileUnit>;
 begin
   result.FValue := FValue / TMileUnit.Factor;
+end;
+
+function TSquareMeterHelper.ToSquareInch: specialize TQuantity<TSquareInchUnit>;
+begin
+  result.FValue := FValue / TSquareInchUnit.Factor;
+end;
+
+function TSquareMeterHelper.ToSquareFoot: specialize TQuantity<TSquareFootUnit>;
+begin
+  result.FValue := FValue / TSquareFootUnit.Factor;
+end;
+
+function TSquareMeterHelper.ToSquareYard: specialize TQuantity<TSquareYardUnit>;
+begin
+  result.FValue := FValue / TSquareYardUnit.Factor;
+end;
+
+function TSquareMeterHelper.ToSquareMile: specialize TQuantity<TSquareMileUnit>;
+begin
+  result.FValue := FValue / TSquareMileUnit.Factor;
 end;
 
 function TCubicMeterHelper.ToLitre: specialize TQuantity<TLitreUnit>;

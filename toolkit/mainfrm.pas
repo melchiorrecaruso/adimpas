@@ -110,6 +110,7 @@ begin
   Result := S;
   Result := StringReplace(Result, '!',  '', [rfReplaceAll]);
   Result := StringReplace(Result, '?',  '', [rfReplaceAll]);
+  Result := StringReplace(Result, ' ',  '', [rfReplaceAll]);
   if Pos('T', Result) = 1 then
     Delete(Result, 1, 1);
 end;
@@ -119,6 +120,7 @@ begin
   Result := S;
   Result := StringReplace(Result, '!',  '', [rfReplaceAll]);
   Result := StringReplace(Result, '?',  '', [rfReplaceAll]);
+  Result := StringReplace(Result, ' ',  '', [rfReplaceAll]);
   Result := Result + 'Unit';
 end;
 
@@ -127,6 +129,7 @@ begin
   Result := S;
   Result := StringReplace(Result, '!',  '', [rfReplaceAll]);
   Result := StringReplace(Result, '?',  '', [rfReplaceAll]);
+  Result := StringReplace(Result, ' ',  '', [rfReplaceAll]);
   Result := Result + 'Helper';
 end;
 
@@ -135,6 +138,7 @@ begin
   Result := S;
   Result := StringReplace(Result, '!',  '', [rfReplaceAll]);
   Result := StringReplace(Result, '?',  '', [rfReplaceAll]);
+  Result := StringReplace(Result, ' ',  '', [rfReplaceAll]);
   Result := Result + 'UnitId';
 end;
 
@@ -145,6 +149,7 @@ begin
   Result := StringReplace(Result, 'Inch!', 'Inches', [rfReplaceAll]);
   Result := StringReplace(Result, 'y!',    'ies',    [rfReplaceAll]);
   Result := StringReplace(Result, '?',     's',      [rfReplaceAll]);
+  Result := StringReplace(Result, ' ',     '',       [rfReplaceAll]);
 end;
 
 function CleanUnitName(const S: string): string;
@@ -727,6 +732,12 @@ begin
   if LowerCase(AIdentifierSymbol) = 'ft'            then Params := '------------------------';
   if LowerCase(AIdentifierSymbol) = 'yd'            then Params := '------------------------';
   if LowerCase(AIdentifierSymbol) = 'mi'            then Params := '------------------------';
+  if LowerCase(AIdentifierSymbol) = 'inch2'         then Params := '------------------------';
+  if LowerCase(AIdentifierSymbol) = 'ft2'           then Params := '------------------------';
+  if LowerCase(AIdentifierSymbol) = 'yd2'           then Params := '------------------------';
+  if LowerCase(AIdentifierSymbol) = 'mi2'           then Params := '------------------------';
+
+
 
   if (LowerCase(AIdentifierSymbol) <> 'kg' ) and
      (LowerCase(AIdentifierSymbol) <> 'kg2') then
