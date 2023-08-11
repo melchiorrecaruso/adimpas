@@ -849,30 +849,9 @@ type
 
 var mol: TMoleUnitId;
 
-const quettamol: specialize TQuantity<TMoleUnit> = (FValue: 1E+30);
-const  ronnamol: specialize TQuantity<TMoleUnit> = (FValue: 1E+27);
-const  yottamol: specialize TQuantity<TMoleUnit> = (FValue: 1E+24);
-const  zettamol: specialize TQuantity<TMoleUnit> = (FValue: 1E+21);
-const      Emol: specialize TQuantity<TMoleUnit> = (FValue: 1E+18);
-const   petamol: specialize TQuantity<TMoleUnit> = (FValue: 1E+15);
-const      Tmol: specialize TQuantity<TMoleUnit> = (FValue: 1E+12);
-const      Gmol: specialize TQuantity<TMoleUnit> = (FValue: 1E+09);
-const   megamol: specialize TQuantity<TMoleUnit> = (FValue: 1E+06);
 const      kmol: specialize TQuantity<TMoleUnit> = (FValue: 1E+03);
 const      hmol: specialize TQuantity<TMoleUnit> = (FValue: 1E+02);
 const     damol: specialize TQuantity<TMoleUnit> = (FValue: 1E+01);
-const      dmol: specialize TQuantity<TMoleUnit> = (FValue: 1E-01);
-const      cmol: specialize TQuantity<TMoleUnit> = (FValue: 1E-02);
-const      mmol: specialize TQuantity<TMoleUnit> = (FValue: 1E-03);
-const     mimol: specialize TQuantity<TMoleUnit> = (FValue: 1E-06);
-const      nmol: specialize TQuantity<TMoleUnit> = (FValue: 1E-09);
-const      pmol: specialize TQuantity<TMoleUnit> = (FValue: 1E-12);
-const      fmol: specialize TQuantity<TMoleUnit> = (FValue: 1E-15);
-const      amol: specialize TQuantity<TMoleUnit> = (FValue: 1E-18);
-const  zeptomol: specialize TQuantity<TMoleUnit> = (FValue: 1E-21);
-const  yoctomol: specialize TQuantity<TMoleUnit> = (FValue: 1E-24);
-const  rontomol: specialize TQuantity<TMoleUnit> = (FValue: 1E-27);
-const quectomol: specialize TQuantity<TMoleUnit> = (FValue: 1E-30);
 
 type
   { Unit of Candela }
