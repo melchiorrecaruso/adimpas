@@ -1527,30 +1527,10 @@ type
 
 const eV: specialize TQuantity<TJouleUnit> = (FValue: TElettronvoltUnit.Factor);
 
-const quettaeV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E+30);
-const  ronnaeV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E+27);
-const  yottaeV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E+24);
-const  zettaeV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E+21);
-const      EeV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E+18);
-const   petaeV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E+15);
 const      TeV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E+12);
 const      GeV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E+09);
-const   megaeV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E+06);
+const      MeV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E+06);
 const      keV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E+03);
-const      heV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E+02);
-const     daeV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E+01);
-const      deV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E-01);
-const      ceV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E-02);
-const      meV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E-03);
-const     mieV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E-06);
-const      neV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E-09);
-const      peV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E-12);
-const      feV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E-15);
-const      aeV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E-18);
-const  zeptoeV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E-21);
-const  yoctoeV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E-24);
-const  rontoeV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E-27);
-const quectoeV: specialize TQuantity<TJouleUnit> = (FValue: 1.60217742320523E-019 * 1E-30);
 
 type
   { Unit of NewtonMeter }
