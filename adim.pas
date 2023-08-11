@@ -1813,31 +1813,6 @@ type
 
 var Wb: TWeberUnitId;
 
-const quettaWb: specialize TQuantity<TWeberUnit> = (FValue: 1E+30);
-const ronnaWb: specialize TQuantity<TWeberUnit> = (FValue: 1E+27);
-const yottaWb: specialize TQuantity<TWeberUnit> = (FValue: 1E+24);
-const zettaWb: specialize TQuantity<TWeberUnit> = (FValue: 1E+21);
-const EWb: specialize TQuantity<TWeberUnit> = (FValue: 1E+18);
-const petaWb: specialize TQuantity<TWeberUnit> = (FValue: 1E+15);
-const TWb: specialize TQuantity<TWeberUnit> = (FValue: 1E+12);
-const GWb: specialize TQuantity<TWeberUnit> = (FValue: 1E+09);
-const megaWb: specialize TQuantity<TWeberUnit> = (FValue: 1E+06);
-const kWb: specialize TQuantity<TWeberUnit> = (FValue: 1E+03);
-const hWb: specialize TQuantity<TWeberUnit> = (FValue: 1E+02);
-const daWb: specialize TQuantity<TWeberUnit> = (FValue: 1E+01);
-const dWb: specialize TQuantity<TWeberUnit> = (FValue: 1E-01);
-const cWb: specialize TQuantity<TWeberUnit> = (FValue: 1E-02);
-const mWb: specialize TQuantity<TWeberUnit> = (FValue: 1E-03);
-const miWb: specialize TQuantity<TWeberUnit> = (FValue: 1E-06);
-const nWb: specialize TQuantity<TWeberUnit> = (FValue: 1E-09);
-const pWb: specialize TQuantity<TWeberUnit> = (FValue: 1E-12);
-const fWb: specialize TQuantity<TWeberUnit> = (FValue: 1E-15);
-const aWb: specialize TQuantity<TWeberUnit> = (FValue: 1E-18);
-const zeptoWb: specialize TQuantity<TWeberUnit> = (FValue: 1E-21);
-const yoctoWb: specialize TQuantity<TWeberUnit> = (FValue: 1E-24);
-const rontoWb: specialize TQuantity<TWeberUnit> = (FValue: 1E-27);
-const quectoWb: specialize TQuantity<TWeberUnit> = (FValue: 1E-30);
-
 // main definition [ Wb ] = [ V ] * [ s ]
 operator *(const ALeft: TVolts; const ARight: TSeconds): TWebers; inline;
 operator *(const ALeft: TSeconds; const ARight: TVolts): TWebers; inline;
