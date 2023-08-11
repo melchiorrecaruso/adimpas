@@ -1716,30 +1716,10 @@ type
 
 var F: TFaradUnitId;
 
-const quettaF: specialize TQuantity<TFaradUnit> = (FValue: 1E+30);
-const  ronnaF: specialize TQuantity<TFaradUnit> = (FValue: 1E+27);
-const  yottaF: specialize TQuantity<TFaradUnit> = (FValue: 1E+24);
-const  zettaF: specialize TQuantity<TFaradUnit> = (FValue: 1E+21);
-const      EF: specialize TQuantity<TFaradUnit> = (FValue: 1E+18);
-const   petaF: specialize TQuantity<TFaradUnit> = (FValue: 1E+15);
-const      TF: specialize TQuantity<TFaradUnit> = (FValue: 1E+12);
-const      GF: specialize TQuantity<TFaradUnit> = (FValue: 1E+09);
-const   megaF: specialize TQuantity<TFaradUnit> = (FValue: 1E+06);
-const      kF: specialize TQuantity<TFaradUnit> = (FValue: 1E+03);
-const      hF: specialize TQuantity<TFaradUnit> = (FValue: 1E+02);
-const     daF: specialize TQuantity<TFaradUnit> = (FValue: 1E+01);
-const      dF: specialize TQuantity<TFaradUnit> = (FValue: 1E-01);
-const      cF: specialize TQuantity<TFaradUnit> = (FValue: 1E-02);
 const      mF: specialize TQuantity<TFaradUnit> = (FValue: 1E-03);
 const     miF: specialize TQuantity<TFaradUnit> = (FValue: 1E-06);
 const      nF: specialize TQuantity<TFaradUnit> = (FValue: 1E-09);
 const      pF: specialize TQuantity<TFaradUnit> = (FValue: 1E-12);
-const      fF: specialize TQuantity<TFaradUnit> = (FValue: 1E-15);
-const      aF: specialize TQuantity<TFaradUnit> = (FValue: 1E-18);
-const  zeptoF: specialize TQuantity<TFaradUnit> = (FValue: 1E-21);
-const  yoctoF: specialize TQuantity<TFaradUnit> = (FValue: 1E-24);
-const  rontoF: specialize TQuantity<TFaradUnit> = (FValue: 1E-27);
-const quectoF: specialize TQuantity<TFaradUnit> = (FValue: 1E-30);
 
 // main definition [ F ] = [ C ] / [ V ]
 operator /(const ALeft: TCoulombs; const ARight: TVolts): TFarads; inline;
