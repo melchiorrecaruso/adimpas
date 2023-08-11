@@ -1890,31 +1890,6 @@ type
 
 var lm: TLumenUnitId;
 
-const quettalm: specialize TQuantity<TLumenUnit> = (FValue: 1E+30);
-const ronnalm: specialize TQuantity<TLumenUnit> = (FValue: 1E+27);
-const yottalm: specialize TQuantity<TLumenUnit> = (FValue: 1E+24);
-const zettalm: specialize TQuantity<TLumenUnit> = (FValue: 1E+21);
-const Elm: specialize TQuantity<TLumenUnit> = (FValue: 1E+18);
-const petalm: specialize TQuantity<TLumenUnit> = (FValue: 1E+15);
-const Tlm: specialize TQuantity<TLumenUnit> = (FValue: 1E+12);
-const Glm: specialize TQuantity<TLumenUnit> = (FValue: 1E+09);
-const megalm: specialize TQuantity<TLumenUnit> = (FValue: 1E+06);
-const klm: specialize TQuantity<TLumenUnit> = (FValue: 1E+03);
-const hlm: specialize TQuantity<TLumenUnit> = (FValue: 1E+02);
-const dalm: specialize TQuantity<TLumenUnit> = (FValue: 1E+01);
-const dlm: specialize TQuantity<TLumenUnit> = (FValue: 1E-01);
-const clm: specialize TQuantity<TLumenUnit> = (FValue: 1E-02);
-const mlm: specialize TQuantity<TLumenUnit> = (FValue: 1E-03);
-const milm: specialize TQuantity<TLumenUnit> = (FValue: 1E-06);
-const nlm: specialize TQuantity<TLumenUnit> = (FValue: 1E-09);
-const plm: specialize TQuantity<TLumenUnit> = (FValue: 1E-12);
-const flm: specialize TQuantity<TLumenUnit> = (FValue: 1E-15);
-const alm: specialize TQuantity<TLumenUnit> = (FValue: 1E-18);
-const zeptolm: specialize TQuantity<TLumenUnit> = (FValue: 1E-21);
-const yoctolm: specialize TQuantity<TLumenUnit> = (FValue: 1E-24);
-const rontolm: specialize TQuantity<TLumenUnit> = (FValue: 1E-27);
-const quectolm: specialize TQuantity<TLumenUnit> = (FValue: 1E-30);
-
 // main definition [ lm ] = [ cd ] * [ sr ]
 operator *(const ALeft: TCandelas; const ARight: TSteradians): TLumens; inline;
 operator *(const ALeft: TSteradians; const ARight: TCandelas): TLumens; inline;
