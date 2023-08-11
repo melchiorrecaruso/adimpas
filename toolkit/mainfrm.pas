@@ -70,10 +70,10 @@ type
     procedure AddFactoredUnitId(const AIdentifierSymbol, ABaseClass, AFactor: string);
 
     procedure AddClass(const AClassName, AOperator, AClassParent1, AClassParent2,
-      AComment, ALongSymbol, AShortSymbol, AIdentifierSymbol, ABaseClass, AFactor: string);
+      AComment, ALongSymbol, AShortSymbol, AIdentifierSymbol, ABaseClass, AFactor, APrefixes: string);
 
     procedure AddClassFunction(const AClassName, ALongSymbol, AShortSymbol: string);
-    procedure AddFactoredQuantity(ABaseClass, AIdentifierSymbol, AFactor: string);
+    procedure AddFactoredQuantity(ABaseClass, AIdentifierSymbol, AFactor, APrefixes: string);
 
     procedure AddPower(AOperator, AQuantity, AResult: string);
     procedure AddHelper(AClassName, ABaseClass, AFactor: string);
@@ -104,6 +104,7 @@ const
   _identifier_symbol = 7;
   _base_class        = 8;
   _factor            = 9;
+  _prefixes          = 10;
 
 function GetUnitDescription(const S: string): string;
 begin
@@ -282,7 +283,7 @@ begin
 end;
 
 procedure TMainForm.AddClass(const AClassName, AOperator, AClassParent1, AClassParent2,
-  AComment, ALongSymbol, AShortSymbol, AIdentifierSymbol, ABaseClass, AFactor: string);
+  AComment, ALongSymbol, AShortSymbol, AIdentifierSymbol, ABaseClass, AFactor, APrefixes: string);
 begin
   if ClassList.IndexOf(GetUnitDescription(AClassName)) = -1 then
   begin
@@ -305,7 +306,7 @@ begin
       begin
         SectionA1.Append(Format('var %s: %s;', [AIdentifierSymbol, GetUnitIdentifier(AClassName)]));
         SectionA1.Append('');
-        AddFactoredQuantity(AClassName, AIdentifierSymbol, '');
+        AddFactoredQuantity(AClassName, AIdentifierSymbol, '', APrefixes);
         SectionA1.Append('');
       end;
       AddClassFunction(AClassName, ALongSymbol, AShortSymbol);
@@ -329,7 +330,7 @@ begin
         begin
           SectionA1.Append(Format('var %s: %s;', [AIdentifierSymbol, GetUnitIdentifier(AClassName)]));
           SectionA1.Append('');
-          AddFactoredQuantity(ABaseClass, AIdentifierSymbol, AFactor);
+          AddFactoredQuantity(ABaseClass, AIdentifierSymbol, AFactor, APrefixes);
           SectionA1.Append('');
         end;
         AddClassFunction(AClassName, ALongSymbol, AShortSymbol);
@@ -364,7 +365,7 @@ begin
             SectionA1.Append(Format('const %s: specialize TQuantity<%s> = (FValue: %s);',
               [AIdentifierSymbol, GetUnitClassName(ABaseClass), GetUnitClassName(AClassName) + '.Factor']));
             SectionA1.Append('');
-            AddFactoredQuantity(ABaseClass, AIdentifierSymbol, AFactor);
+            AddFactoredQuantity(ABaseClass, AIdentifierSymbol, AFactor, APrefixes);
             SectionA1.Append('');
           end else
           begin
@@ -683,17 +684,21 @@ begin
   Factors := nil;
 end;
 
-procedure TMainForm.AddFactoredQuantity(ABaseClass, AIdentifierSymbol, AFactor: string);
+procedure TMainForm.AddFactoredQuantity(ABaseClass, AIdentifierSymbol, AFactor, APrefixes: string);
 var
   Params: string;
   Power: longint;
   Str: string;
 begin
+  Str := 'const %s: specialize TQuantity<%s> = (FValue: %s);';
   if AFactor <> '' then
     AFactor := AFactor + ' * ';
 
-  Str    := 'const %s: specialize TQuantity<%s> = (FValue: %s);';
-  Params := 'LLLLSLSSLSSSSSSSSSSSLLLL';
+  if Length(APrefixes) = 24 then
+    Params := APrefixes
+  else
+    Params := '------------------------';
+
   Power  := 1;
   if Pos('2', AIdentifierSymbol) > 0 then Power := 2;
   if Pos('3', AIdentifierSymbol) > 0 then Power := 3;
@@ -703,67 +708,6 @@ begin
   if Pos('7', AIdentifierSymbol) > 0 then Power := 7;
   if Pos('8', AIdentifierSymbol) > 0 then Power := 8;
   if Pos('9', AIdentifierSymbol) > 0 then Power := 9;
-
-  if LowerCase(AIdentifierSymbol) = 'day'           then Params := '------------------------';
-  if LowerCase(AIdentifierSymbol) = 'day2'          then Params := '------------------------';
-  if LowerCase(AIdentifierSymbol) = 'hr'            then Params := '------------------------';
-  if LowerCase(AIdentifierSymbol) = 'hr2'           then Params := '------------------------';
-  if LowerCase(AIdentifierSymbol) = 'minute'        then Params := '------------------------';
-  if LowerCase(AIdentifierSymbol) = 'minute2'       then Params := '------------------------';
-  if LowerCase(AIdentifierSymbol) = 's'             then Params := 'LLLLSLSSLSSSSSSSSSSLLLLL';
-
-  if LowerCase(AIdentifierSymbol) = 'au'            then Params := '------------------------';
-
-  if LowerCase(AIdentifierSymbol) = 'a'             then Params := 'LLLLSLSSLSSSSSSSSLSSLLLL';
-  if LowerCase(AIdentifierSymbol) = 'a2'            then Params := 'LLLLSLSSLSSSSSSSSLSSLLLL';
-
-  if LowerCase(AIdentifierSymbol) = 'pa'            then Params := 'LLLLSLSSSSSSSSLSSSSSLLLL';
-  if LowerCase(AIdentifierSymbol) = 'siemens'       then Params := 'LLLLSLLLLLLLLLLLLLSSLLLL';
-  if LowerCase(AIdentifierSymbol) = 't'             then Params := 'LLLLSLSSLSSSSSSSSSLLLLLL';
-
-  if LowerCase(AIdentifierSymbol) = 'l'             then Params := 'LLLLSLSSLSSSSSSSSLSSLLLL';
-  if LowerCase(AIdentifierSymbol) = 'gal'           then Params := '------------------------';
-  if LowerCase(AIdentifierSymbol) = 'degc'          then Params := '------------------------';
-  if LowerCase(AIdentifierSymbol) = 'degf'          then Params := '------------------------';
-  if LowerCase(AIdentifierSymbol) = 'deg2'          then Params := '------------------------';
-  if LowerCase(AIdentifierSymbol) = 'deg'           then Params := '------------------------';
-  if LowerCase(AIdentifierSymbol) = 'v'             then Params := 'LLLLLLSSLSSSSSSSSSSSLLLL';
-  if LowerCase(AIdentifierSymbol) = 'bar'           then Params := '---------S----S---------';
-
-  if LowerCase(AIdentifierSymbol) = 'inch'          then Params := '------------------------';
-  if LowerCase(AIdentifierSymbol) = 'inch2'         then Params := '------------------------';
-  if LowerCase(AIdentifierSymbol) = 'inch3'         then Params := '------------------------';
-  if LowerCase(AIdentifierSymbol) = 'inch4'         then Params := '------------------------';
-
-  if LowerCase(AIdentifierSymbol) = 'ft'            then Params := '------------------------';
-  if LowerCase(AIdentifierSymbol) = 'ft2'           then Params := '------------------------';
-  if LowerCase(AIdentifierSymbol) = 'ft3'           then Params := '------------------------';
-  if LowerCase(AIdentifierSymbol) = 'ft4'           then Params := '------------------------';
-
-  if LowerCase(AIdentifierSymbol) = 'yd'            then Params := '------------------------';
-  if LowerCase(AIdentifierSymbol) = 'yd2'           then Params := '------------------------';
-  if LowerCase(AIdentifierSymbol) = 'yd3'           then Params := '------------------------';
-  if LowerCase(AIdentifierSymbol) = 'yd4'           then Params := '------------------------';
-
-  if LowerCase(AIdentifierSymbol) = 'mi'            then Params := '------------------------';
-  if LowerCase(AIdentifierSymbol) = 'mi2'           then Params := '------------------------';
-  if LowerCase(AIdentifierSymbol) = 'mi3'           then Params := '------------------------';
-  if LowerCase(AIdentifierSymbol) = 'mi4'           then Params := '------------------------';
-
-  if LowerCase(AIdentifierSymbol) = 'nmi'           then Params := '------------------------';
-  if LowerCase(AIdentifierSymbol) = 'nmi2'          then Params := '------------------------';
-  if LowerCase(AIdentifierSymbol) = 'nmi3'          then Params := '------------------------';
-  if LowerCase(AIdentifierSymbol) = 'nmi4'          then Params := '------------------------';
-
-  if LowerCase(AIdentifierSymbol) = 'tonne'         then Params := '-------LLL--------------';
-  if LowerCase(AIdentifierSymbol) = 'lb'            then Params := '------------------------';
-  if LowerCase(AIdentifierSymbol) = 'oz'            then Params := '------------------------';
-  if LowerCase(AIdentifierSymbol) = 'st'            then Params := '------------------------';
-
-  if LowerCase(AIdentifierSymbol) = 'ton'           then Params := '------------------------';
-  if LowerCase(AIdentifierSymbol) = 'lbf'           then Params := '------------------------';
-  if LowerCase(AIdentifierSymbol) = 'psi'           then Params := '---------S--------------';
-
 
   if (LowerCase(AIdentifierSymbol) <> 'kg' ) and
      (LowerCase(AIdentifierSymbol) <> 'kg2') then
@@ -1060,7 +1004,8 @@ begin
           CleanUnitSymbol(WorksheetGrid.Worksheet.ReadAsText(I, _short_symbol     )),
                           WorksheetGrid.Worksheet.ReadAsText(I, _identifier_symbol),
                           WorksheetGrid.Worksheet.ReadAsText(I, _base_class       ),
-                          WorksheetGrid.Worksheet.ReadAsText(I, _factor           ));
+                          WorksheetGrid.Worksheet.ReadAsText(I, _factor           ),
+                          WorksheetGrid.Worksheet.ReadAsText(I, _prefixes         ));
     end;
   end;
 
