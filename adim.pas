@@ -1565,30 +1565,11 @@ type
 
 var W: TWattUnitId;
 
-const quettaW: specialize TQuantity<TWattUnit> = (FValue: 1E+30);
-const  ronnaW: specialize TQuantity<TWattUnit> = (FValue: 1E+27);
-const  yottaW: specialize TQuantity<TWattUnit> = (FValue: 1E+24);
-const  zettaW: specialize TQuantity<TWattUnit> = (FValue: 1E+21);
-const      EW: specialize TQuantity<TWattUnit> = (FValue: 1E+18);
-const   petaW: specialize TQuantity<TWattUnit> = (FValue: 1E+15);
 const      TW: specialize TQuantity<TWattUnit> = (FValue: 1E+12);
 const      GW: specialize TQuantity<TWattUnit> = (FValue: 1E+09);
-const   megaW: specialize TQuantity<TWattUnit> = (FValue: 1E+06);
+const      MW: specialize TQuantity<TWattUnit> = (FValue: 1E+06);
 const      kW: specialize TQuantity<TWattUnit> = (FValue: 1E+03);
-const      hW: specialize TQuantity<TWattUnit> = (FValue: 1E+02);
-const     daW: specialize TQuantity<TWattUnit> = (FValue: 1E+01);
-const      dW: specialize TQuantity<TWattUnit> = (FValue: 1E-01);
-const      cW: specialize TQuantity<TWattUnit> = (FValue: 1E-02);
-const      mW: specialize TQuantity<TWattUnit> = (FValue: 1E-03);
-const     miW: specialize TQuantity<TWattUnit> = (FValue: 1E-06);
-const      nW: specialize TQuantity<TWattUnit> = (FValue: 1E-09);
-const      pW: specialize TQuantity<TWattUnit> = (FValue: 1E-12);
-const      fW: specialize TQuantity<TWattUnit> = (FValue: 1E-15);
-const      aW: specialize TQuantity<TWattUnit> = (FValue: 1E-18);
-const  zeptoW: specialize TQuantity<TWattUnit> = (FValue: 1E-21);
-const  yoctoW: specialize TQuantity<TWattUnit> = (FValue: 1E-24);
-const  rontoW: specialize TQuantity<TWattUnit> = (FValue: 1E-27);
-const quectoW: specialize TQuantity<TWattUnit> = (FValue: 1E-30);
+const  milliW: specialize TQuantity<TWattUnit> = (FValue: 1E-03);
 
 // main definition [ W ] = [ J ] / [ s ]
 operator /(const ALeft: TJoules; const ARight: TSeconds): TWatts; inline;
