@@ -87,15 +87,6 @@ type
 
 var s: TSecondUnitId;
 
-const quettas: specialize TQuantity<TSecondUnit> = (FValue: 1E+30);
-const  ronnas: specialize TQuantity<TSecondUnit> = (FValue: 1E+27);
-const  yottas: specialize TQuantity<TSecondUnit> = (FValue: 1E+24);
-const  zettas: specialize TQuantity<TSecondUnit> = (FValue: 1E+21);
-const      Es: specialize TQuantity<TSecondUnit> = (FValue: 1E+18);
-const   petas: specialize TQuantity<TSecondUnit> = (FValue: 1E+15);
-const      Ts: specialize TQuantity<TSecondUnit> = (FValue: 1E+12);
-const      Gs: specialize TQuantity<TSecondUnit> = (FValue: 1E+09);
-const   megas: specialize TQuantity<TSecondUnit> = (FValue: 1E+06);
 const      ks: specialize TQuantity<TSecondUnit> = (FValue: 1E+03);
 const      hs: specialize TQuantity<TSecondUnit> = (FValue: 1E+02);
 const     das: specialize TQuantity<TSecondUnit> = (FValue: 1E+01);
@@ -105,12 +96,6 @@ const      ms: specialize TQuantity<TSecondUnit> = (FValue: 1E-03);
 const     mis: specialize TQuantity<TSecondUnit> = (FValue: 1E-06);
 const      ns: specialize TQuantity<TSecondUnit> = (FValue: 1E-09);
 const      ps: specialize TQuantity<TSecondUnit> = (FValue: 1E-12);
-const      fs: specialize TQuantity<TSecondUnit> = (FValue: 1E-15);
-const   attos: specialize TQuantity<TSecondUnit> = (FValue: 1E-18);
-const  zeptos: specialize TQuantity<TSecondUnit> = (FValue: 1E-21);
-const  yoctos: specialize TQuantity<TSecondUnit> = (FValue: 1E-24);
-const  rontos: specialize TQuantity<TSecondUnit> = (FValue: 1E-27);
-const quectos: specialize TQuantity<TSecondUnit> = (FValue: 1E-30);
 
 type
   { Unit of Day }
@@ -163,15 +148,6 @@ type
 
 var s2: TSquareSecondUnitId;
 
-const quettas2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E+60);
-const  ronnas2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E+54);
-const  yottas2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E+48);
-const  zettas2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E+42);
-const      Es2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E+36);
-const   petas2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E+30);
-const      Ts2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E+24);
-const      Gs2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E+18);
-const   megas2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E+12);
 const      ks2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E+06);
 const      hs2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E+04);
 const     das2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E+02);
@@ -181,12 +157,6 @@ const      ms2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E-06);
 const     mis2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E-12);
 const      ns2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E-18);
 const      ps2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E-24);
-const      fs2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E-30);
-const      as2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E-36);
-const  zeptos2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E-42);
-const  yoctos2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E-48);
-const  rontos2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E-54);
-const quectos2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E-60);
 
 // main definition [ s2 ] = [ s ] * [ s ]
 operator *(const ALeft: TSeconds; const ARight: TSeconds): TSquareSeconds; inline;
@@ -1194,31 +1164,6 @@ type
 
 var rad: TRadianUnitId;
 
-const quettarad: specialize TQuantity<TRadianUnit> = (FValue: 1E+30);
-const  ronnarad: specialize TQuantity<TRadianUnit> = (FValue: 1E+27);
-const  yottarad: specialize TQuantity<TRadianUnit> = (FValue: 1E+24);
-const  zettarad: specialize TQuantity<TRadianUnit> = (FValue: 1E+21);
-const      Erad: specialize TQuantity<TRadianUnit> = (FValue: 1E+18);
-const   petarad: specialize TQuantity<TRadianUnit> = (FValue: 1E+15);
-const      Trad: specialize TQuantity<TRadianUnit> = (FValue: 1E+12);
-const      Grad: specialize TQuantity<TRadianUnit> = (FValue: 1E+09);
-const   megarad: specialize TQuantity<TRadianUnit> = (FValue: 1E+06);
-const      krad: specialize TQuantity<TRadianUnit> = (FValue: 1E+03);
-const      hrad: specialize TQuantity<TRadianUnit> = (FValue: 1E+02);
-const     darad: specialize TQuantity<TRadianUnit> = (FValue: 1E+01);
-const      drad: specialize TQuantity<TRadianUnit> = (FValue: 1E-01);
-const      crad: specialize TQuantity<TRadianUnit> = (FValue: 1E-02);
-const      mrad: specialize TQuantity<TRadianUnit> = (FValue: 1E-03);
-const     mirad: specialize TQuantity<TRadianUnit> = (FValue: 1E-06);
-const      nrad: specialize TQuantity<TRadianUnit> = (FValue: 1E-09);
-const      prad: specialize TQuantity<TRadianUnit> = (FValue: 1E-12);
-const      frad: specialize TQuantity<TRadianUnit> = (FValue: 1E-15);
-const      arad: specialize TQuantity<TRadianUnit> = (FValue: 1E-18);
-const  zeptorad: specialize TQuantity<TRadianUnit> = (FValue: 1E-21);
-const  yoctorad: specialize TQuantity<TRadianUnit> = (FValue: 1E-24);
-const  rontorad: specialize TQuantity<TRadianUnit> = (FValue: 1E-27);
-const quectorad: specialize TQuantity<TRadianUnit> = (FValue: 1E-30);
-
 type
   { Unit of Degree }
   TDegreeUnit = record
@@ -1243,31 +1188,6 @@ type
   TSteradianUnitId = specialize TUnitId<TSteradianUnit>;
 
 var sr: TSteradianUnitId;
-
-const quettasr: specialize TQuantity<TSteradianUnit> = (FValue: 1E+30);
-const  ronnasr: specialize TQuantity<TSteradianUnit> = (FValue: 1E+27);
-const  yottasr: specialize TQuantity<TSteradianUnit> = (FValue: 1E+24);
-const  zettasr: specialize TQuantity<TSteradianUnit> = (FValue: 1E+21);
-const      Esr: specialize TQuantity<TSteradianUnit> = (FValue: 1E+18);
-const   petasr: specialize TQuantity<TSteradianUnit> = (FValue: 1E+15);
-const      Tsr: specialize TQuantity<TSteradianUnit> = (FValue: 1E+12);
-const      Gsr: specialize TQuantity<TSteradianUnit> = (FValue: 1E+09);
-const   megasr: specialize TQuantity<TSteradianUnit> = (FValue: 1E+06);
-const      ksr: specialize TQuantity<TSteradianUnit> = (FValue: 1E+03);
-const      hsr: specialize TQuantity<TSteradianUnit> = (FValue: 1E+02);
-const     dasr: specialize TQuantity<TSteradianUnit> = (FValue: 1E+01);
-const      dsr: specialize TQuantity<TSteradianUnit> = (FValue: 1E-01);
-const      csr: specialize TQuantity<TSteradianUnit> = (FValue: 1E-02);
-const      msr: specialize TQuantity<TSteradianUnit> = (FValue: 1E-03);
-const     misr: specialize TQuantity<TSteradianUnit> = (FValue: 1E-06);
-const      nsr: specialize TQuantity<TSteradianUnit> = (FValue: 1E-09);
-const      psr: specialize TQuantity<TSteradianUnit> = (FValue: 1E-12);
-const      fsr: specialize TQuantity<TSteradianUnit> = (FValue: 1E-15);
-const      asr: specialize TQuantity<TSteradianUnit> = (FValue: 1E-18);
-const  zeptosr: specialize TQuantity<TSteradianUnit> = (FValue: 1E-21);
-const  yoctosr: specialize TQuantity<TSteradianUnit> = (FValue: 1E-24);
-const  rontosr: specialize TQuantity<TSteradianUnit> = (FValue: 1E-27);
-const quectosr: specialize TQuantity<TSteradianUnit> = (FValue: 1E-30);
 
 // main definition [ sr ] = [ rad ] * [ rad ]
 operator *(const ALeft: TRadians; const ARight: TRadians): TSteradians; inline;
