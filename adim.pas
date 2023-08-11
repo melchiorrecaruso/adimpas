@@ -1790,30 +1790,9 @@ type
 
 var siemens: TSiemensUnitId;
 
-const quettasiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E+30);
-const  ronnasiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E+27);
-const  yottasiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E+24);
-const  zettasiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E+21);
-const      Esiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E+18);
-const   petasiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E+15);
-const   terasiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E+12);
-const   gigasiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E+09);
-const   megasiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E+06);
-const   kilosiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E+03);
-const  hectosiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E+02);
-const   decasiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E+01);
-const   decisiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E-01);
-const  centisiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E-02);
 const  millisiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E-03);
 const  microsiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E-06);
 const   nanosiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E-09);
-const   picosiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E-12);
-const      fsiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E-15);
-const      asiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E-18);
-const  zeptosiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E-21);
-const  yoctosiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E-24);
-const  rontosiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E-27);
-const quectosiemens: specialize TQuantity<TSiemensUnit> = (FValue: 1E-30);
 
 // main definition [ S ] = 1 / [ Ω ]
 operator /(const ALeft: double; const ARight: TOhms): TSiemens; inline;
