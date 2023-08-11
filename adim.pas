@@ -1832,30 +1832,9 @@ type
 
 var T: TTeslaUnitId;
 
-const quettaT: specialize TQuantity<TTeslaUnit> = (FValue: 1E+30);
-const ronnaT: specialize TQuantity<TTeslaUnit> = (FValue: 1E+27);
-const yottaT: specialize TQuantity<TTeslaUnit> = (FValue: 1E+24);
-const zettaT: specialize TQuantity<TTeslaUnit> = (FValue: 1E+21);
-const ET: specialize TQuantity<TTeslaUnit> = (FValue: 1E+18);
-const petaT: specialize TQuantity<TTeslaUnit> = (FValue: 1E+15);
-const TT: specialize TQuantity<TTeslaUnit> = (FValue: 1E+12);
-const GT: specialize TQuantity<TTeslaUnit> = (FValue: 1E+09);
-const megaT: specialize TQuantity<TTeslaUnit> = (FValue: 1E+06);
-const kT: specialize TQuantity<TTeslaUnit> = (FValue: 1E+03);
-const hT: specialize TQuantity<TTeslaUnit> = (FValue: 1E+02);
-const daT: specialize TQuantity<TTeslaUnit> = (FValue: 1E+01);
-const dT: specialize TQuantity<TTeslaUnit> = (FValue: 1E-01);
-const cT: specialize TQuantity<TTeslaUnit> = (FValue: 1E-02);
 const mT: specialize TQuantity<TTeslaUnit> = (FValue: 1E-03);
 const miT: specialize TQuantity<TTeslaUnit> = (FValue: 1E-06);
 const nT: specialize TQuantity<TTeslaUnit> = (FValue: 1E-09);
-const pT: specialize TQuantity<TTeslaUnit> = (FValue: 1E-12);
-const femtoT: specialize TQuantity<TTeslaUnit> = (FValue: 1E-15);
-const attoT: specialize TQuantity<TTeslaUnit> = (FValue: 1E-18);
-const zeptoT: specialize TQuantity<TTeslaUnit> = (FValue: 1E-21);
-const yoctoT: specialize TQuantity<TTeslaUnit> = (FValue: 1E-24);
-const rontoT: specialize TQuantity<TTeslaUnit> = (FValue: 1E-27);
-const quectoT: specialize TQuantity<TTeslaUnit> = (FValue: 1E-30);
 
 // main definition [ T ] = [ Wb ] / [ m2 ]
 operator /(const ALeft: TWebers; const ARight: TSquareMeters): TTeslas; inline;
