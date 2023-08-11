@@ -1855,30 +1855,9 @@ type
 
 var H: THenryUnitId;
 
-const quettaH: specialize TQuantity<THenryUnit> = (FValue: 1E+30);
-const ronnaH: specialize TQuantity<THenryUnit> = (FValue: 1E+27);
-const yottaH: specialize TQuantity<THenryUnit> = (FValue: 1E+24);
-const zettaH: specialize TQuantity<THenryUnit> = (FValue: 1E+21);
-const EH: specialize TQuantity<THenryUnit> = (FValue: 1E+18);
-const petaH: specialize TQuantity<THenryUnit> = (FValue: 1E+15);
-const TH: specialize TQuantity<THenryUnit> = (FValue: 1E+12);
-const GH: specialize TQuantity<THenryUnit> = (FValue: 1E+09);
-const megaH: specialize TQuantity<THenryUnit> = (FValue: 1E+06);
-const kH: specialize TQuantity<THenryUnit> = (FValue: 1E+03);
-const hH: specialize TQuantity<THenryUnit> = (FValue: 1E+02);
-const daH: specialize TQuantity<THenryUnit> = (FValue: 1E+01);
-const dH: specialize TQuantity<THenryUnit> = (FValue: 1E-01);
-const cH: specialize TQuantity<THenryUnit> = (FValue: 1E-02);
 const mH: specialize TQuantity<THenryUnit> = (FValue: 1E-03);
 const miH: specialize TQuantity<THenryUnit> = (FValue: 1E-06);
 const nH: specialize TQuantity<THenryUnit> = (FValue: 1E-09);
-const pH: specialize TQuantity<THenryUnit> = (FValue: 1E-12);
-const fH: specialize TQuantity<THenryUnit> = (FValue: 1E-15);
-const aH: specialize TQuantity<THenryUnit> = (FValue: 1E-18);
-const zeptoH: specialize TQuantity<THenryUnit> = (FValue: 1E-21);
-const yoctoH: specialize TQuantity<THenryUnit> = (FValue: 1E-24);
-const rontoH: specialize TQuantity<THenryUnit> = (FValue: 1E-27);
-const quectoH: specialize TQuantity<THenryUnit> = (FValue: 1E-30);
 
 // main definition [ H ] = [ Wb ] / [ A ]
 operator /(const ALeft: TWebers; const ARight: TAmperes): THenries; inline;
