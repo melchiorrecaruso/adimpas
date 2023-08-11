@@ -1460,30 +1460,10 @@ type
 
 var J: TJouleUnitId;
 
-const quettaJ: specialize TQuantity<TJouleUnit> = (FValue: 1E+30);
-const  ronnaJ: specialize TQuantity<TJouleUnit> = (FValue: 1E+27);
-const  yottaJ: specialize TQuantity<TJouleUnit> = (FValue: 1E+24);
-const  zettaJ: specialize TQuantity<TJouleUnit> = (FValue: 1E+21);
-const      EJ: specialize TQuantity<TJouleUnit> = (FValue: 1E+18);
-const   petaJ: specialize TQuantity<TJouleUnit> = (FValue: 1E+15);
 const      TJ: specialize TQuantity<TJouleUnit> = (FValue: 1E+12);
 const      GJ: specialize TQuantity<TJouleUnit> = (FValue: 1E+09);
-const   megaJ: specialize TQuantity<TJouleUnit> = (FValue: 1E+06);
+const      MJ: specialize TQuantity<TJouleUnit> = (FValue: 1E+06);
 const      kJ: specialize TQuantity<TJouleUnit> = (FValue: 1E+03);
-const      hJ: specialize TQuantity<TJouleUnit> = (FValue: 1E+02);
-const     daJ: specialize TQuantity<TJouleUnit> = (FValue: 1E+01);
-const      dJ: specialize TQuantity<TJouleUnit> = (FValue: 1E-01);
-const      cJ: specialize TQuantity<TJouleUnit> = (FValue: 1E-02);
-const      mJ: specialize TQuantity<TJouleUnit> = (FValue: 1E-03);
-const     miJ: specialize TQuantity<TJouleUnit> = (FValue: 1E-06);
-const      nJ: specialize TQuantity<TJouleUnit> = (FValue: 1E-09);
-const      pJ: specialize TQuantity<TJouleUnit> = (FValue: 1E-12);
-const      fJ: specialize TQuantity<TJouleUnit> = (FValue: 1E-15);
-const      aJ: specialize TQuantity<TJouleUnit> = (FValue: 1E-18);
-const  zeptoJ: specialize TQuantity<TJouleUnit> = (FValue: 1E-21);
-const  yoctoJ: specialize TQuantity<TJouleUnit> = (FValue: 1E-24);
-const  rontoJ: specialize TQuantity<TJouleUnit> = (FValue: 1E-27);
-const quectoJ: specialize TQuantity<TJouleUnit> = (FValue: 1E-30);
 
 // main definition [ J ] = [ N ] * [ m ]
 operator *(const ALeft: TNewtons; const ARight: TMeters): TJoules; inline;
@@ -3837,30 +3817,10 @@ type
 
 var J2: TSquareJouleUnitId;
 
-const quettaJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E+60);
-const  ronnaJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E+54);
-const  yottaJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E+48);
-const  zettaJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E+42);
-const      EJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E+36);
-const   petaJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E+30);
 const      TJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E+24);
 const      GJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E+18);
-const   megaJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E+12);
+const      MJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E+12);
 const      kJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E+06);
-const      hJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E+04);
-const     daJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E+02);
-const      dJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E-02);
-const      cJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E-04);
-const      mJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E-06);
-const     miJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E-12);
-const      nJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E-18);
-const      pJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E-24);
-const      fJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E-30);
-const      aJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E-36);
-const  zeptoJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E-42);
-const  yoctoJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E-48);
-const  rontoJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E-54);
-const quectoJ2: specialize TQuantity<TSquareJouleUnit> = (FValue: 1E-60);
 
 // main definition [ J2 ] = [ J ] * [ J ]
 operator *(const ALeft: TJoules; const ARight: TJoules): TSquareJoules; inline;
