@@ -1327,30 +1327,11 @@ type
 
 var N: TNewtonUnitId;
 
-const quettaN: specialize TQuantity<TNewtonUnit> = (FValue: 1E+30);
-const  ronnaN: specialize TQuantity<TNewtonUnit> = (FValue: 1E+27);
-const  yottaN: specialize TQuantity<TNewtonUnit> = (FValue: 1E+24);
-const  zettaN: specialize TQuantity<TNewtonUnit> = (FValue: 1E+21);
-const      EN: specialize TQuantity<TNewtonUnit> = (FValue: 1E+18);
-const   petaN: specialize TQuantity<TNewtonUnit> = (FValue: 1E+15);
-const      TN: specialize TQuantity<TNewtonUnit> = (FValue: 1E+12);
 const      GN: specialize TQuantity<TNewtonUnit> = (FValue: 1E+09);
-const   megaN: specialize TQuantity<TNewtonUnit> = (FValue: 1E+06);
+const      MN: specialize TQuantity<TNewtonUnit> = (FValue: 1E+06);
 const      kN: specialize TQuantity<TNewtonUnit> = (FValue: 1E+03);
 const      hN: specialize TQuantity<TNewtonUnit> = (FValue: 1E+02);
 const     daN: specialize TQuantity<TNewtonUnit> = (FValue: 1E+01);
-const      dN: specialize TQuantity<TNewtonUnit> = (FValue: 1E-01);
-const      cN: specialize TQuantity<TNewtonUnit> = (FValue: 1E-02);
-const      mN: specialize TQuantity<TNewtonUnit> = (FValue: 1E-03);
-const     miN: specialize TQuantity<TNewtonUnit> = (FValue: 1E-06);
-const      nN: specialize TQuantity<TNewtonUnit> = (FValue: 1E-09);
-const      pN: specialize TQuantity<TNewtonUnit> = (FValue: 1E-12);
-const      fN: specialize TQuantity<TNewtonUnit> = (FValue: 1E-15);
-const      aN: specialize TQuantity<TNewtonUnit> = (FValue: 1E-18);
-const  zeptoN: specialize TQuantity<TNewtonUnit> = (FValue: 1E-21);
-const  yoctoN: specialize TQuantity<TNewtonUnit> = (FValue: 1E-24);
-const  rontoN: specialize TQuantity<TNewtonUnit> = (FValue: 1E-27);
-const quectoN: specialize TQuantity<TNewtonUnit> = (FValue: 1E-30);
 
 // main definition [ N ] = [ kg ] * [ m/s2 ]
 operator *(const ALeft: TKilograms; const ARight: TMetersPerSecondSquared): TNewtons; inline;
@@ -1396,30 +1377,11 @@ type
 
 var N2: TSquareNewtonUnitId;
 
-const quettaN2: specialize TQuantity<TSquareNewtonUnit> = (FValue: 1E+60);
-const  ronnaN2: specialize TQuantity<TSquareNewtonUnit> = (FValue: 1E+54);
-const  yottaN2: specialize TQuantity<TSquareNewtonUnit> = (FValue: 1E+48);
-const  zettaN2: specialize TQuantity<TSquareNewtonUnit> = (FValue: 1E+42);
-const      EN2: specialize TQuantity<TSquareNewtonUnit> = (FValue: 1E+36);
-const   petaN2: specialize TQuantity<TSquareNewtonUnit> = (FValue: 1E+30);
-const      TN2: specialize TQuantity<TSquareNewtonUnit> = (FValue: 1E+24);
 const      GN2: specialize TQuantity<TSquareNewtonUnit> = (FValue: 1E+18);
-const   megaN2: specialize TQuantity<TSquareNewtonUnit> = (FValue: 1E+12);
+const      MN2: specialize TQuantity<TSquareNewtonUnit> = (FValue: 1E+12);
 const      kN2: specialize TQuantity<TSquareNewtonUnit> = (FValue: 1E+06);
 const      hN2: specialize TQuantity<TSquareNewtonUnit> = (FValue: 1E+04);
 const     daN2: specialize TQuantity<TSquareNewtonUnit> = (FValue: 1E+02);
-const      dN2: specialize TQuantity<TSquareNewtonUnit> = (FValue: 1E-02);
-const      cN2: specialize TQuantity<TSquareNewtonUnit> = (FValue: 1E-04);
-const      mN2: specialize TQuantity<TSquareNewtonUnit> = (FValue: 1E-06);
-const     miN2: specialize TQuantity<TSquareNewtonUnit> = (FValue: 1E-12);
-const      nN2: specialize TQuantity<TSquareNewtonUnit> = (FValue: 1E-18);
-const      pN2: specialize TQuantity<TSquareNewtonUnit> = (FValue: 1E-24);
-const      fN2: specialize TQuantity<TSquareNewtonUnit> = (FValue: 1E-30);
-const      aN2: specialize TQuantity<TSquareNewtonUnit> = (FValue: 1E-36);
-const  zeptoN2: specialize TQuantity<TSquareNewtonUnit> = (FValue: 1E-42);
-const  yoctoN2: specialize TQuantity<TSquareNewtonUnit> = (FValue: 1E-48);
-const  rontoN2: specialize TQuantity<TSquareNewtonUnit> = (FValue: 1E-54);
-const quectoN2: specialize TQuantity<TSquareNewtonUnit> = (FValue: 1E-60);
 
 // main definition [ N2 ] = [ N ] * [ N ]
 operator *(const ALeft: TNewtons; const ARight: TNewtons): TSquareNewtons; inline;
