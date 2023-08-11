@@ -1602,15 +1602,6 @@ type
 
 var C: TCoulombUnitId;
 
-const quettaC: specialize TQuantity<TCoulombUnit> = (FValue: 1E+30);
-const  ronnaC: specialize TQuantity<TCoulombUnit> = (FValue: 1E+27);
-const  yottaC: specialize TQuantity<TCoulombUnit> = (FValue: 1E+24);
-const  zettaC: specialize TQuantity<TCoulombUnit> = (FValue: 1E+21);
-const      EC: specialize TQuantity<TCoulombUnit> = (FValue: 1E+18);
-const   petaC: specialize TQuantity<TCoulombUnit> = (FValue: 1E+15);
-const      TC: specialize TQuantity<TCoulombUnit> = (FValue: 1E+12);
-const      GC: specialize TQuantity<TCoulombUnit> = (FValue: 1E+09);
-const   megaC: specialize TQuantity<TCoulombUnit> = (FValue: 1E+06);
 const      kC: specialize TQuantity<TCoulombUnit> = (FValue: 1E+03);
 const      hC: specialize TQuantity<TCoulombUnit> = (FValue: 1E+02);
 const     daC: specialize TQuantity<TCoulombUnit> = (FValue: 1E+01);
@@ -1620,12 +1611,6 @@ const      mC: specialize TQuantity<TCoulombUnit> = (FValue: 1E-03);
 const     miC: specialize TQuantity<TCoulombUnit> = (FValue: 1E-06);
 const      nC: specialize TQuantity<TCoulombUnit> = (FValue: 1E-09);
 const      pC: specialize TQuantity<TCoulombUnit> = (FValue: 1E-12);
-const      fC: specialize TQuantity<TCoulombUnit> = (FValue: 1E-15);
-const      aC: specialize TQuantity<TCoulombUnit> = (FValue: 1E-18);
-const  zeptoC: specialize TQuantity<TCoulombUnit> = (FValue: 1E-21);
-const  yoctoC: specialize TQuantity<TCoulombUnit> = (FValue: 1E-24);
-const  rontoC: specialize TQuantity<TCoulombUnit> = (FValue: 1E-27);
-const quectoC: specialize TQuantity<TCoulombUnit> = (FValue: 1E-30);
 
 // main definition [ C ] = [ s ] * [ A ]
 operator *(const ALeft: TSeconds; const ARight: TAmperes): TCoulombs; inline;
@@ -1657,15 +1642,6 @@ type
 
 var C2: TSquareCoulombUnitId;
 
-const quettaC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E+60);
-const  ronnaC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E+54);
-const  yottaC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E+48);
-const  zettaC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E+42);
-const      EC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E+36);
-const   petaC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E+30);
-const      TC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E+24);
-const      GC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E+18);
-const   megaC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E+12);
 const      kC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E+06);
 const      hC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E+04);
 const     daC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E+02);
@@ -1675,12 +1651,6 @@ const      mC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E-06);
 const     miC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E-12);
 const      nC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E-18);
 const      pC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E-24);
-const      fC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E-30);
-const      aC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E-36);
-const  zeptoC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E-42);
-const  yoctoC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E-48);
-const  rontoC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E-54);
-const quectoC2: specialize TQuantity<TSquareCoulombUnit> = (FValue: 1E-60);
 
 // main definition [ C2 ] = [ C ] * [ C ]
 operator *(const ALeft: TCoulombs; const ARight: TCoulombs): TSquareCoulombs; inline;
