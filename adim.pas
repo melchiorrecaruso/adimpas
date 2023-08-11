@@ -865,31 +865,6 @@ type
 
 var cd: TCandelaUnitId;
 
-const quettacd: specialize TQuantity<TCandelaUnit> = (FValue: 1E+30);
-const  ronnacd: specialize TQuantity<TCandelaUnit> = (FValue: 1E+27);
-const  yottacd: specialize TQuantity<TCandelaUnit> = (FValue: 1E+24);
-const  zettacd: specialize TQuantity<TCandelaUnit> = (FValue: 1E+21);
-const      Ecd: specialize TQuantity<TCandelaUnit> = (FValue: 1E+18);
-const   petacd: specialize TQuantity<TCandelaUnit> = (FValue: 1E+15);
-const      Tcd: specialize TQuantity<TCandelaUnit> = (FValue: 1E+12);
-const      Gcd: specialize TQuantity<TCandelaUnit> = (FValue: 1E+09);
-const   megacd: specialize TQuantity<TCandelaUnit> = (FValue: 1E+06);
-const      kcd: specialize TQuantity<TCandelaUnit> = (FValue: 1E+03);
-const      hcd: specialize TQuantity<TCandelaUnit> = (FValue: 1E+02);
-const     dacd: specialize TQuantity<TCandelaUnit> = (FValue: 1E+01);
-const      dcd: specialize TQuantity<TCandelaUnit> = (FValue: 1E-01);
-const      ccd: specialize TQuantity<TCandelaUnit> = (FValue: 1E-02);
-const      mcd: specialize TQuantity<TCandelaUnit> = (FValue: 1E-03);
-const     micd: specialize TQuantity<TCandelaUnit> = (FValue: 1E-06);
-const      ncd: specialize TQuantity<TCandelaUnit> = (FValue: 1E-09);
-const      pcd: specialize TQuantity<TCandelaUnit> = (FValue: 1E-12);
-const      fcd: specialize TQuantity<TCandelaUnit> = (FValue: 1E-15);
-const      acd: specialize TQuantity<TCandelaUnit> = (FValue: 1E-18);
-const  zeptocd: specialize TQuantity<TCandelaUnit> = (FValue: 1E-21);
-const  yoctocd: specialize TQuantity<TCandelaUnit> = (FValue: 1E-24);
-const  rontocd: specialize TQuantity<TCandelaUnit> = (FValue: 1E-27);
-const quectocd: specialize TQuantity<TCandelaUnit> = (FValue: 1E-30);
-
 type
   { Unit of Radian }
   TRadianUnit = record
