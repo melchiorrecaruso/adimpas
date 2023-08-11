@@ -757,31 +757,6 @@ type
 
 var K: TKelvinUnitId;
 
-const quettaK: specialize TQuantity<TKelvinUnit> = (FValue: 1E+30);
-const  ronnaK: specialize TQuantity<TKelvinUnit> = (FValue: 1E+27);
-const  yottaK: specialize TQuantity<TKelvinUnit> = (FValue: 1E+24);
-const  zettaK: specialize TQuantity<TKelvinUnit> = (FValue: 1E+21);
-const      EK: specialize TQuantity<TKelvinUnit> = (FValue: 1E+18);
-const   petaK: specialize TQuantity<TKelvinUnit> = (FValue: 1E+15);
-const      TK: specialize TQuantity<TKelvinUnit> = (FValue: 1E+12);
-const      GK: specialize TQuantity<TKelvinUnit> = (FValue: 1E+09);
-const   megaK: specialize TQuantity<TKelvinUnit> = (FValue: 1E+06);
-const      kK: specialize TQuantity<TKelvinUnit> = (FValue: 1E+03);
-const      hK: specialize TQuantity<TKelvinUnit> = (FValue: 1E+02);
-const     daK: specialize TQuantity<TKelvinUnit> = (FValue: 1E+01);
-const      dK: specialize TQuantity<TKelvinUnit> = (FValue: 1E-01);
-const      cK: specialize TQuantity<TKelvinUnit> = (FValue: 1E-02);
-const      mK: specialize TQuantity<TKelvinUnit> = (FValue: 1E-03);
-const     miK: specialize TQuantity<TKelvinUnit> = (FValue: 1E-06);
-const      nK: specialize TQuantity<TKelvinUnit> = (FValue: 1E-09);
-const      pK: specialize TQuantity<TKelvinUnit> = (FValue: 1E-12);
-const      fK: specialize TQuantity<TKelvinUnit> = (FValue: 1E-15);
-const      aK: specialize TQuantity<TKelvinUnit> = (FValue: 1E-18);
-const  zeptoK: specialize TQuantity<TKelvinUnit> = (FValue: 1E-21);
-const  yoctoK: specialize TQuantity<TKelvinUnit> = (FValue: 1E-24);
-const  rontoK: specialize TQuantity<TKelvinUnit> = (FValue: 1E-27);
-const quectoK: specialize TQuantity<TKelvinUnit> = (FValue: 1E-30);
-
 type
   { Unit of DegreeCelsius }
   TDegreeCelsiusUnit = record
@@ -818,31 +793,6 @@ type
 
 var K2: TSquareKelvinUnitId;
 
-const quettaK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E+60);
-const  ronnaK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E+54);
-const  yottaK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E+48);
-const  zettaK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E+42);
-const      EK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E+36);
-const   petaK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E+30);
-const      TK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E+24);
-const      GK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E+18);
-const   megaK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E+12);
-const      kK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E+06);
-const      hK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E+04);
-const     daK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E+02);
-const      dK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E-02);
-const      cK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E-04);
-const      mK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E-06);
-const     miK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E-12);
-const      nK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E-18);
-const      pK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E-24);
-const      fK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E-30);
-const      aK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E-36);
-const  zeptoK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E-42);
-const  yoctoK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E-48);
-const  rontoK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E-54);
-const quectoK2: specialize TQuantity<TSquareKelvinUnit> = (FValue: 1E-60);
-
 // main definition [ K2 ] = [ K ] * [ K ]
 operator *(const ALeft: TKelvins; const ARight: TKelvins): TSquareKelvins; inline;
 operator /(const ALeft: TSquareKelvins; const ARight: TKelvins): TKelvins; inline;
@@ -858,31 +808,6 @@ type
   TCubicKelvinUnitId = specialize TUnitId<TCubicKelvinUnit>;
 
 var K3: TCubicKelvinUnitId;
-
-const quettaK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E+90);
-const  ronnaK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E+81);
-const  yottaK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E+72);
-const  zettaK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E+63);
-const      EK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E+54);
-const   petaK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E+45);
-const      TK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E+36);
-const      GK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E+27);
-const   megaK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E+18);
-const      kK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E+09);
-const      hK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E+06);
-const     daK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E+03);
-const      dK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E-03);
-const      cK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E-06);
-const      mK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E-09);
-const     miK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E-18);
-const      nK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E-27);
-const      pK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E-36);
-const      fK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E-45);
-const      aK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E-54);
-const  zeptoK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E-63);
-const  yoctoK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E-72);
-const  rontoK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E-81);
-const quectoK3: specialize TQuantity<TCubicKelvinUnit> = (FValue: 1E-90);
 
 // main definition [ K3 ] = [ K2 ] * [ K ]
 operator *(const ALeft: TSquareKelvins; const ARight: TKelvins): TCubicKelvins; inline;
@@ -901,31 +826,6 @@ type
   TQuarticKelvinUnitId = specialize TUnitId<TQuarticKelvinUnit>;
 
 var K4: TQuarticKelvinUnitId;
-
-const quettaK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E+120);
-const  ronnaK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E+108);
-const  yottaK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E+96);
-const  zettaK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E+84);
-const      EK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E+72);
-const   petaK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E+60);
-const      TK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E+48);
-const      GK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E+36);
-const   megaK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E+24);
-const      kK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E+12);
-const      hK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E+08);
-const     daK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E+04);
-const      dK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E-04);
-const      cK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E-08);
-const      mK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E-12);
-const     miK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E-24);
-const      nK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E-36);
-const      pK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E-48);
-const      fK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E-60);
-const      aK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E-72);
-const  zeptoK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E-84);
-const  yoctoK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E-96);
-const  rontoK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E-108);
-const quectoK4: specialize TQuantity<TQuarticKelvinUnit> = (FValue: 1E-120);
 
 // main definition [ K4 ] = [ K3 ] * [ K ]
 operator *(const ALeft: TCubicKelvins; const ARight: TKelvins): TQuarticKelvins; inline;
