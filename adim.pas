@@ -709,15 +709,6 @@ type
 
 var A: TAmpereUnitId;
 
-const quettaA: specialize TQuantity<TAmpereUnit> = (FValue: 1E+30);
-const  ronnaA: specialize TQuantity<TAmpereUnit> = (FValue: 1E+27);
-const  yottaA: specialize TQuantity<TAmpereUnit> = (FValue: 1E+24);
-const  zettaA: specialize TQuantity<TAmpereUnit> = (FValue: 1E+21);
-const      EA: specialize TQuantity<TAmpereUnit> = (FValue: 1E+18);
-const   petaA: specialize TQuantity<TAmpereUnit> = (FValue: 1E+15);
-const      TA: specialize TQuantity<TAmpereUnit> = (FValue: 1E+12);
-const      GA: specialize TQuantity<TAmpereUnit> = (FValue: 1E+09);
-const   megaA: specialize TQuantity<TAmpereUnit> = (FValue: 1E+06);
 const      kA: specialize TQuantity<TAmpereUnit> = (FValue: 1E+03);
 const      hA: specialize TQuantity<TAmpereUnit> = (FValue: 1E+02);
 const     daA: specialize TQuantity<TAmpereUnit> = (FValue: 1E+01);
@@ -727,12 +718,6 @@ const      mA: specialize TQuantity<TAmpereUnit> = (FValue: 1E-03);
 const     miA: specialize TQuantity<TAmpereUnit> = (FValue: 1E-06);
 const      nA: specialize TQuantity<TAmpereUnit> = (FValue: 1E-09);
 const   picoA: specialize TQuantity<TAmpereUnit> = (FValue: 1E-12);
-const      fA: specialize TQuantity<TAmpereUnit> = (FValue: 1E-15);
-const      aA: specialize TQuantity<TAmpereUnit> = (FValue: 1E-18);
-const  zeptoA: specialize TQuantity<TAmpereUnit> = (FValue: 1E-21);
-const  yoctoA: specialize TQuantity<TAmpereUnit> = (FValue: 1E-24);
-const  rontoA: specialize TQuantity<TAmpereUnit> = (FValue: 1E-27);
-const quectoA: specialize TQuantity<TAmpereUnit> = (FValue: 1E-30);
 
 type
   { Unit of SquareAmpere }
@@ -746,15 +731,6 @@ type
 
 var A2: TSquareAmpereUnitId;
 
-const quettaA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E+60);
-const  ronnaA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E+54);
-const  yottaA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E+48);
-const  zettaA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E+42);
-const      EA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E+36);
-const   petaA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E+30);
-const      TA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E+24);
-const      GA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E+18);
-const   megaA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E+12);
 const      kA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E+06);
 const      hA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E+04);
 const     daA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E+02);
@@ -764,12 +740,6 @@ const      mA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E-06);
 const     miA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E-12);
 const      nA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E-18);
 const   picoA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E-24);
-const      fA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E-30);
-const      aA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E-36);
-const  zeptoA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E-42);
-const  yoctoA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E-48);
-const  rontoA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E-54);
-const quectoA2: specialize TQuantity<TSquareAmpereUnit> = (FValue: 1E-60);
 
 // main definition [ A2 ] = [ A ] * [ A ]
 operator *(const ALeft: TAmperes; const ARight: TAmperes): TSquareAmperes; inline;
