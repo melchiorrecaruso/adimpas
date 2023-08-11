@@ -11,11 +11,12 @@
         <SaveJumpHistory Value="False"/>
         <SaveFoldState Value="False"/>
       </Flags>
+      <SessionStorage Value="None"/>
       <Title Value="adimtest"/>
       <UseAppBundle Value="False"/>
       <ResourceType Value="res"/>
     </General>
-    <BuildModes Active="Default">
+    <BuildModes>
       <Item Name="Default" Default="True"/>
     </BuildModes>
     <PublishOptions>
@@ -34,10 +35,6 @@
       <Unit>
         <Filename Value="adimtest.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <CursorPos X="65" Y="817"/>
-        <UsageCount Value="200"/>
-        <Loaded Value="True"/>
       </Unit>
     </Units>
   </ProjectOptions>
