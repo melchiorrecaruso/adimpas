@@ -1746,30 +1746,12 @@ type
 
 var ohm: TOhmUnitId;
 
-const quettaohm: specialize TQuantity<TOhmUnit> = (FValue: 1E+30);
-const  ronnaohm: specialize TQuantity<TOhmUnit> = (FValue: 1E+27);
-const  yottaohm: specialize TQuantity<TOhmUnit> = (FValue: 1E+24);
-const  zettaohm: specialize TQuantity<TOhmUnit> = (FValue: 1E+21);
-const      Eohm: specialize TQuantity<TOhmUnit> = (FValue: 1E+18);
-const   petaohm: specialize TQuantity<TOhmUnit> = (FValue: 1E+15);
-const      Tohm: specialize TQuantity<TOhmUnit> = (FValue: 1E+12);
 const      Gohm: specialize TQuantity<TOhmUnit> = (FValue: 1E+09);
-const   megaohm: specialize TQuantity<TOhmUnit> = (FValue: 1E+06);
+const      Mohm: specialize TQuantity<TOhmUnit> = (FValue: 1E+06);
 const      kohm: specialize TQuantity<TOhmUnit> = (FValue: 1E+03);
-const      hohm: specialize TQuantity<TOhmUnit> = (FValue: 1E+02);
-const     daohm: specialize TQuantity<TOhmUnit> = (FValue: 1E+01);
-const      dohm: specialize TQuantity<TOhmUnit> = (FValue: 1E-01);
-const      cohm: specialize TQuantity<TOhmUnit> = (FValue: 1E-02);
 const      mohm: specialize TQuantity<TOhmUnit> = (FValue: 1E-03);
 const     miohm: specialize TQuantity<TOhmUnit> = (FValue: 1E-06);
 const      nohm: specialize TQuantity<TOhmUnit> = (FValue: 1E-09);
-const      pohm: specialize TQuantity<TOhmUnit> = (FValue: 1E-12);
-const      fohm: specialize TQuantity<TOhmUnit> = (FValue: 1E-15);
-const      aohm: specialize TQuantity<TOhmUnit> = (FValue: 1E-18);
-const  zeptoohm: specialize TQuantity<TOhmUnit> = (FValue: 1E-21);
-const  yoctoohm: specialize TQuantity<TOhmUnit> = (FValue: 1E-24);
-const  rontoohm: specialize TQuantity<TOhmUnit> = (FValue: 1E-27);
-const quectoohm: specialize TQuantity<TOhmUnit> = (FValue: 1E-30);
 
 // main definition [ Ω ] = [ V ] / [ A ]
 operator /(const ALeft: TVolts; const ARight: TAmperes): TOhms; inline;
