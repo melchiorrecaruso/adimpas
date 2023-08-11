@@ -1747,7 +1747,7 @@ type
 var ohm: TOhmUnitId;
 
 const Gohm: specialize TQuantity<TOhmUnit> = (FValue: 1E+09);
-const Mohm: specialize TQuantity<TOhmUnit> = (FValue: 1E+06);
+const megaohm: specialize TQuantity<TOhmUnit> = (FValue: 1E+06);
 const kohm: specialize TQuantity<TOhmUnit> = (FValue: 1E+03);
 const mohm: specialize TQuantity<TOhmUnit> = (FValue: 1E-03);
 const miohm: specialize TQuantity<TOhmUnit> = (FValue: 1E-06);
