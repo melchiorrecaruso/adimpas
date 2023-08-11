@@ -207,15 +207,6 @@ type
 
 var m: TMeterUnitId;
 
-const quettam: specialize TQuantity<TMeterUnit> = (FValue: 1E+30);
-const  ronnam: specialize TQuantity<TMeterUnit> = (FValue: 1E+27);
-const  yottam: specialize TQuantity<TMeterUnit> = (FValue: 1E+24);
-const  zettam: specialize TQuantity<TMeterUnit> = (FValue: 1E+21);
-const      Em: specialize TQuantity<TMeterUnit> = (FValue: 1E+18);
-const   petam: specialize TQuantity<TMeterUnit> = (FValue: 1E+15);
-const      Tm: specialize TQuantity<TMeterUnit> = (FValue: 1E+12);
-const      Gm: specialize TQuantity<TMeterUnit> = (FValue: 1E+09);
-const   megam: specialize TQuantity<TMeterUnit> = (FValue: 1E+06);
 const      km: specialize TQuantity<TMeterUnit> = (FValue: 1E+03);
 const      hm: specialize TQuantity<TMeterUnit> = (FValue: 1E+02);
 const     dam: specialize TQuantity<TMeterUnit> = (FValue: 1E+01);
@@ -225,12 +216,6 @@ const      mm: specialize TQuantity<TMeterUnit> = (FValue: 1E-03);
 const     mim: specialize TQuantity<TMeterUnit> = (FValue: 1E-06);
 const      nm: specialize TQuantity<TMeterUnit> = (FValue: 1E-09);
 const      pm: specialize TQuantity<TMeterUnit> = (FValue: 1E-12);
-const      fm: specialize TQuantity<TMeterUnit> = (FValue: 1E-15);
-const      am: specialize TQuantity<TMeterUnit> = (FValue: 1E-18);
-const  zeptom: specialize TQuantity<TMeterUnit> = (FValue: 1E-21);
-const  yoctom: specialize TQuantity<TMeterUnit> = (FValue: 1E-24);
-const  rontom: specialize TQuantity<TMeterUnit> = (FValue: 1E-27);
-const quectom: specialize TQuantity<TMeterUnit> = (FValue: 1E-30);
 
 type
   { Unit of Astronomical }
@@ -322,15 +307,6 @@ type
 
 var m2: TSquareMeterUnitId;
 
-const quettam2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E+60);
-const  ronnam2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E+54);
-const  yottam2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E+48);
-const  zettam2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E+42);
-const      Em2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E+36);
-const   petam2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E+30);
-const      Tm2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E+24);
-const      Gm2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E+18);
-const   megam2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E+12);
 const      km2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E+06);
 const      hm2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E+04);
 const     dam2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E+02);
@@ -340,12 +316,6 @@ const      mm2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E-06);
 const     mim2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E-12);
 const      nm2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E-18);
 const      pm2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E-24);
-const      fm2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E-30);
-const      am2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E-36);
-const  zeptom2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E-42);
-const  yoctom2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E-48);
-const  rontom2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E-54);
-const quectom2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E-60);
 
 // main definition [ m2 ] = [ m ] * [ m ]
 operator *(const ALeft: TMeters; const ARight: TMeters): TSquareMeters; inline;
@@ -415,15 +385,6 @@ type
 
 var m3: TCubicMeterUnitId;
 
-const quettam3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E+90);
-const  ronnam3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E+81);
-const  yottam3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E+72);
-const  zettam3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E+63);
-const      Em3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E+54);
-const   petam3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E+45);
-const      Tm3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E+36);
-const      Gm3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E+27);
-const   megam3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E+18);
 const      km3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E+09);
 const      hm3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E+06);
 const     dam3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E+03);
@@ -433,12 +394,6 @@ const      mm3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-09);
 const     mim3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-18);
 const      nm3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-27);
 const      pm3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-36);
-const      fm3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-45);
-const      am3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-54);
-const  zeptom3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-63);
-const  yoctom3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-72);
-const  rontom3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-81);
-const quectom3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-90);
 
 // main definition [ m3 ] = [ m2 ] * [ m ]
 operator *(const ALeft: TSquareMeters; const ARight: TMeters): TCubicMeters; inline;
@@ -498,15 +453,6 @@ type
 
 const L: specialize TQuantity<TCubicMeterUnit> = (FValue: TLitreUnit.Factor);
 
-const quettaL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E+30);
-const  ronnaL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E+27);
-const  yottaL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E+24);
-const  zettaL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E+21);
-const      EL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E+18);
-const   petaL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E+15);
-const      TL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E+12);
-const      GL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E+09);
-const   megaL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E+06);
 const      kL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E+03);
 const      hL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E+02);
 const     daL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E+01);
@@ -516,12 +462,6 @@ const      mL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-03);
 const     miL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-06);
 const      nL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-09);
 const   picoL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-12);
-const      fL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-15);
-const      aL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-18);
-const  zeptoL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-21);
-const  yoctoL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-24);
-const  rontoL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-27);
-const quectoL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-30);
 
 type
   { Unit of Gallon }
@@ -548,15 +488,6 @@ type
 
 var m4: TQuarticMeterUnitId;
 
-const quettam4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E+120);
-const  ronnam4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E+108);
-const  yottam4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E+96);
-const  zettam4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E+84);
-const      Em4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E+72);
-const   petam4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E+60);
-const      Tm4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E+48);
-const      Gm4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E+36);
-const   megam4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E+24);
 const      km4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E+12);
 const      hm4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E+08);
 const     dam4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E+04);
@@ -566,12 +497,6 @@ const      mm4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E-12);
 const     mim4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E-24);
 const      nm4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E-36);
 const      pm4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E-48);
-const      fm4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E-60);
-const      am4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E-72);
-const  zeptom4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E-84);
-const  yoctom4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E-96);
-const  rontom4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E-108);
-const quectom4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E-120);
 
 // main definition [ m4 ] = [ m3 ] * [ m ]
 operator *(const ALeft: TCubicMeters; const ARight: TMeters): TQuarticMeters; inline;
@@ -595,15 +520,6 @@ type
 
 var m5: TQuinticMeterUnitId;
 
-const quettam5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E+150);
-const  ronnam5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E+135);
-const  yottam5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E+120);
-const  zettam5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E+105);
-const      Em5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E+90);
-const   petam5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E+75);
-const      Tm5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E+60);
-const      Gm5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E+45);
-const   megam5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E+30);
 const      km5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E+15);
 const      hm5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E+10);
 const     dam5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E+05);
@@ -613,12 +529,6 @@ const      mm5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E-15);
 const     mim5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E-30);
 const      nm5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E-45);
 const      pm5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E-60);
-const      fm5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E-75);
-const      am5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E-90);
-const  zeptom5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E-105);
-const  yoctom5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E-120);
-const  rontom5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E-135);
-const quectom5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E-150);
 
 // main definition [ m5 ] = [ m4 ] * [ m ]
 operator *(const ALeft: TQuarticMeters; const ARight: TMeters): TQuinticMeters; inline;
@@ -644,15 +554,6 @@ type
 
 var m6: TSexticMeterUnitId;
 
-const quettam6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E+180);
-const  ronnam6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E+162);
-const  yottam6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E+144);
-const  zettam6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E+126);
-const      Em6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E+108);
-const   petam6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E+90);
-const      Tm6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E+72);
-const      Gm6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E+54);
-const   megam6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E+36);
 const      km6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E+18);
 const      hm6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E+12);
 const     dam6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E+06);
@@ -662,12 +563,6 @@ const      mm6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E-18);
 const     mim6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E-36);
 const      nm6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E-54);
 const      pm6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E-72);
-const      fm6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E-90);
-const      am6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E-108);
-const  zeptom6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E-126);
-const  yoctom6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E-144);
-const  rontom6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E-162);
-const quectom6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E-180);
 
 // main definition [ m6 ] = [ m5 ] * [ m ]
 operator *(const ALeft: TQuinticMeters; const ARight: TMeters): TSexticMeters; inline;
