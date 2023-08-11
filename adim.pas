@@ -87,9 +87,6 @@ type
 
 var s: TSecondUnitId;
 
-const      ks: specialize TQuantity<TSecondUnit> = (FValue: 1E+03);
-const      hs: specialize TQuantity<TSecondUnit> = (FValue: 1E+02);
-const     das: specialize TQuantity<TSecondUnit> = (FValue: 1E+01);
 const      ds: specialize TQuantity<TSecondUnit> = (FValue: 1E-01);
 const      cs: specialize TQuantity<TSecondUnit> = (FValue: 1E-02);
 const      ms: specialize TQuantity<TSecondUnit> = (FValue: 1E-03);
@@ -148,9 +145,6 @@ type
 
 var s2: TSquareSecondUnitId;
 
-const      ks2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E+06);
-const      hs2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E+04);
-const     das2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E+02);
 const      ds2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E-02);
 const      cs2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E-04);
 const      ms2: specialize TQuantity<TSquareSecondUnit> = (FValue: 1E-06);
