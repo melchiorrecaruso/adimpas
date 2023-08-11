@@ -1668,30 +1668,8 @@ type
 
 var V: TVoltUnitId;
 
-const quettaV: specialize TQuantity<TVoltUnit> = (FValue: 1E+30);
-const  ronnaV: specialize TQuantity<TVoltUnit> = (FValue: 1E+27);
-const  yottaV: specialize TQuantity<TVoltUnit> = (FValue: 1E+24);
-const  zettaV: specialize TQuantity<TVoltUnit> = (FValue: 1E+21);
-const    exaV: specialize TQuantity<TVoltUnit> = (FValue: 1E+18);
-const   petaV: specialize TQuantity<TVoltUnit> = (FValue: 1E+15);
-const      TV: specialize TQuantity<TVoltUnit> = (FValue: 1E+12);
-const      GV: specialize TQuantity<TVoltUnit> = (FValue: 1E+09);
-const   megaV: specialize TQuantity<TVoltUnit> = (FValue: 1E+06);
 const      kV: specialize TQuantity<TVoltUnit> = (FValue: 1E+03);
-const      hV: specialize TQuantity<TVoltUnit> = (FValue: 1E+02);
-const     daV: specialize TQuantity<TVoltUnit> = (FValue: 1E+01);
-const      dV: specialize TQuantity<TVoltUnit> = (FValue: 1E-01);
-const      cV: specialize TQuantity<TVoltUnit> = (FValue: 1E-02);
 const      mV: specialize TQuantity<TVoltUnit> = (FValue: 1E-03);
-const     miV: specialize TQuantity<TVoltUnit> = (FValue: 1E-06);
-const      nV: specialize TQuantity<TVoltUnit> = (FValue: 1E-09);
-const      pV: specialize TQuantity<TVoltUnit> = (FValue: 1E-12);
-const      fV: specialize TQuantity<TVoltUnit> = (FValue: 1E-15);
-const      aV: specialize TQuantity<TVoltUnit> = (FValue: 1E-18);
-const  zeptoV: specialize TQuantity<TVoltUnit> = (FValue: 1E-21);
-const  yoctoV: specialize TQuantity<TVoltUnit> = (FValue: 1E-24);
-const  rontoV: specialize TQuantity<TVoltUnit> = (FValue: 1E-27);
-const quectoV: specialize TQuantity<TVoltUnit> = (FValue: 1E-30);
 
 // main definition [ V ] = [ W ] / [ A ]
 operator /(const ALeft: TWatts; const ARight: TAmperes): TVolts; inline;
@@ -1719,30 +1697,8 @@ type
 
 var V2: TSquareVoltUnitId;
 
-const quettaV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E+60);
-const  ronnaV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E+54);
-const  yottaV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E+48);
-const  zettaV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E+42);
-const      EV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E+36);
-const   petaV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E+30);
-const      TV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E+24);
-const      GV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E+18);
-const   megaV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E+12);
 const      kV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E+06);
-const      hV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E+04);
-const     daV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E+02);
-const      dV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E-02);
-const      cV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E-04);
 const      mV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E-06);
-const     miV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E-12);
-const      nV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E-18);
-const      pV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E-24);
-const      fV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E-30);
-const      aV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E-36);
-const  zeptoV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E-42);
-const  yoctoV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E-48);
-const  rontoV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E-54);
-const quectoV2: specialize TQuantity<TSquareVoltUnit> = (FValue: 1E-60);
 
 // main definition [ V2 ] = [ V ] * [ V ]
 operator *(const ALeft: TVolts; const ARight: TVolts): TSquareVolts; inline;
