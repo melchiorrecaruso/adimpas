@@ -1909,31 +1909,6 @@ type
 
 var lx: TLuxUnitId;
 
-const quettalx: specialize TQuantity<TLuxUnit> = (FValue: 1E+30);
-const ronnalx: specialize TQuantity<TLuxUnit> = (FValue: 1E+27);
-const yottalx: specialize TQuantity<TLuxUnit> = (FValue: 1E+24);
-const zettalx: specialize TQuantity<TLuxUnit> = (FValue: 1E+21);
-const Elx: specialize TQuantity<TLuxUnit> = (FValue: 1E+18);
-const petalx: specialize TQuantity<TLuxUnit> = (FValue: 1E+15);
-const Tlx: specialize TQuantity<TLuxUnit> = (FValue: 1E+12);
-const Glx: specialize TQuantity<TLuxUnit> = (FValue: 1E+09);
-const megalx: specialize TQuantity<TLuxUnit> = (FValue: 1E+06);
-const klx: specialize TQuantity<TLuxUnit> = (FValue: 1E+03);
-const hlx: specialize TQuantity<TLuxUnit> = (FValue: 1E+02);
-const dalx: specialize TQuantity<TLuxUnit> = (FValue: 1E+01);
-const dlx: specialize TQuantity<TLuxUnit> = (FValue: 1E-01);
-const clx: specialize TQuantity<TLuxUnit> = (FValue: 1E-02);
-const mlx: specialize TQuantity<TLuxUnit> = (FValue: 1E-03);
-const milx: specialize TQuantity<TLuxUnit> = (FValue: 1E-06);
-const nlx: specialize TQuantity<TLuxUnit> = (FValue: 1E-09);
-const plx: specialize TQuantity<TLuxUnit> = (FValue: 1E-12);
-const flx: specialize TQuantity<TLuxUnit> = (FValue: 1E-15);
-const alx: specialize TQuantity<TLuxUnit> = (FValue: 1E-18);
-const zeptolx: specialize TQuantity<TLuxUnit> = (FValue: 1E-21);
-const yoctolx: specialize TQuantity<TLuxUnit> = (FValue: 1E-24);
-const rontolx: specialize TQuantity<TLuxUnit> = (FValue: 1E-27);
-const quectolx: specialize TQuantity<TLuxUnit> = (FValue: 1E-30);
-
 // main definition [ lx ] = [ lm ] / [ m2 ]
 operator /(const ALeft: TLumens; const ARight: TSquareMeters): TLux; inline;
 operator *(const ALeft: TSquareMeters; const ARight: TLux): TLumens; inline;
