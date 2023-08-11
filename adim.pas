@@ -1399,30 +1399,10 @@ type
 
 var Pa: TPascalUnitId;
 
-const quettaPa: specialize TQuantity<TPascalUnit> = (FValue: 1E+30);
-const  ronnaPa: specialize TQuantity<TPascalUnit> = (FValue: 1E+27);
-const  yottaPa: specialize TQuantity<TPascalUnit> = (FValue: 1E+24);
-const  zettaPa: specialize TQuantity<TPascalUnit> = (FValue: 1E+21);
-const      EPa: specialize TQuantity<TPascalUnit> = (FValue: 1E+18);
-const   petaPa: specialize TQuantity<TPascalUnit> = (FValue: 1E+15);
 const      TPa: specialize TQuantity<TPascalUnit> = (FValue: 1E+12);
 const      GPa: specialize TQuantity<TPascalUnit> = (FValue: 1E+09);
 const      MPa: specialize TQuantity<TPascalUnit> = (FValue: 1E+06);
 const      kPa: specialize TQuantity<TPascalUnit> = (FValue: 1E+03);
-const      hPa: specialize TQuantity<TPascalUnit> = (FValue: 1E+02);
-const     daPa: specialize TQuantity<TPascalUnit> = (FValue: 1E+01);
-const      dPa: specialize TQuantity<TPascalUnit> = (FValue: 1E-01);
-const      cPa: specialize TQuantity<TPascalUnit> = (FValue: 1E-02);
-const  milliPa: specialize TQuantity<TPascalUnit> = (FValue: 1E-03);
-const     miPa: specialize TQuantity<TPascalUnit> = (FValue: 1E-06);
-const      nPa: specialize TQuantity<TPascalUnit> = (FValue: 1E-09);
-const      pPa: specialize TQuantity<TPascalUnit> = (FValue: 1E-12);
-const      fPa: specialize TQuantity<TPascalUnit> = (FValue: 1E-15);
-const      aPa: specialize TQuantity<TPascalUnit> = (FValue: 1E-18);
-const  zeptoPa: specialize TQuantity<TPascalUnit> = (FValue: 1E-21);
-const  yoctoPa: specialize TQuantity<TPascalUnit> = (FValue: 1E-24);
-const  rontoPa: specialize TQuantity<TPascalUnit> = (FValue: 1E-27);
-const quectoPa: specialize TQuantity<TPascalUnit> = (FValue: 1E-30);
 
 // main definition [ Pa ] = [ N ] / [ m2 ]
 operator /(const ALeft: TNewtons; const ARight: TSquareMeters): TPascals; inline;
