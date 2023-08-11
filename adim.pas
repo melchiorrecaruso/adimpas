@@ -931,30 +931,10 @@ type
 
 var Hz: THertzUnitId;
 
-const quettaHz: specialize TQuantity<THertzUnit> = (FValue: 1E+30);
-const  ronnaHz: specialize TQuantity<THertzUnit> = (FValue: 1E+27);
-const  yottaHz: specialize TQuantity<THertzUnit> = (FValue: 1E+24);
-const  zettaHz: specialize TQuantity<THertzUnit> = (FValue: 1E+21);
-const      EHz: specialize TQuantity<THertzUnit> = (FValue: 1E+18);
-const   petaHz: specialize TQuantity<THertzUnit> = (FValue: 1E+15);
 const      THz: specialize TQuantity<THertzUnit> = (FValue: 1E+12);
 const      GHz: specialize TQuantity<THertzUnit> = (FValue: 1E+09);
-const   megaHz: specialize TQuantity<THertzUnit> = (FValue: 1E+06);
+const      MHz: specialize TQuantity<THertzUnit> = (FValue: 1E+06);
 const      kHz: specialize TQuantity<THertzUnit> = (FValue: 1E+03);
-const      hHz: specialize TQuantity<THertzUnit> = (FValue: 1E+02);
-const     daHz: specialize TQuantity<THertzUnit> = (FValue: 1E+01);
-const      dHz: specialize TQuantity<THertzUnit> = (FValue: 1E-01);
-const      cHz: specialize TQuantity<THertzUnit> = (FValue: 1E-02);
-const      mHz: specialize TQuantity<THertzUnit> = (FValue: 1E-03);
-const     miHz: specialize TQuantity<THertzUnit> = (FValue: 1E-06);
-const      nHz: specialize TQuantity<THertzUnit> = (FValue: 1E-09);
-const      pHz: specialize TQuantity<THertzUnit> = (FValue: 1E-12);
-const      fHz: specialize TQuantity<THertzUnit> = (FValue: 1E-15);
-const      aHz: specialize TQuantity<THertzUnit> = (FValue: 1E-18);
-const  zeptoHz: specialize TQuantity<THertzUnit> = (FValue: 1E-21);
-const  yoctoHz: specialize TQuantity<THertzUnit> = (FValue: 1E-24);
-const  rontoHz: specialize TQuantity<THertzUnit> = (FValue: 1E-27);
-const quectoHz: specialize TQuantity<THertzUnit> = (FValue: 1E-30);
 
 // main definition [ Hz ] = [ 1 ] / [ s ]
 operator /(const ALeft: double; const ARight: TSeconds): THertz; inline;
@@ -975,30 +955,10 @@ type
 
 var Hz2: TSquareHertzUnitId;
 
-const quettaHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E+60);
-const  ronnaHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E+54);
-const  yottaHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E+48);
-const  zettaHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E+42);
-const      EHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E+36);
-const   petaHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E+30);
 const      THz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E+24);
 const      GHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E+18);
-const   megaHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E+12);
+const      MHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E+12);
 const      kHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E+06);
-const      hHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E+04);
-const     daHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E+02);
-const      dHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E-02);
-const      cHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E-04);
-const      mHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E-06);
-const     miHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E-12);
-const      nHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E-18);
-const      pHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E-24);
-const      fHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E-30);
-const      aHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E-36);
-const  zeptoHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E-42);
-const  yoctoHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E-48);
-const  rontoHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E-54);
-const quectoHz2: specialize TQuantity<TSquareHertzUnit> = (FValue: 1E-60);
 
 // main definition [ Hz2 ] = [ 1 ] / [ s2 ]
 operator /(const ALeft: double; const ARight: TSquareSeconds): TSquareHertz; inline;
