@@ -1966,31 +1966,6 @@ type
 
 var kat: TKatalUnitId;
 
-const quettakat: specialize TQuantity<TKatalUnit> = (FValue: 1E+30);
-const ronnakat: specialize TQuantity<TKatalUnit> = (FValue: 1E+27);
-const yottakat: specialize TQuantity<TKatalUnit> = (FValue: 1E+24);
-const zettakat: specialize TQuantity<TKatalUnit> = (FValue: 1E+21);
-const Ekat: specialize TQuantity<TKatalUnit> = (FValue: 1E+18);
-const petakat: specialize TQuantity<TKatalUnit> = (FValue: 1E+15);
-const Tkat: specialize TQuantity<TKatalUnit> = (FValue: 1E+12);
-const Gkat: specialize TQuantity<TKatalUnit> = (FValue: 1E+09);
-const megakat: specialize TQuantity<TKatalUnit> = (FValue: 1E+06);
-const kkat: specialize TQuantity<TKatalUnit> = (FValue: 1E+03);
-const hkat: specialize TQuantity<TKatalUnit> = (FValue: 1E+02);
-const dakat: specialize TQuantity<TKatalUnit> = (FValue: 1E+01);
-const dkat: specialize TQuantity<TKatalUnit> = (FValue: 1E-01);
-const ckat: specialize TQuantity<TKatalUnit> = (FValue: 1E-02);
-const mkat: specialize TQuantity<TKatalUnit> = (FValue: 1E-03);
-const mikat: specialize TQuantity<TKatalUnit> = (FValue: 1E-06);
-const nkat: specialize TQuantity<TKatalUnit> = (FValue: 1E-09);
-const pkat: specialize TQuantity<TKatalUnit> = (FValue: 1E-12);
-const fkat: specialize TQuantity<TKatalUnit> = (FValue: 1E-15);
-const akat: specialize TQuantity<TKatalUnit> = (FValue: 1E-18);
-const zeptokat: specialize TQuantity<TKatalUnit> = (FValue: 1E-21);
-const yoctokat: specialize TQuantity<TKatalUnit> = (FValue: 1E-24);
-const rontokat: specialize TQuantity<TKatalUnit> = (FValue: 1E-27);
-const quectokat: specialize TQuantity<TKatalUnit> = (FValue: 1E-30);
-
 // main definition [ kat ] = [ mol ] / [ s ]
 operator /(const ALeft: TMoles; const ARight: TSeconds): TKatals; inline;
 operator *(const ALeft: TSeconds; const ARight: TKatals): TMoles; inline;
