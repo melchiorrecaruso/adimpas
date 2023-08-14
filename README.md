@@ -25,6 +25,8 @@ Another unit for type checking of dimensioned quantities at compile time in Free
 - [University Physics Volume 1](https://openstax.org/details/books/university-physics-volume-1)
 - [University Physics Volume 2](https://openstax.org/details/books/university-physics-volume-2)
 - [University Physics Volume 3](https://openstax.org/details/books/university-physics-volume-3)
+- [National Institute of Standards and Technology](https://www.nist.gov/pml/owm/metric-si/si-units)
+- [Bureau international des poids et mesures](https://www.bipm.org/en/)
 
 ## LICENSE
 
