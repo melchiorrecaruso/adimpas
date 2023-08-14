@@ -21,8 +21,8 @@ unit ADim;
 
 {$H+}
 {$modeSwitch advancedRecords}
-{$WARN 05024 OFF}
-{$WARN 05033 OFF}
+{$WARN 05024 OFF} // Suppress warning for unused routine parameter.
+{$WARN 05033 OFF} // Suppress warning for unassigned function's return value.
 
 interface
 
@@ -447,13 +447,9 @@ type
 
 const L: specialize TQuantity<TCubicMeterUnit> = (FValue: TLitreUnit.Factor);
 
-const kL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E+03);
 const dL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-01);
 const cL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-02);
 const mL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-03);
-const miL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-06);
-const nL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-09);
-const pL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-12);
 
 type
   { Unit of Gallon }
