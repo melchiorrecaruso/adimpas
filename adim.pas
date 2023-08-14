@@ -2155,30 +2155,9 @@ type
 
 var Pl: TPoiseuilleUnitId;
 
-const quettaPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E+30);
-const ronnaPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E+27);
-const yottaPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E+24);
-const zettaPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E+21);
-const EPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E+18);
-const petaPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E+15);
-const TPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E+12);
-const GPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E+09);
-const megaPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E+06);
-const kPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E+03);
-const hPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E+02);
-const daPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E+01);
-const dPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E-01);
 const cPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E-02);
 const mPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E-03);
 const miPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E-06);
-const nPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E-09);
-const pPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E-12);
-const fPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E-15);
-const aPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E-18);
-const zeptoPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E-21);
-const yoctoPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E-24);
-const rontoPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E-27);
-const quectoPl: specialize TQuantity<TPoiseuilleUnit> = (FValue: 1E-30);
 
 // main definition [ Pl ] = [ Pa ] * [ s ]
 operator *(const ALeft: TPascals; const ARight: TSeconds): TPoiseuilles; inline;
