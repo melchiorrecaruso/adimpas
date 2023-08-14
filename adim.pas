@@ -1914,7 +1914,6 @@ type
 
 var Bq: TBequerelUnitId;
 
-const megaBq: specialize TQuantity<THertzUnit> = (FValue: 1E+06);
 const kBq: specialize TQuantity<THertzUnit> = (FValue: 1E+03);
 const mBq: specialize TQuantity<THertzUnit> = (FValue: 1E-03);
 const miBq: specialize TQuantity<THertzUnit> = (FValue: 1E-06);
@@ -1933,30 +1932,10 @@ type
 
 var Gy: TGrayUnitId;
 
-const quettaGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+30);
-const ronnaGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+27);
-const yottaGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+24);
-const zettaGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+21);
-const EGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+18);
-const petaGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+15);
-const TGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+12);
-const GGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+09);
-const megaGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+06);
 const kGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+03);
-const hGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+02);
-const daGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+01);
-const dGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-01);
-const cGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-02);
 const mGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-03);
 const miGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-06);
 const nGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-09);
-const pGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-12);
-const fGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-15);
-const aGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-18);
-const zeptoGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-21);
-const yoctoGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-24);
-const rontoGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-27);
-const quectoGy: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-30);
 
 type
   { Unit of Sievert }
@@ -1970,30 +1949,10 @@ type
 
 var Sv: TSievertUnitId;
 
-const quettaSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+30);
-const ronnaSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+27);
-const yottaSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+24);
-const zettaSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+21);
-const ESv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+18);
-const petaSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+15);
-const TSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+12);
-const GSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+09);
-const megaSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+06);
 const kSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+03);
-const hSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+02);
-const daSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E+01);
-const dSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-01);
-const cSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-02);
 const mSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-03);
 const miSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-06);
 const nSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-09);
-const pSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-12);
-const fSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-15);
-const aSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-18);
-const zeptoSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-21);
-const yoctoSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-24);
-const rontoSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-27);
-const quectoSv: specialize TQuantity<TSquareMeterPerSquareSecondUnit> = (FValue: 1E-30);
 
 type
   { Unit of Katal }
