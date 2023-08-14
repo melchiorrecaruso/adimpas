@@ -208,8 +208,6 @@ type
 var m: TMeterUnitId;
 
 const km: specialize TQuantity<TMeterUnit> = (FValue: 1E+03);
-const hm: specialize TQuantity<TMeterUnit> = (FValue: 1E+02);
-const dam: specialize TQuantity<TMeterUnit> = (FValue: 1E+01);
 const dm: specialize TQuantity<TMeterUnit> = (FValue: 1E-01);
 const cm: specialize TQuantity<TMeterUnit> = (FValue: 1E-02);
 const mm: specialize TQuantity<TMeterUnit> = (FValue: 1E-03);
@@ -308,8 +306,6 @@ type
 var m2: TSquareMeterUnitId;
 
 const km2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E+06);
-const hm2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E+04);
-const dam2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E+02);
 const dm2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E-02);
 const cm2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E-04);
 const mm2: specialize TQuantity<TSquareMeterUnit> = (FValue: 1E-06);
@@ -386,8 +382,6 @@ type
 var m3: TCubicMeterUnitId;
 
 const km3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E+09);
-const hm3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E+06);
-const dam3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E+03);
 const dm3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03);
 const cm3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-06);
 const mm3: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-09);
@@ -454,14 +448,12 @@ type
 const L: specialize TQuantity<TCubicMeterUnit> = (FValue: TLitreUnit.Factor);
 
 const kL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E+03);
-const hL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E+02);
-const daL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E+01);
 const dL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-01);
 const cL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-02);
 const mL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-03);
 const miL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-06);
 const nL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-09);
-const picoL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-12);
+const pL: specialize TQuantity<TCubicMeterUnit> = (FValue: 1E-03 * 1E-12);
 
 type
   { Unit of Gallon }
@@ -489,8 +481,6 @@ type
 var m4: TQuarticMeterUnitId;
 
 const km4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E+12);
-const hm4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E+08);
-const dam4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E+04);
 const dm4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E-04);
 const cm4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E-08);
 const mm4: specialize TQuantity<TQuarticMeterUnit> = (FValue: 1E-12);
@@ -521,8 +511,6 @@ type
 var m5: TQuinticMeterUnitId;
 
 const km5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E+15);
-const hm5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E+10);
-const dam5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E+05);
 const dm5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E-05);
 const cm5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E-10);
 const mm5: specialize TQuantity<TQuinticMeterUnit> = (FValue: 1E-15);
@@ -555,8 +543,6 @@ type
 var m6: TSexticMeterUnitId;
 
 const km6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E+18);
-const hm6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E+12);
-const dam6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E+06);
 const dm6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E-06);
 const cm6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E-12);
 const mm6: specialize TQuantity<TSexticMeterUnit> = (FValue: 1E-18);
@@ -1928,30 +1914,12 @@ type
 
 var Bq: TBequerelUnitId;
 
-const quettaBq: specialize TQuantity<THertzUnit> = (FValue: 1E+30);
-const ronnaBq: specialize TQuantity<THertzUnit> = (FValue: 1E+27);
-const yottaBq: specialize TQuantity<THertzUnit> = (FValue: 1E+24);
-const zettaBq: specialize TQuantity<THertzUnit> = (FValue: 1E+21);
-const EBq: specialize TQuantity<THertzUnit> = (FValue: 1E+18);
-const petaBq: specialize TQuantity<THertzUnit> = (FValue: 1E+15);
-const TBq: specialize TQuantity<THertzUnit> = (FValue: 1E+12);
-const GBq: specialize TQuantity<THertzUnit> = (FValue: 1E+09);
 const megaBq: specialize TQuantity<THertzUnit> = (FValue: 1E+06);
 const kBq: specialize TQuantity<THertzUnit> = (FValue: 1E+03);
-const hBq: specialize TQuantity<THertzUnit> = (FValue: 1E+02);
-const daBq: specialize TQuantity<THertzUnit> = (FValue: 1E+01);
-const dBq: specialize TQuantity<THertzUnit> = (FValue: 1E-01);
-const cBq: specialize TQuantity<THertzUnit> = (FValue: 1E-02);
 const mBq: specialize TQuantity<THertzUnit> = (FValue: 1E-03);
 const miBq: specialize TQuantity<THertzUnit> = (FValue: 1E-06);
 const nBq: specialize TQuantity<THertzUnit> = (FValue: 1E-09);
 const pBq: specialize TQuantity<THertzUnit> = (FValue: 1E-12);
-const fBq: specialize TQuantity<THertzUnit> = (FValue: 1E-15);
-const aBq: specialize TQuantity<THertzUnit> = (FValue: 1E-18);
-const zeptoBq: specialize TQuantity<THertzUnit> = (FValue: 1E-21);
-const yoctoBq: specialize TQuantity<THertzUnit> = (FValue: 1E-24);
-const rontoBq: specialize TQuantity<THertzUnit> = (FValue: 1E-27);
-const quectoBq: specialize TQuantity<THertzUnit> = (FValue: 1E-30);
 
 type
   { Unit of Gray }
