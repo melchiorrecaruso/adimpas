@@ -17,6 +17,14 @@
   along with this program. If not, see <http://www.gnu.org/licenses/>.
 }
 
+{
+  AdimPas library built on 19/08/2023.
+
+  Number of base units: 108
+  Number of factored units: 61
+  Number of operators: 857
+}
+
 unit ADim;
 
 {$H+}
@@ -81,8 +89,8 @@ type
     const Symbol       = '%ss';
     const SingularName = '%ssecond';
     const PluralName   = '%sseconds';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (1);
   end;
   TSeconds = specialize TQuantity<TSecondUnit>;
   TSecondUnitId = specialize TUnitId<TSecondUnit>;
@@ -102,8 +110,8 @@ type
     const Symbol       = 'd';
     const SingularName = 'day';
     const PluralName   = 'days';
-    const DefaultPrefixes : TPrefixes = ();
-    const DefaultPrefixExponents : TIntegerDynArray = ();
+    const Prefixes : TPrefixes = ();
+    const PrefixExponents : TIntegerDynArray = ();
     const ToBaseFactor = 86400;
   end;
   TDays = specialize TQuantity<TSecondUnit>;
@@ -117,8 +125,8 @@ type
     const Symbol       = 'h';
     const SingularName = 'hour';
     const PluralName   = 'hours';
-    const DefaultPrefixes : TPrefixes = ();
-    const DefaultPrefixExponents : TIntegerDynArray = ();
+    const Prefixes : TPrefixes = ();
+    const PrefixExponents : TIntegerDynArray = ();
     const ToBaseFactor = 3600;
   end;
   THours = specialize TQuantity<TSecondUnit>;
@@ -132,8 +140,8 @@ type
     const Symbol       = 'min';
     const SingularName = 'minute';
     const PluralName   = 'minutes';
-    const DefaultPrefixes : TPrefixes = ();
-    const DefaultPrefixExponents : TIntegerDynArray = ();
+    const Prefixes : TPrefixes = ();
+    const PrefixExponents : TIntegerDynArray = ();
     const ToBaseFactor = 60;
   end;
   TMinutes = specialize TQuantity<TSecondUnit>;
@@ -147,8 +155,8 @@ type
     const Symbol       = '%ss2';
     const SingularName = 'square %ssecond';
     const PluralName   = 'square %sseconds';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+2);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (2);
   end;
   TSquareSeconds = specialize TQuantity<TSquareSecondUnit>;
   TSquareSecondUnitId = specialize TUnitId<TSquareSecondUnit>;
@@ -172,8 +180,8 @@ type
     const Symbol       = 'd2';
     const SingularName = 'square day';
     const PluralName   = 'square days';
-    const DefaultPrefixes : TPrefixes = ();
-    const DefaultPrefixExponents : TIntegerDynArray = ();
+    const Prefixes : TPrefixes = ();
+    const PrefixExponents : TIntegerDynArray = ();
     const ToBaseFactor = 7464960000;
   end;
   TSquareDays = specialize TQuantity<TSquareSecondUnit>;
@@ -187,8 +195,8 @@ type
     const Symbol       = 'h2';
     const SingularName = 'square hour';
     const PluralName   = 'square hours';
-    const DefaultPrefixes : TPrefixes = ();
-    const DefaultPrefixExponents : TIntegerDynArray = ();
+    const Prefixes : TPrefixes = ();
+    const PrefixExponents : TIntegerDynArray = ();
     const ToBaseFactor = 12960000;
   end;
   TSquareHours = specialize TQuantity<TSquareSecondUnit>;
@@ -202,8 +210,8 @@ type
     const Symbol       = 'min2';
     const SingularName = 'square minute';
     const PluralName   = 'square minutes';
-    const DefaultPrefixes : TPrefixes = ();
-    const DefaultPrefixExponents : TIntegerDynArray = ();
+    const Prefixes : TPrefixes = ();
+    const PrefixExponents : TIntegerDynArray = ();
     const ToBaseFactor = 3600;
   end;
   TSquareMinutes = specialize TQuantity<TSquareSecondUnit>;
@@ -217,8 +225,8 @@ type
     const Symbol       = '%sm';
     const SingularName = '%smeter';
     const PluralName   = '%smeters';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (1);
   end;
   TMeters = specialize TQuantity<TMeterUnit>;
   TMeterUnitId = specialize TUnitId<TMeterUnit>;
@@ -239,8 +247,8 @@ type
     const Symbol       = 'au';
     const SingularName = 'astronomical unit';
     const PluralName   = 'astronomical units';
-    const DefaultPrefixes : TPrefixes = ();
-    const DefaultPrefixExponents : TIntegerDynArray = ();
+    const Prefixes : TPrefixes = ();
+    const PrefixExponents : TIntegerDynArray = ();
     const ToBaseFactor = 149597870691;
   end;
   TAstronomical = specialize TQuantity<TMeterUnit>;
@@ -254,8 +262,8 @@ type
     const Symbol       = 'in';
     const SingularName = 'inch';
     const PluralName   = 'inches';
-    const DefaultPrefixes : TPrefixes = ();
-    const DefaultPrefixExponents : TIntegerDynArray = ();
+    const Prefixes : TPrefixes = ();
+    const PrefixExponents : TIntegerDynArray = ();
     const ToBaseFactor = 0.0254;
   end;
   TInches = specialize TQuantity<TMeterUnit>;
@@ -269,8 +277,8 @@ type
     const Symbol       = 'ft';
     const SingularName = 'foot';
     const PluralName   = 'feet';
-    const DefaultPrefixes : TPrefixes = ();
-    const DefaultPrefixExponents : TIntegerDynArray = ();
+    const Prefixes : TPrefixes = ();
+    const PrefixExponents : TIntegerDynArray = ();
     const ToBaseFactor = 0.3048;
   end;
   TFeet = specialize TQuantity<TMeterUnit>;
@@ -284,8 +292,8 @@ type
     const Symbol       = 'yd';
     const SingularName = 'yard';
     const PluralName   = 'yards';
-    const DefaultPrefixes : TPrefixes = ();
-    const DefaultPrefixExponents : TIntegerDynArray = ();
+    const Prefixes : TPrefixes = ();
+    const PrefixExponents : TIntegerDynArray = ();
     const ToBaseFactor = 0.9144;
   end;
   TYards = specialize TQuantity<TMeterUnit>;
@@ -299,8 +307,8 @@ type
     const Symbol       = 'mi';
     const SingularName = 'mile';
     const PluralName   = 'miles';
-    const DefaultPrefixes : TPrefixes = ();
-    const DefaultPrefixExponents : TIntegerDynArray = ();
+    const Prefixes : TPrefixes = ();
+    const PrefixExponents : TIntegerDynArray = ();
     const ToBaseFactor = 1609.344;
   end;
   TMiles = specialize TQuantity<TMeterUnit>;
@@ -314,8 +322,8 @@ type
     const Symbol       = 'nmi';
     const SingularName = 'nautical mile';
     const PluralName   = 'nautical miles';
-    const DefaultPrefixes : TPrefixes = ();
-    const DefaultPrefixExponents : TIntegerDynArray = ();
+    const Prefixes : TPrefixes = ();
+    const PrefixExponents : TIntegerDynArray = ();
     const ToBaseFactor = 1852;
   end;
   TNauticalMiles = specialize TQuantity<TMeterUnit>;
@@ -329,8 +337,8 @@ type
     const Symbol       = '%sm2';
     const SingularName = 'square %smeter';
     const PluralName   = 'square %smeters';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+2);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (2);
   end;
   TSquareMeters = specialize TQuantity<TSquareMeterUnit>;
   TSquareMeterUnitId = specialize TUnitId<TSquareMeterUnit>;
@@ -355,8 +363,8 @@ type
     const Symbol       = 'in2';
     const SingularName = 'square inch';
     const PluralName   = 'square inches';
-    const DefaultPrefixes : TPrefixes = ();
-    const DefaultPrefixExponents : TIntegerDynArray = ();
+    const Prefixes : TPrefixes = ();
+    const PrefixExponents : TIntegerDynArray = ();
     const ToBaseFactor = 0.00064516;
   end;
   TSquareInches = specialize TQuantity<TSquareMeterUnit>;
@@ -370,8 +378,8 @@ type
     const Symbol       = 'ft2';
     const SingularName = 'square foot';
     const PluralName   = 'square feet';
-    const DefaultPrefixes : TPrefixes = ();
-    const DefaultPrefixExponents : TIntegerDynArray = ();
+    const Prefixes : TPrefixes = ();
+    const PrefixExponents : TIntegerDynArray = ();
     const ToBaseFactor = 0.09290304;
   end;
   TSquareFeet = specialize TQuantity<TSquareMeterUnit>;
@@ -385,8 +393,8 @@ type
     const Symbol       = 'yd2';
     const SingularName = 'square yard';
     const PluralName   = 'square yards';
-    const DefaultPrefixes : TPrefixes = ();
-    const DefaultPrefixExponents : TIntegerDynArray = ();
+    const Prefixes : TPrefixes = ();
+    const PrefixExponents : TIntegerDynArray = ();
     const ToBaseFactor = 0.83612736;
   end;
   TSquareYards = specialize TQuantity<TSquareMeterUnit>;
@@ -400,8 +408,8 @@ type
     const Symbol       = 'mi2';
     const SingularName = 'square mile';
     const PluralName   = 'square miles';
-    const DefaultPrefixes : TPrefixes = ();
-    const DefaultPrefixExponents : TIntegerDynArray = ();
+    const Prefixes : TPrefixes = ();
+    const PrefixExponents : TIntegerDynArray = ();
     const ToBaseFactor = 2589988.110336;
   end;
   TSquareMiles = specialize TQuantity<TSquareMeterUnit>;
@@ -415,8 +423,8 @@ type
     const Symbol       = '%sm3';
     const SingularName = 'cubic %smeter';
     const PluralName   = 'cubic %smeters';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+3);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (3);
   end;
   TCubicMeters = specialize TQuantity<TCubicMeterUnit>;
   TCubicMeterUnitId = specialize TUnitId<TCubicMeterUnit>;
@@ -443,8 +451,8 @@ type
     const Symbol       = 'in3';
     const SingularName = 'cubic inch';
     const PluralName   = 'cubic inches';
-    const DefaultPrefixes : TPrefixes = ();
-    const DefaultPrefixExponents : TIntegerDynArray = ();
+    const Prefixes : TPrefixes = ();
+    const PrefixExponents : TIntegerDynArray = ();
     const ToBaseFactor = 0.000016387064;
   end;
   TCubicInches = specialize TQuantity<TCubicMeterUnit>;
@@ -458,8 +466,8 @@ type
     const Symbol       = 'ft3';
     const SingularName = 'cubic foot';
     const PluralName   = 'cubic feet';
-    const DefaultPrefixes : TPrefixes = ();
-    const DefaultPrefixExponents : TIntegerDynArray = ();
+    const Prefixes : TPrefixes = ();
+    const PrefixExponents : TIntegerDynArray = ();
     const ToBaseFactor = 0.028316846592;
   end;
   TCubicFeet = specialize TQuantity<TCubicMeterUnit>;
@@ -473,8 +481,8 @@ type
     const Symbol       = 'yd3';
     const SingularName = 'cubic yard';
     const PluralName   = 'cubic yards';
-    const DefaultPrefixes : TPrefixes = ();
-    const DefaultPrefixExponents : TIntegerDynArray = ();
+    const Prefixes : TPrefixes = ();
+    const PrefixExponents : TIntegerDynArray = ();
     const ToBaseFactor = 0.764554857984;
   end;
   TCubicYards = specialize TQuantity<TCubicMeterUnit>;
@@ -488,8 +496,8 @@ type
     const Symbol       = '%sL';
     const SingularName = '%slitre';
     const PluralName   = '%slitres';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (1);
     const ToBaseFactor = 1E-03;
   end;
   TLitres = specialize TQuantity<TCubicMeterUnit>;
@@ -507,8 +515,8 @@ type
     const Symbol       = 'gal';
     const SingularName = 'gallon';
     const PluralName   = 'gallons';
-    const DefaultPrefixes : TPrefixes = ();
-    const DefaultPrefixExponents : TIntegerDynArray = ();
+    const Prefixes : TPrefixes = ();
+    const PrefixExponents : TIntegerDynArray = ();
     const ToBaseFactor = 0.0037854119678;
   end;
   TGallons = specialize TQuantity<TCubicMeterUnit>;
@@ -522,8 +530,8 @@ type
     const Symbol       = '%sm4';
     const SingularName = 'quartic %smeter';
     const PluralName   = 'quartic %smeters';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+4);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (4);
   end;
   TQuarticMeters = specialize TQuantity<TQuarticMeterUnit>;
   TQuarticMeterUnitId = specialize TUnitId<TQuarticMeterUnit>;
@@ -554,8 +562,8 @@ type
     const Symbol       = '%sm5';
     const SingularName = 'quintic %smeter';
     const PluralName   = 'quintic %smeters';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+5);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (5);
   end;
   TQuinticMeters = specialize TQuantity<TQuinticMeterUnit>;
   TQuinticMeterUnitId = specialize TUnitId<TQuinticMeterUnit>;
@@ -588,8 +596,8 @@ type
     const Symbol       = '%sm6';
     const SingularName = 'sextic %smeter';
     const PluralName   = 'sextic %smeters';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+6);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (6);
   end;
   TSexticMeters = specialize TQuantity<TSexticMeterUnit>;
   TSexticMeterUnitId = specialize TUnitId<TSexticMeterUnit>;
@@ -626,8 +634,8 @@ type
     const Symbol       = '%sg';
     const SingularName = '%sgram';
     const PluralName   = '%sgrams';
-    const DefaultPrefixes : TPrefixes = (pKilo);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1);
+    const Prefixes : TPrefixes = (pKilo);
+    const PrefixExponents : TIntegerDynArray = (1);
   end;
   TKilograms = specialize TQuantity<TKilogramUnit>;
   TKilogramUnitId = specialize TUnitId<TKilogramUnit>;
@@ -650,8 +658,8 @@ type
     const Symbol       = '%st';
     const SingularName = '%stonne';
     const PluralName   = '%stonnes';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (1);
     const ToBaseFactor = 1E+03;
   end;
   TTonnes = specialize TQuantity<TKilogramUnit>;
@@ -669,8 +677,8 @@ type
     const Symbol       = 'lb';
     const SingularName = 'pound';
     const PluralName   = 'pounds';
-    const DefaultPrefixes : TPrefixes = ();
-    const DefaultPrefixExponents : TIntegerDynArray = ();
+    const Prefixes : TPrefixes = ();
+    const PrefixExponents : TIntegerDynArray = ();
     const ToBaseFactor = 0.45359237;
   end;
   TPounds = specialize TQuantity<TKilogramUnit>;
@@ -684,8 +692,8 @@ type
     const Symbol       = 'oz';
     const SingularName = 'ounce';
     const PluralName   = 'ounces';
-    const DefaultPrefixes : TPrefixes = ();
-    const DefaultPrefixExponents : TIntegerDynArray = ();
+    const Prefixes : TPrefixes = ();
+    const PrefixExponents : TIntegerDynArray = ();
     const ToBaseFactor = 0.028349523125;
   end;
   TOunces = specialize TQuantity<TKilogramUnit>;
@@ -699,8 +707,8 @@ type
     const Symbol       = 'st';
     const SingularName = 'stone';
     const PluralName   = 'stones';
-    const DefaultPrefixes : TPrefixes = ();
-    const DefaultPrefixExponents : TIntegerDynArray = ();
+    const Prefixes : TPrefixes = ();
+    const PrefixExponents : TIntegerDynArray = ();
     const ToBaseFactor = 6.35029318;
   end;
   TStones = specialize TQuantity<TKilogramUnit>;
@@ -714,8 +722,8 @@ type
     const Symbol       = 'ton';
     const SingularName = 'ton';
     const PluralName   = 'tons';
-    const DefaultPrefixes : TPrefixes = ();
-    const DefaultPrefixExponents : TIntegerDynArray = ();
+    const Prefixes : TPrefixes = ();
+    const PrefixExponents : TIntegerDynArray = ();
     const ToBaseFactor = 907.18474;
   end;
   TTons = specialize TQuantity<TKilogramUnit>;
@@ -729,8 +737,8 @@ type
     const Symbol       = '%sg2';
     const SingularName = 'square %sgram';
     const PluralName   = 'square %sgrams';
-    const DefaultPrefixes : TPrefixes = (pKilo);
-    const DefaultPrefixExponents : TIntegerDynArray = (+2);
+    const Prefixes : TPrefixes = (pKilo);
+    const PrefixExponents : TIntegerDynArray = (2);
   end;
   TSquareKilograms = specialize TQuantity<TSquareKilogramUnit>;
   TSquareKilogramUnitId = specialize TUnitId<TSquareKilogramUnit>;
@@ -757,8 +765,8 @@ type
     const Symbol       = '%sA';
     const SingularName = '%sampere';
     const PluralName   = '%samperes';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (1);
   end;
   TAmperes = specialize TQuantity<TAmpereUnit>;
   TAmpereUnitId = specialize TUnitId<TAmpereUnit>;
@@ -781,8 +789,8 @@ type
     const Symbol       = '%sA2';
     const SingularName = 'square %sampere';
     const PluralName   = 'square %samperes';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+2);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (2);
   end;
   TSquareAmperes = specialize TQuantity<TSquareAmpereUnit>;
   TSquareAmpereUnitId = specialize TUnitId<TSquareAmpereUnit>;
@@ -809,8 +817,8 @@ type
     const Symbol       = '%sK';
     const SingularName = '%skelvin';
     const PluralName   = '%skelvins';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (1);
   end;
   TKelvins = specialize TQuantity<TKelvinUnit>;
   TKelvinUnitId = specialize TUnitId<TKelvinUnit>;
@@ -823,8 +831,8 @@ type
     const Symbol       = 'ºC';
     const SingularName = 'degree Celsius';
     const PluralName   = 'degrees Celsius';
-    const DefaultPrefixes : TPrefixes = ();
-    const DefaultPrefixExponents : TIntegerDynArray = ();
+    const Prefixes : TPrefixes = ();
+    const PrefixExponents : TIntegerDynArray = ();
   end;
   TDegreesCelsius = specialize TQuantity<TDegreeCelsiusUnit>;
   TDegreeCelsiusUnitId = specialize TUnitId<TDegreeCelsiusUnit>;
@@ -837,8 +845,8 @@ type
     const Symbol       = 'ºF';
     const SingularName = 'degree Fahrenheit';
     const PluralName   = 'degrees Fahrenheit';
-    const DefaultPrefixes : TPrefixes = ();
-    const DefaultPrefixExponents : TIntegerDynArray = ();
+    const Prefixes : TPrefixes = ();
+    const PrefixExponents : TIntegerDynArray = ();
   end;
   TDegreesFahrenheit = specialize TQuantity<TDegreeFahrenheitUnit>;
   TDegreeFahrenheitUnitId = specialize TUnitId<TDegreeFahrenheitUnit>;
@@ -851,8 +859,8 @@ type
     const Symbol       = '%sK2';
     const SingularName = 'square %skelvin';
     const PluralName   = 'square %skelvins';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+2);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (2);
   end;
   TSquareKelvins = specialize TQuantity<TSquareKelvinUnit>;
   TSquareKelvinUnitId = specialize TUnitId<TSquareKelvinUnit>;
@@ -869,8 +877,8 @@ type
     const Symbol       = '%sK3';
     const SingularName = 'cubic %skelvin';
     const PluralName   = 'cubic %skelvins';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+3);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (3);
   end;
   TCubicKelvins = specialize TQuantity<TCubicKelvinUnit>;
   TCubicKelvinUnitId = specialize TUnitId<TCubicKelvinUnit>;
@@ -889,8 +897,8 @@ type
     const Symbol       = '%sK4';
     const SingularName = 'quartic %skelvin';
     const PluralName   = 'quartic %skelvins';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+4);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (4);
   end;
   TQuarticKelvins = specialize TQuantity<TQuarticKelvinUnit>;
   TQuarticKelvinUnitId = specialize TUnitId<TQuarticKelvinUnit>;
@@ -913,8 +921,8 @@ type
     const Symbol       = '%smol';
     const SingularName = '%smole';
     const PluralName   = '%smoles';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (1);
   end;
   TMoles = specialize TQuantity<TMoleUnit>;
   TMoleUnitId = specialize TUnitId<TMoleUnit>;
@@ -931,8 +939,8 @@ type
     const Symbol       = '%scd';
     const SingularName = '%scandela';
     const PluralName   = '%scandelas';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (1);
   end;
   TCandelas = specialize TQuantity<TCandelaUnit>;
   TCandelaUnitId = specialize TUnitId<TCandelaUnit>;
@@ -945,8 +953,8 @@ type
     const Symbol       = 'rad';
     const SingularName = 'radian';
     const PluralName   = 'radians';
-    const DefaultPrefixes : TPrefixes = ();
-    const DefaultPrefixExponents : TIntegerDynArray = ();
+    const Prefixes : TPrefixes = ();
+    const PrefixExponents : TIntegerDynArray = ();
   end;
   TRadians = specialize TQuantity<TRadianUnit>;
   TRadianUnitId = specialize TUnitId<TRadianUnit>;
@@ -959,8 +967,8 @@ type
     const Symbol       = 'deg';
     const SingularName = 'degree';
     const PluralName   = 'degrees';
-    const DefaultPrefixes : TPrefixes = ();
-    const DefaultPrefixExponents : TIntegerDynArray = ();
+    const Prefixes : TPrefixes = ();
+    const PrefixExponents : TIntegerDynArray = ();
     const ToBaseFactor = Pi/180;
   end;
   TDegrees = specialize TQuantity<TRadianUnit>;
@@ -974,8 +982,8 @@ type
     const Symbol       = 'sr';
     const SingularName = 'steradian';
     const PluralName   = 'steradians';
-    const DefaultPrefixes : TPrefixes = ();
-    const DefaultPrefixExponents : TIntegerDynArray = ();
+    const Prefixes : TPrefixes = ();
+    const PrefixExponents : TIntegerDynArray = ();
   end;
   TSteradians = specialize TQuantity<TSteradianUnit>;
   TSteradianUnitId = specialize TUnitId<TSteradianUnit>;
@@ -992,8 +1000,8 @@ type
     const Symbol       = 'deg2';
     const SingularName = 'square degree';
     const PluralName   = 'square degrees';
-    const DefaultPrefixes : TPrefixes = ();
-    const DefaultPrefixExponents : TIntegerDynArray = ();
+    const Prefixes : TPrefixes = ();
+    const PrefixExponents : TIntegerDynArray = ();
     const ToBaseFactor = Pi*Pi/32400;
   end;
   TSquareDegrees = specialize TQuantity<TSteradianUnit>;
@@ -1007,8 +1015,8 @@ type
     const Symbol       = '%sHz';
     const SingularName = '%shertz';
     const PluralName   = '%shertz';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (1);
   end;
   THertz = specialize TQuantity<THertzUnit>;
   THertzUnitId = specialize TUnitId<THertzUnit>;
@@ -1033,8 +1041,8 @@ type
     const Symbol       = '%sHz2';
     const SingularName = 'square %shertz';
     const PluralName   = 'square %shertz';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+2);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (2);
   end;
   TSquareHertz = specialize TQuantity<TSquareHertzUnit>;
   TSquareHertzUnitId = specialize TUnitId<TSquareHertzUnit>;
@@ -1069,8 +1077,8 @@ type
     const Symbol       = 'rad/%ss';
     const SingularName = 'radian per %ssecond';
     const PluralName   = 'radians per %ssecond';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (-1);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (-1);
   end;
   TRadiansPerSecond = specialize TQuantity<TRadianPerSecondUnit>;
   TRadianPerSecondUnitId = specialize TUnitId<TRadianPerSecondUnit>;
@@ -1097,8 +1105,8 @@ type
     const Symbol       = 'rad/%ss2';
     const SingularName = 'radian per %ssecond squared';
     const PluralName   = 'radians per %ssecond squared';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (-2);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (-2);
   end;
   TRadiansPerSecondSquared = specialize TQuantity<TSquareHertzUnit>;
   TRadianPerSecondSquaredUnitId = specialize TUnitId<TSquareHertzUnit>;
@@ -1129,8 +1137,8 @@ type
     const Symbol       = 'rad2/%ss2';
     const SingularName = 'square radian per square %ssecond';
     const PluralName   = 'square radians per square %ssecond';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (-2);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (-2);
   end;
   TSteradiansPerSquareSecond = specialize TQuantity<TSquareHertzUnit>;
   TSteradianPerSquareSecondUnitId = specialize TUnitId<TSquareHertzUnit>;
@@ -1154,8 +1162,8 @@ type
     const Symbol       = '%sm/%ss';
     const SingularName = '%smeter per %ssecond';
     const PluralName   = '%smeters per %ssecond';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, -1);
+    const Prefixes : TPrefixes = (pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, -1);
   end;
   TMetersPerSecond = specialize TQuantity<TMeterPerSecondUnit>;
   TMeterPerSecondUnitId = specialize TUnitId<TMeterPerSecondUnit>;
@@ -1180,8 +1188,8 @@ type
     const Symbol       = '%sm/h';
     const SingularName = '%smeter per hour';
     const PluralName   = '%smeters per hour';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (1);
     const ToBaseFactor = 1/3600;
   end;
   TMetersPerHour = specialize TQuantity<TMeterPerSecondUnit>;
@@ -1193,8 +1201,8 @@ type
     const Symbol       = 'mi/h';
     const SingularName = 'mile per hour';
     const PluralName   = 'miles per hour';
-    const DefaultPrefixes : TPrefixes = ();
-    const DefaultPrefixExponents : TIntegerDynArray = ();
+    const Prefixes : TPrefixes = ();
+    const PrefixExponents : TIntegerDynArray = ();
     const ToBaseFactor = 0.44704;
   end;
   TMilesPerHour = specialize TQuantity<TMeterPerSecondUnit>;
@@ -1206,8 +1214,8 @@ type
     const Symbol       = 'nmi/h';
     const SingularName = 'nautical mile per hour';
     const PluralName   = 'nautical miles per hour';
-    const DefaultPrefixes : TPrefixes = ();
-    const DefaultPrefixExponents : TIntegerDynArray = ();
+    const Prefixes : TPrefixes = ();
+    const PrefixExponents : TIntegerDynArray = ();
     const ToBaseFactor = 463/900;
   end;
   TNauticalMilesPerHour = specialize TQuantity<TMeterPerSecondUnit>;
@@ -1219,8 +1227,8 @@ type
     const Symbol       = '%sm/%ss2';
     const SingularName = '%smeter per %ssecond squared';
     const PluralName   = '%smeters per %ssecond squared';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, -2);
+    const Prefixes : TPrefixes = (pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, -2);
   end;
   TMetersPerSecondSquared = specialize TQuantity<TMeterPerSecondSquaredUnit>;
   TMeterPerSecondSquaredUnitId = specialize TUnitId<TMeterPerSecondSquaredUnit>;
@@ -1251,8 +1259,8 @@ type
     const Symbol       = '%sm/%ss/%ss';
     const SingularName = '%smeter per %ssecond per %ssecond';
     const PluralName   = '%smeters per %ssecond per %ssecond';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, -1, -1);
+    const Prefixes : TPrefixes = (pNone, pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, -1, -1);
   end;
   TMetersPerSecondPerSecond = specialize TQuantity<TMeterPerSecondSquaredUnit>;
   TMeterPerSecondPerSecondUnitId = specialize TUnitId<TMeterPerSecondSquaredUnit>;
@@ -1263,8 +1271,8 @@ type
     const Symbol       = '%sm/h/%ss';
     const SingularName = '%smeter per hour per %ssecond';
     const PluralName   = '%smeters per hour per %ssecond';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, -1);
+    const Prefixes : TPrefixes = (pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, -1);
     const ToBaseFactor = 1/3600;
   end;
   TMetersPerHourPerSecond = specialize TQuantity<TMeterPerSecondSquaredUnit>;
@@ -1276,8 +1284,8 @@ type
     const Symbol       = '%sm2/%ss2';
     const SingularName = 'square %smeter per square %ssecond';
     const PluralName   = 'square %smeters per square %ssecond';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+2, -2);
+    const Prefixes : TPrefixes = (pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (2, -2);
   end;
   TSquareMetersPerSquareSecond = specialize TQuantity<TSquareMeterPerSquareSecondUnit>;
   TSquareMeterPerSquareSecondUnitId = specialize TUnitId<TSquareMeterPerSquareSecondUnit>;
@@ -1305,8 +1313,8 @@ type
     const Symbol       = '%sg·%sm/%ss';
     const SingularName = '%sgram %smeter per %ssecond';
     const PluralName   = '%sgram %smeters per %ssecond';
-    const DefaultPrefixes : TPrefixes = (pKilo, pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, +1, -1);
+    const Prefixes : TPrefixes = (pKilo, pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, 1, -1);
   end;
   TKilogramMetersPerSecond = specialize TQuantity<TKilogramMeterPerSecondUnit>;
   TKilogramMeterPerSecondUnitId = specialize TUnitId<TKilogramMeterPerSecondUnit>;
@@ -1324,8 +1332,8 @@ type
     const Symbol       = '%sN·%ss';
     const SingularName = '%snewton %ssecond';
     const PluralName   = '%snewton %sseconds';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, +1);
+    const Prefixes : TPrefixes = (pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, 1);
   end;
   TNewtonSeconds = specialize TQuantity<TKilogramMeterPerSecondUnit>;
   TNewtonSecondUnitId = specialize TUnitId<TKilogramMeterPerSecondUnit>;
@@ -1336,8 +1344,8 @@ type
     const Symbol       = '%sg·%sm2';
     const SingularName = '%sgram square %smeter';
     const PluralName   = '%sgram square %smeters';
-    const DefaultPrefixes : TPrefixes = (pKilo, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, +2);
+    const Prefixes : TPrefixes = (pKilo, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, 2);
   end;
   TKilogramSquareMeters = specialize TQuantity<TKilogramSquareMeterUnit>;
   TKilogramSquareMeterUnitId = specialize TUnitId<TKilogramSquareMeterUnit>;
@@ -1355,8 +1363,8 @@ type
     const Symbol       = '%sg·%sm2/%ss';
     const SingularName = '%sgram square %smeter per %ssecond';
     const PluralName   = '%sgram square %smeters per %ssecond';
-    const DefaultPrefixes : TPrefixes = (pKilo, pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, +2, -1);
+    const Prefixes : TPrefixes = (pKilo, pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, 2, -1);
   end;
   TKilogramSquareMetersPerSecond = specialize TQuantity<TKilogramSquareMeterPerSecondUnit>;
   TKilogramSquareMeterPerSecondUnitId = specialize TUnitId<TKilogramSquareMeterPerSecondUnit>;
@@ -1380,8 +1388,8 @@ type
     const Symbol       = '%sg/%sm';
     const SingularName = '%sgram per %smeter';
     const PluralName   = '%sgrams per %smeter';
-    const DefaultPrefixes : TPrefixes = (pKilo, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, -1);
+    const Prefixes : TPrefixes = (pKilo, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, -1);
   end;
   TKilogramsPerMeter = specialize TQuantity<TKilogramPerMeterUnit>;
   TKilogramPerMeterUnitId = specialize TUnitId<TKilogramPerMeterUnit>;
@@ -1399,8 +1407,8 @@ type
     const Symbol       = '%sg/%sm2';
     const SingularName = '%sgram per square %smeter';
     const PluralName   = '%sgrams per square %smeter';
-    const DefaultPrefixes : TPrefixes = (pKilo, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, -2);
+    const Prefixes : TPrefixes = (pKilo, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, -2);
   end;
   TKilogramsPerSquareMeter = specialize TQuantity<TKilogramPerSquareMeterUnit>;
   TKilogramPerSquareMeterUnitId = specialize TUnitId<TKilogramPerSquareMeterUnit>;
@@ -1418,8 +1426,8 @@ type
     const Symbol       = '%sg/%sm3';
     const SingularName = '%sgram per cubic %smeter';
     const PluralName   = '%sgrams per cubic %smeter';
-    const DefaultPrefixes : TPrefixes = (pKilo, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, -3);
+    const Prefixes : TPrefixes = (pKilo, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, -3);
   end;
   TKilogramsPerCubicMeter = specialize TQuantity<TKilogramPerCubicMeterUnit>;
   TKilogramPerCubicMeterUnitId = specialize TUnitId<TKilogramPerCubicMeterUnit>;
@@ -1443,8 +1451,8 @@ type
     const Symbol       = '%sN';
     const SingularName = '%snewton';
     const PluralName   = '%snewtons';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (1);
   end;
   TNewtons = specialize TQuantity<TNewtonUnit>;
   TNewtonUnitId = specialize TUnitId<TNewtonUnit>;
@@ -1482,8 +1490,8 @@ type
     const Symbol       = 'lbf';
     const SingularName = 'pound-force';
     const PluralName   = 'pounds-force';
-    const DefaultPrefixes : TPrefixes = ();
-    const DefaultPrefixExponents : TIntegerDynArray = ();
+    const Prefixes : TPrefixes = ();
+    const PrefixExponents : TIntegerDynArray = ();
     const ToBaseFactor = 4.4482216152605;
   end;
   TPoundsForce = specialize TQuantity<TNewtonUnit>;
@@ -1497,8 +1505,8 @@ type
     const Symbol       = '%sN2';
     const SingularName = 'square %snewton';
     const PluralName   = 'square %snewtons';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+2);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (2);
   end;
   TSquareNewtons = specialize TQuantity<TSquareNewtonUnit>;
   TSquareNewtonUnitId = specialize TUnitId<TSquareNewtonUnit>;
@@ -1521,8 +1529,8 @@ type
     const Symbol       = '%sPa';
     const SingularName = '%spascal';
     const PluralName   = '%spascals';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (1);
   end;
   TPascals = specialize TQuantity<TPascalUnit>;
   TPascalUnitId = specialize TUnitId<TPascalUnit>;
@@ -1553,8 +1561,8 @@ type
     const Symbol       = '%sbar';
     const SingularName = '%sbar';
     const PluralName   = '%sbars';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (1);
     const ToBaseFactor = 1E+05;
   end;
   TBars = specialize TQuantity<TPascalUnit>;
@@ -1571,8 +1579,8 @@ type
     const Symbol       = '%spsi';
     const SingularName = '%spound per square inch';
     const PluralName   = '%spounds per square inch';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (1);
     const ToBaseFactor = 6894.75729316836;
   end;
   TPoundsPerSquareInch = specialize TQuantity<TPascalUnit>;
@@ -1588,8 +1596,8 @@ type
     const Symbol       = '%sJ';
     const SingularName = '%sjoule';
     const PluralName   = '%sjoules';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (1);
   end;
   TJoules = specialize TQuantity<TJouleUnit>;
   TJouleUnitId = specialize TUnitId<TJouleUnit>;
@@ -1645,8 +1653,8 @@ type
     const Symbol       = '%sW·h';
     const SingularName = '%swatt hour';
     const PluralName   = '%swatt hours';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (1);
     const ToBaseFactor = 3600;
   end;
   TWattHours = specialize TQuantity<TJouleUnit>;
@@ -1658,8 +1666,8 @@ type
     const Symbol       = '%seV';
     const SingularName = '%selettronvolt';
     const PluralName   = '%selettronvolts';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (1);
     const ToBaseFactor = 1.60217742320523E-019;
   end;
   TElettronvolts = specialize TQuantity<TJouleUnit>;
@@ -1678,8 +1686,8 @@ type
     const Symbol       = '%sN·%sm';
     const SingularName = '%snewton %smeter';
     const PluralName   = '%snewton %smeters';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, +1);
+    const Prefixes : TPrefixes = (pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, 1);
   end;
   TNewtonMeters = specialize TQuantity<TJouleUnit>;
   TNewtonMeterUnitId = specialize TUnitId<TJouleUnit>;
@@ -1690,8 +1698,8 @@ type
     const Symbol       = 'lbf·in';
     const SingularName = 'pound-force inch';
     const PluralName   = 'pound-force inches';
-    const DefaultPrefixes : TPrefixes = ();
-    const DefaultPrefixExponents : TIntegerDynArray = ();
+    const Prefixes : TPrefixes = ();
+    const PrefixExponents : TIntegerDynArray = ();
     const ToBaseFactor = 0.112984829027617;
   end;
   TPoundForceInches = specialize TQuantity<TJouleUnit>;
@@ -1703,8 +1711,8 @@ type
     const Symbol       = '%sW';
     const SingularName = '%swatt';
     const PluralName   = '%swatts';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (1);
   end;
   TWatts = specialize TQuantity<TWattUnit>;
   TWattUnitId = specialize TUnitId<TWattUnit>;
@@ -1742,8 +1750,8 @@ type
     const Symbol       = '%sC';
     const SingularName = '%scoulomb';
     const PluralName   = '%scoulombs';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (1);
   end;
   TCoulombs = specialize TQuantity<TCoulombUnit>;
   TCoulombUnitId = specialize TUnitId<TCoulombUnit>;
@@ -1773,8 +1781,8 @@ type
     const Symbol       = '%sA·h';
     const SingularName = '%sampere hour';
     const PluralName   = '%sampere hours';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (1);
     const ToBaseFactor = 3600;
   end;
   TAmpereHours = specialize TQuantity<TCoulombUnit>;
@@ -1786,8 +1794,8 @@ type
     const Symbol       = '%sC2';
     const SingularName = 'square %scoulomb';
     const PluralName   = 'square %scoulombs';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+2);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (2);
   end;
   TSquareCoulombs = specialize TQuantity<TSquareCoulombUnit>;
   TSquareCoulombUnitId = specialize TUnitId<TSquareCoulombUnit>;
@@ -1814,8 +1822,8 @@ type
     const Symbol       = '%sV';
     const SingularName = '%svolt';
     const PluralName   = '%svolts';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (1);
   end;
   TVolts = specialize TQuantity<TVoltUnit>;
   TVoltUnitId = specialize TUnitId<TVoltUnit>;
@@ -1845,8 +1853,8 @@ type
     const Symbol       = '%sV2';
     const SingularName = 'square %svolt';
     const PluralName   = 'square %svolts';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+2);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (2);
   end;
   TSquareVolts = specialize TQuantity<TSquareVoltUnit>;
   TSquareVoltUnitId = specialize TUnitId<TSquareVoltUnit>;
@@ -1866,8 +1874,8 @@ type
     const Symbol       = '%sF';
     const SingularName = '%sfarad';
     const PluralName   = '%sfarads';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (1);
   end;
   TFarads = specialize TQuantity<TFaradUnit>;
   TFaradUnitId = specialize TUnitId<TFaradUnit>;
@@ -1898,8 +1906,8 @@ type
     const Symbol       = '%sΩ';
     const SingularName = '%sohm';
     const PluralName   = '%sohms';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (1);
   end;
   TOhms = specialize TQuantity<TOhmUnit>;
   TOhmUnitId = specialize TUnitId<TOhmUnit>;
@@ -1944,8 +1952,8 @@ type
     const Symbol       = '%sS';
     const SingularName = '%ssiemens';
     const PluralName   = '%ssiemens';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (1);
   end;
   TSiemens = specialize TQuantity<TSiemensUnit>;
   TSiemensUnitId = specialize TUnitId<TSiemensUnit>;
@@ -1969,8 +1977,8 @@ type
     const Symbol       = '%sWb';
     const SingularName = '%sweber';
     const PluralName   = '%swebers';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (1);
   end;
   TWebers = specialize TQuantity<TWeberUnit>;
   TWeberUnitId = specialize TUnitId<TWeberUnit>;
@@ -1990,8 +1998,8 @@ type
     const Symbol       = '%sT';
     const SingularName = '%stesla';
     const PluralName   = '%steslas';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (1);
   end;
   TTeslas = specialize TQuantity<TTeslaUnit>;
   TTeslaUnitId = specialize TUnitId<TTeslaUnit>;
@@ -2015,8 +2023,8 @@ type
     const Symbol       = '%sH';
     const SingularName = '%shenry';
     const PluralName   = '%shenries';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (1);
   end;
   THenries = specialize TQuantity<THenryUnit>;
   THenryUnitId = specialize TUnitId<THenryUnit>;
@@ -2052,8 +2060,8 @@ type
     const Symbol       = '%slm';
     const SingularName = '%slumen';
     const PluralName   = '%slumens';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (1);
   end;
   TLumens = specialize TQuantity<TLumenUnit>;
   TLumenUnitId = specialize TUnitId<TLumenUnit>;
@@ -2073,8 +2081,8 @@ type
     const Symbol       = '%slx';
     const SingularName = '%slux';
     const PluralName   = '%slux';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (1);
   end;
   TLux = specialize TQuantity<TLuxUnit>;
   TLuxUnitId = specialize TUnitId<TLuxUnit>;
@@ -2094,8 +2102,8 @@ type
     const Symbol       = '%sBq';
     const SingularName = '%sbequerel';
     const PluralName   = '%sbequerels';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (1);
   end;
   TBequerels = specialize TQuantity<THertzUnit>;
   TBequerelUnitId = specialize TUnitId<THertzUnit>;
@@ -2114,8 +2122,8 @@ type
     const Symbol       = '%sGy';
     const SingularName = '%sgray';
     const PluralName   = '%sgrays';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (1);
   end;
   TGrays = specialize TQuantity<TSquareMeterPerSquareSecondUnit>;
   TGrayUnitId = specialize TUnitId<TSquareMeterPerSquareSecondUnit>;
@@ -2133,8 +2141,8 @@ type
     const Symbol       = '%sSv';
     const SingularName = '%ssievert';
     const PluralName   = '%ssieverts';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (1);
   end;
   TSieverts = specialize TQuantity<TSquareMeterPerSquareSecondUnit>;
   TSievertUnitId = specialize TUnitId<TSquareMeterPerSquareSecondUnit>;
@@ -2152,8 +2160,8 @@ type
     const Symbol       = '%skat';
     const SingularName = '%skatal';
     const PluralName   = '%skatals';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (1);
   end;
   TKatals = specialize TQuantity<TKatalUnit>;
   TKatalUnitId = specialize TUnitId<TKatalUnit>;
@@ -2173,8 +2181,8 @@ type
     const Symbol       = '%sJ/rad';
     const SingularName = '%sjoule per radian';
     const PluralName   = '%sjoules per radian';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (1);
   end;
   TJoulesPerRadian = specialize TQuantity<TJoulePerRadianUnit>;
   TJoulePerRadianUnitId = specialize TUnitId<TJoulePerRadianUnit>;
@@ -2192,8 +2200,8 @@ type
     const Symbol       = '%sJ/deg';
     const SingularName = '%sjoule per degree';
     const PluralName   = '%sjoules per degree';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (1);
     const ToBaseFactor = 180/Pi;
   end;
   TJoulesPerDegree = specialize TQuantity<TJoulePerRadianUnit>;
@@ -2205,8 +2213,8 @@ type
     const Symbol       = '%sN·%sm/rad';
     const SingularName = '%snewton %smeter per radian';
     const PluralName   = '%snewton %smeters per radian';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, +1);
+    const Prefixes : TPrefixes = (pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, 1);
   end;
   TNewtonMetersPerRadian = specialize TQuantity<TJoulePerRadianUnit>;
   TNewtonMeterPerRadianUnitId = specialize TUnitId<TJoulePerRadianUnit>;
@@ -2217,8 +2225,8 @@ type
     const Symbol       = '%sN·%sm/deg';
     const SingularName = '%snewton %smeter per degree';
     const PluralName   = '%snewton %smeters per degree';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, +1);
+    const Prefixes : TPrefixes = (pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, 1);
     const ToBaseFactor = 180/Pi;
   end;
   TNewtonMetersPerDegree = specialize TQuantity<TJoulePerRadianUnit>;
@@ -2230,8 +2238,8 @@ type
     const Symbol       = '%sN/%sm3';
     const SingularName = '%snewton per cubic %smeter';
     const PluralName   = '%snewtons per cubic %smeter';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, -3);
+    const Prefixes : TPrefixes = (pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, -3);
   end;
   TNewtonsPerCubicMeter = specialize TQuantity<TNewtonPerCubicMeterUnit>;
   TNewtonPerCubicMeterUnitId = specialize TUnitId<TNewtonPerCubicMeterUnit>;
@@ -2261,8 +2269,8 @@ type
     const Symbol       = '%sN/%sm';
     const SingularName = '%snewton per %smeter';
     const PluralName   = '%snewtons per %smeter';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, -1);
+    const Prefixes : TPrefixes = (pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, -1);
   end;
   TNewtonsPerMeter = specialize TQuantity<TNewtonPerMeterUnit>;
   TNewtonPerMeterUnitId = specialize TUnitId<TNewtonPerMeterUnit>;
@@ -2298,8 +2306,8 @@ type
     const Symbol       = 'lbf/in';
     const SingularName = 'pound-force per inch';
     const PluralName   = 'pounds-force per inch';
-    const DefaultPrefixes : TPrefixes = ();
-    const DefaultPrefixExponents : TIntegerDynArray = ();
+    const Prefixes : TPrefixes = ();
+    const PrefixExponents : TIntegerDynArray = ();
     const ToBaseFactor = 175.126835246476;
   end;
   TPoundsForcePerInch = specialize TQuantity<TNewtonPerMeterUnit>;
@@ -2311,8 +2319,8 @@ type
     const Symbol       = '%sm3/%ss';
     const SingularName = 'cubic %smeter per %ssecond';
     const PluralName   = 'cubic %smeters per %ssecond';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+3, -1);
+    const Prefixes : TPrefixes = (pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (3, -1);
   end;
   TCubicMetersPerSecond = specialize TQuantity<TCubicMeterPerSecondUnit>;
   TCubicMeterPerSecondUnitId = specialize TUnitId<TCubicMeterPerSecondUnit>;
@@ -2336,8 +2344,8 @@ type
     const Symbol       = '%sg/%ss';
     const SingularName = '%sgram per %ssecond';
     const PluralName   = '%sgrams per %ssecond';
-    const DefaultPrefixes : TPrefixes = (pKilo, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, -1);
+    const Prefixes : TPrefixes = (pKilo, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, -1);
   end;
   TKilogramsPerSecond = specialize TQuantity<TKilogramPerSecondUnit>;
   TKilogramPerSecondUnitId = specialize TUnitId<TKilogramPerSecondUnit>;
@@ -2361,8 +2369,8 @@ type
     const Symbol       = '%sPl';
     const SingularName = '%spoiseuille';
     const PluralName   = '%spoiseuilles';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (1);
   end;
   TPoiseuilles = specialize TQuantity<TPoiseuilleUnit>;
   TPoiseuilleUnitId = specialize TUnitId<TPoiseuilleUnit>;
@@ -2399,8 +2407,8 @@ type
     const Symbol       = '%sPa·%ss';
     const SingularName = '%spascal %ssecond';
     const PluralName   = '%spascal %sseconds';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, +1);
+    const Prefixes : TPrefixes = (pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, 1);
   end;
   TPascalSeconds = specialize TQuantity<TPoiseuilleUnit>;
   TPascalSecondUnitId = specialize TUnitId<TPoiseuilleUnit>;
@@ -2411,8 +2419,8 @@ type
     const Symbol       = '%sm2/%ss';
     const SingularName = 'square %smeter per %ssecond';
     const PluralName   = 'square %smeters per %ssecond';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+2, -1);
+    const Prefixes : TPrefixes = (pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (2, -1);
   end;
   TSquareMetersPerSecond = specialize TQuantity<TSquareMeterPerSecondUnit>;
   TSquareMeterPerSecondUnitId = specialize TUnitId<TSquareMeterPerSecondUnit>;
@@ -2436,8 +2444,8 @@ type
     const Symbol       = '%sg/%sm4';
     const SingularName = '%sgram per quartic %smeter';
     const PluralName   = '%sgrams per quartic %smeter';
-    const DefaultPrefixes : TPrefixes = (pKilo, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, -4);
+    const Prefixes : TPrefixes = (pKilo, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, -4);
   end;
   TKilogramsPerQuarticMeter = specialize TQuantity<TKilogramPerQuarticMeterUnit>;
   TKilogramPerQuarticMeterUnitId = specialize TUnitId<TKilogramPerQuarticMeterUnit>;
@@ -2455,8 +2463,8 @@ type
     const Symbol       = '%sm4·%ss';
     const SingularName = 'quartic %smeter %ssecond';
     const PluralName   = 'quartic %smeter %sseconds';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+4, +1);
+    const Prefixes : TPrefixes = (pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (4, 1);
   end;
   TQuarticMeterSeconds = specialize TQuantity<TQuarticMeterSecondUnit>;
   TQuarticMeterSecondUnitId = specialize TUnitId<TQuarticMeterSecondUnit>;
@@ -2474,8 +2482,8 @@ type
     const Symbol       = '%sg/%sm4/%ss';
     const SingularName = '%sgram per quartic %smeter per %ssecond';
     const PluralName   = '%sgrams per quartic %smeter per %ssecond';
-    const DefaultPrefixes : TPrefixes = (pKilo, pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, -4, -1);
+    const Prefixes : TPrefixes = (pKilo, pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, -4, -1);
   end;
   TKilogramsPerQuarticMeterPerSecond = specialize TQuantity<TKilogramPerQuarticMeterPerSecondUnit>;
   TKilogramPerQuarticMeterPerSecondUnitId = specialize TUnitId<TKilogramPerQuarticMeterPerSecondUnit>;
@@ -2512,8 +2520,8 @@ type
     const Symbol       = '%sm3/%sg';
     const SingularName = 'cubic %smeter per %sgram';
     const PluralName   = 'cubic %smeters per %sgram';
-    const DefaultPrefixes : TPrefixes = (pNone, pKilo);
-    const DefaultPrefixExponents : TIntegerDynArray = (+3, -1);
+    const Prefixes : TPrefixes = (pNone, pKilo);
+    const PrefixExponents : TIntegerDynArray = (3, -1);
   end;
   TCubicMetersPerKilogram = specialize TQuantity<TCubicMeterPerKilogramUnit>;
   TCubicMeterPerKilogramUnitId = specialize TUnitId<TCubicMeterPerKilogramUnit>;
@@ -2537,8 +2545,8 @@ type
     const Symbol       = '%sg·%ss2';
     const SingularName = '%sgram square %ssecond';
     const PluralName   = '%sgram square %sseconds';
-    const DefaultPrefixes : TPrefixes = (pKilo, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, +2);
+    const Prefixes : TPrefixes = (pKilo, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, 2);
   end;
   TKilogramSquareSeconds = specialize TQuantity<TKilogramSquareSecondUnit>;
   TKilogramSquareSecondUnitId = specialize TUnitId<TKilogramSquareSecondUnit>;
@@ -2556,8 +2564,8 @@ type
     const Symbol       = '%sm3/%ss2';
     const SingularName = 'cubic %smeter per square %ssecond';
     const PluralName   = 'cubic %smeters per square %ssecond';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+3, -2);
+    const Prefixes : TPrefixes = (pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (3, -2);
   end;
   TCubicMetersPerSquareSecond = specialize TQuantity<TCubicMeterPerSquareSecondUnit>;
   TCubicMeterPerSquareSecondUnitId = specialize TUnitId<TCubicMeterPerSquareSecondUnit>;
@@ -2581,8 +2589,8 @@ type
     const Symbol       = '%sN·%sm2';
     const SingularName = '%snewton square %smeter';
     const PluralName   = '%snewton square %smeters';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, +2);
+    const Prefixes : TPrefixes = (pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, 2);
   end;
   TNewtonSquareMeters = specialize TQuantity<TNewtonSquareMeterUnit>;
   TNewtonSquareMeterUnitId = specialize TUnitId<TNewtonSquareMeterUnit>;
@@ -2612,8 +2620,8 @@ type
     const Symbol       = '%sN/%sg2';
     const SingularName = '%snewton per square %sgram';
     const PluralName   = '%snewtons per square %sgram';
-    const DefaultPrefixes : TPrefixes = (pNone, pKilo);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, -2);
+    const Prefixes : TPrefixes = (pNone, pKilo);
+    const PrefixExponents : TIntegerDynArray = (1, -2);
   end;
   TNewtonsPerSquareKilogram = specialize TQuantity<TNewtonPerSquareKilogramUnit>;
   TNewtonPerSquareKilogramUnitId = specialize TUnitId<TNewtonPerSquareKilogramUnit>;
@@ -2631,8 +2639,8 @@ type
     const Symbol       = '%sg2/%sm';
     const SingularName = 'square %sgram per %smeter';
     const PluralName   = 'square %sgrams per %smeter';
-    const DefaultPrefixes : TPrefixes = (pKilo, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+2, -1);
+    const Prefixes : TPrefixes = (pKilo, pNone);
+    const PrefixExponents : TIntegerDynArray = (2, -1);
   end;
   TSquareKilogramsPerMeter = specialize TQuantity<TSquareKilogramPerMeterUnit>;
   TSquareKilogramPerMeterUnitId = specialize TUnitId<TSquareKilogramPerMeterUnit>;
@@ -2650,8 +2658,8 @@ type
     const Symbol       = '%sg2/%sm2';
     const SingularName = 'square %sgram per square %smeter';
     const PluralName   = 'square %sgrams per square %smeter';
-    const DefaultPrefixes : TPrefixes = (pKilo, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+2, -2);
+    const Prefixes : TPrefixes = (pKilo, pNone);
+    const PrefixExponents : TIntegerDynArray = (2, -2);
   end;
   TSquareKilogramsPerSquareMeter = specialize TQuantity<TSquareKilogramPerSquareMeterUnit>;
   TSquareKilogramPerSquareMeterUnitId = specialize TUnitId<TSquareKilogramPerSquareMeterUnit>;
@@ -2669,8 +2677,8 @@ type
     const Symbol       = '%sm2/%sg2';
     const SingularName = 'square %smeter per square %sgram';
     const PluralName   = 'square %smeters per square %sgram';
-    const DefaultPrefixes : TPrefixes = (pNone, pKilo);
-    const DefaultPrefixExponents : TIntegerDynArray = (+2, -2);
+    const Prefixes : TPrefixes = (pNone, pKilo);
+    const PrefixExponents : TIntegerDynArray = (2, -2);
   end;
   TSquareMetersPerSquareKilogram = specialize TQuantity<TSquareMeterPerSquareKilogramUnit>;
   TSquareMeterPerSquareKilogramUnitId = specialize TUnitId<TSquareMeterPerSquareKilogramUnit>;
@@ -2688,8 +2696,8 @@ type
     const Symbol       = '%sN·%sm2/%sg2';
     const SingularName = '%snewton square %smeter per square %sgram';
     const PluralName   = '%snewton square %smeters per square %sgram';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone, pKilo);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, +2, -2);
+    const Prefixes : TPrefixes = (pNone, pNone, pKilo);
+    const PrefixExponents : TIntegerDynArray = (1, 2, -2);
   end;
   TNewtonSquareMetersPerSquareKilogram = specialize TQuantity<TNewtonSquareMeterPerSquareKilogramUnit>;
   TNewtonSquareMeterPerSquareKilogramUnitId = specialize TUnitId<TNewtonSquareMeterPerSquareKilogramUnit>;
@@ -2750,8 +2758,8 @@ type
     const Symbol       = '1/%sK';
     const SingularName = 'reciprocal %skelvin';
     const PluralName   = 'reciprocal %skelvin';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (-1);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (-1);
   end;
   TReciprocalKelvins = specialize TQuantity<TReciprocalKelvinUnit>;
   TReciprocalKelvinUnitId = specialize TUnitId<TReciprocalKelvinUnit>;
@@ -2769,8 +2777,8 @@ type
     const Symbol       = '%sg·%sK';
     const SingularName = '%sgram %skelvin';
     const PluralName   = '%sgram %skelvins';
-    const DefaultPrefixes : TPrefixes = (pKilo, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, +1);
+    const Prefixes : TPrefixes = (pKilo, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, 1);
   end;
   TKilogramKelvins = specialize TQuantity<TKilogramKelvinUnit>;
   TKilogramKelvinUnitId = specialize TUnitId<TKilogramKelvinUnit>;
@@ -2788,8 +2796,8 @@ type
     const Symbol       = '%sJ/%sK';
     const SingularName = '%sjoule per %skelvin';
     const PluralName   = '%sjoules per %skelvin';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, -1);
+    const Prefixes : TPrefixes = (pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, -1);
   end;
   TJoulesPerKelvin = specialize TQuantity<TJoulePerKelvinUnit>;
   TJoulePerKelvinUnitId = specialize TUnitId<TJoulePerKelvinUnit>;
@@ -2807,8 +2815,8 @@ type
     const Symbol       = '%sJ/%sg';
     const SingularName = '%sjoule per %sgram';
     const PluralName   = '%sjoules per %sgram';
-    const DefaultPrefixes : TPrefixes = (pNone, pKilo);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, -1);
+    const Prefixes : TPrefixes = (pNone, pKilo);
+    const PrefixExponents : TIntegerDynArray = (1, -1);
   end;
   TJoulesPerKilogram = specialize TQuantity<TSquareMeterPerSquareSecondUnit>;
   TJoulePerKilogramUnitId = specialize TUnitId<TSquareMeterPerSquareSecondUnit>;
@@ -2819,8 +2827,8 @@ type
     const Symbol       = '%sJ/%sg/%sK';
     const SingularName = '%sjoule per %sgram per %skelvin';
     const PluralName   = '%sjoules per %sgram per %skelvin';
-    const DefaultPrefixes : TPrefixes = (pNone, pKilo, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, -1, -1);
+    const Prefixes : TPrefixes = (pNone, pKilo, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, -1, -1);
   end;
   TJoulesPerKilogramPerKelvin = specialize TQuantity<TJoulePerKilogramPerKelvinUnit>;
   TJoulePerKilogramPerKelvinUnitId = specialize TUnitId<TJoulePerKilogramPerKelvinUnit>;
@@ -2851,8 +2859,8 @@ type
     const Symbol       = '%sm·%sK';
     const SingularName = '%smeter %skelvin';
     const PluralName   = '%smeter %skelvins';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, +1);
+    const Prefixes : TPrefixes = (pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, 1);
   end;
   TMeterKelvins = specialize TQuantity<TMeterKelvinUnit>;
   TMeterKelvinUnitId = specialize TUnitId<TMeterKelvinUnit>;
@@ -2870,8 +2878,8 @@ type
     const Symbol       = '%sK/%sm';
     const SingularName = '%skelvin per %smeter';
     const PluralName   = '%skelvins per %smeter';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, -1);
+    const Prefixes : TPrefixes = (pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, -1);
   end;
   TKelvinsPerMeter = specialize TQuantity<TKelvinPerMeterUnit>;
   TKelvinPerMeterUnitId = specialize TUnitId<TKelvinPerMeterUnit>;
@@ -2889,8 +2897,8 @@ type
     const Symbol       = '%sW/%sm';
     const SingularName = '%swatt per %smeter';
     const PluralName   = '%swatts per %smeter';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, -1);
+    const Prefixes : TPrefixes = (pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, -1);
   end;
   TWattsPerMeter = specialize TQuantity<TWattPerMeterUnit>;
   TWattPerMeterUnitId = specialize TUnitId<TWattPerMeterUnit>;
@@ -2908,8 +2916,8 @@ type
     const Symbol       = '%sW/%sm2';
     const SingularName = '%swatt per square %smeter';
     const PluralName   = '%swatts per square %smeter';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, -2);
+    const Prefixes : TPrefixes = (pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, -2);
   end;
   TWattsPerSquareMeter = specialize TQuantity<TWattPerSquareMeterUnit>;
   TWattPerSquareMeterUnitId = specialize TUnitId<TWattPerSquareMeterUnit>;
@@ -2927,8 +2935,8 @@ type
     const Symbol       = '%sW/%sK';
     const SingularName = '%swatt per %skelvin';
     const PluralName   = '%swatts per %skelvin';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, -1);
+    const Prefixes : TPrefixes = (pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, -1);
   end;
   TWattsPerKelvin = specialize TQuantity<TWattPerKelvinUnit>;
   TWattPerKelvinUnitId = specialize TUnitId<TWattPerKelvinUnit>;
@@ -2946,8 +2954,8 @@ type
     const Symbol       = '%sW/%sm/%sK';
     const SingularName = '%swatt per %smeter per %skelvin';
     const PluralName   = '%swatts per %smeter per %skelvin';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, -1, -1);
+    const Prefixes : TPrefixes = (pNone, pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, -1, -1);
   end;
   TWattsPerMeterPerKelvin = specialize TQuantity<TWattPerMeterPerKelvinUnit>;
   TWattPerMeterPerKelvinUnitId = specialize TUnitId<TWattPerMeterPerKelvinUnit>;
@@ -2984,8 +2992,8 @@ type
     const Symbol       = '%sm2·%sK';
     const SingularName = 'square %smeter %skelvin';
     const PluralName   = 'square %smeter %skelvins';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+2, +1);
+    const Prefixes : TPrefixes = (pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (2, 1);
   end;
   TSquareMeterKelvins = specialize TQuantity<TSquareMeterKelvinUnit>;
   TSquareMeterKelvinUnitId = specialize TUnitId<TSquareMeterKelvinUnit>;
@@ -3003,8 +3011,8 @@ type
     const Symbol       = '%sW/%sm2/%sK';
     const SingularName = '%swatt per square %smeter per %skelvin';
     const PluralName   = '%swatts per square %smeter per %skelvin';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, -2, -1);
+    const Prefixes : TPrefixes = (pNone, pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, -2, -1);
   end;
   TWattsPerSquareMeterPerKelvin = specialize TQuantity<TWattPerSquareMeterPerKelvinUnit>;
   TWattPerSquareMeterPerKelvinUnitId = specialize TUnitId<TWattPerSquareMeterPerKelvinUnit>;
@@ -3035,8 +3043,8 @@ type
     const Symbol       = '%sm2·%sK4';
     const SingularName = 'square %smeter quartic %skelvin';
     const PluralName   = 'square %smeter quartic %skelvins';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+2, +4);
+    const Prefixes : TPrefixes = (pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (2, 4);
   end;
   TSquareMeterQuarticKelvins = specialize TQuantity<TSquareMeterQuarticKelvinUnit>;
   TSquareMeterQuarticKelvinUnitId = specialize TUnitId<TSquareMeterQuarticKelvinUnit>;
@@ -3054,8 +3062,8 @@ type
     const Symbol       = '%sW/%sK4';
     const SingularName = '%swatt per quartic %skelvin';
     const PluralName   = '%swatts per quartic %skelvin';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, -4);
+    const Prefixes : TPrefixes = (pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, -4);
   end;
   TWattsPerQuarticKelvin = specialize TQuantity<TWattPerQuarticKelvinUnit>;
   TWattPerQuarticKelvinUnitId = specialize TUnitId<TWattPerQuarticKelvinUnit>;
@@ -3073,8 +3081,8 @@ type
     const Symbol       = '%sW/%sm2/%sK4';
     const SingularName = '%swatt per square %smeter per quartic %skelvin';
     const PluralName   = '%swatts per square %smeter per quartic %skelvin';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, -2, -4);
+    const Prefixes : TPrefixes = (pNone, pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, -2, -4);
   end;
   TWattsPerSquareMeterPerQuarticKelvin = specialize TQuantity<TWattPerSquareMeterPerQuarticKelvinUnit>;
   TWattPerSquareMeterPerQuarticKelvinUnitId = specialize TUnitId<TWattPerSquareMeterPerQuarticKelvinUnit>;
@@ -3105,8 +3113,8 @@ type
     const Symbol       = '%sJ/%smol';
     const SingularName = '%sjoule per %smole';
     const PluralName   = '%sjoules per %smole';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, -1);
+    const Prefixes : TPrefixes = (pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, -1);
   end;
   TJoulesPerMole = specialize TQuantity<TJoulePerMoleUnit>;
   TJoulePerMoleUnitId = specialize TUnitId<TJoulePerMoleUnit>;
@@ -3124,8 +3132,8 @@ type
     const Symbol       = '%smol·%sK';
     const SingularName = '%smole %skelvin';
     const PluralName   = '%smole %skelvins';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, +1);
+    const Prefixes : TPrefixes = (pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, 1);
   end;
   TMoleKelvins = specialize TQuantity<TMoleKelvinUnit>;
   TMoleKelvinUnitId = specialize TUnitId<TMoleKelvinUnit>;
@@ -3143,8 +3151,8 @@ type
     const Symbol       = '%sJ/%smol/%sK';
     const SingularName = '%sjoule per %smole per %skelvin';
     const PluralName   = '%sjoules per %smole per %skelvin';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, -1, -1);
+    const Prefixes : TPrefixes = (pNone, pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, -1, -1);
   end;
   TJoulesPerMolePerKelvin = specialize TQuantity<TJoulePerMolePerKelvinUnit>;
   TJoulePerMolePerKelvinUnitId = specialize TUnitId<TJoulePerMolePerKelvinUnit>;
@@ -3175,8 +3183,8 @@ type
     const Symbol       = '%sΩ·%sm';
     const SingularName = '%sohm %smeter';
     const PluralName   = '%sohm %smeters';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, +1);
+    const Prefixes : TPrefixes = (pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, 1);
   end;
   TOhmMeters = specialize TQuantity<TOhmMeterUnit>;
   TOhmMeterUnitId = specialize TUnitId<TOhmMeterUnit>;
@@ -3194,8 +3202,8 @@ type
     const Symbol       = '%sV/%sm';
     const SingularName = '%svolt per %smeter';
     const PluralName   = '%svolts per %smeter';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, -1);
+    const Prefixes : TPrefixes = (pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, -1);
   end;
   TVoltsPerMeter = specialize TQuantity<TVoltPerMeterUnit>;
   TVoltPerMeterUnitId = specialize TUnitId<TVoltPerMeterUnit>;
@@ -3226,8 +3234,8 @@ type
     const Symbol       = '%sN/%sC';
     const SingularName = '%snewton per %scoulomb';
     const PluralName   = '%snewtons per %scoulomb';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, -1);
+    const Prefixes : TPrefixes = (pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, -1);
   end;
   TNewtonsPerCoulomb = specialize TQuantity<TVoltPerMeterUnit>;
   TNewtonPerCoulombUnitId = specialize TUnitId<TVoltPerMeterUnit>;
@@ -3238,8 +3246,8 @@ type
     const Symbol       = '%sC/%sm';
     const SingularName = '%scoulomb per %smeter';
     const PluralName   = '%scoulombs per %smeter';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, -1);
+    const Prefixes : TPrefixes = (pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, -1);
   end;
   TCoulombsPerMeter = specialize TQuantity<TCoulombPerMeterUnit>;
   TCoulombPerMeterUnitId = specialize TUnitId<TCoulombPerMeterUnit>;
@@ -3257,8 +3265,8 @@ type
     const Symbol       = '%sC2/%sm';
     const SingularName = 'square %scoulomb per %smeter';
     const PluralName   = 'square %scoulombs per %smeter';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+2, -1);
+    const Prefixes : TPrefixes = (pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (2, -1);
   end;
   TSquareCoulombsPerMeter = specialize TQuantity<TSquareCoulombPerMeterUnit>;
   TSquareCoulombPerMeterUnitId = specialize TUnitId<TSquareCoulombPerMeterUnit>;
@@ -3282,8 +3290,8 @@ type
     const Symbol       = '%sC/%sm2';
     const SingularName = '%scoulomb per square %smeter';
     const PluralName   = '%scoulombs per square %smeter';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, -2);
+    const Prefixes : TPrefixes = (pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, -2);
   end;
   TCoulombsPerSquareMeter = specialize TQuantity<TCoulombPerSquareMeterUnit>;
   TCoulombPerSquareMeterUnitId = specialize TUnitId<TCoulombPerSquareMeterUnit>;
@@ -3307,8 +3315,8 @@ type
     const Symbol       = '%sm2/%sC2';
     const SingularName = 'square %smeter per square %scoulomb';
     const PluralName   = 'square %smeters per square %scoulomb';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+2, -2);
+    const Prefixes : TPrefixes = (pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (2, -2);
   end;
   TSquareMetersPerSquareCoulomb = specialize TQuantity<TSquareMeterPerSquareCoulombUnit>;
   TSquareMeterPerSquareCoulombUnitId = specialize TUnitId<TSquareMeterPerSquareCoulombUnit>;
@@ -3326,8 +3334,8 @@ type
     const Symbol       = '%sN/%sC2';
     const SingularName = '%snewton per square %scoulomb';
     const PluralName   = '%snewtons per square %scoulomb';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, -2);
+    const Prefixes : TPrefixes = (pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, -2);
   end;
   TNewtonsPerSquareCoulomb = specialize TQuantity<TNewtonPerSquareCoulombUnit>;
   TNewtonPerSquareCoulombUnitId = specialize TUnitId<TNewtonPerSquareCoulombUnit>;
@@ -3345,8 +3353,8 @@ type
     const Symbol       = '%sN·%sm2/%sC2';
     const SingularName = '%snewton square %smeter per square %scoulomb';
     const PluralName   = '%snewton square %smeters per square %scoulomb';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, +2, -2);
+    const Prefixes : TPrefixes = (pNone, pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, 2, -2);
   end;
   TNewtonSquareMetersPerSquareCoulomb = specialize TQuantity<TNewtonSquareMeterPerSquareCoulombUnit>;
   TNewtonSquareMeterPerSquareCoulombUnitId = specialize TUnitId<TNewtonSquareMeterPerSquareCoulombUnit>;
@@ -3389,8 +3397,8 @@ type
     const Symbol       = '%sV·%sm';
     const SingularName = '%svolt %smeter';
     const PluralName   = '%svolt %smeters';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, +1);
+    const Prefixes : TPrefixes = (pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, 1);
   end;
   TVoltMeters = specialize TQuantity<TVoltMeterUnit>;
   TVoltMeterUnitId = specialize TUnitId<TVoltMeterUnit>;
@@ -3414,8 +3422,8 @@ type
     const Symbol       = '%sN·%sm2/%sC';
     const SingularName = '%snewton square %smeter per %scoulomb';
     const PluralName   = '%snewton square %smeters per %scoulomb';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, +2, -1);
+    const Prefixes : TPrefixes = (pNone, pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, 2, -1);
   end;
   TNewtonSquareMetersPerCoulomb = specialize TQuantity<TVoltMeterUnit>;
   TNewtonSquareMeterPerCoulombUnitId = specialize TUnitId<TVoltMeterUnit>;
@@ -3426,8 +3434,8 @@ type
     const Symbol       = '%sV·%sm/%ss';
     const SingularName = '%svolt %smeter per %ssecond';
     const PluralName   = '%svolt %smeters per %ssecond';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, +1, -1);
+    const Prefixes : TPrefixes = (pNone, pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, 1, -1);
   end;
   TVoltMetersPerSecond = specialize TQuantity<TVoltMeterPerSecondUnit>;
   TVoltMeterPerSecondUnitId = specialize TUnitId<TVoltMeterPerSecondUnit>;
@@ -3445,8 +3453,8 @@ type
     const Symbol       = '%sF/%sm';
     const SingularName = '%sfarad per %smeter';
     const PluralName   = '%sfarads per %smeter';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, -1);
+    const Prefixes : TPrefixes = (pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, -1);
   end;
   TFaradsPerMeter = specialize TQuantity<TFaradPerMeterUnit>;
   TFaradPerMeterUnitId = specialize TUnitId<TFaradPerMeterUnit>;
@@ -3482,8 +3490,8 @@ type
     const Symbol       = '%sA/%sm';
     const SingularName = '%sampere per %smeter';
     const PluralName   = '%samperes per %smeter';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, -1);
+    const Prefixes : TPrefixes = (pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, -1);
   end;
   TAmperesPerMeter = specialize TQuantity<TAmperePerMeterUnit>;
   TAmperePerMeterUnitId = specialize TUnitId<TAmperePerMeterUnit>;
@@ -3501,8 +3509,8 @@ type
     const Symbol       = '%sm/%sA';
     const SingularName = '%smeter per %sampere';
     const PluralName   = '%smeters per %sampere';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, -1);
+    const Prefixes : TPrefixes = (pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, -1);
   end;
   TMetersPerAmpere = specialize TQuantity<TMeterPerAmpereUnit>;
   TMeterPerAmpereUnitId = specialize TUnitId<TMeterPerAmpereUnit>;
@@ -3520,8 +3528,8 @@ type
     const Symbol       = '%sT·%sm';
     const SingularName = '%stesla %smeter';
     const PluralName   = '%stesla %smeters';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, +1);
+    const Prefixes : TPrefixes = (pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, 1);
   end;
   TTeslaMeters = specialize TQuantity<TTeslaMeterUnit>;
   TTeslaMeterUnitId = specialize TUnitId<TTeslaMeterUnit>;
@@ -3546,8 +3554,8 @@ type
     const Symbol       = '%sN/%sA';
     const SingularName = '%snewton per %sampere';
     const PluralName   = '%snewtons per %sampere';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, -1);
+    const Prefixes : TPrefixes = (pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, -1);
   end;
   TNewtonsPerAmpere = specialize TQuantity<TTeslaMeterUnit>;
   TNewtonPerAmpereUnitId = specialize TUnitId<TTeslaMeterUnit>;
@@ -3558,8 +3566,8 @@ type
     const Symbol       = '%sT/%sA';
     const SingularName = '%stesla per %sampere';
     const PluralName   = '%steslas per %sampere';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, -1);
+    const Prefixes : TPrefixes = (pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, -1);
   end;
   TTeslasPerAmpere = specialize TQuantity<TTeslaPerAmpereUnit>;
   TTeslaPerAmpereUnitId = specialize TUnitId<TTeslaPerAmpereUnit>;
@@ -3577,8 +3585,8 @@ type
     const Symbol       = '%sH/%sm';
     const SingularName = '%shenry per %smeter';
     const PluralName   = '%shenries per %smeter';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, -1);
+    const Prefixes : TPrefixes = (pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, -1);
   end;
   THenriesPerMeter = specialize TQuantity<THenryPerMeterUnit>;
   THenryPerMeterUnitId = specialize TUnitId<THenryPerMeterUnit>;
@@ -3628,8 +3636,8 @@ type
     const Symbol       = '%sT·%sm/%sA';
     const SingularName = '%stesla %smeter per %sampere';
     const PluralName   = '%stesla %smeters per %sampere';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, +1, -1);
+    const Prefixes : TPrefixes = (pNone, pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, 1, -1);
   end;
   TTeslaMetersPerAmpere = specialize TQuantity<THenryPerMeterUnit>;
   TTeslaMeterPerAmpereUnitId = specialize TUnitId<THenryPerMeterUnit>;
@@ -3640,8 +3648,8 @@ type
     const Symbol       = '%sN/%sA2';
     const SingularName = '%snewton per square %sampere';
     const PluralName   = '%snewtons per square %sampere';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, -2);
+    const Prefixes : TPrefixes = (pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, -2);
   end;
   TNewtonsPerSquareAmpere = specialize TQuantity<THenryPerMeterUnit>;
   TNewtonPerSquareAmpereUnitId = specialize TUnitId<THenryPerMeterUnit>;
@@ -3652,8 +3660,8 @@ type
     const Symbol       = 'rad/%sm';
     const SingularName = 'radian per %smeter';
     const PluralName   = 'radians per %smeter';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (-1);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (-1);
   end;
   TRadiansPerMeter = specialize TQuantity<TRadianPerMeterUnit>;
   TRadianPerMeterUnitId = specialize TUnitId<TRadianPerMeterUnit>;
@@ -3671,8 +3679,8 @@ type
     const Symbol       = '%sg2/%ss2';
     const SingularName = 'square %sgram per square %ssecond';
     const PluralName   = 'square %sgrams per square %ssecond';
-    const DefaultPrefixes : TPrefixes = (pKilo, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+2, -2);
+    const Prefixes : TPrefixes = (pKilo, pNone);
+    const PrefixExponents : TIntegerDynArray = (2, -2);
   end;
   TSquareKilogramsPerSquareSecond = specialize TQuantity<TSquareKilogramPerSquareSecondUnit>;
   TSquareKilogramPerSquareSecondUnitId = specialize TUnitId<TSquareKilogramPerSquareSecondUnit>;
@@ -3700,8 +3708,8 @@ type
     const Symbol       = '%ss2/%sm2';
     const SingularName = 'square %ssecond per square %smeter';
     const PluralName   = 'square %sseconds per square %smeter';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+2, -2);
+    const Prefixes : TPrefixes = (pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (2, -2);
   end;
   TSquareSecondsPerSquareMeter = specialize TQuantity<TSquareSecondPerSquareMeterUnit>;
   TSquareSecondPerSquareMeterUnitId = specialize TUnitId<TSquareSecondPerSquareMeterUnit>;
@@ -3731,8 +3739,8 @@ type
     const Symbol       = '%sJ2';
     const SingularName = 'square %sjoule';
     const PluralName   = 'square %sjoules';
-    const DefaultPrefixes : TPrefixes = (pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+2);
+    const Prefixes : TPrefixes = (pNone);
+    const PrefixExponents : TIntegerDynArray = (2);
   end;
   TSquareJoules = specialize TQuantity<TSquareJouleUnit>;
   TSquareJouleUnitId = specialize TUnitId<TSquareJouleUnit>;
@@ -3754,8 +3762,8 @@ type
     const Symbol       = '%sJ·%ss';
     const SingularName = '%sjoule %ssecond';
     const PluralName   = '%sjoule %sseconds';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, +1);
+    const Prefixes : TPrefixes = (pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, 1);
   end;
   TJouleSeconds = specialize TQuantity<TJouleSecondUnit>;
   TJouleSecondUnitId = specialize TUnitId<TJouleSecondUnit>;
@@ -3786,8 +3794,8 @@ type
     const Symbol       = '%seV·%ss';
     const SingularName = '%selettronvolt %ssecond';
     const PluralName   = '%selettronvolt %sseconds';
-    const DefaultPrefixes : TPrefixes = (pNone, pNone);
-    const DefaultPrefixExponents : TIntegerDynArray = (+1, +1);
+    const Prefixes : TPrefixes = (pNone, pNone);
+    const PrefixExponents : TIntegerDynArray = (1, 1);
     const ToBaseFactor = 1.60217742320523E-019;
   end;
   TElettronvoltSeconds = specialize TQuantity<TJouleSecondUnit>;
@@ -4152,14 +4160,14 @@ var
   PrefixCount: longint;
 begin
   PrefixCount := Length(Prefixes);
-  if PrefixCount = Length(U.DefaultPrefixes) then
+  if PrefixCount = Length(U.Prefixes) then
   begin
     Exponent := 0;
     for I := 0 to PrefixCount -1 do
-      Inc(Exponent, PrefixTable[U.DefaultPrefixes[I]].Exponent * U.DefaultPrefixExponents[I]);
+      Inc(Exponent, PrefixTable[U.Prefixes[I]].Exponent * U.PrefixExponents[I]);
 
     for I := 0 to PrefixCount -1 do
-      Dec(Exponent, PrefixTable[Prefixes[I]].Exponent * U.DefaultPrefixExponents[I]);
+      Dec(Exponent, PrefixTable[Prefixes[I]].Exponent * U.PrefixExponents[I]);
 
     if Exponent <> 0 then
       result := FValue * IntPower(10, Exponent)
@@ -4174,15 +4182,15 @@ end;
 
 function TQuantity.ToString: string;
 begin
-  result := FloatToStr(FValue) + ' ' + GetSymbol(U.Symbol, U.DefaultPrefixes);
+  result := FloatToStr(FValue) + ' ' + GetSymbol(U.Symbol, U.Prefixes);
 end;
 
 function TQuantity.ToVerboseString: string;
 begin
   if (FValue < -1) or (FValue > 1) then
-    result := FloatToStr(FValue) + ' ' + GetPluralName(U.PluralName, U.DefaultPrefixes)
+    result := FloatToStr(FValue) + ' ' + GetPluralName(U.PluralName, U.Prefixes)
   else
-    result := FloatToStr(FValue) + ' ' + GetSingularName(U.SingularName, U.DefaultPrefixes);
+    result := FloatToStr(FValue) + ' ' + GetSingularName(U.SingularName, U.Prefixes);
 end;
 
 function TQuantity.ToString(Precision, Digits: longint; const Prefixes: TPrefixes): string;
@@ -4192,7 +4200,7 @@ begin
   FactoredValue := Value(Prefixes);
 
   if Length(Prefixes) = 0 then
-    result := FloatToStrF(FactoredValue, ffGeneral, Precision, Digits) + ' ' + GetSymbol(U.Symbol, U.DefaultPrefixes)
+    result := FloatToStrF(FactoredValue, ffGeneral, Precision, Digits) + ' ' + GetSymbol(U.Symbol, U.Prefixes)
   else
     result := FloatToStrF(FactoredValue, ffGeneral, Precision, Digits) + ' ' + GetSymbol(U.Symbol, Prefixes)
 end;
@@ -4206,13 +4214,13 @@ begin
   if (FactoredValue < -1) or (FactoredValue > 1) then
   begin
     if Length(Prefixes) = 0 then
-      result := FloatToStrF(FactoredValue, ffGeneral, Precision, Digits) + ' ' + GetPluralName(U.PluralName, U.DefaultPrefixes)
+      result := FloatToStrF(FactoredValue, ffGeneral, Precision, Digits) + ' ' + GetPluralName(U.PluralName, U.Prefixes)
     else
       result := FloatToStrF(FactoredValue, ffGeneral, Precision, Digits) + ' ' + GetPluralName(U.PluralName, Prefixes);
   end else
   begin
     if Length(Prefixes) = 0 then
-      result := FloatToStrF(FactoredValue, ffGeneral, Precision, Digits) + ' ' + GetSingularName(U.SingularName, U.DefaultPrefixes)
+      result := FloatToStrF(FactoredValue, ffGeneral, Precision, Digits) + ' ' + GetSingularName(U.SingularName, U.Prefixes)
     else
       result := FloatToStrF(FactoredValue, ffGeneral, Precision, Digits) + ' ' + GetSingularName(U.SingularName, Prefixes)
   end;
@@ -4300,426 +4308,278 @@ begin
   result.FValue := AValue;
 end;
 
+{ External operators }
+
 // main definition [ s2 ] = [ s ] * [ s ]
 
 operator *(const ALeft: TSeconds; const ARight: TSeconds): TSquareSeconds;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TSquareSeconds; const ARight: TSeconds): TSeconds;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // main definition [ m2 ] = [ m ] * [ m ]
 
 operator *(const ALeft: TMeters; const ARight: TMeters): TSquareMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TSquareMeters; const ARight: TMeters): TMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // main definition [ m3 ] = [ m2 ] * [ m ]
 
 operator *(const ALeft: TSquareMeters; const ARight: TMeters): TCubicMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TMeters; const ARight: TSquareMeters): TCubicMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TCubicMeters; const ARight: TSquareMeters): TMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TCubicMeters; const ARight: TMeters): TSquareMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // main definition [ m4 ] = [ m3 ] * [ m ]
 
 operator *(const ALeft: TCubicMeters; const ARight: TMeters): TQuarticMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TMeters; const ARight: TCubicMeters): TQuarticMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TQuarticMeters; const ARight: TCubicMeters): TMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TQuarticMeters; const ARight: TMeters): TCubicMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // alternative definition [ m4 ] = [ m2 ] * [ m2 ]
 
 operator *(const ALeft: TSquareMeters; const ARight: TSquareMeters): TQuarticMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TQuarticMeters; const ARight: TSquareMeters): TSquareMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // main definition [ m5 ] = [ m4 ] * [ m ]
 
 operator *(const ALeft: TQuarticMeters; const ARight: TMeters): TQuinticMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TMeters; const ARight: TQuarticMeters): TQuinticMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TQuinticMeters; const ARight: TQuarticMeters): TMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TQuinticMeters; const ARight: TMeters): TQuarticMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // alternative definition [ m5 ] = [ m3 ] * [ m2 ]
 
 operator *(const ALeft: TCubicMeters; const ARight: TSquareMeters): TQuinticMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TSquareMeters; const ARight: TCubicMeters): TQuinticMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TQuinticMeters; const ARight: TCubicMeters): TSquareMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TQuinticMeters; const ARight: TSquareMeters): TCubicMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // main definition [ m6 ] = [ m5 ] * [ m ]
 
 operator *(const ALeft: TQuinticMeters; const ARight: TMeters): TSexticMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TMeters; const ARight: TQuinticMeters): TSexticMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TSexticMeters; const ARight: TQuinticMeters): TMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TSexticMeters; const ARight: TMeters): TQuinticMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // alternative definition [ m6 ] = [ m4 ] * [ m2 ]
 
 operator *(const ALeft: TQuarticMeters; const ARight: TSquareMeters): TSexticMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TSquareMeters; const ARight: TQuarticMeters): TSexticMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TSexticMeters; const ARight: TQuarticMeters): TSquareMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TSexticMeters; const ARight: TSquareMeters): TQuarticMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // alternative definition [ m6 ] = [ m3 ] * [ m3 ]
 
 operator *(const ALeft: TCubicMeters; const ARight: TCubicMeters): TSexticMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TSexticMeters; const ARight: TCubicMeters): TCubicMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // main definition [ kg2 ] = [ kg ] * [ kg ]
 
 operator *(const ALeft: TKilograms; const ARight: TKilograms): TSquareKilograms;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TSquareKilograms; const ARight: TKilograms): TKilograms;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // main definition [ A2 ] = [ A ] * [ A ]
 
 operator *(const ALeft: TAmperes; const ARight: TAmperes): TSquareAmperes;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TSquareAmperes; const ARight: TAmperes): TAmperes;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // main definition [ K2 ] = [ K ] * [ K ]
 
 operator *(const ALeft: TKelvins; const ARight: TKelvins): TSquareKelvins;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TSquareKelvins; const ARight: TKelvins): TKelvins;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // main definition [ K3 ] = [ K2 ] * [ K ]
 
 operator *(const ALeft: TSquareKelvins; const ARight: TKelvins): TCubicKelvins;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TKelvins; const ARight: TSquareKelvins): TCubicKelvins;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TCubicKelvins; const ARight: TSquareKelvins): TKelvins;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TCubicKelvins; const ARight: TKelvins): TSquareKelvins;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // main definition [ K4 ] = [ K3 ] * [ K ]
 
 operator *(const ALeft: TCubicKelvins; const ARight: TKelvins): TQuarticKelvins;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TKelvins; const ARight: TCubicKelvins): TQuarticKelvins;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TQuarticKelvins; const ARight: TCubicKelvins): TKelvins;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TQuarticKelvins; const ARight: TKelvins): TCubicKelvins;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // alternative definition [ K4 ] = [ K2 ] * [ K2 ]
 
 operator *(const ALeft: TSquareKelvins; const ARight: TSquareKelvins): TQuarticKelvins;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TQuarticKelvins; const ARight: TSquareKelvins): TSquareKelvins;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // main definition [ sr ] = [ rad ] * [ rad ]
 
 operator *(const ALeft: TRadians; const ARight: TRadians): TSteradians;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TSteradians; const ARight: TRadians): TRadians;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // main definition [ Hz ] = [ 1 ] / [ s ]
 
 operator /(const ALeft: double; const ARight: TSeconds): THertz;
-begin
-  result.FValue := ALeft / ARight.FValue;
-end;
+begin result.FValue := ALeft / ARight.FValue; end;
 
 operator *(const ALeft: TSeconds; const ARight: THertz): double;
-begin
-  result := ALeft.FValue * ARight.FValue;
-end;
+begin result := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: THertz; const ARight: TSeconds): double;
-begin
-  result := ALeft.FValue * ARight.FValue;
-end;
+begin result := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: double; const ARight: THertz): TSeconds;
-begin
-  result.FValue := ALeft / ARight.FValue;
-end;
+begin result.FValue := ALeft / ARight.FValue; end;
 
 operator /(const ALeft: double; const ARight: TSecondUnitId): THertz;
-begin
-  result.FValue := ALeft;
-end;
+begin result.FValue := ALeft; end;
 
 // main definition [ Hz2 ] = [ 1 ] / [ s2 ]
 
 operator /(const ALeft: double; const ARight: TSquareSeconds): TSquareHertz;
-begin
-  result.FValue := ALeft / ARight.FValue;
-end;
+begin result.FValue := ALeft / ARight.FValue; end;
 
 operator *(const ALeft: TSquareSeconds; const ARight: TSquareHertz): double;
-begin
-  result := ALeft.FValue * ARight.FValue;
-end;
+begin result := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TSquareHertz; const ARight: TSquareSeconds): double;
-begin
-  result := ALeft.FValue * ARight.FValue;
-end;
+begin result := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: double; const ARight: TSquareHertz): TSquareSeconds;
-begin
-  result.FValue := ALeft / ARight.FValue;
-end;
+begin result.FValue := ALeft / ARight.FValue; end;
 
 operator /(const ALeft: double; const ARight: TSquareSecondUnitId): TSquareHertz;
-begin
-  result.FValue := ALeft;
-end;
+begin result.FValue := ALeft; end;
 
 // alternative definition [ Hz2 ] = [ Hz ] / [ s ]
 
 operator /(const ALeft: THertz; const ARight: TSeconds): TSquareHertz;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TSeconds; const ARight: TSquareHertz): THertz;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TSquareHertz; const ARight: TSeconds): THertz;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: THertz; const ARight: TSquareHertz): TSeconds;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // alternative definition [ Hz2 ] = [ Hz ] * [ Hz ]
 
 operator *(const ALeft: THertz; const ARight: THertz): TSquareHertz;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TSquareHertz; const ARight: THertz): THertz;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // main definition [ rad/s ] = [ rad ] / [ s ]
 
 operator /(const ALeft: TRadians; const ARight: TSeconds): TRadiansPerSecond;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TSeconds; const ARight: TRadiansPerSecond): TRadians;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TRadiansPerSecond; const ARight: TSeconds): TRadians;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TRadians; const ARight: TRadiansPerSecond): TSeconds;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TRadians; const ARight: TSecondUnitId): TRadiansPerSecond;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ rad/s ] = [ rad ] * [ Hz ]
 
 operator *(const ALeft: TRadians; const ARight: THertz): TRadiansPerSecond;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: THertz; const ARight: TRadians): TRadiansPerSecond;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TRadiansPerSecond; const ARight: TRadians): THertz;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TRadiansPerSecond; const ARight: THertz): TRadians;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator :=(const AQuantity: TRadiansPerSecond): THertz; inline;
 begin
@@ -4734,4258 +4594,2694 @@ end;
 // main definition [ rad/s2 ] = [ rad/s ] / [ s ]
 
 operator /(const ALeft: TRadiansPerSecond; const ARight: TSeconds): TRadiansPerSecondSquared;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TSeconds; const ARight: TRadiansPerSecondSquared): TRadiansPerSecond;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TRadiansPerSecondSquared; const ARight: TSeconds): TRadiansPerSecond;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TRadiansPerSecond; const ARight: TRadiansPerSecondSquared): TSeconds;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TRadiansPerSecond; const ARight: TSecondUnitId): TRadiansPerSecondSquared;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ rad/s2 ] = [ rad ] / [ s2 ]
 
 operator /(const ALeft: TRadians; const ARight: TSquareSeconds): TRadiansPerSecondSquared;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TSquareSeconds; const ARight: TRadiansPerSecondSquared): TRadians;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TRadiansPerSecondSquared; const ARight: TSquareSeconds): TRadians;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TRadians; const ARight: TRadiansPerSecondSquared): TSquareSeconds;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TRadians; const ARight: TSquareSecondUnitId): TRadiansPerSecondSquared;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ rad/s2 ] = [ rad ] * [ Hz2 ]
 
 operator *(const ALeft: TRadians; const ARight: TSquareHertz): TRadiansPerSecondSquared;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TSquareHertz; const ARight: TRadians): TRadiansPerSecondSquared;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TRadiansPerSecondSquared; const ARight: TRadians): TSquareHertz;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TRadiansPerSecondSquared; const ARight: TSquareHertz): TRadians;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // main definition [ sr/s2 ] = [ sr ] / [ s2 ]
 
 operator /(const ALeft: TSteradians; const ARight: TSquareSeconds): TSteradiansPerSquareSecond;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TSquareSeconds; const ARight: TSteradiansPerSquareSecond): TSteradians;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TSteradiansPerSquareSecond; const ARight: TSquareSeconds): TSteradians;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TSteradians; const ARight: TSteradiansPerSquareSecond): TSquareSeconds;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TSteradians; const ARight: TSquareSecondUnitId): TSteradiansPerSquareSecond;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ sr/s2 ] = [ sr ] * [ Hz2 ]
 
 operator *(const ALeft: TSteradians; const ARight: TSquareHertz): TSteradiansPerSquareSecond;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TSquareHertz; const ARight: TSteradians): TSteradiansPerSquareSecond;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TSteradiansPerSquareSecond; const ARight: TSteradians): TSquareHertz;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TSteradiansPerSquareSecond; const ARight: TSquareHertz): TSteradians;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // main definition [ m/s ] = [ m ] / [ s ]
 
 operator /(const ALeft: TMeters; const ARight: TSeconds): TMetersPerSecond;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TSeconds; const ARight: TMetersPerSecond): TMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TMetersPerSecond; const ARight: TSeconds): TMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TMeters; const ARight: TMetersPerSecond): TSeconds;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TMeters; const ARight: TSecondUnitId): TMetersPerSecond;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ m/s ] = [ m ] * [ Hz ]
 
 operator *(const ALeft: TMeters; const ARight: THertz): TMetersPerSecond;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: THertz; const ARight: TMeters): TMetersPerSecond;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TMetersPerSecond; const ARight: TMeters): THertz;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TMetersPerSecond; const ARight: THertz): TMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TMeters; const ARight: THertzUnitId): TMetersPerSecond;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // main definition [ m/s2 ] = [ m/s ] / [ s ]
 
 operator /(const ALeft: TMetersPerSecond; const ARight: TSeconds): TMetersPerSecondSquared;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TSeconds; const ARight: TMetersPerSecondSquared): TMetersPerSecond;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TMetersPerSecondSquared; const ARight: TSeconds): TMetersPerSecond;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TMetersPerSecond; const ARight: TMetersPerSecondSquared): TSeconds;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TMetersPerSecond; const ARight: TSecondUnitId): TMetersPerSecondSquared;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ m/s2 ] = [ m ] / [ s2 ]
 
 operator /(const ALeft: TMeters; const ARight: TSquareSeconds): TMetersPerSecondSquared;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TSquareSeconds; const ARight: TMetersPerSecondSquared): TMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TMetersPerSecondSquared; const ARight: TSquareSeconds): TMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TMeters; const ARight: TMetersPerSecondSquared): TSquareSeconds;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TMeters; const ARight: TSquareSecondUnitId): TMetersPerSecondSquared;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ m/s2 ] = [ Hz2 ] * [ m ]
 
 operator *(const ALeft: TSquareHertz; const ARight: TMeters): TMetersPerSecondSquared;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TMeters; const ARight: TSquareHertz): TMetersPerSecondSquared;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TMetersPerSecondSquared; const ARight: TSquareHertz): TMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TMetersPerSecondSquared; const ARight: TMeters): TSquareHertz;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // main definition [ m2/s2 ] = [ m2 ] / [ s2 ]
 
 operator /(const ALeft: TSquareMeters; const ARight: TSquareSeconds): TSquareMetersPerSquareSecond;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TSquareSeconds; const ARight: TSquareMetersPerSquareSecond): TSquareMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TSquareMetersPerSquareSecond; const ARight: TSquareSeconds): TSquareMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TSquareMeters; const ARight: TSquareMetersPerSquareSecond): TSquareSeconds;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TSquareMeters; const ARight: TSquareSecondUnitId): TSquareMetersPerSquareSecond;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ m2/s2 ] = [ m/s ] / [ m/s ]
 
 operator *(const ALeft: TMetersPerSecond; const ARight: TMetersPerSecond): TSquareMetersPerSquareSecond;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TSquareMetersPerSquareSecond; const ARight: TMetersPerSecond): TMetersPerSecond;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // alternative definition [ m2/s2 ] = [ m/s2 ] * [ m ]
 
 operator *(const ALeft: TMetersPerSecondSquared; const ARight: TMeters): TSquareMetersPerSquareSecond;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TMeters; const ARight: TMetersPerSecondSquared): TSquareMetersPerSquareSecond;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TSquareMetersPerSquareSecond; const ARight: TMetersPerSecondSquared): TMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TSquareMetersPerSquareSecond; const ARight: TMeters): TMetersPerSecondSquared;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // main definition [ kg*m/s ] = [kg ] * [ m/s ]
 
 operator *(const ALeft: TKilograms; const ARight: TMetersPerSecond): TKilogramMetersPerSecond;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TMetersPerSecond; const ARight: TKilograms): TKilogramMetersPerSecond;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TKilogramMetersPerSecond; const ARight: TKilograms): TMetersPerSecond;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TKilogramMetersPerSecond; const ARight: TMetersPerSecond): TKilograms;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TKilograms; const ARight: TMeterPerSecondUnitId): TKilogramMetersPerSecond;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // main definition [ kg*m2 ] = [ kg ] * [ m2 ]
 
 operator *(const ALeft: TKilograms; const ARight: TSquareMeters): TKilogramSquareMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TSquareMeters; const ARight: TKilograms): TKilogramSquareMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TKilogramSquareMeters; const ARight: TKilograms): TSquareMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TKilogramSquareMeters; const ARight: TSquareMeters): TKilograms;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TKilograms; const ARight: TSquareMeterUnitId): TKilogramSquareMeters;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // main definition [ kg*m2/s ] = [ kg*m2 ] / [ s ]
 
 operator /(const ALeft: TKilogramSquareMeters; const ARight: TSeconds): TKilogramSquareMetersPerSecond;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TSeconds; const ARight: TKilogramSquareMetersPerSecond): TKilogramSquareMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TKilogramSquareMetersPerSecond; const ARight: TSeconds): TKilogramSquareMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TKilogramSquareMeters; const ARight: TKilogramSquareMetersPerSecond): TSeconds;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TKilogramSquareMeters; const ARight: TSecondUnitId): TKilogramSquareMetersPerSecond;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ kg*m2/s ] = [ kg*m2 ] * [ Hz ]
 
 operator *(const ALeft: TKilogramSquareMeters; const ARight: THertz): TKilogramSquareMetersPerSecond;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: THertz; const ARight: TKilogramSquareMeters): TKilogramSquareMetersPerSecond;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TKilogramSquareMetersPerSecond; const ARight: TKilogramSquareMeters): THertz;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TKilogramSquareMetersPerSecond; const ARight: THertz): TKilogramSquareMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // main definition [ kg/m ] = [ kg ] / [ m ]
 
 operator /(const ALeft: TKilograms; const ARight: TMeters): TKilogramsPerMeter;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TMeters; const ARight: TKilogramsPerMeter): TKilograms;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TKilogramsPerMeter; const ARight: TMeters): TKilograms;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TKilograms; const ARight: TKilogramsPerMeter): TMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TKilograms; const ARight: TMeterUnitId): TKilogramsPerMeter;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // main definition [ kg/m2 ] = [ kg ] / [ m2 ]
 
 operator /(const ALeft: TKilograms; const ARight: TSquareMeters): TKilogramsPerSquareMeter;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TSquareMeters; const ARight: TKilogramsPerSquareMeter): TKilograms;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TKilogramsPerSquareMeter; const ARight: TSquareMeters): TKilograms;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TKilograms; const ARight: TKilogramsPerSquareMeter): TSquareMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TKilograms; const ARight: TSquareMeterUnitId): TKilogramsPerSquareMeter;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // main definition [ kg/m3 ] = [ kg ] / [ m3 ]
 
 operator /(const ALeft: TKilograms; const ARight: TCubicMeters): TKilogramsPerCubicMeter;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TCubicMeters; const ARight: TKilogramsPerCubicMeter): TKilograms;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TKilogramsPerCubicMeter; const ARight: TCubicMeters): TKilograms;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TKilograms; const ARight: TKilogramsPerCubicMeter): TCubicMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TKilograms; const ARight: TCubicMeterUnitId): TKilogramsPerCubicMeter;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ kg/m3 ] = [ kg/m2 ] / [ m ]
 
 operator /(const ALeft: TKilogramsPerSquareMeter; const ARight: TMeters): TKilogramsPerCubicMeter;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TMeters; const ARight: TKilogramsPerCubicMeter): TKilogramsPerSquareMeter;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TKilogramsPerCubicMeter; const ARight: TMeters): TKilogramsPerSquareMeter;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TKilogramsPerSquareMeter; const ARight: TKilogramsPerCubicMeter): TMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // main definition [ N ] = [ kg ] * [ m/s2 ]
 
 operator *(const ALeft: TKilograms; const ARight: TMetersPerSecondSquared): TNewtons;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TMetersPerSecondSquared; const ARight: TKilograms): TNewtons;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TNewtons; const ARight: TKilograms): TMetersPerSecondSquared;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TNewtons; const ARight: TMetersPerSecondSquared): TKilograms;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TKilograms; const ARight: TMeterPerSecondSquaredUnitId): TNewtons;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ N ] = [ kg/m ] * [ m2/s2 ]
 
 operator *(const ALeft: TKilogramsPerMeter; const ARight: TSquareMetersPerSquareSecond): TNewtons;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TSquareMetersPerSquareSecond; const ARight: TKilogramsPerMeter): TNewtons;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TNewtons; const ARight: TKilogramsPerMeter): TSquareMetersPerSquareSecond;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TNewtons; const ARight: TSquareMetersPerSquareSecond): TKilogramsPerMeter;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // alternative definition [ N ] = [ kg*m/s ] / [ s ]
 
 operator /(const ALeft: TKilogramMetersPerSecond; const ARight: TSeconds): TNewtons;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TSeconds; const ARight: TNewtons): TKilogramMetersPerSecond;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TNewtons; const ARight: TSeconds): TKilogramMetersPerSecond;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TKilogramMetersPerSecond; const ARight: TNewtons): TSeconds;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // main definition [ N2 ] = [ N ] * [ N ]
 
 operator *(const ALeft: TNewtons; const ARight: TNewtons): TSquareNewtons;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TSquareNewtons; const ARight: TNewtons): TNewtons;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // main definition [ Pa ] = [ N ] / [ m2 ]
 
 operator /(const ALeft: TNewtons; const ARight: TSquareMeters): TPascals;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TSquareMeters; const ARight: TPascals): TNewtons;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TPascals; const ARight: TSquareMeters): TNewtons;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TNewtons; const ARight: TPascals): TSquareMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TNewtons; const ARight: TSquareMeterUnitId): TPascals;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ Pa ] = [ kg/m3 ] * [ m2/s2 ]
 
 operator *(const ALeft: TKilogramsPerCubicMeter; const ARight: TSquareMetersPerSquareSecond): TPascals;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TSquareMetersPerSquareSecond; const ARight: TKilogramsPerCubicMeter): TPascals;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TPascals; const ARight: TKilogramsPerCubicMeter): TSquareMetersPerSquareSecond;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TPascals; const ARight: TSquareMetersPerSquareSecond): TKilogramsPerCubicMeter;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // main definition [ J ] = [ N ] * [ m ]
 
 operator *(const ALeft: TNewtons; const ARight: TMeters): TJoules;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TMeters; const ARight: TNewtons): TJoules;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TJoules; const ARight: TNewtons): TMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TJoules; const ARight: TMeters): TNewtons;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TNewtons; const ARight: TMeterUnitId): TJoules;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ J ] = [ Pa ] * [ m3 ]
 
 operator *(const ALeft: TPascals; const ARight: TCubicMeters): TJoules;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TCubicMeters; const ARight: TPascals): TJoules;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TJoules; const ARight: TPascals): TCubicMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TJoules; const ARight: TCubicMeters): TPascals;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // alternative definition [ J ] = [ kg*m/s ] * [ m/s ]
 
 operator *(const ALeft: TKilogramMetersPerSecond; const ARight: TMetersPerSecond): TJoules;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TMetersPerSecond; const ARight: TKilogramMetersPerSecond): TJoules;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TJoules; const ARight: TKilogramMetersPerSecond): TMetersPerSecond;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TJoules; const ARight: TMetersPerSecond): TKilogramMetersPerSecond;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // alternative definition [ J ] = [ kg ] * [ m2/s2 ]
 
 operator *(const ALeft: TKilograms; const ARight: TSquareMetersPerSquareSecond): TJoules;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TSquareMetersPerSquareSecond; const ARight: TKilograms): TJoules;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TJoules; const ARight: TKilograms): TSquareMetersPerSquareSecond;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TJoules; const ARight: TSquareMetersPerSquareSecond): TKilograms;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TJoules; const ARight: TKilogramUnitId): TSquareMetersPerSquareSecond;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ J ] = [ kg*m2 ] * [ Hz2 ]
 
 operator *(const ALeft: TKilogramSquareMeters; const ARight: TSquareHertz): TJoules;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TSquareHertz; const ARight: TKilogramSquareMeters): TJoules;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TJoules; const ARight: TKilogramSquareMeters): TSquareHertz;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TJoules; const ARight: TSquareHertz): TKilogramSquareMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // alternative definition [ J ] = [ kg*m2 ] / [ s2 ]
 
 operator /(const ALeft: TKilogramSquareMeters; const ARight: TSquareSeconds): TJoules;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TSquareSeconds; const ARight: TJoules): TKilogramSquareMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TJoules; const ARight: TSquareSeconds): TKilogramSquareMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TKilogramSquareMeters; const ARight: TJoules): TSquareSeconds;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // main definition [ W ] = [ J ] / [ s ]
 
 operator /(const ALeft: TJoules; const ARight: TSeconds): TWatts;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TSeconds; const ARight: TWatts): TJoules;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TWatts; const ARight: TSeconds): TJoules;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TJoules; const ARight: TWatts): TSeconds;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TJoules; const ARight: TSecondUnitId): TWatts;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ W ] = [ J ] * [ Hz ]
 
 operator *(const ALeft: TJoules; const ARight: THertz): TWatts;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: THertz; const ARight: TJoules): TWatts;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TWatts; const ARight: TJoules): THertz;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TWatts; const ARight: THertz): TJoules;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // alternative definition [ W ] = [ N ] * [ m/s ]
 
 operator *(const ALeft: TNewtons; const ARight: TMetersPerSecond): TWatts;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TMetersPerSecond; const ARight: TNewtons): TWatts;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TWatts; const ARight: TNewtons): TMetersPerSecond;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TWatts; const ARight: TMetersPerSecond): TNewtons;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // main definition [ C ] = [ s ] * [ A ]
 
 operator *(const ALeft: TSeconds; const ARight: TAmperes): TCoulombs;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TAmperes; const ARight: TSeconds): TCoulombs;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TCoulombs; const ARight: TSeconds): TAmperes;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TCoulombs; const ARight: TAmperes): TSeconds;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TSeconds; const ARight: TAmpereUnitId): TCoulombs;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // main definition [ C2 ] = [ C ] * [ C ]
 
 operator *(const ALeft: TCoulombs; const ARight: TCoulombs): TSquareCoulombs;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TSquareCoulombs; const ARight: TCoulombs): TCoulombs;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // main definition [ V ] = [ W ] / [ A ]
 
 operator /(const ALeft: TWatts; const ARight: TAmperes): TVolts;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TAmperes; const ARight: TVolts): TWatts;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TVolts; const ARight: TAmperes): TWatts;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TWatts; const ARight: TVolts): TAmperes;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TWatts; const ARight: TAmpereUnitId): TVolts;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ V ] = [ J ] / [ C ]
 
 operator /(const ALeft: TJoules; const ARight: TCoulombs): TVolts;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TCoulombs; const ARight: TVolts): TJoules;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TVolts; const ARight: TCoulombs): TJoules;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TJoules; const ARight: TVolts): TCoulombs;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TJoules; const ARight: TCoulombUnitId): TVolts;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // main definition [ V2 ] = [ V ] * [ V ]
 
 operator *(const ALeft: TVolts; const ARight: TVolts): TSquareVolts;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TSquareVolts; const ARight: TVolts): TVolts;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // main definition [ F ] = [ C ] / [ V ]
 
 operator /(const ALeft: TCoulombs; const ARight: TVolts): TFarads;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TVolts; const ARight: TFarads): TCoulombs;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TFarads; const ARight: TVolts): TCoulombs;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TCoulombs; const ARight: TFarads): TVolts;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TCoulombs; const ARight: TVoltUnitId): TFarads;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ F ] = [ C2 ] / [ J ]
 
 operator /(const ALeft: TSquareCoulombs; const ARight: TJoules): TFarads;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TJoules; const ARight: TFarads): TSquareCoulombs;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TFarads; const ARight: TJoules): TSquareCoulombs;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TSquareCoulombs; const ARight: TFarads): TJoules;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // main definition [ Ω ] = [ V ] / [ A ]
 
 operator /(const ALeft: TVolts; const ARight: TAmperes): TOhms;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TAmperes; const ARight: TOhms): TVolts;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TOhms; const ARight: TAmperes): TVolts;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TVolts; const ARight: TOhms): TAmperes;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TVolts; const ARight: TAmpereUnitId): TOhms;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ Ω ] = [ s ] / [ F ]
 
 operator /(const ALeft: TSeconds; const ARight: TFarads): TOhms;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TFarads; const ARight: TOhms): TSeconds;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TOhms; const ARight: TFarads): TSeconds;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TSeconds; const ARight: TOhms): TFarads;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // alternative definition [ Ω ] = [ W ] / [ A2 ]
 
 operator /(const ALeft: TWatts; const ARight: TSquareAmperes): TOhms;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TSquareAmperes; const ARight: TOhms): TWatts;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TOhms; const ARight: TSquareAmperes): TWatts;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TWatts; const ARight: TOhms): TSquareAmperes;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // alternative definition [ Ω ] = [ V2 ] / [ W ]
 
 operator /(const ALeft: TSquareVolts; const ARight: TWatts): TOhms;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TWatts; const ARight: TOhms): TSquareVolts;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TOhms; const ARight: TWatts): TSquareVolts;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TSquareVolts; const ARight: TOhms): TWatts;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // main definition [ S ] = 1 / [ Ω ]
 
 operator /(const ALeft: double; const ARight: TOhms): TSiemens;
-begin
-  result.FValue := ALeft / ARight.FValue;
-end;
+begin result.FValue := ALeft / ARight.FValue; end;
 
 operator *(const ALeft: TOhms; const ARight: TSiemens): double;
-begin
-  result := ALeft.FValue * ARight.FValue;
-end;
+begin result := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TSiemens; const ARight: TOhms): double;
-begin
-  result := ALeft.FValue * ARight.FValue;
-end;
+begin result := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: double; const ARight: TSiemens): TOhms;
-begin
-  result.FValue := ALeft / ARight.FValue;
-end;
+begin result.FValue := ALeft / ARight.FValue; end;
 
 operator /(const ALeft: double; const ARight: TOhmUnitId): TSiemens;
-begin
-  result.FValue := ALeft;
-end;
+begin result.FValue := ALeft; end;
 
 // main definition [ Wb ] = [ V ] * [ s ]
 
 operator *(const ALeft: TVolts; const ARight: TSeconds): TWebers;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TSeconds; const ARight: TVolts): TWebers;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TWebers; const ARight: TVolts): TSeconds;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TWebers; const ARight: TSeconds): TVolts;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TVolts; const ARight: TSecondUnitId): TWebers;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // main definition [ T ] = [ Wb ] / [ m2 ]
 
 operator /(const ALeft: TWebers; const ARight: TSquareMeters): TTeslas;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TSquareMeters; const ARight: TTeslas): TWebers;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TTeslas; const ARight: TSquareMeters): TWebers;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TWebers; const ARight: TTeslas): TSquareMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TWebers; const ARight: TSquareMeterUnitId): TTeslas;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // main definition [ H ] = [ Wb ] / [ A ]
 
 operator /(const ALeft: TWebers; const ARight: TAmperes): THenries;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TAmperes; const ARight: THenries): TWebers;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: THenries; const ARight: TAmperes): TWebers;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TWebers; const ARight: THenries): TAmperes;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TWebers; const ARight: TAmpereUnitId): THenries;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ H ] = [ Ω ] * [ s ]
 
 operator *(const ALeft: TOhms; const ARight: TSeconds): THenries;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TSeconds; const ARight: TOhms): THenries;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: THenries; const ARight: TOhms): TSeconds;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: THenries; const ARight: TSeconds): TOhms;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // alternative definition [ H ] = [ Ω ] / [ Hz ]
 
 operator /(const ALeft: TOhms; const ARight: THertz): THenries;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: THertz; const ARight: THenries): TOhms;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: THenries; const ARight: THertz): TOhms;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TOhms; const ARight: THenries): THertz;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // main definition [ lm ] = [ cd ] * [ sr ]
 
 operator *(const ALeft: TCandelas; const ARight: TSteradians): TLumens;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TSteradians; const ARight: TCandelas): TLumens;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TLumens; const ARight: TCandelas): TSteradians;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TLumens; const ARight: TSteradians): TCandelas;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TCandelas; const ARight: TSteradianUnitId): TLumens;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // main definition [ lx ] = [ lm ] / [ m2 ]
 
 operator /(const ALeft: TLumens; const ARight: TSquareMeters): TLux;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TSquareMeters; const ARight: TLux): TLumens;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TLux; const ARight: TSquareMeters): TLumens;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TLumens; const ARight: TLux): TSquareMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TLumens; const ARight: TSquareMeterUnitId): TLux;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // main definition [ kat ] = [ mol ] / [ s ]
 
 operator /(const ALeft: TMoles; const ARight: TSeconds): TKatals;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TSeconds; const ARight: TKatals): TMoles;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TKatals; const ARight: TSeconds): TMoles;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TMoles; const ARight: TKatals): TSeconds;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TMoles; const ARight: TSecondUnitId): TKatals;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // main definition [ J/rad ] = [ J ] / [ rad ]
 
 operator /(const ALeft: TJoules; const ARight: TRadians): TJoulesPerRadian;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TRadians; const ARight: TJoulesPerRadian): TJoules;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TJoulesPerRadian; const ARight: TRadians): TJoules;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TJoules; const ARight: TJoulesPerRadian): TRadians;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TJoules; const ARight: TRadianUnitId): TJoulesPerRadian;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // main definition [ N/m3 ] = [ N ] / [ m3 ]
 
 operator /(const ALeft: TNewtons; const ARight: TCubicMeters): TNewtonsPerCubicMeter;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TCubicMeters; const ARight: TNewtonsPerCubicMeter): TNewtons;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TNewtonsPerCubicMeter; const ARight: TCubicMeters): TNewtons;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TNewtons; const ARight: TNewtonsPerCubicMeter): TCubicMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TNewtons; const ARight: TCubicMeterUnitId): TNewtonsPerCubicMeter;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ N/m3 ] = [ Pa ] / [ m ]
 
 operator /(const ALeft: TPascals; const ARight: TMeters): TNewtonsPerCubicMeter;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TMeters; const ARight: TNewtonsPerCubicMeter): TPascals;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TNewtonsPerCubicMeter; const ARight: TMeters): TPascals;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TPascals; const ARight: TNewtonsPerCubicMeter): TMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // alternative definition [ N/m3 ] = [ kg/m3 ] * [ m/s2 ]
 
 operator *(const ALeft: TKilogramsPerCubicMeter; const ARight: TMetersPerSecondSquared): TNewtonsPerCubicMeter;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TMetersPerSecondSquared; const ARight: TKilogramsPerCubicMeter): TNewtonsPerCubicMeter;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TNewtonsPerCubicMeter; const ARight: TKilogramsPerCubicMeter): TMetersPerSecondSquared;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TNewtonsPerCubicMeter; const ARight: TMetersPerSecondSquared): TKilogramsPerCubicMeter;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // main definition [ N/m ] = [ N ] / [ m ]
 
 operator /(const ALeft: TNewtons; const ARight: TMeters): TNewtonsPerMeter;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TMeters; const ARight: TNewtonsPerMeter): TNewtons;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TNewtonsPerMeter; const ARight: TMeters): TNewtons;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TNewtons; const ARight: TNewtonsPerMeter): TMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TNewtons; const ARight: TMeterUnitId): TNewtonsPerMeter;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ N/m ] = [ J ] / [ m2 ]
 
 operator /(const ALeft: TJoules; const ARight: TSquareMeters): TNewtonsPerMeter;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TSquareMeters; const ARight: TNewtonsPerMeter): TJoules;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TNewtonsPerMeter; const ARight: TSquareMeters): TJoules;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TJoules; const ARight: TNewtonsPerMeter): TSquareMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // alternative definition [ N/m ] = [ Pa ] * [ m ]
 
 operator *(const ALeft: TPascals; const ARight: TMeters): TNewtonsPerMeter;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TMeters; const ARight: TPascals): TNewtonsPerMeter;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TNewtonsPerMeter; const ARight: TPascals): TMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TNewtonsPerMeter; const ARight: TMeters): TPascals;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // alternative definition [ N/m ] = [ kg ] * [ Hz2 ]
 
 operator *(const ALeft: TKilograms; const ARight: TSquareHertz): TNewtonsPerMeter;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TSquareHertz; const ARight: TKilograms): TNewtonsPerMeter;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TNewtonsPerMeter; const ARight: TKilograms): TSquareHertz;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TNewtonsPerMeter; const ARight: TSquareHertz): TKilograms;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // main definition [ m3/s ] = [ m3 ] / [ s ]
 
 operator /(const ALeft: TCubicMeters; const ARight: TSeconds): TCubicMetersPerSecond;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TSeconds; const ARight: TCubicMetersPerSecond): TCubicMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TCubicMetersPerSecond; const ARight: TSeconds): TCubicMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TCubicMeters; const ARight: TCubicMetersPerSecond): TSeconds;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TCubicMeters; const ARight: TSecondUnitId): TCubicMetersPerSecond;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ m3/s ] = [ m2 ] * [ m/s ]
 
 operator *(const ALeft: TSquareMeters; const ARight: TMetersPerSecond): TCubicMetersPerSecond;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TMetersPerSecond; const ARight: TSquareMeters): TCubicMetersPerSecond;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TCubicMetersPerSecond; const ARight: TSquareMeters): TMetersPerSecond;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TCubicMetersPerSecond; const ARight: TMetersPerSecond): TSquareMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // main definition [ kg/s ] = [ kg ] / [ s ]
 
 operator /(const ALeft: TKilograms; const ARight: TSeconds): TKilogramsPerSecond;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TSeconds; const ARight: TKilogramsPerSecond): TKilograms;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TKilogramsPerSecond; const ARight: TSeconds): TKilograms;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TKilograms; const ARight: TKilogramsPerSecond): TSeconds;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TKilograms; const ARight: TSecondUnitId): TKilogramsPerSecond;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ kg/s ] = [ N ] / [ m/s ]
 
 operator /(const ALeft: TNewtons; const ARight: TMetersPerSecond): TKilogramsPerSecond;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TMetersPerSecond; const ARight: TKilogramsPerSecond): TNewtons;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TKilogramsPerSecond; const ARight: TMetersPerSecond): TNewtons;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TNewtons; const ARight: TKilogramsPerSecond): TMetersPerSecond;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // main definition [ Pl ] = [ Pa ] * [ s ]
 
 operator *(const ALeft: TPascals; const ARight: TSeconds): TPoiseuilles;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TSeconds; const ARight: TPascals): TPoiseuilles;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TPoiseuilles; const ARight: TPascals): TSeconds;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TPoiseuilles; const ARight: TSeconds): TPascals;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TPascals; const ARight: TSecondUnitId): TPoiseuilles;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ Pl ] = [ kg/m2 ] * [ m/s ]
 
 operator *(const ALeft: TKilogramsPerSquareMeter; const ARight: TMetersPerSecond): TPoiseuilles;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TMetersPerSecond; const ARight: TKilogramsPerSquareMeter): TPoiseuilles;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TPoiseuilles; const ARight: TKilogramsPerSquareMeter): TMetersPerSecond;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TPoiseuilles; const ARight: TMetersPerSecond): TKilogramsPerSquareMeter;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // alternative definition [ Pl ] = [ kg/s ] / [ m ]
 
 operator /(const ALeft: TKilogramsPerSecond; const ARight: TMeters): TPoiseuilles;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TMeters; const ARight: TPoiseuilles): TKilogramsPerSecond;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TPoiseuilles; const ARight: TMeters): TKilogramsPerSecond;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TKilogramsPerSecond; const ARight: TPoiseuilles): TMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TPoiseuilles; const ARight: TMeterUnitId): TKilogramsPerSecond;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // main definition [ m2/s ] = [ m2 ] / [ s ]
 
 operator /(const ALeft: TSquareMeters; const ARight: TSeconds): TSquareMetersPerSecond;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TSeconds; const ARight: TSquareMetersPerSecond): TSquareMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TSquareMetersPerSecond; const ARight: TSeconds): TSquareMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TSquareMeters; const ARight: TSquareMetersPerSecond): TSeconds;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TSquareMeters; const ARight: TSecondUnitId): TSquareMetersPerSecond;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ m2/s ] = [ Pl ] / [ kg/m3 ]
 
 operator /(const ALeft: TPoiseuilles; const ARight: TKilogramsPerCubicMeter): TSquareMetersPerSecond;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TKilogramsPerCubicMeter; const ARight: TSquareMetersPerSecond): TPoiseuilles;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TSquareMetersPerSecond; const ARight: TKilogramsPerCubicMeter): TPoiseuilles;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TPoiseuilles; const ARight: TSquareMetersPerSecond): TKilogramsPerCubicMeter;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // main definition [ kg/m4 ] = [ kg ] / [ m4 ]
 
 operator /(const ALeft: TKilograms; const ARight: TQuarticMeters): TKilogramsPerQuarticMeter;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TQuarticMeters; const ARight: TKilogramsPerQuarticMeter): TKilograms;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TKilogramsPerQuarticMeter; const ARight: TQuarticMeters): TKilograms;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TKilograms; const ARight: TKilogramsPerQuarticMeter): TQuarticMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TKilograms; const ARight: TQuarticMeterUnitId): TKilogramsPerQuarticMeter;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // main definition [ m4*s ] = [ m4 ] * [ s ]
 
 operator *(const ALeft: TQuarticMeters; const ARight: TSeconds): TQuarticMeterSeconds;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TSeconds; const ARight: TQuarticMeters): TQuarticMeterSeconds;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TQuarticMeterSeconds; const ARight: TQuarticMeters): TSeconds;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TQuarticMeterSeconds; const ARight: TSeconds): TQuarticMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TQuarticMeters; const ARight: TSecondUnitId): TQuarticMeterSeconds;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // main definition [ kg/m4/s ] = [ kg/s ] / [ m4 ]
 
 operator /(const ALeft: TKilogramsPerSecond; const ARight: TQuarticMeters): TKilogramsPerQuarticMeterPerSecond;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TQuarticMeters; const ARight: TKilogramsPerQuarticMeterPerSecond): TKilogramsPerSecond;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TKilogramsPerQuarticMeterPerSecond; const ARight: TQuarticMeters): TKilogramsPerSecond;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TKilogramsPerSecond; const ARight: TKilogramsPerQuarticMeterPerSecond): TQuarticMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TKilogramsPerSecond; const ARight: TQuarticMeterUnitId): TKilogramsPerQuarticMeterPerSecond;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ kg/m4/s ] = [ kg/m4 ] / [ s ]
 
 operator /(const ALeft: TKilogramsPerQuarticMeter; const ARight: TSeconds): TKilogramsPerQuarticMeterPerSecond;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TSeconds; const ARight: TKilogramsPerQuarticMeterPerSecond): TKilogramsPerQuarticMeter;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TKilogramsPerQuarticMeterPerSecond; const ARight: TSeconds): TKilogramsPerQuarticMeter;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TKilogramsPerQuarticMeter; const ARight: TKilogramsPerQuarticMeterPerSecond): TSeconds;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TKilogramsPerQuarticMeter; const ARight: TSecondUnitId): TKilogramsPerQuarticMeterPerSecond;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ kg/m4/s ] = [ kg ] / [ m4*s ]
 
 operator /(const ALeft: TKilograms; const ARight: TQuarticMeterSeconds): TKilogramsPerQuarticMeterPerSecond;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TQuarticMeterSeconds; const ARight: TKilogramsPerQuarticMeterPerSecond): TKilograms;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TKilogramsPerQuarticMeterPerSecond; const ARight: TQuarticMeterSeconds): TKilograms;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TKilograms; const ARight: TKilogramsPerQuarticMeterPerSecond): TQuarticMeterSeconds;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // alternative definition [ kg/m4/s ] = [ Pa ] / [ m3/s ]
 
 operator /(const ALeft: TPascals; const ARight: TCubicMetersPerSecond): TKilogramsPerQuarticMeterPerSecond;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TCubicMetersPerSecond; const ARight: TKilogramsPerQuarticMeterPerSecond): TPascals;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TKilogramsPerQuarticMeterPerSecond; const ARight: TCubicMetersPerSecond): TPascals;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TPascals; const ARight: TKilogramsPerQuarticMeterPerSecond): TCubicMetersPerSecond;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // main definition [ m3/kg ] = [ m3 ] / [ kg ]
 
 operator /(const ALeft: TCubicMeters; const ARight: TKilograms): TCubicMetersPerKilogram;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TKilograms; const ARight: TCubicMetersPerKilogram): TCubicMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TCubicMetersPerKilogram; const ARight: TKilograms): TCubicMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TCubicMeters; const ARight: TCubicMetersPerKilogram): TKilograms;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TCubicMeters; const ARight: TKilogramUnitId): TCubicMetersPerKilogram;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ m3/kg ] = 1 / [ kg/m3 ]
 
 operator /(const ALeft: double; const ARight: TKilogramsPerCubicMeter): TCubicMetersPerKilogram;
-begin
-  result.FValue := ALeft / ARight.FValue;
-end;
+begin result.FValue := ALeft / ARight.FValue; end;
 
 operator *(const ALeft: TKilogramsPerCubicMeter; const ARight: TCubicMetersPerKilogram): double;
-begin
-  result := ALeft.FValue * ARight.FValue;
-end;
+begin result := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TCubicMetersPerKilogram; const ARight: TKilogramsPerCubicMeter): double;
-begin
-  result := ALeft.FValue * ARight.FValue;
-end;
+begin result := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: double; const ARight: TCubicMetersPerKilogram): TKilogramsPerCubicMeter;
-begin
-  result.FValue := ALeft / ARight.FValue;
-end;
+begin result.FValue := ALeft / ARight.FValue; end;
 
 // main definition [ kg*s2 ] = [ kg ] * [ s2 ]
 
 operator *(const ALeft: TKilograms; const ARight: TSquareSeconds): TKilogramSquareSeconds;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TSquareSeconds; const ARight: TKilograms): TKilogramSquareSeconds;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TKilogramSquareSeconds; const ARight: TKilograms): TSquareSeconds;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TKilogramSquareSeconds; const ARight: TSquareSeconds): TKilograms;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TKilograms; const ARight: TSquareSecondUnitId): TKilogramSquareSeconds;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // main definitio [ m3/s2 ] = [ m3 ] / [ s2 ]
 
 operator /(const ALeft: TCubicMeters; const ARight: TSquareSeconds): TCubicMetersPerSquareSecond;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TSquareSeconds; const ARight: TCubicMetersPerSquareSecond): TCubicMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TCubicMetersPerSquareSecond; const ARight: TSquareSeconds): TCubicMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TCubicMeters; const ARight: TCubicMetersPerSquareSecond): TSquareSeconds;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TCubicMeters; const ARight: TSquareSecondUnitId): TCubicMetersPerSquareSecond;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ m3/s2 ] = [ m/s2 ] * [ m2 ]
 
 operator *(const ALeft: TMetersPerSecondSquared; const ARight: TSquareMeters): TCubicMetersPerSquareSecond;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TSquareMeters; const ARight: TMetersPerSecondSquared): TCubicMetersPerSquareSecond;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TCubicMetersPerSquareSecond; const ARight: TMetersPerSecondSquared): TSquareMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TCubicMetersPerSquareSecond; const ARight: TSquareMeters): TMetersPerSecondSquared;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // main definition [ N*m2 ] = [ N ] * [ m2 ]
 
 operator *(const ALeft: TNewtons; const ARight: TSquareMeters): TNewtonSquareMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TSquareMeters; const ARight: TNewtons): TNewtonSquareMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TNewtonSquareMeters; const ARight: TNewtons): TSquareMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TNewtonSquareMeters; const ARight: TSquareMeters): TNewtons;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TNewtons; const ARight: TSquareMeterUnitId): TNewtonSquareMeters;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ N*m2 ] = [ J ] * [ m ]
 
 operator *(const ALeft: TJoules; const ARight: TMeters): TNewtonSquareMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TMeters; const ARight: TJoules): TNewtonSquareMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TNewtonSquareMeters; const ARight: TJoules): TMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TNewtonSquareMeters; const ARight: TMeters): TJoules;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // alternative definition [ N*m2 ] = [ Pa ] * [ m4 ]
 
 operator *(const ALeft: TPascals; const ARight: TQuarticMeters): TNewtonSquareMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TQuarticMeters; const ARight: TPascals): TNewtonSquareMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TNewtonSquareMeters; const ARight: TPascals): TQuarticMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TNewtonSquareMeters; const ARight: TQuarticMeters): TPascals;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // main definition [ N/kg2 ] = [ N ] / [ kg2 ]
 
 operator /(const ALeft: TNewtons; const ARight: TSquareKilograms): TNewtonsPerSquareKilogram;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TSquareKilograms; const ARight: TNewtonsPerSquareKilogram): TNewtons;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TNewtonsPerSquareKilogram; const ARight: TSquareKilograms): TNewtons;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TNewtons; const ARight: TNewtonsPerSquareKilogram): TSquareKilograms;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TNewtons; const ARight: TSquareKilogramUnitId): TNewtonsPerSquareKilogram;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // main definition [ kg2/m ] = [ kg2 ] / [ m ]
 
 operator /(const ALeft: TSquareKilograms; const ARight: TMeters): TSquareKilogramsPerMeter;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TMeters; const ARight: TSquareKilogramsPerMeter): TSquareKilograms;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TSquareKilogramsPerMeter; const ARight: TMeters): TSquareKilograms;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TSquareKilograms; const ARight: TSquareKilogramsPerMeter): TMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TSquareKilograms; const ARight: TMeterUnitId): TSquareKilogramsPerMeter;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // main definition [ kg2/m2 ] = [ kg2 ] / [ m2 ]
 
 operator /(const ALeft: TSquareKilograms; const ARight: TSquareMeters): TSquareKilogramsPerSquareMeter;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TSquareMeters; const ARight: TSquareKilogramsPerSquareMeter): TSquareKilograms;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TSquareKilogramsPerSquareMeter; const ARight: TSquareMeters): TSquareKilograms;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TSquareKilograms; const ARight: TSquareKilogramsPerSquareMeter): TSquareMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TSquareKilograms; const ARight: TSquareMeterUnitId): TSquareKilogramsPerSquareMeter;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // main definition [ m2/kg2 ] = [ m2 ] / [ kg2 ]
 
 operator /(const ALeft: TSquareMeters; const ARight: TSquareKilograms): TSquareMetersPerSquareKilogram;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TSquareKilograms; const ARight: TSquareMetersPerSquareKilogram): TSquareMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TSquareMetersPerSquareKilogram; const ARight: TSquareKilograms): TSquareMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TSquareMeters; const ARight: TSquareMetersPerSquareKilogram): TSquareKilograms;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TSquareMeters; const ARight: TSquareKilogramUnitId): TSquareMetersPerSquareKilogram;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // main definition [ N*m2/kg2 ] = [ N ] * [ m2/kg2 ]
 
 operator *(const ALeft: TNewtons; const ARight: TSquareMetersPerSquareKilogram): TNewtonSquareMetersPerSquareKilogram;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TSquareMetersPerSquareKilogram; const ARight: TNewtons): TNewtonSquareMetersPerSquareKilogram;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TNewtonSquareMetersPerSquareKilogram; const ARight: TNewtons): TSquareMetersPerSquareKilogram;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TNewtonSquareMetersPerSquareKilogram; const ARight: TSquareMetersPerSquareKilogram): TNewtons;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // alternative definition [ N*m2/kg2 ] = [ N ] / [ kg2/m2 ]
 
 operator /(const ALeft: TNewtons; const ARight: TSquareKilogramsPerSquareMeter): TNewtonSquareMetersPerSquareKilogram;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TSquareKilogramsPerSquareMeter; const ARight: TNewtonSquareMetersPerSquareKilogram): TNewtons;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TNewtonSquareMetersPerSquareKilogram; const ARight: TSquareKilogramsPerSquareMeter): TNewtons;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TNewtons; const ARight: TNewtonSquareMetersPerSquareKilogram): TSquareKilogramsPerSquareMeter;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // alternative definition [ N*m2/kg2 ] = [ N*m2 ] / [ kg2 ]
 
 operator /(const ALeft: TNewtonSquareMeters; const ARight: TSquareKilograms): TNewtonSquareMetersPerSquareKilogram;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TSquareKilograms; const ARight: TNewtonSquareMetersPerSquareKilogram): TNewtonSquareMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TNewtonSquareMetersPerSquareKilogram; const ARight: TSquareKilograms): TNewtonSquareMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TNewtonSquareMeters; const ARight: TNewtonSquareMetersPerSquareKilogram): TSquareKilograms;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TNewtonSquareMeters; const ARight: TSquareKilogramUnitId): TNewtonSquareMetersPerSquareKilogram;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ N*m2/kg2 ] = [ N/kg2 ] * [ m2 ]
 
 operator *(const ALeft: TNewtonsPerSquareKilogram; const ARight: TSquareMeters): TNewtonSquareMetersPerSquareKilogram;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TSquareMeters; const ARight: TNewtonsPerSquareKilogram): TNewtonSquareMetersPerSquareKilogram;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TNewtonSquareMetersPerSquareKilogram; const ARight: TNewtonsPerSquareKilogram): TSquareMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TNewtonSquareMetersPerSquareKilogram; const ARight: TSquareMeters): TNewtonsPerSquareKilogram;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TNewtonsPerSquareKilogram; const ARight: TSquareMeterUnitId): TNewtonSquareMetersPerSquareKilogram;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ N*m2/kg2 ] = [ J ] / [ kg2/m ]
 
 operator /(const ALeft: TJoules; const ARight: TSquareKilogramsPerMeter): TNewtonSquareMetersPerSquareKilogram;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TSquareKilogramsPerMeter; const ARight: TNewtonSquareMetersPerSquareKilogram): TJoules;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TNewtonSquareMetersPerSquareKilogram; const ARight: TSquareKilogramsPerMeter): TJoules;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TJoules; const ARight: TNewtonSquareMetersPerSquareKilogram): TSquareKilogramsPerMeter;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // alternative definition [ N*m2/kg2 ] = [ m3/kg ] / [ s2 ]
 
 operator /(const ALeft: TCubicMetersPerKilogram; const ARight: TSquareSeconds): TNewtonSquareMetersPerSquareKilogram;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TSquareSeconds; const ARight: TNewtonSquareMetersPerSquareKilogram): TCubicMetersPerKilogram;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TNewtonSquareMetersPerSquareKilogram; const ARight: TSquareSeconds): TCubicMetersPerKilogram;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TCubicMetersPerKilogram; const ARight: TNewtonSquareMetersPerSquareKilogram): TSquareSeconds;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // alternative definition [ N*m2/kg2 ] = [ m3 ] / [ kg*s2 ]
 
 operator /(const ALeft: TCubicMeters; const ARight: TKilogramSquareSeconds): TNewtonSquareMetersPerSquareKilogram;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TKilogramSquareSeconds; const ARight: TNewtonSquareMetersPerSquareKilogram): TCubicMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TNewtonSquareMetersPerSquareKilogram; const ARight: TKilogramSquareSeconds): TCubicMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TCubicMeters; const ARight: TNewtonSquareMetersPerSquareKilogram): TKilogramSquareSeconds;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // alternative definition [ N*m2/kg2 ] = [ m3/s2 ] / [ kg ]
 
 operator /(const ALeft: TCubicMetersPerSquareSecond; const ARight: TKilograms): TNewtonSquareMetersPerSquareKilogram;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TKilograms; const ARight: TNewtonSquareMetersPerSquareKilogram): TCubicMetersPerSquareSecond;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TNewtonSquareMetersPerSquareKilogram; const ARight: TKilograms): TCubicMetersPerSquareSecond;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TCubicMetersPerSquareSecond; const ARight: TNewtonSquareMetersPerSquareKilogram): TKilograms;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // main definition [ 1/K ] = 1 / [ K ]
 
 operator /(const ALeft: double; const ARight: TKelvins): TReciprocalKelvins;
-begin
-  result.FValue := ALeft / ARight.FValue;
-end;
+begin result.FValue := ALeft / ARight.FValue; end;
 
 operator *(const ALeft: TKelvins; const ARight: TReciprocalKelvins): double;
-begin
-  result := ALeft.FValue * ARight.FValue;
-end;
+begin result := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TReciprocalKelvins; const ARight: TKelvins): double;
-begin
-  result := ALeft.FValue * ARight.FValue;
-end;
+begin result := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: double; const ARight: TReciprocalKelvins): TKelvins;
-begin
-  result.FValue := ALeft / ARight.FValue;
-end;
+begin result.FValue := ALeft / ARight.FValue; end;
 
 operator /(const ALeft: double; const ARight: TKelvinUnitId): TReciprocalKelvins;
-begin
-  result.FValue := ALeft;
-end;
+begin result.FValue := ALeft; end;
 
 // main definition [ kg*K] = [ kg ] * [ K ]
 
 operator *(const ALeft: TKilograms; const ARight: TKelvins): TKilogramKelvins;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TKelvins; const ARight: TKilograms): TKilogramKelvins;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TKilogramKelvins; const ARight: TKilograms): TKelvins;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TKilogramKelvins; const ARight: TKelvins): TKilograms;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TKilograms; const ARight: TKelvinUnitId): TKilogramKelvins;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // main definition [ J/K ] = [ J ] / [ K ]
 
 operator /(const ALeft: TJoules; const ARight: TKelvins): TJoulesPerKelvin;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TKelvins; const ARight: TJoulesPerKelvin): TJoules;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TJoulesPerKelvin; const ARight: TKelvins): TJoules;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TJoules; const ARight: TJoulesPerKelvin): TKelvins;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TJoules; const ARight: TKelvinUnitId): TJoulesPerKelvin;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // main definition [ J/kg/K ] = [ J ] / [ kg*K ]
 
 operator /(const ALeft: TJoules; const ARight: TKilogramKelvins): TJoulesPerKilogramPerKelvin;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TKilogramKelvins; const ARight: TJoulesPerKilogramPerKelvin): TJoules;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TJoulesPerKilogramPerKelvin; const ARight: TKilogramKelvins): TJoules;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TJoules; const ARight: TJoulesPerKilogramPerKelvin): TKilogramKelvins;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // alternative definition [ J/kg/K ] = [ J/kg ] / [ K ]
 
 operator /(const ALeft: TSquareMetersPerSquareSecond; const ARight: TKelvins): TJoulesPerKilogramPerKelvin;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TKelvins; const ARight: TJoulesPerKilogramPerKelvin): TSquareMetersPerSquareSecond;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TJoulesPerKilogramPerKelvin; const ARight: TKelvins): TSquareMetersPerSquareSecond;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TSquareMetersPerSquareSecond; const ARight: TJoulesPerKilogramPerKelvin): TKelvins;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TSquareMetersPerSquareSecond; const ARight: TKelvinUnitId): TJoulesPerKilogramPerKelvin;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ J/kg/K ] = [ J/K ] / [ kg ]
 
 operator /(const ALeft: TJoulesPerKelvin; const ARight: TKilograms): TJoulesPerKilogramPerKelvin;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TKilograms; const ARight: TJoulesPerKilogramPerKelvin): TJoulesPerKelvin;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TJoulesPerKilogramPerKelvin; const ARight: TKilograms): TJoulesPerKelvin;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TJoulesPerKelvin; const ARight: TJoulesPerKilogramPerKelvin): TKilograms;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TJoulesPerKelvin; const ARight: TKilogramUnitId): TJoulesPerKilogramPerKelvin;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // main definition [ m*K ] = [ m ] * [ K ]
 
 operator *(const ALeft: TMeters; const ARight: TKelvins): TMeterKelvins;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TKelvins; const ARight: TMeters): TMeterKelvins;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TMeterKelvins; const ARight: TMeters): TKelvins;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TMeterKelvins; const ARight: TKelvins): TMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TMeters; const ARight: TKelvinUnitId): TMeterKelvins;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // main definition [ K/m ] = [ K ] / [ m ]
 
 operator /(const ALeft: TKelvins; const ARight: TMeters): TKelvinsPerMeter;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TMeters; const ARight: TKelvinsPerMeter): TKelvins;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TKelvinsPerMeter; const ARight: TMeters): TKelvins;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TKelvins; const ARight: TKelvinsPerMeter): TMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TKelvins; const ARight: TMeterUnitId): TKelvinsPerMeter;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // main definition [ W/m ] = [ W ] / [ m ]
 
 operator /(const ALeft: TWatts; const ARight: TMeters): TWattsPerMeter;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TMeters; const ARight: TWattsPerMeter): TWatts;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TWattsPerMeter; const ARight: TMeters): TWatts;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TWatts; const ARight: TWattsPerMeter): TMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TWatts; const ARight: TMeterUnitId): TWattsPerMeter;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // main definition [ W/m2 ] = [ W ] / [ m2 ]
 
 operator /(const ALeft: TWatts; const ARight: TSquareMeters): TWattsPerSquareMeter;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TSquareMeters; const ARight: TWattsPerSquareMeter): TWatts;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TWattsPerSquareMeter; const ARight: TSquareMeters): TWatts;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TWatts; const ARight: TWattsPerSquareMeter): TSquareMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TWatts; const ARight: TSquareMeterUnitId): TWattsPerSquareMeter;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // main definition [ W/K ] = [ W ] / [ K ]
 
 operator /(const ALeft: TWatts; const ARight: TKelvins): TWattsPerKelvin;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TKelvins; const ARight: TWattsPerKelvin): TWatts;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TWattsPerKelvin; const ARight: TKelvins): TWatts;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TWatts; const ARight: TWattsPerKelvin): TKelvins;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TWatts; const ARight: TKelvinUnitId): TWattsPerKelvin;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // main definition [ W/m/K ] = [ W ] / [ m*K ]
 
 operator /(const ALeft: TWatts; const ARight: TMeterKelvins): TWattsPerMeterPerKelvin;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TMeterKelvins; const ARight: TWattsPerMeterPerKelvin): TWatts;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TWattsPerMeterPerKelvin; const ARight: TMeterKelvins): TWatts;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TWatts; const ARight: TWattsPerMeterPerKelvin): TMeterKelvins;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // alternative definition [ W/m/K ] = [ W/m ] / [ K ]
 
 operator /(const ALeft: TWattsPerMeter; const ARight: TKelvins): TWattsPerMeterPerKelvin;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TKelvins; const ARight: TWattsPerMeterPerKelvin): TWattsPerMeter;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TWattsPerMeterPerKelvin; const ARight: TKelvins): TWattsPerMeter;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TWattsPerMeter; const ARight: TWattsPerMeterPerKelvin): TKelvins;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TWattsPerMeter; const ARight: TKelvinUnitId): TWattsPerMeterPerKelvin;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ W/m/K ] = [ W/K ] / [ m ]
 
 operator /(const ALeft: TWattsPerKelvin; const ARight: TMeters): TWattsPerMeterPerKelvin;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TMeters; const ARight: TWattsPerMeterPerKelvin): TWattsPerKelvin;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TWattsPerMeterPerKelvin; const ARight: TMeters): TWattsPerKelvin;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TWattsPerKelvin; const ARight: TWattsPerMeterPerKelvin): TMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TWattsPerKelvin; const ARight: TMeterUnitId): TWattsPerMeterPerKelvin;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ W/m/K ] = [ W/m2 ] / [ K/m ]
 
 operator /(const ALeft: TWattsPerSquareMeter; const ARight: TKelvinsPerMeter): TWattsPerMeterPerKelvin;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TKelvinsPerMeter; const ARight: TWattsPerMeterPerKelvin): TWattsPerSquareMeter;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TWattsPerMeterPerKelvin; const ARight: TKelvinsPerMeter): TWattsPerSquareMeter;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TWattsPerSquareMeter; const ARight: TWattsPerMeterPerKelvin): TKelvinsPerMeter;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // main definition [ m2*K ] = [ m2 ] * [ K ]
 
 operator *(const ALeft: TSquareMeters; const ARight: TKelvins): TSquareMeterKelvins;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TKelvins; const ARight: TSquareMeters): TSquareMeterKelvins;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TSquareMeterKelvins; const ARight: TSquareMeters): TKelvins;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TSquareMeterKelvins; const ARight: TKelvins): TSquareMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TSquareMeters; const ARight: TKelvinUnitId): TSquareMeterKelvins;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // main definition [ W/m2/K ] = [ W ] / [ m2*K ]
 
 operator /(const ALeft: TWatts; const ARight: TSquareMeterKelvins): TWattsPerSquareMeterPerKelvin;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TSquareMeterKelvins; const ARight: TWattsPerSquareMeterPerKelvin): TWatts;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TWattsPerSquareMeterPerKelvin; const ARight: TSquareMeterKelvins): TWatts;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TWatts; const ARight: TWattsPerSquareMeterPerKelvin): TSquareMeterKelvins;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // alternative definition [ W/m2/K ] = [ W/m2 ] / [ K ]
 
 operator /(const ALeft: TWattsPerSquareMeter; const ARight: TKelvins): TWattsPerSquareMeterPerKelvin;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TKelvins; const ARight: TWattsPerSquareMeterPerKelvin): TWattsPerSquareMeter;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TWattsPerSquareMeterPerKelvin; const ARight: TKelvins): TWattsPerSquareMeter;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TWattsPerSquareMeter; const ARight: TWattsPerSquareMeterPerKelvin): TKelvins;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TWattsPerSquareMeter; const ARight: TKelvinUnitId): TWattsPerSquareMeterPerKelvin;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ W/m2/K ] = [ W/K ] / [ m2 ]
 
 operator /(const ALeft: TWattsPerKelvin; const ARight: TSquareMeters): TWattsPerSquareMeterPerKelvin;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TSquareMeters; const ARight: TWattsPerSquareMeterPerKelvin): TWattsPerKelvin;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TWattsPerSquareMeterPerKelvin; const ARight: TSquareMeters): TWattsPerKelvin;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TWattsPerKelvin; const ARight: TWattsPerSquareMeterPerKelvin): TSquareMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TWattsPerKelvin; const ARight: TSquareMeterUnitId): TWattsPerSquareMeterPerKelvin;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // main definition [ m2*K4 ] = [ m2 ] * [ K4 ]
 
 operator *(const ALeft: TSquareMeters; const ARight: TQuarticKelvins): TSquareMeterQuarticKelvins;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TQuarticKelvins; const ARight: TSquareMeters): TSquareMeterQuarticKelvins;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TSquareMeterQuarticKelvins; const ARight: TSquareMeters): TQuarticKelvins;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TSquareMeterQuarticKelvins; const ARight: TQuarticKelvins): TSquareMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TSquareMeters; const ARight: TQuarticKelvinUnitId): TSquareMeterQuarticKelvins;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // main definition [ W/K4 ] = [ W ] / [ K4 ]
 
 operator /(const ALeft: TWatts; const ARight: TQuarticKelvins): TWattsPerQuarticKelvin;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TQuarticKelvins; const ARight: TWattsPerQuarticKelvin): TWatts;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TWattsPerQuarticKelvin; const ARight: TQuarticKelvins): TWatts;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TWatts; const ARight: TWattsPerQuarticKelvin): TQuarticKelvins;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TWatts; const ARight: TQuarticKelvinUnitId): TWattsPerQuarticKelvin;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // main definition [ W/m2/K4 ] = [ W ] / [ m2*K4 ]
 
 operator /(const ALeft: TWatts; const ARight: TSquareMeterQuarticKelvins): TWattsPerSquareMeterPerQuarticKelvin;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TSquareMeterQuarticKelvins; const ARight: TWattsPerSquareMeterPerQuarticKelvin): TWatts;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TWattsPerSquareMeterPerQuarticKelvin; const ARight: TSquareMeterQuarticKelvins): TWatts;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TWatts; const ARight: TWattsPerSquareMeterPerQuarticKelvin): TSquareMeterQuarticKelvins;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // alternative definition [ W/m2/K4 ] = [ W/m2 ] / [ K4 ]
 
 operator /(const ALeft: TWattsPerSquareMeter; const ARight: TQuarticKelvins): TWattsPerSquareMeterPerQuarticKelvin;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TQuarticKelvins; const ARight: TWattsPerSquareMeterPerQuarticKelvin): TWattsPerSquareMeter;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TWattsPerSquareMeterPerQuarticKelvin; const ARight: TQuarticKelvins): TWattsPerSquareMeter;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TWattsPerSquareMeter; const ARight: TWattsPerSquareMeterPerQuarticKelvin): TQuarticKelvins;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TWattsPerSquareMeter; const ARight: TQuarticKelvinUnitId): TWattsPerSquareMeterPerQuarticKelvin;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ W/m2/K4 ] = [ W/K4 ] / [ m2 ]
 
 operator /(const ALeft: TWattsPerQuarticKelvin; const ARight: TSquareMeters): TWattsPerSquareMeterPerQuarticKelvin;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TSquareMeters; const ARight: TWattsPerSquareMeterPerQuarticKelvin): TWattsPerQuarticKelvin;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TWattsPerSquareMeterPerQuarticKelvin; const ARight: TSquareMeters): TWattsPerQuarticKelvin;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TWattsPerQuarticKelvin; const ARight: TWattsPerSquareMeterPerQuarticKelvin): TSquareMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TWattsPerQuarticKelvin; const ARight: TSquareMeterUnitId): TWattsPerSquareMeterPerQuarticKelvin;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // main definition [ J/mol ] = [ J ] / [ mol ]
 
 operator /(const ALeft: TJoules; const ARight: TMoles): TJoulesPerMole;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TMoles; const ARight: TJoulesPerMole): TJoules;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TJoulesPerMole; const ARight: TMoles): TJoules;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TJoules; const ARight: TJoulesPerMole): TMoles;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TJoules; const ARight: TMoleUnitId): TJoulesPerMole;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // main definition [ mol*K ] = [ mol ] * [ K ]
 
 operator *(const ALeft: TMoles; const ARight: TKelvins): TMoleKelvins;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TKelvins; const ARight: TMoles): TMoleKelvins;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TMoleKelvins; const ARight: TMoles): TKelvins;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TMoleKelvins; const ARight: TKelvins): TMoles;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TMoles; const ARight: TKelvinUnitId): TMoleKelvins;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // main definition [ J/mol/K ] = [ J ] / [ mol * K ]
 
 operator /(const ALeft: TJoules; const ARight: TMoleKelvins): TJoulesPerMolePerKelvin;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TMoleKelvins; const ARight: TJoulesPerMolePerKelvin): TJoules;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TJoulesPerMolePerKelvin; const ARight: TMoleKelvins): TJoules;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TJoules; const ARight: TJoulesPerMolePerKelvin): TMoleKelvins;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // alternative definition [ J/mol/K ] = [ J/K ] / [ mol ]
 
 operator /(const ALeft: TJoulesPerKelvin; const ARight: TMoles): TJoulesPerMolePerKelvin;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TMoles; const ARight: TJoulesPerMolePerKelvin): TJoulesPerKelvin;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TJoulesPerMolePerKelvin; const ARight: TMoles): TJoulesPerKelvin;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TJoulesPerKelvin; const ARight: TJoulesPerMolePerKelvin): TMoles;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TJoulesPerKelvin; const ARight: TMoleUnitId): TJoulesPerMolePerKelvin;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ J/mol/K ] = [ J/mol ] / [ K ]
 
 operator /(const ALeft: TJoulesPerMole; const ARight: TKelvins): TJoulesPerMolePerKelvin;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TKelvins; const ARight: TJoulesPerMolePerKelvin): TJoulesPerMole;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TJoulesPerMolePerKelvin; const ARight: TKelvins): TJoulesPerMole;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TJoulesPerMole; const ARight: TJoulesPerMolePerKelvin): TKelvins;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TJoulesPerMole; const ARight: TKelvinUnitId): TJoulesPerMolePerKelvin;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // main definition [ Ω*m ] = [ Ω ] * [ m ]
 
 operator *(const ALeft: TOhms; const ARight: TMeters): TOhmMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TMeters; const ARight: TOhms): TOhmMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TOhmMeters; const ARight: TOhms): TMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TOhmMeters; const ARight: TMeters): TOhms;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TOhms; const ARight: TMeterUnitId): TOhmMeters;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // main definition [ V/m ] = [ V ] / [ m ]
 
 operator /(const ALeft: TVolts; const ARight: TMeters): TVoltsPerMeter;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TMeters; const ARight: TVoltsPerMeter): TVolts;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TVoltsPerMeter; const ARight: TMeters): TVolts;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TVolts; const ARight: TVoltsPerMeter): TMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TVolts; const ARight: TMeterUnitId): TVoltsPerMeter;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ V/m ] = [ N ] / [ C ]
 
 operator /(const ALeft: TNewtons; const ARight: TCoulombs): TVoltsPerMeter;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TCoulombs; const ARight: TVoltsPerMeter): TNewtons;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TVoltsPerMeter; const ARight: TCoulombs): TNewtons;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TNewtons; const ARight: TVoltsPerMeter): TCoulombs;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TNewtons; const ARight: TCoulombUnitId): TVoltsPerMeter;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ V/m ] = [ T ] * [ m/s ]
 
 operator *(const ALeft: TTeslas; const ARight: TMetersPerSecond): TVoltsPerMeter;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TMetersPerSecond; const ARight: TTeslas): TVoltsPerMeter;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TVoltsPerMeter; const ARight: TTeslas): TMetersPerSecond;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TVoltsPerMeter; const ARight: TMetersPerSecond): TTeslas;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // main definition [ C/m ] = [ C ] / [ m ]
 
 operator /(const ALeft: TCoulombs; const ARight: TMeters): TCoulombsPerMeter;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TMeters; const ARight: TCoulombsPerMeter): TCoulombs;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TCoulombsPerMeter; const ARight: TMeters): TCoulombs;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TCoulombs; const ARight: TCoulombsPerMeter): TMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TCoulombs; const ARight: TMeterUnitId): TCoulombsPerMeter;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // main definition [ C2/m ] = [ C2 ] / [ m ]
 
 operator /(const ALeft: TSquareCoulombs; const ARight: TMeters): TSquareCoulombsPerMeter;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TMeters; const ARight: TSquareCoulombsPerMeter): TSquareCoulombs;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TSquareCoulombsPerMeter; const ARight: TMeters): TSquareCoulombs;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TSquareCoulombs; const ARight: TSquareCoulombsPerMeter): TMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TSquareCoulombs; const ARight: TMeterUnitId): TSquareCoulombsPerMeter;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ C2/m ] = [ C/m ] * [ C ]
 
 operator *(const ALeft: TCoulombsPerMeter; const ARight: TCoulombs): TSquareCoulombsPerMeter;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TCoulombs; const ARight: TCoulombsPerMeter): TSquareCoulombsPerMeter;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TSquareCoulombsPerMeter; const ARight: TCoulombsPerMeter): TCoulombs;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TSquareCoulombsPerMeter; const ARight: TCoulombs): TCoulombsPerMeter;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // main definition [ C/m2 ] = [ C ] / [ m2 ]
 
 operator /(const ALeft: TCoulombs; const ARight: TSquareMeters): TCoulombsPerSquareMeter;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TSquareMeters; const ARight: TCoulombsPerSquareMeter): TCoulombs;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TCoulombsPerSquareMeter; const ARight: TSquareMeters): TCoulombs;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TCoulombs; const ARight: TCoulombsPerSquareMeter): TSquareMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TCoulombs; const ARight: TSquareMeterUnitId): TCoulombsPerSquareMeter;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ C/m2 ] = [ C/m ] / [ m ]
 
 operator /(const ALeft: TCoulombsPerMeter; const ARight: TMeters): TCoulombsPerSquareMeter;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TMeters; const ARight: TCoulombsPerSquareMeter): TCoulombsPerMeter;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TCoulombsPerSquareMeter; const ARight: TMeters): TCoulombsPerMeter;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TCoulombsPerMeter; const ARight: TCoulombsPerSquareMeter): TMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // main definition [ m2/C2 ] = [ m2 ] / [ C2 ]
 
 operator /(const ALeft: TSquareMeters; const ARight: TSquareCoulombs): TSquareMetersPerSquareCoulomb;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TSquareCoulombs; const ARight: TSquareMetersPerSquareCoulomb): TSquareMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TSquareMetersPerSquareCoulomb; const ARight: TSquareCoulombs): TSquareMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TSquareMeters; const ARight: TSquareMetersPerSquareCoulomb): TSquareCoulombs;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TSquareMeters; const ARight: TSquareCoulombUnitId): TSquareMetersPerSquareCoulomb;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // main definition [ N/C2 ] = [ N ] / [ C2 ]
 
 operator /(const ALeft: TNewtons; const ARight: TSquareCoulombs): TNewtonsPerSquareCoulomb;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TSquareCoulombs; const ARight: TNewtonsPerSquareCoulomb): TNewtons;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TNewtonsPerSquareCoulomb; const ARight: TSquareCoulombs): TNewtons;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TNewtons; const ARight: TNewtonsPerSquareCoulomb): TSquareCoulombs;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TNewtons; const ARight: TSquareCoulombUnitId): TNewtonsPerSquareCoulomb;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // main definition [ N*m2/C2 ] = [ N ] * [ m2/C2 ]
 
 operator *(const ALeft: TNewtons; const ARight: TSquareMetersPerSquareCoulomb): TNewtonSquareMetersPerSquareCoulomb;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TSquareMetersPerSquareCoulomb; const ARight: TNewtons): TNewtonSquareMetersPerSquareCoulomb;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TNewtonSquareMetersPerSquareCoulomb; const ARight: TNewtons): TSquareMetersPerSquareCoulomb;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TNewtonSquareMetersPerSquareCoulomb; const ARight: TSquareMetersPerSquareCoulomb): TNewtons;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // alternative definition [ N*m2/C2 ] = [ N*m2 ] / [ C2 ]
 
 operator /(const ALeft: TNewtonSquareMeters; const ARight: TSquareCoulombs): TNewtonSquareMetersPerSquareCoulomb;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TSquareCoulombs; const ARight: TNewtonSquareMetersPerSquareCoulomb): TNewtonSquareMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TNewtonSquareMetersPerSquareCoulomb; const ARight: TSquareCoulombs): TNewtonSquareMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TNewtonSquareMeters; const ARight: TNewtonSquareMetersPerSquareCoulomb): TSquareCoulombs;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TNewtonSquareMeters; const ARight: TSquareCoulombUnitId): TNewtonSquareMetersPerSquareCoulomb;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ N*m2/C2 ] = [ N/C2 ] * [ m2 ]
 
 operator *(const ALeft: TNewtonsPerSquareCoulomb; const ARight: TSquareMeters): TNewtonSquareMetersPerSquareCoulomb;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TSquareMeters; const ARight: TNewtonsPerSquareCoulomb): TNewtonSquareMetersPerSquareCoulomb;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TNewtonSquareMetersPerSquareCoulomb; const ARight: TNewtonsPerSquareCoulomb): TSquareMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TNewtonSquareMetersPerSquareCoulomb; const ARight: TSquareMeters): TNewtonsPerSquareCoulomb;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TNewtonsPerSquareCoulomb; const ARight: TSquareMeterUnitId): TNewtonSquareMetersPerSquareCoulomb;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ N*m2/C2 ] = [ V/m ] / [ C/m2 ]
 
 operator /(const ALeft: TVoltsPerMeter; const ARight: TCoulombsPerSquareMeter): TNewtonSquareMetersPerSquareCoulomb;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TCoulombsPerSquareMeter; const ARight: TNewtonSquareMetersPerSquareCoulomb): TVoltsPerMeter;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TNewtonSquareMetersPerSquareCoulomb; const ARight: TCoulombsPerSquareMeter): TVoltsPerMeter;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TVoltsPerMeter; const ARight: TNewtonSquareMetersPerSquareCoulomb): TCoulombsPerSquareMeter;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // alternative definition [ N*m2/C2 ] = [ J ] / [ C2/m ]
 
 operator /(const ALeft: TJoules; const ARight: TSquareCoulombsPerMeter): TNewtonSquareMetersPerSquareCoulomb;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TSquareCoulombsPerMeter; const ARight: TNewtonSquareMetersPerSquareCoulomb): TJoules;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TNewtonSquareMetersPerSquareCoulomb; const ARight: TSquareCoulombsPerMeter): TJoules;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TJoules; const ARight: TNewtonSquareMetersPerSquareCoulomb): TSquareCoulombsPerMeter;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // main definition [ V*m ] = [ V ] * [ m ]
 
 operator *(const ALeft: TVolts; const ARight: TMeters): TVoltMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TMeters; const ARight: TVolts): TVoltMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TVoltMeters; const ARight: TVolts): TMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TVoltMeters; const ARight: TMeters): TVolts;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TVolts; const ARight: TMeterUnitId): TVoltMeters;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ V*m ] = [ V/m ] * [ m2 ]
 
 operator *(const ALeft: TVoltsPerMeter; const ARight: TSquareMeters): TVoltMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TSquareMeters; const ARight: TVoltsPerMeter): TVoltMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TVoltMeters; const ARight: TVoltsPerMeter): TSquareMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TVoltMeters; const ARight: TSquareMeters): TVoltsPerMeter;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // main definition [ V*m/s ] = [ V*m ] / [ s ]
 
 operator /(const ALeft: TVoltMeters; const ARight: TSeconds): TVoltMetersPerSecond;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TSeconds; const ARight: TVoltMetersPerSecond): TVoltMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TVoltMetersPerSecond; const ARight: TSeconds): TVoltMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TVoltMeters; const ARight: TVoltMetersPerSecond): TSeconds;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TVoltMeters; const ARight: TSecondUnitId): TVoltMetersPerSecond;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // main definition [ F/m ] = [ F ] / [ m ]
 
 operator /(const ALeft: TFarads; const ARight: TMeters): TFaradsPerMeter;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TMeters; const ARight: TFaradsPerMeter): TFarads;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TFaradsPerMeter; const ARight: TMeters): TFarads;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TFarads; const ARight: TFaradsPerMeter): TMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TFarads; const ARight: TMeterUnitId): TFaradsPerMeter;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ F/m ] = [ C ] / [ V*m ]
 
 operator /(const ALeft: TCoulombs; const ARight: TVoltMeters): TFaradsPerMeter;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TVoltMeters; const ARight: TFaradsPerMeter): TCoulombs;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TFaradsPerMeter; const ARight: TVoltMeters): TCoulombs;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TCoulombs; const ARight: TFaradsPerMeter): TVoltMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // alternative definition [ F/m ] = [ C/m2 ] / [ N/C ]
 
 operator /(const ALeft: TCoulombsPerSquareMeter; const ARight: TVoltsPerMeter): TFaradsPerMeter;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TVoltsPerMeter; const ARight: TFaradsPerMeter): TCoulombsPerSquareMeter;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TFaradsPerMeter; const ARight: TVoltsPerMeter): TCoulombsPerSquareMeter;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TCoulombsPerSquareMeter; const ARight: TFaradsPerMeter): TVoltsPerMeter;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // alternative definition [ F/m ] = [ 1 ] / [ N*m2/C2 ]
 
 operator /(const ALeft: double; const ARight: TNewtonSquareMetersPerSquareCoulomb): TFaradsPerMeter;
-begin
-  result.FValue := ALeft / ARight.FValue;
-end;
+begin result.FValue := ALeft / ARight.FValue; end;
 
 operator *(const ALeft: TNewtonSquareMetersPerSquareCoulomb; const ARight: TFaradsPerMeter): double;
-begin
-  result := ALeft.FValue * ARight.FValue;
-end;
+begin result := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TFaradsPerMeter; const ARight: TNewtonSquareMetersPerSquareCoulomb): double;
-begin
-  result := ALeft.FValue * ARight.FValue;
-end;
+begin result := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: double; const ARight: TFaradsPerMeter): TNewtonSquareMetersPerSquareCoulomb;
-begin
-  result.FValue := ALeft / ARight.FValue;
-end;
+begin result.FValue := ALeft / ARight.FValue; end;
 
 // main definition [ A/m ] = [ A ] / [ m ]
 
 operator /(const ALeft: TAmperes; const ARight: TMeters): TAmperesPerMeter;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TMeters; const ARight: TAmperesPerMeter): TAmperes;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TAmperesPerMeter; const ARight: TMeters): TAmperes;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TAmperes; const ARight: TAmperesPerMeter): TMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TAmperes; const ARight: TMeterUnitId): TAmperesPerMeter;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // main definition [ m/A ] = [ m ] / [ A ]
 
 operator /(const ALeft: TMeters; const ARight: TAmperes): TMetersPerAmpere;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TAmperes; const ARight: TMetersPerAmpere): TMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TMetersPerAmpere; const ARight: TAmperes): TMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TMeters; const ARight: TMetersPerAmpere): TAmperes;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TMeters; const ARight: TAmpereUnitId): TMetersPerAmpere;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // main definition [ T*m ] = [ T ] * [ m ]
 
 operator *(const ALeft: TTeslas; const ARight: TMeters): TTeslaMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TMeters; const ARight: TTeslas): TTeslaMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TTeslaMeters; const ARight: TTeslas): TMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TTeslaMeters; const ARight: TMeters): TTeslas;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TTeslas; const ARight: TMeterUnitId): TTeslaMeters;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ T*m ] = [ N/A ] = [ N ] / [ A ]
 
 operator /(const ALeft: TNewtons; const ARight: TAmperes): TTeslaMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TAmperes; const ARight: TTeslaMeters): TNewtons;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TTeslaMeters; const ARight: TAmperes): TNewtons;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TNewtons; const ARight: TTeslaMeters): TAmperes;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TNewtons; const ARight: TAmpereUnitId): TTeslaMeters;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // main definition [ T/A ] = [ T ] / [ A ]
 
 operator /(const ALeft: TTeslas; const ARight: TAmperes): TTeslasPerAmpere;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TAmperes; const ARight: TTeslasPerAmpere): TTeslas;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TTeslasPerAmpere; const ARight: TAmperes): TTeslas;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TTeslas; const ARight: TTeslasPerAmpere): TAmperes;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TTeslas; const ARight: TAmpereUnitId): TTeslasPerAmpere;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // main definition [ H/m ] = [ H ] / [ m ]
 
 operator /(const ALeft: THenries; const ARight: TMeters): THenriesPerMeter;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TMeters; const ARight: THenriesPerMeter): THenries;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: THenriesPerMeter; const ARight: TMeters): THenries;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: THenries; const ARight: THenriesPerMeter): TMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: THenries; const ARight: TMeterUnitId): THenriesPerMeter;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ H/ m ] = [ T*m/A ] = [ T*m ] / [ A ]
 
 operator /(const ALeft: TTeslaMeters; const ARight: TAmperes): THenriesPerMeter;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TAmperes; const ARight: THenriesPerMeter): TTeslaMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: THenriesPerMeter; const ARight: TAmperes): TTeslaMeters;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TTeslaMeters; const ARight: THenriesPerMeter): TAmperes;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TTeslaMeters; const ARight: TAmpereUnitId): THenriesPerMeter;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ H/ m ] = [ T*m/A ] = [ T/A ] * [ m ]
 
 operator *(const ALeft: TTeslasPerAmpere; const ARight: TMeters): THenriesPerMeter;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TMeters; const ARight: TTeslasPerAmpere): THenriesPerMeter;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: THenriesPerMeter; const ARight: TTeslasPerAmpere): TMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: THenriesPerMeter; const ARight: TMeters): TTeslasPerAmpere;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TTeslasPerAmpere; const ARight: TMeterUnitId): THenriesPerMeter;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ H/ m ] = [ T*m/A ] = [ T ] * [ m/A ]
 
 operator *(const ALeft: TTeslas; const ARight: TMetersPerAmpere): THenriesPerMeter;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TMetersPerAmpere; const ARight: TTeslas): THenriesPerMeter;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: THenriesPerMeter; const ARight: TTeslas): TMetersPerAmpere;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: THenriesPerMeter; const ARight: TMetersPerAmpere): TTeslas;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // alternative definition [ H/ m ] = [ T*m/A ] = [ T ] / [ A/m ]
 
 operator /(const ALeft: TTeslas; const ARight: TAmperesPerMeter): THenriesPerMeter;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TAmperesPerMeter; const ARight: THenriesPerMeter): TTeslas;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: THenriesPerMeter; const ARight: TAmperesPerMeter): TTeslas;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TTeslas; const ARight: THenriesPerMeter): TAmperesPerMeter;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // alternative definition [ H/m ] = [ N/A2 ] = [ N ] / [ A2 ]
 
 operator /(const ALeft: TNewtons; const ARight: TSquareAmperes): THenriesPerMeter;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TSquareAmperes; const ARight: THenriesPerMeter): TNewtons;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: THenriesPerMeter; const ARight: TSquareAmperes): TNewtons;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TNewtons; const ARight: THenriesPerMeter): TSquareAmperes;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // main definition [ rad/m ] = [ rad ] / [ m ]
 
 operator /(const ALeft: TRadians; const ARight: TMeters): TRadiansPerMeter;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TMeters; const ARight: TRadiansPerMeter): TRadians;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TRadiansPerMeter; const ARight: TMeters): TRadians;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TRadians; const ARight: TRadiansPerMeter): TMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TRadians; const ARight: TMeterUnitId): TRadiansPerMeter;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // main definition [ kg2/s2 ] = [ kg2 ] / [ s2 ]
 
 operator /(const ALeft: TSquareKilograms; const ARight: TSquareSeconds): TSquareKilogramsPerSquareSecond;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TSquareSeconds; const ARight: TSquareKilogramsPerSquareSecond): TSquareKilograms;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TSquareKilogramsPerSquareSecond; const ARight: TSquareSeconds): TSquareKilograms;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TSquareKilograms; const ARight: TSquareKilogramsPerSquareSecond): TSquareSeconds;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TSquareKilograms; const ARight: TSquareSecondUnitId): TSquareKilogramsPerSquareSecond;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ kg2/s2 ] = [ kg/s ] * [ kg/s ]
 
 operator *(const ALeft: TKilogramsPerSecond; const ARight: TKilogramsPerSecond): TSquareKilogramsPerSquareSecond;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TSquareKilogramsPerSquareSecond; const ARight: TKilogramsPerSecond): TKilogramsPerSecond;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // alternative definition [ kg2/s2 ] = [ kg ] * [ N/m ]
 
 operator *(const ALeft: TKilograms; const ARight: TNewtonsPerMeter): TSquareKilogramsPerSquareSecond;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TNewtonsPerMeter; const ARight: TKilograms): TSquareKilogramsPerSquareSecond;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TSquareKilogramsPerSquareSecond; const ARight: TKilograms): TNewtonsPerMeter;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TSquareKilogramsPerSquareSecond; const ARight: TNewtonsPerMeter): TKilograms;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // main definition [ s2/m2 ] = [ s2 ] / [ m2 ]
 
 operator /(const ALeft: TSquareSeconds; const ARight: TSquareMeters): TSquareSecondsPerSquareMeter;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TSquareMeters; const ARight: TSquareSecondsPerSquareMeter): TSquareSeconds;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TSquareSecondsPerSquareMeter; const ARight: TSquareMeters): TSquareSeconds;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TSquareSeconds; const ARight: TSquareSecondsPerSquareMeter): TSquareMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TSquareSeconds; const ARight: TSquareMeterUnitId): TSquareSecondsPerSquareMeter;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ s2/m2 ] = [ 1 ] / [ m2/s2 ]
 
 operator /(const ALeft: double; const ARight: TSquareMetersPerSquareSecond): TSquareSecondsPerSquareMeter;
-begin
-  result.FValue := ALeft / ARight.FValue;
-end;
+begin result.FValue := ALeft / ARight.FValue; end;
 
 operator *(const ALeft: TSquareMetersPerSquareSecond; const ARight: TSquareSecondsPerSquareMeter): double;
-begin
-  result := ALeft.FValue * ARight.FValue;
-end;
+begin result := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TSquareSecondsPerSquareMeter; const ARight: TSquareMetersPerSquareSecond): double;
-begin
-  result := ALeft.FValue * ARight.FValue;
-end;
+begin result := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: double; const ARight: TSquareSecondsPerSquareMeter): TSquareMetersPerSquareSecond;
-begin
-  result.FValue := ALeft / ARight.FValue;
-end;
+begin result.FValue := ALeft / ARight.FValue; end;
 
 // alternative definition [ s2/m2 ] = [ F/m ] * [ H/m ]
 
 operator *(const ALeft: TFaradsPerMeter; const ARight: THenriesPerMeter): TSquareSecondsPerSquareMeter;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: THenriesPerMeter; const ARight: TFaradsPerMeter): TSquareSecondsPerSquareMeter;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TSquareSecondsPerSquareMeter; const ARight: TFaradsPerMeter): THenriesPerMeter;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TSquareSecondsPerSquareMeter; const ARight: THenriesPerMeter): TFaradsPerMeter;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // main definition [ J2 ] = [ J ] * [ J ]
 
 operator *(const ALeft: TJoules; const ARight: TJoules): TSquareJoules;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TSquareJoules; const ARight: TJoules): TJoules;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // main definition [ J*s ] = [ J ] * [ s ]
 
 operator *(const ALeft: TJoules; const ARight: TSeconds): TJouleSeconds;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TSeconds; const ARight: TJoules): TJouleSeconds;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TJouleSeconds; const ARight: TJoules): TSeconds;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TJouleSeconds; const ARight: TSeconds): TJoules;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: TJoules; const ARight: TSecondUnitId): TJouleSeconds;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ J*s ] = [ J ] / [ Hz ]
 
 operator /(const ALeft: TJoules; const ARight: THertz): TJouleSeconds;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator *(const ALeft: THertz; const ARight: TJouleSeconds): TJoules;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TJouleSeconds; const ARight: THertz): TJoules;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TJoules; const ARight: TJouleSeconds): THertz;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TJoules; const ARight: THertzUnitId): TJouleSeconds;
-begin
-  result.FValue := ALeft.FValue;
-end;
+begin result.FValue := ALeft.FValue; end;
 
 // alternative definition [ J*s ] = [ kg*m/s ] * [ m ]
 
 operator *(const ALeft: TKilogramMetersPerSecond; const ARight: TMeters): TJouleSeconds;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator *(const ALeft: TMeters; const ARight: TKilogramMetersPerSecond): TJouleSeconds;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
 operator /(const ALeft: TJouleSeconds; const ARight: TKilogramMetersPerSecond): TMeters;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TJouleSeconds; const ARight: TMeters): TKilogramMetersPerSecond;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 { Helpers }
 

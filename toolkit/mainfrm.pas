@@ -51,8 +51,12 @@ type
     procedure ExportBtnClick(Sender: TObject);
     procedure RunBtnClick(Sender: TObject);
   private
+    BaseUnitCount: longint;
     ClassList: TStringList;
+    FactoredUnitCount: longint;
+    OperatorCount: longint;
     OperatorList: TStringList;
+
     SectionA0: TStringList;
     SectionA1: TStringList;
     SectionA2: TStringList;
@@ -66,7 +70,6 @@ type
 
     procedure AddQuantityOperator(AOperator, ALeftParent, ARightParent, AResult: string);
     procedure AddUnitIdOperator(AOperator, ALeftParent, ARightParent, AResult: string);
-    procedure AddFactoredUnitId(const AIdentifierSymbol, ABaseClass, AFactor: string);
 
     procedure AddClass(const AClassName, AOperator, AClassParent1, AClassParent2,
       AComment, ALongSymbol, AShortSymbol, AIdentifierSymbol, ABaseClass, AFactor, APrefixes: string);
@@ -207,12 +210,11 @@ begin
 
     SectionA1.Append('operator ' + AOperator + '(const ALeft: ' + ALeftParent + '; const ARight: ' + ARightParent + '): ' + AResult  + '; inline;');
     SectionB1.Append('operator ' + AOperator + '(const ALeft: ' + ALeftParent + '; const ARight: ' + ARightParent + '): ' + AResult  + ';');
-    SectionB1.Append('begin');
 
     if AResult = 'double' then
-      S := '  result :='
+      S := 'result :='
     else
-      S := '  result.FValue :=';
+      S := 'result.FValue :=';
 
     if ALeftParent = 'double' then
       S := S + ' ALeft ' + AOperator
@@ -224,9 +226,9 @@ begin
     else
       S := S + ' ARight.FValue;';
 
-    SectionB1.Append(S);
-    SectionB1.Append('end;');
+    SectionB1.Append('begin ' + S + ' end;');
     SectionB1.Append('');
+    Inc(OperatorCount);
   end else
     MessageDlg('Duplicate Operator: ',  ALeftParent + AOperator + ARightParent + '=' + AResult + ' already esists.', mtError, [mbOk], '');
 end;
@@ -245,38 +247,23 @@ begin
 
     SectionB1.Append('');
     SectionB1.Append('operator ' + AOperator + '(const ALeft: ' + ALeftParent + '; const ARight: ' + ARightParent  + '): ' + AResult + ';');
-    SectionB1.Append('begin');
 
     if AResult <> 'double' then
     begin
       if ALeftParent <> 'double' then
-        SectionB1.Append('  result.FValue := ALeft.FValue;')
+        SectionB1.Append('begin result.FValue := ALeft.FValue; end;')
       else
-        SectionB1.Append('  result.FValue := ALeft;');
+        SectionB1.Append('begin result.FValue := ALeft; end;');
     end else
     begin
       if ALeftParent <> 'double' then
-        SectionB1.Append('  result := ALeft.FValue;')
+        SectionB1.Append('begin result := ALeft.FValue; end;')
       else
-        SectionB1.Append('  result := ALeft;');
+        SectionB1.Append('begin result := ALeft; end;');
     end;
-    SectionB1.Append('end;');
     SectionB1.Append('');
+    Inc(OperatorCount);
   end;
-end;
-
-procedure TMainForm.AddFactoredUnitId(const AIdentifierSymbol, ABaseClass, AFactor: string);
-begin
-  SectionA1.Append('');
-  SectionA1.Append(Format('function %s: %s;' , [AIdentifierSymbol, ABaseClass]));
-  SectionA1.Append('');
-
-  SectionB1.Append('');
-  SectionB1.Append(Format('function %s: %s;' , [AIdentifierSymbol, ABaseClass]));
-  SectionB1.Append('begin');
-  SectionB1.Append(Format('  result.Value := %s;' , [AFactor]));
-  SectionB1.Append('end;');
-  SectionB1.Append('');
 end;
 
 function GetSymbol(const AShortSymbol: string): string;
@@ -328,7 +315,7 @@ begin
   SetLength(result, Index + 1);
 end;
 
-function GetDefaultPrefixes(const AShortSymbol: string): string;
+function GetPrefixes(const AShortSymbol: string): string;
 var
   I, J: longint;
   S: TStringArray;
@@ -354,7 +341,7 @@ begin
     Delete(Result, High(Result), 1);
 end;
 
-function GetDefaultPrefixExponents(const AShortSymbol: string): string;
+function GetPrefixExponents(const AShortSymbol: string): string;
 var
   I, Exponent: longint;
   S: TStringArray;
@@ -378,13 +365,13 @@ begin
             if Exponent < 0 then
               Result := Result + ' -' + S[I][Length(S[I])] + ','
             else
-              Result := Result + ' +' + S[I][Length(S[I])] + ',';
+              Result := Result + ' ' + S[I][Length(S[I])] + ',';
           end else
           begin
             if Exponent < 0 then
               Result := Result + ' -1,'
             else
-              Result := Result + ' +1,';
+              Result := Result + ' 1,';
           end;
         end;
       end;
@@ -414,8 +401,8 @@ begin
       SectionA1.Append('    const Symbol       = ''' + GetSymbol(AShortSymbol) + ''';');
       SectionA1.Append('    const SingularName = ''' + GetSingularName(ALongSymbol) + ''';');
       SectionA1.Append('    const PluralName   = ''' + GetPluralName(ALongSymbol) + ''';');
-      SectionA1.Append('    const DefaultPrefixes : TPrefixes = ('  + GetDefaultPrefixes(AShortSymbol) + ');');
-      SectionA1.Append('    const DefaultPrefixExponents : TIntegerDynArray = ('  + GetDefaultPrefixExponents(AShortSymbol) + ');');
+      SectionA1.Append('    const Prefixes : TPrefixes = ('  + GetPrefixes(AShortSymbol) + ');');
+      SectionA1.Append('    const PrefixExponents : TIntegerDynArray = ('  + GetPrefixExponents(AShortSymbol) + ');');
       SectionA1.Append('  end;');
       SectionA1.Append('  ' + GetUnitQuantity(AClassName) + ' = specialize TQuantity<' + GetUnitClassName(AClassName) + '>;');
       SectionA1.Append('  ' + GetUnitIdentifier(AClassName) + ' = specialize TUnitId<' + GetUnitClassName(AClassName) + '>;');
@@ -427,6 +414,7 @@ begin
         AddFactoredQuantity(AClassName, AIdentifierSymbol, '', APrefixes);
         SectionA1.Append('');
       end;
+      Inc(BaseUnitCount);
     end else
     begin
 
@@ -439,8 +427,8 @@ begin
         SectionA1.Append('    const Symbol       = ''' + GetSymbol(AShortSymbol) + ''';');
         SectionA1.Append('    const SingularName = ''' + GetSingularName(ALongSymbol) + ''';');
         SectionA1.Append('    const PluralName   = ''' + GetPluralName(ALongSymbol) + ''';');
-        SectionA1.Append('    const DefaultPrefixes : TPrefixes = ('  + GetDefaultPrefixes(AShortSymbol) + ');');
-        SectionA1.Append('    const DefaultPrefixExponents : TIntegerDynArray = ('  + GetDefaultPrefixExponents(AShortSymbol) + ');');
+        SectionA1.Append('    const Prefixes : TPrefixes = ('  + GetPrefixes(AShortSymbol) + ');');
+        SectionA1.Append('    const PrefixExponents : TIntegerDynArray = ('  + GetPrefixExponents(AShortSymbol) + ');');
         SectionA1.Append('  end;');
         SectionA1.Append('  ' + GetUnitQuantity(AClassName) + ' = specialize TQuantity<' + GetUnitClassName(ABaseClass) + '>;');
         SectionA1.Append('  ' + GetUnitIdentifier(AClassName) + ' = specialize TUnitId<' + GetUnitClassName(ABaseClass) + '>;');
@@ -453,6 +441,7 @@ begin
           SectionA1.Append('');
         end;
         AddHelper(AClassName, ABaseClass, '');
+        Inc(FactoredUnitCount);
       end else
       begin
         SectionA1.Append('');
@@ -462,8 +451,8 @@ begin
         SectionA1.Append('    const Symbol       = ''' + GetSymbol(AShortSymbol) + ''';');
         SectionA1.Append('    const SingularName = ''' + GetSingularName(ALongSymbol) + ''';');
         SectionA1.Append('    const PluralName   = ''' + GetPluralName(ALongSymbol) + ''';');
-        SectionA1.Append('    const DefaultPrefixes : TPrefixes = ('  + GetDefaultPrefixes(AShortSymbol) + ');');
-        SectionA1.Append('    const DefaultPrefixExponents : TIntegerDynArray = ('  + GetDefaultPrefixExponents(AShortSymbol) + ');');
+        SectionA1.Append('    const Prefixes : TPrefixes = ('  + GetPrefixes(AShortSymbol) + ');');
+        SectionA1.Append('    const PrefixExponents : TIntegerDynArray = ('  + GetPrefixExponents(AShortSymbol) + ');');
         if Pos('%s', AFactor) = 0 then
         SectionA1.Append('    const ToBaseFactor = ' + AFactor + ';');
         SectionA1.Append('  end;');
@@ -500,12 +489,14 @@ begin
           AddHelper(ABaseClass, AClassName, Format(Copy(AFactor, 1, Pos('|', AFactor) -1), ['FValue']));
           AddHelper(AClassName, ABaseClass, Format(Copy(AFactor, Pos('|', AFactor) + 1, Length(AFactor)), ['FValue']));
         end;
+        Inc(FactoredUnitCount);
       end;
     end;
   end;
 
   if (ABaseClass = '') then
   begin
+
     if AOperator = '*' then
     begin
       SectionA1.Append('');
@@ -883,6 +874,9 @@ begin
     Stream.Destroy;
   end;
 
+  BaseUnitCount     := 0;
+  FactoredUnitCount := 0;
+  OperatorCount     := 0;
   for I := 0 to WorksheetGrid.Worksheet.GetLastRowIndex do
   begin
     if (WorksheetGrid.Worksheet.ReadAsText(I, _class_name) <> '') then
@@ -902,6 +896,16 @@ begin
                           WorksheetGrid.Worksheet.ReadAsText(I, _prefixes         ));
     end;
   end;
+
+  SectionA0.Append('');
+  SectionA0.Append('{');
+  SectionA0.Append(Format('  AdimPas library built on %s.', [DateToStr(Now)]));
+  SectionA0.Append('');
+  SectionA0.Append(Format('  Number of base units: %d', [BaseUnitCount]));
+  SectionA0.Append(Format('  Number of factored units: %d', [FactoredUnitCount]));
+  SectionA0.Append(Format('  Number of operators: %d', [OperatorCount]));
+  SectionA0.Append('}');
+  SectionA0.Append('');
 
   for I := 0 to SectionA0.Count -1 do Document.Append(SectionA0[I]);
   for I := 0 to SectionA1.Count -1 do Document.Append(SectionA1[I]);
