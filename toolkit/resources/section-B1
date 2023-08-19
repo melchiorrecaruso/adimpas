@@ -116,14 +116,14 @@ var
   PrefixCount: longint;
 begin
   PrefixCount := Length(Prefixes);
-  if PrefixCount = Length(U.DefaultPrefixes) then
+  if PrefixCount = Length(U.Prefixes) then
   begin
     Exponent := 0;
     for I := 0 to PrefixCount -1 do
-      Inc(Exponent, PrefixTable[U.DefaultPrefixes[I]].Exponent * U.DefaultPrefixExponents[I]);
+      Inc(Exponent, PrefixTable[U.Prefixes[I]].Exponent * U.PrefixExponents[I]);
 
     for I := 0 to PrefixCount -1 do
-      Dec(Exponent, PrefixTable[Prefixes[I]].Exponent * U.DefaultPrefixExponents[I]);
+      Dec(Exponent, PrefixTable[Prefixes[I]].Exponent * U.PrefixExponents[I]);
     
     if Exponent <> 0 then  
       result := FValue * IntPower(10, Exponent)
@@ -138,15 +138,15 @@ end;
 
 function TQuantity.ToString: string;
 begin
-  result := FloatToStr(FValue) + ' ' + GetSymbol(U.Symbol, U.DefaultPrefixes);
+  result := FloatToStr(FValue) + ' ' + GetSymbol(U.Symbol, U.Prefixes);
 end;
 
 function TQuantity.ToVerboseString: string;
 begin
   if (FValue < -1) or (FValue > 1) then
-    result := FloatToStr(FValue) + ' ' + GetPluralName(U.PluralName, U.DefaultPrefixes) 
+    result := FloatToStr(FValue) + ' ' + GetPluralName(U.PluralName, U.Prefixes) 
   else
-    result := FloatToStr(FValue) + ' ' + GetSingularName(U.SingularName, U.DefaultPrefixes);
+    result := FloatToStr(FValue) + ' ' + GetSingularName(U.SingularName, U.Prefixes);
 end;
 
 function TQuantity.ToString(Precision, Digits: longint; const Prefixes: TPrefixes): string;
@@ -156,7 +156,7 @@ begin
   FactoredValue := Value(Prefixes);
 
   if Length(Prefixes) = 0 then
-    result := FloatToStrF(FactoredValue, ffGeneral, Precision, Digits) + ' ' + GetSymbol(U.Symbol, U.DefaultPrefixes)
+    result := FloatToStrF(FactoredValue, ffGeneral, Precision, Digits) + ' ' + GetSymbol(U.Symbol, U.Prefixes)
   else
     result := FloatToStrF(FactoredValue, ffGeneral, Precision, Digits) + ' ' + GetSymbol(U.Symbol, Prefixes) 
 end;
@@ -170,13 +170,13 @@ begin
   if (FactoredValue < -1) or (FactoredValue > 1) then
   begin
     if Length(Prefixes) = 0 then
-      result := FloatToStrF(FactoredValue, ffGeneral, Precision, Digits) + ' ' + GetPluralName(U.PluralName, U.DefaultPrefixes)
+      result := FloatToStrF(FactoredValue, ffGeneral, Precision, Digits) + ' ' + GetPluralName(U.PluralName, U.Prefixes)
     else
       result := FloatToStrF(FactoredValue, ffGeneral, Precision, Digits) + ' ' + GetPluralName(U.PluralName, Prefixes); 
   end else
   begin
     if Length(Prefixes) = 0 then
-      result := FloatToStrF(FactoredValue, ffGeneral, Precision, Digits) + ' ' + GetSingularName(U.SingularName, U.DefaultPrefixes)
+      result := FloatToStrF(FactoredValue, ffGeneral, Precision, Digits) + ' ' + GetSingularName(U.SingularName, U.Prefixes)
     else
       result := FloatToStrF(FactoredValue, ffGeneral, Precision, Digits) + ' ' + GetSingularName(U.SingularName, Prefixes)
   end; 
@@ -263,3 +263,6 @@ class operator TUnitId.*(const AValue: double; const ASelf: TSelf): TBaseQuantit
 begin
   result.FValue := AValue;
 end;
+
+{ External operators }
+
