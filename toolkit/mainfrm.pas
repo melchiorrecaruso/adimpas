@@ -899,7 +899,7 @@ begin
 
   SectionA0.Append('');
   SectionA0.Append('{');
-  SectionA0.Append(Format('  AdimPas library built on %s.', [DateToStr(Now)]));
+  SectionA0.Append(Format('  ADimPas library built on %s.', [DateToStr(Now)]));
   SectionA0.Append('');
   SectionA0.Append(Format('  Number of base units: %d', [BaseUnitCount]));
   SectionA0.Append(Format('  Number of factored units: %d', [FactoredUnitCount]));

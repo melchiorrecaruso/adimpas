@@ -18,7 +18,7 @@
 }
 
 {
-  AdimPas library built on 19/08/2023.
+  ADimPas library built on 19/08/2023.
 
   Number of base units: 108
   Number of factored units: 61
