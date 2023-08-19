@@ -799,37 +799,36 @@ begin
   if time.ToString(4, 2, []) <> '14.19 s' then halt(1);
   writeln('* TEST-69: PASSED');
 
-  // TEST-70
-  if (1.0*mg  ).ToString       (10, 10, [pKilo]) <> '1E-6 kg'                   then halt(01);
-  if (1.0*mg2 ).ToString       (10, 0,  [pKilo]) <> '1E-12 kg2'                 then halt(02);
-  if (1.0*mg  ).ToString       (10, 10, [pMega]) <> '1E-9 Mg'                   then halt(03);
-  if (1.0*mg2 ).ToString       (10, 0,  [pMega]) <> '1E-18 Mg2'                 then halt(04);
-  if (1.0*kg  ).ToString       (10, 0,  [pNone]) <> '1000 g'                    then halt(05);
-  if (1.0*kg  ).ToString       (10, 0,  [pKilo]) <> '1 kg'                      then halt(06);
-  if (1.0*kg2 ).ToString       (10, 0,  [pNone]) <> '1000000 g2'                then halt(07);
-  if (1.0*kg2 ).ToString       (10, 0,  [pKilo]) <> '1 kg2'                     then halt(08);
-  if (1.0*km  ).ToString       (10, 0,       []) <> '1000 m'                    then halt(09);
-  if (1.0*km2 ).ToString       (10, 0,       []) <> '1000000 m2'                then halt(10);
-  if (1.0*kg  ).ToVerboseString(10, 0,  [pNone]) <> '1000 grams'                then halt(11);
-  if (1.0*kg2 ).ToVerboseString(10, 0,  [pNone]) <> '1000000 square grams'      then halt(12);
-  if (1.0*km  ).ToVerboseString(10, 0,       []) <> '1000 meters'               then halt(13);
-  if (1.0*km2 ).ToVerboseString(10, 0,       []) <> '1000000 square meters'     then halt(14);
-  if (1.0*km3 ).ToVerboseString(10, 0,       []) <> '1000000000 cubic meters'   then halt(15);
-  if (1.0*km4 ).ToVerboseString(10, 0,       []) <> '1E12 quartic meters'       then halt(16);
-  if (1.0*day ).ToVerboseString(10, 0,       []) <> '86400 seconds'             then halt(16);
-  if (1.0*hr  ).ToVerboseString(10, 0,       []) <> '3600 seconds'              then halt(17);
-  if (1.0*day ).ToString       (10, 0,       []) <> '86400 s'                   then halt(18);
-  if (1.0*hr  ).ToString       (10, 0,       []) <> '3600 s'                    then halt(19);
-  if (1.0*day2).ToVerboseString(10, 0,       []) <> '7464960000 square seconds' then halt(20);
-  if (1.0*hr2 ).ToVerboseString(10, 0,       []) <> '12960000 square seconds'   then halt(21);
-  if (1.0*day2).ToString       (10, 0,       []) <> '7464960000 s2'             then halt(22);
-  if (1.0*hr2 ).ToString       (10, 0,       []) <> '12960000 s2'               then halt(23);
-  writeln('* TEST-70: PASSED');
+  // TESTS FROM 70 TO 93
+  if (1.0*mg  ).ToString       (10, 10, [pKilo]) <> '1E-6 kg'                   then halt(01);  writeln('* TEST-70: PASSED');
+  if (1.0*mg2 ).ToString       (10, 0,  [pKilo]) <> '1E-12 kg2'                 then halt(02);  writeln('* TEST-71: PASSED');
+  if (1.0*mg  ).ToString       (10, 10, [pMega]) <> '1E-9 Mg'                   then halt(03);  writeln('* TEST-72: PASSED');
+  if (1.0*mg2 ).ToString       (10, 0,  [pMega]) <> '1E-18 Mg2'                 then halt(04);  writeln('* TEST-73: PASSED');
+  if (1.0*kg  ).ToString       (10, 0,  [pNone]) <> '1000 g'                    then halt(05);  writeln('* TEST-74: PASSED');
+  if (1.0*kg  ).ToString       (10, 0,  [pKilo]) <> '1 kg'                      then halt(06);  writeln('* TEST-75: PASSED');
+  if (1.0*kg2 ).ToString       (10, 0,  [pNone]) <> '1000000 g2'                then halt(07);  writeln('* TEST-76: PASSED');
+  if (1.0*kg2 ).ToString       (10, 0,  [pKilo]) <> '1 kg2'                     then halt(08);  writeln('* TEST-77: PASSED');
+  if (1.0*km  ).ToString       (10, 0,       []) <> '1000 m'                    then halt(09);  writeln('* TEST-78: PASSED');
+  if (1.0*km2 ).ToString       (10, 0,       []) <> '1000000 m2'                then halt(10);  writeln('* TEST-79: PASSED');
+  if (1.0*kg  ).ToVerboseString(10, 0,  [pNone]) <> '1000 grams'                then halt(11);  writeln('* TEST-80: PASSED');
+  if (1.0*kg2 ).ToVerboseString(10, 0,  [pNone]) <> '1000000 square grams'      then halt(12);  writeln('* TEST-81: PASSED');
+  if (1.0*km  ).ToVerboseString(10, 0,       []) <> '1000 meters'               then halt(13);  writeln('* TEST-82: PASSED');
+  if (1.0*km2 ).ToVerboseString(10, 0,       []) <> '1000000 square meters'     then halt(14);  writeln('* TEST-83: PASSED');
+  if (1.0*km3 ).ToVerboseString(10, 0,       []) <> '1000000000 cubic meters'   then halt(15);  writeln('* TEST-84: PASSED');
+  if (1.0*km4 ).ToVerboseString(10, 0,       []) <> '1E12 quartic meters'       then halt(16);  writeln('* TEST-85: PASSED');
+  if (1.0*day ).ToVerboseString(10, 0,       []) <> '86400 seconds'             then halt(16);  writeln('* TEST-86: PASSED');
+  if (1.0*hr  ).ToVerboseString(10, 0,       []) <> '3600 seconds'              then halt(17);  writeln('* TEST-87: PASSED');
+  if (1.0*day ).ToString       (10, 0,       []) <> '86400 s'                   then halt(18);  writeln('* TEST-88: PASSED');
+  if (1.0*hr  ).ToString       (10, 0,       []) <> '3600 s'                    then halt(19);  writeln('* TEST-89: PASSED');
+  if (1.0*day2).ToVerboseString(10, 0,       []) <> '7464960000 square seconds' then halt(20);  writeln('* TEST-90: PASSED');
+  if (1.0*hr2 ).ToVerboseString(10, 0,       []) <> '12960000 square seconds'   then halt(21);  writeln('* TEST-91: PASSED');
+  if (1.0*day2).ToString       (10, 0,       []) <> '7464960000 s2'             then halt(22);  writeln('* TEST-92: PASSED');
+  if (1.0*hr2 ).ToString       (10, 0,       []) <> '12960000 s2'               then halt(23);  writeln('* TEST-93: PASSED');
 
-  // TEST-71
+  // TEST-94
   if (1.0*J).ToWattHour  .ToString(4, 0, [pMilli]) <> '0.2778 mW·h' then halt(1);
   if (1.0*C).ToAmpereHour.ToString(4, 0, [pMilli]) <> '0.2778 mA·h' then halt(2);
-  writeln('* TEST-71: PASSED');
+  writeln('* TEST-94: PASSED');
 
   writeln('ADIM-TEST DONE.');
 end.
