@@ -7,7 +7,7 @@ unit ADim;
 
 interface
 
-uses SysUtils;
+uses SysUtils, Types;
 
 type 
   { Prefix }

@@ -1,37 +1,101 @@
 
 const
   PrefixTable: array[pQuetta..pQuecto] of 
-    record  Symbol, Name: string; Factor: double end = (
-    (Symbol: 'Q';   Name: 'quetta';  Factor: 1E+30),
-    (Symbol: 'R';   Name: 'ronna';   Factor: 1E+27),
-    (Symbol: 'Y';   Name: 'yotta';   Factor: 1E+24),
-    (Symbol: 'Z';   Name: 'zetta';   Factor: 1E+21),
-    (Symbol: 'E';   Name: 'exa';     Factor: 1E+18),  
-    (Symbol: 'P';   Name: 'peta';    Factor: 1E+15),
-    (Symbol: 'T';   Name: 'tera';    Factor: 1E+12),
-    (Symbol: 'G';   Name: 'giga';    Factor: 1E+09),
-    (Symbol: 'M';   Name: 'mega';    Factor: 1E+06),
-    (Symbol: 'k';   Name: 'kilo';    Factor: 1E+03),
-    (Symbol: 'h';   Name: 'hecto';   Factor: 1E+02),
-    (Symbol: 'da';  Name: 'deca';    Factor: 1E+01),
-    (Symbol: '';    Name:  '';       Factor: 1E+00),
-    (Symbol: 'd';   Name: 'deci';    Factor: 1E-01),
-    (Symbol: 'c';   Name: 'centi';   Factor: 1E-02),
-    (Symbol: 'm';   Name: 'milli';   Factor: 1E-03),
-    (Symbol: 'μ';   Name: 'micro';   Factor: 1E-06),
-    (Symbol: 'n';   Name: 'nano';    Factor: 1E-09),
-    (Symbol: 'p';   Name: 'pico';    Factor: 1E-12),
-    (Symbol: 'f';   Name: 'femto';   Factor: 1E-15),
-    (Symbol: 'a';   Name: 'atto';    Factor: 1E-18),
-    (Symbol: 'z';   Name: 'zepto';   Factor: 1E-21),
-    (Symbol: 'y';   Name: 'yocto';   Factor: 1E-24),
-    (Symbol: 'r';   Name: 'ronto';   Factor: 1E-27),
-    (Symbol: 'q';   Name: 'quecto';  Factor: 1E-30)
+    record  Symbol, Name: string; Exponent: longint end = (
+    (Symbol: 'Q';   Name: 'quetta';  Exponent: +30),
+    (Symbol: 'R';   Name: 'ronna';   Exponent: +27),
+    (Symbol: 'Y';   Name: 'yotta';   Exponent: +24),
+    (Symbol: 'Z';   Name: 'zetta';   Exponent: +21),
+    (Symbol: 'E';   Name: 'exa';     Exponent: +18),  
+    (Symbol: 'P';   Name: 'peta';    Exponent: +15),
+    (Symbol: 'T';   Name: 'tera';    Exponent: +12),
+    (Symbol: 'G';   Name: 'giga';    Exponent: +09),
+    (Symbol: 'M';   Name: 'mega';    Exponent: +06),
+    (Symbol: 'k';   Name: 'kilo';    Exponent: +03),
+    (Symbol: 'h';   Name: 'hecto';   Exponent: +02),
+    (Symbol: 'da';  Name: 'deca';    Exponent: +01),
+    (Symbol: '';    Name: '';        Exponent:  00),
+    (Symbol: 'd';   Name: 'deci';    Exponent: -01),
+    (Symbol: 'c';   Name: 'centi';   Exponent: -02),
+    (Symbol: 'm';   Name: 'milli';   Exponent: -03),
+    (Symbol: 'μ';   Name: 'micro';   Exponent: -06),
+    (Symbol: 'n';   Name: 'nano';    Exponent: -09),
+    (Symbol: 'p';   Name: 'pico';    Exponent: -12),
+    (Symbol: 'f';   Name: 'femto';   Exponent: -15),
+    (Symbol: 'a';   Name: 'atto';    Exponent: -18),
+    (Symbol: 'z';   Name: 'zepto';   Exponent: -21),
+    (Symbol: 'y';   Name: 'yocto';   Exponent: -24),
+    (Symbol: 'r';   Name: 'ronto';   Exponent: -27),
+    (Symbol: 'q';   Name: 'quecto';  Exponent: -30)
   );
+
+function GetSymbol(const Symbol: string; const Prefixes: TPrefixes): string;
+function GetSingularName(const SingularName: string; const Prefixes: TPrefixes): string;
+function GetPluralName(const PluralName: string; const Prefixes: TPrefixes): string;
 
 implementation
 
 uses Math;
+
+function GetSymbol(const Symbol: string; const Prefixes: TPrefixes): string;
+var
+  PrefixCount: longint;
+begin
+  PrefixCount := Length(Prefixes);
+  case PrefixCount of
+    0:  result := Symbol; 
+    1:  result := Format(Symbol, [
+          PrefixTable[Prefixes[0]].Symbol]);
+    2:  result := Format(Symbol, [
+          PrefixTable[Prefixes[0]].Symbol, 
+          PrefixTable[Prefixes[1]].Symbol]);
+    3:  result := Format(Symbol, [
+          PrefixTable[Prefixes[0]].Symbol, 
+          PrefixTable[Prefixes[1]].Symbol, 
+          PrefixTable[Prefixes[2]].Symbol]);
+  else raise Exception.Create('Wrong number of prefixes.');
+  end;
+end;
+
+function GetSingularName(const SingularName: string; const Prefixes: TPrefixes): string;
+var
+  PrefixCount: longint;
+begin
+  PrefixCount := Length(Prefixes);
+  case PrefixCount of
+    0:  result := SingularName;
+    1:  result := Format(SingularName, [
+          PrefixTable[Prefixes[0]].Name]);
+    2:  result := Format(SingularName, [
+          PrefixTable[Prefixes[0]].Name, 
+          PrefixTable[Prefixes[1]].Name]);
+    3:  result := Format(SingularName, [
+          PrefixTable[Prefixes[0]].Name, 
+          PrefixTable[Prefixes[1]].Name, 
+          PrefixTable[Prefixes[2]].Name]);
+   else raise Exception.Create('Wrong number of prefixes.');
+   end;
+end;
+
+function GetPluralName(const PluralName: string; const Prefixes: TPrefixes): string;
+var
+  PrefixCount: longint;
+begin
+  PrefixCount := Length(Prefixes);
+  case PrefixCount of
+    0:  result := PluralName;
+    1:  result := Format(PluralName, [
+          PrefixTable[Prefixes[0]].Name]);
+    2:  result := Format(PluralName, [
+          PrefixTable[Prefixes[0]].Name, 
+          PrefixTable[Prefixes[1]].Name]);
+    3:  result := Format(PluralName, [
+          PrefixTable[Prefixes[0]].Name, 
+          PrefixTable[Prefixes[1]].Name, 
+          PrefixTable[Prefixes[2]].Name]); 
+  else raise Exception.Create('Wrong number of prefixes.');
+  end;
+end;
 
 { TQuantity }
 
@@ -46,33 +110,76 @@ begin
 end;
 
 function TQuantity.Value(const Prefixes: TPrefixes): double;
+var
+  I: longint;
+  Exponent: longint;
+  PrefixCount: longint;
 begin
-  result := U.GetValue(FValue, Prefixes);
-end; 
+  PrefixCount := Length(Prefixes);
+  if PrefixCount = Length(U.DefaultPrefixes) then
+  begin
+    Exponent := 0;
+    for I := 0 to PrefixCount -1 do
+      Inc(Exponent, PrefixTable[U.DefaultPrefixes[I]].Exponent * U.DefaultPrefixExponents[I]);
+
+    for I := 0 to PrefixCount -1 do
+      Dec(Exponent, PrefixTable[Prefixes[I]].Exponent * U.DefaultPrefixExponents[I]);
+    
+    if Exponent <> 0 then  
+      result := FValue * IntPower(10, Exponent)
+    else  
+      result := FValue;
+  end else   
+    if PrefixCount = 0 then 
+      result := FValue
+    else  
+      raise Exception.Create('Wrong number of prefixes.');   
+end;     
 
 function TQuantity.ToString: string;
 begin
-  result := FloatToStr(FValue) + ' ' + U.GetSymbol([]);
+  result := FloatToStr(FValue) + ' ' + GetSymbol(U.Symbol, U.DefaultPrefixes);
 end;
 
 function TQuantity.ToVerboseString: string;
 begin
-  result := FloatToStr(FValue) + ' ' + U.GetName(FValue, []);
+  if (FValue < -1) or (FValue > 1) then
+    result := FloatToStr(FValue) + ' ' + GetPluralName(U.PluralName, U.DefaultPrefixes) 
+  else
+    result := FloatToStr(FValue) + ' ' + GetSingularName(U.SingularName, U.DefaultPrefixes);
 end;
 
 function TQuantity.ToString(Precision, Digits: longint; const Prefixes: TPrefixes): string;
+var
+  FactoredValue: double;
 begin
-  result := FloatToStrF(U.GetValue(FValue, Prefixes), ffGeneral, Precision, Digits) + ' ' + U.GetSymbol(Prefixes);
+  FactoredValue := Value(Prefixes);
+
+  if Length(Prefixes) = 0 then
+    result := FloatToStrF(FactoredValue, ffGeneral, Precision, Digits) + ' ' + GetSymbol(U.Symbol, U.DefaultPrefixes)
+  else
+    result := FloatToStrF(FactoredValue, ffGeneral, Precision, Digits) + ' ' + GetSymbol(U.Symbol, Prefixes) 
 end;
 
 function TQuantity.ToVerboseString(Precision, Digits: longint; const Prefixes: TPrefixes): string;
 var
   FactoredValue: double;
 begin
-  FactoredValue := U.GetValue(FValue, Prefixes);
+  FactoredValue := Value(Prefixes);
+
+  if (FactoredValue < -1) or (FactoredValue > 1) then
   begin
-    result := FloatToStrF(FactoredValue, ffGeneral, Precision, Digits) + ' ' + U.GetName(FactoredValue, Prefixes);
-  end;  
+    if Length(Prefixes) = 0 then
+      result := FloatToStrF(FactoredValue, ffGeneral, Precision, Digits) + ' ' + GetPluralName(U.PluralName, U.DefaultPrefixes)
+    else
+      result := FloatToStrF(FactoredValue, ffGeneral, Precision, Digits) + ' ' + GetPluralName(U.PluralName, Prefixes); 
+  end else
+  begin
+    if Length(Prefixes) = 0 then
+      result := FloatToStrF(FactoredValue, ffGeneral, Precision, Digits) + ' ' + GetSingularName(U.SingularName, U.DefaultPrefixes)
+    else
+      result := FloatToStrF(FactoredValue, ffGeneral, Precision, Digits) + ' ' + GetSingularName(U.SingularName, Prefixes)
+  end; 
 end;                                             
 
 class operator TQuantity.+(const AValue: TSelf): TSelf;

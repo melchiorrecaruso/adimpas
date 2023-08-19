@@ -32,7 +32,6 @@ type
   { TMainForm }
 
   TMainForm = class(TForm)
-    AddPluralName: TCheckBox;
     WorkbookSource: TsWorkbookSource;
     WorksheetGrid: TsWorksheetGrid;
     TrigonometricCheckBox: TCheckBox;
@@ -72,9 +71,7 @@ type
     procedure AddClass(const AClassName, AOperator, AClassParent1, AClassParent2,
       AComment, ALongSymbol, AShortSymbol, AIdentifierSymbol, ABaseClass, AFactor, APrefixes: string);
 
-    procedure AddClassFunction(const AClassName, ALongSymbol, AShortSymbol: string);
     procedure AddFactoredQuantity(ABaseClass, AIdentifierSymbol, AFactor, APrefixes: string);
-
     procedure AddPower(AOperator, AQuantity, AResult: string);
     procedure AddHelper(AClassName, ABaseClass, AFactor: string);
     procedure AddEquivalence(AClassName, ABaseClass: string);
@@ -282,6 +279,125 @@ begin
   SectionB1.Append('');
 end;
 
+function GetSymbol(const AShortSymbol: string): string;
+begin
+  result := AShortSymbol;
+  result := StringReplace(result, '.', '·', [rfReplaceAll]);
+end;
+
+function GetSingularName(const ALongSymbol: string): string;
+begin
+  result := ALongSymbol;
+  result := StringReplace(StringReplace(result, '!', '', [rfReplaceAll]), '?', '', [rfReplaceAll]);
+end;
+
+function GetPluralName(const ALongSymbol: string): string;
+begin
+  result := ALongSymbol;
+  result := StringReplace(StringReplace(result, 'inch!',  'inches',   [rfReplaceAll]), 'foot!', 'feet', [rfReplaceAll]);
+  result := StringReplace(StringReplace(result, 'y!',     'ies',      [rfReplaceAll]), '?',  's', [rfReplaceAll]);
+end;
+
+function Split(const AStr: string): TStringArray;
+var
+  I, Index: longint;
+begin
+  Index  := 0;
+  result := nil;
+  SetLength(result, Index + 10);
+  for I := Low(AStr) to High(AStr) do
+  begin
+
+    if AStr[I] in ['/', '.'] then
+    begin
+      Inc(Index);
+      if Index = Length(result) then
+        SetLength(result, Index + 10);
+      if AStr[I] <> ' ' then
+      begin
+        result[Index] := AStr[I];
+        Inc(Index);
+        if Index = Length(result) then
+           SetLength(result, Index + 10);
+      end;
+      result[Index] := '';
+    end else
+      result[Index] := result[Index] + AStr[I];
+
+  end;
+  SetLength(result, Index + 1);
+end;
+
+function GetDefaultPrefixes(const AShortSymbol: string): string;
+var
+  I, J: longint;
+  S: TStringArray;
+begin
+  Result := '';
+  S := Split(AShortSymbol);
+  for I := Low(S) to High(S) do
+  begin
+    J := Pos('%s', S[I]);
+    if J > 0 then
+    begin
+      if (S[I] = '%sg') or (S[I] = '%sg2') then
+        result := result + ' pKilo,'
+      else
+        result := result + ' pNone,';
+    end;
+  end;
+  S := nil;
+  while (Length(Result) > 0) and (Result[Low (Result)] = ' ') do
+    Delete(Result, Low (Result), 1);
+
+  while (Length(Result) > 0) and (Result[High(Result)] = ',') do
+    Delete(Result, High(Result), 1);
+end;
+
+function GetDefaultPrefixExponents(const AShortSymbol: string): string;
+var
+  I, Exponent: longint;
+  S: TStringArray;
+begin
+  Result := '';
+  Exponent := 1;
+  S := Split(AShortSymbol);
+  for I := Low(S) to High(S) do
+  begin
+    if S[I] = '.' then
+      Exponent := 1
+    else
+      if S[I] = '/' then
+        Exponent := -1
+      else
+      begin
+        if Pos('%s', S[I]) > 0 then
+        begin
+          if S[I][Length(S[I])] in ['2', '3', '4', '5', '6', '7', '8', '9'] then
+          begin
+            if Exponent < 0 then
+              Result := Result + ' -' + S[I][Length(S[I])] + ','
+            else
+              Result := Result + ' +' + S[I][Length(S[I])] + ',';
+          end else
+          begin
+            if Exponent < 0 then
+              Result := Result + ' -1,'
+            else
+              Result := Result + ' +1,';
+          end;
+        end;
+      end;
+  end;
+  S := nil;
+
+  while (Length(Result) > 0) and (Result[Low (Result)] = ' ') do
+    Delete(Result, Low (Result), 1);
+
+  while (Length(Result) > 0) and (Result[High(Result)] = ',') do
+    Delete(Result, High(Result), 1);
+end;
+
 procedure TMainForm.AddClass(const AClassName, AOperator, AClassParent1, AClassParent2,
   AComment, ALongSymbol, AShortSymbol, AIdentifierSymbol, ABaseClass, AFactor, APrefixes: string);
 begin
@@ -295,9 +411,11 @@ begin
       SectionA1.Append('type');
       SectionA1.Append('  { Unit of ' + GetUnitDescription(AClassName) + ' }');
       SectionA1.Append('  ' + GetUnitClassName(AClassName) + ' = record');
-      SectionA1.Append('    class function GetSymbol(const APrefixes: TPrefixes): string; static;');
-      SectionA1.Append('    class function GetName  (const AValue: double; const APrefixes: TPrefixes): string; static;');
-      SectionA1.Append('    class function GetValue (const AValue: double; const APrefixes: TPrefixes): double; static;');
+      SectionA1.Append('    const Symbol       = ''' + GetSymbol(AShortSymbol) + ''';');
+      SectionA1.Append('    const SingularName = ''' + GetSingularName(ALongSymbol) + ''';');
+      SectionA1.Append('    const PluralName   = ''' + GetPluralName(ALongSymbol) + ''';');
+      SectionA1.Append('    const DefaultPrefixes : TPrefixes = ('  + GetDefaultPrefixes(AShortSymbol) + ');');
+      SectionA1.Append('    const DefaultPrefixExponents : TIntegerDynArray = ('  + GetDefaultPrefixExponents(AShortSymbol) + ');');
       SectionA1.Append('  end;');
       SectionA1.Append('  ' + GetUnitQuantity(AClassName) + ' = specialize TQuantity<' + GetUnitClassName(AClassName) + '>;');
       SectionA1.Append('  ' + GetUnitIdentifier(AClassName) + ' = specialize TUnitId<' + GetUnitClassName(AClassName) + '>;');
@@ -309,7 +427,6 @@ begin
         AddFactoredQuantity(AClassName, AIdentifierSymbol, '', APrefixes);
         SectionA1.Append('');
       end;
-      AddClassFunction(AClassName, ALongSymbol, AShortSymbol);
     end else
     begin
 
@@ -319,9 +436,11 @@ begin
         SectionA1.Append('type');
         SectionA1.Append('  { Unit of ' + GetUnitDescription(AClassName) + ' }');
         SectionA1.Append('  ' + GetUnitClassName(AClassName) + ' = record');
-        SectionA1.Append('    class function GetSymbol(const APrefixes: TPrefixes): string; static;');
-        SectionA1.Append('    class function GetName  (const AValue: double; const APrefixes: TPrefixes): string; static;');
-        SectionA1.Append('    class function GetValue (const AValue: double; const APrefixes: TPrefixes): double; static;');
+        SectionA1.Append('    const Symbol       = ''' + GetSymbol(AShortSymbol) + ''';');
+        SectionA1.Append('    const SingularName = ''' + GetSingularName(ALongSymbol) + ''';');
+        SectionA1.Append('    const PluralName   = ''' + GetPluralName(ALongSymbol) + ''';');
+        SectionA1.Append('    const DefaultPrefixes : TPrefixes = ('  + GetDefaultPrefixes(AShortSymbol) + ');');
+        SectionA1.Append('    const DefaultPrefixExponents : TIntegerDynArray = ('  + GetDefaultPrefixExponents(AShortSymbol) + ');');
         SectionA1.Append('  end;');
         SectionA1.Append('  ' + GetUnitQuantity(AClassName) + ' = specialize TQuantity<' + GetUnitClassName(ABaseClass) + '>;');
         SectionA1.Append('  ' + GetUnitIdentifier(AClassName) + ' = specialize TUnitId<' + GetUnitClassName(ABaseClass) + '>;');
@@ -333,28 +452,27 @@ begin
           AddFactoredQuantity(ABaseClass, AIdentifierSymbol, AFactor, APrefixes);
           SectionA1.Append('');
         end;
-        AddClassFunction(AClassName, ALongSymbol, AShortSymbol);
         AddHelper(AClassName, ABaseClass, '');
-
       end else
       begin
         SectionA1.Append('');
         SectionA1.Append('type');
         SectionA1.Append('  { Unit of ' + GetUnitDescription(AClassName) + ' }');
         SectionA1.Append('  ' + GetUnitClassName(AClassName) + ' = record');
-        SectionA1.Append('    class function GetSymbol(const APrefixes: TPrefixes): string; static;');
-        SectionA1.Append('    class function GetName  (const AValue: double; const APrefixes: TPrefixes): string; static;');
-        SectionA1.Append('    class function GetValue (const AValue: double; const APrefixes: TPrefixes): double; static;');
+        SectionA1.Append('    const Symbol       = ''' + GetSymbol(AShortSymbol) + ''';');
+        SectionA1.Append('    const SingularName = ''' + GetSingularName(ALongSymbol) + ''';');
+        SectionA1.Append('    const PluralName   = ''' + GetPluralName(ALongSymbol) + ''';');
+        SectionA1.Append('    const DefaultPrefixes : TPrefixes = ('  + GetDefaultPrefixes(AShortSymbol) + ');');
+        SectionA1.Append('    const DefaultPrefixExponents : TIntegerDynArray = ('  + GetDefaultPrefixExponents(AShortSymbol) + ');');
         if Pos('%s', AFactor) = 0 then
-        begin
-          SectionA1.Append('    const Factor = ' + AFactor + ';');
-          SectionA1.Append('  end;');
-          SectionA1.Append('  ' + GetUnitQuantity(AClassName) + ' = specialize TQuantity<' + GetUnitClassName(ABaseClass) + '>;');
-        end else
-        begin
-          SectionA1.Append('  end;');
-          SectionA1.Append('  ' + GetUnitQuantity(AClassName) + ' = specialize TQuantity<' + GetUnitClassName(AClassName) + '>;');
-        end;
+        SectionA1.Append('    const ToBaseFactor = ' + AFactor + ';');
+        SectionA1.Append('  end;');
+
+        if Pos('%s', AFactor) = 0 then
+        SectionA1.Append('  ' + GetUnitQuantity(AClassName) + ' = specialize TQuantity<' + GetUnitClassName(ABaseClass) + '>;')
+        else
+        SectionA1.Append('  ' + GetUnitQuantity(AClassName) + ' = specialize TQuantity<' + GetUnitClassName(AClassName) + '>;');
+
         SectionA1.Append('  ' + GetUnitIdentifier(AClassName) + ' = specialize TUnitId<' + GetUnitClassName(AClassName) + '>;');
         SectionA1.Append('');
 
@@ -363,7 +481,7 @@ begin
           if Pos('%s', AFactor) = 0 then
           begin
             SectionA1.Append(Format('const %s: specialize TQuantity<%s> = (FValue: %s);',
-              [AIdentifierSymbol, GetUnitClassName(ABaseClass), GetUnitClassName(AClassName) + '.Factor']));
+              [AIdentifierSymbol, GetUnitClassName(ABaseClass), GetUnitClassName(AClassName) + '.ToBaseFactor']));
             SectionA1.Append('');
             AddFactoredQuantity(ABaseClass, AIdentifierSymbol, AFactor, APrefixes);
             SectionA1.Append('');
@@ -376,14 +494,12 @@ begin
 
         if Pos('%s', AFactor) = 0 then
         begin
-          AddHelper(AClassName, ABaseClass, 'FValue / ' + GetUnitClassName(AClassName) + '.Factor');
+          AddHelper(AClassName, ABaseClass, 'FValue / ' + GetUnitClassName(AClassName) + '.ToBaseFactor');
         end else
         begin
           AddHelper(ABaseClass, AClassName, Format(Copy(AFactor, 1, Pos('|', AFactor) -1), ['FValue']));
           AddHelper(AClassName, ABaseClass, Format(Copy(AFactor, Pos('|', AFactor) + 1, Length(AFactor)), ['FValue']));
         end;
-        AddClassFunction(AClassName, ALongSymbol, AShortSymbol);
-
       end;
     end;
   end;
@@ -460,228 +576,6 @@ begin
         SectionA1.Append('');
       end;
 
-end;
-
-function Split(const AStr: string): TStringArray;
-var
-  I, Index: longint;
-begin
-  Index  := 0;
-  result := nil;
-  SetLength(result, Index + 10);
-  for I := Low(AStr) to High(AStr) do
-  begin
-
-    if AStr[I] in ['/', '.'] then
-    begin
-      Inc(Index);
-      if Index = Length(result) then
-        SetLength(result, Index + 10);
-      if AStr[I] <> ' ' then
-      begin
-        result[Index] := AStr[I];
-        Inc(Index);
-        if Index = Length(result) then
-           SetLength(result, Index + 10);
-      end;
-      result[Index] := '';
-    end else
-      result[Index] := result[Index] + AStr[I];
-
-  end;
-  SetLength(result, Index + 1);
-end;
-
-procedure TMainForm.AddClassFunction(const AClassName, ALongSymbol, AShortSymbol: string);
-var
-  FormatArgs: string;
-  Factors, StrArray: TStringArray;
-  I, Index, J, Count, Offset: longint;
-  Exponent: longint;
-  ShortSymbol: string;
-  LongSymbol: TStringArray;
-  PluralName: boolean;
-begin
-  Count  := 0;
-  Offset := Pos('%s', AShortSymbol, 1);
-  while OffSet <> 0 do
-  begin
-    Count  := Count + 1;
-    Offset := Pos('%s', AShortSymbol, Offset + Length('&s'));
-  end;
-
-  // Symbol
-  if Count > 0 then
-  begin
-    FormatArgs := '';
-    for I := 0 to Count - 1 do
-      FormatArgs := FormatArgs + 'PrefixTable[APrefixes[' + IntToStr(I) + ']].Symbol, ';
-    SetLength(FormatArgs, Max(0, Length(FormatArgs) - 2));
-  end;
-
-  ShortSymbol := AShortSymbol;
-  ShortSymbol := StringReplace(ShortSymbol, '.', '·', [rfReplaceAll]);
-
-  SectionB1.Append('');
-  SectionB1.Append('{ Unit of ' + GetUnitDescription(AClassName) + ' }');
-  SectionB1.Append('');
-  SectionB1.Append('class function ' + GetUnitClassName(AClassName) + '.GetSymbol(const APrefixes: TPrefixes): string; static;');
-  SectionB1.Append('begin');
-  if Count > 0 then
-  begin
-  SectionB1.Append('  if Length(APrefixes) = ' + IntToStr(Count) + ' then');
-  SectionB1.Append('    result := Format(''' + ShortSymbol + ''', [' + FormatArgs + '])');
-  SectionB1.Append('  else');
-  SectionB1.Append('    result := ''' + StringReplace(StringReplace(ShortSymbol, '%sg', 'kg', [rfReplaceAll]), '%s','', [rfReplaceAll]) + ''';');
-  end else
-  begin
-  SectionB1.Append('  result := ''' + StringReplace(StringReplace(ShortSymbol, '%sg', 'kg', [rfReplaceAll]), '%s','', [rfReplaceAll]) + ''';');
-  end;
-  SectionB1.Append('end;');
-  SectionB1.Append('');
-
-  // Name
-  if Count > 0 then
-  begin
-    FormatArgs := '';
-    for I := 0 to Count - 1 do
-      FormatArgs := FormatArgs + 'PrefixTable[APrefixes[' + IntToStr(I) + ']].Name, ';
-    SetLength(FormatArgs, Max(0, Length(FormatArgs) - 2));
-  end;
-
-  SectionB1.Append('');
-  SectionB1.Append('class function ' + GetUnitClassName(AClassName) + '.GetName(const AValue: double; const APrefixes: TPrefixes): string; static;');
-  SectionB1.Append('begin');
-
-  SetLength(LongSymbol, 4);
-  LongSymbol[0] := StringReplace(StringReplace(ALongSymbol,   'inch!',  'inches',   [rfReplaceAll]), 'foot!', 'feet', [rfReplaceAll]);
-  LongSymbol[0] := StringReplace(StringReplace(ALongSymbol,   'y!',     'ies',      [rfReplaceAll]), '?',  's', [rfReplaceAll]);
-  LongSymbol[1] := StringReplace(StringReplace(ALongSymbol,   '!',      '',         [rfReplaceAll]), '?',  '',  [rfReplaceAll]);
-
-  LongSymbol[2] := ALongSymbol;
-  LongSymbol[2] := StringReplace(StringReplace(ALongSymbol,   'inch!',  'inches',   [rfReplaceAll]), 'foot!', 'feet', [rfReplaceAll]);
-  LongSymbol[2] := StringReplace(StringReplace(LongSymbol[2], 'y!',     'ies',      [rfReplaceAll]), '?',  's', [rfReplaceAll]);
-  LongSymbol[2] := StringReplace(StringReplace(LongSymbol[2], '%sgram', 'kilogram', [rfReplaceAll]), '%s', '',  [rfReplaceAll]);
-
-  LongSymbol[3] := ALongSymbol;
-  LongSymbol[3] := StringReplace(StringReplace(LongSymbol[3], '!',      '',         [rfReplaceAll]), '?',  '',  [rfReplaceAll]);
-  LongSymbol[3] := StringReplace(StringReplace(LongSymbol[3], '%sgram', 'kilogram', [rfReplaceAll]), '%s', '',  [rfReplaceAll]);
-
-  PluralName := AddPluralName.Checked and (LongSymbol[0] <> LongSymbol[1]);
-  if PluralName then
-  begin
-    if Count > 0 then
-    begin
-    SectionB1.Append('  if Length(APrefixes) = ' + IntToStr(Count) + ' then');
-    SectionB1.Append('  begin');
-    SectionB1.Append('    if (AValue > 1) or (AValue < -1) then');
-    SectionB1.Append('      result := Format(''' + LongSymbol[0] + ''', [' + FormatArgs + '])');
-    SectionB1.Append('    else ');
-    SectionB1.Append('      result := Format(''' + LongSymbol[1] + ''', [' + FormatArgs + ']);');
-    SectionB1.Append('  end else ');
-    SectionB1.Append('  begin');
-    SectionB1.Append('    if (AValue > 1) or (AValue < -1) then');
-    SectionB1.Append('      result := ''' + LongSymbol[2] + '''');
-    SectionB1.Append('    else ');
-    SectionB1.Append('      result := ''' + LongSymbol[3] + ''';');
-    SectionB1.Append('  end;');
-    end else
-    begin
-    SectionB1.Append('  if (AValue > 1) or (AValue < -1) then');
-    SectionB1.Append('    result := ''' + LongSymbol[2] + '''');
-    SectionB1.Append('  else ');
-    SectionB1.Append('    result := ''' + LongSymbol[3] + ''';');
-    end;
-  end else
-  begin
-    if Count > 0 then
-    begin
-      SectionB1.Append('  if Length(APrefixes) = ' + IntToStr(Count) + ' then');
-      SectionB1.Append('    result := Format(''' + LongSymbol[1] + ''', [' + FormatArgs + '])');
-      SectionB1.Append('  else ');
-      SectionB1.Append('    result := ''' + LongSymbol[3] + ''';');
-    end else
-    begin
-      SectionB1.Append('  result := ''' + LongSymbol[3] + ''';');
-    end;
-  end;
-  SectionB1.Append('end;');
-  SectionB1.Append('');
-  LongSymbol := nil;
-
-  // Factor
-  StrArray := Split(AShortSymbol);
-  SetLength(Factors, Count);
-  FormatArgs := '';
-  Exponent   := 1;
-
-  J := -1;
-  Index :=  0;
-  for I := Low(StrArray) to High(StrArray) do
-  begin
-    if (StrArray[I] = '.') then
-      Exponent := +1
-    else
-      if (StrArray[I] = '/') then
-        Exponent := -1
-      else
-        if Pos('%s', StrArray[I]) > 0 then
-        begin
-          if StrArray[I][Length(StrArray[I])] in ['2', '3', '4', '5', '6', '7', '8', '9'] then
-            Exponent := Exponent * (Ord(StrArray[I][Length(StrArray[I])]) - Ord('0'));
-
-          if (StrArray[I] = '%sg' ) or
-             (StrArray[I] = '%sg2') then
-          begin
-            if (StrArray[I] = '%sg' ) then FormatArgs := '* 1E+03';
-            if (StrArray[I] = '%sg2') then FormatArgs := '* 1E+06';
-            J := Index;
-          end;
-
-          if Exponent > 1 then
-            Factors[Index] := '/ IntPower(PrefixTable[APrefixes[' + IntToStr(Index) + ']].Factor, ' + IntToStr(Abs(Exponent)) + ')'
-          else
-            if Exponent = 1 then
-              Factors[Index] := '/ PrefixTable[APrefixes[' + IntToStr(Index) + ']].Factor'
-            else
-              if Exponent = -1 then
-                Factors[Index] := '* PrefixTable[APrefixes[' + IntToStr(Index) + ']].Factor'
-              else
-                if Exponent < -1 then
-                  Factors[Index] := '* IntPower(PrefixTable[APrefixes[' + IntToStr(Index) + ']].Factor, ' + IntToStr(Abs(Exponent)) + ')';
-
-          Exponent := 1;
-          Inc(Index);
-        end;
-
-  end;
-
-  SectionB1.Append('');
-  SectionB1.Append('class function ' + GetUnitClassName(AClassName) + '.GetValue(const AValue: double; const APrefixes: TPrefixes): double; static;');
-  SectionB1.Append('begin');
-  SectionB1.Append('  result := AValue;');
-  if Count > 0 then
-  begin
-    SectionB1.Append('  if Length(APrefixes) = ' + IntToStr(Index) + ' then');
-    SectionB1.Append('  begin');
-    for I := 0 to Count -1 do
-    begin
-      if I = J then
-      begin
-        SectionB1.Append('    if (APrefixes[' + IntToStr(I) + '] <> pKilo) then');
-        SectionB1.Append('      result := result ' + FormatArgs + ' ' + Factors[I] + ';');
-
-        if I < (Count -1) then SectionB1.Append('');
-      end else
-      begin
-        SectionB1.Append('    if (APrefixes[' + IntToStr(I) + '] <> pNone) then result := result ' + Factors[I] + ';');
-      end;
-    end;
-    SectionB1.Append('  end;');
-  end;
-  SectionB1.Append('end;');
-  SectionB1.Append('');
-  Factors := nil;
 end;
 
 procedure TMainForm.AddFactoredQuantity(ABaseClass, AIdentifierSymbol, AFactor, APrefixes: string);
