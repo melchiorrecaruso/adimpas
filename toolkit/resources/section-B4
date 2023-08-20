@@ -1,51 +1,31 @@
 { Trigonometric functions } 
 
 function Cos(const AQuantity: TRadians): double;
-begin
-  result := System.Cos(AQuantity.FValue);
-end;
+begin result := System.Cos(AQuantity.FValue); end;
 
 function Sin(const AQuantity: TRadians): double;
-begin
-  result := System.Sin(AQuantity.FValue);
-end;
+begin result := System.Sin(AQuantity.FValue); end;
 
 function Tan(const AQuantity: TRadians): double;
-begin
-  result := Math.Tan(AQuantity.FValue);
-end;
+begin result := Math.Tan(AQuantity.FValue); end;
 
 function Cotan(const AQuantity: TRadians): double;
-begin
-  result := Math.Cotan(AQuantity.FValue);
-end;
+begin result := Math.Cotan(AQuantity.FValue); end;
 
 function Secant(const AQuantity: TRadians): double;
-begin
-  result := Math.Secant(AQuantity.FValue);
-end;
+begin result := Math.Secant(AQuantity.FValue); end;
 
 function Cosecant(const AQuantity: TRadians): double;
-begin
-  result := Math.Cosecant(AQuantity.FValue);
-end;
+begin result := Math.Cosecant(AQuantity.FValue); end;
 
 function ArcCos(const AValue: double): TRadians;
-begin
-  result.FValue := Math.ArcCos(AValue);
-end;
+begin result.FValue := Math.ArcCos(AValue); end;
 
 function ArcSin(const AValue: double): TRadians;
-begin
-  result.FValue := Math.ArcSin(AValue);
-end;
+begin result.FValue := Math.ArcSin(AValue); end;
 
 function ArcTan(const AValue: double): TRadians;
-begin
-  result.FValue := System.ArcTan(AValue);
-end;
+begin result.FValue := System.ArcTan(AValue); end;
 
 function ArcTan2(const x, y: double): TRadians;
-begin
-  result.FValue := Math.ArcTan2(x, y);
-end;
+begin result.FValue := Math.ArcTan2(x, y); end;

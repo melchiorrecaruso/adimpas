@@ -18,7 +18,7 @@
 }
 
 {
-  ADimPas library built on 19/08/2023.
+  ADimPas library built on 20/08/2023.
 
   Number of base units: 108
   Number of factored units: 61
@@ -4582,14 +4582,10 @@ operator /(const ALeft: TRadiansPerSecond; const ARight: THertz): TRadians;
 begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator :=(const AQuantity: TRadiansPerSecond): THertz; inline;
-begin
-  result.FValue := AQuantity.FValue;
-end;
+begin result.FValue := AQuantity.FValue; end;
 
 operator :=(const AQuantity: THertz): TRadiansPerSecond; inline;
-begin
-  result.FValue := AQuantity.FValue;
-end;
+begin result.FValue := AQuantity.FValue; end;
 
 // main definition [ rad/s2 ] = [ rad/s ] / [ s ]
 
@@ -7286,592 +7282,358 @@ begin result.FValue := ALeft.FValue / ARight.FValue; end;
 { Helpers }
 
 function TSecondHelper.ToDay: specialize TQuantity<TDayUnit>;
-begin
-  result.FValue := FValue / TDayUnit.ToBaseFactor;
-end;
+begin result.FValue := FValue / TDayUnit.ToBaseFactor; end;
 
 function TSecondHelper.ToHour: specialize TQuantity<THourUnit>;
-begin
-  result.FValue := FValue / THourUnit.ToBaseFactor;
-end;
+begin result.FValue := FValue / THourUnit.ToBaseFactor; end;
 
 function TSecondHelper.ToMinute: specialize TQuantity<TMinuteUnit>;
-begin
-  result.FValue := FValue / TMinuteUnit.ToBaseFactor;
-end;
+begin result.FValue := FValue / TMinuteUnit.ToBaseFactor; end;
 
 function TSquareSecondHelper.ToSquareDay: specialize TQuantity<TSquareDayUnit>;
-begin
-  result.FValue := FValue / TSquareDayUnit.ToBaseFactor;
-end;
+begin result.FValue := FValue / TSquareDayUnit.ToBaseFactor; end;
 
 function TSquareSecondHelper.ToSquareHour: specialize TQuantity<TSquareHourUnit>;
-begin
-  result.FValue := FValue / TSquareHourUnit.ToBaseFactor;
-end;
+begin result.FValue := FValue / TSquareHourUnit.ToBaseFactor; end;
 
 function TSquareSecondHelper.ToSquareMinute: specialize TQuantity<TSquareMinuteUnit>;
-begin
-  result.FValue := FValue / TSquareMinuteUnit.ToBaseFactor;
-end;
+begin result.FValue := FValue / TSquareMinuteUnit.ToBaseFactor; end;
 
 function TMeterHelper.ToAstronomical: specialize TQuantity<TAstronomicalUnit>;
-begin
-  result.FValue := FValue / TAstronomicalUnit.ToBaseFactor;
-end;
+begin result.FValue := FValue / TAstronomicalUnit.ToBaseFactor; end;
 
 function TMeterHelper.ToInch: specialize TQuantity<TInchUnit>;
-begin
-  result.FValue := FValue / TInchUnit.ToBaseFactor;
-end;
+begin result.FValue := FValue / TInchUnit.ToBaseFactor; end;
 
 function TMeterHelper.ToFoot: specialize TQuantity<TFootUnit>;
-begin
-  result.FValue := FValue / TFootUnit.ToBaseFactor;
-end;
+begin result.FValue := FValue / TFootUnit.ToBaseFactor; end;
 
 function TMeterHelper.ToYard: specialize TQuantity<TYardUnit>;
-begin
-  result.FValue := FValue / TYardUnit.ToBaseFactor;
-end;
+begin result.FValue := FValue / TYardUnit.ToBaseFactor; end;
 
 function TMeterHelper.ToMile: specialize TQuantity<TMileUnit>;
-begin
-  result.FValue := FValue / TMileUnit.ToBaseFactor;
-end;
+begin result.FValue := FValue / TMileUnit.ToBaseFactor; end;
 
 function TMeterHelper.ToNauticalMile: specialize TQuantity<TNauticalMileUnit>;
-begin
-  result.FValue := FValue / TNauticalMileUnit.ToBaseFactor;
-end;
+begin result.FValue := FValue / TNauticalMileUnit.ToBaseFactor; end;
 
 function TSquareMeterHelper.ToSquareInch: specialize TQuantity<TSquareInchUnit>;
-begin
-  result.FValue := FValue / TSquareInchUnit.ToBaseFactor;
-end;
+begin result.FValue := FValue / TSquareInchUnit.ToBaseFactor; end;
 
 function TSquareMeterHelper.ToSquareFoot: specialize TQuantity<TSquareFootUnit>;
-begin
-  result.FValue := FValue / TSquareFootUnit.ToBaseFactor;
-end;
+begin result.FValue := FValue / TSquareFootUnit.ToBaseFactor; end;
 
 function TSquareMeterHelper.ToSquareYard: specialize TQuantity<TSquareYardUnit>;
-begin
-  result.FValue := FValue / TSquareYardUnit.ToBaseFactor;
-end;
+begin result.FValue := FValue / TSquareYardUnit.ToBaseFactor; end;
 
 function TSquareMeterHelper.ToSquareMile: specialize TQuantity<TSquareMileUnit>;
-begin
-  result.FValue := FValue / TSquareMileUnit.ToBaseFactor;
-end;
+begin result.FValue := FValue / TSquareMileUnit.ToBaseFactor; end;
 
 function TCubicMeterHelper.ToCubicInch: specialize TQuantity<TCubicInchUnit>;
-begin
-  result.FValue := FValue / TCubicInchUnit.ToBaseFactor;
-end;
+begin result.FValue := FValue / TCubicInchUnit.ToBaseFactor; end;
 
 function TCubicMeterHelper.ToCubicFoot: specialize TQuantity<TCubicFootUnit>;
-begin
-  result.FValue := FValue / TCubicFootUnit.ToBaseFactor;
-end;
+begin result.FValue := FValue / TCubicFootUnit.ToBaseFactor; end;
 
 function TCubicMeterHelper.ToCubicYard: specialize TQuantity<TCubicYardUnit>;
-begin
-  result.FValue := FValue / TCubicYardUnit.ToBaseFactor;
-end;
+begin result.FValue := FValue / TCubicYardUnit.ToBaseFactor; end;
 
 function TCubicMeterHelper.ToLitre: specialize TQuantity<TLitreUnit>;
-begin
-  result.FValue := FValue / TLitreUnit.ToBaseFactor;
-end;
+begin result.FValue := FValue / TLitreUnit.ToBaseFactor; end;
 
 function TCubicMeterHelper.ToGallon: specialize TQuantity<TGallonUnit>;
-begin
-  result.FValue := FValue / TGallonUnit.ToBaseFactor;
-end;
+begin result.FValue := FValue / TGallonUnit.ToBaseFactor; end;
 
 function TKilogramHelper.ToTonne: specialize TQuantity<TTonneUnit>;
-begin
-  result.FValue := FValue / TTonneUnit.ToBaseFactor;
-end;
+begin result.FValue := FValue / TTonneUnit.ToBaseFactor; end;
 
 function TKilogramHelper.ToPound: specialize TQuantity<TPoundUnit>;
-begin
-  result.FValue := FValue / TPoundUnit.ToBaseFactor;
-end;
+begin result.FValue := FValue / TPoundUnit.ToBaseFactor; end;
 
 function TKilogramHelper.ToOunce: specialize TQuantity<TOunceUnit>;
-begin
-  result.FValue := FValue / TOunceUnit.ToBaseFactor;
-end;
+begin result.FValue := FValue / TOunceUnit.ToBaseFactor; end;
 
 function TKilogramHelper.ToStone: specialize TQuantity<TStoneUnit>;
-begin
-  result.FValue := FValue / TStoneUnit.ToBaseFactor;
-end;
+begin result.FValue := FValue / TStoneUnit.ToBaseFactor; end;
 
 function TKilogramHelper.ToTon: specialize TQuantity<TTonUnit>;
-begin
-  result.FValue := FValue / TTonUnit.ToBaseFactor;
-end;
+begin result.FValue := FValue / TTonUnit.ToBaseFactor; end;
 
 function TDegreeCelsiusHelper.ToKelvin: specialize TQuantity<TKelvinUnit>;
-begin
-  result.FValue := FValue + 273.15;
-end;
+begin result.FValue := FValue + 273.15; end;
 
 function TKelvinHelper.ToDegreeCelsius: specialize TQuantity<TDegreeCelsiusUnit>;
-begin
-  result.FValue := FValue - 273.15;
-end;
+begin result.FValue := FValue - 273.15; end;
 
 function TDegreeFahrenheitHelper.ToKelvin: specialize TQuantity<TKelvinUnit>;
-begin
-  result.FValue := 5/9 * (FValue - 32) + 273.15;
-end;
+begin result.FValue := 5/9 * (FValue - 32) + 273.15; end;
 
 function TKelvinHelper.ToDegreeFahrenheit: specialize TQuantity<TDegreeFahrenheitUnit>;
-begin
-  result.FValue := 9/5 * FValue - 459.67;
-end;
+begin result.FValue := 9/5 * FValue - 459.67; end;
 
 function TRadianHelper.ToDegree: specialize TQuantity<TDegreeUnit>;
-begin
-  result.FValue := FValue / TDegreeUnit.ToBaseFactor;
-end;
+begin result.FValue := FValue / TDegreeUnit.ToBaseFactor; end;
 
 function TSteradianHelper.ToSquareDegree: specialize TQuantity<TSquareDegreeUnit>;
-begin
-  result.FValue := FValue / TSquareDegreeUnit.ToBaseFactor;
-end;
+begin result.FValue := FValue / TSquareDegreeUnit.ToBaseFactor; end;
 
 function TSquareHertzHelper.ToRadianPerSecondSquared: specialize TQuantity<TRadianPerSecondSquaredUnit>;
-begin
-  result.FValue := FValue;
-end;
+begin result.FValue := FValue; end;
 
 function TSquareHertzHelper.ToSteradianPerSquareSecond: specialize TQuantity<TSteradianPerSquareSecondUnit>;
-begin
-  result.FValue := FValue;
-end;
+begin result.FValue := FValue; end;
 
 function TMeterPerSecondHelper.ToMeterPerHour: specialize TQuantity<TMeterPerHourUnit>;
-begin
-  result.FValue := FValue / TMeterPerHourUnit.ToBaseFactor;
-end;
+begin result.FValue := FValue / TMeterPerHourUnit.ToBaseFactor; end;
 
 function TMeterPerSecondHelper.ToMilePerHour: specialize TQuantity<TMilePerHourUnit>;
-begin
-  result.FValue := FValue / TMilePerHourUnit.ToBaseFactor;
-end;
+begin result.FValue := FValue / TMilePerHourUnit.ToBaseFactor; end;
 
 function TMeterPerSecondHelper.ToNauticalMilePerHour: specialize TQuantity<TNauticalMilePerHourUnit>;
-begin
-  result.FValue := FValue / TNauticalMilePerHourUnit.ToBaseFactor;
-end;
+begin result.FValue := FValue / TNauticalMilePerHourUnit.ToBaseFactor; end;
 
 function TMeterPerSecondSquaredHelper.ToMeterPerSecondPerSecond: specialize TQuantity<TMeterPerSecondPerSecondUnit>;
-begin
-  result.FValue := FValue;
-end;
+begin result.FValue := FValue; end;
 
 function TMeterPerSecondSquaredHelper.ToMeterPerHourPerSecond: specialize TQuantity<TMeterPerHourPerSecondUnit>;
-begin
-  result.FValue := FValue / TMeterPerHourPerSecondUnit.ToBaseFactor;
-end;
+begin result.FValue := FValue / TMeterPerHourPerSecondUnit.ToBaseFactor; end;
 
 function TKilogramMeterPerSecondHelper.ToNewtonSecond: specialize TQuantity<TNewtonSecondUnit>;
-begin
-  result.FValue := FValue;
-end;
+begin result.FValue := FValue; end;
 
 function TNewtonHelper.ToPoundForce: specialize TQuantity<TPoundForceUnit>;
-begin
-  result.FValue := FValue / TPoundForceUnit.ToBaseFactor;
-end;
+begin result.FValue := FValue / TPoundForceUnit.ToBaseFactor; end;
 
 function TPascalHelper.ToBar: specialize TQuantity<TBarUnit>;
-begin
-  result.FValue := FValue / TBarUnit.ToBaseFactor;
-end;
+begin result.FValue := FValue / TBarUnit.ToBaseFactor; end;
 
 function TPascalHelper.ToPoundPerSquareInch: specialize TQuantity<TPoundPerSquareInchUnit>;
-begin
-  result.FValue := FValue / TPoundPerSquareInchUnit.ToBaseFactor;
-end;
+begin result.FValue := FValue / TPoundPerSquareInchUnit.ToBaseFactor; end;
 
 function TJouleHelper.ToWattHour: specialize TQuantity<TWattHourUnit>;
-begin
-  result.FValue := FValue / TWattHourUnit.ToBaseFactor;
-end;
+begin result.FValue := FValue / TWattHourUnit.ToBaseFactor; end;
 
 function TJouleHelper.ToElettronvolt: specialize TQuantity<TElettronvoltUnit>;
-begin
-  result.FValue := FValue / TElettronvoltUnit.ToBaseFactor;
-end;
+begin result.FValue := FValue / TElettronvoltUnit.ToBaseFactor; end;
 
 function TJouleHelper.ToNewtonMeter: specialize TQuantity<TNewtonMeterUnit>;
-begin
-  result.FValue := FValue;
-end;
+begin result.FValue := FValue; end;
 
 function TJouleHelper.ToPoundForceInch: specialize TQuantity<TPoundForceInchUnit>;
-begin
-  result.FValue := FValue / TPoundForceInchUnit.ToBaseFactor;
-end;
+begin result.FValue := FValue / TPoundForceInchUnit.ToBaseFactor; end;
 
 function TCoulombHelper.ToAmpereHour: specialize TQuantity<TAmpereHourUnit>;
-begin
-  result.FValue := FValue / TAmpereHourUnit.ToBaseFactor;
-end;
+begin result.FValue := FValue / TAmpereHourUnit.ToBaseFactor; end;
 
 function THertzHelper.ToBequerel: specialize TQuantity<TBequerelUnit>;
-begin
-  result.FValue := FValue;
-end;
+begin result.FValue := FValue; end;
 
 function TSquareMeterPerSquareSecondHelper.ToGray: specialize TQuantity<TGrayUnit>;
-begin
-  result.FValue := FValue;
-end;
+begin result.FValue := FValue; end;
 
 function TSquareMeterPerSquareSecondHelper.ToSievert: specialize TQuantity<TSievertUnit>;
-begin
-  result.FValue := FValue;
-end;
+begin result.FValue := FValue; end;
 
 function TJoulePerRadianHelper.ToJoulePerDegree: specialize TQuantity<TJoulePerDegreeUnit>;
-begin
-  result.FValue := FValue / TJoulePerDegreeUnit.ToBaseFactor;
-end;
+begin result.FValue := FValue / TJoulePerDegreeUnit.ToBaseFactor; end;
 
 function TJoulePerRadianHelper.ToNewtonMeterPerRadian: specialize TQuantity<TNewtonMeterPerRadianUnit>;
-begin
-  result.FValue := FValue;
-end;
+begin result.FValue := FValue; end;
 
 function TJoulePerRadianHelper.ToNewtonMeterPerDegree: specialize TQuantity<TNewtonMeterPerDegreeUnit>;
-begin
-  result.FValue := FValue / TNewtonMeterPerDegreeUnit.ToBaseFactor;
-end;
+begin result.FValue := FValue / TNewtonMeterPerDegreeUnit.ToBaseFactor; end;
 
 function TNewtonPerMeterHelper.ToPoundForcePerInch: specialize TQuantity<TPoundForcePerInchUnit>;
-begin
-  result.FValue := FValue / TPoundForcePerInchUnit.ToBaseFactor;
-end;
+begin result.FValue := FValue / TPoundForcePerInchUnit.ToBaseFactor; end;
 
 function TPoiseuilleHelper.ToPascalSecond: specialize TQuantity<TPascalSecondUnit>;
-begin
-  result.FValue := FValue;
-end;
+begin result.FValue := FValue; end;
 
 function TSquareMeterPerSquareSecondHelper.ToJoulePerKilogram: specialize TQuantity<TJoulePerKilogramUnit>;
-begin
-  result.FValue := FValue;
-end;
+begin result.FValue := FValue; end;
 
 function TVoltPerMeterHelper.ToNewtonPerCoulomb: specialize TQuantity<TNewtonPerCoulombUnit>;
-begin
-  result.FValue := FValue;
-end;
+begin result.FValue := FValue; end;
 
 function TVoltMeterHelper.ToNewtonSquareMeterPerCoulomb: specialize TQuantity<TNewtonSquareMeterPerCoulombUnit>;
-begin
-  result.FValue := FValue;
-end;
+begin result.FValue := FValue; end;
 
 function TTeslaMeterHelper.ToNewtonPerAmpere: specialize TQuantity<TNewtonPerAmpereUnit>;
-begin
-  result.FValue := FValue;
-end;
+begin result.FValue := FValue; end;
 
 function THenryPerMeterHelper.ToTeslaMeterPerAmpere: specialize TQuantity<TTeslaMeterPerAmpereUnit>;
-begin
-  result.FValue := FValue;
-end;
+begin result.FValue := FValue; end;
 
 function THenryPerMeterHelper.ToNewtonPerSquareAmpere: specialize TQuantity<TNewtonPerSquareAmpereUnit>;
-begin
-  result.FValue := FValue;
-end;
+begin result.FValue := FValue; end;
 
 function TJouleSecondHelper.ToElettronvoltSecond: specialize TQuantity<TElettronvoltSecondUnit>;
-begin
-  result.FValue := FValue / TElettronvoltSecondUnit.ToBaseFactor;
-end;
+begin result.FValue := FValue / TElettronvoltSecondUnit.ToBaseFactor; end;
 
 { Power quantities }
 
 function SquarePower(AQuantity: TSeconds): TSquareSeconds;
-begin
-  result.FValue := IntPower(AQuantity.FValue, 2);
-end;
+begin result.FValue := IntPower(AQuantity.FValue, 2); end;
 
 function SquareRoot(AQuantity: TSquareSeconds): TSeconds;
-begin
-  result.FValue := Power(AQuantity.FValue, 1/2);
-end;
+begin result.FValue := Power(AQuantity.FValue, 1/2); end;
 
 function SquarePower(AQuantity: TMeters): TSquareMeters;
-begin
-  result.FValue := IntPower(AQuantity.FValue, 2);
-end;
+begin result.FValue := IntPower(AQuantity.FValue, 2); end;
 
 function SquareRoot(AQuantity: TSquareMeters): TMeters;
-begin
-  result.FValue := Power(AQuantity.FValue, 1/2);
-end;
+begin result.FValue := Power(AQuantity.FValue, 1/2); end;
 
 function CubicPower(AQuantity: TMeters): TCubicMeters;
-begin
-  result.FValue := IntPower(AQuantity.FValue, 3);
-end;
+begin result.FValue := IntPower(AQuantity.FValue, 3); end;
 
 function CubicRoot(AQuantity: TCubicMeters): TMeters;
-begin
-  result.FValue := Power(AQuantity.FValue, 1/3);
-end;
+begin result.FValue := Power(AQuantity.FValue, 1/3); end;
 
 function SquarePower(AQuantity: TSquareMeters): TQuarticMeters;
-begin
-  result.FValue := IntPower(AQuantity.FValue, 2);
-end;
+begin result.FValue := IntPower(AQuantity.FValue, 2); end;
 
 function SquareRoot(AQuantity: TQuarticMeters): TSquareMeters;
-begin
-  result.FValue := Power(AQuantity.FValue, 1/2);
-end;
+begin result.FValue := Power(AQuantity.FValue, 1/2); end;
 
 function QuarticPower(AQuantity: TMeters): TQuarticMeters;
-begin
-  result.FValue := IntPower(AQuantity.FValue, 4);
-end;
+begin result.FValue := IntPower(AQuantity.FValue, 4); end;
 
 function QuarticRoot(AQuantity: TQuarticMeters): TMeters;
-begin
-  result.FValue := Power(AQuantity.FValue, 1/4);
-end;
+begin result.FValue := Power(AQuantity.FValue, 1/4); end;
 
 function QuinticPower(AQuantity: TMeters): TQuinticMeters;
-begin
-  result.FValue := IntPower(AQuantity.FValue, 5);
-end;
+begin result.FValue := IntPower(AQuantity.FValue, 5); end;
 
 function QuinticRoot(AQuantity: TQuinticMeters): TMeters;
-begin
-  result.FValue := Power(AQuantity.FValue, 1/5);
-end;
+begin result.FValue := Power(AQuantity.FValue, 1/5); end;
 
 function SquarePower(AQuantity: TCubicMeters): TSexticMeters;
-begin
-  result.FValue := IntPower(AQuantity.FValue, 2);
-end;
+begin result.FValue := IntPower(AQuantity.FValue, 2); end;
 
 function SquareRoot(AQuantity: TSexticMeters): TCubicMeters;
-begin
-  result.FValue := Power(AQuantity.FValue, 1/2);
-end;
+begin result.FValue := Power(AQuantity.FValue, 1/2); end;
 
 function CubicPower(AQuantity: TSquareMeters): TSexticMeters;
-begin
-  result.FValue := IntPower(AQuantity.FValue, 3);
-end;
+begin result.FValue := IntPower(AQuantity.FValue, 3); end;
 
 function CubicRoot(AQuantity: TSexticMeters): TSquareMeters;
-begin
-  result.FValue := Power(AQuantity.FValue, 1/3);
-end;
+begin result.FValue := Power(AQuantity.FValue, 1/3); end;
 
 function SexticPower(AQuantity: TMeters): TSexticMeters;
-begin
-  result.FValue := IntPower(AQuantity.FValue, 6);
-end;
+begin result.FValue := IntPower(AQuantity.FValue, 6); end;
 
 function SexticRoot(AQuantity: TSexticMeters): TMeters;
-begin
-  result.FValue := Power(AQuantity.FValue, 1/6);
-end;
+begin result.FValue := Power(AQuantity.FValue, 1/6); end;
 
 function SquarePower(AQuantity: TAmperes): TSquareAmperes;
-begin
-  result.FValue := IntPower(AQuantity.FValue, 2);
-end;
+begin result.FValue := IntPower(AQuantity.FValue, 2); end;
 
 function SquareRoot(AQuantity: TSquareAmperes): TAmperes;
-begin
-  result.FValue := Power(AQuantity.FValue, 1/2);
-end;
+begin result.FValue := Power(AQuantity.FValue, 1/2); end;
 
 function SquarePower(AQuantity: TKelvins): TSquareKelvins;
-begin
-  result.FValue := IntPower(AQuantity.FValue, 2);
-end;
+begin result.FValue := IntPower(AQuantity.FValue, 2); end;
 
 function SquareRoot(AQuantity: TSquareKelvins): TKelvins;
-begin
-  result.FValue := Power(AQuantity.FValue, 1/2);
-end;
+begin result.FValue := Power(AQuantity.FValue, 1/2); end;
 
 function CubicPower(AQuantity: TKelvins): TCubicKelvins;
-begin
-  result.FValue := IntPower(AQuantity.FValue, 3);
-end;
+begin result.FValue := IntPower(AQuantity.FValue, 3); end;
 
 function CubicRoot(AQuantity: TCubicKelvins): TKelvins;
-begin
-  result.FValue := Power(AQuantity.FValue, 1/3);
-end;
+begin result.FValue := Power(AQuantity.FValue, 1/3); end;
 
 function SquarePower(AQuantity: TSquareKelvins): TQuarticKelvins;
-begin
-  result.FValue := IntPower(AQuantity.FValue, 2);
-end;
+begin result.FValue := IntPower(AQuantity.FValue, 2); end;
 
 function SquareRoot(AQuantity: TQuarticKelvins): TSquareKelvins;
-begin
-  result.FValue := Power(AQuantity.FValue, 1/2);
-end;
+begin result.FValue := Power(AQuantity.FValue, 1/2); end;
 
 function QuarticPower(AQuantity: TKelvins): TQuarticKelvins;
-begin
-  result.FValue := IntPower(AQuantity.FValue, 4);
-end;
+begin result.FValue := IntPower(AQuantity.FValue, 4); end;
 
 function QuarticRoot(AQuantity: TQuarticKelvins): TKelvins;
-begin
-  result.FValue := Power(AQuantity.FValue, 1/4);
-end;
+begin result.FValue := Power(AQuantity.FValue, 1/4); end;
 
 function SquarePower(AQuantity: TRadians): TSteradians;
-begin
-  result.FValue := IntPower(AQuantity.FValue, 2);
-end;
+begin result.FValue := IntPower(AQuantity.FValue, 2); end;
 
 function SquareRoot(AQuantity: TSteradians): TRadians;
-begin
-  result.FValue := Power(AQuantity.FValue, 1/2);
-end;
+begin result.FValue := Power(AQuantity.FValue, 1/2); end;
 
 function SquarePower(AQuantity: THertz): TSquareHertz;
-begin
-  result.FValue := IntPower(AQuantity.FValue, 2);
-end;
+begin result.FValue := IntPower(AQuantity.FValue, 2); end;
 
 function SquareRoot(AQuantity: TSquareHertz): THertz;
-begin
-  result.FValue := Power(AQuantity.FValue, 1/2);
-end;
+begin result.FValue := Power(AQuantity.FValue, 1/2); end;
 
 function SquarePower(AQuantity: TMetersPerSecond): TSquareMetersPerSquareSecond;
-begin
-  result.FValue := IntPower(AQuantity.FValue, 2);
-end;
+begin result.FValue := IntPower(AQuantity.FValue, 2); end;
 
 function SquareRoot(AQuantity: TSquareMetersPerSquareSecond): TMetersPerSecond;
-begin
-  result.FValue := Power(AQuantity.FValue, 1/2);
-end;
+begin result.FValue := Power(AQuantity.FValue, 1/2); end;
 
 function SquarePower(AQuantity: TNewtons): TSquareNewtons;
-begin
-  result.FValue := IntPower(AQuantity.FValue, 2);
-end;
+begin result.FValue := IntPower(AQuantity.FValue, 2); end;
 
 function SquareRoot(AQuantity: TSquareNewtons): TNewtons;
-begin
-  result.FValue := Power(AQuantity.FValue, 1/2);
-end;
+begin result.FValue := Power(AQuantity.FValue, 1/2); end;
 
 function SquarePower(AQuantity: TCoulombs): TSquareCoulombs;
-begin
-  result.FValue := IntPower(AQuantity.FValue, 2);
-end;
+begin result.FValue := IntPower(AQuantity.FValue, 2); end;
 
 function SquareRoot(AQuantity: TSquareCoulombs): TCoulombs;
-begin
-  result.FValue := Power(AQuantity.FValue, 1/2);
-end;
+begin result.FValue := Power(AQuantity.FValue, 1/2); end;
 
 function SquarePower(AQuantity: TVolts): TSquareVolts;
-begin
-  result.FValue := IntPower(AQuantity.FValue, 2);
-end;
+begin result.FValue := IntPower(AQuantity.FValue, 2); end;
 
 function SquareRoot(AQuantity: TSquareVolts): TVolts;
-begin
-  result.FValue := Power(AQuantity.FValue, 1/2);
-end;
+begin result.FValue := Power(AQuantity.FValue, 1/2); end;
 
 function SquarePower(AQuantity: TKilogramsPerSecond): TSquareKilogramsPerSquareSecond;
-begin
-  result.FValue := IntPower(AQuantity.FValue, 2);
-end;
+begin result.FValue := IntPower(AQuantity.FValue, 2); end;
 
 function SquareRoot(AQuantity: TSquareKilogramsPerSquareSecond): TKilogramsPerSecond;
-begin
-  result.FValue := Power(AQuantity.FValue, 1/2);
-end;
+begin result.FValue := Power(AQuantity.FValue, 1/2); end;
 
 function SquarePower(AQuantity: TJoules): TSquareJoules;
-begin
-  result.FValue := IntPower(AQuantity.FValue, 2);
-end;
+begin result.FValue := IntPower(AQuantity.FValue, 2); end;
 
 function SquareRoot(AQuantity: TSquareJoules): TJoules;
-begin
-  result.FValue := Power(AQuantity.FValue, 1/2);
-end;
+begin result.FValue := Power(AQuantity.FValue, 1/2); end;
 
 { Trigonometric functions }
 
 function Cos(const AQuantity: TRadians): double;
-begin
-  result := System.Cos(AQuantity.FValue);
-end;
+begin result := System.Cos(AQuantity.FValue); end;
 
 function Sin(const AQuantity: TRadians): double;
-begin
-  result := System.Sin(AQuantity.FValue);
-end;
+begin result := System.Sin(AQuantity.FValue); end;
 
 function Tan(const AQuantity: TRadians): double;
-begin
-  result := Math.Tan(AQuantity.FValue);
-end;
+begin result := Math.Tan(AQuantity.FValue); end;
 
 function Cotan(const AQuantity: TRadians): double;
-begin
-  result := Math.Cotan(AQuantity.FValue);
-end;
+begin result := Math.Cotan(AQuantity.FValue); end;
 
 function Secant(const AQuantity: TRadians): double;
-begin
-  result := Math.Secant(AQuantity.FValue);
-end;
+begin result := Math.Secant(AQuantity.FValue); end;
 
 function Cosecant(const AQuantity: TRadians): double;
-begin
-  result := Math.Cosecant(AQuantity.FValue);
-end;
+begin result := Math.Cosecant(AQuantity.FValue); end;
 
 function ArcCos(const AValue: double): TRadians;
-begin
-  result.FValue := Math.ArcCos(AValue);
-end;
+begin result.FValue := Math.ArcCos(AValue); end;
 
 function ArcSin(const AValue: double): TRadians;
-begin
-  result.FValue := Math.ArcSin(AValue);
-end;
+begin result.FValue := Math.ArcSin(AValue); end;
 
 function ArcTan(const AValue: double): TRadians;
-begin
-  result.FValue := System.ArcTan(AValue);
-end;
+begin result.FValue := System.ArcTan(AValue); end;
 
 function ArcTan2(const x, y: double): TRadians;
-begin
-  result.FValue := Math.ArcTan2(x, y);
-end;
+begin result.FValue := Math.ArcTan2(x, y); end;
 
 end.
