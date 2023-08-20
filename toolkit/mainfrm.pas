@@ -281,8 +281,8 @@ end;
 function GetPluralName(const ALongSymbol: string): string;
 begin
   result := ALongSymbol;
-  result := StringReplace(StringReplace(result, 'inch!',  'inches',   [rfReplaceAll]), 'foot!', 'feet', [rfReplaceAll]);
-  result := StringReplace(StringReplace(result, 'y!',     'ies',      [rfReplaceAll]), '?',  's', [rfReplaceAll]);
+  result := StringReplace(StringReplace(result, 'inch!', 'inches', [rfReplaceAll]), 'foot!', 'feet', [rfReplaceAll]);
+  result := StringReplace(StringReplace(result, 'y!',    'ies',    [rfReplaceAll]), '?',     's',    [rfReplaceAll]);
 end;
 
 function Split(const AStr: string): TStringArray;
@@ -334,6 +334,7 @@ begin
     end;
   end;
   S := nil;
+
   while (Length(Result) > 0) and (Result[Low (Result)] = ' ') do
     Delete(Result, Low (Result), 1);
 
@@ -721,15 +722,11 @@ begin
   SectionA3.Append('function ' + S1 + 'Root(AQuantity: ' +  AResult + '): ' + AQuantity + ';');
 
   SectionB3.Append('function ' + S1 + 'Power(AQuantity: ' + AQuantity + '): ' + AResult + ';');
-  SectionB3.Append('begin');
-  SectionB3.Append('  result.FValue := IntPower(AQuantity.FValue, ' + S2 + ');');
-  SectionB3.Append('end;');
+  SectionB3.Append('begin result.FValue := IntPower(AQuantity.FValue, ' + S2 + '); end;');
   SectionB3.Append('');
 
   SectionB3.Append('function ' + S1 + 'Root(AQuantity: ' + AResult + '): ' + AQuantity + ';');
-  SectionB3.Append('begin');
-  SectionB3.Append('  result.FValue := Power(AQuantity.FValue, ' + S3 + ');');
-  SectionB3.Append('end;');
+  SectionB3.Append('begin result.FValue := Power(AQuantity.FValue, ' + S3 + '); end;');
   SectionB3.Append('');
 end;
 
@@ -753,33 +750,27 @@ begin
 
   SectionB2.Append('');
   SectionB2.Append('function ' + GetUnitClassNameHelper(ABaseClass) + '.To' + GetUnitDescription(AClassName) + ': specialize TQuantity<' + GetUnitClassName(AClassName) + '>;');
-  SectionB2.Append('begin');
 
   if AFactor = '' then
-    SectionB2.Append('  result.FValue := FValue;')
+    SectionB2.Append('begin result.FValue := FValue; end;')
   else
-    SectionB2.Append('  result.FValue := ' + AFactor + ';');
+    SectionB2.Append('begin result.FValue := ' + AFactor + '; end;');
 
-  SectionB2.Append('end;');
   SectionB2.Append('');
 end;
 
 procedure TMainForm.AddEquivalence(AClassName, ABaseClass: string);
 begin
   SectionA1.Append('operator :=(const AQuantity: ' + GetUnitQuantity(AClassName) + '): ' + GetUnitQuantity(ABaseClass) + '; inline;');
-
   SectionB1.Append('operator :=(const AQuantity: ' + GetUnitQuantity(AClassName) + '): ' + GetUnitQuantity(ABaseClass) + '; inline;');
-  SectionB1.Append('begin');
 
   if GetUnitQuantity(AClassName) = 'double' then
-    SectionB1.Append('  result.FValue := AQuantity;')
+    SectionB1.Append('begin result.FValue := AQuantity; end;')
   else
     if GetUnitQuantity(ABaseClass) = 'double' then
-      SectionB1.Append('  result := AQuantity.FValue;')
+      SectionB1.Append('begin result := AQuantity.FValue; end;')
     else
-      SectionB1.Append('  result.FValue := AQuantity.FValue;');
-
-  SectionB1.Append('end;');
+      SectionB1.Append('begin result.FValue := AQuantity.FValue; end;');
 end;
 
 { TMainForm }
