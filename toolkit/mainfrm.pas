@@ -106,6 +106,28 @@ const
   _factor            = 9;
   _prefixes          = 10;
 
+function GetUnitComment(S: string): string;
+var
+  I: longint;
+begin
+  S := StringReplace(S, '!',  '', [rfReplaceAll]);
+  S := StringReplace(S, '?',  '', [rfReplaceAll]);
+  S := StringReplace(S, ' ',  '', [rfReplaceAll]);
+  if Pos('T', S) = 1 then
+    Delete(S, 1, 1);
+
+  result := '';
+  for I := low(S) to high(S) do
+  begin
+    if S[I] = UpCase(S[I]) then
+      result := result + ' ';
+     result := result + LowerCase(S[I]);
+  end;
+
+  if Pos(' ', result) = 1 then
+    Delete(result, 1, 1);
+end;
+
 function GetUnitDescription(const S: string): string;
 begin
   Result := S;
@@ -397,7 +419,7 @@ begin
     begin
       SectionA1.Append('');
       SectionA1.Append('type');
-      SectionA1.Append('  { Unit of ' + GetUnitDescription(AClassName) + ' }');
+      SectionA1.Append('  { Unit of ' + GetUnitComment(AClassName) + ' }');
       SectionA1.Append('  ' + GetUnitClassName(AClassName) + ' = record');
       SectionA1.Append('    const Symbol       = ''' + GetSymbol(AShortSymbol) + ''';');
       SectionA1.Append('    const SingularName = ''' + GetSingularName(ALongSymbol) + ''';');
@@ -423,7 +445,7 @@ begin
       begin
         SectionA1.Append('');
         SectionA1.Append('type');
-        SectionA1.Append('  { Unit of ' + GetUnitDescription(AClassName) + ' }');
+        SectionA1.Append('  { Unit of ' + GetUnitComment(AClassName) + ' }');
         SectionA1.Append('  ' + GetUnitClassName(AClassName) + ' = record');
         SectionA1.Append('    const Symbol       = ''' + GetSymbol(AShortSymbol) + ''';');
         SectionA1.Append('    const SingularName = ''' + GetSingularName(ALongSymbol) + ''';');
@@ -447,7 +469,7 @@ begin
       begin
         SectionA1.Append('');
         SectionA1.Append('type');
-        SectionA1.Append('  { Unit of ' + GetUnitDescription(AClassName) + ' }');
+        SectionA1.Append('  { Unit of ' + GetUnitComment(AClassName) + ' }');
         SectionA1.Append('  ' + GetUnitClassName(AClassName) + ' = record');
         SectionA1.Append('    const Symbol       = ''' + GetSymbol(AShortSymbol) + ''';');
         SectionA1.Append('    const SingularName = ''' + GetSingularName(ALongSymbol) + ''';');

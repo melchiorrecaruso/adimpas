@@ -784,10 +784,12 @@ object MainForm: TMainForm
     TabOrder = 4
   end
   object SaveDialog: TSaveDialog
+    Filter = 'Lazarus unit (*.pas; *.pp)|*.pas;*.pp;'
     Left = 104
     Top = 200
   end
   object OpenDialog: TOpenDialog
+    Filter = 'Open Document spreadsheet|*.ods;|Microsoft Excel document|*.xls;'
     Left = 96
     Top = 264
   end
