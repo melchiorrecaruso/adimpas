@@ -22,7 +22,7 @@
 
   Number of base units: 122
   Number of factored units: 62
-  Number of operators: 956
+  Number of operators: 960
 }
 
 unit ADim;
@@ -4122,6 +4122,12 @@ operator *(const ALeft: TCoulombsPerMole; const ARight: TMoles): TCoulombs; inli
 operator /(const ALeft: TCoulombs; const ARight: TCoulombsPerMole): TMoles; inline;
 operator /(const ALeft: TCoulombs; const ARight: TMoleUnitId): TCoulombsPerMole; inline;
 
+// alternative definition [ C/mol ] = [ J/mol ] / [ V ]
+operator /(const ALeft: TJoulesPerMole; const ARight: TVolts): TCoulombsPerMole; inline;
+operator *(const ALeft: TVolts; const ARight: TCoulombsPerMole): TJoulesPerMole; inline;
+operator *(const ALeft: TCoulombsPerMole; const ARight: TVolts): TJoulesPerMole; inline;
+operator /(const ALeft: TJoulesPerMole; const ARight: TCoulombsPerMole): TVolts; inline;
+
 { Helpers }
 
 type
@@ -7939,6 +7945,20 @@ begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 operator /(const ALeft: TCoulombs; const ARight: TMoleUnitId): TCoulombsPerMole;
 begin result.FValue := ALeft.FValue; end;
+
+// alternative definition [ C/mol ] = [ J/mol ] / [ V ]
+
+operator /(const ALeft: TJoulesPerMole; const ARight: TVolts): TCoulombsPerMole;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
+
+operator *(const ALeft: TVolts; const ARight: TCoulombsPerMole): TJoulesPerMole;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
+
+operator *(const ALeft: TCoulombsPerMole; const ARight: TVolts): TJoulesPerMole;
+begin result.FValue := ALeft.FValue * ARight.FValue; end;
+
+operator /(const ALeft: TJoulesPerMole; const ARight: TCoulombsPerMole): TVolts;
+begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 { Helpers }
 
