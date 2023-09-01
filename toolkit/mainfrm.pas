@@ -14,7 +14,7 @@
   GNU General Public License for more details.
 
   You should have received a copy of the GNU Lesser General Public License
-  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  along with this program. If not, see <http://www.gnu.org/licenses/>.
 }
 
 unit MainFrm;
@@ -29,9 +29,17 @@ uses
   SynEdit;
 
 type
+  TDBItem = record
+    Name: string;
+    Exponents: array [1..7] of longint;
+  end;
+
+type
   { TMainForm }
 
   TMainForm = class(TForm)
+    Memo: TMemo;
+    TabSheet3: TTabSheet;
     WorkbookSource: TsWorkbookSource;
     WorksheetGrid: TsWorksheetGrid;
     TrigonometricCheckBox: TCheckBox;
@@ -52,6 +60,7 @@ type
     procedure RunBtnClick(Sender: TObject);
   private
     BaseUnitCount: longint;
+    CheckList: array of TDBItem;
     ClassList: TStringList;
     FactoredUnitCount: longint;
     OperatorCount: longint;
@@ -78,6 +87,10 @@ type
     procedure AddPower(AOperator, AQuantity, AResult: string);
     procedure AddHelper(AClassName, ABaseClass, AFactor: string);
     procedure AddEquivalence(AClassName, ABaseClass: string);
+
+    procedure CheckClass(AClassName, AOperator, AClassParent1, AClassParent2: string);
+    function GetIndex(const AClassName: string): longint;
+    function GetSIunit(Index: longint): string;
   public
 
   end;
@@ -94,17 +107,66 @@ uses
   LCLType, Math, StrUtils;
 
 const
-  _class_name        = 0;
-  _operator          = 1;
-  _class_parent_1    = 2;
-  _class_parent_2    = 3;
-  _comment           = 4;
-  _long_symbol       = 5;
-  _short_symbol      = 6;
-  _identifier_symbol = 7;
-  _base_class        = 8;
-  _factor            = 9;
+  _class_name        = 00;
+  _operator          = 01;
+  _class_parent_1    = 02;
+  _class_parent_2    = 03;
+  _comment           = 04;
+  _long_symbol       = 05;
+  _short_symbol      = 06;
+  _identifier_symbol = 07;
+  _base_class        = 08;
+  _factor            = 09;
   _prefixes          = 10;
+
+
+function Split(const AStr: string): TStringArray;
+var
+  I, Index: longint;
+begin
+  Index  := 0;
+  result := nil;
+  SetLength(result, Index + 10);
+  for I := Low(AStr) to High(AStr) do
+  begin
+
+    if AStr[I] in ['/', '.'] then
+    begin
+      Inc(Index);
+      if Index = Length(result) then
+        SetLength(result, Index + 10);
+      if AStr[I] <> ' ' then
+      begin
+        result[Index] := AStr[I];
+        Inc(Index);
+        if Index = Length(result) then
+           SetLength(result, Index + 10);
+      end;
+      result[Index] := '';
+    end else
+      result[Index] := result[Index] + AStr[I];
+   end;
+  SetLength(result, Index + 1);
+end;
+
+function GetSymbol(const AShortSymbol: string): string;
+begin
+  result := AShortSymbol;
+  result := StringReplace(result, '.', '·', [rfReplaceAll]);
+end;
+
+function GetSingularName(const ALongSymbol: string): string;
+begin
+  result := ALongSymbol;
+  result := StringReplace(StringReplace(result, '!', '', [rfReplaceAll]), '?', '', [rfReplaceAll]);
+end;
+
+function GetPluralName(const ALongSymbol: string): string;
+begin
+  result := ALongSymbol;
+  result := StringReplace(StringReplace(result, 'inch!', 'inches', [rfReplaceAll]), 'foot!', 'feet', [rfReplaceAll]);
+  result := StringReplace(StringReplace(result, 'y!',    'ies',    [rfReplaceAll]), '?',     's',    [rfReplaceAll]);
+end;
 
 function GetUnitComment(S: string): string;
 var
@@ -144,7 +206,9 @@ begin
   Result := StringReplace(Result, '!',  '', [rfReplaceAll]);
   Result := StringReplace(Result, '?',  '', [rfReplaceAll]);
   Result := StringReplace(Result, ' ',  '', [rfReplaceAll]);
-  Result := Result + 'Unit';
+
+  if Result = 'double' then Result := '';
+  if Result <> ''      then Result := Result + 'Unit';
 end;
 
 function GetUnitClassNameHelper(const S: string): string;
@@ -173,6 +237,77 @@ begin
   Result := StringReplace(Result, 'y!',    'ies',    [rfReplaceAll]);
   Result := StringReplace(Result, '?',     's',      [rfReplaceAll]);
   Result := StringReplace(Result, ' ',     '',       [rfReplaceAll]);
+end;
+
+function GetPrefixes(const AShortSymbol: string): string;
+var
+  I, J: longint;
+  S: TStringArray;
+begin
+  Result := '';
+  S := Split(AShortSymbol);
+  for I := Low(S) to High(S) do
+  begin
+    J := Pos('%s', S[I]);
+    if J > 0 then
+    begin
+      if (S[I] = '%sg') or (S[I] = '%sg2') then
+        result := result + ' pKilo,'
+      else
+        result := result + ' pNone,';
+    end;
+  end;
+  S := nil;
+
+  while (Length(Result) > 0) and (Result[Low (Result)] = ' ') do
+    Delete(Result, Low (Result), 1);
+
+  while (Length(Result) > 0) and (Result[High(Result)] = ',') do
+    Delete(Result, High(Result), 1);
+end;
+
+function GetPrefixExponents(const AShortSymbol: string): string;
+var
+  I, Exponent: longint;
+  S: TStringArray;
+begin
+  Result := '';
+  Exponent := 1;
+  S := Split(AShortSymbol);
+  for I := Low(S) to High(S) do
+  begin
+    if S[I] = '.' then
+      Exponent := 1
+    else
+      if S[I] = '/' then
+        Exponent := -1
+      else
+      begin
+        if Pos('%s', S[I]) > 0 then
+        begin
+          if S[I][Length(S[I])] in ['2', '3', '4', '5', '6', '7', '8', '9'] then
+          begin
+            if Exponent < 0 then
+              Result := Result + ' -' + S[I][Length(S[I])] + ','
+            else
+              Result := Result + ' ' + S[I][Length(S[I])] + ',';
+          end else
+          begin
+            if Exponent < 0 then
+              Result := Result + ' -1,'
+            else
+              Result := Result + ' 1,';
+          end;
+        end;
+      end;
+  end;
+  S := nil;
+
+  while (Length(Result) > 0) and (Result[Low (Result)] = ' ') do
+    Delete(Result, Low (Result), 1);
+
+  while (Length(Result) > 0) and (Result[High(Result)] = ',') do
+    Delete(Result, High(Result), 1);
 end;
 
 function CleanUnitName(const S: string): string;
@@ -252,7 +387,7 @@ begin
     SectionB1.Append('');
     Inc(OperatorCount);
   end else
-    MessageDlg('Duplicate Operator: ',  ALeftParent + AOperator + ARightParent + '=' + AResult + ' already esists.', mtError, [mbOk], '');
+    Memo.Append('ERROR: operator ' + AOperator + '(' + ALeftParent + '; ' + ARightParent + ') : ' + AResult + '; already esists.');
 end;
 
 procedure TMainForm.AddUnitIdOperator(AOperator, ALeftParent, ARightParent, AResult: string);
@@ -286,126 +421,6 @@ begin
     SectionB1.Append('');
     Inc(OperatorCount);
   end;
-end;
-
-function GetSymbol(const AShortSymbol: string): string;
-begin
-  result := AShortSymbol;
-  result := StringReplace(result, '.', '·', [rfReplaceAll]);
-end;
-
-function GetSingularName(const ALongSymbol: string): string;
-begin
-  result := ALongSymbol;
-  result := StringReplace(StringReplace(result, '!', '', [rfReplaceAll]), '?', '', [rfReplaceAll]);
-end;
-
-function GetPluralName(const ALongSymbol: string): string;
-begin
-  result := ALongSymbol;
-  result := StringReplace(StringReplace(result, 'inch!', 'inches', [rfReplaceAll]), 'foot!', 'feet', [rfReplaceAll]);
-  result := StringReplace(StringReplace(result, 'y!',    'ies',    [rfReplaceAll]), '?',     's',    [rfReplaceAll]);
-end;
-
-function Split(const AStr: string): TStringArray;
-var
-  I, Index: longint;
-begin
-  Index  := 0;
-  result := nil;
-  SetLength(result, Index + 10);
-  for I := Low(AStr) to High(AStr) do
-  begin
-
-    if AStr[I] in ['/', '.'] then
-    begin
-      Inc(Index);
-      if Index = Length(result) then
-        SetLength(result, Index + 10);
-      if AStr[I] <> ' ' then
-      begin
-        result[Index] := AStr[I];
-        Inc(Index);
-        if Index = Length(result) then
-           SetLength(result, Index + 10);
-      end;
-      result[Index] := '';
-    end else
-      result[Index] := result[Index] + AStr[I];
-
-  end;
-  SetLength(result, Index + 1);
-end;
-
-function GetPrefixes(const AShortSymbol: string): string;
-var
-  I, J: longint;
-  S: TStringArray;
-begin
-  Result := '';
-  S := Split(AShortSymbol);
-  for I := Low(S) to High(S) do
-  begin
-    J := Pos('%s', S[I]);
-    if J > 0 then
-    begin
-      if (S[I] = '%sg') or (S[I] = '%sg2') then
-        result := result + ' pKilo,'
-      else
-        result := result + ' pNone,';
-    end;
-  end;
-  S := nil;
-
-  while (Length(Result) > 0) and (Result[Low (Result)] = ' ') do
-    Delete(Result, Low (Result), 1);
-
-  while (Length(Result) > 0) and (Result[High(Result)] = ',') do
-    Delete(Result, High(Result), 1);
-end;
-
-function GetPrefixExponents(const AShortSymbol: string): string;
-var
-  I, Exponent: longint;
-  S: TStringArray;
-begin
-  Result := '';
-  Exponent := 1;
-  S := Split(AShortSymbol);
-  for I := Low(S) to High(S) do
-  begin
-    if S[I] = '.' then
-      Exponent := 1
-    else
-      if S[I] = '/' then
-        Exponent := -1
-      else
-      begin
-        if Pos('%s', S[I]) > 0 then
-        begin
-          if S[I][Length(S[I])] in ['2', '3', '4', '5', '6', '7', '8', '9'] then
-          begin
-            if Exponent < 0 then
-              Result := Result + ' -' + S[I][Length(S[I])] + ','
-            else
-              Result := Result + ' ' + S[I][Length(S[I])] + ',';
-          end else
-          begin
-            if Exponent < 0 then
-              Result := Result + ' -1,'
-            else
-              Result := Result + ' 1,';
-          end;
-        end;
-      end;
-  end;
-  S := nil;
-
-  while (Length(Result) > 0) and (Result[Low (Result)] = ' ') do
-    Delete(Result, Low (Result), 1);
-
-  while (Length(Result) > 0) and (Result[High(Result)] = ',') do
-    Delete(Result, High(Result), 1);
 end;
 
 procedure TMainForm.AddClass(const AClassName, AOperator, AClassParent1, AClassParent2,
@@ -514,11 +529,13 @@ begin
         end;
         Inc(FactoredUnitCount);
       end;
+
     end;
   end;
 
   if (ABaseClass = '') then
   begin
+    CheckClass(AClassName, AOperator, AClassParent1, AClassParent2);
 
     if AOperator = '*' then
     begin
@@ -833,6 +850,7 @@ var
 begin
   Document     := TSTringList.Create;
   ClassList    := TStringList.Create;
+  CheckList    := nil;
   OperatorList := TStringList.Create;
   SectionA0    := TStringList.Create;
   SectionA1    := TStringList.Create;
@@ -887,6 +905,7 @@ begin
     Stream.Destroy;
   end;
 
+  Memo.Clear;
   BaseUnitCount     := 0;
   FactoredUnitCount := 0;
   OperatorCount     := 0;
@@ -956,9 +975,191 @@ begin
 
   OperatorList.Destroy;
   ClassList.Destroy;
+  CheckList := nil;
   Document.Destroy;
 
   PageControl.TabIndex := 1;
+end;
+
+procedure TMainForm.CheckClass(AClassName, AOperator, AClassParent1, AClassParent2: string);
+var
+  I, Index, Index1, Index2: longint;
+  S: string;
+  T: TDBItem;
+begin
+  Index := GetIndex(AClassName);
+  if Index = -1 then
+  begin
+
+    if (GetUnitClassName(AClassName) = 'TKilogramUnit') or
+       (GetUnitClassName(AClassName) = 'TMeterUnit'   ) or
+       (GetUnitClassName(AClassName) = 'TSecondUnit'  ) or
+       (GetUnitClassName(AClassName) = 'TKelvinUnit'  ) or
+       (GetUnitClassName(AClassName) = 'TAmpereUnit'  ) or
+       (GetUnitClassName(AClassName) = 'TMoleUnit'    ) or
+       (GetUnitClassName(AClassName) = 'TCandelaUnit' ) then
+    begin
+      Index := Length(CheckList);
+      SetLength(CheckList, Index + 1);
+
+      CheckList[Index].Name := GetUnitClassName(AClassName);
+      for I := Low(CheckList[Index].Exponents) to High(CheckList[Index].Exponents) do
+        CheckList[Index].Exponents[I] := 0;
+
+      if (GetUnitClassName(AClassName) = 'TKilogramUnit') then CheckList[Index].Exponents[1] := 1;
+      if (GetUnitClassName(AClassName) = 'TMeterUnit'   ) then CheckList[Index].Exponents[2] := 1;
+      if (GetUnitClassName(AClassName) = 'TSecondUnit'  ) then CheckList[Index].Exponents[3] := 1;
+      if (GetUnitClassName(AClassName) = 'TKelvinUnit'  ) then CheckList[Index].Exponents[4] := 1;
+      if (GetUnitClassName(AClassName) = 'TAmpereUnit'  ) then CheckList[Index].Exponents[5] := 1;
+      if (GetUnitClassName(AClassName) = 'TMoleUnit'    ) then CheckList[Index].Exponents[6] := 1;
+      if (GetUnitClassName(AClassName) = 'TCandelaUnit' ) then CheckList[Index].Exponents[7] := 1;
+
+    end else
+    begin
+
+      Index1 := GetIndex(AClassParent1);
+      Index2 := GetIndex(AClassParent2);
+      if (Index1 = -1) and (Index2 = -1) then
+      begin
+        if (GetUnitClassName(AClassName) <> 'TRadianUnit'   ) and
+           (GetUnitClassName(AClassName) <> 'TSteradianUnit') then
+          Memo.Append('ERROR:3 ');
+        Exit;
+      end;
+
+      T.Name := GetUnitClassName(AClassName);
+      for I := Low(T.Exponents) to High(T.Exponents) do
+      begin
+        T.Exponents[I] := 0;
+        if Index1 <> -1 then
+          T.Exponents[I] := CheckList[Index1].Exponents[I];
+
+        if Index2 <> -1 then
+        begin
+          if AOperator = '*' then
+            T.Exponents[I] := T.Exponents[I] + CheckList[Index2].Exponents[I]
+          else
+            if AOperator = '/' then
+              T.Exponents[I] := T.Exponents[I] - CheckList[Index2].Exponents[I];
+        end;
+      end;
+
+
+      for I := Low(CheckList) to High(CheckList) do
+      begin
+        if (CheckList[I].Exponents[1] = T.Exponents[1]) and
+           (CheckList[I].Exponents[2] = T.Exponents[2]) and
+           (CheckList[I].Exponents[3] = T.Exponents[3]) and
+           (CheckList[I].Exponents[4] = T.Exponents[4]) and
+           (CheckList[I].Exponents[5] = T.Exponents[5]) and
+           (CheckList[I].Exponents[6] = T.Exponents[6]) and
+           (CheckList[I].Exponents[7] = T.Exponents[7]) then
+        begin
+          S := 'WARNING: ' + CheckList[I].Name + ' is equal to ' + GetUnitClassName(AClassName) + ' ' + GetSIUnit(I) + ';';
+          if Memo.Lines.IndexOf(S) = -1 then
+          begin
+            Memo.Append(S);
+          end;
+        end;
+      end;
+
+      Index := Length(CheckList);
+      SetLength(CheckList, Index + 1);
+
+      CheckList[Index].Name := T.Name;
+      CheckList[Index].Exponents[1] := T.Exponents[1];
+      CheckList[Index].Exponents[2] := T.Exponents[2];
+      CheckList[Index].Exponents[3] := T.Exponents[3];
+      CheckList[Index].Exponents[4] := T.Exponents[4];
+      CheckList[Index].Exponents[5] := T.Exponents[5];
+      CheckList[Index].Exponents[6] := T.Exponents[6];
+      CheckList[Index].Exponents[7] := T.Exponents[7];
+    end;
+
+  end else
+  begin
+
+    T := CheckList[Index];
+    for I := Low(CheckList) to High(CheckList) do
+    begin
+      if (CheckList[I].Name = T.Name) then
+      begin
+        if (CheckList[I].Exponents[1] <> T.Exponents[1]) or
+           (CheckList[I].Exponents[2] <> T.Exponents[2]) or
+           (CheckList[I].Exponents[3] <> T.Exponents[3]) or
+           (CheckList[I].Exponents[4] <> T.Exponents[4]) or
+           (CheckList[I].Exponents[5] <> T.Exponents[5]) or
+           (CheckList[I].Exponents[6] <> T.Exponents[6]) or
+           (CheckList[I].Exponents[7] <> T.Exponents[7]) then
+        begin
+          S := 'ERROR:   ' + CheckList[I].Name + ' doesn''t match previous declaration ' + GetSIUnit(I) + ';';
+          if Memo.Lines.IndexOf(S) = -1 then
+          begin
+            Memo.Append(S);
+          end;
+        end;
+      end;
+    end;
+
+  end;
+end;
+
+function TMainForm.GetIndex(const AClassName: string): longint;
+var
+  I: longint;
+begin
+  Result := -1;
+  for I := Low(CheckList) to High(CheckList) do
+    if GetUnitClassName(AClassName) = CheckList[I].Name then Exit(I);
+end;
+
+function TMainForm.GetSIunit(Index: longint): string;
+var
+  I: longint;
+begin
+  Result := '';
+  for I := Low(CheckList[Index].Exponents) to High(CheckList[Index].Exponents) do
+    if CheckList[Index].Exponents[I] > 0 then
+    begin
+      case I of
+        1: Result := Result + '.kg';
+        2: Result := Result + '.m';
+        3: Result := Result + '.s';
+        4: Result := Result + '.K';
+        5: Result := Result + '.A';
+        6: Result := Result + '.mol';
+        7: Result := Result + '.cd';
+      end;
+      if CheckList[Index].Exponents[I] > 1 then
+        Result := Result + IntToStr(CheckList[Index].Exponents[I]);
+    end;
+
+  for I := Low(CheckList[Index].Exponents) to High(CheckList[Index].Exponents) do
+    if CheckList[Index].Exponents[I] < 0 then
+    begin
+      case I of
+        1: Result := Result + '/kg';
+        2: Result := Result + '/m';
+        3: Result := Result + '/s';
+        4: Result := Result + '/K';
+        5: Result := Result + '/A';
+        6: Result := Result + '/mol';
+        7: Result := Result + '/cd';
+      end;
+      if CheckList[Index].Exponents[I] < -1 then
+        Result := Result + IntToStr(Abs(CheckList[Index].Exponents[I]));
+    end;
+
+  if Pos('.', Result) = 1 then
+  begin
+    Delete(Result, 1, 1);
+  end;
+
+  if Pos('/', Result) = 1 then
+  begin
+    Result := '1' + Result;
+  end;
+  Result := '[ ' + Result + ' ]';
 end;
 
 end.

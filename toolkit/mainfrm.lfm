@@ -19,10 +19,11 @@ object MainForm: TMainForm
     Height = 490
     Top = 40
     Width = 856
-    ActivePage = TabSheet1
+    ActivePage = TabSheet3
     Anchors = [akTop, akLeft, akRight, akBottom]
     BorderSpacing.Top = 4
-    TabIndex = 0
+    ParentFont = False
+    TabIndex = 2
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = 'Unit of measurement'
@@ -564,6 +565,35 @@ object MainForm: TMainForm
             MouseActionsCollapsed = <>
           end
         end
+      end
+    end
+    object TabSheet3: TTabSheet
+      Caption = 'Messages'
+      ClientHeight = 462
+      ClientWidth = 848
+      object Memo: TMemo
+        AnchorSideLeft.Control = TabSheet3
+        AnchorSideTop.Control = TabSheet3
+        AnchorSideRight.Control = TabSheet3
+        AnchorSideRight.Side = asrBottom
+        AnchorSideBottom.Control = TabSheet3
+        AnchorSideBottom.Side = asrBottom
+        Left = 4
+        Height = 454
+        Top = 4
+        Width = 840
+        Anchors = [akTop, akLeft, akRight, akBottom]
+        BorderSpacing.Left = 4
+        BorderSpacing.Top = 4
+        BorderSpacing.Right = 4
+        BorderSpacing.Bottom = 4
+        Font.Height = -13
+        Font.Name = 'Courier New'
+        ParentFont = False
+        ReadOnly = True
+        ScrollBars = ssAutoBoth
+        TabOrder = 0
+        WordWrap = False
       end
     end
   end
