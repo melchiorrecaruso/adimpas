@@ -18,10 +18,10 @@
 }
 
 {
-  ADimPas library built on 31/08/2023.
+  ADimPas library built on 01/09/2023.
 
-  Number of base units: 122
-  Number of factored units: 62
+  Number of base units: 121
+  Number of factored units: 63
   Number of operators: 960
 }
 
@@ -3808,28 +3808,28 @@ type
     const Prefixes : TPrefixes = (pNone, pNone);
     const PrefixExponents : TIntegerDynArray = (1, 1);
   end;
-  TJouleSeconds = specialize TQuantity<TJouleSecondUnit>;
-  TJouleSecondUnitId = specialize TUnitId<TJouleSecondUnit>;
+  TJouleSeconds = specialize TQuantity<TKilogramSquareMeterPerSecondUnit>;
+  TJouleSecondUnitId = specialize TUnitId<TKilogramSquareMeterPerSecondUnit>;
 
-// main definition [ J*s ] = [ J ] * [ s ]
-operator *(const ALeft: TJoules; const ARight: TSeconds): TJouleSeconds; inline;
-operator *(const ALeft: TSeconds; const ARight: TJoules): TJouleSeconds; inline;
-operator /(const ALeft: TJouleSeconds; const ARight: TJoules): TSeconds; inline;
-operator /(const ALeft: TJouleSeconds; const ARight: TSeconds): TJoules; inline;
-operator *(const ALeft: TJoules; const ARight: TSecondUnitId): TJouleSeconds; inline;
+// alternative definition [ J*s ] = [ kg*m2/s ] = [ J ] * [ s ]
+operator *(const ALeft: TJoules; const ARight: TSeconds): TKilogramSquareMetersPerSecond; inline;
+operator *(const ALeft: TSeconds; const ARight: TJoules): TKilogramSquareMetersPerSecond; inline;
+operator /(const ALeft: TKilogramSquareMetersPerSecond; const ARight: TJoules): TSeconds; inline;
+operator /(const ALeft: TKilogramSquareMetersPerSecond; const ARight: TSeconds): TJoules; inline;
+operator *(const ALeft: TJoules; const ARight: TSecondUnitId): TKilogramSquareMetersPerSecond; inline;
 
-// alternative definition [ J*s ] = [ J ] / [ Hz ]
-operator /(const ALeft: TJoules; const ARight: THertz): TJouleSeconds; inline;
-operator *(const ALeft: THertz; const ARight: TJouleSeconds): TJoules; inline;
-operator *(const ALeft: TJouleSeconds; const ARight: THertz): TJoules; inline;
-operator /(const ALeft: TJoules; const ARight: TJouleSeconds): THertz; inline;
-operator /(const ALeft: TJoules; const ARight: THertzUnitId): TJouleSeconds; inline;
+// alternative definition [ J*s ] = [ kg*m2/s ] = [ J ] / [ Hz ]
+operator /(const ALeft: TJoules; const ARight: THertz): TKilogramSquareMetersPerSecond; inline;
+operator *(const ALeft: THertz; const ARight: TKilogramSquareMetersPerSecond): TJoules; inline;
+operator *(const ALeft: TKilogramSquareMetersPerSecond; const ARight: THertz): TJoules; inline;
+operator /(const ALeft: TJoules; const ARight: TKilogramSquareMetersPerSecond): THertz; inline;
+operator /(const ALeft: TJoules; const ARight: THertzUnitId): TKilogramSquareMetersPerSecond; inline;
 
-// alternative definition [ J*s ] = [ kg*m/s ] * [ m ]
-operator *(const ALeft: TKilogramMetersPerSecond; const ARight: TMeters): TJouleSeconds; inline;
-operator *(const ALeft: TMeters; const ARight: TKilogramMetersPerSecond): TJouleSeconds; inline;
-operator /(const ALeft: TJouleSeconds; const ARight: TKilogramMetersPerSecond): TMeters; inline;
-operator /(const ALeft: TJouleSeconds; const ARight: TMeters): TKilogramMetersPerSecond; inline;
+// alternative definition [ J*s ] = [ kg*m2/s ] = [ kg*m/s ] * [ m ]
+operator *(const ALeft: TKilogramMetersPerSecond; const ARight: TMeters): TKilogramSquareMetersPerSecond; inline;
+operator *(const ALeft: TMeters; const ARight: TKilogramMetersPerSecond): TKilogramSquareMetersPerSecond; inline;
+operator /(const ALeft: TKilogramSquareMetersPerSecond; const ARight: TKilogramMetersPerSecond): TMeters; inline;
+operator /(const ALeft: TKilogramSquareMetersPerSecond; const ARight: TMeters): TKilogramMetersPerSecond; inline;
 
 type
   { Unit of elettronvolt second }
@@ -3841,7 +3841,7 @@ type
     const PrefixExponents : TIntegerDynArray = (1, 1);
     const ToBaseFactor = 1.60217742320523E-019;
   end;
-  TElettronvoltSeconds = specialize TQuantity<TJouleSecondUnit>;
+  TElettronvoltSeconds = specialize TQuantity<TKilogramSquareMeterPerSecondUnit>;
   TElettronvoltSecondUnitId = specialize TUnitId<TElettronvoltSecondUnit>;
 
 type
@@ -4008,11 +4008,11 @@ type
   TGrayPerSecondUnitId = specialize TUnitId<TGrayPerSecondUnit>;
 
 // main definition [ Gy/s ] = [ Gy ] / [ s ]
-operator /(const ALeft: TGrays; const ARight: TSeconds): TGraysPerSecond; inline;
-operator *(const ALeft: TSeconds; const ARight: TGraysPerSecond): TGrays; inline;
-operator *(const ALeft: TGraysPerSecond; const ARight: TSeconds): TGrays; inline;
-operator /(const ALeft: TGrays; const ARight: TGraysPerSecond): TSeconds; inline;
-operator /(const ALeft: TGrays; const ARight: TSecondUnitId): TGraysPerSecond; inline;
+operator /(const ALeft: TSquareMetersPerSquareSecond; const ARight: TSeconds): TGraysPerSecond; inline;
+operator *(const ALeft: TSeconds; const ARight: TGraysPerSecond): TSquareMetersPerSquareSecond; inline;
+operator *(const ALeft: TGraysPerSecond; const ARight: TSeconds): TSquareMetersPerSquareSecond; inline;
+operator /(const ALeft: TSquareMetersPerSquareSecond; const ARight: TGraysPerSecond): TSeconds; inline;
+operator /(const ALeft: TSquareMetersPerSquareSecond; const ARight: TSecondUnitId): TGraysPerSecond; inline;
 
 type
   { Unit of watt per steradian }
@@ -4306,8 +4306,9 @@ type
   end;
 
 type
-  TJouleSecondHelper = record helper for TJouleSeconds
+  TKilogramSquareMeterPerSecondHelper = record helper for TKilogramSquareMetersPerSecond
     function ToElettronvoltSecond: specialize TQuantity<TElettronvoltSecondUnit>;
+    function ToJouleSecond: specialize TQuantity<TJouleSecondUnit>;
   end;
 
 { Power units }
@@ -7604,52 +7605,52 @@ begin result.FValue := ALeft.FValue * ARight.FValue; end;
 operator /(const ALeft: TSquareJoules; const ARight: TJoules): TJoules;
 begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
-// main definition [ J*s ] = [ J ] * [ s ]
+// alternative definition [ J*s ] = [ kg*m2/s ] = [ J ] * [ s ]
 
-operator *(const ALeft: TJoules; const ARight: TSeconds): TJouleSeconds;
+operator *(const ALeft: TJoules; const ARight: TSeconds): TKilogramSquareMetersPerSecond;
 begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
-operator *(const ALeft: TSeconds; const ARight: TJoules): TJouleSeconds;
+operator *(const ALeft: TSeconds; const ARight: TJoules): TKilogramSquareMetersPerSecond;
 begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
-operator /(const ALeft: TJouleSeconds; const ARight: TJoules): TSeconds;
+operator /(const ALeft: TKilogramSquareMetersPerSecond; const ARight: TJoules): TSeconds;
 begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
-operator /(const ALeft: TJouleSeconds; const ARight: TSeconds): TJoules;
+operator /(const ALeft: TKilogramSquareMetersPerSecond; const ARight: TSeconds): TJoules;
 begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
-operator *(const ALeft: TJoules; const ARight: TSecondUnitId): TJouleSeconds;
+operator *(const ALeft: TJoules; const ARight: TSecondUnitId): TKilogramSquareMetersPerSecond;
 begin result.FValue := ALeft.FValue; end;
 
-// alternative definition [ J*s ] = [ J ] / [ Hz ]
+// alternative definition [ J*s ] = [ kg*m2/s ] = [ J ] / [ Hz ]
 
-operator /(const ALeft: TJoules; const ARight: THertz): TJouleSeconds;
+operator /(const ALeft: TJoules; const ARight: THertz): TKilogramSquareMetersPerSecond;
 begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
-operator *(const ALeft: THertz; const ARight: TJouleSeconds): TJoules;
+operator *(const ALeft: THertz; const ARight: TKilogramSquareMetersPerSecond): TJoules;
 begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
-operator *(const ALeft: TJouleSeconds; const ARight: THertz): TJoules;
+operator *(const ALeft: TKilogramSquareMetersPerSecond; const ARight: THertz): TJoules;
 begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
-operator /(const ALeft: TJoules; const ARight: TJouleSeconds): THertz;
+operator /(const ALeft: TJoules; const ARight: TKilogramSquareMetersPerSecond): THertz;
 begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
-operator /(const ALeft: TJoules; const ARight: THertzUnitId): TJouleSeconds;
+operator /(const ALeft: TJoules; const ARight: THertzUnitId): TKilogramSquareMetersPerSecond;
 begin result.FValue := ALeft.FValue; end;
 
-// alternative definition [ J*s ] = [ kg*m/s ] * [ m ]
+// alternative definition [ J*s ] = [ kg*m2/s ] = [ kg*m/s ] * [ m ]
 
-operator *(const ALeft: TKilogramMetersPerSecond; const ARight: TMeters): TJouleSeconds;
+operator *(const ALeft: TKilogramMetersPerSecond; const ARight: TMeters): TKilogramSquareMetersPerSecond;
 begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
-operator *(const ALeft: TMeters; const ARight: TKilogramMetersPerSecond): TJouleSeconds;
+operator *(const ALeft: TMeters; const ARight: TKilogramMetersPerSecond): TKilogramSquareMetersPerSecond;
 begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
-operator /(const ALeft: TJouleSeconds; const ARight: TKilogramMetersPerSecond): TMeters;
+operator /(const ALeft: TKilogramSquareMetersPerSecond; const ARight: TKilogramMetersPerSecond): TMeters;
 begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
-operator /(const ALeft: TJouleSeconds; const ARight: TMeters): TKilogramMetersPerSecond;
+operator /(const ALeft: TKilogramSquareMetersPerSecond; const ARight: TMeters): TKilogramMetersPerSecond;
 begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
 // main definition [ lm/W ] = [ lm ] / [ W ]
@@ -7815,19 +7816,19 @@ begin result.FValue := ALeft.FValue; end;
 
 // main definition [ Gy/s ] = [ Gy ] / [ s ]
 
-operator /(const ALeft: TGrays; const ARight: TSeconds): TGraysPerSecond;
+operator /(const ALeft: TSquareMetersPerSquareSecond; const ARight: TSeconds): TGraysPerSecond;
 begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
-operator *(const ALeft: TSeconds; const ARight: TGraysPerSecond): TGrays;
+operator *(const ALeft: TSeconds; const ARight: TGraysPerSecond): TSquareMetersPerSquareSecond;
 begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
-operator *(const ALeft: TGraysPerSecond; const ARight: TSeconds): TGrays;
+operator *(const ALeft: TGraysPerSecond; const ARight: TSeconds): TSquareMetersPerSquareSecond;
 begin result.FValue := ALeft.FValue * ARight.FValue; end;
 
-operator /(const ALeft: TGrays; const ARight: TGraysPerSecond): TSeconds;
+operator /(const ALeft: TSquareMetersPerSquareSecond; const ARight: TGraysPerSecond): TSeconds;
 begin result.FValue := ALeft.FValue / ARight.FValue; end;
 
-operator /(const ALeft: TGrays; const ARight: TSecondUnitId): TGraysPerSecond;
+operator /(const ALeft: TSquareMetersPerSquareSecond; const ARight: TSecondUnitId): TGraysPerSecond;
 begin result.FValue := ALeft.FValue; end;
 
 // main definition [ W/sr ] = [ W ] / [ sr ]
@@ -8151,7 +8152,10 @@ begin result.FValue := FValue; end;
 function THenryPerMeterHelper.ToNewtonPerSquareAmpere: specialize TQuantity<TNewtonPerSquareAmpereUnit>;
 begin result.FValue := FValue; end;
 
-function TJouleSecondHelper.ToElettronvoltSecond: specialize TQuantity<TElettronvoltSecondUnit>;
+function TKilogramSquareMeterPerSecondHelper.ToJouleSecond: specialize TQuantity<TJouleSecondUnit>;
+begin result.FValue := FValue; end;
+
+function TKilogramSquareMeterPerSecondHelper.ToElettronvoltSecond: specialize TQuantity<TElettronvoltSecondUnit>;
 begin result.FValue := FValue / TElettronvoltSecondUnit.ToBaseFactor; end;
 
 { Power quantities }
