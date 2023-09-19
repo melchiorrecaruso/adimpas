@@ -10,7 +10,8 @@ type
     FValue: double;
   public
     class function Symbol: string; static;
-    class function Name: string; static;
+    class function SingularName: string; static;
+    class function PluralName: string; static;
     class function Prefixes: TPrefixes; static;
     class function Exponents: TExponents; static;
     {$IFDEF INTF_FACTORED}
@@ -92,9 +93,9 @@ end;
 function TQuantity.ToVerboseString: string;
 begin
   if (FValue < -1) or (FValue > 1) then
-    result := FloatToStr(FValue) + ' ' + GetName(Name, Prefixes) 
+    result := FloatToStr(FValue) + ' ' + GetName(PluralName, Prefixes) 
   else
-    result := FloatToStr(FValue) + ' ' + GetName(Name, Prefixes);
+    result := FloatToStr(FValue) + ' ' + GetName(SingularName, Prefixes);
 end;
 
 function TQuantity.ToString(APrecision, ADigits: longint; const APrefixes: TPrefixes): string;
@@ -118,15 +119,15 @@ begin
   if (FactoredValue < -1) or (FactoredValue > 1) then
   begin
     if Length(APrefixes) = 0 then
-      result := FloatToStrF(FactoredValue, ffGeneral, APrecision, ADigits) + ' ' + GetName(Name, Prefixes)
+      result := FloatToStrF(FactoredValue, ffGeneral, APrecision, ADigits) + ' ' + GetName(PluralName, Prefixes)
     else
-      result := FloatToStrF(FactoredValue, ffGeneral, APrecision, ADigits) + ' ' + GetName(Name, APrefixes); 
+      result := FloatToStrF(FactoredValue, ffGeneral, APrecision, ADigits) + ' ' + GetName(PluralName, APrefixes); 
   end else
   begin
     if Length(APrefixes) = 0 then
-      result := FloatToStrF(FactoredValue, ffGeneral, APrecision, ADigits) + ' ' + GetName(Name, Prefixes)
+      result := FloatToStrF(FactoredValue, ffGeneral, APrecision, ADigits) + ' ' + GetName(SingularName, Prefixes)
     else
-      result := FloatToStrF(FactoredValue, ffGeneral, APrecision, ADigits) + ' ' + GetName(Name, APrefixes)
+      result := FloatToStrF(FactoredValue, ffGeneral, APrecision, ADigits) + ' ' + GetName(SingularName, APrefixes)
   end; 
 end;                                             
 
@@ -206,12 +207,10 @@ end;
 
 {$IFDEF INTF_UNIT}
 {$UNDEF INTF_UNIT}
-  end;
-
+type
   TUnit = record
     class function From(const AQuantity: TQuantity): TQuantity; inline; static;
     class operator *(const AValue: double; const ASelf: TUnit): TQuantity;
-  end;
 {$ENDIF}
 
 {$IFDEF IMPL_UNIT}
@@ -226,4 +225,10 @@ begin
   result.FValue := AValue;
 end;
 {$ENDIF}
+
+{$IFDEF INTF_END}
+{$UNDEF INTF_END}
+end;
+{$ENDIF}
+
 
