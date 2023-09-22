@@ -18,7 +18,7 @@
 }
 
 {
-  ADimPas library built on 19/09/2023.
+  ADimPas library built on 22/09/2023.
 
   Number of base units: 121
   Number of factored units: 63
@@ -482,6 +482,8 @@ class operator *(const ALeft: TSquareSecondQty; const ARight: TSquareHertzQty): 
 
 { Quantity of radian per second }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TRadianPerSecondQty}{$i common.inc}
+class operator :=(const AQuantity: THertzQty): TRadianPerSecondQty; inline;
+class operator :=(const AQuantity: TRadianPerSecondQty): THertzQty; inline;
 class operator /(const ALeft: TRadianPerSecondQty; const ARight: THertzQty): TRadianQty; inline;
 class operator /(const ALeft: TRadianPerSecondQty; const ARight: TRadianQty): THertzQty; inline;
 class operator /(const ALeft: TRadianQty; const ARight: TRadianPerSecondQty): TSecondQty; inline;
@@ -2942,9 +2944,6 @@ var Sv: TSquareMeterPerSquareSecondUnit;
 var kat: TKatalUnit;
 var Pl: TPoiseuilleUnit;
 var J2: TSquareJouleUnit;
-
-operator :=(const AQuantity: TRadianPerSecondQty): THertzQty; inline;
-operator :=(const AQuantity: THertzQty): TRadianPerSecondQty; inline;
 
 type
   TSecondHelper = record helper for TSecondQty
@@ -6696,6 +6695,10 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+class operator TRadianPerSecondQty.:=(const AQuantity: TRadianPerSecondQty): THertzQty; inline;
+begin result.FValue := AQuantity.FValue; end;
+class operator TRadianPerSecondQty.:=(const AQuantity: THertzQty): TRadianPerSecondQty; inline;
+begin result.FValue := AQuantity.FValue; end;
 operator /(const ALeft: TRadianPerSecondQty; const ARight: TSecondQty): TRadianPerSecondSquaredQty;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -11077,12 +11080,6 @@ begin result.FValue := ALeft.FValue; end;
 
 class operator TMoleUnit./(const ALeft: TCoulombQty; const ARight: TMoleUnit): TCoulombPerMoleQty;
 begin result.FValue := ALeft.FValue; end;
-
-operator :=(const AQuantity: TRadianPerSecondQty): THertzQty; inline;
-begin result.FValue := AQuantity.FValue; end;
-
-operator :=(const AQuantity: THertzQty): TRadianPerSecondQty; inline;
-begin result.FValue := AQuantity.FValue; end;
 
 function TSecondHelper.ToDay: TDayQty;
 begin result.FValue := FValue / TDayQty.ToBaseFactor; end;
