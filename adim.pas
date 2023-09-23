@@ -4425,19 +4425,19 @@ begin result := [1, 2]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKilogramSquareMeterPerSecondQty}{$i common.inc}
 class function TKilogramSquareMeterPerSecondQty.Symbol: string;
-begin result := '' end;
+begin result := '%sg·%sm2/%ss' end;
 
 class function TKilogramSquareMeterPerSecondQty.SingularName: string;
-begin result := '' end;
+begin result := '%sgram square %smeter per %ssecond' end;
 
 class function TKilogramSquareMeterPerSecondQty.PluralName: string;
-begin result := '' end;
+begin result := '%sgram square %smeters per %ssecond' end;
 
 class function TKilogramSquareMeterPerSecondQty.Prefixes: TPrefixes;
-begin result := []; end;
+begin result := [pKilo, pNone, pNone]; end;
 
 class function TKilogramSquareMeterPerSecondQty.Exponents: TExponents;
-begin result := []; end;
+begin result := [1, 2, -1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKilogramPerMeterQty}{$i common.inc}
 class function TKilogramPerMeterQty.Symbol: string;
@@ -4878,19 +4878,19 @@ begin result := [1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=THenryQty}{$i common.inc}
 class function THenryQty.Symbol: string;
-begin result := '' end;
+begin result := '%sH' end;
 
 class function THenryQty.SingularName: string;
-begin result := '' end;
+begin result := '%shenry' end;
 
 class function THenryQty.PluralName: string;
-begin result := '' end;
+begin result := '%shenries' end;
 
 class function THenryQty.Prefixes: TPrefixes;
-begin result := []; end;
+begin result := [pNone]; end;
 
 class function THenryQty.Exponents: TExponents;
-begin result := []; end;
+begin result := [1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TLumenQty}{$i common.inc}
 class function TLumenQty.Symbol: string;
@@ -5060,35 +5060,35 @@ begin result := 180/Pi; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNewtonPerCubicMeterQty}{$i common.inc}
 class function TNewtonPerCubicMeterQty.Symbol: string;
-begin result := '' end;
+begin result := '%sN/%sm3' end;
 
 class function TNewtonPerCubicMeterQty.SingularName: string;
-begin result := '' end;
+begin result := '%snewton per cubic %smeter' end;
 
 class function TNewtonPerCubicMeterQty.PluralName: string;
-begin result := '' end;
+begin result := '%snewtons per cubic %smeter' end;
 
 class function TNewtonPerCubicMeterQty.Prefixes: TPrefixes;
-begin result := []; end;
+begin result := [pNone, pNone]; end;
 
 class function TNewtonPerCubicMeterQty.Exponents: TExponents;
-begin result := []; end;
+begin result := [1, -3]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNewtonPerMeterQty}{$i common.inc}
 class function TNewtonPerMeterQty.Symbol: string;
-begin result := '' end;
+begin result := '%sN/%sm' end;
 
 class function TNewtonPerMeterQty.SingularName: string;
-begin result := '' end;
+begin result := '%snewton per %smeter' end;
 
 class function TNewtonPerMeterQty.PluralName: string;
-begin result := '' end;
+begin result := '%snewtons per %smeter' end;
 
 class function TNewtonPerMeterQty.Prefixes: TPrefixes;
-begin result := []; end;
+begin result := [pNone, pNone]; end;
 
 class function TNewtonPerMeterQty.Exponents: TExponents;
-begin result := []; end;
+begin result := [1, -1]; end;
 
 {$DEFINE IMPL_FACTORED}{$DEFINE TQuantity:=TPoundForcePerInchQty}{$i common.inc}
 class function TPoundForcePerInchQty.Symbol: string;
@@ -5111,35 +5111,35 @@ begin result := 175.126835246476; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCubicMeterPerSecondQty}{$i common.inc}
 class function TCubicMeterPerSecondQty.Symbol: string;
-begin result := '' end;
+begin result := '%sm3/%ss' end;
 
 class function TCubicMeterPerSecondQty.SingularName: string;
-begin result := '' end;
+begin result := 'cubic %smeter per %ssecond' end;
 
 class function TCubicMeterPerSecondQty.PluralName: string;
-begin result := '' end;
+begin result := 'cubic %smeters per %ssecond' end;
 
 class function TCubicMeterPerSecondQty.Prefixes: TPrefixes;
-begin result := []; end;
+begin result := [pNone, pNone]; end;
 
 class function TCubicMeterPerSecondQty.Exponents: TExponents;
-begin result := []; end;
+begin result := [3, -1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKilogramPerSecondQty}{$i common.inc}
 class function TKilogramPerSecondQty.Symbol: string;
-begin result := '' end;
+begin result := '%sg/%ss' end;
 
 class function TKilogramPerSecondQty.SingularName: string;
-begin result := '' end;
+begin result := '%sgram per %ssecond' end;
 
 class function TKilogramPerSecondQty.PluralName: string;
-begin result := '' end;
+begin result := '%sgrams per %ssecond' end;
 
 class function TKilogramPerSecondQty.Prefixes: TPrefixes;
-begin result := []; end;
+begin result := [pKilo, pNone]; end;
 
 class function TKilogramPerSecondQty.Exponents: TExponents;
-begin result := []; end;
+begin result := [1, -1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TPoiseuilleQty}{$i common.inc}
 class function TPoiseuilleQty.Symbol: string;
@@ -5271,19 +5271,19 @@ begin result := [1, 2]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCubicMeterPerSquareSecondQty}{$i common.inc}
 class function TCubicMeterPerSquareSecondQty.Symbol: string;
-begin result := '' end;
+begin result := '%sm3/%ss2' end;
 
 class function TCubicMeterPerSquareSecondQty.SingularName: string;
-begin result := '' end;
+begin result := 'cubic %smeter per square %ssecond' end;
 
 class function TCubicMeterPerSquareSecondQty.PluralName: string;
-begin result := '' end;
+begin result := 'cubic %smeters per square %ssecond' end;
 
 class function TCubicMeterPerSquareSecondQty.Prefixes: TPrefixes;
-begin result := []; end;
+begin result := [pNone, pNone]; end;
 
 class function TCubicMeterPerSquareSecondQty.Exponents: TExponents;
-begin result := []; end;
+begin result := [3, -2]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNewtonSquareMeterQty}{$i common.inc}
 class function TNewtonSquareMeterQty.Symbol: string;
@@ -5703,19 +5703,19 @@ begin result := [1, 1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TVoltPerMeterQty}{$i common.inc}
 class function TVoltPerMeterQty.Symbol: string;
-begin result := '' end;
+begin result := '%sV/%sm' end;
 
 class function TVoltPerMeterQty.SingularName: string;
-begin result := '' end;
+begin result := '%svolt per %smeter' end;
 
 class function TVoltPerMeterQty.PluralName: string;
-begin result := '' end;
+begin result := '%svolts per %smeter' end;
 
 class function TVoltPerMeterQty.Prefixes: TPrefixes;
-begin result := []; end;
+begin result := [pNone, pNone]; end;
 
 class function TVoltPerMeterQty.Exponents: TExponents;
-begin result := []; end;
+begin result := [1, -1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNewtonPerCoulombQty}{$i common.inc}
 class function TNewtonPerCoulombQty.Symbol: string;
@@ -5751,19 +5751,19 @@ begin result := [1, -1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareCoulombPerMeterQty}{$i common.inc}
 class function TSquareCoulombPerMeterQty.Symbol: string;
-begin result := '' end;
+begin result := '%sC2/%sm' end;
 
 class function TSquareCoulombPerMeterQty.SingularName: string;
-begin result := '' end;
+begin result := 'square %scoulomb per %smeter' end;
 
 class function TSquareCoulombPerMeterQty.PluralName: string;
-begin result := '' end;
+begin result := 'square %scoulombs per %smeter' end;
 
 class function TSquareCoulombPerMeterQty.Prefixes: TPrefixes;
-begin result := []; end;
+begin result := [pNone, pNone]; end;
 
 class function TSquareCoulombPerMeterQty.Exponents: TExponents;
-begin result := []; end;
+begin result := [2, -1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCoulombPerSquareMeterQty}{$i common.inc}
 class function TCoulombPerSquareMeterQty.Symbol: string;
@@ -5975,19 +5975,19 @@ begin result := [1, -1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=THenryPerMeterQty}{$i common.inc}
 class function THenryPerMeterQty.Symbol: string;
-begin result := '' end;
+begin result := '%sH/%sm' end;
 
 class function THenryPerMeterQty.SingularName: string;
-begin result := '' end;
+begin result := '%shenry per %smeter' end;
 
 class function THenryPerMeterQty.PluralName: string;
-begin result := '' end;
+begin result := '%shenries per %smeter' end;
 
 class function THenryPerMeterQty.Prefixes: TPrefixes;
-begin result := []; end;
+begin result := [pNone, pNone]; end;
 
 class function THenryPerMeterQty.Exponents: TExponents;
-begin result := []; end;
+begin result := [1, -1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TTeslaMeterPerAmpereQty}{$i common.inc}
 class function TTeslaMeterPerAmpereQty.Symbol: string;
@@ -6039,19 +6039,19 @@ begin result := [-1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareKilogramPerSquareSecondQty}{$i common.inc}
 class function TSquareKilogramPerSquareSecondQty.Symbol: string;
-begin result := '' end;
+begin result := '%sg2/%ss2' end;
 
 class function TSquareKilogramPerSquareSecondQty.SingularName: string;
-begin result := '' end;
+begin result := 'square %sgram per square %ssecond' end;
 
 class function TSquareKilogramPerSquareSecondQty.PluralName: string;
-begin result := '' end;
+begin result := 'square %sgrams per square %ssecond' end;
 
 class function TSquareKilogramPerSquareSecondQty.Prefixes: TPrefixes;
-begin result := []; end;
+begin result := [pKilo, pNone]; end;
 
 class function TSquareKilogramPerSquareSecondQty.Exponents: TExponents;
-begin result := []; end;
+begin result := [2, -2]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TReciprocalMeterQty}{$i common.inc}
 class function TReciprocalMeterQty.Symbol: string;
@@ -6071,19 +6071,19 @@ begin result := [-1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareSecondPerSquareMeterQty}{$i common.inc}
 class function TSquareSecondPerSquareMeterQty.Symbol: string;
-begin result := '' end;
+begin result := '%ss2/%sm2' end;
 
 class function TSquareSecondPerSquareMeterQty.SingularName: string;
-begin result := '' end;
+begin result := 'square %ssecond per square %smeter' end;
 
 class function TSquareSecondPerSquareMeterQty.PluralName: string;
-begin result := '' end;
+begin result := 'square %sseconds per square %smeter' end;
 
 class function TSquareSecondPerSquareMeterQty.Prefixes: TPrefixes;
-begin result := []; end;
+begin result := [pNone, pNone]; end;
 
 class function TSquareSecondPerSquareMeterQty.Exponents: TExponents;
-begin result := []; end;
+begin result := [2, -2]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareJouleQty}{$i common.inc}
 class function TSquareJouleQty.Symbol: string;
