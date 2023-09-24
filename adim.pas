@@ -126,21 +126,21 @@ type
 
 { Quantity of square coulomb }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSquareCoulombQty}{$i adim.inc}
-  class operator *(const ALeft: TNewtonSquareMeterPerSquareCoulombQty; const ARight: TSquareCoulombQty): TNewtonSquareMeterQty; inline;
-  class operator *(const ALeft: TSquareCoulombQty; const ARight: TNewtonSquareMeterPerSquareCoulombQty): TNewtonSquareMeterQty; inline;
-  class operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TSquareCoulombQty): TNewtonSquareMeterPerSquareCoulombQty; inline;
+  class operator *(const ALeft: TNewtonSquareMeterPerSquareCoulombQty; const ARight: TSquareCoulombQty): TNewtonSquareMeterQty;
+  class operator *(const ALeft: TSquareCoulombQty; const ARight: TNewtonSquareMeterPerSquareCoulombQty): TNewtonSquareMeterQty;
+  class operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TSquareCoulombQty): TNewtonSquareMeterPerSquareCoulombQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of coulomb }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCoulombQty}{$i adim.inc}
-  class operator /(const ALeft: TSquareCoulombQty; const ARight: TCoulombQty): TCoulombQty; inline;
-  class operator *(const ALeft: TCoulombQty; const ARight: TCoulombQty): TSquareCoulombQty; inline;
+  class operator /(const ALeft: TSquareCoulombQty; const ARight: TCoulombQty): TCoulombQty;
+  class operator *(const ALeft: TCoulombQty; const ARight: TCoulombQty): TSquareCoulombQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of joule }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TJouleQty}{$i adim.inc}
-  class operator /(const ALeft: TSquareJouleQty; const ARight: TJouleQty): TJouleQty; inline;
-  class operator *(const ALeft: TJouleQty; const ARight: TJouleQty): TSquareJouleQty; inline;
+  class operator /(const ALeft: TSquareJouleQty; const ARight: TJouleQty): TJouleQty;
+  class operator *(const ALeft: TJouleQty; const ARight: TJouleQty): TSquareJouleQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of square newton }
@@ -149,8 +149,8 @@ type
 
 { Quantity of newton }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TNewtonQty}{$i adim.inc}
-  class operator /(const ALeft: TSquareNewtonQty; const ARight: TNewtonQty): TNewtonQty; inline;
-  class operator *(const ALeft: TNewtonQty; const ARight: TNewtonQty): TSquareNewtonQty; inline;
+  class operator /(const ALeft: TSquareNewtonQty; const ARight: TNewtonQty): TNewtonQty;
+  class operator *(const ALeft: TNewtonQty; const ARight: TNewtonQty): TSquareNewtonQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of kilogram square meter }
@@ -175,8 +175,8 @@ type
 
 { Quantity of square kelvin }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSquareKelvinQty}{$i adim.inc}
-  class operator /(const ALeft: TQuarticKelvinQty; const ARight: TSquareKelvinQty): TSquareKelvinQty; inline;
-  class operator *(const ALeft: TSquareKelvinQty; const ARight: TSquareKelvinQty): TQuarticKelvinQty; inline;
+  class operator /(const ALeft: TQuarticKelvinQty; const ARight: TSquareKelvinQty): TSquareKelvinQty;
+  class operator *(const ALeft: TSquareKelvinQty; const ARight: TSquareKelvinQty): TQuarticKelvinQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of square ampere }
@@ -185,9 +185,9 @@ type
 
 { Quantity of square kilogram }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSquareKilogramQty}{$i adim.inc}
-  class operator *(const ALeft: TNewtonSquareMeterPerSquareKilogramQty; const ARight: TSquareKilogramQty): TNewtonSquareMeterQty; inline;
-  class operator *(const ALeft: TSquareKilogramQty; const ARight: TNewtonSquareMeterPerSquareKilogramQty): TNewtonSquareMeterQty; inline;
-  class operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TSquareKilogramQty): TNewtonSquareMeterPerSquareKilogramQty; inline;
+  class operator *(const ALeft: TNewtonSquareMeterPerSquareKilogramQty; const ARight: TSquareKilogramQty): TNewtonSquareMeterQty;
+  class operator *(const ALeft: TSquareKilogramQty; const ARight: TNewtonSquareMeterPerSquareKilogramQty): TNewtonSquareMeterQty;
+  class operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TSquareKilogramQty): TNewtonSquareMeterPerSquareKilogramQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of sextic meter }
@@ -204,50 +204,50 @@ type
 
 { Quantity of cubic meter }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCubicMeterQty}{$i adim.inc}
-  class operator /(const ALeft: TCubicMeterQty; const ARight: TNewtonSquareMeterPerSquareKilogramQty): TKilogramSquareSecondQty; inline;
-  class operator /(const ALeft: TCubicMeterQty; const ARight: TKilogramSquareSecondQty): TNewtonSquareMeterPerSquareKilogramQty; inline;
-  class operator /(const ALeft: TSexticMeterQty; const ARight: TCubicMeterQty): TCubicMeterQty; inline;
-  class operator *(const ALeft: TCubicMeterQty; const ARight: TCubicMeterQty): TSexticMeterQty; inline;
+  class operator /(const ALeft: TCubicMeterQty; const ARight: TNewtonSquareMeterPerSquareKilogramQty): TKilogramSquareSecondQty;
+  class operator /(const ALeft: TCubicMeterQty; const ARight: TKilogramSquareSecondQty): TNewtonSquareMeterPerSquareKilogramQty;
+  class operator /(const ALeft: TSexticMeterQty; const ARight: TCubicMeterQty): TCubicMeterQty;
+  class operator *(const ALeft: TCubicMeterQty; const ARight: TCubicMeterQty): TSexticMeterQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of square meter }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSquareMeterQty}{$i adim.inc}
-  class operator /(const ALeft: TSquareMeterSteradianQty; const ARight: TSquareMeterQty): TSteradianQty; inline;
-  class operator *(const ALeft: TSteradianQty; const ARight: TSquareMeterQty): TSquareMeterSteradianQty; inline;
-  class operator *(const ALeft: TSquareMeterQty; const ARight: TSteradianQty): TSquareMeterSteradianQty; inline;
-  class operator /(const ALeft: TSquareMeterQuarticKelvinQty; const ARight: TSquareMeterQty): TQuarticKelvinQty; inline;
-  class operator *(const ALeft: TQuarticKelvinQty; const ARight: TSquareMeterQty): TSquareMeterQuarticKelvinQty; inline;
-  class operator *(const ALeft: TSquareMeterQty; const ARight: TQuarticKelvinQty): TSquareMeterQuarticKelvinQty; inline;
-  class operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TSquareMeterQty): TNewtonQty; inline;
-  class operator *(const ALeft: TSquareMeterQty; const ARight: TNewtonQty): TNewtonSquareMeterQty; inline;
-  class operator *(const ALeft: TNewtonQty; const ARight: TSquareMeterQty): TNewtonSquareMeterQty; inline;
-  class operator /(const ALeft: TSexticMeterQty; const ARight: TSquareMeterQty): TQuarticMeterQty; inline;
-  class operator *(const ALeft: TSquareMeterQty; const ARight: TQuarticMeterQty): TSexticMeterQty; inline;
-  class operator *(const ALeft: TQuarticMeterQty; const ARight: TSquareMeterQty): TSexticMeterQty; inline;
-  class operator /(const ALeft: TQuinticMeterQty; const ARight: TSquareMeterQty): TCubicMeterQty; inline;
-  class operator *(const ALeft: TSquareMeterQty; const ARight: TCubicMeterQty): TQuinticMeterQty; inline;
-  class operator *(const ALeft: TCubicMeterQty; const ARight: TSquareMeterQty): TQuinticMeterQty; inline;
-  class operator /(const ALeft: TQuarticMeterQty; const ARight: TSquareMeterQty): TSquareMeterQty; inline;
-  class operator *(const ALeft: TSquareMeterQty; const ARight: TSquareMeterQty): TQuarticMeterQty; inline;
+  class operator /(const ALeft: TSquareMeterSteradianQty; const ARight: TSquareMeterQty): TSteradianQty;
+  class operator *(const ALeft: TSteradianQty; const ARight: TSquareMeterQty): TSquareMeterSteradianQty;
+  class operator *(const ALeft: TSquareMeterQty; const ARight: TSteradianQty): TSquareMeterSteradianQty;
+  class operator /(const ALeft: TSquareMeterQuarticKelvinQty; const ARight: TSquareMeterQty): TQuarticKelvinQty;
+  class operator *(const ALeft: TQuarticKelvinQty; const ARight: TSquareMeterQty): TSquareMeterQuarticKelvinQty;
+  class operator *(const ALeft: TSquareMeterQty; const ARight: TQuarticKelvinQty): TSquareMeterQuarticKelvinQty;
+  class operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TSquareMeterQty): TNewtonQty;
+  class operator *(const ALeft: TSquareMeterQty; const ARight: TNewtonQty): TNewtonSquareMeterQty;
+  class operator *(const ALeft: TNewtonQty; const ARight: TSquareMeterQty): TNewtonSquareMeterQty;
+  class operator /(const ALeft: TSexticMeterQty; const ARight: TSquareMeterQty): TQuarticMeterQty;
+  class operator *(const ALeft: TSquareMeterQty; const ARight: TQuarticMeterQty): TSexticMeterQty;
+  class operator *(const ALeft: TQuarticMeterQty; const ARight: TSquareMeterQty): TSexticMeterQty;
+  class operator /(const ALeft: TQuinticMeterQty; const ARight: TSquareMeterQty): TCubicMeterQty;
+  class operator *(const ALeft: TSquareMeterQty; const ARight: TCubicMeterQty): TQuinticMeterQty;
+  class operator *(const ALeft: TCubicMeterQty; const ARight: TSquareMeterQty): TQuinticMeterQty;
+  class operator /(const ALeft: TQuarticMeterQty; const ARight: TSquareMeterQty): TSquareMeterQty;
+  class operator *(const ALeft: TSquareMeterQty; const ARight: TSquareMeterQty): TQuarticMeterQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of square second }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSquareSecondQty}{$i adim.inc}
-  class operator *(const ALeft: TJouleQty; const ARight: TSquareSecondQty): TKilogramSquareMeterQty; inline;
-  class operator *(const ALeft: TSquareSecondQty; const ARight: TJouleQty): TKilogramSquareMeterQty; inline;
-  class operator /(const ALeft: TKilogramSquareMeterQty; const ARight: TSquareSecondQty): TJouleQty; inline;
+  class operator *(const ALeft: TJouleQty; const ARight: TSquareSecondQty): TKilogramSquareMeterQty;
+  class operator *(const ALeft: TSquareSecondQty; const ARight: TJouleQty): TKilogramSquareMeterQty;
+  class operator /(const ALeft: TKilogramSquareMeterQty; const ARight: TSquareSecondQty): TJouleQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of second }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSecondQty}{$i adim.inc}
-  class operator /(const ALeft: TQuarticMeterSecondQty; const ARight: TSecondQty): TQuarticMeterQty; inline;
-  class operator *(const ALeft: TSecondQty; const ARight: TQuarticMeterQty): TQuarticMeterSecondQty; inline;
-  class operator *(const ALeft: TQuarticMeterQty; const ARight: TSecondQty): TQuarticMeterSecondQty; inline;
-  class operator *(const ALeft: TNewtonQty; const ARight: TSecondQty): TKilogramMeterPerSecondQty; inline;
-  class operator *(const ALeft: TSecondQty; const ARight: TNewtonQty): TKilogramMeterPerSecondQty; inline;
-  class operator /(const ALeft: TKilogramMeterPerSecondQty; const ARight: TSecondQty): TNewtonQty; inline;
-  class operator /(const ALeft: TSquareSecondQty; const ARight: TSecondQty): TSecondQty; inline;
-  class operator *(const ALeft: TSecondQty; const ARight: TSecondQty): TSquareSecondQty; inline;
+  class operator /(const ALeft: TQuarticMeterSecondQty; const ARight: TSecondQty): TQuarticMeterQty;
+  class operator *(const ALeft: TSecondQty; const ARight: TQuarticMeterQty): TQuarticMeterSecondQty;
+  class operator *(const ALeft: TQuarticMeterQty; const ARight: TSecondQty): TQuarticMeterSecondQty;
+  class operator *(const ALeft: TNewtonQty; const ARight: TSecondQty): TKilogramMeterPerSecondQty;
+  class operator *(const ALeft: TSecondQty; const ARight: TNewtonQty): TKilogramMeterPerSecondQty;
+  class operator /(const ALeft: TKilogramMeterPerSecondQty; const ARight: TSecondQty): TNewtonQty;
+  class operator /(const ALeft: TSquareSecondQty; const ARight: TSecondQty): TSecondQty;
+  class operator *(const ALeft: TSecondQty; const ARight: TSecondQty): TSquareSecondQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of day }
@@ -276,26 +276,26 @@ type
 
 { Quantity of meter }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TMeterQty}{$i adim.inc}
-  class operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TMeterQty): TJouleQty; inline;
-  class operator *(const ALeft: TMeterQty; const ARight: TJouleQty): TNewtonSquareMeterQty; inline;
-  class operator *(const ALeft: TJouleQty; const ARight: TMeterQty): TNewtonSquareMeterQty; inline;
-  class operator /(const ALeft: TJouleQty; const ARight: TMeterQty): TNewtonQty; inline;
-  class operator *(const ALeft: TMeterQty; const ARight: TNewtonQty): TJouleQty; inline;
-  class operator *(const ALeft: TNewtonQty; const ARight: TMeterQty): TJouleQty; inline;
-  class operator /(const ALeft: TSexticMeterQty; const ARight: TMeterQty): TQuinticMeterQty; inline;
-  class operator *(const ALeft: TMeterQty; const ARight: TQuinticMeterQty): TSexticMeterQty; inline;
-  class operator *(const ALeft: TQuinticMeterQty; const ARight: TMeterQty): TSexticMeterQty; inline;
-  class operator /(const ALeft: TQuinticMeterQty; const ARight: TMeterQty): TQuarticMeterQty; inline;
-  class operator *(const ALeft: TMeterQty; const ARight: TQuarticMeterQty): TQuinticMeterQty; inline;
-  class operator *(const ALeft: TQuarticMeterQty; const ARight: TMeterQty): TQuinticMeterQty; inline;
-  class operator /(const ALeft: TQuarticMeterQty; const ARight: TMeterQty): TCubicMeterQty; inline;
-  class operator *(const ALeft: TMeterQty; const ARight: TCubicMeterQty): TQuarticMeterQty; inline;
-  class operator *(const ALeft: TCubicMeterQty; const ARight: TMeterQty): TQuarticMeterQty; inline;
-  class operator /(const ALeft: TCubicMeterQty; const ARight: TMeterQty): TSquareMeterQty; inline;
-  class operator *(const ALeft: TMeterQty; const ARight: TSquareMeterQty): TCubicMeterQty; inline;
-  class operator *(const ALeft: TSquareMeterQty; const ARight: TMeterQty): TCubicMeterQty; inline;
-  class operator /(const ALeft: TSquareMeterQty; const ARight: TMeterQty): TMeterQty; inline;
-  class operator *(const ALeft: TMeterQty; const ARight: TMeterQty): TSquareMeterQty; inline;
+  class operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TMeterQty): TJouleQty;
+  class operator *(const ALeft: TMeterQty; const ARight: TJouleQty): TNewtonSquareMeterQty;
+  class operator *(const ALeft: TJouleQty; const ARight: TMeterQty): TNewtonSquareMeterQty;
+  class operator /(const ALeft: TJouleQty; const ARight: TMeterQty): TNewtonQty;
+  class operator *(const ALeft: TMeterQty; const ARight: TNewtonQty): TJouleQty;
+  class operator *(const ALeft: TNewtonQty; const ARight: TMeterQty): TJouleQty;
+  class operator /(const ALeft: TSexticMeterQty; const ARight: TMeterQty): TQuinticMeterQty;
+  class operator *(const ALeft: TMeterQty; const ARight: TQuinticMeterQty): TSexticMeterQty;
+  class operator *(const ALeft: TQuinticMeterQty; const ARight: TMeterQty): TSexticMeterQty;
+  class operator /(const ALeft: TQuinticMeterQty; const ARight: TMeterQty): TQuarticMeterQty;
+  class operator *(const ALeft: TMeterQty; const ARight: TQuarticMeterQty): TQuinticMeterQty;
+  class operator *(const ALeft: TQuarticMeterQty; const ARight: TMeterQty): TQuinticMeterQty;
+  class operator /(const ALeft: TQuarticMeterQty; const ARight: TMeterQty): TCubicMeterQty;
+  class operator *(const ALeft: TMeterQty; const ARight: TCubicMeterQty): TQuarticMeterQty;
+  class operator *(const ALeft: TCubicMeterQty; const ARight: TMeterQty): TQuarticMeterQty;
+  class operator /(const ALeft: TCubicMeterQty; const ARight: TMeterQty): TSquareMeterQty;
+  class operator *(const ALeft: TMeterQty; const ARight: TSquareMeterQty): TCubicMeterQty;
+  class operator *(const ALeft: TSquareMeterQty; const ARight: TMeterQty): TCubicMeterQty;
+  class operator /(const ALeft: TSquareMeterQty; const ARight: TMeterQty): TMeterQty;
+  class operator *(const ALeft: TMeterQty; const ARight: TMeterQty): TSquareMeterQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of astronomical }
@@ -360,14 +360,14 @@ type
 
 { Quantity of kilogram }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TKilogramQty}{$i adim.inc}
-  class operator /(const ALeft: TKilogramSquareSecondQty; const ARight: TKilogramQty): TSquareSecondQty; inline;
-  class operator *(const ALeft: TSquareSecondQty; const ARight: TKilogramQty): TKilogramSquareSecondQty; inline;
-  class operator *(const ALeft: TKilogramQty; const ARight: TSquareSecondQty): TKilogramSquareSecondQty; inline;
-  class operator /(const ALeft: TKilogramSquareMeterQty; const ARight: TKilogramQty): TSquareMeterQty; inline;
-  class operator *(const ALeft: TSquareMeterQty; const ARight: TKilogramQty): TKilogramSquareMeterQty; inline;
-  class operator *(const ALeft: TKilogramQty; const ARight: TSquareMeterQty): TKilogramSquareMeterQty; inline;
-  class operator /(const ALeft: TSquareKilogramQty; const ARight: TKilogramQty): TKilogramQty; inline;
-  class operator *(const ALeft: TKilogramQty; const ARight: TKilogramQty): TSquareKilogramQty; inline;
+  class operator /(const ALeft: TKilogramSquareSecondQty; const ARight: TKilogramQty): TSquareSecondQty;
+  class operator *(const ALeft: TSquareSecondQty; const ARight: TKilogramQty): TKilogramSquareSecondQty;
+  class operator *(const ALeft: TKilogramQty; const ARight: TSquareSecondQty): TKilogramSquareSecondQty;
+  class operator /(const ALeft: TKilogramSquareMeterQty; const ARight: TKilogramQty): TSquareMeterQty;
+  class operator *(const ALeft: TSquareMeterQty; const ARight: TKilogramQty): TKilogramSquareMeterQty;
+  class operator *(const ALeft: TKilogramQty; const ARight: TSquareMeterQty): TKilogramSquareMeterQty;
+  class operator /(const ALeft: TSquareKilogramQty; const ARight: TKilogramQty): TKilogramQty;
+  class operator *(const ALeft: TKilogramQty; const ARight: TKilogramQty): TSquareKilogramQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of tonne }
@@ -392,35 +392,35 @@ type
 
 { Quantity of ampere }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TAmpereQty}{$i adim.inc}
-  class operator *(const ALeft: TTeslaMeterQty; const ARight: TAmpereQty): TNewtonQty; inline;
-  class operator *(const ALeft: TAmpereQty; const ARight: TTeslaMeterQty): TNewtonQty; inline;
-  class operator /(const ALeft: TNewtonQty; const ARight: TAmpereQty): TTeslaMeterQty; inline;
-  class operator /(const ALeft: TCoulombQty; const ARight: TAmpereQty): TSecondQty; inline;
-  class operator *(const ALeft: TAmpereQty; const ARight: TSecondQty): TCoulombQty; inline;
-  class operator *(const ALeft: TSecondQty; const ARight: TAmpereQty): TCoulombQty; inline;
-  class operator /(const ALeft: TSquareAmpereQty; const ARight: TAmpereQty): TAmpereQty; inline;
-  class operator *(const ALeft: TAmpereQty; const ARight: TAmpereQty): TSquareAmpereQty; inline;
+  class operator *(const ALeft: TTeslaMeterQty; const ARight: TAmpereQty): TNewtonQty;
+  class operator *(const ALeft: TAmpereQty; const ARight: TTeslaMeterQty): TNewtonQty;
+  class operator /(const ALeft: TNewtonQty; const ARight: TAmpereQty): TTeslaMeterQty;
+  class operator /(const ALeft: TCoulombQty; const ARight: TAmpereQty): TSecondQty;
+  class operator *(const ALeft: TAmpereQty; const ARight: TSecondQty): TCoulombQty;
+  class operator *(const ALeft: TSecondQty; const ARight: TAmpereQty): TCoulombQty;
+  class operator /(const ALeft: TSquareAmpereQty; const ARight: TAmpereQty): TAmpereQty;
+  class operator *(const ALeft: TAmpereQty; const ARight: TAmpereQty): TSquareAmpereQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of kelvin }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TKelvinQty}{$i adim.inc}
-  class operator /(const ALeft: TSquareMeterKelvinQty; const ARight: TKelvinQty): TSquareMeterQty; inline;
-  class operator *(const ALeft: TKelvinQty; const ARight: TSquareMeterQty): TSquareMeterKelvinQty; inline;
-  class operator *(const ALeft: TSquareMeterQty; const ARight: TKelvinQty): TSquareMeterKelvinQty; inline;
-  class operator /(const ALeft: TMeterKelvinQty; const ARight: TKelvinQty): TMeterQty; inline;
-  class operator *(const ALeft: TKelvinQty; const ARight: TMeterQty): TMeterKelvinQty; inline;
-  class operator *(const ALeft: TMeterQty; const ARight: TKelvinQty): TMeterKelvinQty; inline;
-  class operator /(const ALeft: TKilogramKelvinQty; const ARight: TKelvinQty): TKilogramQty; inline;
-  class operator *(const ALeft: TKelvinQty; const ARight: TKilogramQty): TKilogramKelvinQty; inline;
-  class operator *(const ALeft: TKilogramQty; const ARight: TKelvinQty): TKilogramKelvinQty; inline;
-  class operator /(const ALeft: TQuarticKelvinQty; const ARight: TKelvinQty): TCubicKelvinQty; inline;
-  class operator *(const ALeft: TKelvinQty; const ARight: TCubicKelvinQty): TQuarticKelvinQty; inline;
-  class operator *(const ALeft: TCubicKelvinQty; const ARight: TKelvinQty): TQuarticKelvinQty; inline;
-  class operator /(const ALeft: TCubicKelvinQty; const ARight: TKelvinQty): TSquareKelvinQty; inline;
-  class operator *(const ALeft: TKelvinQty; const ARight: TSquareKelvinQty): TCubicKelvinQty; inline;
-  class operator *(const ALeft: TSquareKelvinQty; const ARight: TKelvinQty): TCubicKelvinQty; inline;
-  class operator /(const ALeft: TSquareKelvinQty; const ARight: TKelvinQty): TKelvinQty; inline;
-  class operator *(const ALeft: TKelvinQty; const ARight: TKelvinQty): TSquareKelvinQty; inline;
+  class operator /(const ALeft: TSquareMeterKelvinQty; const ARight: TKelvinQty): TSquareMeterQty;
+  class operator *(const ALeft: TKelvinQty; const ARight: TSquareMeterQty): TSquareMeterKelvinQty;
+  class operator *(const ALeft: TSquareMeterQty; const ARight: TKelvinQty): TSquareMeterKelvinQty;
+  class operator /(const ALeft: TMeterKelvinQty; const ARight: TKelvinQty): TMeterQty;
+  class operator *(const ALeft: TKelvinQty; const ARight: TMeterQty): TMeterKelvinQty;
+  class operator *(const ALeft: TMeterQty; const ARight: TKelvinQty): TMeterKelvinQty;
+  class operator /(const ALeft: TKilogramKelvinQty; const ARight: TKelvinQty): TKilogramQty;
+  class operator *(const ALeft: TKelvinQty; const ARight: TKilogramQty): TKilogramKelvinQty;
+  class operator *(const ALeft: TKilogramQty; const ARight: TKelvinQty): TKilogramKelvinQty;
+  class operator /(const ALeft: TQuarticKelvinQty; const ARight: TKelvinQty): TCubicKelvinQty;
+  class operator *(const ALeft: TKelvinQty; const ARight: TCubicKelvinQty): TQuarticKelvinQty;
+  class operator *(const ALeft: TCubicKelvinQty; const ARight: TKelvinQty): TQuarticKelvinQty;
+  class operator /(const ALeft: TCubicKelvinQty; const ARight: TKelvinQty): TSquareKelvinQty;
+  class operator *(const ALeft: TKelvinQty; const ARight: TSquareKelvinQty): TCubicKelvinQty;
+  class operator *(const ALeft: TSquareKelvinQty; const ARight: TKelvinQty): TCubicKelvinQty;
+  class operator /(const ALeft: TSquareKelvinQty; const ARight: TKelvinQty): TKelvinQty;
+  class operator *(const ALeft: TKelvinQty; const ARight: TKelvinQty): TSquareKelvinQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of degree celsius }
@@ -433,22 +433,22 @@ type
 
 { Quantity of mole }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TMoleQty}{$i adim.inc}
-  class operator /(const ALeft: TMoleKelvinQty; const ARight: TMoleQty): TKelvinQty; inline;
-  class operator *(const ALeft: TKelvinQty; const ARight: TMoleQty): TMoleKelvinQty; inline;
-  class operator *(const ALeft: TMoleQty; const ARight: TKelvinQty): TMoleKelvinQty; inline;
+  class operator /(const ALeft: TMoleKelvinQty; const ARight: TMoleQty): TKelvinQty;
+  class operator *(const ALeft: TKelvinQty; const ARight: TMoleQty): TMoleKelvinQty;
+  class operator *(const ALeft: TMoleQty; const ARight: TKelvinQty): TMoleKelvinQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of candela }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCandelaQty}{$i adim.inc}
-  class operator /(const ALeft: TLumenQty; const ARight: TCandelaQty): TSteradianQty; inline;
-  class operator *(const ALeft: TSteradianQty; const ARight: TCandelaQty): TLumenQty; inline;
-  class operator *(const ALeft: TCandelaQty; const ARight: TSteradianQty): TLumenQty; inline;
+  class operator /(const ALeft: TLumenQty; const ARight: TCandelaQty): TSteradianQty;
+  class operator *(const ALeft: TSteradianQty; const ARight: TCandelaQty): TLumenQty;
+  class operator *(const ALeft: TCandelaQty; const ARight: TSteradianQty): TLumenQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of radian }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TRadianQty}{$i adim.inc}
-  class operator /(const ALeft: TSteradianQty; const ARight: TRadianQty): TRadianQty; inline;
-  class operator *(const ALeft: TRadianQty; const ARight: TRadianQty): TSteradianQty; inline;
+  class operator /(const ALeft: TSteradianQty; const ARight: TRadianQty): TRadianQty;
+  class operator *(const ALeft: TRadianQty; const ARight: TRadianQty): TSteradianQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of degree }
@@ -461,70 +461,70 @@ type
 
 { Quantity of hertz }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=THertzQty}{$i adim.inc}
-  class operator /(const ALeft: double; const ARight: THertzQty): TSecondQty; inline;
-  class operator *(const ALeft: THertzQty; const ARight: TSecondQty): double; inline;
-  class operator *(const ALeft: TSecondQty; const ARight: THertzQty): double; inline;
+  class operator /(const ALeft: double; const ARight: THertzQty): TSecondQty;
+  class operator *(const ALeft: THertzQty; const ARight: TSecondQty): double;
+  class operator *(const ALeft: TSecondQty; const ARight: THertzQty): double;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of square hertz }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSquareHertzQty}{$i adim.inc}
-  class operator /(const ALeft: TJouleQty; const ARight: TSquareHertzQty): TKilogramSquareMeterQty; inline;
-  class operator *(const ALeft: TSquareHertzQty; const ARight: TKilogramSquareMeterQty): TJouleQty; inline;
-  class operator *(const ALeft: TKilogramSquareMeterQty; const ARight: TSquareHertzQty): TJouleQty; inline;
-  class operator /(const ALeft: TSquareHertzQty; const ARight: THertzQty): THertzQty; inline;
-  class operator /(const ALeft: THertzQty; const ARight: TSquareHertzQty): TSecondQty; inline;
-  class operator *(const ALeft: TSquareHertzQty; const ARight: TSecondQty): THertzQty; inline;
-  class operator *(const ALeft: TSecondQty; const ARight: TSquareHertzQty): THertzQty; inline;
-  class operator /(const ALeft: double; const ARight: TSquareHertzQty): TSquareSecondQty; inline;
-  class operator *(const ALeft: TSquareHertzQty; const ARight: TSquareSecondQty): double; inline;
-  class operator *(const ALeft: TSquareSecondQty; const ARight: TSquareHertzQty): double; inline;
+  class operator /(const ALeft: TJouleQty; const ARight: TSquareHertzQty): TKilogramSquareMeterQty;
+  class operator *(const ALeft: TSquareHertzQty; const ARight: TKilogramSquareMeterQty): TJouleQty;
+  class operator *(const ALeft: TKilogramSquareMeterQty; const ARight: TSquareHertzQty): TJouleQty;
+  class operator /(const ALeft: TSquareHertzQty; const ARight: THertzQty): THertzQty;
+  class operator /(const ALeft: THertzQty; const ARight: TSquareHertzQty): TSecondQty;
+  class operator *(const ALeft: TSquareHertzQty; const ARight: TSecondQty): THertzQty;
+  class operator *(const ALeft: TSecondQty; const ARight: TSquareHertzQty): THertzQty;
+  class operator /(const ALeft: double; const ARight: TSquareHertzQty): TSquareSecondQty;
+  class operator *(const ALeft: TSquareHertzQty; const ARight: TSquareSecondQty): double;
+  class operator *(const ALeft: TSquareSecondQty; const ARight: TSquareHertzQty): double;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of radian per second }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TRadianPerSecondQty}{$i adim.inc}
-  class operator :=(const AQuantity: THertzQty): TRadianPerSecondQty; inline;
-  class operator :=(const AQuantity: TRadianPerSecondQty): THertzQty; inline;
-  class operator /(const ALeft: TRadianPerSecondQty; const ARight: THertzQty): TRadianQty; inline;
-  class operator /(const ALeft: TRadianPerSecondQty; const ARight: TRadianQty): THertzQty; inline;
-  class operator /(const ALeft: TRadianQty; const ARight: TRadianPerSecondQty): TSecondQty; inline;
-  class operator *(const ALeft: TRadianPerSecondQty; const ARight: TSecondQty): TRadianQty; inline;
-  class operator *(const ALeft: TSecondQty; const ARight: TRadianPerSecondQty): TRadianQty; inline;
+  class operator :=(const AQuantity: THertzQty): TRadianPerSecondQty;
+  class operator :=(const AQuantity: TRadianPerSecondQty): THertzQty;
+  class operator /(const ALeft: TRadianPerSecondQty; const ARight: THertzQty): TRadianQty;
+  class operator /(const ALeft: TRadianPerSecondQty; const ARight: TRadianQty): THertzQty;
+  class operator /(const ALeft: TRadianQty; const ARight: TRadianPerSecondQty): TSecondQty;
+  class operator *(const ALeft: TRadianPerSecondQty; const ARight: TSecondQty): TRadianQty;
+  class operator *(const ALeft: TSecondQty; const ARight: TRadianPerSecondQty): TRadianQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of radian per second squared }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TRadianPerSecondSquaredQty}{$i adim.inc}
-  class operator /(const ALeft: TRadianPerSecondSquaredQty; const ARight: TSquareHertzQty): TRadianQty; inline;
-  class operator /(const ALeft: TRadianPerSecondSquaredQty; const ARight: TRadianQty): TSquareHertzQty; inline;
-  class operator /(const ALeft: TRadianQty; const ARight: TRadianPerSecondSquaredQty): TSquareSecondQty; inline;
-  class operator *(const ALeft: TRadianPerSecondSquaredQty; const ARight: TSquareSecondQty): TRadianQty; inline;
-  class operator *(const ALeft: TSquareSecondQty; const ARight: TRadianPerSecondSquaredQty): TRadianQty; inline;
-  class operator /(const ALeft: TRadianPerSecondQty; const ARight: TRadianPerSecondSquaredQty): TSecondQty; inline;
-  class operator *(const ALeft: TRadianPerSecondSquaredQty; const ARight: TSecondQty): TRadianPerSecondQty; inline;
-  class operator *(const ALeft: TSecondQty; const ARight: TRadianPerSecondSquaredQty): TRadianPerSecondQty; inline;
+  class operator /(const ALeft: TRadianPerSecondSquaredQty; const ARight: TSquareHertzQty): TRadianQty;
+  class operator /(const ALeft: TRadianPerSecondSquaredQty; const ARight: TRadianQty): TSquareHertzQty;
+  class operator /(const ALeft: TRadianQty; const ARight: TRadianPerSecondSquaredQty): TSquareSecondQty;
+  class operator *(const ALeft: TRadianPerSecondSquaredQty; const ARight: TSquareSecondQty): TRadianQty;
+  class operator *(const ALeft: TSquareSecondQty; const ARight: TRadianPerSecondSquaredQty): TRadianQty;
+  class operator /(const ALeft: TRadianPerSecondQty; const ARight: TRadianPerSecondSquaredQty): TSecondQty;
+  class operator *(const ALeft: TRadianPerSecondSquaredQty; const ARight: TSecondQty): TRadianPerSecondQty;
+  class operator *(const ALeft: TSecondQty; const ARight: TRadianPerSecondSquaredQty): TRadianPerSecondQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of steradian per square second }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSteradianPerSquareSecondQty}{$i adim.inc}
-  class operator /(const ALeft: TSteradianPerSquareSecondQty; const ARight: TSquareHertzQty): TSteradianQty; inline;
-  class operator /(const ALeft: TSteradianPerSquareSecondQty; const ARight: TSteradianQty): TSquareHertzQty; inline;
-  class operator /(const ALeft: TSteradianQty; const ARight: TSteradianPerSquareSecondQty): TSquareSecondQty; inline;
-  class operator *(const ALeft: TSteradianPerSquareSecondQty; const ARight: TSquareSecondQty): TSteradianQty; inline;
-  class operator *(const ALeft: TSquareSecondQty; const ARight: TSteradianPerSquareSecondQty): TSteradianQty; inline;
+  class operator /(const ALeft: TSteradianPerSquareSecondQty; const ARight: TSquareHertzQty): TSteradianQty;
+  class operator /(const ALeft: TSteradianPerSquareSecondQty; const ARight: TSteradianQty): TSquareHertzQty;
+  class operator /(const ALeft: TSteradianQty; const ARight: TSteradianPerSquareSecondQty): TSquareSecondQty;
+  class operator *(const ALeft: TSteradianPerSquareSecondQty; const ARight: TSquareSecondQty): TSteradianQty;
+  class operator *(const ALeft: TSquareSecondQty; const ARight: TSteradianPerSquareSecondQty): TSteradianQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of meter per second }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TMeterPerSecondQty}{$i adim.inc}
-  class operator /(const ALeft: TJouleQty; const ARight: TMeterPerSecondQty): TKilogramMeterPerSecondQty; inline;
-  class operator *(const ALeft: TMeterPerSecondQty; const ARight: TKilogramMeterPerSecondQty): TJouleQty; inline;
-  class operator *(const ALeft: TKilogramMeterPerSecondQty; const ARight: TMeterPerSecondQty): TJouleQty; inline;
-  class operator /(const ALeft: TKilogramMeterPerSecondQty; const ARight: TMeterPerSecondQty): TKilogramQty; inline;
-  class operator *(const ALeft: TMeterPerSecondQty; const ARight: TKilogramQty): TKilogramMeterPerSecondQty; inline;
-  class operator *(const ALeft: TKilogramQty; const ARight: TMeterPerSecondQty): TKilogramMeterPerSecondQty; inline;
-  class operator /(const ALeft: TMeterPerSecondQty; const ARight: THertzQty): TMeterQty; inline;
-  class operator /(const ALeft: TMeterPerSecondQty; const ARight: TMeterQty): THertzQty; inline;
-  class operator /(const ALeft: TMeterQty; const ARight: TMeterPerSecondQty): TSecondQty; inline;
-  class operator *(const ALeft: TMeterPerSecondQty; const ARight: TSecondQty): TMeterQty; inline;
-  class operator *(const ALeft: TSecondQty; const ARight: TMeterPerSecondQty): TMeterQty; inline;
+  class operator /(const ALeft: TJouleQty; const ARight: TMeterPerSecondQty): TKilogramMeterPerSecondQty;
+  class operator *(const ALeft: TMeterPerSecondQty; const ARight: TKilogramMeterPerSecondQty): TJouleQty;
+  class operator *(const ALeft: TKilogramMeterPerSecondQty; const ARight: TMeterPerSecondQty): TJouleQty;
+  class operator /(const ALeft: TKilogramMeterPerSecondQty; const ARight: TMeterPerSecondQty): TKilogramQty;
+  class operator *(const ALeft: TMeterPerSecondQty; const ARight: TKilogramQty): TKilogramMeterPerSecondQty;
+  class operator *(const ALeft: TKilogramQty; const ARight: TMeterPerSecondQty): TKilogramMeterPerSecondQty;
+  class operator /(const ALeft: TMeterPerSecondQty; const ARight: THertzQty): TMeterQty;
+  class operator /(const ALeft: TMeterPerSecondQty; const ARight: TMeterQty): THertzQty;
+  class operator /(const ALeft: TMeterQty; const ARight: TMeterPerSecondQty): TSecondQty;
+  class operator *(const ALeft: TMeterPerSecondQty; const ARight: TSecondQty): TMeterQty;
+  class operator *(const ALeft: TSecondQty; const ARight: TMeterPerSecondQty): TMeterQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of meter per hour }
@@ -541,17 +541,17 @@ type
 
 { Quantity of meter per second squared }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TMeterPerSecondSquaredQty}{$i adim.inc}
-  class operator /(const ALeft: TNewtonQty; const ARight: TMeterPerSecondSquaredQty): TKilogramQty; inline;
-  class operator *(const ALeft: TMeterPerSecondSquaredQty; const ARight: TKilogramQty): TNewtonQty; inline;
-  class operator *(const ALeft: TKilogramQty; const ARight: TMeterPerSecondSquaredQty): TNewtonQty; inline;
-  class operator /(const ALeft: TMeterPerSecondSquaredQty; const ARight: TMeterQty): TSquareHertzQty; inline;
-  class operator /(const ALeft: TMeterPerSecondSquaredQty; const ARight: TSquareHertzQty): TMeterQty; inline;
-  class operator /(const ALeft: TMeterQty; const ARight: TMeterPerSecondSquaredQty): TSquareSecondQty; inline;
-  class operator *(const ALeft: TMeterPerSecondSquaredQty; const ARight: TSquareSecondQty): TMeterQty; inline;
-  class operator *(const ALeft: TSquareSecondQty; const ARight: TMeterPerSecondSquaredQty): TMeterQty; inline;
-  class operator /(const ALeft: TMeterPerSecondQty; const ARight: TMeterPerSecondSquaredQty): TSecondQty; inline;
-  class operator *(const ALeft: TMeterPerSecondSquaredQty; const ARight: TSecondQty): TMeterPerSecondQty; inline;
-  class operator *(const ALeft: TSecondQty; const ARight: TMeterPerSecondSquaredQty): TMeterPerSecondQty; inline;
+  class operator /(const ALeft: TNewtonQty; const ARight: TMeterPerSecondSquaredQty): TKilogramQty;
+  class operator *(const ALeft: TMeterPerSecondSquaredQty; const ARight: TKilogramQty): TNewtonQty;
+  class operator *(const ALeft: TKilogramQty; const ARight: TMeterPerSecondSquaredQty): TNewtonQty;
+  class operator /(const ALeft: TMeterPerSecondSquaredQty; const ARight: TMeterQty): TSquareHertzQty;
+  class operator /(const ALeft: TMeterPerSecondSquaredQty; const ARight: TSquareHertzQty): TMeterQty;
+  class operator /(const ALeft: TMeterQty; const ARight: TMeterPerSecondSquaredQty): TSquareSecondQty;
+  class operator *(const ALeft: TMeterPerSecondSquaredQty; const ARight: TSquareSecondQty): TMeterQty;
+  class operator *(const ALeft: TSquareSecondQty; const ARight: TMeterPerSecondSquaredQty): TMeterQty;
+  class operator /(const ALeft: TMeterPerSecondQty; const ARight: TMeterPerSecondSquaredQty): TSecondQty;
+  class operator *(const ALeft: TMeterPerSecondSquaredQty; const ARight: TSecondQty): TMeterPerSecondQty;
+  class operator *(const ALeft: TSecondQty; const ARight: TMeterPerSecondSquaredQty): TMeterPerSecondQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of meter per second per second }
@@ -564,15 +564,15 @@ type
 
 { Quantity of square meter per square second }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSquareMeterPerSquareSecondQty}{$i adim.inc}
-  class operator /(const ALeft: TJouleQty; const ARight: TSquareMeterPerSquareSecondQty): TKilogramQty; inline;
-  class operator *(const ALeft: TSquareMeterPerSquareSecondQty; const ARight: TKilogramQty): TJouleQty; inline;
-  class operator *(const ALeft: TKilogramQty; const ARight: TSquareMeterPerSquareSecondQty): TJouleQty; inline;
-  class operator /(const ALeft: TSquareMeterPerSquareSecondQty; const ARight: TMeterQty): TMeterPerSecondSquaredQty; inline;
-  class operator /(const ALeft: TSquareMeterPerSquareSecondQty; const ARight: TMeterPerSecondSquaredQty): TMeterQty; inline;
-  class operator /(const ALeft: TSquareMeterPerSquareSecondQty; const ARight: TMeterPerSecondQty): TMeterPerSecondQty; inline;
-  class operator /(const ALeft: TSquareMeterQty; const ARight: TSquareMeterPerSquareSecondQty): TSquareSecondQty; inline;
-  class operator *(const ALeft: TSquareMeterPerSquareSecondQty; const ARight: TSquareSecondQty): TSquareMeterQty; inline;
-  class operator *(const ALeft: TSquareSecondQty; const ARight: TSquareMeterPerSquareSecondQty): TSquareMeterQty; inline;
+  class operator /(const ALeft: TJouleQty; const ARight: TSquareMeterPerSquareSecondQty): TKilogramQty;
+  class operator *(const ALeft: TSquareMeterPerSquareSecondQty; const ARight: TKilogramQty): TJouleQty;
+  class operator *(const ALeft: TKilogramQty; const ARight: TSquareMeterPerSquareSecondQty): TJouleQty;
+  class operator /(const ALeft: TSquareMeterPerSquareSecondQty; const ARight: TMeterQty): TMeterPerSecondSquaredQty;
+  class operator /(const ALeft: TSquareMeterPerSquareSecondQty; const ARight: TMeterPerSecondSquaredQty): TMeterQty;
+  class operator /(const ALeft: TSquareMeterPerSquareSecondQty; const ARight: TMeterPerSecondQty): TMeterPerSecondQty;
+  class operator /(const ALeft: TSquareMeterQty; const ARight: TSquareMeterPerSquareSecondQty): TSquareSecondQty;
+  class operator *(const ALeft: TSquareMeterPerSquareSecondQty; const ARight: TSquareSecondQty): TSquareMeterQty;
+  class operator *(const ALeft: TSquareSecondQty; const ARight: TSquareMeterPerSquareSecondQty): TSquareMeterQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of newton second }
@@ -581,48 +581,48 @@ type
 
 { Quantity of kilogram square meter per second }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TKilogramSquareMeterPerSecondQty}{$i adim.inc}
-  class operator /(const ALeft: TJouleQty; const ARight: TKilogramSquareMeterPerSecondQty): THertzQty; inline;
-  class operator *(const ALeft: THertzQty; const ARight: TKilogramSquareMeterPerSecondQty): TJouleQty; inline;
-  class operator *(const ALeft: TKilogramSquareMeterPerSecondQty; const ARight: THertzQty): TJouleQty; inline;
-  class operator /(const ALeft: TKilogramSquareMeterPerSecondQty; const ARight: TJouleQty): TSecondQty; inline;
-  class operator /(const ALeft: TKilogramSquareMeterPerSecondQty; const ARight: TSecondQty): TJouleQty; inline;
-  class operator /(const ALeft: TKilogramSquareMeterPerSecondQty; const ARight: TMeterQty): TKilogramMeterPerSecondQty; inline;
-  class operator /(const ALeft: TKilogramSquareMeterPerSecondQty; const ARight: TKilogramMeterPerSecondQty): TMeterQty; inline;
-  class operator /(const ALeft: TKilogramSquareMeterPerSecondQty; const ARight: THertzQty): TKilogramSquareMeterQty; inline;
-  class operator /(const ALeft: TKilogramSquareMeterPerSecondQty; const ARight: TKilogramSquareMeterQty): THertzQty; inline;
-  class operator /(const ALeft: TKilogramSquareMeterQty; const ARight: TKilogramSquareMeterPerSecondQty): TSecondQty; inline;
-  class operator *(const ALeft: TKilogramSquareMeterPerSecondQty; const ARight: TSecondQty): TKilogramSquareMeterQty; inline;
-  class operator *(const ALeft: TSecondQty; const ARight: TKilogramSquareMeterPerSecondQty): TKilogramSquareMeterQty; inline;
+  class operator /(const ALeft: TJouleQty; const ARight: TKilogramSquareMeterPerSecondQty): THertzQty;
+  class operator *(const ALeft: THertzQty; const ARight: TKilogramSquareMeterPerSecondQty): TJouleQty;
+  class operator *(const ALeft: TKilogramSquareMeterPerSecondQty; const ARight: THertzQty): TJouleQty;
+  class operator /(const ALeft: TKilogramSquareMeterPerSecondQty; const ARight: TJouleQty): TSecondQty;
+  class operator /(const ALeft: TKilogramSquareMeterPerSecondQty; const ARight: TSecondQty): TJouleQty;
+  class operator /(const ALeft: TKilogramSquareMeterPerSecondQty; const ARight: TMeterQty): TKilogramMeterPerSecondQty;
+  class operator /(const ALeft: TKilogramSquareMeterPerSecondQty; const ARight: TKilogramMeterPerSecondQty): TMeterQty;
+  class operator /(const ALeft: TKilogramSquareMeterPerSecondQty; const ARight: THertzQty): TKilogramSquareMeterQty;
+  class operator /(const ALeft: TKilogramSquareMeterPerSecondQty; const ARight: TKilogramSquareMeterQty): THertzQty;
+  class operator /(const ALeft: TKilogramSquareMeterQty; const ARight: TKilogramSquareMeterPerSecondQty): TSecondQty;
+  class operator *(const ALeft: TKilogramSquareMeterPerSecondQty; const ARight: TSecondQty): TKilogramSquareMeterQty;
+  class operator *(const ALeft: TSecondQty; const ARight: TKilogramSquareMeterPerSecondQty): TKilogramSquareMeterQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of kilogram per meter }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TKilogramPerMeterQty}{$i adim.inc}
-  class operator /(const ALeft: TNewtonQty; const ARight: TKilogramPerMeterQty): TSquareMeterPerSquareSecondQty; inline;
-  class operator *(const ALeft: TSquareMeterPerSquareSecondQty; const ARight: TKilogramPerMeterQty): TNewtonQty; inline;
-  class operator *(const ALeft: TKilogramPerMeterQty; const ARight: TSquareMeterPerSquareSecondQty): TNewtonQty; inline;
-  class operator /(const ALeft: TKilogramQty; const ARight: TKilogramPerMeterQty): TMeterQty; inline;
-  class operator *(const ALeft: TKilogramPerMeterQty; const ARight: TMeterQty): TKilogramQty; inline;
-  class operator *(const ALeft: TMeterQty; const ARight: TKilogramPerMeterQty): TKilogramQty; inline;
+  class operator /(const ALeft: TNewtonQty; const ARight: TKilogramPerMeterQty): TSquareMeterPerSquareSecondQty;
+  class operator *(const ALeft: TSquareMeterPerSquareSecondQty; const ARight: TKilogramPerMeterQty): TNewtonQty;
+  class operator *(const ALeft: TKilogramPerMeterQty; const ARight: TSquareMeterPerSquareSecondQty): TNewtonQty;
+  class operator /(const ALeft: TKilogramQty; const ARight: TKilogramPerMeterQty): TMeterQty;
+  class operator *(const ALeft: TKilogramPerMeterQty; const ARight: TMeterQty): TKilogramQty;
+  class operator *(const ALeft: TMeterQty; const ARight: TKilogramPerMeterQty): TKilogramQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of kilogram per square meter }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TKilogramPerSquareMeterQty}{$i adim.inc}
-  class operator /(const ALeft: TPoiseuilleQty; const ARight: TKilogramPerSquareMeterQty): TMeterPerSecondQty; inline;
-  class operator *(const ALeft: TMeterPerSecondQty; const ARight: TKilogramPerSquareMeterQty): TPoiseuilleQty; inline;
-  class operator *(const ALeft: TKilogramPerSquareMeterQty; const ARight: TMeterPerSecondQty): TPoiseuilleQty; inline;
-  class operator /(const ALeft: TKilogramQty; const ARight: TKilogramPerSquareMeterQty): TSquareMeterQty; inline;
-  class operator *(const ALeft: TKilogramPerSquareMeterQty; const ARight: TSquareMeterQty): TKilogramQty; inline;
-  class operator *(const ALeft: TSquareMeterQty; const ARight: TKilogramPerSquareMeterQty): TKilogramQty; inline;
+  class operator /(const ALeft: TPoiseuilleQty; const ARight: TKilogramPerSquareMeterQty): TMeterPerSecondQty;
+  class operator *(const ALeft: TMeterPerSecondQty; const ARight: TKilogramPerSquareMeterQty): TPoiseuilleQty;
+  class operator *(const ALeft: TKilogramPerSquareMeterQty; const ARight: TMeterPerSecondQty): TPoiseuilleQty;
+  class operator /(const ALeft: TKilogramQty; const ARight: TKilogramPerSquareMeterQty): TSquareMeterQty;
+  class operator *(const ALeft: TKilogramPerSquareMeterQty; const ARight: TSquareMeterQty): TKilogramQty;
+  class operator *(const ALeft: TSquareMeterQty; const ARight: TKilogramPerSquareMeterQty): TKilogramQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of kilogram per cubic meter }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TKilogramPerCubicMeterQty}{$i adim.inc}
-  class operator /(const ALeft: TKilogramPerSquareMeterQty; const ARight: TKilogramPerCubicMeterQty): TMeterQty; inline;
-  class operator *(const ALeft: TKilogramPerCubicMeterQty; const ARight: TMeterQty): TKilogramPerSquareMeterQty; inline;
-  class operator *(const ALeft: TMeterQty; const ARight: TKilogramPerCubicMeterQty): TKilogramPerSquareMeterQty; inline;
-  class operator /(const ALeft: TKilogramQty; const ARight: TKilogramPerCubicMeterQty): TCubicMeterQty; inline;
-  class operator *(const ALeft: TKilogramPerCubicMeterQty; const ARight: TCubicMeterQty): TKilogramQty; inline;
-  class operator *(const ALeft: TCubicMeterQty; const ARight: TKilogramPerCubicMeterQty): TKilogramQty; inline;
+  class operator /(const ALeft: TKilogramPerSquareMeterQty; const ARight: TKilogramPerCubicMeterQty): TMeterQty;
+  class operator *(const ALeft: TKilogramPerCubicMeterQty; const ARight: TMeterQty): TKilogramPerSquareMeterQty;
+  class operator *(const ALeft: TMeterQty; const ARight: TKilogramPerCubicMeterQty): TKilogramPerSquareMeterQty;
+  class operator /(const ALeft: TKilogramQty; const ARight: TKilogramPerCubicMeterQty): TCubicMeterQty;
+  class operator *(const ALeft: TKilogramPerCubicMeterQty; const ARight: TCubicMeterQty): TKilogramQty;
+  class operator *(const ALeft: TCubicMeterQty; const ARight: TKilogramPerCubicMeterQty): TKilogramQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of pound force }
@@ -631,20 +631,20 @@ type
 
 { Quantity of pascal }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TPascalQty}{$i adim.inc}
-  class operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TPascalQty): TQuarticMeterQty; inline;
-  class operator *(const ALeft: TQuarticMeterQty; const ARight: TPascalQty): TNewtonSquareMeterQty; inline;
-  class operator *(const ALeft: TPascalQty; const ARight: TQuarticMeterQty): TNewtonSquareMeterQty; inline;
-  class operator /(const ALeft: TPoiseuilleQty; const ARight: TPascalQty): TSecondQty; inline;
-  class operator *(const ALeft: TSecondQty; const ARight: TPascalQty): TPoiseuilleQty; inline;
-  class operator *(const ALeft: TPascalQty; const ARight: TSecondQty): TPoiseuilleQty; inline;
-  class operator /(const ALeft: TJouleQty; const ARight: TPascalQty): TCubicMeterQty; inline;
-  class operator *(const ALeft: TCubicMeterQty; const ARight: TPascalQty): TJouleQty; inline;
-  class operator *(const ALeft: TPascalQty; const ARight: TCubicMeterQty): TJouleQty; inline;
-  class operator /(const ALeft: TPascalQty; const ARight: TSquareMeterPerSquareSecondQty): TKilogramPerCubicMeterQty; inline;
-  class operator /(const ALeft: TPascalQty; const ARight: TKilogramPerCubicMeterQty): TSquareMeterPerSquareSecondQty; inline;
-  class operator /(const ALeft: TNewtonQty; const ARight: TPascalQty): TSquareMeterQty; inline;
-  class operator *(const ALeft: TPascalQty; const ARight: TSquareMeterQty): TNewtonQty; inline;
-  class operator *(const ALeft: TSquareMeterQty; const ARight: TPascalQty): TNewtonQty; inline;
+  class operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TPascalQty): TQuarticMeterQty;
+  class operator *(const ALeft: TQuarticMeterQty; const ARight: TPascalQty): TNewtonSquareMeterQty;
+  class operator *(const ALeft: TPascalQty; const ARight: TQuarticMeterQty): TNewtonSquareMeterQty;
+  class operator /(const ALeft: TPoiseuilleQty; const ARight: TPascalQty): TSecondQty;
+  class operator *(const ALeft: TSecondQty; const ARight: TPascalQty): TPoiseuilleQty;
+  class operator *(const ALeft: TPascalQty; const ARight: TSecondQty): TPoiseuilleQty;
+  class operator /(const ALeft: TJouleQty; const ARight: TPascalQty): TCubicMeterQty;
+  class operator *(const ALeft: TCubicMeterQty; const ARight: TPascalQty): TJouleQty;
+  class operator *(const ALeft: TPascalQty; const ARight: TCubicMeterQty): TJouleQty;
+  class operator /(const ALeft: TPascalQty; const ARight: TSquareMeterPerSquareSecondQty): TKilogramPerCubicMeterQty;
+  class operator /(const ALeft: TPascalQty; const ARight: TKilogramPerCubicMeterQty): TSquareMeterPerSquareSecondQty;
+  class operator /(const ALeft: TNewtonQty; const ARight: TPascalQty): TSquareMeterQty;
+  class operator *(const ALeft: TPascalQty; const ARight: TSquareMeterQty): TNewtonQty;
+  class operator *(const ALeft: TSquareMeterQty; const ARight: TPascalQty): TNewtonQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of bar }
@@ -677,13 +677,13 @@ type
 
 { Quantity of watt }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TWattQty}{$i adim.inc}
-  class operator /(const ALeft: TWattQty; const ARight: TMeterPerSecondQty): TNewtonQty; inline;
-  class operator /(const ALeft: TWattQty; const ARight: TNewtonQty): TMeterPerSecondQty; inline;
-  class operator /(const ALeft: TWattQty; const ARight: THertzQty): TJouleQty; inline;
-  class operator /(const ALeft: TWattQty; const ARight: TJouleQty): THertzQty; inline;
-  class operator /(const ALeft: TJouleQty; const ARight: TWattQty): TSecondQty; inline;
-  class operator *(const ALeft: TWattQty; const ARight: TSecondQty): TJouleQty; inline;
-  class operator *(const ALeft: TSecondQty; const ARight: TWattQty): TJouleQty; inline;
+  class operator /(const ALeft: TWattQty; const ARight: TMeterPerSecondQty): TNewtonQty;
+  class operator /(const ALeft: TWattQty; const ARight: TNewtonQty): TMeterPerSecondQty;
+  class operator /(const ALeft: TWattQty; const ARight: THertzQty): TJouleQty;
+  class operator /(const ALeft: TWattQty; const ARight: TJouleQty): THertzQty;
+  class operator /(const ALeft: TJouleQty; const ARight: TWattQty): TSecondQty;
+  class operator *(const ALeft: TWattQty; const ARight: TSecondQty): TJouleQty;
+  class operator *(const ALeft: TSecondQty; const ARight: TWattQty): TJouleQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of ampere hour }
@@ -692,85 +692,85 @@ type
 
 { Quantity of volt }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TVoltQty}{$i adim.inc}
-  class operator /(const ALeft: TVoltMeterQty; const ARight: TVoltQty): TMeterQty; inline;
-  class operator *(const ALeft: TMeterQty; const ARight: TVoltQty): TVoltMeterQty; inline;
-  class operator *(const ALeft: TVoltQty; const ARight: TMeterQty): TVoltMeterQty; inline;
-  class operator /(const ALeft: TWeberQty; const ARight: TVoltQty): TSecondQty; inline;
-  class operator *(const ALeft: TSecondQty; const ARight: TVoltQty): TWeberQty; inline;
-  class operator *(const ALeft: TVoltQty; const ARight: TSecondQty): TWeberQty; inline;
-  class operator /(const ALeft: TSquareVoltQty; const ARight: TVoltQty): TVoltQty; inline;
-  class operator *(const ALeft: TVoltQty; const ARight: TVoltQty): TSquareVoltQty; inline;
-  class operator /(const ALeft: TJouleQty; const ARight: TVoltQty): TCoulombQty; inline;
-  class operator *(const ALeft: TVoltQty; const ARight: TCoulombQty): TJouleQty; inline;
-  class operator *(const ALeft: TCoulombQty; const ARight: TVoltQty): TJouleQty; inline;
-  class operator /(const ALeft: TWattQty; const ARight: TVoltQty): TAmpereQty; inline;
-  class operator *(const ALeft: TVoltQty; const ARight: TAmpereQty): TWattQty; inline;
-  class operator *(const ALeft: TAmpereQty; const ARight: TVoltQty): TWattQty; inline;
+  class operator /(const ALeft: TVoltMeterQty; const ARight: TVoltQty): TMeterQty;
+  class operator *(const ALeft: TMeterQty; const ARight: TVoltQty): TVoltMeterQty;
+  class operator *(const ALeft: TVoltQty; const ARight: TMeterQty): TVoltMeterQty;
+  class operator /(const ALeft: TWeberQty; const ARight: TVoltQty): TSecondQty;
+  class operator *(const ALeft: TSecondQty; const ARight: TVoltQty): TWeberQty;
+  class operator *(const ALeft: TVoltQty; const ARight: TSecondQty): TWeberQty;
+  class operator /(const ALeft: TSquareVoltQty; const ARight: TVoltQty): TVoltQty;
+  class operator *(const ALeft: TVoltQty; const ARight: TVoltQty): TSquareVoltQty;
+  class operator /(const ALeft: TJouleQty; const ARight: TVoltQty): TCoulombQty;
+  class operator *(const ALeft: TVoltQty; const ARight: TCoulombQty): TJouleQty;
+  class operator *(const ALeft: TCoulombQty; const ARight: TVoltQty): TJouleQty;
+  class operator /(const ALeft: TWattQty; const ARight: TVoltQty): TAmpereQty;
+  class operator *(const ALeft: TVoltQty; const ARight: TAmpereQty): TWattQty;
+  class operator *(const ALeft: TAmpereQty; const ARight: TVoltQty): TWattQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of farad }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TFaradQty}{$i adim.inc}
-  class operator /(const ALeft: TSquareCoulombQty; const ARight: TFaradQty): TJouleQty; inline;
-  class operator *(const ALeft: TFaradQty; const ARight: TJouleQty): TSquareCoulombQty; inline;
-  class operator *(const ALeft: TJouleQty; const ARight: TFaradQty): TSquareCoulombQty; inline;
-  class operator /(const ALeft: TCoulombQty; const ARight: TFaradQty): TVoltQty; inline;
-  class operator *(const ALeft: TFaradQty; const ARight: TVoltQty): TCoulombQty; inline;
-  class operator *(const ALeft: TVoltQty; const ARight: TFaradQty): TCoulombQty; inline;
+  class operator /(const ALeft: TSquareCoulombQty; const ARight: TFaradQty): TJouleQty;
+  class operator *(const ALeft: TFaradQty; const ARight: TJouleQty): TSquareCoulombQty;
+  class operator *(const ALeft: TJouleQty; const ARight: TFaradQty): TSquareCoulombQty;
+  class operator /(const ALeft: TCoulombQty; const ARight: TFaradQty): TVoltQty;
+  class operator *(const ALeft: TFaradQty; const ARight: TVoltQty): TCoulombQty;
+  class operator *(const ALeft: TVoltQty; const ARight: TFaradQty): TCoulombQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of ohm }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TOhmQty}{$i adim.inc}
-  class operator /(const ALeft: TOhmMeterQty; const ARight: TOhmQty): TMeterQty; inline;
-  class operator *(const ALeft: TMeterQty; const ARight: TOhmQty): TOhmMeterQty; inline;
-  class operator *(const ALeft: TOhmQty; const ARight: TMeterQty): TOhmMeterQty; inline;
-  class operator /(const ALeft: TSquareVoltQty; const ARight: TOhmQty): TWattQty; inline;
-  class operator *(const ALeft: TOhmQty; const ARight: TWattQty): TSquareVoltQty; inline;
-  class operator *(const ALeft: TWattQty; const ARight: TOhmQty): TSquareVoltQty; inline;
-  class operator /(const ALeft: TWattQty; const ARight: TOhmQty): TSquareAmpereQty; inline;
-  class operator *(const ALeft: TOhmQty; const ARight: TSquareAmpereQty): TWattQty; inline;
-  class operator *(const ALeft: TSquareAmpereQty; const ARight: TOhmQty): TWattQty; inline;
-  class operator /(const ALeft: TSecondQty; const ARight: TOhmQty): TFaradQty; inline;
-  class operator *(const ALeft: TOhmQty; const ARight: TFaradQty): TSecondQty; inline;
-  class operator *(const ALeft: TFaradQty; const ARight: TOhmQty): TSecondQty; inline;
-  class operator /(const ALeft: TVoltQty; const ARight: TOhmQty): TAmpereQty; inline;
-  class operator *(const ALeft: TOhmQty; const ARight: TAmpereQty): TVoltQty; inline;
-  class operator *(const ALeft: TAmpereQty; const ARight: TOhmQty): TVoltQty; inline;
+  class operator /(const ALeft: TOhmMeterQty; const ARight: TOhmQty): TMeterQty;
+  class operator *(const ALeft: TMeterQty; const ARight: TOhmQty): TOhmMeterQty;
+  class operator *(const ALeft: TOhmQty; const ARight: TMeterQty): TOhmMeterQty;
+  class operator /(const ALeft: TSquareVoltQty; const ARight: TOhmQty): TWattQty;
+  class operator *(const ALeft: TOhmQty; const ARight: TWattQty): TSquareVoltQty;
+  class operator *(const ALeft: TWattQty; const ARight: TOhmQty): TSquareVoltQty;
+  class operator /(const ALeft: TWattQty; const ARight: TOhmQty): TSquareAmpereQty;
+  class operator *(const ALeft: TOhmQty; const ARight: TSquareAmpereQty): TWattQty;
+  class operator *(const ALeft: TSquareAmpereQty; const ARight: TOhmQty): TWattQty;
+  class operator /(const ALeft: TSecondQty; const ARight: TOhmQty): TFaradQty;
+  class operator *(const ALeft: TOhmQty; const ARight: TFaradQty): TSecondQty;
+  class operator *(const ALeft: TFaradQty; const ARight: TOhmQty): TSecondQty;
+  class operator /(const ALeft: TVoltQty; const ARight: TOhmQty): TAmpereQty;
+  class operator *(const ALeft: TOhmQty; const ARight: TAmpereQty): TVoltQty;
+  class operator *(const ALeft: TAmpereQty; const ARight: TOhmQty): TVoltQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of siemens }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSiemensQty}{$i adim.inc}
-  class operator /(const ALeft: double; const ARight: TSiemensQty): TOhmQty; inline;
-  class operator *(const ALeft: TSiemensQty; const ARight: TOhmQty): double; inline;
-  class operator *(const ALeft: TOhmQty; const ARight: TSiemensQty): double; inline;
+  class operator /(const ALeft: double; const ARight: TSiemensQty): TOhmQty;
+  class operator *(const ALeft: TSiemensQty; const ARight: TOhmQty): double;
+  class operator *(const ALeft: TOhmQty; const ARight: TSiemensQty): double;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of tesla }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TTeslaQty}{$i adim.inc}
-  class operator /(const ALeft: TTeslaMeterQty; const ARight: TTeslaQty): TMeterQty; inline;
-  class operator *(const ALeft: TMeterQty; const ARight: TTeslaQty): TTeslaMeterQty; inline;
-  class operator *(const ALeft: TTeslaQty; const ARight: TMeterQty): TTeslaMeterQty; inline;
-  class operator /(const ALeft: TWeberQty; const ARight: TTeslaQty): TSquareMeterQty; inline;
-  class operator *(const ALeft: TTeslaQty; const ARight: TSquareMeterQty): TWeberQty; inline;
-  class operator *(const ALeft: TSquareMeterQty; const ARight: TTeslaQty): TWeberQty; inline;
+  class operator /(const ALeft: TTeslaMeterQty; const ARight: TTeslaQty): TMeterQty;
+  class operator *(const ALeft: TMeterQty; const ARight: TTeslaQty): TTeslaMeterQty;
+  class operator *(const ALeft: TTeslaQty; const ARight: TMeterQty): TTeslaMeterQty;
+  class operator /(const ALeft: TWeberQty; const ARight: TTeslaQty): TSquareMeterQty;
+  class operator *(const ALeft: TTeslaQty; const ARight: TSquareMeterQty): TWeberQty;
+  class operator *(const ALeft: TSquareMeterQty; const ARight: TTeslaQty): TWeberQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of henry }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=THenryQty}{$i adim.inc}
-  class operator /(const ALeft: TOhmQty; const ARight: THenryQty): THertzQty; inline;
-  class operator *(const ALeft: THenryQty; const ARight: THertzQty): TOhmQty; inline;
-  class operator *(const ALeft: THertzQty; const ARight: THenryQty): TOhmQty; inline;
-  class operator /(const ALeft: THenryQty; const ARight: TSecondQty): TOhmQty; inline;
-  class operator /(const ALeft: THenryQty; const ARight: TOhmQty): TSecondQty; inline;
-  class operator /(const ALeft: TWeberQty; const ARight: THenryQty): TAmpereQty; inline;
-  class operator *(const ALeft: THenryQty; const ARight: TAmpereQty): TWeberQty; inline;
-  class operator *(const ALeft: TAmpereQty; const ARight: THenryQty): TWeberQty; inline;
+  class operator /(const ALeft: TOhmQty; const ARight: THenryQty): THertzQty;
+  class operator *(const ALeft: THenryQty; const ARight: THertzQty): TOhmQty;
+  class operator *(const ALeft: THertzQty; const ARight: THenryQty): TOhmQty;
+  class operator /(const ALeft: THenryQty; const ARight: TSecondQty): TOhmQty;
+  class operator /(const ALeft: THenryQty; const ARight: TOhmQty): TSecondQty;
+  class operator /(const ALeft: TWeberQty; const ARight: THenryQty): TAmpereQty;
+  class operator *(const ALeft: THenryQty; const ARight: TAmpereQty): TWeberQty;
+  class operator *(const ALeft: TAmpereQty; const ARight: THenryQty): TWeberQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of lux }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TLuxQty}{$i adim.inc}
-  class operator /(const ALeft: TLumenQty; const ARight: TLuxQty): TSquareMeterQty; inline;
-  class operator *(const ALeft: TLuxQty; const ARight: TSquareMeterQty): TLumenQty; inline;
-  class operator *(const ALeft: TSquareMeterQty; const ARight: TLuxQty): TLumenQty; inline;
+  class operator /(const ALeft: TLumenQty; const ARight: TLuxQty): TSquareMeterQty;
+  class operator *(const ALeft: TLuxQty; const ARight: TSquareMeterQty): TLumenQty;
+  class operator *(const ALeft: TSquareMeterQty; const ARight: TLuxQty): TLumenQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of bequerel }
@@ -787,16 +787,16 @@ type
 
 { Quantity of katal }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TKatalQty}{$i adim.inc}
-  class operator /(const ALeft: TMoleQty; const ARight: TKatalQty): TSecondQty; inline;
-  class operator *(const ALeft: TKatalQty; const ARight: TSecondQty): TMoleQty; inline;
-  class operator *(const ALeft: TSecondQty; const ARight: TKatalQty): TMoleQty; inline;
+  class operator /(const ALeft: TMoleQty; const ARight: TKatalQty): TSecondQty;
+  class operator *(const ALeft: TKatalQty; const ARight: TSecondQty): TMoleQty;
+  class operator *(const ALeft: TSecondQty; const ARight: TKatalQty): TMoleQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of joule per radian }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TJoulePerRadianQty}{$i adim.inc}
-  class operator /(const ALeft: TJouleQty; const ARight: TJoulePerRadianQty): TRadianQty; inline;
-  class operator *(const ALeft: TJoulePerRadianQty; const ARight: TRadianQty): TJouleQty; inline;
-  class operator *(const ALeft: TRadianQty; const ARight: TJoulePerRadianQty): TJouleQty; inline;
+  class operator /(const ALeft: TJouleQty; const ARight: TJoulePerRadianQty): TRadianQty;
+  class operator *(const ALeft: TJoulePerRadianQty; const ARight: TRadianQty): TJouleQty;
+  class operator *(const ALeft: TRadianQty; const ARight: TJoulePerRadianQty): TJouleQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of joule per degree }
@@ -813,28 +813,28 @@ type
 
 { Quantity of newton per cubic meter }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TNewtonPerCubicMeterQty}{$i adim.inc}
-  class operator /(const ALeft: TNewtonPerCubicMeterQty; const ARight: TMeterPerSecondSquaredQty): TKilogramPerCubicMeterQty; inline;
-  class operator /(const ALeft: TNewtonPerCubicMeterQty; const ARight: TKilogramPerCubicMeterQty): TMeterPerSecondSquaredQty; inline;
-  class operator /(const ALeft: TPascalQty; const ARight: TNewtonPerCubicMeterQty): TMeterQty; inline;
-  class operator *(const ALeft: TNewtonPerCubicMeterQty; const ARight: TMeterQty): TPascalQty; inline;
-  class operator *(const ALeft: TMeterQty; const ARight: TNewtonPerCubicMeterQty): TPascalQty; inline;
-  class operator /(const ALeft: TNewtonQty; const ARight: TNewtonPerCubicMeterQty): TCubicMeterQty; inline;
-  class operator *(const ALeft: TNewtonPerCubicMeterQty; const ARight: TCubicMeterQty): TNewtonQty; inline;
-  class operator *(const ALeft: TCubicMeterQty; const ARight: TNewtonPerCubicMeterQty): TNewtonQty; inline;
+  class operator /(const ALeft: TNewtonPerCubicMeterQty; const ARight: TMeterPerSecondSquaredQty): TKilogramPerCubicMeterQty;
+  class operator /(const ALeft: TNewtonPerCubicMeterQty; const ARight: TKilogramPerCubicMeterQty): TMeterPerSecondSquaredQty;
+  class operator /(const ALeft: TPascalQty; const ARight: TNewtonPerCubicMeterQty): TMeterQty;
+  class operator *(const ALeft: TNewtonPerCubicMeterQty; const ARight: TMeterQty): TPascalQty;
+  class operator *(const ALeft: TMeterQty; const ARight: TNewtonPerCubicMeterQty): TPascalQty;
+  class operator /(const ALeft: TNewtonQty; const ARight: TNewtonPerCubicMeterQty): TCubicMeterQty;
+  class operator *(const ALeft: TNewtonPerCubicMeterQty; const ARight: TCubicMeterQty): TNewtonQty;
+  class operator *(const ALeft: TCubicMeterQty; const ARight: TNewtonPerCubicMeterQty): TNewtonQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of newton per meter }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TNewtonPerMeterQty}{$i adim.inc}
-  class operator /(const ALeft: TNewtonPerMeterQty; const ARight: TSquareHertzQty): TKilogramQty; inline;
-  class operator /(const ALeft: TNewtonPerMeterQty; const ARight: TKilogramQty): TSquareHertzQty; inline;
-  class operator /(const ALeft: TNewtonPerMeterQty; const ARight: TMeterQty): TPascalQty; inline;
-  class operator /(const ALeft: TNewtonPerMeterQty; const ARight: TPascalQty): TMeterQty; inline;
-  class operator /(const ALeft: TJouleQty; const ARight: TNewtonPerMeterQty): TSquareMeterQty; inline;
-  class operator *(const ALeft: TNewtonPerMeterQty; const ARight: TSquareMeterQty): TJouleQty; inline;
-  class operator *(const ALeft: TSquareMeterQty; const ARight: TNewtonPerMeterQty): TJouleQty; inline;
-  class operator /(const ALeft: TNewtonQty; const ARight: TNewtonPerMeterQty): TMeterQty; inline;
-  class operator *(const ALeft: TNewtonPerMeterQty; const ARight: TMeterQty): TNewtonQty; inline;
-  class operator *(const ALeft: TMeterQty; const ARight: TNewtonPerMeterQty): TNewtonQty; inline;
+  class operator /(const ALeft: TNewtonPerMeterQty; const ARight: TSquareHertzQty): TKilogramQty;
+  class operator /(const ALeft: TNewtonPerMeterQty; const ARight: TKilogramQty): TSquareHertzQty;
+  class operator /(const ALeft: TNewtonPerMeterQty; const ARight: TMeterQty): TPascalQty;
+  class operator /(const ALeft: TNewtonPerMeterQty; const ARight: TPascalQty): TMeterQty;
+  class operator /(const ALeft: TJouleQty; const ARight: TNewtonPerMeterQty): TSquareMeterQty;
+  class operator *(const ALeft: TNewtonPerMeterQty; const ARight: TSquareMeterQty): TJouleQty;
+  class operator *(const ALeft: TSquareMeterQty; const ARight: TNewtonPerMeterQty): TJouleQty;
+  class operator /(const ALeft: TNewtonQty; const ARight: TNewtonPerMeterQty): TMeterQty;
+  class operator *(const ALeft: TNewtonPerMeterQty; const ARight: TMeterQty): TNewtonQty;
+  class operator *(const ALeft: TMeterQty; const ARight: TNewtonPerMeterQty): TNewtonQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of pound force per inch }
@@ -843,28 +843,28 @@ type
 
 { Quantity of cubic meter per second }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCubicMeterPerSecondQty}{$i adim.inc}
-  class operator /(const ALeft: TCubicMeterPerSecondQty; const ARight: TMeterPerSecondQty): TSquareMeterQty; inline;
-  class operator /(const ALeft: TCubicMeterPerSecondQty; const ARight: TSquareMeterQty): TMeterPerSecondQty; inline;
-  class operator /(const ALeft: TCubicMeterQty; const ARight: TCubicMeterPerSecondQty): TSecondQty; inline;
-  class operator *(const ALeft: TCubicMeterPerSecondQty; const ARight: TSecondQty): TCubicMeterQty; inline;
-  class operator *(const ALeft: TSecondQty; const ARight: TCubicMeterPerSecondQty): TCubicMeterQty; inline;
+  class operator /(const ALeft: TCubicMeterPerSecondQty; const ARight: TMeterPerSecondQty): TSquareMeterQty;
+  class operator /(const ALeft: TCubicMeterPerSecondQty; const ARight: TSquareMeterQty): TMeterPerSecondQty;
+  class operator /(const ALeft: TCubicMeterQty; const ARight: TCubicMeterPerSecondQty): TSecondQty;
+  class operator *(const ALeft: TCubicMeterPerSecondQty; const ARight: TSecondQty): TCubicMeterQty;
+  class operator *(const ALeft: TSecondQty; const ARight: TCubicMeterPerSecondQty): TCubicMeterQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of kilogram per second }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TKilogramPerSecondQty}{$i adim.inc}
-  class operator /(const ALeft: TKilogramPerSecondQty; const ARight: TPoiseuilleQty): TMeterQty; inline;
-  class operator /(const ALeft: TKilogramPerSecondQty; const ARight: TMeterQty): TPoiseuilleQty; inline;
-  class operator /(const ALeft: TWattQty; const ARight: TKilogramPerSecondQty): TSquareMeterPerSquareSecondQty; inline;
-  class operator *(const ALeft: TKilogramPerSecondQty; const ARight: TSquareMeterPerSquareSecondQty): TWattQty; inline;
-  class operator *(const ALeft: TSquareMeterPerSquareSecondQty; const ARight: TKilogramPerSecondQty): TWattQty; inline;
-  class operator /(const ALeft: TKilogramPerSecondQty; const ARight: TMeterPerSecondQty): TKilogramPerMeterQty; inline;
-  class operator /(const ALeft: TKilogramPerSecondQty; const ARight: TKilogramPerMeterQty): TMeterPerSecondQty; inline;
-  class operator /(const ALeft: TNewtonQty; const ARight: TKilogramPerSecondQty): TMeterPerSecondQty; inline;
-  class operator *(const ALeft: TKilogramPerSecondQty; const ARight: TMeterPerSecondQty): TNewtonQty; inline;
-  class operator *(const ALeft: TMeterPerSecondQty; const ARight: TKilogramPerSecondQty): TNewtonQty; inline;
-  class operator /(const ALeft: TKilogramQty; const ARight: TKilogramPerSecondQty): TSecondQty; inline;
-  class operator *(const ALeft: TKilogramPerSecondQty; const ARight: TSecondQty): TKilogramQty; inline;
-  class operator *(const ALeft: TSecondQty; const ARight: TKilogramPerSecondQty): TKilogramQty; inline;
+  class operator /(const ALeft: TKilogramPerSecondQty; const ARight: TPoiseuilleQty): TMeterQty;
+  class operator /(const ALeft: TKilogramPerSecondQty; const ARight: TMeterQty): TPoiseuilleQty;
+  class operator /(const ALeft: TWattQty; const ARight: TKilogramPerSecondQty): TSquareMeterPerSquareSecondQty;
+  class operator *(const ALeft: TKilogramPerSecondQty; const ARight: TSquareMeterPerSquareSecondQty): TWattQty;
+  class operator *(const ALeft: TSquareMeterPerSquareSecondQty; const ARight: TKilogramPerSecondQty): TWattQty;
+  class operator /(const ALeft: TKilogramPerSecondQty; const ARight: TMeterPerSecondQty): TKilogramPerMeterQty;
+  class operator /(const ALeft: TKilogramPerSecondQty; const ARight: TKilogramPerMeterQty): TMeterPerSecondQty;
+  class operator /(const ALeft: TNewtonQty; const ARight: TKilogramPerSecondQty): TMeterPerSecondQty;
+  class operator *(const ALeft: TKilogramPerSecondQty; const ARight: TMeterPerSecondQty): TNewtonQty;
+  class operator *(const ALeft: TMeterPerSecondQty; const ARight: TKilogramPerSecondQty): TNewtonQty;
+  class operator /(const ALeft: TKilogramQty; const ARight: TKilogramPerSecondQty): TSecondQty;
+  class operator *(const ALeft: TKilogramPerSecondQty; const ARight: TSecondQty): TKilogramQty;
+  class operator *(const ALeft: TSecondQty; const ARight: TKilogramPerSecondQty): TKilogramQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of pascal second }
@@ -873,112 +873,112 @@ type
 
 { Quantity of square meter per second }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSquareMeterPerSecondQty}{$i adim.inc}
-  class operator /(const ALeft: TPoiseuilleQty; const ARight: TSquareMeterPerSecondQty): TKilogramPerCubicMeterQty; inline;
-  class operator *(const ALeft: TSquareMeterPerSecondQty; const ARight: TKilogramPerCubicMeterQty): TPoiseuilleQty; inline;
-  class operator *(const ALeft: TKilogramPerCubicMeterQty; const ARight: TSquareMeterPerSecondQty): TPoiseuilleQty; inline;
-  class operator /(const ALeft: TSquareMeterQty; const ARight: TSquareMeterPerSecondQty): TSecondQty; inline;
-  class operator *(const ALeft: TSquareMeterPerSecondQty; const ARight: TSecondQty): TSquareMeterQty; inline;
-  class operator *(const ALeft: TSecondQty; const ARight: TSquareMeterPerSecondQty): TSquareMeterQty; inline;
+  class operator /(const ALeft: TPoiseuilleQty; const ARight: TSquareMeterPerSecondQty): TKilogramPerCubicMeterQty;
+  class operator *(const ALeft: TSquareMeterPerSecondQty; const ARight: TKilogramPerCubicMeterQty): TPoiseuilleQty;
+  class operator *(const ALeft: TKilogramPerCubicMeterQty; const ARight: TSquareMeterPerSecondQty): TPoiseuilleQty;
+  class operator /(const ALeft: TSquareMeterQty; const ARight: TSquareMeterPerSecondQty): TSecondQty;
+  class operator *(const ALeft: TSquareMeterPerSecondQty; const ARight: TSecondQty): TSquareMeterQty;
+  class operator *(const ALeft: TSecondQty; const ARight: TSquareMeterPerSecondQty): TSquareMeterQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of kilogram per quartic meter }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TKilogramPerQuarticMeterQty}{$i adim.inc}
-  class operator /(const ALeft: TKilogramQty; const ARight: TKilogramPerQuarticMeterQty): TQuarticMeterQty; inline;
-  class operator *(const ALeft: TKilogramPerQuarticMeterQty; const ARight: TQuarticMeterQty): TKilogramQty; inline;
-  class operator *(const ALeft: TQuarticMeterQty; const ARight: TKilogramPerQuarticMeterQty): TKilogramQty; inline;
+  class operator /(const ALeft: TKilogramQty; const ARight: TKilogramPerQuarticMeterQty): TQuarticMeterQty;
+  class operator *(const ALeft: TKilogramPerQuarticMeterQty; const ARight: TQuarticMeterQty): TKilogramQty;
+  class operator *(const ALeft: TQuarticMeterQty; const ARight: TKilogramPerQuarticMeterQty): TKilogramQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of kilogram per quartic meter per second }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TKilogramPerQuarticMeterPerSecondQty}{$i adim.inc}
-  class operator /(const ALeft: TPascalQty; const ARight: TKilogramPerQuarticMeterPerSecondQty): TCubicMeterPerSecondQty; inline;
-  class operator *(const ALeft: TKilogramPerQuarticMeterPerSecondQty; const ARight: TCubicMeterPerSecondQty): TPascalQty; inline;
-  class operator *(const ALeft: TCubicMeterPerSecondQty; const ARight: TKilogramPerQuarticMeterPerSecondQty): TPascalQty; inline;
-  class operator /(const ALeft: TKilogramQty; const ARight: TKilogramPerQuarticMeterPerSecondQty): TQuarticMeterSecondQty; inline;
-  class operator *(const ALeft: TKilogramPerQuarticMeterPerSecondQty; const ARight: TQuarticMeterSecondQty): TKilogramQty; inline;
-  class operator *(const ALeft: TQuarticMeterSecondQty; const ARight: TKilogramPerQuarticMeterPerSecondQty): TKilogramQty; inline;
-  class operator /(const ALeft: TKilogramPerQuarticMeterQty; const ARight: TKilogramPerQuarticMeterPerSecondQty): TSecondQty; inline;
-  class operator *(const ALeft: TKilogramPerQuarticMeterPerSecondQty; const ARight: TSecondQty): TKilogramPerQuarticMeterQty; inline;
-  class operator *(const ALeft: TSecondQty; const ARight: TKilogramPerQuarticMeterPerSecondQty): TKilogramPerQuarticMeterQty; inline;
-  class operator /(const ALeft: TKilogramPerSecondQty; const ARight: TKilogramPerQuarticMeterPerSecondQty): TQuarticMeterQty; inline;
-  class operator *(const ALeft: TKilogramPerQuarticMeterPerSecondQty; const ARight: TQuarticMeterQty): TKilogramPerSecondQty; inline;
-  class operator *(const ALeft: TQuarticMeterQty; const ARight: TKilogramPerQuarticMeterPerSecondQty): TKilogramPerSecondQty; inline;
+  class operator /(const ALeft: TPascalQty; const ARight: TKilogramPerQuarticMeterPerSecondQty): TCubicMeterPerSecondQty;
+  class operator *(const ALeft: TKilogramPerQuarticMeterPerSecondQty; const ARight: TCubicMeterPerSecondQty): TPascalQty;
+  class operator *(const ALeft: TCubicMeterPerSecondQty; const ARight: TKilogramPerQuarticMeterPerSecondQty): TPascalQty;
+  class operator /(const ALeft: TKilogramQty; const ARight: TKilogramPerQuarticMeterPerSecondQty): TQuarticMeterSecondQty;
+  class operator *(const ALeft: TKilogramPerQuarticMeterPerSecondQty; const ARight: TQuarticMeterSecondQty): TKilogramQty;
+  class operator *(const ALeft: TQuarticMeterSecondQty; const ARight: TKilogramPerQuarticMeterPerSecondQty): TKilogramQty;
+  class operator /(const ALeft: TKilogramPerQuarticMeterQty; const ARight: TKilogramPerQuarticMeterPerSecondQty): TSecondQty;
+  class operator *(const ALeft: TKilogramPerQuarticMeterPerSecondQty; const ARight: TSecondQty): TKilogramPerQuarticMeterQty;
+  class operator *(const ALeft: TSecondQty; const ARight: TKilogramPerQuarticMeterPerSecondQty): TKilogramPerQuarticMeterQty;
+  class operator /(const ALeft: TKilogramPerSecondQty; const ARight: TKilogramPerQuarticMeterPerSecondQty): TQuarticMeterQty;
+  class operator *(const ALeft: TKilogramPerQuarticMeterPerSecondQty; const ARight: TQuarticMeterQty): TKilogramPerSecondQty;
+  class operator *(const ALeft: TQuarticMeterQty; const ARight: TKilogramPerQuarticMeterPerSecondQty): TKilogramPerSecondQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of cubic meter per kilogram }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCubicMeterPerKilogramQty}{$i adim.inc}
-  class operator /(const ALeft: TCubicMeterPerKilogramQty; const ARight: TNewtonSquareMeterPerSquareKilogramQty): TSquareSecondQty; inline;
-  class operator /(const ALeft: TCubicMeterPerKilogramQty; const ARight: TSquareSecondQty): TNewtonSquareMeterPerSquareKilogramQty; inline;
-  class operator /(const ALeft: double; const ARight: TCubicMeterPerKilogramQty): TKilogramPerCubicMeterQty; inline;
-  class operator *(const ALeft: TCubicMeterPerKilogramQty; const ARight: TKilogramPerCubicMeterQty): double; inline;
-  class operator *(const ALeft: TKilogramPerCubicMeterQty; const ARight: TCubicMeterPerKilogramQty): double; inline;
-  class operator /(const ALeft: TCubicMeterQty; const ARight: TCubicMeterPerKilogramQty): TKilogramQty; inline;
-  class operator *(const ALeft: TCubicMeterPerKilogramQty; const ARight: TKilogramQty): TCubicMeterQty; inline;
-  class operator *(const ALeft: TKilogramQty; const ARight: TCubicMeterPerKilogramQty): TCubicMeterQty; inline;
+  class operator /(const ALeft: TCubicMeterPerKilogramQty; const ARight: TNewtonSquareMeterPerSquareKilogramQty): TSquareSecondQty;
+  class operator /(const ALeft: TCubicMeterPerKilogramQty; const ARight: TSquareSecondQty): TNewtonSquareMeterPerSquareKilogramQty;
+  class operator /(const ALeft: double; const ARight: TCubicMeterPerKilogramQty): TKilogramPerCubicMeterQty;
+  class operator *(const ALeft: TCubicMeterPerKilogramQty; const ARight: TKilogramPerCubicMeterQty): double;
+  class operator *(const ALeft: TKilogramPerCubicMeterQty; const ARight: TCubicMeterPerKilogramQty): double;
+  class operator /(const ALeft: TCubicMeterQty; const ARight: TCubicMeterPerKilogramQty): TKilogramQty;
+  class operator *(const ALeft: TCubicMeterPerKilogramQty; const ARight: TKilogramQty): TCubicMeterQty;
+  class operator *(const ALeft: TKilogramQty; const ARight: TCubicMeterPerKilogramQty): TCubicMeterQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of cubic meter per square second }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCubicMeterPerSquareSecondQty}{$i adim.inc}
-  class operator /(const ALeft: TCubicMeterPerSquareSecondQty; const ARight: TNewtonSquareMeterPerSquareKilogramQty): TKilogramQty; inline;
-  class operator /(const ALeft: TCubicMeterPerSquareSecondQty; const ARight: TKilogramQty): TNewtonSquareMeterPerSquareKilogramQty; inline;
-  class operator /(const ALeft: TCubicMeterPerSquareSecondQty; const ARight: TSquareMeterQty): TMeterPerSecondSquaredQty; inline;
-  class operator /(const ALeft: TCubicMeterPerSquareSecondQty; const ARight: TMeterPerSecondSquaredQty): TSquareMeterQty; inline;
-  class operator /(const ALeft: TCubicMeterQty; const ARight: TCubicMeterPerSquareSecondQty): TSquareSecondQty; inline;
-  class operator *(const ALeft: TCubicMeterPerSquareSecondQty; const ARight: TSquareSecondQty): TCubicMeterQty; inline;
-  class operator *(const ALeft: TSquareSecondQty; const ARight: TCubicMeterPerSquareSecondQty): TCubicMeterQty; inline;
+  class operator /(const ALeft: TCubicMeterPerSquareSecondQty; const ARight: TNewtonSquareMeterPerSquareKilogramQty): TKilogramQty;
+  class operator /(const ALeft: TCubicMeterPerSquareSecondQty; const ARight: TKilogramQty): TNewtonSquareMeterPerSquareKilogramQty;
+  class operator /(const ALeft: TCubicMeterPerSquareSecondQty; const ARight: TSquareMeterQty): TMeterPerSecondSquaredQty;
+  class operator /(const ALeft: TCubicMeterPerSquareSecondQty; const ARight: TMeterPerSecondSquaredQty): TSquareMeterQty;
+  class operator /(const ALeft: TCubicMeterQty; const ARight: TCubicMeterPerSquareSecondQty): TSquareSecondQty;
+  class operator *(const ALeft: TCubicMeterPerSquareSecondQty; const ARight: TSquareSecondQty): TCubicMeterQty;
+  class operator *(const ALeft: TSquareSecondQty; const ARight: TCubicMeterPerSquareSecondQty): TCubicMeterQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of newton per square kilogram }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TNewtonPerSquareKilogramQty}{$i adim.inc}
-  class operator /(const ALeft: TNewtonSquareMeterPerSquareKilogramQty; const ARight: TNewtonPerSquareKilogramQty): TSquareMeterQty; inline;
-  class operator *(const ALeft: TSquareMeterQty; const ARight: TNewtonPerSquareKilogramQty): TNewtonSquareMeterPerSquareKilogramQty; inline;
-  class operator *(const ALeft: TNewtonPerSquareKilogramQty; const ARight: TSquareMeterQty): TNewtonSquareMeterPerSquareKilogramQty; inline;
-  class operator /(const ALeft: TNewtonQty; const ARight: TNewtonPerSquareKilogramQty): TSquareKilogramQty; inline;
-  class operator *(const ALeft: TNewtonPerSquareKilogramQty; const ARight: TSquareKilogramQty): TNewtonQty; inline;
-  class operator *(const ALeft: TSquareKilogramQty; const ARight: TNewtonPerSquareKilogramQty): TNewtonQty; inline;
+  class operator /(const ALeft: TNewtonSquareMeterPerSquareKilogramQty; const ARight: TNewtonPerSquareKilogramQty): TSquareMeterQty;
+  class operator *(const ALeft: TSquareMeterQty; const ARight: TNewtonPerSquareKilogramQty): TNewtonSquareMeterPerSquareKilogramQty;
+  class operator *(const ALeft: TNewtonPerSquareKilogramQty; const ARight: TSquareMeterQty): TNewtonSquareMeterPerSquareKilogramQty;
+  class operator /(const ALeft: TNewtonQty; const ARight: TNewtonPerSquareKilogramQty): TSquareKilogramQty;
+  class operator *(const ALeft: TNewtonPerSquareKilogramQty; const ARight: TSquareKilogramQty): TNewtonQty;
+  class operator *(const ALeft: TSquareKilogramQty; const ARight: TNewtonPerSquareKilogramQty): TNewtonQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of square kilogram per meter }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSquareKilogramPerMeterQty}{$i adim.inc}
-  class operator *(const ALeft: TNewtonSquareMeterPerSquareKilogramQty; const ARight: TSquareKilogramPerMeterQty): TJouleQty; inline;
-  class operator *(const ALeft: TSquareKilogramPerMeterQty; const ARight: TNewtonSquareMeterPerSquareKilogramQty): TJouleQty; inline;
-  class operator /(const ALeft: TJouleQty; const ARight: TSquareKilogramPerMeterQty): TNewtonSquareMeterPerSquareKilogramQty; inline;
-  class operator /(const ALeft: TSquareKilogramQty; const ARight: TSquareKilogramPerMeterQty): TMeterQty; inline;
-  class operator *(const ALeft: TSquareKilogramPerMeterQty; const ARight: TMeterQty): TSquareKilogramQty; inline;
-  class operator *(const ALeft: TMeterQty; const ARight: TSquareKilogramPerMeterQty): TSquareKilogramQty; inline;
+  class operator *(const ALeft: TNewtonSquareMeterPerSquareKilogramQty; const ARight: TSquareKilogramPerMeterQty): TJouleQty;
+  class operator *(const ALeft: TSquareKilogramPerMeterQty; const ARight: TNewtonSquareMeterPerSquareKilogramQty): TJouleQty;
+  class operator /(const ALeft: TJouleQty; const ARight: TSquareKilogramPerMeterQty): TNewtonSquareMeterPerSquareKilogramQty;
+  class operator /(const ALeft: TSquareKilogramQty; const ARight: TSquareKilogramPerMeterQty): TMeterQty;
+  class operator *(const ALeft: TSquareKilogramPerMeterQty; const ARight: TMeterQty): TSquareKilogramQty;
+  class operator *(const ALeft: TMeterQty; const ARight: TSquareKilogramPerMeterQty): TSquareKilogramQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of square kilogram per square meter }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSquareKilogramPerSquareMeterQty}{$i adim.inc}
-  class operator *(const ALeft: TNewtonSquareMeterPerSquareKilogramQty; const ARight: TSquareKilogramPerSquareMeterQty): TNewtonQty; inline;
-  class operator *(const ALeft: TSquareKilogramPerSquareMeterQty; const ARight: TNewtonSquareMeterPerSquareKilogramQty): TNewtonQty; inline;
-  class operator /(const ALeft: TNewtonQty; const ARight: TSquareKilogramPerSquareMeterQty): TNewtonSquareMeterPerSquareKilogramQty; inline;
-  class operator /(const ALeft: TSquareKilogramQty; const ARight: TSquareKilogramPerSquareMeterQty): TSquareMeterQty; inline;
-  class operator *(const ALeft: TSquareKilogramPerSquareMeterQty; const ARight: TSquareMeterQty): TSquareKilogramQty; inline;
-  class operator *(const ALeft: TSquareMeterQty; const ARight: TSquareKilogramPerSquareMeterQty): TSquareKilogramQty; inline;
+  class operator *(const ALeft: TNewtonSquareMeterPerSquareKilogramQty; const ARight: TSquareKilogramPerSquareMeterQty): TNewtonQty;
+  class operator *(const ALeft: TSquareKilogramPerSquareMeterQty; const ARight: TNewtonSquareMeterPerSquareKilogramQty): TNewtonQty;
+  class operator /(const ALeft: TNewtonQty; const ARight: TSquareKilogramPerSquareMeterQty): TNewtonSquareMeterPerSquareKilogramQty;
+  class operator /(const ALeft: TSquareKilogramQty; const ARight: TSquareKilogramPerSquareMeterQty): TSquareMeterQty;
+  class operator *(const ALeft: TSquareKilogramPerSquareMeterQty; const ARight: TSquareMeterQty): TSquareKilogramQty;
+  class operator *(const ALeft: TSquareMeterQty; const ARight: TSquareKilogramPerSquareMeterQty): TSquareKilogramQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of square meter per square kilogram }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSquareMeterPerSquareKilogramQty}{$i adim.inc}
-  class operator /(const ALeft: TNewtonSquareMeterPerSquareKilogramQty; const ARight: TSquareMeterPerSquareKilogramQty): TNewtonQty; inline;
-  class operator *(const ALeft: TSquareMeterPerSquareKilogramQty; const ARight: TNewtonQty): TNewtonSquareMeterPerSquareKilogramQty; inline;
-  class operator *(const ALeft: TNewtonQty; const ARight: TSquareMeterPerSquareKilogramQty): TNewtonSquareMeterPerSquareKilogramQty; inline;
-  class operator /(const ALeft: TSquareMeterQty; const ARight: TSquareMeterPerSquareKilogramQty): TSquareKilogramQty; inline;
-  class operator *(const ALeft: TSquareMeterPerSquareKilogramQty; const ARight: TSquareKilogramQty): TSquareMeterQty; inline;
-  class operator *(const ALeft: TSquareKilogramQty; const ARight: TSquareMeterPerSquareKilogramQty): TSquareMeterQty; inline;
+  class operator /(const ALeft: TNewtonSquareMeterPerSquareKilogramQty; const ARight: TSquareMeterPerSquareKilogramQty): TNewtonQty;
+  class operator *(const ALeft: TSquareMeterPerSquareKilogramQty; const ARight: TNewtonQty): TNewtonSquareMeterPerSquareKilogramQty;
+  class operator *(const ALeft: TNewtonQty; const ARight: TSquareMeterPerSquareKilogramQty): TNewtonSquareMeterPerSquareKilogramQty;
+  class operator /(const ALeft: TSquareMeterQty; const ARight: TSquareMeterPerSquareKilogramQty): TSquareKilogramQty;
+  class operator *(const ALeft: TSquareMeterPerSquareKilogramQty; const ARight: TSquareKilogramQty): TSquareMeterQty;
+  class operator *(const ALeft: TSquareKilogramQty; const ARight: TSquareMeterPerSquareKilogramQty): TSquareMeterQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of reciprocal kelvin }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TReciprocalKelvinQty}{$i adim.inc}
-  class operator /(const ALeft: double; const ARight: TReciprocalKelvinQty): TKelvinQty; inline;
-  class operator *(const ALeft: TReciprocalKelvinQty; const ARight: TKelvinQty): double; inline;
-  class operator *(const ALeft: TKelvinQty; const ARight: TReciprocalKelvinQty): double; inline;
+  class operator /(const ALeft: double; const ARight: TReciprocalKelvinQty): TKelvinQty;
+  class operator *(const ALeft: TReciprocalKelvinQty; const ARight: TKelvinQty): double;
+  class operator *(const ALeft: TKelvinQty; const ARight: TReciprocalKelvinQty): double;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of joule per kelvin }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TJoulePerKelvinQty}{$i adim.inc}
-  class operator /(const ALeft: TJouleQty; const ARight: TJoulePerKelvinQty): TKelvinQty; inline;
-  class operator *(const ALeft: TJoulePerKelvinQty; const ARight: TKelvinQty): TJouleQty; inline;
-  class operator *(const ALeft: TKelvinQty; const ARight: TJoulePerKelvinQty): TJouleQty; inline;
+  class operator /(const ALeft: TJouleQty; const ARight: TJoulePerKelvinQty): TKelvinQty;
+  class operator *(const ALeft: TJoulePerKelvinQty; const ARight: TKelvinQty): TJouleQty;
+  class operator *(const ALeft: TKelvinQty; const ARight: TJoulePerKelvinQty): TJouleQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of joule per kilogram }
@@ -987,127 +987,127 @@ type
 
 { Quantity of joule per kilogram per kelvin }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TJoulePerKilogramPerKelvinQty}{$i adim.inc}
-  class operator /(const ALeft: TJoulePerKelvinQty; const ARight: TJoulePerKilogramPerKelvinQty): TKilogramQty; inline;
-  class operator *(const ALeft: TJoulePerKilogramPerKelvinQty; const ARight: TKilogramQty): TJoulePerKelvinQty; inline;
-  class operator *(const ALeft: TKilogramQty; const ARight: TJoulePerKilogramPerKelvinQty): TJoulePerKelvinQty; inline;
-  class operator /(const ALeft: TSquareMeterPerSquareSecondQty; const ARight: TJoulePerKilogramPerKelvinQty): TKelvinQty; inline;
-  class operator *(const ALeft: TJoulePerKilogramPerKelvinQty; const ARight: TKelvinQty): TSquareMeterPerSquareSecondQty; inline;
-  class operator *(const ALeft: TKelvinQty; const ARight: TJoulePerKilogramPerKelvinQty): TSquareMeterPerSquareSecondQty; inline;
-  class operator /(const ALeft: TJouleQty; const ARight: TJoulePerKilogramPerKelvinQty): TKilogramKelvinQty; inline;
-  class operator *(const ALeft: TJoulePerKilogramPerKelvinQty; const ARight: TKilogramKelvinQty): TJouleQty; inline;
-  class operator *(const ALeft: TKilogramKelvinQty; const ARight: TJoulePerKilogramPerKelvinQty): TJouleQty; inline;
+  class operator /(const ALeft: TJoulePerKelvinQty; const ARight: TJoulePerKilogramPerKelvinQty): TKilogramQty;
+  class operator *(const ALeft: TJoulePerKilogramPerKelvinQty; const ARight: TKilogramQty): TJoulePerKelvinQty;
+  class operator *(const ALeft: TKilogramQty; const ARight: TJoulePerKilogramPerKelvinQty): TJoulePerKelvinQty;
+  class operator /(const ALeft: TSquareMeterPerSquareSecondQty; const ARight: TJoulePerKilogramPerKelvinQty): TKelvinQty;
+  class operator *(const ALeft: TJoulePerKilogramPerKelvinQty; const ARight: TKelvinQty): TSquareMeterPerSquareSecondQty;
+  class operator *(const ALeft: TKelvinQty; const ARight: TJoulePerKilogramPerKelvinQty): TSquareMeterPerSquareSecondQty;
+  class operator /(const ALeft: TJouleQty; const ARight: TJoulePerKilogramPerKelvinQty): TKilogramKelvinQty;
+  class operator *(const ALeft: TJoulePerKilogramPerKelvinQty; const ARight: TKilogramKelvinQty): TJouleQty;
+  class operator *(const ALeft: TKilogramKelvinQty; const ARight: TJoulePerKilogramPerKelvinQty): TJouleQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of kelvin per meter }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TKelvinPerMeterQty}{$i adim.inc}
-  class operator /(const ALeft: TKelvinQty; const ARight: TKelvinPerMeterQty): TMeterQty; inline;
-  class operator *(const ALeft: TKelvinPerMeterQty; const ARight: TMeterQty): TKelvinQty; inline;
-  class operator *(const ALeft: TMeterQty; const ARight: TKelvinPerMeterQty): TKelvinQty; inline;
+  class operator /(const ALeft: TKelvinQty; const ARight: TKelvinPerMeterQty): TMeterQty;
+  class operator *(const ALeft: TKelvinPerMeterQty; const ARight: TMeterQty): TKelvinQty;
+  class operator *(const ALeft: TMeterQty; const ARight: TKelvinPerMeterQty): TKelvinQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of watt per meter }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TWattPerMeterQty}{$i adim.inc}
-  class operator /(const ALeft: TWattQty; const ARight: TWattPerMeterQty): TMeterQty; inline;
-  class operator *(const ALeft: TWattPerMeterQty; const ARight: TMeterQty): TWattQty; inline;
-  class operator *(const ALeft: TMeterQty; const ARight: TWattPerMeterQty): TWattQty; inline;
+  class operator /(const ALeft: TWattQty; const ARight: TWattPerMeterQty): TMeterQty;
+  class operator *(const ALeft: TWattPerMeterQty; const ARight: TMeterQty): TWattQty;
+  class operator *(const ALeft: TMeterQty; const ARight: TWattPerMeterQty): TWattQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of watt per square meter }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TWattPerSquareMeterQty}{$i adim.inc}
-  class operator /(const ALeft: TWattQty; const ARight: TWattPerSquareMeterQty): TSquareMeterQty; inline;
-  class operator *(const ALeft: TWattPerSquareMeterQty; const ARight: TSquareMeterQty): TWattQty; inline;
-  class operator *(const ALeft: TSquareMeterQty; const ARight: TWattPerSquareMeterQty): TWattQty; inline;
+  class operator /(const ALeft: TWattQty; const ARight: TWattPerSquareMeterQty): TSquareMeterQty;
+  class operator *(const ALeft: TWattPerSquareMeterQty; const ARight: TSquareMeterQty): TWattQty;
+  class operator *(const ALeft: TSquareMeterQty; const ARight: TWattPerSquareMeterQty): TWattQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of watt per kelvin }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TWattPerKelvinQty}{$i adim.inc}
-  class operator /(const ALeft: TWattQty; const ARight: TWattPerKelvinQty): TKelvinQty; inline;
-  class operator *(const ALeft: TWattPerKelvinQty; const ARight: TKelvinQty): TWattQty; inline;
-  class operator *(const ALeft: TKelvinQty; const ARight: TWattPerKelvinQty): TWattQty; inline;
+  class operator /(const ALeft: TWattQty; const ARight: TWattPerKelvinQty): TKelvinQty;
+  class operator *(const ALeft: TWattPerKelvinQty; const ARight: TKelvinQty): TWattQty;
+  class operator *(const ALeft: TKelvinQty; const ARight: TWattPerKelvinQty): TWattQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of watt per meter per kelvin }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TWattPerMeterPerKelvinQty}{$i adim.inc}
-  class operator /(const ALeft: TWattPerSquareMeterQty; const ARight: TWattPerMeterPerKelvinQty): TKelvinPerMeterQty; inline;
-  class operator *(const ALeft: TWattPerMeterPerKelvinQty; const ARight: TKelvinPerMeterQty): TWattPerSquareMeterQty; inline;
-  class operator *(const ALeft: TKelvinPerMeterQty; const ARight: TWattPerMeterPerKelvinQty): TWattPerSquareMeterQty; inline;
-  class operator /(const ALeft: TWattPerKelvinQty; const ARight: TWattPerMeterPerKelvinQty): TMeterQty; inline;
-  class operator *(const ALeft: TWattPerMeterPerKelvinQty; const ARight: TMeterQty): TWattPerKelvinQty; inline;
-  class operator *(const ALeft: TMeterQty; const ARight: TWattPerMeterPerKelvinQty): TWattPerKelvinQty; inline;
-  class operator /(const ALeft: TWattPerMeterQty; const ARight: TWattPerMeterPerKelvinQty): TKelvinQty; inline;
-  class operator *(const ALeft: TWattPerMeterPerKelvinQty; const ARight: TKelvinQty): TWattPerMeterQty; inline;
-  class operator *(const ALeft: TKelvinQty; const ARight: TWattPerMeterPerKelvinQty): TWattPerMeterQty; inline;
-  class operator /(const ALeft: TWattQty; const ARight: TWattPerMeterPerKelvinQty): TMeterKelvinQty; inline;
-  class operator *(const ALeft: TWattPerMeterPerKelvinQty; const ARight: TMeterKelvinQty): TWattQty; inline;
-  class operator *(const ALeft: TMeterKelvinQty; const ARight: TWattPerMeterPerKelvinQty): TWattQty; inline;
+  class operator /(const ALeft: TWattPerSquareMeterQty; const ARight: TWattPerMeterPerKelvinQty): TKelvinPerMeterQty;
+  class operator *(const ALeft: TWattPerMeterPerKelvinQty; const ARight: TKelvinPerMeterQty): TWattPerSquareMeterQty;
+  class operator *(const ALeft: TKelvinPerMeterQty; const ARight: TWattPerMeterPerKelvinQty): TWattPerSquareMeterQty;
+  class operator /(const ALeft: TWattPerKelvinQty; const ARight: TWattPerMeterPerKelvinQty): TMeterQty;
+  class operator *(const ALeft: TWattPerMeterPerKelvinQty; const ARight: TMeterQty): TWattPerKelvinQty;
+  class operator *(const ALeft: TMeterQty; const ARight: TWattPerMeterPerKelvinQty): TWattPerKelvinQty;
+  class operator /(const ALeft: TWattPerMeterQty; const ARight: TWattPerMeterPerKelvinQty): TKelvinQty;
+  class operator *(const ALeft: TWattPerMeterPerKelvinQty; const ARight: TKelvinQty): TWattPerMeterQty;
+  class operator *(const ALeft: TKelvinQty; const ARight: TWattPerMeterPerKelvinQty): TWattPerMeterQty;
+  class operator /(const ALeft: TWattQty; const ARight: TWattPerMeterPerKelvinQty): TMeterKelvinQty;
+  class operator *(const ALeft: TWattPerMeterPerKelvinQty; const ARight: TMeterKelvinQty): TWattQty;
+  class operator *(const ALeft: TMeterKelvinQty; const ARight: TWattPerMeterPerKelvinQty): TWattQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of watt per square meter per kelvin }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TWattPerSquareMeterPerKelvinQty}{$i adim.inc}
-  class operator /(const ALeft: TWattPerKelvinQty; const ARight: TWattPerSquareMeterPerKelvinQty): TSquareMeterQty; inline;
-  class operator *(const ALeft: TWattPerSquareMeterPerKelvinQty; const ARight: TSquareMeterQty): TWattPerKelvinQty; inline;
-  class operator *(const ALeft: TSquareMeterQty; const ARight: TWattPerSquareMeterPerKelvinQty): TWattPerKelvinQty; inline;
-  class operator /(const ALeft: TWattPerSquareMeterQty; const ARight: TWattPerSquareMeterPerKelvinQty): TKelvinQty; inline;
-  class operator *(const ALeft: TWattPerSquareMeterPerKelvinQty; const ARight: TKelvinQty): TWattPerSquareMeterQty; inline;
-  class operator *(const ALeft: TKelvinQty; const ARight: TWattPerSquareMeterPerKelvinQty): TWattPerSquareMeterQty; inline;
-  class operator /(const ALeft: TWattQty; const ARight: TWattPerSquareMeterPerKelvinQty): TSquareMeterKelvinQty; inline;
-  class operator *(const ALeft: TWattPerSquareMeterPerKelvinQty; const ARight: TSquareMeterKelvinQty): TWattQty; inline;
-  class operator *(const ALeft: TSquareMeterKelvinQty; const ARight: TWattPerSquareMeterPerKelvinQty): TWattQty; inline;
+  class operator /(const ALeft: TWattPerKelvinQty; const ARight: TWattPerSquareMeterPerKelvinQty): TSquareMeterQty;
+  class operator *(const ALeft: TWattPerSquareMeterPerKelvinQty; const ARight: TSquareMeterQty): TWattPerKelvinQty;
+  class operator *(const ALeft: TSquareMeterQty; const ARight: TWattPerSquareMeterPerKelvinQty): TWattPerKelvinQty;
+  class operator /(const ALeft: TWattPerSquareMeterQty; const ARight: TWattPerSquareMeterPerKelvinQty): TKelvinQty;
+  class operator *(const ALeft: TWattPerSquareMeterPerKelvinQty; const ARight: TKelvinQty): TWattPerSquareMeterQty;
+  class operator *(const ALeft: TKelvinQty; const ARight: TWattPerSquareMeterPerKelvinQty): TWattPerSquareMeterQty;
+  class operator /(const ALeft: TWattQty; const ARight: TWattPerSquareMeterPerKelvinQty): TSquareMeterKelvinQty;
+  class operator *(const ALeft: TWattPerSquareMeterPerKelvinQty; const ARight: TSquareMeterKelvinQty): TWattQty;
+  class operator *(const ALeft: TSquareMeterKelvinQty; const ARight: TWattPerSquareMeterPerKelvinQty): TWattQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of watt per quartic kelvin }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TWattPerQuarticKelvinQty}{$i adim.inc}
-  class operator /(const ALeft: TWattQty; const ARight: TWattPerQuarticKelvinQty): TQuarticKelvinQty; inline;
-  class operator *(const ALeft: TWattPerQuarticKelvinQty; const ARight: TQuarticKelvinQty): TWattQty; inline;
-  class operator *(const ALeft: TQuarticKelvinQty; const ARight: TWattPerQuarticKelvinQty): TWattQty; inline;
+  class operator /(const ALeft: TWattQty; const ARight: TWattPerQuarticKelvinQty): TQuarticKelvinQty;
+  class operator *(const ALeft: TWattPerQuarticKelvinQty; const ARight: TQuarticKelvinQty): TWattQty;
+  class operator *(const ALeft: TQuarticKelvinQty; const ARight: TWattPerQuarticKelvinQty): TWattQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of watt per square meter per quartic kelvin }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TWattPerSquareMeterPerQuarticKelvinQty}{$i adim.inc}
-  class operator /(const ALeft: TWattPerQuarticKelvinQty; const ARight: TWattPerSquareMeterPerQuarticKelvinQty): TSquareMeterQty; inline;
-  class operator *(const ALeft: TWattPerSquareMeterPerQuarticKelvinQty; const ARight: TSquareMeterQty): TWattPerQuarticKelvinQty; inline;
-  class operator *(const ALeft: TSquareMeterQty; const ARight: TWattPerSquareMeterPerQuarticKelvinQty): TWattPerQuarticKelvinQty; inline;
-  class operator /(const ALeft: TWattPerSquareMeterQty; const ARight: TWattPerSquareMeterPerQuarticKelvinQty): TQuarticKelvinQty; inline;
-  class operator *(const ALeft: TWattPerSquareMeterPerQuarticKelvinQty; const ARight: TQuarticKelvinQty): TWattPerSquareMeterQty; inline;
-  class operator *(const ALeft: TQuarticKelvinQty; const ARight: TWattPerSquareMeterPerQuarticKelvinQty): TWattPerSquareMeterQty; inline;
-  class operator /(const ALeft: TWattQty; const ARight: TWattPerSquareMeterPerQuarticKelvinQty): TSquareMeterQuarticKelvinQty; inline;
-  class operator *(const ALeft: TWattPerSquareMeterPerQuarticKelvinQty; const ARight: TSquareMeterQuarticKelvinQty): TWattQty; inline;
-  class operator *(const ALeft: TSquareMeterQuarticKelvinQty; const ARight: TWattPerSquareMeterPerQuarticKelvinQty): TWattQty; inline;
+  class operator /(const ALeft: TWattPerQuarticKelvinQty; const ARight: TWattPerSquareMeterPerQuarticKelvinQty): TSquareMeterQty;
+  class operator *(const ALeft: TWattPerSquareMeterPerQuarticKelvinQty; const ARight: TSquareMeterQty): TWattPerQuarticKelvinQty;
+  class operator *(const ALeft: TSquareMeterQty; const ARight: TWattPerSquareMeterPerQuarticKelvinQty): TWattPerQuarticKelvinQty;
+  class operator /(const ALeft: TWattPerSquareMeterQty; const ARight: TWattPerSquareMeterPerQuarticKelvinQty): TQuarticKelvinQty;
+  class operator *(const ALeft: TWattPerSquareMeterPerQuarticKelvinQty; const ARight: TQuarticKelvinQty): TWattPerSquareMeterQty;
+  class operator *(const ALeft: TQuarticKelvinQty; const ARight: TWattPerSquareMeterPerQuarticKelvinQty): TWattPerSquareMeterQty;
+  class operator /(const ALeft: TWattQty; const ARight: TWattPerSquareMeterPerQuarticKelvinQty): TSquareMeterQuarticKelvinQty;
+  class operator *(const ALeft: TWattPerSquareMeterPerQuarticKelvinQty; const ARight: TSquareMeterQuarticKelvinQty): TWattQty;
+  class operator *(const ALeft: TSquareMeterQuarticKelvinQty; const ARight: TWattPerSquareMeterPerQuarticKelvinQty): TWattQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of joule per mole }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TJoulePerMoleQty}{$i adim.inc}
-  class operator /(const ALeft: TJouleQty; const ARight: TJoulePerMoleQty): TMoleQty; inline;
-  class operator *(const ALeft: TJoulePerMoleQty; const ARight: TMoleQty): TJouleQty; inline;
-  class operator *(const ALeft: TMoleQty; const ARight: TJoulePerMoleQty): TJouleQty; inline;
+  class operator /(const ALeft: TJouleQty; const ARight: TJoulePerMoleQty): TMoleQty;
+  class operator *(const ALeft: TJoulePerMoleQty; const ARight: TMoleQty): TJouleQty;
+  class operator *(const ALeft: TMoleQty; const ARight: TJoulePerMoleQty): TJouleQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of joule per mole per kelvin }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TJoulePerMolePerKelvinQty}{$i adim.inc}
-  class operator /(const ALeft: TJoulePerMoleQty; const ARight: TJoulePerMolePerKelvinQty): TKelvinQty; inline;
-  class operator *(const ALeft: TJoulePerMolePerKelvinQty; const ARight: TKelvinQty): TJoulePerMoleQty; inline;
-  class operator *(const ALeft: TKelvinQty; const ARight: TJoulePerMolePerKelvinQty): TJoulePerMoleQty; inline;
-  class operator /(const ALeft: TJoulePerKelvinQty; const ARight: TJoulePerMolePerKelvinQty): TMoleQty; inline;
-  class operator *(const ALeft: TJoulePerMolePerKelvinQty; const ARight: TMoleQty): TJoulePerKelvinQty; inline;
-  class operator *(const ALeft: TMoleQty; const ARight: TJoulePerMolePerKelvinQty): TJoulePerKelvinQty; inline;
-  class operator /(const ALeft: TJouleQty; const ARight: TJoulePerMolePerKelvinQty): TMoleKelvinQty; inline;
-  class operator *(const ALeft: TJoulePerMolePerKelvinQty; const ARight: TMoleKelvinQty): TJouleQty; inline;
-  class operator *(const ALeft: TMoleKelvinQty; const ARight: TJoulePerMolePerKelvinQty): TJouleQty; inline;
+  class operator /(const ALeft: TJoulePerMoleQty; const ARight: TJoulePerMolePerKelvinQty): TKelvinQty;
+  class operator *(const ALeft: TJoulePerMolePerKelvinQty; const ARight: TKelvinQty): TJoulePerMoleQty;
+  class operator *(const ALeft: TKelvinQty; const ARight: TJoulePerMolePerKelvinQty): TJoulePerMoleQty;
+  class operator /(const ALeft: TJoulePerKelvinQty; const ARight: TJoulePerMolePerKelvinQty): TMoleQty;
+  class operator *(const ALeft: TJoulePerMolePerKelvinQty; const ARight: TMoleQty): TJoulePerKelvinQty;
+  class operator *(const ALeft: TMoleQty; const ARight: TJoulePerMolePerKelvinQty): TJoulePerKelvinQty;
+  class operator /(const ALeft: TJouleQty; const ARight: TJoulePerMolePerKelvinQty): TMoleKelvinQty;
+  class operator *(const ALeft: TJoulePerMolePerKelvinQty; const ARight: TMoleKelvinQty): TJouleQty;
+  class operator *(const ALeft: TMoleKelvinQty; const ARight: TJoulePerMolePerKelvinQty): TJouleQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of volt per meter }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TVoltPerMeterQty}{$i adim.inc}
-  class operator /(const ALeft: TVoltMeterQty; const ARight: TVoltPerMeterQty): TSquareMeterQty; inline;
-  class operator *(const ALeft: TSquareMeterQty; const ARight: TVoltPerMeterQty): TVoltMeterQty; inline;
-  class operator *(const ALeft: TVoltPerMeterQty; const ARight: TSquareMeterQty): TVoltMeterQty; inline;
-  class operator /(const ALeft: TVoltPerMeterQty; const ARight: TMeterPerSecondQty): TTeslaQty; inline;
-  class operator /(const ALeft: TVoltPerMeterQty; const ARight: TTeslaQty): TMeterPerSecondQty; inline;
-  class operator /(const ALeft: TNewtonQty; const ARight: TVoltPerMeterQty): TCoulombQty; inline;
-  class operator *(const ALeft: TVoltPerMeterQty; const ARight: TCoulombQty): TNewtonQty; inline;
-  class operator *(const ALeft: TCoulombQty; const ARight: TVoltPerMeterQty): TNewtonQty; inline;
-  class operator /(const ALeft: TVoltQty; const ARight: TVoltPerMeterQty): TMeterQty; inline;
-  class operator *(const ALeft: TVoltPerMeterQty; const ARight: TMeterQty): TVoltQty; inline;
-  class operator *(const ALeft: TMeterQty; const ARight: TVoltPerMeterQty): TVoltQty; inline;
+  class operator /(const ALeft: TVoltMeterQty; const ARight: TVoltPerMeterQty): TSquareMeterQty;
+  class operator *(const ALeft: TSquareMeterQty; const ARight: TVoltPerMeterQty): TVoltMeterQty;
+  class operator *(const ALeft: TVoltPerMeterQty; const ARight: TSquareMeterQty): TVoltMeterQty;
+  class operator /(const ALeft: TVoltPerMeterQty; const ARight: TMeterPerSecondQty): TTeslaQty;
+  class operator /(const ALeft: TVoltPerMeterQty; const ARight: TTeslaQty): TMeterPerSecondQty;
+  class operator /(const ALeft: TNewtonQty; const ARight: TVoltPerMeterQty): TCoulombQty;
+  class operator *(const ALeft: TVoltPerMeterQty; const ARight: TCoulombQty): TNewtonQty;
+  class operator *(const ALeft: TCoulombQty; const ARight: TVoltPerMeterQty): TNewtonQty;
+  class operator /(const ALeft: TVoltQty; const ARight: TVoltPerMeterQty): TMeterQty;
+  class operator *(const ALeft: TVoltPerMeterQty; const ARight: TMeterQty): TVoltQty;
+  class operator *(const ALeft: TMeterQty; const ARight: TVoltPerMeterQty): TVoltQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of newton per coulomb }
@@ -1116,54 +1116,54 @@ type
 
 { Quantity of coulomb per meter }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCoulombPerMeterQty}{$i adim.inc}
-  class operator /(const ALeft: TCoulombQty; const ARight: TCoulombPerMeterQty): TMeterQty; inline;
-  class operator *(const ALeft: TCoulombPerMeterQty; const ARight: TMeterQty): TCoulombQty; inline;
-  class operator *(const ALeft: TMeterQty; const ARight: TCoulombPerMeterQty): TCoulombQty; inline;
+  class operator /(const ALeft: TCoulombQty; const ARight: TCoulombPerMeterQty): TMeterQty;
+  class operator *(const ALeft: TCoulombPerMeterQty; const ARight: TMeterQty): TCoulombQty;
+  class operator *(const ALeft: TMeterQty; const ARight: TCoulombPerMeterQty): TCoulombQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of square coulomb per meter }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSquareCoulombPerMeterQty}{$i adim.inc}
-  class operator *(const ALeft: TNewtonSquareMeterPerSquareCoulombQty; const ARight: TSquareCoulombPerMeterQty): TJouleQty; inline;
-  class operator *(const ALeft: TSquareCoulombPerMeterQty; const ARight: TNewtonSquareMeterPerSquareCoulombQty): TJouleQty; inline;
-  class operator /(const ALeft: TJouleQty; const ARight: TSquareCoulombPerMeterQty): TNewtonSquareMeterPerSquareCoulombQty; inline;
-  class operator /(const ALeft: TSquareCoulombPerMeterQty; const ARight: TCoulombQty): TCoulombPerMeterQty; inline;
-  class operator /(const ALeft: TSquareCoulombPerMeterQty; const ARight: TCoulombPerMeterQty): TCoulombQty; inline;
-  class operator /(const ALeft: TSquareCoulombQty; const ARight: TSquareCoulombPerMeterQty): TMeterQty; inline;
-  class operator *(const ALeft: TSquareCoulombPerMeterQty; const ARight: TMeterQty): TSquareCoulombQty; inline;
-  class operator *(const ALeft: TMeterQty; const ARight: TSquareCoulombPerMeterQty): TSquareCoulombQty; inline;
+  class operator *(const ALeft: TNewtonSquareMeterPerSquareCoulombQty; const ARight: TSquareCoulombPerMeterQty): TJouleQty;
+  class operator *(const ALeft: TSquareCoulombPerMeterQty; const ARight: TNewtonSquareMeterPerSquareCoulombQty): TJouleQty;
+  class operator /(const ALeft: TJouleQty; const ARight: TSquareCoulombPerMeterQty): TNewtonSquareMeterPerSquareCoulombQty;
+  class operator /(const ALeft: TSquareCoulombPerMeterQty; const ARight: TCoulombQty): TCoulombPerMeterQty;
+  class operator /(const ALeft: TSquareCoulombPerMeterQty; const ARight: TCoulombPerMeterQty): TCoulombQty;
+  class operator /(const ALeft: TSquareCoulombQty; const ARight: TSquareCoulombPerMeterQty): TMeterQty;
+  class operator *(const ALeft: TSquareCoulombPerMeterQty; const ARight: TMeterQty): TSquareCoulombQty;
+  class operator *(const ALeft: TMeterQty; const ARight: TSquareCoulombPerMeterQty): TSquareCoulombQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of coulomb per square meter }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCoulombPerSquareMeterQty}{$i adim.inc}
-  class operator *(const ALeft: TNewtonSquareMeterPerSquareCoulombQty; const ARight: TCoulombPerSquareMeterQty): TVoltPerMeterQty; inline;
-  class operator *(const ALeft: TCoulombPerSquareMeterQty; const ARight: TNewtonSquareMeterPerSquareCoulombQty): TVoltPerMeterQty; inline;
-  class operator /(const ALeft: TVoltPerMeterQty; const ARight: TCoulombPerSquareMeterQty): TNewtonSquareMeterPerSquareCoulombQty; inline;
-  class operator /(const ALeft: TCoulombPerMeterQty; const ARight: TCoulombPerSquareMeterQty): TMeterQty; inline;
-  class operator *(const ALeft: TCoulombPerSquareMeterQty; const ARight: TMeterQty): TCoulombPerMeterQty; inline;
-  class operator *(const ALeft: TMeterQty; const ARight: TCoulombPerSquareMeterQty): TCoulombPerMeterQty; inline;
-  class operator /(const ALeft: TCoulombQty; const ARight: TCoulombPerSquareMeterQty): TSquareMeterQty; inline;
-  class operator *(const ALeft: TCoulombPerSquareMeterQty; const ARight: TSquareMeterQty): TCoulombQty; inline;
-  class operator *(const ALeft: TSquareMeterQty; const ARight: TCoulombPerSquareMeterQty): TCoulombQty; inline;
+  class operator *(const ALeft: TNewtonSquareMeterPerSquareCoulombQty; const ARight: TCoulombPerSquareMeterQty): TVoltPerMeterQty;
+  class operator *(const ALeft: TCoulombPerSquareMeterQty; const ARight: TNewtonSquareMeterPerSquareCoulombQty): TVoltPerMeterQty;
+  class operator /(const ALeft: TVoltPerMeterQty; const ARight: TCoulombPerSquareMeterQty): TNewtonSquareMeterPerSquareCoulombQty;
+  class operator /(const ALeft: TCoulombPerMeterQty; const ARight: TCoulombPerSquareMeterQty): TMeterQty;
+  class operator *(const ALeft: TCoulombPerSquareMeterQty; const ARight: TMeterQty): TCoulombPerMeterQty;
+  class operator *(const ALeft: TMeterQty; const ARight: TCoulombPerSquareMeterQty): TCoulombPerMeterQty;
+  class operator /(const ALeft: TCoulombQty; const ARight: TCoulombPerSquareMeterQty): TSquareMeterQty;
+  class operator *(const ALeft: TCoulombPerSquareMeterQty; const ARight: TSquareMeterQty): TCoulombQty;
+  class operator *(const ALeft: TSquareMeterQty; const ARight: TCoulombPerSquareMeterQty): TCoulombQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of square meter per square coulomb }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSquareMeterPerSquareCoulombQty}{$i adim.inc}
-  class operator /(const ALeft: TNewtonSquareMeterPerSquareCoulombQty; const ARight: TSquareMeterPerSquareCoulombQty): TNewtonQty; inline;
-  class operator *(const ALeft: TSquareMeterPerSquareCoulombQty; const ARight: TNewtonQty): TNewtonSquareMeterPerSquareCoulombQty; inline;
-  class operator *(const ALeft: TNewtonQty; const ARight: TSquareMeterPerSquareCoulombQty): TNewtonSquareMeterPerSquareCoulombQty; inline;
-  class operator /(const ALeft: TSquareMeterQty; const ARight: TSquareMeterPerSquareCoulombQty): TSquareCoulombQty; inline;
-  class operator *(const ALeft: TSquareMeterPerSquareCoulombQty; const ARight: TSquareCoulombQty): TSquareMeterQty; inline;
-  class operator *(const ALeft: TSquareCoulombQty; const ARight: TSquareMeterPerSquareCoulombQty): TSquareMeterQty; inline;
+  class operator /(const ALeft: TNewtonSquareMeterPerSquareCoulombQty; const ARight: TSquareMeterPerSquareCoulombQty): TNewtonQty;
+  class operator *(const ALeft: TSquareMeterPerSquareCoulombQty; const ARight: TNewtonQty): TNewtonSquareMeterPerSquareCoulombQty;
+  class operator *(const ALeft: TNewtonQty; const ARight: TSquareMeterPerSquareCoulombQty): TNewtonSquareMeterPerSquareCoulombQty;
+  class operator /(const ALeft: TSquareMeterQty; const ARight: TSquareMeterPerSquareCoulombQty): TSquareCoulombQty;
+  class operator *(const ALeft: TSquareMeterPerSquareCoulombQty; const ARight: TSquareCoulombQty): TSquareMeterQty;
+  class operator *(const ALeft: TSquareCoulombQty; const ARight: TSquareMeterPerSquareCoulombQty): TSquareMeterQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of newton per square coulomb }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TNewtonPerSquareCoulombQty}{$i adim.inc}
-  class operator /(const ALeft: TNewtonSquareMeterPerSquareCoulombQty; const ARight: TNewtonPerSquareCoulombQty): TSquareMeterQty; inline;
-  class operator *(const ALeft: TSquareMeterQty; const ARight: TNewtonPerSquareCoulombQty): TNewtonSquareMeterPerSquareCoulombQty; inline;
-  class operator *(const ALeft: TNewtonPerSquareCoulombQty; const ARight: TSquareMeterQty): TNewtonSquareMeterPerSquareCoulombQty; inline;
-  class operator /(const ALeft: TNewtonQty; const ARight: TNewtonPerSquareCoulombQty): TSquareCoulombQty; inline;
-  class operator *(const ALeft: TNewtonPerSquareCoulombQty; const ARight: TSquareCoulombQty): TNewtonQty; inline;
-  class operator *(const ALeft: TSquareCoulombQty; const ARight: TNewtonPerSquareCoulombQty): TNewtonQty; inline;
+  class operator /(const ALeft: TNewtonSquareMeterPerSquareCoulombQty; const ARight: TNewtonPerSquareCoulombQty): TSquareMeterQty;
+  class operator *(const ALeft: TSquareMeterQty; const ARight: TNewtonPerSquareCoulombQty): TNewtonSquareMeterPerSquareCoulombQty;
+  class operator *(const ALeft: TNewtonPerSquareCoulombQty; const ARight: TSquareMeterQty): TNewtonSquareMeterPerSquareCoulombQty;
+  class operator /(const ALeft: TNewtonQty; const ARight: TNewtonPerSquareCoulombQty): TSquareCoulombQty;
+  class operator *(const ALeft: TNewtonPerSquareCoulombQty; const ARight: TSquareCoulombQty): TNewtonQty;
+  class operator *(const ALeft: TSquareCoulombQty; const ARight: TNewtonPerSquareCoulombQty): TNewtonQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of newton square meter per coulomb }
@@ -1172,39 +1172,39 @@ type
 
 { Quantity of volt meter per second }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TVoltMeterPerSecondQty}{$i adim.inc}
-  class operator /(const ALeft: TVoltMeterQty; const ARight: TVoltMeterPerSecondQty): TSecondQty; inline;
-  class operator *(const ALeft: TVoltMeterPerSecondQty; const ARight: TSecondQty): TVoltMeterQty; inline;
-  class operator *(const ALeft: TSecondQty; const ARight: TVoltMeterPerSecondQty): TVoltMeterQty; inline;
+  class operator /(const ALeft: TVoltMeterQty; const ARight: TVoltMeterPerSecondQty): TSecondQty;
+  class operator *(const ALeft: TVoltMeterPerSecondQty; const ARight: TSecondQty): TVoltMeterQty;
+  class operator *(const ALeft: TSecondQty; const ARight: TVoltMeterPerSecondQty): TVoltMeterQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of farad per meter }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TFaradPerMeterQty}{$i adim.inc}
-  class operator /(const ALeft: double; const ARight: TFaradPerMeterQty): TNewtonSquareMeterPerSquareCoulombQty; inline;
-  class operator *(const ALeft: TFaradPerMeterQty; const ARight: TNewtonSquareMeterPerSquareCoulombQty): double; inline;
-  class operator *(const ALeft: TNewtonSquareMeterPerSquareCoulombQty; const ARight: TFaradPerMeterQty): double; inline;
-  class operator /(const ALeft: TCoulombPerSquareMeterQty; const ARight: TFaradPerMeterQty): TVoltPerMeterQty; inline;
-  class operator *(const ALeft: TFaradPerMeterQty; const ARight: TVoltPerMeterQty): TCoulombPerSquareMeterQty; inline;
-  class operator *(const ALeft: TVoltPerMeterQty; const ARight: TFaradPerMeterQty): TCoulombPerSquareMeterQty; inline;
-  class operator /(const ALeft: TCoulombQty; const ARight: TFaradPerMeterQty): TVoltMeterQty; inline;
-  class operator *(const ALeft: TFaradPerMeterQty; const ARight: TVoltMeterQty): TCoulombQty; inline;
-  class operator *(const ALeft: TVoltMeterQty; const ARight: TFaradPerMeterQty): TCoulombQty; inline;
-  class operator /(const ALeft: TFaradQty; const ARight: TFaradPerMeterQty): TMeterQty; inline;
-  class operator *(const ALeft: TFaradPerMeterQty; const ARight: TMeterQty): TFaradQty; inline;
-  class operator *(const ALeft: TMeterQty; const ARight: TFaradPerMeterQty): TFaradQty; inline;
+  class operator /(const ALeft: double; const ARight: TFaradPerMeterQty): TNewtonSquareMeterPerSquareCoulombQty;
+  class operator *(const ALeft: TFaradPerMeterQty; const ARight: TNewtonSquareMeterPerSquareCoulombQty): double;
+  class operator *(const ALeft: TNewtonSquareMeterPerSquareCoulombQty; const ARight: TFaradPerMeterQty): double;
+  class operator /(const ALeft: TCoulombPerSquareMeterQty; const ARight: TFaradPerMeterQty): TVoltPerMeterQty;
+  class operator *(const ALeft: TFaradPerMeterQty; const ARight: TVoltPerMeterQty): TCoulombPerSquareMeterQty;
+  class operator *(const ALeft: TVoltPerMeterQty; const ARight: TFaradPerMeterQty): TCoulombPerSquareMeterQty;
+  class operator /(const ALeft: TCoulombQty; const ARight: TFaradPerMeterQty): TVoltMeterQty;
+  class operator *(const ALeft: TFaradPerMeterQty; const ARight: TVoltMeterQty): TCoulombQty;
+  class operator *(const ALeft: TVoltMeterQty; const ARight: TFaradPerMeterQty): TCoulombQty;
+  class operator /(const ALeft: TFaradQty; const ARight: TFaradPerMeterQty): TMeterQty;
+  class operator *(const ALeft: TFaradPerMeterQty; const ARight: TMeterQty): TFaradQty;
+  class operator *(const ALeft: TMeterQty; const ARight: TFaradPerMeterQty): TFaradQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of ampere per meter }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TAmperePerMeterQty}{$i adim.inc}
-  class operator /(const ALeft: TAmpereQty; const ARight: TAmperePerMeterQty): TMeterQty; inline;
-  class operator *(const ALeft: TAmperePerMeterQty; const ARight: TMeterQty): TAmpereQty; inline;
-  class operator *(const ALeft: TMeterQty; const ARight: TAmperePerMeterQty): TAmpereQty; inline;
+  class operator /(const ALeft: TAmpereQty; const ARight: TAmperePerMeterQty): TMeterQty;
+  class operator *(const ALeft: TAmperePerMeterQty; const ARight: TMeterQty): TAmpereQty;
+  class operator *(const ALeft: TMeterQty; const ARight: TAmperePerMeterQty): TAmpereQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of meter per ampere }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TMeterPerAmpereQty}{$i adim.inc}
-  class operator /(const ALeft: TMeterQty; const ARight: TMeterPerAmpereQty): TAmpereQty; inline;
-  class operator *(const ALeft: TMeterPerAmpereQty; const ARight: TAmpereQty): TMeterQty; inline;
-  class operator *(const ALeft: TAmpereQty; const ARight: TMeterPerAmpereQty): TMeterQty; inline;
+  class operator /(const ALeft: TMeterQty; const ARight: TMeterPerAmpereQty): TAmpereQty;
+  class operator *(const ALeft: TMeterPerAmpereQty; const ARight: TAmpereQty): TMeterQty;
+  class operator *(const ALeft: TAmpereQty; const ARight: TMeterPerAmpereQty): TMeterQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of newton per ampere }
@@ -1213,29 +1213,29 @@ type
 
 { Quantity of tesla per ampere }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TTeslaPerAmpereQty}{$i adim.inc}
-  class operator /(const ALeft: TTeslaQty; const ARight: TTeslaPerAmpereQty): TAmpereQty; inline;
-  class operator *(const ALeft: TTeslaPerAmpereQty; const ARight: TAmpereQty): TTeslaQty; inline;
-  class operator *(const ALeft: TAmpereQty; const ARight: TTeslaPerAmpereQty): TTeslaQty; inline;
+  class operator /(const ALeft: TTeslaQty; const ARight: TTeslaPerAmpereQty): TAmpereQty;
+  class operator *(const ALeft: TTeslaPerAmpereQty; const ARight: TAmpereQty): TTeslaQty;
+  class operator *(const ALeft: TAmpereQty; const ARight: TTeslaPerAmpereQty): TTeslaQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of henry per meter }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=THenryPerMeterQty}{$i adim.inc}
-  class operator /(const ALeft: TNewtonQty; const ARight: THenryPerMeterQty): TSquareAmpereQty; inline;
-  class operator *(const ALeft: THenryPerMeterQty; const ARight: TSquareAmpereQty): TNewtonQty; inline;
-  class operator *(const ALeft: TSquareAmpereQty; const ARight: THenryPerMeterQty): TNewtonQty; inline;
-  class operator /(const ALeft: TTeslaQty; const ARight: THenryPerMeterQty): TAmperePerMeterQty; inline;
-  class operator *(const ALeft: THenryPerMeterQty; const ARight: TAmperePerMeterQty): TTeslaQty; inline;
-  class operator *(const ALeft: TAmperePerMeterQty; const ARight: THenryPerMeterQty): TTeslaQty; inline;
-  class operator /(const ALeft: THenryPerMeterQty; const ARight: TMeterPerAmpereQty): TTeslaQty; inline;
-  class operator /(const ALeft: THenryPerMeterQty; const ARight: TTeslaQty): TMeterPerAmpereQty; inline;
-  class operator /(const ALeft: THenryPerMeterQty; const ARight: TMeterQty): TTeslaPerAmpereQty; inline;
-  class operator /(const ALeft: THenryPerMeterQty; const ARight: TTeslaPerAmpereQty): TMeterQty; inline;
-  class operator /(const ALeft: TTeslaMeterQty; const ARight: THenryPerMeterQty): TAmpereQty; inline;
-  class operator *(const ALeft: THenryPerMeterQty; const ARight: TAmpereQty): TTeslaMeterQty; inline;
-  class operator *(const ALeft: TAmpereQty; const ARight: THenryPerMeterQty): TTeslaMeterQty; inline;
-  class operator /(const ALeft: THenryQty; const ARight: THenryPerMeterQty): TMeterQty; inline;
-  class operator *(const ALeft: THenryPerMeterQty; const ARight: TMeterQty): THenryQty; inline;
-  class operator *(const ALeft: TMeterQty; const ARight: THenryPerMeterQty): THenryQty; inline;
+  class operator /(const ALeft: TNewtonQty; const ARight: THenryPerMeterQty): TSquareAmpereQty;
+  class operator *(const ALeft: THenryPerMeterQty; const ARight: TSquareAmpereQty): TNewtonQty;
+  class operator *(const ALeft: TSquareAmpereQty; const ARight: THenryPerMeterQty): TNewtonQty;
+  class operator /(const ALeft: TTeslaQty; const ARight: THenryPerMeterQty): TAmperePerMeterQty;
+  class operator *(const ALeft: THenryPerMeterQty; const ARight: TAmperePerMeterQty): TTeslaQty;
+  class operator *(const ALeft: TAmperePerMeterQty; const ARight: THenryPerMeterQty): TTeslaQty;
+  class operator /(const ALeft: THenryPerMeterQty; const ARight: TMeterPerAmpereQty): TTeslaQty;
+  class operator /(const ALeft: THenryPerMeterQty; const ARight: TTeslaQty): TMeterPerAmpereQty;
+  class operator /(const ALeft: THenryPerMeterQty; const ARight: TMeterQty): TTeslaPerAmpereQty;
+  class operator /(const ALeft: THenryPerMeterQty; const ARight: TTeslaPerAmpereQty): TMeterQty;
+  class operator /(const ALeft: TTeslaMeterQty; const ARight: THenryPerMeterQty): TAmpereQty;
+  class operator *(const ALeft: THenryPerMeterQty; const ARight: TAmpereQty): TTeslaMeterQty;
+  class operator *(const ALeft: TAmpereQty; const ARight: THenryPerMeterQty): TTeslaMeterQty;
+  class operator /(const ALeft: THenryQty; const ARight: THenryPerMeterQty): TMeterQty;
+  class operator *(const ALeft: THenryPerMeterQty; const ARight: TMeterQty): THenryQty;
+  class operator *(const ALeft: TMeterQty; const ARight: THenryPerMeterQty): THenryQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of tesla meter per ampere }
@@ -1248,38 +1248,38 @@ type
 
 { Quantity of radian per meter }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TRadianPerMeterQty}{$i adim.inc}
-  class operator /(const ALeft: TRadianQty; const ARight: TRadianPerMeterQty): TMeterQty; inline;
-  class operator *(const ALeft: TRadianPerMeterQty; const ARight: TMeterQty): TRadianQty; inline;
-  class operator *(const ALeft: TMeterQty; const ARight: TRadianPerMeterQty): TRadianQty; inline;
+  class operator /(const ALeft: TRadianQty; const ARight: TRadianPerMeterQty): TMeterQty;
+  class operator *(const ALeft: TRadianPerMeterQty; const ARight: TMeterQty): TRadianQty;
+  class operator *(const ALeft: TMeterQty; const ARight: TRadianPerMeterQty): TRadianQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of square kilogram per square second }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSquareKilogramPerSquareSecondQty}{$i adim.inc}
-  class operator /(const ALeft: TSquareKilogramPerSquareSecondQty; const ARight: TNewtonPerMeterQty): TKilogramQty; inline;
-  class operator /(const ALeft: TSquareKilogramPerSquareSecondQty; const ARight: TKilogramQty): TNewtonPerMeterQty; inline;
-  class operator /(const ALeft: TSquareKilogramPerSquareSecondQty; const ARight: TKilogramPerSecondQty): TKilogramPerSecondQty; inline;
-  class operator /(const ALeft: TSquareKilogramQty; const ARight: TSquareKilogramPerSquareSecondQty): TSquareSecondQty; inline;
-  class operator *(const ALeft: TSquareKilogramPerSquareSecondQty; const ARight: TSquareSecondQty): TSquareKilogramQty; inline;
-  class operator *(const ALeft: TSquareSecondQty; const ARight: TSquareKilogramPerSquareSecondQty): TSquareKilogramQty; inline;
+  class operator /(const ALeft: TSquareKilogramPerSquareSecondQty; const ARight: TNewtonPerMeterQty): TKilogramQty;
+  class operator /(const ALeft: TSquareKilogramPerSquareSecondQty; const ARight: TKilogramQty): TNewtonPerMeterQty;
+  class operator /(const ALeft: TSquareKilogramPerSquareSecondQty; const ARight: TKilogramPerSecondQty): TKilogramPerSecondQty;
+  class operator /(const ALeft: TSquareKilogramQty; const ARight: TSquareKilogramPerSquareSecondQty): TSquareSecondQty;
+  class operator *(const ALeft: TSquareKilogramPerSquareSecondQty; const ARight: TSquareSecondQty): TSquareKilogramQty;
+  class operator *(const ALeft: TSquareSecondQty; const ARight: TSquareKilogramPerSquareSecondQty): TSquareKilogramQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of reciprocal meter }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TReciprocalMeterQty}{$i adim.inc}
-  class operator /(const ALeft: double; const ARight: TReciprocalMeterQty): TMeterQty; inline;
-  class operator *(const ALeft: TReciprocalMeterQty; const ARight: TMeterQty): double; inline;
-  class operator *(const ALeft: TMeterQty; const ARight: TReciprocalMeterQty): double; inline;
+  class operator /(const ALeft: double; const ARight: TReciprocalMeterQty): TMeterQty;
+  class operator *(const ALeft: TReciprocalMeterQty; const ARight: TMeterQty): double;
+  class operator *(const ALeft: TMeterQty; const ARight: TReciprocalMeterQty): double;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of square second per square meter }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSquareSecondPerSquareMeterQty}{$i adim.inc}
-  class operator /(const ALeft: TSquareSecondPerSquareMeterQty; const ARight: THenryPerMeterQty): TFaradPerMeterQty; inline;
-  class operator /(const ALeft: TSquareSecondPerSquareMeterQty; const ARight: TFaradPerMeterQty): THenryPerMeterQty; inline;
-  class operator /(const ALeft: double; const ARight: TSquareSecondPerSquareMeterQty): TSquareMeterPerSquareSecondQty; inline;
-  class operator *(const ALeft: TSquareSecondPerSquareMeterQty; const ARight: TSquareMeterPerSquareSecondQty): double; inline;
-  class operator *(const ALeft: TSquareMeterPerSquareSecondQty; const ARight: TSquareSecondPerSquareMeterQty): double; inline;
-  class operator /(const ALeft: TSquareSecondQty; const ARight: TSquareSecondPerSquareMeterQty): TSquareMeterQty; inline;
-  class operator *(const ALeft: TSquareSecondPerSquareMeterQty; const ARight: TSquareMeterQty): TSquareSecondQty; inline;
-  class operator *(const ALeft: TSquareMeterQty; const ARight: TSquareSecondPerSquareMeterQty): TSquareSecondQty; inline;
+  class operator /(const ALeft: TSquareSecondPerSquareMeterQty; const ARight: THenryPerMeterQty): TFaradPerMeterQty;
+  class operator /(const ALeft: TSquareSecondPerSquareMeterQty; const ARight: TFaradPerMeterQty): THenryPerMeterQty;
+  class operator /(const ALeft: double; const ARight: TSquareSecondPerSquareMeterQty): TSquareMeterPerSquareSecondQty;
+  class operator *(const ALeft: TSquareSecondPerSquareMeterQty; const ARight: TSquareMeterPerSquareSecondQty): double;
+  class operator *(const ALeft: TSquareMeterPerSquareSecondQty; const ARight: TSquareSecondPerSquareMeterQty): double;
+  class operator /(const ALeft: TSquareSecondQty; const ARight: TSquareSecondPerSquareMeterQty): TSquareMeterQty;
+  class operator *(const ALeft: TSquareSecondPerSquareMeterQty; const ARight: TSquareMeterQty): TSquareSecondQty;
+  class operator *(const ALeft: TSquareMeterQty; const ARight: TSquareSecondPerSquareMeterQty): TSquareSecondQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of joule second }
@@ -1292,361 +1292,361 @@ type
 
 { Quantity of lumen per watt }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TLumenPerWattQty}{$i adim.inc}
-  class operator /(const ALeft: TLumenQty; const ARight: TLumenPerWattQty): TWattQty; inline;
-  class operator *(const ALeft: TLumenPerWattQty; const ARight: TWattQty): TLumenQty; inline;
-  class operator *(const ALeft: TWattQty; const ARight: TLumenPerWattQty): TLumenQty; inline;
+  class operator /(const ALeft: TLumenQty; const ARight: TLumenPerWattQty): TWattQty;
+  class operator *(const ALeft: TLumenPerWattQty; const ARight: TWattQty): TLumenQty;
+  class operator *(const ALeft: TWattQty; const ARight: TLumenPerWattQty): TLumenQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of reciprocal mole }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TReciprocalMoleQty}{$i adim.inc}
-  class operator /(const ALeft: double; const ARight: TReciprocalMoleQty): TMoleQty; inline;
-  class operator *(const ALeft: TReciprocalMoleQty; const ARight: TMoleQty): double; inline;
-  class operator *(const ALeft: TMoleQty; const ARight: TReciprocalMoleQty): double; inline;
+  class operator /(const ALeft: double; const ARight: TReciprocalMoleQty): TMoleQty;
+  class operator *(const ALeft: TReciprocalMoleQty; const ARight: TMoleQty): double;
+  class operator *(const ALeft: TMoleQty; const ARight: TReciprocalMoleQty): double;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of ampere per square meter }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TAmperePerSquareMeterQty}{$i adim.inc}
-  class operator /(const ALeft: TAmperePerMeterQty; const ARight: TAmperePerSquareMeterQty): TMeterQty; inline;
-  class operator *(const ALeft: TAmperePerSquareMeterQty; const ARight: TMeterQty): TAmperePerMeterQty; inline;
-  class operator *(const ALeft: TMeterQty; const ARight: TAmperePerSquareMeterQty): TAmperePerMeterQty; inline;
-  class operator /(const ALeft: TAmpereQty; const ARight: TAmperePerSquareMeterQty): TSquareMeterQty; inline;
-  class operator *(const ALeft: TAmperePerSquareMeterQty; const ARight: TSquareMeterQty): TAmpereQty; inline;
-  class operator *(const ALeft: TSquareMeterQty; const ARight: TAmperePerSquareMeterQty): TAmpereQty; inline;
+  class operator /(const ALeft: TAmperePerMeterQty; const ARight: TAmperePerSquareMeterQty): TMeterQty;
+  class operator *(const ALeft: TAmperePerSquareMeterQty; const ARight: TMeterQty): TAmperePerMeterQty;
+  class operator *(const ALeft: TMeterQty; const ARight: TAmperePerSquareMeterQty): TAmperePerMeterQty;
+  class operator /(const ALeft: TAmpereQty; const ARight: TAmperePerSquareMeterQty): TSquareMeterQty;
+  class operator *(const ALeft: TAmperePerSquareMeterQty; const ARight: TSquareMeterQty): TAmpereQty;
+  class operator *(const ALeft: TSquareMeterQty; const ARight: TAmperePerSquareMeterQty): TAmpereQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of mole per cubic meter }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TMolePerCubicMeterQty}{$i adim.inc}
-  class operator /(const ALeft: TMoleQty; const ARight: TMolePerCubicMeterQty): TCubicMeterQty; inline;
-  class operator *(const ALeft: TMolePerCubicMeterQty; const ARight: TCubicMeterQty): TMoleQty; inline;
-  class operator *(const ALeft: TCubicMeterQty; const ARight: TMolePerCubicMeterQty): TMoleQty; inline;
+  class operator /(const ALeft: TMoleQty; const ARight: TMolePerCubicMeterQty): TCubicMeterQty;
+  class operator *(const ALeft: TMolePerCubicMeterQty; const ARight: TCubicMeterQty): TMoleQty;
+  class operator *(const ALeft: TCubicMeterQty; const ARight: TMolePerCubicMeterQty): TMoleQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of candela per square meter }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCandelaPerSquareMeterQty}{$i adim.inc}
-  class operator /(const ALeft: TCandelaQty; const ARight: TCandelaPerSquareMeterQty): TSquareMeterQty; inline;
-  class operator *(const ALeft: TCandelaPerSquareMeterQty; const ARight: TSquareMeterQty): TCandelaQty; inline;
-  class operator *(const ALeft: TSquareMeterQty; const ARight: TCandelaPerSquareMeterQty): TCandelaQty; inline;
+  class operator /(const ALeft: TCandelaQty; const ARight: TCandelaPerSquareMeterQty): TSquareMeterQty;
+  class operator *(const ALeft: TCandelaPerSquareMeterQty; const ARight: TSquareMeterQty): TCandelaQty;
+  class operator *(const ALeft: TSquareMeterQty; const ARight: TCandelaPerSquareMeterQty): TCandelaQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of coulomb per cubic meter }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCoulombPerCubicMeterQty}{$i adim.inc}
-  class operator /(const ALeft: TCoulombPerSquareMeterQty; const ARight: TCoulombPerCubicMeterQty): TMeterQty; inline;
-  class operator *(const ALeft: TCoulombPerCubicMeterQty; const ARight: TMeterQty): TCoulombPerSquareMeterQty; inline;
-  class operator *(const ALeft: TMeterQty; const ARight: TCoulombPerCubicMeterQty): TCoulombPerSquareMeterQty; inline;
-  class operator /(const ALeft: TCoulombPerMeterQty; const ARight: TCoulombPerCubicMeterQty): TSquareMeterQty; inline;
-  class operator *(const ALeft: TCoulombPerCubicMeterQty; const ARight: TSquareMeterQty): TCoulombPerMeterQty; inline;
-  class operator *(const ALeft: TSquareMeterQty; const ARight: TCoulombPerCubicMeterQty): TCoulombPerMeterQty; inline;
-  class operator /(const ALeft: TCoulombQty; const ARight: TCoulombPerCubicMeterQty): TCubicMeterQty; inline;
-  class operator *(const ALeft: TCoulombPerCubicMeterQty; const ARight: TCubicMeterQty): TCoulombQty; inline;
-  class operator *(const ALeft: TCubicMeterQty; const ARight: TCoulombPerCubicMeterQty): TCoulombQty; inline;
+  class operator /(const ALeft: TCoulombPerSquareMeterQty; const ARight: TCoulombPerCubicMeterQty): TMeterQty;
+  class operator *(const ALeft: TCoulombPerCubicMeterQty; const ARight: TMeterQty): TCoulombPerSquareMeterQty;
+  class operator *(const ALeft: TMeterQty; const ARight: TCoulombPerCubicMeterQty): TCoulombPerSquareMeterQty;
+  class operator /(const ALeft: TCoulombPerMeterQty; const ARight: TCoulombPerCubicMeterQty): TSquareMeterQty;
+  class operator *(const ALeft: TCoulombPerCubicMeterQty; const ARight: TSquareMeterQty): TCoulombPerMeterQty;
+  class operator *(const ALeft: TSquareMeterQty; const ARight: TCoulombPerCubicMeterQty): TCoulombPerMeterQty;
+  class operator /(const ALeft: TCoulombQty; const ARight: TCoulombPerCubicMeterQty): TCubicMeterQty;
+  class operator *(const ALeft: TCoulombPerCubicMeterQty; const ARight: TCubicMeterQty): TCoulombQty;
+  class operator *(const ALeft: TCubicMeterQty; const ARight: TCoulombPerCubicMeterQty): TCoulombQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of coulomb per kilogram }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCoulombPerKilogramQty}{$i adim.inc}
-  class operator /(const ALeft: TCoulombQty; const ARight: TCoulombPerKilogramQty): TKilogramQty; inline;
-  class operator *(const ALeft: TCoulombPerKilogramQty; const ARight: TKilogramQty): TCoulombQty; inline;
-  class operator *(const ALeft: TKilogramQty; const ARight: TCoulombPerKilogramQty): TCoulombQty; inline;
+  class operator /(const ALeft: TCoulombQty; const ARight: TCoulombPerKilogramQty): TKilogramQty;
+  class operator *(const ALeft: TCoulombPerKilogramQty; const ARight: TKilogramQty): TCoulombQty;
+  class operator *(const ALeft: TKilogramQty; const ARight: TCoulombPerKilogramQty): TCoulombQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of gray per second }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TGrayPerSecondQty}{$i adim.inc}
-  class operator /(const ALeft: TSquareMeterPerSquareSecondQty; const ARight: TGrayPerSecondQty): TSecondQty; inline;
-  class operator *(const ALeft: TGrayPerSecondQty; const ARight: TSecondQty): TSquareMeterPerSquareSecondQty; inline;
-  class operator *(const ALeft: TSecondQty; const ARight: TGrayPerSecondQty): TSquareMeterPerSquareSecondQty; inline;
+  class operator /(const ALeft: TSquareMeterPerSquareSecondQty; const ARight: TGrayPerSecondQty): TSecondQty;
+  class operator *(const ALeft: TGrayPerSecondQty; const ARight: TSecondQty): TSquareMeterPerSquareSecondQty;
+  class operator *(const ALeft: TSecondQty; const ARight: TGrayPerSecondQty): TSquareMeterPerSquareSecondQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of watt per steradian }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TWattPerSteradianQty}{$i adim.inc}
-  class operator /(const ALeft: TWattQty; const ARight: TWattPerSteradianQty): TSteradianQty; inline;
-  class operator *(const ALeft: TWattPerSteradianQty; const ARight: TSteradianQty): TWattQty; inline;
-  class operator *(const ALeft: TSteradianQty; const ARight: TWattPerSteradianQty): TWattQty; inline;
+  class operator /(const ALeft: TWattQty; const ARight: TWattPerSteradianQty): TSteradianQty;
+  class operator *(const ALeft: TWattPerSteradianQty; const ARight: TSteradianQty): TWattQty;
+  class operator *(const ALeft: TSteradianQty; const ARight: TWattPerSteradianQty): TWattQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of watt per square meter per steradian }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TWattPerSquareMeterPerSteradianQty}{$i adim.inc}
-  class operator /(const ALeft: TWattPerSteradianQty; const ARight: TWattPerSquareMeterPerSteradianQty): TSquareMeterQty; inline;
-  class operator *(const ALeft: TWattPerSquareMeterPerSteradianQty; const ARight: TSquareMeterQty): TWattPerSteradianQty; inline;
-  class operator *(const ALeft: TSquareMeterQty; const ARight: TWattPerSquareMeterPerSteradianQty): TWattPerSteradianQty; inline;
-  class operator /(const ALeft: TWattPerSquareMeterQty; const ARight: TWattPerSquareMeterPerSteradianQty): TSteradianQty; inline;
-  class operator *(const ALeft: TWattPerSquareMeterPerSteradianQty; const ARight: TSteradianQty): TWattPerSquareMeterQty; inline;
-  class operator *(const ALeft: TSteradianQty; const ARight: TWattPerSquareMeterPerSteradianQty): TWattPerSquareMeterQty; inline;
-  class operator /(const ALeft: TWattQty; const ARight: TWattPerSquareMeterPerSteradianQty): TSquareMeterSteradianQty; inline;
-  class operator *(const ALeft: TWattPerSquareMeterPerSteradianQty; const ARight: TSquareMeterSteradianQty): TWattQty; inline;
-  class operator *(const ALeft: TSquareMeterSteradianQty; const ARight: TWattPerSquareMeterPerSteradianQty): TWattQty; inline;
+  class operator /(const ALeft: TWattPerSteradianQty; const ARight: TWattPerSquareMeterPerSteradianQty): TSquareMeterQty;
+  class operator *(const ALeft: TWattPerSquareMeterPerSteradianQty; const ARight: TSquareMeterQty): TWattPerSteradianQty;
+  class operator *(const ALeft: TSquareMeterQty; const ARight: TWattPerSquareMeterPerSteradianQty): TWattPerSteradianQty;
+  class operator /(const ALeft: TWattPerSquareMeterQty; const ARight: TWattPerSquareMeterPerSteradianQty): TSteradianQty;
+  class operator *(const ALeft: TWattPerSquareMeterPerSteradianQty; const ARight: TSteradianQty): TWattPerSquareMeterQty;
+  class operator *(const ALeft: TSteradianQty; const ARight: TWattPerSquareMeterPerSteradianQty): TWattPerSquareMeterQty;
+  class operator /(const ALeft: TWattQty; const ARight: TWattPerSquareMeterPerSteradianQty): TSquareMeterSteradianQty;
+  class operator *(const ALeft: TWattPerSquareMeterPerSteradianQty; const ARight: TSquareMeterSteradianQty): TWattQty;
+  class operator *(const ALeft: TSquareMeterSteradianQty; const ARight: TWattPerSquareMeterPerSteradianQty): TWattQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of katal per cubic meter }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TKatalPerCubicMeterQty}{$i adim.inc}
-  class operator /(const ALeft: TKatalQty; const ARight: TKatalPerCubicMeterQty): TCubicMeterQty; inline;
-  class operator *(const ALeft: TKatalPerCubicMeterQty; const ARight: TCubicMeterQty): TKatalQty; inline;
-  class operator *(const ALeft: TCubicMeterQty; const ARight: TKatalPerCubicMeterQty): TKatalQty; inline;
+  class operator /(const ALeft: TKatalQty; const ARight: TKatalPerCubicMeterQty): TCubicMeterQty;
+  class operator *(const ALeft: TKatalPerCubicMeterQty; const ARight: TCubicMeterQty): TKatalQty;
+  class operator *(const ALeft: TCubicMeterQty; const ARight: TKatalPerCubicMeterQty): TKatalQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 { Quantity of coulomb per mole }
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCoulombPerMoleQty}{$i adim.inc}
-  class operator /(const ALeft: TJoulePerMoleQty; const ARight: TCoulombPerMoleQty): TVoltQty; inline;
-  class operator *(const ALeft: TCoulombPerMoleQty; const ARight: TVoltQty): TJoulePerMoleQty; inline;
-  class operator *(const ALeft: TVoltQty; const ARight: TCoulombPerMoleQty): TJoulePerMoleQty; inline;
-  class operator /(const ALeft: TCoulombQty; const ARight: TCoulombPerMoleQty): TMoleQty; inline;
-  class operator *(const ALeft: TCoulombPerMoleQty; const ARight: TMoleQty): TCoulombQty; inline;
-  class operator *(const ALeft: TMoleQty; const ARight: TCoulombPerMoleQty): TCoulombQty; inline;
+  class operator /(const ALeft: TJoulePerMoleQty; const ARight: TCoulombPerMoleQty): TVoltQty;
+  class operator *(const ALeft: TCoulombPerMoleQty; const ARight: TVoltQty): TJoulePerMoleQty;
+  class operator *(const ALeft: TVoltQty; const ARight: TCoulombPerMoleQty): TJoulePerMoleQty;
+  class operator /(const ALeft: TCoulombQty; const ARight: TCoulombPerMoleQty): TMoleQty;
+  class operator *(const ALeft: TCoulombPerMoleQty; const ARight: TMoleQty): TCoulombQty;
+  class operator *(const ALeft: TMoleQty; const ARight: TCoulombPerMoleQty): TCoulombQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
-operator /(const ALeft: TCubicMeterQty; const ARight: TSquareMeterQty): TMeterQty; inline;
-operator /(const ALeft: TQuarticMeterQty; const ARight: TCubicMeterQty): TMeterQty; inline;
-operator /(const ALeft: TQuinticMeterQty; const ARight: TQuarticMeterQty): TMeterQty; inline;
-operator /(const ALeft: TQuinticMeterQty; const ARight: TCubicMeterQty): TSquareMeterQty; inline;
-operator /(const ALeft: TSexticMeterQty; const ARight: TQuinticMeterQty): TMeterQty; inline;
-operator /(const ALeft: TSexticMeterQty; const ARight: TQuarticMeterQty): TSquareMeterQty; inline;
-operator /(const ALeft: TCubicKelvinQty; const ARight: TSquareKelvinQty): TKelvinQty; inline;
-operator /(const ALeft: TQuarticKelvinQty; const ARight: TCubicKelvinQty): TKelvinQty; inline;
-operator /(const ALeft: double; const ARight: TSecondQty): THertzQty; inline;
-operator /(const ALeft: double; const ARight: TSquareSecondQty): TSquareHertzQty; inline;
-operator /(const ALeft: THertzQty; const ARight: TSecondQty): TSquareHertzQty; inline;
-operator *(const ALeft: THertzQty; const ARight: THertzQty): TSquareHertzQty; inline;
-operator /(const ALeft: TRadianQty; const ARight: TSecondQty): TRadianPerSecondQty; inline;
-operator *(const ALeft: TRadianQty; const ARight: THertzQty): TRadianPerSecondQty; inline;
-operator *(const ALeft: THertzQty; const ARight: TRadianQty): TRadianPerSecondQty; inline;
-operator /(const ALeft: TRadianPerSecondQty; const ARight: TSecondQty): TRadianPerSecondSquaredQty; inline;
-operator /(const ALeft: TRadianQty; const ARight: TSquareSecondQty): TRadianPerSecondSquaredQty; inline;
-operator *(const ALeft: TRadianQty; const ARight: TSquareHertzQty): TRadianPerSecondSquaredQty; inline;
-operator *(const ALeft: TSquareHertzQty; const ARight: TRadianQty): TRadianPerSecondSquaredQty; inline;
-operator /(const ALeft: TSteradianQty; const ARight: TSquareSecondQty): TSteradianPerSquareSecondQty; inline;
-operator *(const ALeft: TSteradianQty; const ARight: TSquareHertzQty): TSteradianPerSquareSecondQty; inline;
-operator *(const ALeft: TSquareHertzQty; const ARight: TSteradianQty): TSteradianPerSquareSecondQty; inline;
-operator /(const ALeft: TMeterQty; const ARight: TSecondQty): TMeterPerSecondQty; inline;
-operator *(const ALeft: TMeterQty; const ARight: THertzQty): TMeterPerSecondQty; inline;
-operator *(const ALeft: THertzQty; const ARight: TMeterQty): TMeterPerSecondQty; inline;
-operator /(const ALeft: TMeterPerSecondQty; const ARight: TSecondQty): TMeterPerSecondSquaredQty; inline;
-operator /(const ALeft: TMeterQty; const ARight: TSquareSecondQty): TMeterPerSecondSquaredQty; inline;
-operator *(const ALeft: TSquareHertzQty; const ARight: TMeterQty): TMeterPerSecondSquaredQty; inline;
-operator *(const ALeft: TMeterQty; const ARight: TSquareHertzQty): TMeterPerSecondSquaredQty; inline;
-operator /(const ALeft: TSquareMeterQty; const ARight: TSquareSecondQty): TSquareMeterPerSquareSecondQty; inline;
-operator *(const ALeft: TMeterPerSecondQty; const ARight: TMeterPerSecondQty): TSquareMeterPerSquareSecondQty; inline;
-operator *(const ALeft: TMeterPerSecondSquaredQty; const ARight: TMeterQty): TSquareMeterPerSquareSecondQty; inline;
-operator *(const ALeft: TMeterQty; const ARight: TMeterPerSecondSquaredQty): TSquareMeterPerSquareSecondQty; inline;
-operator /(const ALeft: TKilogramMeterPerSecondQty; const ARight: TKilogramQty): TMeterPerSecondQty; inline;
-operator /(const ALeft: TKilogramSquareMeterQty; const ARight: TSquareMeterQty): TKilogramQty; inline;
-operator /(const ALeft: TKilogramSquareMeterQty; const ARight: TSecondQty): TKilogramSquareMeterPerSecondQty; inline;
-operator *(const ALeft: TKilogramSquareMeterQty; const ARight: THertzQty): TKilogramSquareMeterPerSecondQty; inline;
-operator *(const ALeft: THertzQty; const ARight: TKilogramSquareMeterQty): TKilogramSquareMeterPerSecondQty; inline;
-operator *(const ALeft: TKilogramMeterPerSecondQty; const ARight: TMeterQty): TKilogramSquareMeterPerSecondQty; inline;
-operator *(const ALeft: TMeterQty; const ARight: TKilogramMeterPerSecondQty): TKilogramSquareMeterPerSecondQty; inline;
-operator /(const ALeft: TKilogramQty; const ARight: TMeterQty): TKilogramPerMeterQty; inline;
-operator /(const ALeft: TKilogramQty; const ARight: TSquareMeterQty): TKilogramPerSquareMeterQty; inline;
-operator /(const ALeft: TKilogramQty; const ARight: TCubicMeterQty): TKilogramPerCubicMeterQty; inline;
-operator /(const ALeft: TKilogramPerSquareMeterQty; const ARight: TMeterQty): TKilogramPerCubicMeterQty; inline;
-operator /(const ALeft: TNewtonQty; const ARight: TKilogramQty): TMeterPerSecondSquaredQty; inline;
-operator /(const ALeft: TNewtonQty; const ARight: TSquareMeterPerSquareSecondQty): TKilogramPerMeterQty; inline;
-operator /(const ALeft: TKilogramMeterPerSecondQty; const ARight: TNewtonQty): TSecondQty; inline;
-operator /(const ALeft: TNewtonQty; const ARight: TSquareMeterQty): TPascalQty; inline;
-operator *(const ALeft: TKilogramPerCubicMeterQty; const ARight: TSquareMeterPerSquareSecondQty): TPascalQty; inline;
-operator *(const ALeft: TSquareMeterPerSquareSecondQty; const ARight: TKilogramPerCubicMeterQty): TPascalQty; inline;
-operator /(const ALeft: TJouleQty; const ARight: TNewtonQty): TMeterQty; inline;
-operator /(const ALeft: TJouleQty; const ARight: TCubicMeterQty): TPascalQty; inline;
-operator /(const ALeft: TJouleQty; const ARight: TKilogramMeterPerSecondQty): TMeterPerSecondQty; inline;
-operator /(const ALeft: TJouleQty; const ARight: TKilogramQty): TSquareMeterPerSquareSecondQty; inline;
-operator /(const ALeft: TJouleQty; const ARight: TKilogramSquareMeterQty): TSquareHertzQty; inline;
-operator /(const ALeft: TKilogramSquareMeterQty; const ARight: TJouleQty): TSquareSecondQty; inline;
-operator *(const ALeft: TSecondQty; const ARight: TJouleQty): TKilogramSquareMeterPerSecondQty; inline;
-operator *(const ALeft: TJouleQty; const ARight: TSecondQty): TKilogramSquareMeterPerSecondQty; inline;
-operator /(const ALeft: TJouleQty; const ARight: THertzQty): TKilogramSquareMeterPerSecondQty; inline;
-operator /(const ALeft: TJouleQty; const ARight: TSecondQty): TWattQty; inline;
-operator *(const ALeft: TJouleQty; const ARight: THertzQty): TWattQty; inline;
-operator *(const ALeft: THertzQty; const ARight: TJouleQty): TWattQty; inline;
-operator *(const ALeft: TNewtonQty; const ARight: TMeterPerSecondQty): TWattQty; inline;
-operator *(const ALeft: TMeterPerSecondQty; const ARight: TNewtonQty): TWattQty; inline;
-operator /(const ALeft: TCoulombQty; const ARight: TSecondQty): TAmpereQty; inline;
-operator /(const ALeft: TWattQty; const ARight: TAmpereQty): TVoltQty; inline;
-operator /(const ALeft: TJouleQty; const ARight: TCoulombQty): TVoltQty; inline;
-operator /(const ALeft: TCoulombQty; const ARight: TVoltQty): TFaradQty; inline;
-operator /(const ALeft: TSquareCoulombQty; const ARight: TJouleQty): TFaradQty; inline;
-operator /(const ALeft: TVoltQty; const ARight: TAmpereQty): TOhmQty; inline;
-operator /(const ALeft: TSecondQty; const ARight: TFaradQty): TOhmQty; inline;
-operator /(const ALeft: TWattQty; const ARight: TSquareAmpereQty): TOhmQty; inline;
-operator /(const ALeft: TSquareVoltQty; const ARight: TWattQty): TOhmQty; inline;
-operator /(const ALeft: double; const ARight: TOhmQty): TSiemensQty; inline;
-operator /(const ALeft: TWeberQty; const ARight: TSecondQty): TVoltQty; inline;
-operator /(const ALeft: TWeberQty; const ARight: TSquareMeterQty): TTeslaQty; inline;
-operator /(const ALeft: TWeberQty; const ARight: TAmpereQty): THenryQty; inline;
-operator *(const ALeft: TOhmQty; const ARight: TSecondQty): THenryQty; inline;
-operator *(const ALeft: TSecondQty; const ARight: TOhmQty): THenryQty; inline;
-operator /(const ALeft: TOhmQty; const ARight: THertzQty): THenryQty; inline;
-operator /(const ALeft: TLumenQty; const ARight: TSteradianQty): TCandelaQty; inline;
-operator /(const ALeft: TLumenQty; const ARight: TSquareMeterQty): TLuxQty; inline;
-operator /(const ALeft: TMoleQty; const ARight: TSecondQty): TKatalQty; inline;
-operator /(const ALeft: TJouleQty; const ARight: TRadianQty): TJoulePerRadianQty; inline;
-operator /(const ALeft: TNewtonQty; const ARight: TCubicMeterQty): TNewtonPerCubicMeterQty; inline;
-operator /(const ALeft: TPascalQty; const ARight: TMeterQty): TNewtonPerCubicMeterQty; inline;
-operator *(const ALeft: TKilogramPerCubicMeterQty; const ARight: TMeterPerSecondSquaredQty): TNewtonPerCubicMeterQty; inline;
-operator *(const ALeft: TMeterPerSecondSquaredQty; const ARight: TKilogramPerCubicMeterQty): TNewtonPerCubicMeterQty; inline;
-operator /(const ALeft: TNewtonQty; const ARight: TMeterQty): TNewtonPerMeterQty; inline;
-operator /(const ALeft: TJouleQty; const ARight: TSquareMeterQty): TNewtonPerMeterQty; inline;
-operator *(const ALeft: TPascalQty; const ARight: TMeterQty): TNewtonPerMeterQty; inline;
-operator *(const ALeft: TMeterQty; const ARight: TPascalQty): TNewtonPerMeterQty; inline;
-operator *(const ALeft: TKilogramQty; const ARight: TSquareHertzQty): TNewtonPerMeterQty; inline;
-operator *(const ALeft: TSquareHertzQty; const ARight: TKilogramQty): TNewtonPerMeterQty; inline;
-operator /(const ALeft: TCubicMeterQty; const ARight: TSecondQty): TCubicMeterPerSecondQty; inline;
-operator *(const ALeft: TSquareMeterQty; const ARight: TMeterPerSecondQty): TCubicMeterPerSecondQty; inline;
-operator *(const ALeft: TMeterPerSecondQty; const ARight: TSquareMeterQty): TCubicMeterPerSecondQty; inline;
-operator /(const ALeft: TKilogramQty; const ARight: TSecondQty): TKilogramPerSecondQty; inline;
-operator /(const ALeft: TNewtonQty; const ARight: TMeterPerSecondQty): TKilogramPerSecondQty; inline;
-operator *(const ALeft: TKilogramPerMeterQty; const ARight: TMeterPerSecondQty): TKilogramPerSecondQty; inline;
-operator *(const ALeft: TMeterPerSecondQty; const ARight: TKilogramPerMeterQty): TKilogramPerSecondQty; inline;
-operator /(const ALeft: TWattQty; const ARight: TSquareMeterPerSquareSecondQty): TKilogramPerSecondQty; inline;
-operator /(const ALeft: TPoiseuilleQty; const ARight: TSecondQty): TPascalQty; inline;
-operator /(const ALeft: TPoiseuilleQty; const ARight: TMeterPerSecondQty): TKilogramPerSquareMeterQty; inline;
-operator *(const ALeft: TMeterQty; const ARight: TPoiseuilleQty): TKilogramPerSecondQty; inline;
-operator *(const ALeft: TPoiseuilleQty; const ARight: TMeterQty): TKilogramPerSecondQty; inline;
-operator /(const ALeft: TSquareMeterQty; const ARight: TSecondQty): TSquareMeterPerSecondQty; inline;
-operator /(const ALeft: TPoiseuilleQty; const ARight: TKilogramPerCubicMeterQty): TSquareMeterPerSecondQty; inline;
-operator /(const ALeft: TKilogramQty; const ARight: TQuarticMeterQty): TKilogramPerQuarticMeterQty; inline;
-operator /(const ALeft: TQuarticMeterSecondQty; const ARight: TQuarticMeterQty): TSecondQty; inline;
-operator /(const ALeft: TKilogramPerSecondQty; const ARight: TQuarticMeterQty): TKilogramPerQuarticMeterPerSecondQty; inline;
-operator /(const ALeft: TKilogramPerQuarticMeterQty; const ARight: TSecondQty): TKilogramPerQuarticMeterPerSecondQty; inline;
-operator /(const ALeft: TKilogramQty; const ARight: TQuarticMeterSecondQty): TKilogramPerQuarticMeterPerSecondQty; inline;
-operator /(const ALeft: TPascalQty; const ARight: TCubicMeterPerSecondQty): TKilogramPerQuarticMeterPerSecondQty; inline;
-operator /(const ALeft: TCubicMeterQty; const ARight: TKilogramQty): TCubicMeterPerKilogramQty; inline;
-operator /(const ALeft: double; const ARight: TKilogramPerCubicMeterQty): TCubicMeterPerKilogramQty; inline;
-operator /(const ALeft: TKilogramSquareSecondQty; const ARight: TSquareSecondQty): TKilogramQty; inline;
-operator /(const ALeft: TCubicMeterQty; const ARight: TSquareSecondQty): TCubicMeterPerSquareSecondQty; inline;
-operator *(const ALeft: TMeterPerSecondSquaredQty; const ARight: TSquareMeterQty): TCubicMeterPerSquareSecondQty; inline;
-operator *(const ALeft: TSquareMeterQty; const ARight: TMeterPerSecondSquaredQty): TCubicMeterPerSquareSecondQty; inline;
-operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TNewtonQty): TSquareMeterQty; inline;
-operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TJouleQty): TMeterQty; inline;
-operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TQuarticMeterQty): TPascalQty; inline;
-operator /(const ALeft: TNewtonQty; const ARight: TSquareKilogramQty): TNewtonPerSquareKilogramQty; inline;
-operator /(const ALeft: TSquareKilogramQty; const ARight: TMeterQty): TSquareKilogramPerMeterQty; inline;
-operator /(const ALeft: TSquareKilogramQty; const ARight: TSquareMeterQty): TSquareKilogramPerSquareMeterQty; inline;
-operator /(const ALeft: TSquareMeterQty; const ARight: TSquareKilogramQty): TSquareMeterPerSquareKilogramQty; inline;
-operator /(const ALeft: TNewtonSquareMeterPerSquareKilogramQty; const ARight: TNewtonQty): TSquareMeterPerSquareKilogramQty; inline;
-operator /(const ALeft: TNewtonQty; const ARight: TNewtonSquareMeterPerSquareKilogramQty): TSquareKilogramPerSquareMeterQty; inline;
-operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TNewtonSquareMeterPerSquareKilogramQty): TSquareKilogramQty; inline;
-operator /(const ALeft: TNewtonSquareMeterPerSquareKilogramQty; const ARight: TSquareMeterQty): TNewtonPerSquareKilogramQty; inline;
-operator /(const ALeft: TJouleQty; const ARight: TNewtonSquareMeterPerSquareKilogramQty): TSquareKilogramPerMeterQty; inline;
-operator *(const ALeft: TSquareSecondQty; const ARight: TNewtonSquareMeterPerSquareKilogramQty): TCubicMeterPerKilogramQty; inline;
-operator *(const ALeft: TNewtonSquareMeterPerSquareKilogramQty; const ARight: TSquareSecondQty): TCubicMeterPerKilogramQty; inline;
-operator *(const ALeft: TKilogramSquareSecondQty; const ARight: TNewtonSquareMeterPerSquareKilogramQty): TCubicMeterQty; inline;
-operator *(const ALeft: TNewtonSquareMeterPerSquareKilogramQty; const ARight: TKilogramSquareSecondQty): TCubicMeterQty; inline;
-operator *(const ALeft: TKilogramQty; const ARight: TNewtonSquareMeterPerSquareKilogramQty): TCubicMeterPerSquareSecondQty; inline;
-operator *(const ALeft: TNewtonSquareMeterPerSquareKilogramQty; const ARight: TKilogramQty): TCubicMeterPerSquareSecondQty; inline;
-operator /(const ALeft: double; const ARight: TKelvinQty): TReciprocalKelvinQty; inline;
-operator /(const ALeft: TKilogramKelvinQty; const ARight: TKilogramQty): TKelvinQty; inline;
-operator /(const ALeft: TJouleQty; const ARight: TKelvinQty): TJoulePerKelvinQty; inline;
-operator /(const ALeft: TJouleQty; const ARight: TKilogramKelvinQty): TJoulePerKilogramPerKelvinQty; inline;
-operator /(const ALeft: TSquareMeterPerSquareSecondQty; const ARight: TKelvinQty): TJoulePerKilogramPerKelvinQty; inline;
-operator /(const ALeft: TJoulePerKelvinQty; const ARight: TKilogramQty): TJoulePerKilogramPerKelvinQty; inline;
-operator /(const ALeft: TMeterKelvinQty; const ARight: TMeterQty): TKelvinQty; inline;
-operator /(const ALeft: TKelvinQty; const ARight: TMeterQty): TKelvinPerMeterQty; inline;
-operator /(const ALeft: TWattQty; const ARight: TMeterQty): TWattPerMeterQty; inline;
-operator /(const ALeft: TWattQty; const ARight: TSquareMeterQty): TWattPerSquareMeterQty; inline;
-operator /(const ALeft: TWattQty; const ARight: TKelvinQty): TWattPerKelvinQty; inline;
-operator /(const ALeft: TWattQty; const ARight: TMeterKelvinQty): TWattPerMeterPerKelvinQty; inline;
-operator /(const ALeft: TWattPerMeterQty; const ARight: TKelvinQty): TWattPerMeterPerKelvinQty; inline;
-operator /(const ALeft: TWattPerKelvinQty; const ARight: TMeterQty): TWattPerMeterPerKelvinQty; inline;
-operator /(const ALeft: TWattPerSquareMeterQty; const ARight: TKelvinPerMeterQty): TWattPerMeterPerKelvinQty; inline;
-operator /(const ALeft: TSquareMeterKelvinQty; const ARight: TSquareMeterQty): TKelvinQty; inline;
-operator /(const ALeft: TWattQty; const ARight: TSquareMeterKelvinQty): TWattPerSquareMeterPerKelvinQty; inline;
-operator /(const ALeft: TWattPerSquareMeterQty; const ARight: TKelvinQty): TWattPerSquareMeterPerKelvinQty; inline;
-operator /(const ALeft: TWattPerKelvinQty; const ARight: TSquareMeterQty): TWattPerSquareMeterPerKelvinQty; inline;
-operator /(const ALeft: TSquareMeterQuarticKelvinQty; const ARight: TQuarticKelvinQty): TSquareMeterQty; inline;
-operator /(const ALeft: TWattQty; const ARight: TQuarticKelvinQty): TWattPerQuarticKelvinQty; inline;
-operator /(const ALeft: TWattQty; const ARight: TSquareMeterQuarticKelvinQty): TWattPerSquareMeterPerQuarticKelvinQty; inline;
-operator /(const ALeft: TWattPerSquareMeterQty; const ARight: TQuarticKelvinQty): TWattPerSquareMeterPerQuarticKelvinQty; inline;
-operator /(const ALeft: TWattPerQuarticKelvinQty; const ARight: TSquareMeterQty): TWattPerSquareMeterPerQuarticKelvinQty; inline;
-operator /(const ALeft: TJouleQty; const ARight: TMoleQty): TJoulePerMoleQty; inline;
-operator /(const ALeft: TMoleKelvinQty; const ARight: TKelvinQty): TMoleQty; inline;
-operator /(const ALeft: TJouleQty; const ARight: TMoleKelvinQty): TJoulePerMolePerKelvinQty; inline;
-operator /(const ALeft: TJoulePerKelvinQty; const ARight: TMoleQty): TJoulePerMolePerKelvinQty; inline;
-operator /(const ALeft: TJoulePerMoleQty; const ARight: TKelvinQty): TJoulePerMolePerKelvinQty; inline;
-operator /(const ALeft: TOhmMeterQty; const ARight: TMeterQty): TOhmQty; inline;
-operator /(const ALeft: TVoltQty; const ARight: TMeterQty): TVoltPerMeterQty; inline;
-operator /(const ALeft: TNewtonQty; const ARight: TCoulombQty): TVoltPerMeterQty; inline;
-operator *(const ALeft: TTeslaQty; const ARight: TMeterPerSecondQty): TVoltPerMeterQty; inline;
-operator *(const ALeft: TMeterPerSecondQty; const ARight: TTeslaQty): TVoltPerMeterQty; inline;
-operator /(const ALeft: TCoulombQty; const ARight: TMeterQty): TCoulombPerMeterQty; inline;
-operator /(const ALeft: TSquareCoulombQty; const ARight: TMeterQty): TSquareCoulombPerMeterQty; inline;
-operator *(const ALeft: TCoulombPerMeterQty; const ARight: TCoulombQty): TSquareCoulombPerMeterQty; inline;
-operator *(const ALeft: TCoulombQty; const ARight: TCoulombPerMeterQty): TSquareCoulombPerMeterQty; inline;
-operator /(const ALeft: TCoulombQty; const ARight: TSquareMeterQty): TCoulombPerSquareMeterQty; inline;
-operator /(const ALeft: TCoulombPerMeterQty; const ARight: TMeterQty): TCoulombPerSquareMeterQty; inline;
-operator /(const ALeft: TSquareMeterQty; const ARight: TSquareCoulombQty): TSquareMeterPerSquareCoulombQty; inline;
-operator /(const ALeft: TNewtonQty; const ARight: TSquareCoulombQty): TNewtonPerSquareCoulombQty; inline;
-operator /(const ALeft: TNewtonSquareMeterPerSquareCoulombQty; const ARight: TNewtonQty): TSquareMeterPerSquareCoulombQty; inline;
-operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TNewtonSquareMeterPerSquareCoulombQty): TSquareCoulombQty; inline;
-operator /(const ALeft: TNewtonSquareMeterPerSquareCoulombQty; const ARight: TSquareMeterQty): TNewtonPerSquareCoulombQty; inline;
-operator /(const ALeft: TVoltPerMeterQty; const ARight: TNewtonSquareMeterPerSquareCoulombQty): TCoulombPerSquareMeterQty; inline;
-operator /(const ALeft: TJouleQty; const ARight: TNewtonSquareMeterPerSquareCoulombQty): TSquareCoulombPerMeterQty; inline;
-operator /(const ALeft: TVoltMeterQty; const ARight: TMeterQty): TVoltQty; inline;
-operator /(const ALeft: TVoltMeterQty; const ARight: TSquareMeterQty): TVoltPerMeterQty; inline;
-operator /(const ALeft: TVoltMeterQty; const ARight: TSecondQty): TVoltMeterPerSecondQty; inline;
-operator /(const ALeft: TFaradQty; const ARight: TMeterQty): TFaradPerMeterQty; inline;
-operator /(const ALeft: TCoulombQty; const ARight: TVoltMeterQty): TFaradPerMeterQty; inline;
-operator /(const ALeft: TCoulombPerSquareMeterQty; const ARight: TVoltPerMeterQty): TFaradPerMeterQty; inline;
-operator /(const ALeft: double; const ARight: TNewtonSquareMeterPerSquareCoulombQty): TFaradPerMeterQty; inline;
-operator /(const ALeft: TAmpereQty; const ARight: TMeterQty): TAmperePerMeterQty; inline;
-operator /(const ALeft: TMeterQty; const ARight: TAmpereQty): TMeterPerAmpereQty; inline;
-operator /(const ALeft: TTeslaMeterQty; const ARight: TMeterQty): TTeslaQty; inline;
-operator /(const ALeft: TNewtonQty; const ARight: TTeslaMeterQty): TAmpereQty; inline;
-operator /(const ALeft: TTeslaQty; const ARight: TAmpereQty): TTeslaPerAmpereQty; inline;
-operator /(const ALeft: THenryQty; const ARight: TMeterQty): THenryPerMeterQty; inline;
-operator /(const ALeft: TTeslaMeterQty; const ARight: TAmpereQty): THenryPerMeterQty; inline;
-operator *(const ALeft: TTeslaPerAmpereQty; const ARight: TMeterQty): THenryPerMeterQty; inline;
-operator *(const ALeft: TMeterQty; const ARight: TTeslaPerAmpereQty): THenryPerMeterQty; inline;
-operator *(const ALeft: TTeslaQty; const ARight: TMeterPerAmpereQty): THenryPerMeterQty; inline;
-operator *(const ALeft: TMeterPerAmpereQty; const ARight: TTeslaQty): THenryPerMeterQty; inline;
-operator /(const ALeft: TTeslaQty; const ARight: TAmperePerMeterQty): THenryPerMeterQty; inline;
-operator /(const ALeft: TNewtonQty; const ARight: TSquareAmpereQty): THenryPerMeterQty; inline;
-operator /(const ALeft: TRadianQty; const ARight: TMeterQty): TRadianPerMeterQty; inline;
-operator /(const ALeft: TSquareKilogramQty; const ARight: TSquareSecondQty): TSquareKilogramPerSquareSecondQty; inline;
-operator *(const ALeft: TKilogramPerSecondQty; const ARight: TKilogramPerSecondQty): TSquareKilogramPerSquareSecondQty; inline;
-operator *(const ALeft: TKilogramQty; const ARight: TNewtonPerMeterQty): TSquareKilogramPerSquareSecondQty; inline;
-operator *(const ALeft: TNewtonPerMeterQty; const ARight: TKilogramQty): TSquareKilogramPerSquareSecondQty; inline;
-operator /(const ALeft: double; const ARight: TMeterQty): TReciprocalMeterQty; inline;
-operator /(const ALeft: TSquareSecondQty; const ARight: TSquareMeterQty): TSquareSecondPerSquareMeterQty; inline;
-operator /(const ALeft: double; const ARight: TSquareMeterPerSquareSecondQty): TSquareSecondPerSquareMeterQty; inline;
-operator *(const ALeft: TFaradPerMeterQty; const ARight: THenryPerMeterQty): TSquareSecondPerSquareMeterQty; inline;
-operator *(const ALeft: THenryPerMeterQty; const ARight: TFaradPerMeterQty): TSquareSecondPerSquareMeterQty; inline;
-operator /(const ALeft: TLumenQty; const ARight: TWattQty): TLumenPerWattQty; inline;
-operator /(const ALeft: double; const ARight: TMoleQty): TReciprocalMoleQty; inline;
-operator /(const ALeft: TAmpereQty; const ARight: TSquareMeterQty): TAmperePerSquareMeterQty; inline;
-operator /(const ALeft: TAmperePerMeterQty; const ARight: TMeterQty): TAmperePerSquareMeterQty; inline;
-operator /(const ALeft: TMoleQty; const ARight: TCubicMeterQty): TMolePerCubicMeterQty; inline;
-operator /(const ALeft: TCandelaQty; const ARight: TSquareMeterQty): TCandelaPerSquareMeterQty; inline;
-operator /(const ALeft: TCoulombQty; const ARight: TCubicMeterQty): TCoulombPerCubicMeterQty; inline;
-operator /(const ALeft: TCoulombPerMeterQty; const ARight: TSquareMeterQty): TCoulombPerCubicMeterQty; inline;
-operator /(const ALeft: TCoulombPerSquareMeterQty; const ARight: TMeterQty): TCoulombPerCubicMeterQty; inline;
-operator /(const ALeft: TCoulombQty; const ARight: TKilogramQty): TCoulombPerKilogramQty; inline;
-operator /(const ALeft: TSquareMeterPerSquareSecondQty; const ARight: TSecondQty): TGrayPerSecondQty; inline;
-operator /(const ALeft: TWattQty; const ARight: TSteradianQty): TWattPerSteradianQty; inline;
-operator /(const ALeft: TSquareMeterSteradianQty; const ARight: TSteradianQty): TSquareMeterQty; inline;
-operator /(const ALeft: TWattQty; const ARight: TSquareMeterSteradianQty): TWattPerSquareMeterPerSteradianQty; inline;
-operator /(const ALeft: TWattPerSquareMeterQty; const ARight: TSteradianQty): TWattPerSquareMeterPerSteradianQty; inline;
-operator /(const ALeft: TWattPerSteradianQty; const ARight: TSquareMeterQty): TWattPerSquareMeterPerSteradianQty; inline;
-operator /(const ALeft: TKatalQty; const ARight: TCubicMeterQty): TKatalPerCubicMeterQty; inline;
-operator /(const ALeft: TCoulombQty; const ARight: TMoleQty): TCoulombPerMoleQty; inline;
-operator /(const ALeft: TJoulePerMoleQty; const ARight: TVoltQty): TCoulombPerMoleQty; inline;
+operator /(const ALeft: TCubicMeterQty; const ARight: TSquareMeterQty): TMeterQty;
+operator /(const ALeft: TQuarticMeterQty; const ARight: TCubicMeterQty): TMeterQty;
+operator /(const ALeft: TQuinticMeterQty; const ARight: TQuarticMeterQty): TMeterQty;
+operator /(const ALeft: TQuinticMeterQty; const ARight: TCubicMeterQty): TSquareMeterQty;
+operator /(const ALeft: TSexticMeterQty; const ARight: TQuinticMeterQty): TMeterQty;
+operator /(const ALeft: TSexticMeterQty; const ARight: TQuarticMeterQty): TSquareMeterQty;
+operator /(const ALeft: TCubicKelvinQty; const ARight: TSquareKelvinQty): TKelvinQty;
+operator /(const ALeft: TQuarticKelvinQty; const ARight: TCubicKelvinQty): TKelvinQty;
+operator /(const ALeft: double; const ARight: TSecondQty): THertzQty;
+operator /(const ALeft: double; const ARight: TSquareSecondQty): TSquareHertzQty;
+operator /(const ALeft: THertzQty; const ARight: TSecondQty): TSquareHertzQty;
+operator *(const ALeft: THertzQty; const ARight: THertzQty): TSquareHertzQty;
+operator /(const ALeft: TRadianQty; const ARight: TSecondQty): TRadianPerSecondQty;
+operator *(const ALeft: TRadianQty; const ARight: THertzQty): TRadianPerSecondQty;
+operator *(const ALeft: THertzQty; const ARight: TRadianQty): TRadianPerSecondQty;
+operator /(const ALeft: TRadianPerSecondQty; const ARight: TSecondQty): TRadianPerSecondSquaredQty;
+operator /(const ALeft: TRadianQty; const ARight: TSquareSecondQty): TRadianPerSecondSquaredQty;
+operator *(const ALeft: TRadianQty; const ARight: TSquareHertzQty): TRadianPerSecondSquaredQty;
+operator *(const ALeft: TSquareHertzQty; const ARight: TRadianQty): TRadianPerSecondSquaredQty;
+operator /(const ALeft: TSteradianQty; const ARight: TSquareSecondQty): TSteradianPerSquareSecondQty;
+operator *(const ALeft: TSteradianQty; const ARight: TSquareHertzQty): TSteradianPerSquareSecondQty;
+operator *(const ALeft: TSquareHertzQty; const ARight: TSteradianQty): TSteradianPerSquareSecondQty;
+operator /(const ALeft: TMeterQty; const ARight: TSecondQty): TMeterPerSecondQty;
+operator *(const ALeft: TMeterQty; const ARight: THertzQty): TMeterPerSecondQty;
+operator *(const ALeft: THertzQty; const ARight: TMeterQty): TMeterPerSecondQty;
+operator /(const ALeft: TMeterPerSecondQty; const ARight: TSecondQty): TMeterPerSecondSquaredQty;
+operator /(const ALeft: TMeterQty; const ARight: TSquareSecondQty): TMeterPerSecondSquaredQty;
+operator *(const ALeft: TSquareHertzQty; const ARight: TMeterQty): TMeterPerSecondSquaredQty;
+operator *(const ALeft: TMeterQty; const ARight: TSquareHertzQty): TMeterPerSecondSquaredQty;
+operator /(const ALeft: TSquareMeterQty; const ARight: TSquareSecondQty): TSquareMeterPerSquareSecondQty;
+operator *(const ALeft: TMeterPerSecondQty; const ARight: TMeterPerSecondQty): TSquareMeterPerSquareSecondQty;
+operator *(const ALeft: TMeterPerSecondSquaredQty; const ARight: TMeterQty): TSquareMeterPerSquareSecondQty;
+operator *(const ALeft: TMeterQty; const ARight: TMeterPerSecondSquaredQty): TSquareMeterPerSquareSecondQty;
+operator /(const ALeft: TKilogramMeterPerSecondQty; const ARight: TKilogramQty): TMeterPerSecondQty;
+operator /(const ALeft: TKilogramSquareMeterQty; const ARight: TSquareMeterQty): TKilogramQty;
+operator /(const ALeft: TKilogramSquareMeterQty; const ARight: TSecondQty): TKilogramSquareMeterPerSecondQty;
+operator *(const ALeft: TKilogramSquareMeterQty; const ARight: THertzQty): TKilogramSquareMeterPerSecondQty;
+operator *(const ALeft: THertzQty; const ARight: TKilogramSquareMeterQty): TKilogramSquareMeterPerSecondQty;
+operator *(const ALeft: TKilogramMeterPerSecondQty; const ARight: TMeterQty): TKilogramSquareMeterPerSecondQty;
+operator *(const ALeft: TMeterQty; const ARight: TKilogramMeterPerSecondQty): TKilogramSquareMeterPerSecondQty;
+operator /(const ALeft: TKilogramQty; const ARight: TMeterQty): TKilogramPerMeterQty;
+operator /(const ALeft: TKilogramQty; const ARight: TSquareMeterQty): TKilogramPerSquareMeterQty;
+operator /(const ALeft: TKilogramQty; const ARight: TCubicMeterQty): TKilogramPerCubicMeterQty;
+operator /(const ALeft: TKilogramPerSquareMeterQty; const ARight: TMeterQty): TKilogramPerCubicMeterQty;
+operator /(const ALeft: TNewtonQty; const ARight: TKilogramQty): TMeterPerSecondSquaredQty;
+operator /(const ALeft: TNewtonQty; const ARight: TSquareMeterPerSquareSecondQty): TKilogramPerMeterQty;
+operator /(const ALeft: TKilogramMeterPerSecondQty; const ARight: TNewtonQty): TSecondQty;
+operator /(const ALeft: TNewtonQty; const ARight: TSquareMeterQty): TPascalQty;
+operator *(const ALeft: TKilogramPerCubicMeterQty; const ARight: TSquareMeterPerSquareSecondQty): TPascalQty;
+operator *(const ALeft: TSquareMeterPerSquareSecondQty; const ARight: TKilogramPerCubicMeterQty): TPascalQty;
+operator /(const ALeft: TJouleQty; const ARight: TNewtonQty): TMeterQty;
+operator /(const ALeft: TJouleQty; const ARight: TCubicMeterQty): TPascalQty;
+operator /(const ALeft: TJouleQty; const ARight: TKilogramMeterPerSecondQty): TMeterPerSecondQty;
+operator /(const ALeft: TJouleQty; const ARight: TKilogramQty): TSquareMeterPerSquareSecondQty;
+operator /(const ALeft: TJouleQty; const ARight: TKilogramSquareMeterQty): TSquareHertzQty;
+operator /(const ALeft: TKilogramSquareMeterQty; const ARight: TJouleQty): TSquareSecondQty;
+operator *(const ALeft: TSecondQty; const ARight: TJouleQty): TKilogramSquareMeterPerSecondQty;
+operator *(const ALeft: TJouleQty; const ARight: TSecondQty): TKilogramSquareMeterPerSecondQty;
+operator /(const ALeft: TJouleQty; const ARight: THertzQty): TKilogramSquareMeterPerSecondQty;
+operator /(const ALeft: TJouleQty; const ARight: TSecondQty): TWattQty;
+operator *(const ALeft: TJouleQty; const ARight: THertzQty): TWattQty;
+operator *(const ALeft: THertzQty; const ARight: TJouleQty): TWattQty;
+operator *(const ALeft: TNewtonQty; const ARight: TMeterPerSecondQty): TWattQty;
+operator *(const ALeft: TMeterPerSecondQty; const ARight: TNewtonQty): TWattQty;
+operator /(const ALeft: TCoulombQty; const ARight: TSecondQty): TAmpereQty;
+operator /(const ALeft: TWattQty; const ARight: TAmpereQty): TVoltQty;
+operator /(const ALeft: TJouleQty; const ARight: TCoulombQty): TVoltQty;
+operator /(const ALeft: TCoulombQty; const ARight: TVoltQty): TFaradQty;
+operator /(const ALeft: TSquareCoulombQty; const ARight: TJouleQty): TFaradQty;
+operator /(const ALeft: TVoltQty; const ARight: TAmpereQty): TOhmQty;
+operator /(const ALeft: TSecondQty; const ARight: TFaradQty): TOhmQty;
+operator /(const ALeft: TWattQty; const ARight: TSquareAmpereQty): TOhmQty;
+operator /(const ALeft: TSquareVoltQty; const ARight: TWattQty): TOhmQty;
+operator /(const ALeft: double; const ARight: TOhmQty): TSiemensQty;
+operator /(const ALeft: TWeberQty; const ARight: TSecondQty): TVoltQty;
+operator /(const ALeft: TWeberQty; const ARight: TSquareMeterQty): TTeslaQty;
+operator /(const ALeft: TWeberQty; const ARight: TAmpereQty): THenryQty;
+operator *(const ALeft: TOhmQty; const ARight: TSecondQty): THenryQty;
+operator *(const ALeft: TSecondQty; const ARight: TOhmQty): THenryQty;
+operator /(const ALeft: TOhmQty; const ARight: THertzQty): THenryQty;
+operator /(const ALeft: TLumenQty; const ARight: TSteradianQty): TCandelaQty;
+operator /(const ALeft: TLumenQty; const ARight: TSquareMeterQty): TLuxQty;
+operator /(const ALeft: TMoleQty; const ARight: TSecondQty): TKatalQty;
+operator /(const ALeft: TJouleQty; const ARight: TRadianQty): TJoulePerRadianQty;
+operator /(const ALeft: TNewtonQty; const ARight: TCubicMeterQty): TNewtonPerCubicMeterQty;
+operator /(const ALeft: TPascalQty; const ARight: TMeterQty): TNewtonPerCubicMeterQty;
+operator *(const ALeft: TKilogramPerCubicMeterQty; const ARight: TMeterPerSecondSquaredQty): TNewtonPerCubicMeterQty;
+operator *(const ALeft: TMeterPerSecondSquaredQty; const ARight: TKilogramPerCubicMeterQty): TNewtonPerCubicMeterQty;
+operator /(const ALeft: TNewtonQty; const ARight: TMeterQty): TNewtonPerMeterQty;
+operator /(const ALeft: TJouleQty; const ARight: TSquareMeterQty): TNewtonPerMeterQty;
+operator *(const ALeft: TPascalQty; const ARight: TMeterQty): TNewtonPerMeterQty;
+operator *(const ALeft: TMeterQty; const ARight: TPascalQty): TNewtonPerMeterQty;
+operator *(const ALeft: TKilogramQty; const ARight: TSquareHertzQty): TNewtonPerMeterQty;
+operator *(const ALeft: TSquareHertzQty; const ARight: TKilogramQty): TNewtonPerMeterQty;
+operator /(const ALeft: TCubicMeterQty; const ARight: TSecondQty): TCubicMeterPerSecondQty;
+operator *(const ALeft: TSquareMeterQty; const ARight: TMeterPerSecondQty): TCubicMeterPerSecondQty;
+operator *(const ALeft: TMeterPerSecondQty; const ARight: TSquareMeterQty): TCubicMeterPerSecondQty;
+operator /(const ALeft: TKilogramQty; const ARight: TSecondQty): TKilogramPerSecondQty;
+operator /(const ALeft: TNewtonQty; const ARight: TMeterPerSecondQty): TKilogramPerSecondQty;
+operator *(const ALeft: TKilogramPerMeterQty; const ARight: TMeterPerSecondQty): TKilogramPerSecondQty;
+operator *(const ALeft: TMeterPerSecondQty; const ARight: TKilogramPerMeterQty): TKilogramPerSecondQty;
+operator /(const ALeft: TWattQty; const ARight: TSquareMeterPerSquareSecondQty): TKilogramPerSecondQty;
+operator /(const ALeft: TPoiseuilleQty; const ARight: TSecondQty): TPascalQty;
+operator /(const ALeft: TPoiseuilleQty; const ARight: TMeterPerSecondQty): TKilogramPerSquareMeterQty;
+operator *(const ALeft: TMeterQty; const ARight: TPoiseuilleQty): TKilogramPerSecondQty;
+operator *(const ALeft: TPoiseuilleQty; const ARight: TMeterQty): TKilogramPerSecondQty;
+operator /(const ALeft: TSquareMeterQty; const ARight: TSecondQty): TSquareMeterPerSecondQty;
+operator /(const ALeft: TPoiseuilleQty; const ARight: TKilogramPerCubicMeterQty): TSquareMeterPerSecondQty;
+operator /(const ALeft: TKilogramQty; const ARight: TQuarticMeterQty): TKilogramPerQuarticMeterQty;
+operator /(const ALeft: TQuarticMeterSecondQty; const ARight: TQuarticMeterQty): TSecondQty;
+operator /(const ALeft: TKilogramPerSecondQty; const ARight: TQuarticMeterQty): TKilogramPerQuarticMeterPerSecondQty;
+operator /(const ALeft: TKilogramPerQuarticMeterQty; const ARight: TSecondQty): TKilogramPerQuarticMeterPerSecondQty;
+operator /(const ALeft: TKilogramQty; const ARight: TQuarticMeterSecondQty): TKilogramPerQuarticMeterPerSecondQty;
+operator /(const ALeft: TPascalQty; const ARight: TCubicMeterPerSecondQty): TKilogramPerQuarticMeterPerSecondQty;
+operator /(const ALeft: TCubicMeterQty; const ARight: TKilogramQty): TCubicMeterPerKilogramQty;
+operator /(const ALeft: double; const ARight: TKilogramPerCubicMeterQty): TCubicMeterPerKilogramQty;
+operator /(const ALeft: TKilogramSquareSecondQty; const ARight: TSquareSecondQty): TKilogramQty;
+operator /(const ALeft: TCubicMeterQty; const ARight: TSquareSecondQty): TCubicMeterPerSquareSecondQty;
+operator *(const ALeft: TMeterPerSecondSquaredQty; const ARight: TSquareMeterQty): TCubicMeterPerSquareSecondQty;
+operator *(const ALeft: TSquareMeterQty; const ARight: TMeterPerSecondSquaredQty): TCubicMeterPerSquareSecondQty;
+operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TNewtonQty): TSquareMeterQty;
+operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TJouleQty): TMeterQty;
+operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TQuarticMeterQty): TPascalQty;
+operator /(const ALeft: TNewtonQty; const ARight: TSquareKilogramQty): TNewtonPerSquareKilogramQty;
+operator /(const ALeft: TSquareKilogramQty; const ARight: TMeterQty): TSquareKilogramPerMeterQty;
+operator /(const ALeft: TSquareKilogramQty; const ARight: TSquareMeterQty): TSquareKilogramPerSquareMeterQty;
+operator /(const ALeft: TSquareMeterQty; const ARight: TSquareKilogramQty): TSquareMeterPerSquareKilogramQty;
+operator /(const ALeft: TNewtonSquareMeterPerSquareKilogramQty; const ARight: TNewtonQty): TSquareMeterPerSquareKilogramQty;
+operator /(const ALeft: TNewtonQty; const ARight: TNewtonSquareMeterPerSquareKilogramQty): TSquareKilogramPerSquareMeterQty;
+operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TNewtonSquareMeterPerSquareKilogramQty): TSquareKilogramQty;
+operator /(const ALeft: TNewtonSquareMeterPerSquareKilogramQty; const ARight: TSquareMeterQty): TNewtonPerSquareKilogramQty;
+operator /(const ALeft: TJouleQty; const ARight: TNewtonSquareMeterPerSquareKilogramQty): TSquareKilogramPerMeterQty;
+operator *(const ALeft: TSquareSecondQty; const ARight: TNewtonSquareMeterPerSquareKilogramQty): TCubicMeterPerKilogramQty;
+operator *(const ALeft: TNewtonSquareMeterPerSquareKilogramQty; const ARight: TSquareSecondQty): TCubicMeterPerKilogramQty;
+operator *(const ALeft: TKilogramSquareSecondQty; const ARight: TNewtonSquareMeterPerSquareKilogramQty): TCubicMeterQty;
+operator *(const ALeft: TNewtonSquareMeterPerSquareKilogramQty; const ARight: TKilogramSquareSecondQty): TCubicMeterQty;
+operator *(const ALeft: TKilogramQty; const ARight: TNewtonSquareMeterPerSquareKilogramQty): TCubicMeterPerSquareSecondQty;
+operator *(const ALeft: TNewtonSquareMeterPerSquareKilogramQty; const ARight: TKilogramQty): TCubicMeterPerSquareSecondQty;
+operator /(const ALeft: double; const ARight: TKelvinQty): TReciprocalKelvinQty;
+operator /(const ALeft: TKilogramKelvinQty; const ARight: TKilogramQty): TKelvinQty;
+operator /(const ALeft: TJouleQty; const ARight: TKelvinQty): TJoulePerKelvinQty;
+operator /(const ALeft: TJouleQty; const ARight: TKilogramKelvinQty): TJoulePerKilogramPerKelvinQty;
+operator /(const ALeft: TSquareMeterPerSquareSecondQty; const ARight: TKelvinQty): TJoulePerKilogramPerKelvinQty;
+operator /(const ALeft: TJoulePerKelvinQty; const ARight: TKilogramQty): TJoulePerKilogramPerKelvinQty;
+operator /(const ALeft: TMeterKelvinQty; const ARight: TMeterQty): TKelvinQty;
+operator /(const ALeft: TKelvinQty; const ARight: TMeterQty): TKelvinPerMeterQty;
+operator /(const ALeft: TWattQty; const ARight: TMeterQty): TWattPerMeterQty;
+operator /(const ALeft: TWattQty; const ARight: TSquareMeterQty): TWattPerSquareMeterQty;
+operator /(const ALeft: TWattQty; const ARight: TKelvinQty): TWattPerKelvinQty;
+operator /(const ALeft: TWattQty; const ARight: TMeterKelvinQty): TWattPerMeterPerKelvinQty;
+operator /(const ALeft: TWattPerMeterQty; const ARight: TKelvinQty): TWattPerMeterPerKelvinQty;
+operator /(const ALeft: TWattPerKelvinQty; const ARight: TMeterQty): TWattPerMeterPerKelvinQty;
+operator /(const ALeft: TWattPerSquareMeterQty; const ARight: TKelvinPerMeterQty): TWattPerMeterPerKelvinQty;
+operator /(const ALeft: TSquareMeterKelvinQty; const ARight: TSquareMeterQty): TKelvinQty;
+operator /(const ALeft: TWattQty; const ARight: TSquareMeterKelvinQty): TWattPerSquareMeterPerKelvinQty;
+operator /(const ALeft: TWattPerSquareMeterQty; const ARight: TKelvinQty): TWattPerSquareMeterPerKelvinQty;
+operator /(const ALeft: TWattPerKelvinQty; const ARight: TSquareMeterQty): TWattPerSquareMeterPerKelvinQty;
+operator /(const ALeft: TSquareMeterQuarticKelvinQty; const ARight: TQuarticKelvinQty): TSquareMeterQty;
+operator /(const ALeft: TWattQty; const ARight: TQuarticKelvinQty): TWattPerQuarticKelvinQty;
+operator /(const ALeft: TWattQty; const ARight: TSquareMeterQuarticKelvinQty): TWattPerSquareMeterPerQuarticKelvinQty;
+operator /(const ALeft: TWattPerSquareMeterQty; const ARight: TQuarticKelvinQty): TWattPerSquareMeterPerQuarticKelvinQty;
+operator /(const ALeft: TWattPerQuarticKelvinQty; const ARight: TSquareMeterQty): TWattPerSquareMeterPerQuarticKelvinQty;
+operator /(const ALeft: TJouleQty; const ARight: TMoleQty): TJoulePerMoleQty;
+operator /(const ALeft: TMoleKelvinQty; const ARight: TKelvinQty): TMoleQty;
+operator /(const ALeft: TJouleQty; const ARight: TMoleKelvinQty): TJoulePerMolePerKelvinQty;
+operator /(const ALeft: TJoulePerKelvinQty; const ARight: TMoleQty): TJoulePerMolePerKelvinQty;
+operator /(const ALeft: TJoulePerMoleQty; const ARight: TKelvinQty): TJoulePerMolePerKelvinQty;
+operator /(const ALeft: TOhmMeterQty; const ARight: TMeterQty): TOhmQty;
+operator /(const ALeft: TVoltQty; const ARight: TMeterQty): TVoltPerMeterQty;
+operator /(const ALeft: TNewtonQty; const ARight: TCoulombQty): TVoltPerMeterQty;
+operator *(const ALeft: TTeslaQty; const ARight: TMeterPerSecondQty): TVoltPerMeterQty;
+operator *(const ALeft: TMeterPerSecondQty; const ARight: TTeslaQty): TVoltPerMeterQty;
+operator /(const ALeft: TCoulombQty; const ARight: TMeterQty): TCoulombPerMeterQty;
+operator /(const ALeft: TSquareCoulombQty; const ARight: TMeterQty): TSquareCoulombPerMeterQty;
+operator *(const ALeft: TCoulombPerMeterQty; const ARight: TCoulombQty): TSquareCoulombPerMeterQty;
+operator *(const ALeft: TCoulombQty; const ARight: TCoulombPerMeterQty): TSquareCoulombPerMeterQty;
+operator /(const ALeft: TCoulombQty; const ARight: TSquareMeterQty): TCoulombPerSquareMeterQty;
+operator /(const ALeft: TCoulombPerMeterQty; const ARight: TMeterQty): TCoulombPerSquareMeterQty;
+operator /(const ALeft: TSquareMeterQty; const ARight: TSquareCoulombQty): TSquareMeterPerSquareCoulombQty;
+operator /(const ALeft: TNewtonQty; const ARight: TSquareCoulombQty): TNewtonPerSquareCoulombQty;
+operator /(const ALeft: TNewtonSquareMeterPerSquareCoulombQty; const ARight: TNewtonQty): TSquareMeterPerSquareCoulombQty;
+operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TNewtonSquareMeterPerSquareCoulombQty): TSquareCoulombQty;
+operator /(const ALeft: TNewtonSquareMeterPerSquareCoulombQty; const ARight: TSquareMeterQty): TNewtonPerSquareCoulombQty;
+operator /(const ALeft: TVoltPerMeterQty; const ARight: TNewtonSquareMeterPerSquareCoulombQty): TCoulombPerSquareMeterQty;
+operator /(const ALeft: TJouleQty; const ARight: TNewtonSquareMeterPerSquareCoulombQty): TSquareCoulombPerMeterQty;
+operator /(const ALeft: TVoltMeterQty; const ARight: TMeterQty): TVoltQty;
+operator /(const ALeft: TVoltMeterQty; const ARight: TSquareMeterQty): TVoltPerMeterQty;
+operator /(const ALeft: TVoltMeterQty; const ARight: TSecondQty): TVoltMeterPerSecondQty;
+operator /(const ALeft: TFaradQty; const ARight: TMeterQty): TFaradPerMeterQty;
+operator /(const ALeft: TCoulombQty; const ARight: TVoltMeterQty): TFaradPerMeterQty;
+operator /(const ALeft: TCoulombPerSquareMeterQty; const ARight: TVoltPerMeterQty): TFaradPerMeterQty;
+operator /(const ALeft: double; const ARight: TNewtonSquareMeterPerSquareCoulombQty): TFaradPerMeterQty;
+operator /(const ALeft: TAmpereQty; const ARight: TMeterQty): TAmperePerMeterQty;
+operator /(const ALeft: TMeterQty; const ARight: TAmpereQty): TMeterPerAmpereQty;
+operator /(const ALeft: TTeslaMeterQty; const ARight: TMeterQty): TTeslaQty;
+operator /(const ALeft: TNewtonQty; const ARight: TTeslaMeterQty): TAmpereQty;
+operator /(const ALeft: TTeslaQty; const ARight: TAmpereQty): TTeslaPerAmpereQty;
+operator /(const ALeft: THenryQty; const ARight: TMeterQty): THenryPerMeterQty;
+operator /(const ALeft: TTeslaMeterQty; const ARight: TAmpereQty): THenryPerMeterQty;
+operator *(const ALeft: TTeslaPerAmpereQty; const ARight: TMeterQty): THenryPerMeterQty;
+operator *(const ALeft: TMeterQty; const ARight: TTeslaPerAmpereQty): THenryPerMeterQty;
+operator *(const ALeft: TTeslaQty; const ARight: TMeterPerAmpereQty): THenryPerMeterQty;
+operator *(const ALeft: TMeterPerAmpereQty; const ARight: TTeslaQty): THenryPerMeterQty;
+operator /(const ALeft: TTeslaQty; const ARight: TAmperePerMeterQty): THenryPerMeterQty;
+operator /(const ALeft: TNewtonQty; const ARight: TSquareAmpereQty): THenryPerMeterQty;
+operator /(const ALeft: TRadianQty; const ARight: TMeterQty): TRadianPerMeterQty;
+operator /(const ALeft: TSquareKilogramQty; const ARight: TSquareSecondQty): TSquareKilogramPerSquareSecondQty;
+operator *(const ALeft: TKilogramPerSecondQty; const ARight: TKilogramPerSecondQty): TSquareKilogramPerSquareSecondQty;
+operator *(const ALeft: TKilogramQty; const ARight: TNewtonPerMeterQty): TSquareKilogramPerSquareSecondQty;
+operator *(const ALeft: TNewtonPerMeterQty; const ARight: TKilogramQty): TSquareKilogramPerSquareSecondQty;
+operator /(const ALeft: double; const ARight: TMeterQty): TReciprocalMeterQty;
+operator /(const ALeft: TSquareSecondQty; const ARight: TSquareMeterQty): TSquareSecondPerSquareMeterQty;
+operator /(const ALeft: double; const ARight: TSquareMeterPerSquareSecondQty): TSquareSecondPerSquareMeterQty;
+operator *(const ALeft: TFaradPerMeterQty; const ARight: THenryPerMeterQty): TSquareSecondPerSquareMeterQty;
+operator *(const ALeft: THenryPerMeterQty; const ARight: TFaradPerMeterQty): TSquareSecondPerSquareMeterQty;
+operator /(const ALeft: TLumenQty; const ARight: TWattQty): TLumenPerWattQty;
+operator /(const ALeft: double; const ARight: TMoleQty): TReciprocalMoleQty;
+operator /(const ALeft: TAmpereQty; const ARight: TSquareMeterQty): TAmperePerSquareMeterQty;
+operator /(const ALeft: TAmperePerMeterQty; const ARight: TMeterQty): TAmperePerSquareMeterQty;
+operator /(const ALeft: TMoleQty; const ARight: TCubicMeterQty): TMolePerCubicMeterQty;
+operator /(const ALeft: TCandelaQty; const ARight: TSquareMeterQty): TCandelaPerSquareMeterQty;
+operator /(const ALeft: TCoulombQty; const ARight: TCubicMeterQty): TCoulombPerCubicMeterQty;
+operator /(const ALeft: TCoulombPerMeterQty; const ARight: TSquareMeterQty): TCoulombPerCubicMeterQty;
+operator /(const ALeft: TCoulombPerSquareMeterQty; const ARight: TMeterQty): TCoulombPerCubicMeterQty;
+operator /(const ALeft: TCoulombQty; const ARight: TKilogramQty): TCoulombPerKilogramQty;
+operator /(const ALeft: TSquareMeterPerSquareSecondQty; const ARight: TSecondQty): TGrayPerSecondQty;
+operator /(const ALeft: TWattQty; const ARight: TSteradianQty): TWattPerSteradianQty;
+operator /(const ALeft: TSquareMeterSteradianQty; const ARight: TSteradianQty): TSquareMeterQty;
+operator /(const ALeft: TWattQty; const ARight: TSquareMeterSteradianQty): TWattPerSquareMeterPerSteradianQty;
+operator /(const ALeft: TWattPerSquareMeterQty; const ARight: TSteradianQty): TWattPerSquareMeterPerSteradianQty;
+operator /(const ALeft: TWattPerSteradianQty; const ARight: TSquareMeterQty): TWattPerSquareMeterPerSteradianQty;
+operator /(const ALeft: TKatalQty; const ARight: TCubicMeterQty): TKatalPerCubicMeterQty;
+operator /(const ALeft: TCoulombQty; const ARight: TMoleQty): TCoulombPerMoleQty;
+operator /(const ALeft: TJoulePerMoleQty; const ARight: TVoltQty): TCoulombPerMoleQty;
 
 { Unit of second }
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TSecondQty}{$DEFINE TUnit:=TSecondUnit}{$i adim.inc}
-  class operator /(const ALeft: TSquareMeterPerSquareSecondQty; const ARight: TSecondUnit): TGrayPerSecondQty; inline;
-  class operator /(const ALeft: TVoltMeterQty; const ARight: TSecondUnit): TVoltMeterPerSecondQty; inline;
-  class operator /(const ALeft: TKilogramPerQuarticMeterQty; const ARight: TSecondUnit): TKilogramPerQuarticMeterPerSecondQty; inline;
-  class operator *(const ALeft: TQuarticMeterQty; const ARight: TSecondUnit): TQuarticMeterSecondQty; inline;
-  class operator /(const ALeft: TSquareMeterQty; const ARight: TSecondUnit): TSquareMeterPerSecondQty; inline;
-  class operator *(const ALeft: TPascalQty; const ARight: TSecondUnit): TPoiseuilleQty; inline;
-  class operator /(const ALeft: TKilogramQty; const ARight: TSecondUnit): TKilogramPerSecondQty; inline;
-  class operator /(const ALeft: TCubicMeterQty; const ARight: TSecondUnit): TCubicMeterPerSecondQty; inline;
-  class operator /(const ALeft: TMoleQty; const ARight: TSecondUnit): TKatalQty; inline;
-  class operator *(const ALeft: TVoltQty; const ARight: TSecondUnit): TWeberQty; inline;
-  class operator /(const ALeft: TJouleQty; const ARight: TSecondUnit): TWattQty; inline;
-  class operator *(const ALeft: TJouleQty; const ARight: TSecondUnit): TKilogramSquareMeterPerSecondQty; inline;
-  class operator /(const ALeft: TKilogramSquareMeterQty; const ARight: TSecondUnit): TKilogramSquareMeterPerSecondQty; inline;
-  class operator /(const ALeft: TMeterPerSecondQty; const ARight: TSecondUnit): TMeterPerSecondSquaredQty; inline;
-  class operator /(const ALeft: TMeterQty; const ARight: TSecondUnit): TMeterPerSecondQty; inline;
-  class operator /(const ALeft: TRadianPerSecondQty; const ARight: TSecondUnit): TRadianPerSecondSquaredQty; inline;
-  class operator /(const ALeft: TRadianQty; const ARight: TSecondUnit): TRadianPerSecondQty; inline;
-  class operator /(const ALeft: double; const ARight: TSecondUnit): THertzQty; inline;
+  class operator /(const ALeft: TSquareMeterPerSquareSecondQty; const ARight: TSecondUnit): TGrayPerSecondQty;
+  class operator /(const ALeft: TVoltMeterQty; const ARight: TSecondUnit): TVoltMeterPerSecondQty;
+  class operator /(const ALeft: TKilogramPerQuarticMeterQty; const ARight: TSecondUnit): TKilogramPerQuarticMeterPerSecondQty;
+  class operator *(const ALeft: TQuarticMeterQty; const ARight: TSecondUnit): TQuarticMeterSecondQty;
+  class operator /(const ALeft: TSquareMeterQty; const ARight: TSecondUnit): TSquareMeterPerSecondQty;
+  class operator *(const ALeft: TPascalQty; const ARight: TSecondUnit): TPoiseuilleQty;
+  class operator /(const ALeft: TKilogramQty; const ARight: TSecondUnit): TKilogramPerSecondQty;
+  class operator /(const ALeft: TCubicMeterQty; const ARight: TSecondUnit): TCubicMeterPerSecondQty;
+  class operator /(const ALeft: TMoleQty; const ARight: TSecondUnit): TKatalQty;
+  class operator *(const ALeft: TVoltQty; const ARight: TSecondUnit): TWeberQty;
+  class operator /(const ALeft: TJouleQty; const ARight: TSecondUnit): TWattQty;
+  class operator *(const ALeft: TJouleQty; const ARight: TSecondUnit): TKilogramSquareMeterPerSecondQty;
+  class operator /(const ALeft: TKilogramSquareMeterQty; const ARight: TSecondUnit): TKilogramSquareMeterPerSecondQty;
+  class operator /(const ALeft: TMeterPerSecondQty; const ARight: TSecondUnit): TMeterPerSecondSquaredQty;
+  class operator /(const ALeft: TMeterQty; const ARight: TSecondUnit): TMeterPerSecondQty;
+  class operator /(const ALeft: TRadianPerSecondQty; const ARight: TSecondUnit): TRadianPerSecondSquaredQty;
+  class operator /(const ALeft: TRadianQty; const ARight: TSecondUnit): TRadianPerSecondQty;
+  class operator /(const ALeft: double; const ARight: TSecondUnit): THertzQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 type
@@ -1695,14 +1695,14 @@ const
 
 { Unit of square second }
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TSquareSecondQty}{$DEFINE TUnit:=TSquareSecondUnit}{$i adim.inc}
-  class operator /(const ALeft: TSquareKilogramQty; const ARight: TSquareSecondUnit): TSquareKilogramPerSquareSecondQty; inline;
-  class operator /(const ALeft: TCubicMeterQty; const ARight: TSquareSecondUnit): TCubicMeterPerSquareSecondQty; inline;
-  class operator *(const ALeft: TKilogramQty; const ARight: TSquareSecondUnit): TKilogramSquareSecondQty; inline;
-  class operator /(const ALeft: TSquareMeterQty; const ARight: TSquareSecondUnit): TSquareMeterPerSquareSecondQty; inline;
-  class operator /(const ALeft: TMeterQty; const ARight: TSquareSecondUnit): TMeterPerSecondSquaredQty; inline;
-  class operator /(const ALeft: TSteradianQty; const ARight: TSquareSecondUnit): TSteradianPerSquareSecondQty; inline;
-  class operator /(const ALeft: TRadianQty; const ARight: TSquareSecondUnit): TRadianPerSecondSquaredQty; inline;
-  class operator /(const ALeft: double; const ARight: TSquareSecondUnit): TSquareHertzQty; inline;
+  class operator /(const ALeft: TSquareKilogramQty; const ARight: TSquareSecondUnit): TSquareKilogramPerSquareSecondQty;
+  class operator /(const ALeft: TCubicMeterQty; const ARight: TSquareSecondUnit): TCubicMeterPerSquareSecondQty;
+  class operator *(const ALeft: TKilogramQty; const ARight: TSquareSecondUnit): TKilogramSquareSecondQty;
+  class operator /(const ALeft: TSquareMeterQty; const ARight: TSquareSecondUnit): TSquareMeterPerSquareSecondQty;
+  class operator /(const ALeft: TMeterQty; const ARight: TSquareSecondUnit): TMeterPerSecondSquaredQty;
+  class operator /(const ALeft: TSteradianQty; const ARight: TSquareSecondUnit): TSteradianPerSquareSecondQty;
+  class operator /(const ALeft: TRadianQty; const ARight: TSquareSecondUnit): TRadianPerSecondSquaredQty;
+  class operator /(const ALeft: double; const ARight: TSquareSecondUnit): TSquareHertzQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 type
@@ -1751,26 +1751,26 @@ const
 
 { Unit of meter }
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TMeterQty}{$DEFINE TUnit:=TMeterUnit}{$i adim.inc}
-  class operator /(const ALeft: double; const ARight: TMeterUnit): TReciprocalMeterQty; inline;
-  class operator /(const ALeft: TRadianQty; const ARight: TMeterUnit): TRadianPerMeterQty; inline;
-  class operator *(const ALeft: TTeslaPerAmpereQty; const ARight: TMeterUnit): THenryPerMeterQty; inline;
-  class operator /(const ALeft: THenryQty; const ARight: TMeterUnit): THenryPerMeterQty; inline;
-  class operator *(const ALeft: TTeslaQty; const ARight: TMeterUnit): TTeslaMeterQty; inline;
-  class operator /(const ALeft: TAmpereQty; const ARight: TMeterUnit): TAmperePerMeterQty; inline;
-  class operator /(const ALeft: TFaradQty; const ARight: TMeterUnit): TFaradPerMeterQty; inline;
-  class operator *(const ALeft: TVoltQty; const ARight: TMeterUnit): TVoltMeterQty; inline;
-  class operator /(const ALeft: TSquareCoulombQty; const ARight: TMeterUnit): TSquareCoulombPerMeterQty; inline;
-  class operator /(const ALeft: TCoulombQty; const ARight: TMeterUnit): TCoulombPerMeterQty; inline;
-  class operator /(const ALeft: TVoltQty; const ARight: TMeterUnit): TVoltPerMeterQty; inline;
-  class operator *(const ALeft: TOhmQty; const ARight: TMeterUnit): TOhmMeterQty; inline;
-  class operator /(const ALeft: TWattPerKelvinQty; const ARight: TMeterUnit): TWattPerMeterPerKelvinQty; inline;
-  class operator /(const ALeft: TWattQty; const ARight: TMeterUnit): TWattPerMeterQty; inline;
-  class operator /(const ALeft: TKelvinQty; const ARight: TMeterUnit): TKelvinPerMeterQty; inline;
-  class operator /(const ALeft: TSquareKilogramQty; const ARight: TMeterUnit): TSquareKilogramPerMeterQty; inline;
-  class operator *(const ALeft: TPoiseuilleQty; const ARight: TMeterUnit): TKilogramPerSecondQty; inline;
-  class operator /(const ALeft: TNewtonQty; const ARight: TMeterUnit): TNewtonPerMeterQty; inline;
-  class operator *(const ALeft: TNewtonQty; const ARight: TMeterUnit): TJouleQty; inline;
-  class operator /(const ALeft: TKilogramQty; const ARight: TMeterUnit): TKilogramPerMeterQty; inline;
+  class operator /(const ALeft: double; const ARight: TMeterUnit): TReciprocalMeterQty;
+  class operator /(const ALeft: TRadianQty; const ARight: TMeterUnit): TRadianPerMeterQty;
+  class operator *(const ALeft: TTeslaPerAmpereQty; const ARight: TMeterUnit): THenryPerMeterQty;
+  class operator /(const ALeft: THenryQty; const ARight: TMeterUnit): THenryPerMeterQty;
+  class operator *(const ALeft: TTeslaQty; const ARight: TMeterUnit): TTeslaMeterQty;
+  class operator /(const ALeft: TAmpereQty; const ARight: TMeterUnit): TAmperePerMeterQty;
+  class operator /(const ALeft: TFaradQty; const ARight: TMeterUnit): TFaradPerMeterQty;
+  class operator *(const ALeft: TVoltQty; const ARight: TMeterUnit): TVoltMeterQty;
+  class operator /(const ALeft: TSquareCoulombQty; const ARight: TMeterUnit): TSquareCoulombPerMeterQty;
+  class operator /(const ALeft: TCoulombQty; const ARight: TMeterUnit): TCoulombPerMeterQty;
+  class operator /(const ALeft: TVoltQty; const ARight: TMeterUnit): TVoltPerMeterQty;
+  class operator *(const ALeft: TOhmQty; const ARight: TMeterUnit): TOhmMeterQty;
+  class operator /(const ALeft: TWattPerKelvinQty; const ARight: TMeterUnit): TWattPerMeterPerKelvinQty;
+  class operator /(const ALeft: TWattQty; const ARight: TMeterUnit): TWattPerMeterQty;
+  class operator /(const ALeft: TKelvinQty; const ARight: TMeterUnit): TKelvinPerMeterQty;
+  class operator /(const ALeft: TSquareKilogramQty; const ARight: TMeterUnit): TSquareKilogramPerMeterQty;
+  class operator *(const ALeft: TPoiseuilleQty; const ARight: TMeterUnit): TKilogramPerSecondQty;
+  class operator /(const ALeft: TNewtonQty; const ARight: TMeterUnit): TNewtonPerMeterQty;
+  class operator *(const ALeft: TNewtonQty; const ARight: TMeterUnit): TJouleQty;
+  class operator /(const ALeft: TKilogramQty; const ARight: TMeterUnit): TKilogramPerMeterQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 type
@@ -1850,23 +1850,23 @@ const
 
 { Unit of square meter }
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TSquareMeterQty}{$DEFINE TUnit:=TSquareMeterUnit}{$i adim.inc}
-  class operator /(const ALeft: TWattPerSteradianQty; const ARight: TSquareMeterUnit): TWattPerSquareMeterPerSteradianQty; inline;
-  class operator /(const ALeft: TCandelaQty; const ARight: TSquareMeterUnit): TCandelaPerSquareMeterQty; inline;
-  class operator /(const ALeft: TAmpereQty; const ARight: TSquareMeterUnit): TAmperePerSquareMeterQty; inline;
-  class operator /(const ALeft: TSquareSecondQty; const ARight: TSquareMeterUnit): TSquareSecondPerSquareMeterQty; inline;
-  class operator *(const ALeft: TNewtonPerSquareCoulombQty; const ARight: TSquareMeterUnit): TNewtonSquareMeterPerSquareCoulombQty; inline;
-  class operator /(const ALeft: TCoulombQty; const ARight: TSquareMeterUnit): TCoulombPerSquareMeterQty; inline;
-  class operator /(const ALeft: TWattPerQuarticKelvinQty; const ARight: TSquareMeterUnit): TWattPerSquareMeterPerQuarticKelvinQty; inline;
-  class operator /(const ALeft: TWattPerKelvinQty; const ARight: TSquareMeterUnit): TWattPerSquareMeterPerKelvinQty; inline;
-  class operator /(const ALeft: TWattQty; const ARight: TSquareMeterUnit): TWattPerSquareMeterQty; inline;
-  class operator *(const ALeft: TNewtonPerSquareKilogramQty; const ARight: TSquareMeterUnit): TNewtonSquareMeterPerSquareKilogramQty; inline;
-  class operator /(const ALeft: TSquareKilogramQty; const ARight: TSquareMeterUnit): TSquareKilogramPerSquareMeterQty; inline;
-  class operator *(const ALeft: TNewtonQty; const ARight: TSquareMeterUnit): TNewtonSquareMeterQty; inline;
-  class operator /(const ALeft: TLumenQty; const ARight: TSquareMeterUnit): TLuxQty; inline;
-  class operator /(const ALeft: TWeberQty; const ARight: TSquareMeterUnit): TTeslaQty; inline;
-  class operator /(const ALeft: TNewtonQty; const ARight: TSquareMeterUnit): TPascalQty; inline;
-  class operator /(const ALeft: TKilogramQty; const ARight: TSquareMeterUnit): TKilogramPerSquareMeterQty; inline;
-  class operator *(const ALeft: TKilogramQty; const ARight: TSquareMeterUnit): TKilogramSquareMeterQty; inline;
+  class operator /(const ALeft: TWattPerSteradianQty; const ARight: TSquareMeterUnit): TWattPerSquareMeterPerSteradianQty;
+  class operator /(const ALeft: TCandelaQty; const ARight: TSquareMeterUnit): TCandelaPerSquareMeterQty;
+  class operator /(const ALeft: TAmpereQty; const ARight: TSquareMeterUnit): TAmperePerSquareMeterQty;
+  class operator /(const ALeft: TSquareSecondQty; const ARight: TSquareMeterUnit): TSquareSecondPerSquareMeterQty;
+  class operator *(const ALeft: TNewtonPerSquareCoulombQty; const ARight: TSquareMeterUnit): TNewtonSquareMeterPerSquareCoulombQty;
+  class operator /(const ALeft: TCoulombQty; const ARight: TSquareMeterUnit): TCoulombPerSquareMeterQty;
+  class operator /(const ALeft: TWattPerQuarticKelvinQty; const ARight: TSquareMeterUnit): TWattPerSquareMeterPerQuarticKelvinQty;
+  class operator /(const ALeft: TWattPerKelvinQty; const ARight: TSquareMeterUnit): TWattPerSquareMeterPerKelvinQty;
+  class operator /(const ALeft: TWattQty; const ARight: TSquareMeterUnit): TWattPerSquareMeterQty;
+  class operator *(const ALeft: TNewtonPerSquareKilogramQty; const ARight: TSquareMeterUnit): TNewtonSquareMeterPerSquareKilogramQty;
+  class operator /(const ALeft: TSquareKilogramQty; const ARight: TSquareMeterUnit): TSquareKilogramPerSquareMeterQty;
+  class operator *(const ALeft: TNewtonQty; const ARight: TSquareMeterUnit): TNewtonSquareMeterQty;
+  class operator /(const ALeft: TLumenQty; const ARight: TSquareMeterUnit): TLuxQty;
+  class operator /(const ALeft: TWeberQty; const ARight: TSquareMeterUnit): TTeslaQty;
+  class operator /(const ALeft: TNewtonQty; const ARight: TSquareMeterUnit): TPascalQty;
+  class operator /(const ALeft: TKilogramQty; const ARight: TSquareMeterUnit): TKilogramPerSquareMeterQty;
+  class operator *(const ALeft: TKilogramQty; const ARight: TSquareMeterUnit): TKilogramSquareMeterQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 type
@@ -1926,11 +1926,11 @@ const
 
 { Unit of cubic meter }
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TCubicMeterQty}{$DEFINE TUnit:=TCubicMeterUnit}{$i adim.inc}
-  class operator /(const ALeft: TKatalQty; const ARight: TCubicMeterUnit): TKatalPerCubicMeterQty; inline;
-  class operator /(const ALeft: TCoulombQty; const ARight: TCubicMeterUnit): TCoulombPerCubicMeterQty; inline;
-  class operator /(const ALeft: TMoleQty; const ARight: TCubicMeterUnit): TMolePerCubicMeterQty; inline;
-  class operator /(const ALeft: TNewtonQty; const ARight: TCubicMeterUnit): TNewtonPerCubicMeterQty; inline;
-  class operator /(const ALeft: TKilogramQty; const ARight: TCubicMeterUnit): TKilogramPerCubicMeterQty; inline;
+  class operator /(const ALeft: TKatalQty; const ARight: TCubicMeterUnit): TKatalPerCubicMeterQty;
+  class operator /(const ALeft: TCoulombQty; const ARight: TCubicMeterUnit): TCoulombPerCubicMeterQty;
+  class operator /(const ALeft: TMoleQty; const ARight: TCubicMeterUnit): TMolePerCubicMeterQty;
+  class operator /(const ALeft: TNewtonQty; const ARight: TCubicMeterUnit): TNewtonPerCubicMeterQty;
+  class operator /(const ALeft: TKilogramQty; const ARight: TCubicMeterUnit): TKilogramPerCubicMeterQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 type
@@ -2005,8 +2005,8 @@ const
 
 { Unit of quartic meter }
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TQuarticMeterQty}{$DEFINE TUnit:=TQuarticMeterUnit}{$i adim.inc}
-  class operator /(const ALeft: TKilogramPerSecondQty; const ARight: TQuarticMeterUnit): TKilogramPerQuarticMeterPerSecondQty; inline;
-  class operator /(const ALeft: TKilogramQty; const ARight: TQuarticMeterUnit): TKilogramPerQuarticMeterQty; inline;
+  class operator /(const ALeft: TKilogramPerSecondQty; const ARight: TQuarticMeterUnit): TKilogramPerQuarticMeterPerSecondQty;
+  class operator /(const ALeft: TKilogramQty; const ARight: TQuarticMeterUnit): TKilogramPerQuarticMeterQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 type
@@ -2064,10 +2064,10 @@ const
 
 { Unit of kilogram }
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TKilogramQty}{$DEFINE TUnit:=TKilogramUnit}{$i adim.inc}
-  class operator /(const ALeft: TCoulombQty; const ARight: TKilogramUnit): TCoulombPerKilogramQty; inline;
-  class operator /(const ALeft: TJoulePerKelvinQty; const ARight: TKilogramUnit): TJoulePerKilogramPerKelvinQty; inline;
-  class operator /(const ALeft: TCubicMeterQty; const ARight: TKilogramUnit): TCubicMeterPerKilogramQty; inline;
-  class operator /(const ALeft: TJouleQty; const ARight: TKilogramUnit): TSquareMeterPerSquareSecondQty; inline;
+  class operator /(const ALeft: TCoulombQty; const ARight: TKilogramUnit): TCoulombPerKilogramQty;
+  class operator /(const ALeft: TJoulePerKelvinQty; const ARight: TKilogramUnit): TJoulePerKilogramPerKelvinQty;
+  class operator /(const ALeft: TCubicMeterQty; const ARight: TKilogramUnit): TCubicMeterPerKilogramQty;
+  class operator /(const ALeft: TJouleQty; const ARight: TKilogramUnit): TSquareMeterPerSquareSecondQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 type
@@ -2142,9 +2142,9 @@ const
 
 { Unit of square kilogram }
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TSquareKilogramQty}{$DEFINE TUnit:=TSquareKilogramUnit}{$i adim.inc}
-  class operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TSquareKilogramUnit): TNewtonSquareMeterPerSquareKilogramQty; inline;
-  class operator /(const ALeft: TSquareMeterQty; const ARight: TSquareKilogramUnit): TSquareMeterPerSquareKilogramQty; inline;
-  class operator /(const ALeft: TNewtonQty; const ARight: TSquareKilogramUnit): TNewtonPerSquareKilogramQty; inline;
+  class operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TSquareKilogramUnit): TNewtonSquareMeterPerSquareKilogramQty;
+  class operator /(const ALeft: TSquareMeterQty; const ARight: TSquareKilogramUnit): TSquareMeterPerSquareKilogramQty;
+  class operator /(const ALeft: TNewtonQty; const ARight: TSquareKilogramUnit): TNewtonPerSquareKilogramQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 type
@@ -2164,14 +2164,14 @@ var
 
 { Unit of ampere }
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TAmpereQty}{$DEFINE TUnit:=TAmpereUnit}{$i adim.inc}
-  class operator /(const ALeft: TTeslaMeterQty; const ARight: TAmpereUnit): THenryPerMeterQty; inline;
-  class operator /(const ALeft: TTeslaQty; const ARight: TAmpereUnit): TTeslaPerAmpereQty; inline;
-  class operator /(const ALeft: TNewtonQty; const ARight: TAmpereUnit): TTeslaMeterQty; inline;
-  class operator /(const ALeft: TMeterQty; const ARight: TAmpereUnit): TMeterPerAmpereQty; inline;
-  class operator /(const ALeft: TWeberQty; const ARight: TAmpereUnit): THenryQty; inline;
-  class operator /(const ALeft: TVoltQty; const ARight: TAmpereUnit): TOhmQty; inline;
-  class operator /(const ALeft: TWattQty; const ARight: TAmpereUnit): TVoltQty; inline;
-  class operator *(const ALeft: TSecondQty; const ARight: TAmpereUnit): TCoulombQty; inline;
+  class operator /(const ALeft: TTeslaMeterQty; const ARight: TAmpereUnit): THenryPerMeterQty;
+  class operator /(const ALeft: TTeslaQty; const ARight: TAmpereUnit): TTeslaPerAmpereQty;
+  class operator /(const ALeft: TNewtonQty; const ARight: TAmpereUnit): TTeslaMeterQty;
+  class operator /(const ALeft: TMeterQty; const ARight: TAmpereUnit): TMeterPerAmpereQty;
+  class operator /(const ALeft: TWeberQty; const ARight: TAmpereUnit): THenryQty;
+  class operator /(const ALeft: TVoltQty; const ARight: TAmpereUnit): TOhmQty;
+  class operator /(const ALeft: TWattQty; const ARight: TAmpereUnit): TVoltQty;
+  class operator *(const ALeft: TSecondQty; const ARight: TAmpereUnit): TCoulombQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 type
@@ -2214,17 +2214,17 @@ const
 
 { Unit of kelvin }
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TKelvinQty}{$DEFINE TUnit:=TKelvinUnit}{$i adim.inc}
-  class operator /(const ALeft: TJoulePerMoleQty; const ARight: TKelvinUnit): TJoulePerMolePerKelvinQty; inline;
-  class operator *(const ALeft: TMoleQty; const ARight: TKelvinUnit): TMoleKelvinQty; inline;
-  class operator /(const ALeft: TWattPerSquareMeterQty; const ARight: TKelvinUnit): TWattPerSquareMeterPerKelvinQty; inline;
-  class operator *(const ALeft: TSquareMeterQty; const ARight: TKelvinUnit): TSquareMeterKelvinQty; inline;
-  class operator /(const ALeft: TWattPerMeterQty; const ARight: TKelvinUnit): TWattPerMeterPerKelvinQty; inline;
-  class operator /(const ALeft: TWattQty; const ARight: TKelvinUnit): TWattPerKelvinQty; inline;
-  class operator *(const ALeft: TMeterQty; const ARight: TKelvinUnit): TMeterKelvinQty; inline;
-  class operator /(const ALeft: TSquareMeterPerSquareSecondQty; const ARight: TKelvinUnit): TJoulePerKilogramPerKelvinQty; inline;
-  class operator /(const ALeft: TJouleQty; const ARight: TKelvinUnit): TJoulePerKelvinQty; inline;
-  class operator *(const ALeft: TKilogramQty; const ARight: TKelvinUnit): TKilogramKelvinQty; inline;
-  class operator /(const ALeft: double; const ARight: TKelvinUnit): TReciprocalKelvinQty; inline;
+  class operator /(const ALeft: TJoulePerMoleQty; const ARight: TKelvinUnit): TJoulePerMolePerKelvinQty;
+  class operator *(const ALeft: TMoleQty; const ARight: TKelvinUnit): TMoleKelvinQty;
+  class operator /(const ALeft: TWattPerSquareMeterQty; const ARight: TKelvinUnit): TWattPerSquareMeterPerKelvinQty;
+  class operator *(const ALeft: TSquareMeterQty; const ARight: TKelvinUnit): TSquareMeterKelvinQty;
+  class operator /(const ALeft: TWattPerMeterQty; const ARight: TKelvinUnit): TWattPerMeterPerKelvinQty;
+  class operator /(const ALeft: TWattQty; const ARight: TKelvinUnit): TWattPerKelvinQty;
+  class operator *(const ALeft: TMeterQty; const ARight: TKelvinUnit): TMeterKelvinQty;
+  class operator /(const ALeft: TSquareMeterPerSquareSecondQty; const ARight: TKelvinUnit): TJoulePerKilogramPerKelvinQty;
+  class operator /(const ALeft: TJouleQty; const ARight: TKelvinUnit): TJoulePerKelvinQty;
+  class operator *(const ALeft: TKilogramQty; const ARight: TKelvinUnit): TKilogramKelvinQty;
+  class operator /(const ALeft: double; const ARight: TKelvinUnit): TReciprocalKelvinQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 type
@@ -2275,9 +2275,9 @@ var
 
 { Unit of quartic kelvin }
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TQuarticKelvinQty}{$DEFINE TUnit:=TQuarticKelvinUnit}{$i adim.inc}
-  class operator /(const ALeft: TWattPerSquareMeterQty; const ARight: TQuarticKelvinUnit): TWattPerSquareMeterPerQuarticKelvinQty; inline;
-  class operator /(const ALeft: TWattQty; const ARight: TQuarticKelvinUnit): TWattPerQuarticKelvinQty; inline;
-  class operator *(const ALeft: TSquareMeterQty; const ARight: TQuarticKelvinUnit): TSquareMeterQuarticKelvinQty; inline;
+  class operator /(const ALeft: TWattPerSquareMeterQty; const ARight: TQuarticKelvinUnit): TWattPerSquareMeterPerQuarticKelvinQty;
+  class operator /(const ALeft: TWattQty; const ARight: TQuarticKelvinUnit): TWattPerQuarticKelvinQty;
+  class operator *(const ALeft: TSquareMeterQty; const ARight: TQuarticKelvinUnit): TSquareMeterQuarticKelvinQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 type
@@ -2288,10 +2288,10 @@ var
 
 { Unit of mole }
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TMoleQty}{$DEFINE TUnit:=TMoleUnit}{$i adim.inc}
-  class operator /(const ALeft: TCoulombQty; const ARight: TMoleUnit): TCoulombPerMoleQty; inline;
-  class operator /(const ALeft: double; const ARight: TMoleUnit): TReciprocalMoleQty; inline;
-  class operator /(const ALeft: TJoulePerKelvinQty; const ARight: TMoleUnit): TJoulePerMolePerKelvinQty; inline;
-  class operator /(const ALeft: TJouleQty; const ARight: TMoleUnit): TJoulePerMoleQty; inline;
+  class operator /(const ALeft: TCoulombQty; const ARight: TMoleUnit): TCoulombPerMoleQty;
+  class operator /(const ALeft: double; const ARight: TMoleUnit): TReciprocalMoleQty;
+  class operator /(const ALeft: TJoulePerKelvinQty; const ARight: TMoleUnit): TJoulePerMolePerKelvinQty;
+  class operator /(const ALeft: TJouleQty; const ARight: TMoleUnit): TJoulePerMoleQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 type
@@ -2317,7 +2317,7 @@ var
 
 { Unit of radian }
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TRadianQty}{$DEFINE TUnit:=TRadianUnit}{$i adim.inc}
-  class operator /(const ALeft: TJouleQty; const ARight: TRadianUnit): TJoulePerRadianQty; inline;
+  class operator /(const ALeft: TJouleQty; const ARight: TRadianUnit): TJoulePerRadianQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 type
@@ -2338,10 +2338,10 @@ const
 
 { Unit of steradian }
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TSteradianQty}{$DEFINE TUnit:=TSteradianUnit}{$i adim.inc}
-  class operator /(const ALeft: TWattPerSquareMeterQty; const ARight: TSteradianUnit): TWattPerSquareMeterPerSteradianQty; inline;
-  class operator *(const ALeft: TSquareMeterQty; const ARight: TSteradianUnit): TSquareMeterSteradianQty; inline;
-  class operator /(const ALeft: TWattQty; const ARight: TSteradianUnit): TWattPerSteradianQty; inline;
-  class operator *(const ALeft: TCandelaQty; const ARight: TSteradianUnit): TLumenQty; inline;
+  class operator /(const ALeft: TWattPerSquareMeterQty; const ARight: TSteradianUnit): TWattPerSquareMeterPerSteradianQty;
+  class operator *(const ALeft: TSquareMeterQty; const ARight: TSteradianUnit): TSquareMeterSteradianQty;
+  class operator /(const ALeft: TWattQty; const ARight: TSteradianUnit): TWattPerSteradianQty;
+  class operator *(const ALeft: TCandelaQty; const ARight: TSteradianUnit): TLumenQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 type
@@ -2362,7 +2362,7 @@ const
 
 { Unit of hertz }
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=THertzQty}{$DEFINE TUnit:=THertzUnit}{$i adim.inc}
-  class operator *(const ALeft: TMeterQty; const ARight: THertzUnit): TMeterPerSecondQty; inline;
+  class operator *(const ALeft: TMeterQty; const ARight: THertzUnit): TMeterPerSecondQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 type
@@ -2416,7 +2416,7 @@ type
 
 { Unit of meter per second }
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TMeterPerSecondQty}{$DEFINE TUnit:=TMeterPerSecondUnit}{$i adim.inc}
-  class operator *(const ALeft: TKilogramQty; const ARight: TMeterPerSecondUnit): TKilogramMeterPerSecondQty; inline;
+  class operator *(const ALeft: TKilogramQty; const ARight: TMeterPerSecondUnit): TKilogramMeterPerSecondQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 type
@@ -2445,7 +2445,7 @@ type
 
 { Unit of meter per second squared }
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TMeterPerSecondSquaredQty}{$DEFINE TUnit:=TMeterPerSecondSquaredUnit}{$i adim.inc}
-  class operator *(const ALeft: TKilogramQty; const ARight: TMeterPerSecondSquaredUnit): TNewtonQty; inline;
+  class operator *(const ALeft: TKilogramQty; const ARight: TMeterPerSecondSquaredUnit): TNewtonQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 type
@@ -2670,7 +2670,7 @@ type
 
 { Unit of watt }
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TWattQty}{$DEFINE TUnit:=TWattUnit}{$i adim.inc}
-  class operator /(const ALeft: TLumenQty; const ARight: TWattUnit): TLumenPerWattQty; inline;
+  class operator /(const ALeft: TLumenQty; const ARight: TWattUnit): TLumenPerWattQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 type
@@ -2688,8 +2688,8 @@ const
 
 { Unit of coulomb }
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TCoulombQty}{$DEFINE TUnit:=TCoulombUnit}{$i adim.inc}
-  class operator /(const ALeft: TNewtonQty; const ARight: TCoulombUnit): TVoltPerMeterQty; inline;
-  class operator /(const ALeft: TJouleQty; const ARight: TCoulombUnit): TVoltQty; inline;
+  class operator /(const ALeft: TNewtonQty; const ARight: TCoulombUnit): TVoltPerMeterQty;
+  class operator /(const ALeft: TJouleQty; const ARight: TCoulombUnit): TVoltQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 type
@@ -2718,9 +2718,9 @@ type
 
 { Unit of square coulomb }
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TSquareCoulombQty}{$DEFINE TUnit:=TSquareCoulombUnit}{$i adim.inc}
-  class operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TSquareCoulombUnit): TNewtonSquareMeterPerSquareCoulombQty; inline;
-  class operator /(const ALeft: TNewtonQty; const ARight: TSquareCoulombUnit): TNewtonPerSquareCoulombQty; inline;
-  class operator /(const ALeft: TSquareMeterQty; const ARight: TSquareCoulombUnit): TSquareMeterPerSquareCoulombQty; inline;
+  class operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TSquareCoulombUnit): TNewtonSquareMeterPerSquareCoulombQty;
+  class operator /(const ALeft: TNewtonQty; const ARight: TSquareCoulombUnit): TNewtonPerSquareCoulombQty;
+  class operator /(const ALeft: TSquareMeterQty; const ARight: TSquareCoulombUnit): TSquareMeterPerSquareCoulombQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 type
@@ -2742,7 +2742,7 @@ const
 
 { Unit of volt }
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TVoltQty}{$DEFINE TUnit:=TVoltUnit}{$i adim.inc}
-  class operator /(const ALeft: TCoulombQty; const ARight: TVoltUnit): TFaradQty; inline;
+  class operator /(const ALeft: TCoulombQty; const ARight: TVoltUnit): TFaradQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 type
@@ -2787,7 +2787,7 @@ const
 
 { Unit of ohm }
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TOhmQty}{$DEFINE TUnit:=TOhmUnit}{$i adim.inc}
-  class operator /(const ALeft: double; const ARight: TOhmUnit): TSiemensQty; inline;
+  class operator /(const ALeft: double; const ARight: TOhmUnit): TSiemensQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 type
@@ -3861,3077 +3861,1335 @@ begin
 end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSecondQty}{$i adim.inc}
-class function TSecondQty.Symbol: string;
-begin result := '%ss' end;
-
-class function TSecondQty.SingularName: string;
-begin result := '%ssecond' end;
-
-class function TSecondQty.PluralName: string;
-begin result := '%sseconds' end;
-
-class function TSecondQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TSecondQty.Exponents: TExponents;
-begin result := [1]; end;
+class function TSecondQty.Symbol: string; begin result := '%ss' end;
+class function TSecondQty.SingularName: string; begin result := '%ssecond' end;
+class function TSecondQty.PluralName: string; begin result := '%sseconds' end;
+class function TSecondQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TSecondQty.Exponents: TExponents; begin result := [1]; end;
 
 {$DEFINE IMPL_FACTORED}{$DEFINE TQuantity:=TDayQty}{$i adim.inc}
-class function TDayQty.Symbol: string;
-begin result := 'd' end;
-
-class function TDayQty.SingularName: string;
-begin result := 'day' end;
-
-class function TDayQty.PluralName: string;
-begin result := 'days' end;
-
-class function TDayQty.Prefixes: TPrefixes;
-begin result := []; end;
-
-class function TDayQty.Exponents: TExponents;
-begin result := []; end;
-
-class function TDayQty.ToBaseFactor: double;
-begin result := 86400; end;
+class function TDayQty.Symbol: string; begin result := 'd' end;
+class function TDayQty.SingularName: string; begin result := 'day' end;
+class function TDayQty.PluralName: string; begin result := 'days' end;
+class function TDayQty.Prefixes: TPrefixes; begin result := []; end;
+class function TDayQty.Exponents: TExponents; begin result := []; end;
+class function TDayQty.ToBaseFactor: double; begin result := 86400; end;
 
 {$DEFINE IMPL_FACTORED}{$DEFINE TQuantity:=THourQty}{$i adim.inc}
-class function THourQty.Symbol: string;
-begin result := 'h' end;
-
-class function THourQty.SingularName: string;
-begin result := 'hour' end;
-
-class function THourQty.PluralName: string;
-begin result := 'hours' end;
-
-class function THourQty.Prefixes: TPrefixes;
-begin result := []; end;
-
-class function THourQty.Exponents: TExponents;
-begin result := []; end;
-
-class function THourQty.ToBaseFactor: double;
-begin result := 3600; end;
+class function THourQty.Symbol: string; begin result := 'h' end;
+class function THourQty.SingularName: string; begin result := 'hour' end;
+class function THourQty.PluralName: string; begin result := 'hours' end;
+class function THourQty.Prefixes: TPrefixes; begin result := []; end;
+class function THourQty.Exponents: TExponents; begin result := []; end;
+class function THourQty.ToBaseFactor: double; begin result := 3600; end;
 
 {$DEFINE IMPL_FACTORED}{$DEFINE TQuantity:=TMinuteQty}{$i adim.inc}
-class function TMinuteQty.Symbol: string;
-begin result := 'min' end;
-
-class function TMinuteQty.SingularName: string;
-begin result := 'minute' end;
-
-class function TMinuteQty.PluralName: string;
-begin result := 'minutes' end;
-
-class function TMinuteQty.Prefixes: TPrefixes;
-begin result := []; end;
-
-class function TMinuteQty.Exponents: TExponents;
-begin result := []; end;
-
-class function TMinuteQty.ToBaseFactor: double;
-begin result := 60; end;
+class function TMinuteQty.Symbol: string; begin result := 'min' end;
+class function TMinuteQty.SingularName: string; begin result := 'minute' end;
+class function TMinuteQty.PluralName: string; begin result := 'minutes' end;
+class function TMinuteQty.Prefixes: TPrefixes; begin result := []; end;
+class function TMinuteQty.Exponents: TExponents; begin result := []; end;
+class function TMinuteQty.ToBaseFactor: double; begin result := 60; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareSecondQty}{$i adim.inc}
-class function TSquareSecondQty.Symbol: string;
-begin result := '%ss2' end;
-
-class function TSquareSecondQty.SingularName: string;
-begin result := 'square %ssecond' end;
-
-class function TSquareSecondQty.PluralName: string;
-begin result := 'square %sseconds' end;
-
-class function TSquareSecondQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TSquareSecondQty.Exponents: TExponents;
-begin result := [2]; end;
+class function TSquareSecondQty.Symbol: string; begin result := '%ss2' end;
+class function TSquareSecondQty.SingularName: string; begin result := 'square %ssecond' end;
+class function TSquareSecondQty.PluralName: string; begin result := 'square %sseconds' end;
+class function TSquareSecondQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TSquareSecondQty.Exponents: TExponents; begin result := [2]; end;
 
 {$DEFINE IMPL_FACTORED}{$DEFINE TQuantity:=TSquareDayQty}{$i adim.inc}
-class function TSquareDayQty.Symbol: string;
-begin result := 'd2' end;
-
-class function TSquareDayQty.SingularName: string;
-begin result := 'square day' end;
-
-class function TSquareDayQty.PluralName: string;
-begin result := 'square days' end;
-
-class function TSquareDayQty.Prefixes: TPrefixes;
-begin result := []; end;
-
-class function TSquareDayQty.Exponents: TExponents;
-begin result := []; end;
-
-class function TSquareDayQty.ToBaseFactor: double;
-begin result := 7464960000; end;
+class function TSquareDayQty.Symbol: string; begin result := 'd2' end;
+class function TSquareDayQty.SingularName: string; begin result := 'square day' end;
+class function TSquareDayQty.PluralName: string; begin result := 'square days' end;
+class function TSquareDayQty.Prefixes: TPrefixes; begin result := []; end;
+class function TSquareDayQty.Exponents: TExponents; begin result := []; end;
+class function TSquareDayQty.ToBaseFactor: double; begin result := 7464960000; end;
 
 {$DEFINE IMPL_FACTORED}{$DEFINE TQuantity:=TSquareHourQty}{$i adim.inc}
-class function TSquareHourQty.Symbol: string;
-begin result := 'h2' end;
-
-class function TSquareHourQty.SingularName: string;
-begin result := 'square hour' end;
-
-class function TSquareHourQty.PluralName: string;
-begin result := 'square hours' end;
-
-class function TSquareHourQty.Prefixes: TPrefixes;
-begin result := []; end;
-
-class function TSquareHourQty.Exponents: TExponents;
-begin result := []; end;
-
-class function TSquareHourQty.ToBaseFactor: double;
-begin result := 12960000; end;
+class function TSquareHourQty.Symbol: string; begin result := 'h2' end;
+class function TSquareHourQty.SingularName: string; begin result := 'square hour' end;
+class function TSquareHourQty.PluralName: string; begin result := 'square hours' end;
+class function TSquareHourQty.Prefixes: TPrefixes; begin result := []; end;
+class function TSquareHourQty.Exponents: TExponents; begin result := []; end;
+class function TSquareHourQty.ToBaseFactor: double; begin result := 12960000; end;
 
 {$DEFINE IMPL_FACTORED}{$DEFINE TQuantity:=TSquareMinuteQty}{$i adim.inc}
-class function TSquareMinuteQty.Symbol: string;
-begin result := 'min2' end;
-
-class function TSquareMinuteQty.SingularName: string;
-begin result := 'square minute' end;
-
-class function TSquareMinuteQty.PluralName: string;
-begin result := 'square minutes' end;
-
-class function TSquareMinuteQty.Prefixes: TPrefixes;
-begin result := []; end;
-
-class function TSquareMinuteQty.Exponents: TExponents;
-begin result := []; end;
-
-class function TSquareMinuteQty.ToBaseFactor: double;
-begin result := 3600; end;
+class function TSquareMinuteQty.Symbol: string; begin result := 'min2' end;
+class function TSquareMinuteQty.SingularName: string; begin result := 'square minute' end;
+class function TSquareMinuteQty.PluralName: string; begin result := 'square minutes' end;
+class function TSquareMinuteQty.Prefixes: TPrefixes; begin result := []; end;
+class function TSquareMinuteQty.Exponents: TExponents; begin result := []; end;
+class function TSquareMinuteQty.ToBaseFactor: double; begin result := 3600; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TMeterQty}{$i adim.inc}
-class function TMeterQty.Symbol: string;
-begin result := '%sm' end;
-
-class function TMeterQty.SingularName: string;
-begin result := '%smeter' end;
-
-class function TMeterQty.PluralName: string;
-begin result := '%smeters' end;
-
-class function TMeterQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TMeterQty.Exponents: TExponents;
-begin result := [1]; end;
+class function TMeterQty.Symbol: string; begin result := '%sm' end;
+class function TMeterQty.SingularName: string; begin result := '%smeter' end;
+class function TMeterQty.PluralName: string; begin result := '%smeters' end;
+class function TMeterQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TMeterQty.Exponents: TExponents; begin result := [1]; end;
 
 {$DEFINE IMPL_FACTORED}{$DEFINE TQuantity:=TAstronomicalQty}{$i adim.inc}
-class function TAstronomicalQty.Symbol: string;
-begin result := 'au' end;
-
-class function TAstronomicalQty.SingularName: string;
-begin result := 'astronomical unit' end;
-
-class function TAstronomicalQty.PluralName: string;
-begin result := 'astronomical units' end;
-
-class function TAstronomicalQty.Prefixes: TPrefixes;
-begin result := []; end;
-
-class function TAstronomicalQty.Exponents: TExponents;
-begin result := []; end;
-
-class function TAstronomicalQty.ToBaseFactor: double;
-begin result := 149597870691; end;
+class function TAstronomicalQty.Symbol: string; begin result := 'au' end;
+class function TAstronomicalQty.SingularName: string; begin result := 'astronomical unit' end;
+class function TAstronomicalQty.PluralName: string; begin result := 'astronomical units' end;
+class function TAstronomicalQty.Prefixes: TPrefixes; begin result := []; end;
+class function TAstronomicalQty.Exponents: TExponents; begin result := []; end;
+class function TAstronomicalQty.ToBaseFactor: double; begin result := 149597870691; end;
 
 {$DEFINE IMPL_FACTORED}{$DEFINE TQuantity:=TInchQty}{$i adim.inc}
-class function TInchQty.Symbol: string;
-begin result := 'in' end;
-
-class function TInchQty.SingularName: string;
-begin result := 'inch' end;
-
-class function TInchQty.PluralName: string;
-begin result := 'inches' end;
-
-class function TInchQty.Prefixes: TPrefixes;
-begin result := []; end;
-
-class function TInchQty.Exponents: TExponents;
-begin result := []; end;
-
-class function TInchQty.ToBaseFactor: double;
-begin result := 0.0254; end;
+class function TInchQty.Symbol: string; begin result := 'in' end;
+class function TInchQty.SingularName: string; begin result := 'inch' end;
+class function TInchQty.PluralName: string; begin result := 'inches' end;
+class function TInchQty.Prefixes: TPrefixes; begin result := []; end;
+class function TInchQty.Exponents: TExponents; begin result := []; end;
+class function TInchQty.ToBaseFactor: double; begin result := 0.0254; end;
 
 {$DEFINE IMPL_FACTORED}{$DEFINE TQuantity:=TFootQty}{$i adim.inc}
-class function TFootQty.Symbol: string;
-begin result := 'ft' end;
-
-class function TFootQty.SingularName: string;
-begin result := 'foot' end;
-
-class function TFootQty.PluralName: string;
-begin result := 'feet' end;
-
-class function TFootQty.Prefixes: TPrefixes;
-begin result := []; end;
-
-class function TFootQty.Exponents: TExponents;
-begin result := []; end;
-
-class function TFootQty.ToBaseFactor: double;
-begin result := 0.3048; end;
+class function TFootQty.Symbol: string; begin result := 'ft' end;
+class function TFootQty.SingularName: string; begin result := 'foot' end;
+class function TFootQty.PluralName: string; begin result := 'feet' end;
+class function TFootQty.Prefixes: TPrefixes; begin result := []; end;
+class function TFootQty.Exponents: TExponents; begin result := []; end;
+class function TFootQty.ToBaseFactor: double; begin result := 0.3048; end;
 
 {$DEFINE IMPL_FACTORED}{$DEFINE TQuantity:=TYardQty}{$i adim.inc}
-class function TYardQty.Symbol: string;
-begin result := 'yd' end;
-
-class function TYardQty.SingularName: string;
-begin result := 'yard' end;
-
-class function TYardQty.PluralName: string;
-begin result := 'yards' end;
-
-class function TYardQty.Prefixes: TPrefixes;
-begin result := []; end;
-
-class function TYardQty.Exponents: TExponents;
-begin result := []; end;
-
-class function TYardQty.ToBaseFactor: double;
-begin result := 0.9144; end;
+class function TYardQty.Symbol: string; begin result := 'yd' end;
+class function TYardQty.SingularName: string; begin result := 'yard' end;
+class function TYardQty.PluralName: string; begin result := 'yards' end;
+class function TYardQty.Prefixes: TPrefixes; begin result := []; end;
+class function TYardQty.Exponents: TExponents; begin result := []; end;
+class function TYardQty.ToBaseFactor: double; begin result := 0.9144; end;
 
 {$DEFINE IMPL_FACTORED}{$DEFINE TQuantity:=TMileQty}{$i adim.inc}
-class function TMileQty.Symbol: string;
-begin result := 'mi' end;
-
-class function TMileQty.SingularName: string;
-begin result := 'mile' end;
-
-class function TMileQty.PluralName: string;
-begin result := 'miles' end;
-
-class function TMileQty.Prefixes: TPrefixes;
-begin result := []; end;
-
-class function TMileQty.Exponents: TExponents;
-begin result := []; end;
-
-class function TMileQty.ToBaseFactor: double;
-begin result := 1609.344; end;
+class function TMileQty.Symbol: string; begin result := 'mi' end;
+class function TMileQty.SingularName: string; begin result := 'mile' end;
+class function TMileQty.PluralName: string; begin result := 'miles' end;
+class function TMileQty.Prefixes: TPrefixes; begin result := []; end;
+class function TMileQty.Exponents: TExponents; begin result := []; end;
+class function TMileQty.ToBaseFactor: double; begin result := 1609.344; end;
 
 {$DEFINE IMPL_FACTORED}{$DEFINE TQuantity:=TNauticalMileQty}{$i adim.inc}
-class function TNauticalMileQty.Symbol: string;
-begin result := 'nmi' end;
-
-class function TNauticalMileQty.SingularName: string;
-begin result := 'nautical mile' end;
-
-class function TNauticalMileQty.PluralName: string;
-begin result := 'nautical miles' end;
-
-class function TNauticalMileQty.Prefixes: TPrefixes;
-begin result := []; end;
-
-class function TNauticalMileQty.Exponents: TExponents;
-begin result := []; end;
-
-class function TNauticalMileQty.ToBaseFactor: double;
-begin result := 1852; end;
+class function TNauticalMileQty.Symbol: string; begin result := 'nmi' end;
+class function TNauticalMileQty.SingularName: string; begin result := 'nautical mile' end;
+class function TNauticalMileQty.PluralName: string; begin result := 'nautical miles' end;
+class function TNauticalMileQty.Prefixes: TPrefixes; begin result := []; end;
+class function TNauticalMileQty.Exponents: TExponents; begin result := []; end;
+class function TNauticalMileQty.ToBaseFactor: double; begin result := 1852; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareMeterQty}{$i adim.inc}
-class function TSquareMeterQty.Symbol: string;
-begin result := '%sm2' end;
-
-class function TSquareMeterQty.SingularName: string;
-begin result := 'square %smeter' end;
-
-class function TSquareMeterQty.PluralName: string;
-begin result := 'square %smeters' end;
-
-class function TSquareMeterQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TSquareMeterQty.Exponents: TExponents;
-begin result := [2]; end;
+class function TSquareMeterQty.Symbol: string; begin result := '%sm2' end;
+class function TSquareMeterQty.SingularName: string; begin result := 'square %smeter' end;
+class function TSquareMeterQty.PluralName: string; begin result := 'square %smeters' end;
+class function TSquareMeterQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TSquareMeterQty.Exponents: TExponents; begin result := [2]; end;
 
 {$DEFINE IMPL_FACTORED}{$DEFINE TQuantity:=TSquareInchQty}{$i adim.inc}
-class function TSquareInchQty.Symbol: string;
-begin result := 'in2' end;
-
-class function TSquareInchQty.SingularName: string;
-begin result := 'square inch' end;
-
-class function TSquareInchQty.PluralName: string;
-begin result := 'square inches' end;
-
-class function TSquareInchQty.Prefixes: TPrefixes;
-begin result := []; end;
-
-class function TSquareInchQty.Exponents: TExponents;
-begin result := []; end;
-
-class function TSquareInchQty.ToBaseFactor: double;
-begin result := 0.00064516; end;
+class function TSquareInchQty.Symbol: string; begin result := 'in2' end;
+class function TSquareInchQty.SingularName: string; begin result := 'square inch' end;
+class function TSquareInchQty.PluralName: string; begin result := 'square inches' end;
+class function TSquareInchQty.Prefixes: TPrefixes; begin result := []; end;
+class function TSquareInchQty.Exponents: TExponents; begin result := []; end;
+class function TSquareInchQty.ToBaseFactor: double; begin result := 0.00064516; end;
 
 {$DEFINE IMPL_FACTORED}{$DEFINE TQuantity:=TSquareFootQty}{$i adim.inc}
-class function TSquareFootQty.Symbol: string;
-begin result := 'ft2' end;
-
-class function TSquareFootQty.SingularName: string;
-begin result := 'square foot' end;
-
-class function TSquareFootQty.PluralName: string;
-begin result := 'square feet' end;
-
-class function TSquareFootQty.Prefixes: TPrefixes;
-begin result := []; end;
-
-class function TSquareFootQty.Exponents: TExponents;
-begin result := []; end;
-
-class function TSquareFootQty.ToBaseFactor: double;
-begin result := 0.09290304; end;
+class function TSquareFootQty.Symbol: string; begin result := 'ft2' end;
+class function TSquareFootQty.SingularName: string; begin result := 'square foot' end;
+class function TSquareFootQty.PluralName: string; begin result := 'square feet' end;
+class function TSquareFootQty.Prefixes: TPrefixes; begin result := []; end;
+class function TSquareFootQty.Exponents: TExponents; begin result := []; end;
+class function TSquareFootQty.ToBaseFactor: double; begin result := 0.09290304; end;
 
 {$DEFINE IMPL_FACTORED}{$DEFINE TQuantity:=TSquareYardQty}{$i adim.inc}
-class function TSquareYardQty.Symbol: string;
-begin result := 'yd2' end;
-
-class function TSquareYardQty.SingularName: string;
-begin result := 'square yard' end;
-
-class function TSquareYardQty.PluralName: string;
-begin result := 'square yards' end;
-
-class function TSquareYardQty.Prefixes: TPrefixes;
-begin result := []; end;
-
-class function TSquareYardQty.Exponents: TExponents;
-begin result := []; end;
-
-class function TSquareYardQty.ToBaseFactor: double;
-begin result := 0.83612736; end;
+class function TSquareYardQty.Symbol: string; begin result := 'yd2' end;
+class function TSquareYardQty.SingularName: string; begin result := 'square yard' end;
+class function TSquareYardQty.PluralName: string; begin result := 'square yards' end;
+class function TSquareYardQty.Prefixes: TPrefixes; begin result := []; end;
+class function TSquareYardQty.Exponents: TExponents; begin result := []; end;
+class function TSquareYardQty.ToBaseFactor: double; begin result := 0.83612736; end;
 
 {$DEFINE IMPL_FACTORED}{$DEFINE TQuantity:=TSquareMileQty}{$i adim.inc}
-class function TSquareMileQty.Symbol: string;
-begin result := 'mi2' end;
-
-class function TSquareMileQty.SingularName: string;
-begin result := 'square mile' end;
-
-class function TSquareMileQty.PluralName: string;
-begin result := 'square miles' end;
-
-class function TSquareMileQty.Prefixes: TPrefixes;
-begin result := []; end;
-
-class function TSquareMileQty.Exponents: TExponents;
-begin result := []; end;
-
-class function TSquareMileQty.ToBaseFactor: double;
-begin result := 2589988.110336; end;
+class function TSquareMileQty.Symbol: string; begin result := 'mi2' end;
+class function TSquareMileQty.SingularName: string; begin result := 'square mile' end;
+class function TSquareMileQty.PluralName: string; begin result := 'square miles' end;
+class function TSquareMileQty.Prefixes: TPrefixes; begin result := []; end;
+class function TSquareMileQty.Exponents: TExponents; begin result := []; end;
+class function TSquareMileQty.ToBaseFactor: double; begin result := 2589988.110336; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCubicMeterQty}{$i adim.inc}
-class function TCubicMeterQty.Symbol: string;
-begin result := '%sm3' end;
-
-class function TCubicMeterQty.SingularName: string;
-begin result := 'cubic %smeter' end;
-
-class function TCubicMeterQty.PluralName: string;
-begin result := 'cubic %smeters' end;
-
-class function TCubicMeterQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TCubicMeterQty.Exponents: TExponents;
-begin result := [3]; end;
+class function TCubicMeterQty.Symbol: string; begin result := '%sm3' end;
+class function TCubicMeterQty.SingularName: string; begin result := 'cubic %smeter' end;
+class function TCubicMeterQty.PluralName: string; begin result := 'cubic %smeters' end;
+class function TCubicMeterQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TCubicMeterQty.Exponents: TExponents; begin result := [3]; end;
 
 {$DEFINE IMPL_FACTORED}{$DEFINE TQuantity:=TCubicInchQty}{$i adim.inc}
-class function TCubicInchQty.Symbol: string;
-begin result := 'in3' end;
-
-class function TCubicInchQty.SingularName: string;
-begin result := 'cubic inch' end;
-
-class function TCubicInchQty.PluralName: string;
-begin result := 'cubic inches' end;
-
-class function TCubicInchQty.Prefixes: TPrefixes;
-begin result := []; end;
-
-class function TCubicInchQty.Exponents: TExponents;
-begin result := []; end;
-
-class function TCubicInchQty.ToBaseFactor: double;
-begin result := 0.000016387064; end;
+class function TCubicInchQty.Symbol: string; begin result := 'in3' end;
+class function TCubicInchQty.SingularName: string; begin result := 'cubic inch' end;
+class function TCubicInchQty.PluralName: string; begin result := 'cubic inches' end;
+class function TCubicInchQty.Prefixes: TPrefixes; begin result := []; end;
+class function TCubicInchQty.Exponents: TExponents; begin result := []; end;
+class function TCubicInchQty.ToBaseFactor: double; begin result := 0.000016387064; end;
 
 {$DEFINE IMPL_FACTORED}{$DEFINE TQuantity:=TCubicFootQty}{$i adim.inc}
-class function TCubicFootQty.Symbol: string;
-begin result := 'ft3' end;
-
-class function TCubicFootQty.SingularName: string;
-begin result := 'cubic foot' end;
-
-class function TCubicFootQty.PluralName: string;
-begin result := 'cubic feet' end;
-
-class function TCubicFootQty.Prefixes: TPrefixes;
-begin result := []; end;
-
-class function TCubicFootQty.Exponents: TExponents;
-begin result := []; end;
-
-class function TCubicFootQty.ToBaseFactor: double;
-begin result := 0.028316846592; end;
+class function TCubicFootQty.Symbol: string; begin result := 'ft3' end;
+class function TCubicFootQty.SingularName: string; begin result := 'cubic foot' end;
+class function TCubicFootQty.PluralName: string; begin result := 'cubic feet' end;
+class function TCubicFootQty.Prefixes: TPrefixes; begin result := []; end;
+class function TCubicFootQty.Exponents: TExponents; begin result := []; end;
+class function TCubicFootQty.ToBaseFactor: double; begin result := 0.028316846592; end;
 
 {$DEFINE IMPL_FACTORED}{$DEFINE TQuantity:=TCubicYardQty}{$i adim.inc}
-class function TCubicYardQty.Symbol: string;
-begin result := 'yd3' end;
-
-class function TCubicYardQty.SingularName: string;
-begin result := 'cubic yard' end;
-
-class function TCubicYardQty.PluralName: string;
-begin result := 'cubic yards' end;
-
-class function TCubicYardQty.Prefixes: TPrefixes;
-begin result := []; end;
-
-class function TCubicYardQty.Exponents: TExponents;
-begin result := []; end;
-
-class function TCubicYardQty.ToBaseFactor: double;
-begin result := 0.764554857984; end;
+class function TCubicYardQty.Symbol: string; begin result := 'yd3' end;
+class function TCubicYardQty.SingularName: string; begin result := 'cubic yard' end;
+class function TCubicYardQty.PluralName: string; begin result := 'cubic yards' end;
+class function TCubicYardQty.Prefixes: TPrefixes; begin result := []; end;
+class function TCubicYardQty.Exponents: TExponents; begin result := []; end;
+class function TCubicYardQty.ToBaseFactor: double; begin result := 0.764554857984; end;
 
 {$DEFINE IMPL_FACTORED}{$DEFINE TQuantity:=TLitreQty}{$i adim.inc}
-class function TLitreQty.Symbol: string;
-begin result := '%sL' end;
-
-class function TLitreQty.SingularName: string;
-begin result := '%slitre' end;
-
-class function TLitreQty.PluralName: string;
-begin result := '%slitres' end;
-
-class function TLitreQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TLitreQty.Exponents: TExponents;
-begin result := [1]; end;
-
-class function TLitreQty.ToBaseFactor: double;
-begin result := 1E-03; end;
+class function TLitreQty.Symbol: string; begin result := '%sL' end;
+class function TLitreQty.SingularName: string; begin result := '%slitre' end;
+class function TLitreQty.PluralName: string; begin result := '%slitres' end;
+class function TLitreQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TLitreQty.Exponents: TExponents; begin result := [1]; end;
+class function TLitreQty.ToBaseFactor: double; begin result := 1E-03; end;
 
 {$DEFINE IMPL_FACTORED}{$DEFINE TQuantity:=TGallonQty}{$i adim.inc}
-class function TGallonQty.Symbol: string;
-begin result := 'gal' end;
-
-class function TGallonQty.SingularName: string;
-begin result := 'gallon' end;
-
-class function TGallonQty.PluralName: string;
-begin result := 'gallons' end;
-
-class function TGallonQty.Prefixes: TPrefixes;
-begin result := []; end;
-
-class function TGallonQty.Exponents: TExponents;
-begin result := []; end;
-
-class function TGallonQty.ToBaseFactor: double;
-begin result := 0.0037854119678; end;
+class function TGallonQty.Symbol: string; begin result := 'gal' end;
+class function TGallonQty.SingularName: string; begin result := 'gallon' end;
+class function TGallonQty.PluralName: string; begin result := 'gallons' end;
+class function TGallonQty.Prefixes: TPrefixes; begin result := []; end;
+class function TGallonQty.Exponents: TExponents; begin result := []; end;
+class function TGallonQty.ToBaseFactor: double; begin result := 0.0037854119678; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TQuarticMeterQty}{$i adim.inc}
-class function TQuarticMeterQty.Symbol: string;
-begin result := '%sm4' end;
-
-class function TQuarticMeterQty.SingularName: string;
-begin result := 'quartic %smeter' end;
-
-class function TQuarticMeterQty.PluralName: string;
-begin result := 'quartic %smeters' end;
-
-class function TQuarticMeterQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TQuarticMeterQty.Exponents: TExponents;
-begin result := [4]; end;
+class function TQuarticMeterQty.Symbol: string; begin result := '%sm4' end;
+class function TQuarticMeterQty.SingularName: string; begin result := 'quartic %smeter' end;
+class function TQuarticMeterQty.PluralName: string; begin result := 'quartic %smeters' end;
+class function TQuarticMeterQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TQuarticMeterQty.Exponents: TExponents; begin result := [4]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TQuinticMeterQty}{$i adim.inc}
-class function TQuinticMeterQty.Symbol: string;
-begin result := '%sm5' end;
-
-class function TQuinticMeterQty.SingularName: string;
-begin result := 'quintic %smeter' end;
-
-class function TQuinticMeterQty.PluralName: string;
-begin result := 'quintic %smeters' end;
-
-class function TQuinticMeterQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TQuinticMeterQty.Exponents: TExponents;
-begin result := [5]; end;
+class function TQuinticMeterQty.Symbol: string; begin result := '%sm5' end;
+class function TQuinticMeterQty.SingularName: string; begin result := 'quintic %smeter' end;
+class function TQuinticMeterQty.PluralName: string; begin result := 'quintic %smeters' end;
+class function TQuinticMeterQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TQuinticMeterQty.Exponents: TExponents; begin result := [5]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSexticMeterQty}{$i adim.inc}
-class function TSexticMeterQty.Symbol: string;
-begin result := '%sm6' end;
-
-class function TSexticMeterQty.SingularName: string;
-begin result := 'sextic %smeter' end;
-
-class function TSexticMeterQty.PluralName: string;
-begin result := 'sextic %smeters' end;
-
-class function TSexticMeterQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TSexticMeterQty.Exponents: TExponents;
-begin result := [6]; end;
+class function TSexticMeterQty.Symbol: string; begin result := '%sm6' end;
+class function TSexticMeterQty.SingularName: string; begin result := 'sextic %smeter' end;
+class function TSexticMeterQty.PluralName: string; begin result := 'sextic %smeters' end;
+class function TSexticMeterQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TSexticMeterQty.Exponents: TExponents; begin result := [6]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKilogramQty}{$i adim.inc}
-class function TKilogramQty.Symbol: string;
-begin result := '%sg' end;
-
-class function TKilogramQty.SingularName: string;
-begin result := '%sgram' end;
-
-class function TKilogramQty.PluralName: string;
-begin result := '%sgrams' end;
-
-class function TKilogramQty.Prefixes: TPrefixes;
-begin result := [pKilo]; end;
-
-class function TKilogramQty.Exponents: TExponents;
-begin result := [1]; end;
+class function TKilogramQty.Symbol: string; begin result := '%sg' end;
+class function TKilogramQty.SingularName: string; begin result := '%sgram' end;
+class function TKilogramQty.PluralName: string; begin result := '%sgrams' end;
+class function TKilogramQty.Prefixes: TPrefixes; begin result := [pKilo]; end;
+class function TKilogramQty.Exponents: TExponents; begin result := [1]; end;
 
 {$DEFINE IMPL_FACTORED}{$DEFINE TQuantity:=TTonneQty}{$i adim.inc}
-class function TTonneQty.Symbol: string;
-begin result := '%st' end;
-
-class function TTonneQty.SingularName: string;
-begin result := '%stonne' end;
-
-class function TTonneQty.PluralName: string;
-begin result := '%stonnes' end;
-
-class function TTonneQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TTonneQty.Exponents: TExponents;
-begin result := [1]; end;
-
-class function TTonneQty.ToBaseFactor: double;
-begin result := 1E+03; end;
+class function TTonneQty.Symbol: string; begin result := '%st' end;
+class function TTonneQty.SingularName: string; begin result := '%stonne' end;
+class function TTonneQty.PluralName: string; begin result := '%stonnes' end;
+class function TTonneQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TTonneQty.Exponents: TExponents; begin result := [1]; end;
+class function TTonneQty.ToBaseFactor: double; begin result := 1E+03; end;
 
 {$DEFINE IMPL_FACTORED}{$DEFINE TQuantity:=TPoundQty}{$i adim.inc}
-class function TPoundQty.Symbol: string;
-begin result := 'lb' end;
-
-class function TPoundQty.SingularName: string;
-begin result := 'pound' end;
-
-class function TPoundQty.PluralName: string;
-begin result := 'pounds' end;
-
-class function TPoundQty.Prefixes: TPrefixes;
-begin result := []; end;
-
-class function TPoundQty.Exponents: TExponents;
-begin result := []; end;
-
-class function TPoundQty.ToBaseFactor: double;
-begin result := 0.45359237; end;
+class function TPoundQty.Symbol: string; begin result := 'lb' end;
+class function TPoundQty.SingularName: string; begin result := 'pound' end;
+class function TPoundQty.PluralName: string; begin result := 'pounds' end;
+class function TPoundQty.Prefixes: TPrefixes; begin result := []; end;
+class function TPoundQty.Exponents: TExponents; begin result := []; end;
+class function TPoundQty.ToBaseFactor: double; begin result := 0.45359237; end;
 
 {$DEFINE IMPL_FACTORED}{$DEFINE TQuantity:=TOunceQty}{$i adim.inc}
-class function TOunceQty.Symbol: string;
-begin result := 'oz' end;
-
-class function TOunceQty.SingularName: string;
-begin result := 'ounce' end;
-
-class function TOunceQty.PluralName: string;
-begin result := 'ounces' end;
-
-class function TOunceQty.Prefixes: TPrefixes;
-begin result := []; end;
-
-class function TOunceQty.Exponents: TExponents;
-begin result := []; end;
-
-class function TOunceQty.ToBaseFactor: double;
-begin result := 0.028349523125; end;
+class function TOunceQty.Symbol: string; begin result := 'oz' end;
+class function TOunceQty.SingularName: string; begin result := 'ounce' end;
+class function TOunceQty.PluralName: string; begin result := 'ounces' end;
+class function TOunceQty.Prefixes: TPrefixes; begin result := []; end;
+class function TOunceQty.Exponents: TExponents; begin result := []; end;
+class function TOunceQty.ToBaseFactor: double; begin result := 0.028349523125; end;
 
 {$DEFINE IMPL_FACTORED}{$DEFINE TQuantity:=TStoneQty}{$i adim.inc}
-class function TStoneQty.Symbol: string;
-begin result := 'st' end;
-
-class function TStoneQty.SingularName: string;
-begin result := 'stone' end;
-
-class function TStoneQty.PluralName: string;
-begin result := 'stones' end;
-
-class function TStoneQty.Prefixes: TPrefixes;
-begin result := []; end;
-
-class function TStoneQty.Exponents: TExponents;
-begin result := []; end;
-
-class function TStoneQty.ToBaseFactor: double;
-begin result := 6.35029318; end;
+class function TStoneQty.Symbol: string; begin result := 'st' end;
+class function TStoneQty.SingularName: string; begin result := 'stone' end;
+class function TStoneQty.PluralName: string; begin result := 'stones' end;
+class function TStoneQty.Prefixes: TPrefixes; begin result := []; end;
+class function TStoneQty.Exponents: TExponents; begin result := []; end;
+class function TStoneQty.ToBaseFactor: double; begin result := 6.35029318; end;
 
 {$DEFINE IMPL_FACTORED}{$DEFINE TQuantity:=TTonQty}{$i adim.inc}
-class function TTonQty.Symbol: string;
-begin result := 'ton' end;
-
-class function TTonQty.SingularName: string;
-begin result := 'ton' end;
-
-class function TTonQty.PluralName: string;
-begin result := 'tons' end;
-
-class function TTonQty.Prefixes: TPrefixes;
-begin result := []; end;
-
-class function TTonQty.Exponents: TExponents;
-begin result := []; end;
-
-class function TTonQty.ToBaseFactor: double;
-begin result := 907.18474; end;
+class function TTonQty.Symbol: string; begin result := 'ton' end;
+class function TTonQty.SingularName: string; begin result := 'ton' end;
+class function TTonQty.PluralName: string; begin result := 'tons' end;
+class function TTonQty.Prefixes: TPrefixes; begin result := []; end;
+class function TTonQty.Exponents: TExponents; begin result := []; end;
+class function TTonQty.ToBaseFactor: double; begin result := 907.18474; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareKilogramQty}{$i adim.inc}
-class function TSquareKilogramQty.Symbol: string;
-begin result := '%sg2' end;
-
-class function TSquareKilogramQty.SingularName: string;
-begin result := 'square %sgram' end;
-
-class function TSquareKilogramQty.PluralName: string;
-begin result := 'square %sgrams' end;
-
-class function TSquareKilogramQty.Prefixes: TPrefixes;
-begin result := [pKilo]; end;
-
-class function TSquareKilogramQty.Exponents: TExponents;
-begin result := [2]; end;
+class function TSquareKilogramQty.Symbol: string; begin result := '%sg2' end;
+class function TSquareKilogramQty.SingularName: string; begin result := 'square %sgram' end;
+class function TSquareKilogramQty.PluralName: string; begin result := 'square %sgrams' end;
+class function TSquareKilogramQty.Prefixes: TPrefixes; begin result := [pKilo]; end;
+class function TSquareKilogramQty.Exponents: TExponents; begin result := [2]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TAmpereQty}{$i adim.inc}
-class function TAmpereQty.Symbol: string;
-begin result := '%sA' end;
-
-class function TAmpereQty.SingularName: string;
-begin result := '%sampere' end;
-
-class function TAmpereQty.PluralName: string;
-begin result := '%samperes' end;
-
-class function TAmpereQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TAmpereQty.Exponents: TExponents;
-begin result := [1]; end;
+class function TAmpereQty.Symbol: string; begin result := '%sA' end;
+class function TAmpereQty.SingularName: string; begin result := '%sampere' end;
+class function TAmpereQty.PluralName: string; begin result := '%samperes' end;
+class function TAmpereQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TAmpereQty.Exponents: TExponents; begin result := [1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareAmpereQty}{$i adim.inc}
-class function TSquareAmpereQty.Symbol: string;
-begin result := '%sA2' end;
-
-class function TSquareAmpereQty.SingularName: string;
-begin result := 'square %sampere' end;
-
-class function TSquareAmpereQty.PluralName: string;
-begin result := 'square %samperes' end;
-
-class function TSquareAmpereQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TSquareAmpereQty.Exponents: TExponents;
-begin result := [2]; end;
+class function TSquareAmpereQty.Symbol: string; begin result := '%sA2' end;
+class function TSquareAmpereQty.SingularName: string; begin result := 'square %sampere' end;
+class function TSquareAmpereQty.PluralName: string; begin result := 'square %samperes' end;
+class function TSquareAmpereQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TSquareAmpereQty.Exponents: TExponents; begin result := [2]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKelvinQty}{$i adim.inc}
-class function TKelvinQty.Symbol: string;
-begin result := '%sK' end;
-
-class function TKelvinQty.SingularName: string;
-begin result := '%skelvin' end;
-
-class function TKelvinQty.PluralName: string;
-begin result := '%skelvins' end;
-
-class function TKelvinQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TKelvinQty.Exponents: TExponents;
-begin result := [1]; end;
+class function TKelvinQty.Symbol: string; begin result := '%sK' end;
+class function TKelvinQty.SingularName: string; begin result := '%skelvin' end;
+class function TKelvinQty.PluralName: string; begin result := '%skelvins' end;
+class function TKelvinQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TKelvinQty.Exponents: TExponents; begin result := [1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TDegreeCelsiusQty}{$i adim.inc}
-class function TDegreeCelsiusQty.Symbol: string;
-begin result := 'ºC' end;
-
-class function TDegreeCelsiusQty.SingularName: string;
-begin result := 'degree Celsius' end;
-
-class function TDegreeCelsiusQty.PluralName: string;
-begin result := 'degrees Celsius' end;
-
-class function TDegreeCelsiusQty.Prefixes: TPrefixes;
-begin result := []; end;
-
-class function TDegreeCelsiusQty.Exponents: TExponents;
-begin result := []; end;
+class function TDegreeCelsiusQty.Symbol: string; begin result := 'ºC' end;
+class function TDegreeCelsiusQty.SingularName: string; begin result := 'degree Celsius' end;
+class function TDegreeCelsiusQty.PluralName: string; begin result := 'degrees Celsius' end;
+class function TDegreeCelsiusQty.Prefixes: TPrefixes; begin result := []; end;
+class function TDegreeCelsiusQty.Exponents: TExponents; begin result := []; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TDegreeFahrenheitQty}{$i adim.inc}
-class function TDegreeFahrenheitQty.Symbol: string;
-begin result := 'ºF' end;
-
-class function TDegreeFahrenheitQty.SingularName: string;
-begin result := 'degree Fahrenheit' end;
-
-class function TDegreeFahrenheitQty.PluralName: string;
-begin result := 'degrees Fahrenheit' end;
-
-class function TDegreeFahrenheitQty.Prefixes: TPrefixes;
-begin result := []; end;
-
-class function TDegreeFahrenheitQty.Exponents: TExponents;
-begin result := []; end;
+class function TDegreeFahrenheitQty.Symbol: string; begin result := 'ºF' end;
+class function TDegreeFahrenheitQty.SingularName: string; begin result := 'degree Fahrenheit' end;
+class function TDegreeFahrenheitQty.PluralName: string; begin result := 'degrees Fahrenheit' end;
+class function TDegreeFahrenheitQty.Prefixes: TPrefixes; begin result := []; end;
+class function TDegreeFahrenheitQty.Exponents: TExponents; begin result := []; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareKelvinQty}{$i adim.inc}
-class function TSquareKelvinQty.Symbol: string;
-begin result := '%sK2' end;
-
-class function TSquareKelvinQty.SingularName: string;
-begin result := 'square %skelvin' end;
-
-class function TSquareKelvinQty.PluralName: string;
-begin result := 'square %skelvins' end;
-
-class function TSquareKelvinQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TSquareKelvinQty.Exponents: TExponents;
-begin result := [2]; end;
+class function TSquareKelvinQty.Symbol: string; begin result := '%sK2' end;
+class function TSquareKelvinQty.SingularName: string; begin result := 'square %skelvin' end;
+class function TSquareKelvinQty.PluralName: string; begin result := 'square %skelvins' end;
+class function TSquareKelvinQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TSquareKelvinQty.Exponents: TExponents; begin result := [2]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCubicKelvinQty}{$i adim.inc}
-class function TCubicKelvinQty.Symbol: string;
-begin result := '%sK3' end;
-
-class function TCubicKelvinQty.SingularName: string;
-begin result := 'cubic %skelvin' end;
-
-class function TCubicKelvinQty.PluralName: string;
-begin result := 'cubic %skelvins' end;
-
-class function TCubicKelvinQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TCubicKelvinQty.Exponents: TExponents;
-begin result := [3]; end;
+class function TCubicKelvinQty.Symbol: string; begin result := '%sK3' end;
+class function TCubicKelvinQty.SingularName: string; begin result := 'cubic %skelvin' end;
+class function TCubicKelvinQty.PluralName: string; begin result := 'cubic %skelvins' end;
+class function TCubicKelvinQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TCubicKelvinQty.Exponents: TExponents; begin result := [3]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TQuarticKelvinQty}{$i adim.inc}
-class function TQuarticKelvinQty.Symbol: string;
-begin result := '%sK4' end;
-
-class function TQuarticKelvinQty.SingularName: string;
-begin result := 'quartic %skelvin' end;
-
-class function TQuarticKelvinQty.PluralName: string;
-begin result := 'quartic %skelvins' end;
-
-class function TQuarticKelvinQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TQuarticKelvinQty.Exponents: TExponents;
-begin result := [4]; end;
+class function TQuarticKelvinQty.Symbol: string; begin result := '%sK4' end;
+class function TQuarticKelvinQty.SingularName: string; begin result := 'quartic %skelvin' end;
+class function TQuarticKelvinQty.PluralName: string; begin result := 'quartic %skelvins' end;
+class function TQuarticKelvinQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TQuarticKelvinQty.Exponents: TExponents; begin result := [4]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TMoleQty}{$i adim.inc}
-class function TMoleQty.Symbol: string;
-begin result := '%smol' end;
-
-class function TMoleQty.SingularName: string;
-begin result := '%smole' end;
-
-class function TMoleQty.PluralName: string;
-begin result := '%smoles' end;
-
-class function TMoleQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TMoleQty.Exponents: TExponents;
-begin result := [1]; end;
+class function TMoleQty.Symbol: string; begin result := '%smol' end;
+class function TMoleQty.SingularName: string; begin result := '%smole' end;
+class function TMoleQty.PluralName: string; begin result := '%smoles' end;
+class function TMoleQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TMoleQty.Exponents: TExponents; begin result := [1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCandelaQty}{$i adim.inc}
-class function TCandelaQty.Symbol: string;
-begin result := '%scd' end;
-
-class function TCandelaQty.SingularName: string;
-begin result := '%scandela' end;
-
-class function TCandelaQty.PluralName: string;
-begin result := '%scandelas' end;
-
-class function TCandelaQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TCandelaQty.Exponents: TExponents;
-begin result := [1]; end;
+class function TCandelaQty.Symbol: string; begin result := '%scd' end;
+class function TCandelaQty.SingularName: string; begin result := '%scandela' end;
+class function TCandelaQty.PluralName: string; begin result := '%scandelas' end;
+class function TCandelaQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TCandelaQty.Exponents: TExponents; begin result := [1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TRadianQty}{$i adim.inc}
-class function TRadianQty.Symbol: string;
-begin result := 'rad' end;
-
-class function TRadianQty.SingularName: string;
-begin result := 'radian' end;
-
-class function TRadianQty.PluralName: string;
-begin result := 'radians' end;
-
-class function TRadianQty.Prefixes: TPrefixes;
-begin result := []; end;
-
-class function TRadianQty.Exponents: TExponents;
-begin result := []; end;
+class function TRadianQty.Symbol: string; begin result := 'rad' end;
+class function TRadianQty.SingularName: string; begin result := 'radian' end;
+class function TRadianQty.PluralName: string; begin result := 'radians' end;
+class function TRadianQty.Prefixes: TPrefixes; begin result := []; end;
+class function TRadianQty.Exponents: TExponents; begin result := []; end;
 
 {$DEFINE IMPL_FACTORED}{$DEFINE TQuantity:=TDegreeQty}{$i adim.inc}
-class function TDegreeQty.Symbol: string;
-begin result := 'deg' end;
-
-class function TDegreeQty.SingularName: string;
-begin result := 'degree' end;
-
-class function TDegreeQty.PluralName: string;
-begin result := 'degrees' end;
-
-class function TDegreeQty.Prefixes: TPrefixes;
-begin result := []; end;
-
-class function TDegreeQty.Exponents: TExponents;
-begin result := []; end;
-
-class function TDegreeQty.ToBaseFactor: double;
-begin result := Pi/180; end;
+class function TDegreeQty.Symbol: string; begin result := 'deg' end;
+class function TDegreeQty.SingularName: string; begin result := 'degree' end;
+class function TDegreeQty.PluralName: string; begin result := 'degrees' end;
+class function TDegreeQty.Prefixes: TPrefixes; begin result := []; end;
+class function TDegreeQty.Exponents: TExponents; begin result := []; end;
+class function TDegreeQty.ToBaseFactor: double; begin result := Pi/180; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSteradianQty}{$i adim.inc}
-class function TSteradianQty.Symbol: string;
-begin result := 'sr' end;
-
-class function TSteradianQty.SingularName: string;
-begin result := 'steradian' end;
-
-class function TSteradianQty.PluralName: string;
-begin result := 'steradians' end;
-
-class function TSteradianQty.Prefixes: TPrefixes;
-begin result := []; end;
-
-class function TSteradianQty.Exponents: TExponents;
-begin result := []; end;
+class function TSteradianQty.Symbol: string; begin result := 'sr' end;
+class function TSteradianQty.SingularName: string; begin result := 'steradian' end;
+class function TSteradianQty.PluralName: string; begin result := 'steradians' end;
+class function TSteradianQty.Prefixes: TPrefixes; begin result := []; end;
+class function TSteradianQty.Exponents: TExponents; begin result := []; end;
 
 {$DEFINE IMPL_FACTORED}{$DEFINE TQuantity:=TSquareDegreeQty}{$i adim.inc}
-class function TSquareDegreeQty.Symbol: string;
-begin result := 'deg2' end;
-
-class function TSquareDegreeQty.SingularName: string;
-begin result := 'square degree' end;
-
-class function TSquareDegreeQty.PluralName: string;
-begin result := 'square degrees' end;
-
-class function TSquareDegreeQty.Prefixes: TPrefixes;
-begin result := []; end;
-
-class function TSquareDegreeQty.Exponents: TExponents;
-begin result := []; end;
-
-class function TSquareDegreeQty.ToBaseFactor: double;
-begin result := Pi*Pi/32400; end;
+class function TSquareDegreeQty.Symbol: string; begin result := 'deg2' end;
+class function TSquareDegreeQty.SingularName: string; begin result := 'square degree' end;
+class function TSquareDegreeQty.PluralName: string; begin result := 'square degrees' end;
+class function TSquareDegreeQty.Prefixes: TPrefixes; begin result := []; end;
+class function TSquareDegreeQty.Exponents: TExponents; begin result := []; end;
+class function TSquareDegreeQty.ToBaseFactor: double; begin result := Pi*Pi/32400; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=THertzQty}{$i adim.inc}
-class function THertzQty.Symbol: string;
-begin result := '%sHz' end;
-
-class function THertzQty.SingularName: string;
-begin result := '%shertz' end;
-
-class function THertzQty.PluralName: string;
-begin result := '%shertz' end;
-
-class function THertzQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function THertzQty.Exponents: TExponents;
-begin result := [1]; end;
+class function THertzQty.Symbol: string; begin result := '%sHz' end;
+class function THertzQty.SingularName: string; begin result := '%shertz' end;
+class function THertzQty.PluralName: string; begin result := '%shertz' end;
+class function THertzQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function THertzQty.Exponents: TExponents; begin result := [1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareHertzQty}{$i adim.inc}
-class function TSquareHertzQty.Symbol: string;
-begin result := '%sHz2' end;
-
-class function TSquareHertzQty.SingularName: string;
-begin result := 'square %shertz' end;
-
-class function TSquareHertzQty.PluralName: string;
-begin result := 'square %shertz' end;
-
-class function TSquareHertzQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TSquareHertzQty.Exponents: TExponents;
-begin result := [2]; end;
+class function TSquareHertzQty.Symbol: string; begin result := '%sHz2' end;
+class function TSquareHertzQty.SingularName: string; begin result := 'square %shertz' end;
+class function TSquareHertzQty.PluralName: string; begin result := 'square %shertz' end;
+class function TSquareHertzQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TSquareHertzQty.Exponents: TExponents; begin result := [2]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TRadianPerSecondQty}{$i adim.inc}
-class function TRadianPerSecondQty.Symbol: string;
-begin result := 'rad/%ss' end;
-
-class function TRadianPerSecondQty.SingularName: string;
-begin result := 'radian per %ssecond' end;
-
-class function TRadianPerSecondQty.PluralName: string;
-begin result := 'radians per %ssecond' end;
-
-class function TRadianPerSecondQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TRadianPerSecondQty.Exponents: TExponents;
-begin result := [-1]; end;
+class function TRadianPerSecondQty.Symbol: string; begin result := 'rad/%ss' end;
+class function TRadianPerSecondQty.SingularName: string; begin result := 'radian per %ssecond' end;
+class function TRadianPerSecondQty.PluralName: string; begin result := 'radians per %ssecond' end;
+class function TRadianPerSecondQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TRadianPerSecondQty.Exponents: TExponents; begin result := [-1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TRadianPerSecondSquaredQty}{$i adim.inc}
-class function TRadianPerSecondSquaredQty.Symbol: string;
-begin result := 'rad/%ss2' end;
-
-class function TRadianPerSecondSquaredQty.SingularName: string;
-begin result := 'radian per %ssecond squared' end;
-
-class function TRadianPerSecondSquaredQty.PluralName: string;
-begin result := 'radians per %ssecond squared' end;
-
-class function TRadianPerSecondSquaredQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TRadianPerSecondSquaredQty.Exponents: TExponents;
-begin result := [-2]; end;
+class function TRadianPerSecondSquaredQty.Symbol: string; begin result := 'rad/%ss2' end;
+class function TRadianPerSecondSquaredQty.SingularName: string; begin result := 'radian per %ssecond squared' end;
+class function TRadianPerSecondSquaredQty.PluralName: string; begin result := 'radians per %ssecond squared' end;
+class function TRadianPerSecondSquaredQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TRadianPerSecondSquaredQty.Exponents: TExponents; begin result := [-2]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSteradianPerSquareSecondQty}{$i adim.inc}
-class function TSteradianPerSquareSecondQty.Symbol: string;
-begin result := 'rad2/%ss2' end;
-
-class function TSteradianPerSquareSecondQty.SingularName: string;
-begin result := 'square radian per square %ssecond' end;
-
-class function TSteradianPerSquareSecondQty.PluralName: string;
-begin result := 'square radians per square %ssecond' end;
-
-class function TSteradianPerSquareSecondQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TSteradianPerSquareSecondQty.Exponents: TExponents;
-begin result := [-2]; end;
+class function TSteradianPerSquareSecondQty.Symbol: string; begin result := 'rad2/%ss2' end;
+class function TSteradianPerSquareSecondQty.SingularName: string; begin result := 'square radian per square %ssecond' end;
+class function TSteradianPerSquareSecondQty.PluralName: string; begin result := 'square radians per square %ssecond' end;
+class function TSteradianPerSquareSecondQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TSteradianPerSquareSecondQty.Exponents: TExponents; begin result := [-2]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TMeterPerSecondQty}{$i adim.inc}
-class function TMeterPerSecondQty.Symbol: string;
-begin result := '%sm/%ss' end;
-
-class function TMeterPerSecondQty.SingularName: string;
-begin result := '%smeter per %ssecond' end;
-
-class function TMeterPerSecondQty.PluralName: string;
-begin result := '%smeters per %ssecond' end;
-
-class function TMeterPerSecondQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TMeterPerSecondQty.Exponents: TExponents;
-begin result := [1, -1]; end;
+class function TMeterPerSecondQty.Symbol: string; begin result := '%sm/%ss' end;
+class function TMeterPerSecondQty.SingularName: string; begin result := '%smeter per %ssecond' end;
+class function TMeterPerSecondQty.PluralName: string; begin result := '%smeters per %ssecond' end;
+class function TMeterPerSecondQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TMeterPerSecondQty.Exponents: TExponents; begin result := [1, -1]; end;
 
 {$DEFINE IMPL_FACTORED}{$DEFINE TQuantity:=TMeterPerHourQty}{$i adim.inc}
-class function TMeterPerHourQty.Symbol: string;
-begin result := '%sm/h' end;
-
-class function TMeterPerHourQty.SingularName: string;
-begin result := '%smeter per hour' end;
-
-class function TMeterPerHourQty.PluralName: string;
-begin result := '%smeters per hour' end;
-
-class function TMeterPerHourQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TMeterPerHourQty.Exponents: TExponents;
-begin result := [1]; end;
-
-class function TMeterPerHourQty.ToBaseFactor: double;
-begin result := 1/3600; end;
+class function TMeterPerHourQty.Symbol: string; begin result := '%sm/h' end;
+class function TMeterPerHourQty.SingularName: string; begin result := '%smeter per hour' end;
+class function TMeterPerHourQty.PluralName: string; begin result := '%smeters per hour' end;
+class function TMeterPerHourQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TMeterPerHourQty.Exponents: TExponents; begin result := [1]; end;
+class function TMeterPerHourQty.ToBaseFactor: double; begin result := 1/3600; end;
 
 {$DEFINE IMPL_FACTORED}{$DEFINE TQuantity:=TMilePerHourQty}{$i adim.inc}
-class function TMilePerHourQty.Symbol: string;
-begin result := 'mi/h' end;
-
-class function TMilePerHourQty.SingularName: string;
-begin result := 'mile per hour' end;
-
-class function TMilePerHourQty.PluralName: string;
-begin result := 'miles per hour' end;
-
-class function TMilePerHourQty.Prefixes: TPrefixes;
-begin result := []; end;
-
-class function TMilePerHourQty.Exponents: TExponents;
-begin result := []; end;
-
-class function TMilePerHourQty.ToBaseFactor: double;
-begin result := 0.44704; end;
+class function TMilePerHourQty.Symbol: string; begin result := 'mi/h' end;
+class function TMilePerHourQty.SingularName: string; begin result := 'mile per hour' end;
+class function TMilePerHourQty.PluralName: string; begin result := 'miles per hour' end;
+class function TMilePerHourQty.Prefixes: TPrefixes; begin result := []; end;
+class function TMilePerHourQty.Exponents: TExponents; begin result := []; end;
+class function TMilePerHourQty.ToBaseFactor: double; begin result := 0.44704; end;
 
 {$DEFINE IMPL_FACTORED}{$DEFINE TQuantity:=TNauticalMilePerHourQty}{$i adim.inc}
-class function TNauticalMilePerHourQty.Symbol: string;
-begin result := 'nmi/h' end;
-
-class function TNauticalMilePerHourQty.SingularName: string;
-begin result := 'nautical mile per hour' end;
-
-class function TNauticalMilePerHourQty.PluralName: string;
-begin result := 'nautical miles per hour' end;
-
-class function TNauticalMilePerHourQty.Prefixes: TPrefixes;
-begin result := []; end;
-
-class function TNauticalMilePerHourQty.Exponents: TExponents;
-begin result := []; end;
-
-class function TNauticalMilePerHourQty.ToBaseFactor: double;
-begin result := 463/900; end;
+class function TNauticalMilePerHourQty.Symbol: string; begin result := 'nmi/h' end;
+class function TNauticalMilePerHourQty.SingularName: string; begin result := 'nautical mile per hour' end;
+class function TNauticalMilePerHourQty.PluralName: string; begin result := 'nautical miles per hour' end;
+class function TNauticalMilePerHourQty.Prefixes: TPrefixes; begin result := []; end;
+class function TNauticalMilePerHourQty.Exponents: TExponents; begin result := []; end;
+class function TNauticalMilePerHourQty.ToBaseFactor: double; begin result := 463/900; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TMeterPerSecondSquaredQty}{$i adim.inc}
-class function TMeterPerSecondSquaredQty.Symbol: string;
-begin result := '%sm/%ss2' end;
-
-class function TMeterPerSecondSquaredQty.SingularName: string;
-begin result := '%smeter per %ssecond squared' end;
-
-class function TMeterPerSecondSquaredQty.PluralName: string;
-begin result := '%smeters per %ssecond squared' end;
-
-class function TMeterPerSecondSquaredQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TMeterPerSecondSquaredQty.Exponents: TExponents;
-begin result := [1, -2]; end;
+class function TMeterPerSecondSquaredQty.Symbol: string; begin result := '%sm/%ss2' end;
+class function TMeterPerSecondSquaredQty.SingularName: string; begin result := '%smeter per %ssecond squared' end;
+class function TMeterPerSecondSquaredQty.PluralName: string; begin result := '%smeters per %ssecond squared' end;
+class function TMeterPerSecondSquaredQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TMeterPerSecondSquaredQty.Exponents: TExponents; begin result := [1, -2]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TMeterPerSecondPerSecondQty}{$i adim.inc}
-class function TMeterPerSecondPerSecondQty.Symbol: string;
-begin result := '%sm/%ss/%ss' end;
-
-class function TMeterPerSecondPerSecondQty.SingularName: string;
-begin result := '%smeter per %ssecond per %ssecond' end;
-
-class function TMeterPerSecondPerSecondQty.PluralName: string;
-begin result := '%smeters per %ssecond per %ssecond' end;
-
-class function TMeterPerSecondPerSecondQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone, pNone]; end;
-
-class function TMeterPerSecondPerSecondQty.Exponents: TExponents;
-begin result := [1, -1, -1]; end;
+class function TMeterPerSecondPerSecondQty.Symbol: string; begin result := '%sm/%ss/%ss' end;
+class function TMeterPerSecondPerSecondQty.SingularName: string; begin result := '%smeter per %ssecond per %ssecond' end;
+class function TMeterPerSecondPerSecondQty.PluralName: string; begin result := '%smeters per %ssecond per %ssecond' end;
+class function TMeterPerSecondPerSecondQty.Prefixes: TPrefixes; begin result := [pNone, pNone, pNone]; end;
+class function TMeterPerSecondPerSecondQty.Exponents: TExponents; begin result := [1, -1, -1]; end;
 
 {$DEFINE IMPL_FACTORED}{$DEFINE TQuantity:=TMeterPerHourPerSecondQty}{$i adim.inc}
-class function TMeterPerHourPerSecondQty.Symbol: string;
-begin result := '%sm/h/%ss' end;
-
-class function TMeterPerHourPerSecondQty.SingularName: string;
-begin result := '%smeter per hour per %ssecond' end;
-
-class function TMeterPerHourPerSecondQty.PluralName: string;
-begin result := '%smeters per hour per %ssecond' end;
-
-class function TMeterPerHourPerSecondQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TMeterPerHourPerSecondQty.Exponents: TExponents;
-begin result := [1, -1]; end;
-
-class function TMeterPerHourPerSecondQty.ToBaseFactor: double;
-begin result := 1/3600; end;
+class function TMeterPerHourPerSecondQty.Symbol: string; begin result := '%sm/h/%ss' end;
+class function TMeterPerHourPerSecondQty.SingularName: string; begin result := '%smeter per hour per %ssecond' end;
+class function TMeterPerHourPerSecondQty.PluralName: string; begin result := '%smeters per hour per %ssecond' end;
+class function TMeterPerHourPerSecondQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TMeterPerHourPerSecondQty.Exponents: TExponents; begin result := [1, -1]; end;
+class function TMeterPerHourPerSecondQty.ToBaseFactor: double; begin result := 1/3600; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareMeterPerSquareSecondQty}{$i adim.inc}
-class function TSquareMeterPerSquareSecondQty.Symbol: string;
-begin result := '%sm2/%ss2' end;
-
-class function TSquareMeterPerSquareSecondQty.SingularName: string;
-begin result := 'square %smeter per square %ssecond' end;
-
-class function TSquareMeterPerSquareSecondQty.PluralName: string;
-begin result := 'square %smeters per square %ssecond' end;
-
-class function TSquareMeterPerSquareSecondQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TSquareMeterPerSquareSecondQty.Exponents: TExponents;
-begin result := [2, -2]; end;
+class function TSquareMeterPerSquareSecondQty.Symbol: string; begin result := '%sm2/%ss2' end;
+class function TSquareMeterPerSquareSecondQty.SingularName: string; begin result := 'square %smeter per square %ssecond' end;
+class function TSquareMeterPerSquareSecondQty.PluralName: string; begin result := 'square %smeters per square %ssecond' end;
+class function TSquareMeterPerSquareSecondQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TSquareMeterPerSquareSecondQty.Exponents: TExponents; begin result := [2, -2]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKilogramMeterPerSecondQty}{$i adim.inc}
-class function TKilogramMeterPerSecondQty.Symbol: string;
-begin result := '%sg·%sm/%ss' end;
-
-class function TKilogramMeterPerSecondQty.SingularName: string;
-begin result := '%sgram %smeter per %ssecond' end;
-
-class function TKilogramMeterPerSecondQty.PluralName: string;
-begin result := '%sgram %smeters per %ssecond' end;
-
-class function TKilogramMeterPerSecondQty.Prefixes: TPrefixes;
-begin result := [pKilo, pNone, pNone]; end;
-
-class function TKilogramMeterPerSecondQty.Exponents: TExponents;
-begin result := [1, 1, -1]; end;
+class function TKilogramMeterPerSecondQty.Symbol: string; begin result := '%sg·%sm/%ss' end;
+class function TKilogramMeterPerSecondQty.SingularName: string; begin result := '%sgram %smeter per %ssecond' end;
+class function TKilogramMeterPerSecondQty.PluralName: string; begin result := '%sgram %smeters per %ssecond' end;
+class function TKilogramMeterPerSecondQty.Prefixes: TPrefixes; begin result := [pKilo, pNone, pNone]; end;
+class function TKilogramMeterPerSecondQty.Exponents: TExponents; begin result := [1, 1, -1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNewtonSecondQty}{$i adim.inc}
-class function TNewtonSecondQty.Symbol: string;
-begin result := '%sN·%ss' end;
-
-class function TNewtonSecondQty.SingularName: string;
-begin result := '%snewton %ssecond' end;
-
-class function TNewtonSecondQty.PluralName: string;
-begin result := '%snewton %sseconds' end;
-
-class function TNewtonSecondQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TNewtonSecondQty.Exponents: TExponents;
-begin result := [1, 1]; end;
+class function TNewtonSecondQty.Symbol: string; begin result := '%sN·%ss' end;
+class function TNewtonSecondQty.SingularName: string; begin result := '%snewton %ssecond' end;
+class function TNewtonSecondQty.PluralName: string; begin result := '%snewton %sseconds' end;
+class function TNewtonSecondQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TNewtonSecondQty.Exponents: TExponents; begin result := [1, 1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKilogramSquareMeterQty}{$i adim.inc}
-class function TKilogramSquareMeterQty.Symbol: string;
-begin result := '%sg·%sm2' end;
-
-class function TKilogramSquareMeterQty.SingularName: string;
-begin result := '%sgram square %smeter' end;
-
-class function TKilogramSquareMeterQty.PluralName: string;
-begin result := '%sgram square %smeters' end;
-
-class function TKilogramSquareMeterQty.Prefixes: TPrefixes;
-begin result := [pKilo, pNone]; end;
-
-class function TKilogramSquareMeterQty.Exponents: TExponents;
-begin result := [1, 2]; end;
+class function TKilogramSquareMeterQty.Symbol: string; begin result := '%sg·%sm2' end;
+class function TKilogramSquareMeterQty.SingularName: string; begin result := '%sgram square %smeter' end;
+class function TKilogramSquareMeterQty.PluralName: string; begin result := '%sgram square %smeters' end;
+class function TKilogramSquareMeterQty.Prefixes: TPrefixes; begin result := [pKilo, pNone]; end;
+class function TKilogramSquareMeterQty.Exponents: TExponents; begin result := [1, 2]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKilogramSquareMeterPerSecondQty}{$i adim.inc}
-class function TKilogramSquareMeterPerSecondQty.Symbol: string;
-begin result := '%sg·%sm2/%ss' end;
-
-class function TKilogramSquareMeterPerSecondQty.SingularName: string;
-begin result := '%sgram square %smeter per %ssecond' end;
-
-class function TKilogramSquareMeterPerSecondQty.PluralName: string;
-begin result := '%sgram square %smeters per %ssecond' end;
-
-class function TKilogramSquareMeterPerSecondQty.Prefixes: TPrefixes;
-begin result := [pKilo, pNone, pNone]; end;
-
-class function TKilogramSquareMeterPerSecondQty.Exponents: TExponents;
-begin result := [1, 2, -1]; end;
+class function TKilogramSquareMeterPerSecondQty.Symbol: string; begin result := '%sg·%sm2/%ss' end;
+class function TKilogramSquareMeterPerSecondQty.SingularName: string; begin result := '%sgram square %smeter per %ssecond' end;
+class function TKilogramSquareMeterPerSecondQty.PluralName: string; begin result := '%sgram square %smeters per %ssecond' end;
+class function TKilogramSquareMeterPerSecondQty.Prefixes: TPrefixes; begin result := [pKilo, pNone, pNone]; end;
+class function TKilogramSquareMeterPerSecondQty.Exponents: TExponents; begin result := [1, 2, -1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKilogramPerMeterQty}{$i adim.inc}
-class function TKilogramPerMeterQty.Symbol: string;
-begin result := '%sg/%sm' end;
-
-class function TKilogramPerMeterQty.SingularName: string;
-begin result := '%sgram per %smeter' end;
-
-class function TKilogramPerMeterQty.PluralName: string;
-begin result := '%sgrams per %smeter' end;
-
-class function TKilogramPerMeterQty.Prefixes: TPrefixes;
-begin result := [pKilo, pNone]; end;
-
-class function TKilogramPerMeterQty.Exponents: TExponents;
-begin result := [1, -1]; end;
+class function TKilogramPerMeterQty.Symbol: string; begin result := '%sg/%sm' end;
+class function TKilogramPerMeterQty.SingularName: string; begin result := '%sgram per %smeter' end;
+class function TKilogramPerMeterQty.PluralName: string; begin result := '%sgrams per %smeter' end;
+class function TKilogramPerMeterQty.Prefixes: TPrefixes; begin result := [pKilo, pNone]; end;
+class function TKilogramPerMeterQty.Exponents: TExponents; begin result := [1, -1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKilogramPerSquareMeterQty}{$i adim.inc}
-class function TKilogramPerSquareMeterQty.Symbol: string;
-begin result := '%sg/%sm2' end;
-
-class function TKilogramPerSquareMeterQty.SingularName: string;
-begin result := '%sgram per square %smeter' end;
-
-class function TKilogramPerSquareMeterQty.PluralName: string;
-begin result := '%sgrams per square %smeter' end;
-
-class function TKilogramPerSquareMeterQty.Prefixes: TPrefixes;
-begin result := [pKilo, pNone]; end;
-
-class function TKilogramPerSquareMeterQty.Exponents: TExponents;
-begin result := [1, -2]; end;
+class function TKilogramPerSquareMeterQty.Symbol: string; begin result := '%sg/%sm2' end;
+class function TKilogramPerSquareMeterQty.SingularName: string; begin result := '%sgram per square %smeter' end;
+class function TKilogramPerSquareMeterQty.PluralName: string; begin result := '%sgrams per square %smeter' end;
+class function TKilogramPerSquareMeterQty.Prefixes: TPrefixes; begin result := [pKilo, pNone]; end;
+class function TKilogramPerSquareMeterQty.Exponents: TExponents; begin result := [1, -2]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKilogramPerCubicMeterQty}{$i adim.inc}
-class function TKilogramPerCubicMeterQty.Symbol: string;
-begin result := '%sg/%sm3' end;
-
-class function TKilogramPerCubicMeterQty.SingularName: string;
-begin result := '%sgram per cubic %smeter' end;
-
-class function TKilogramPerCubicMeterQty.PluralName: string;
-begin result := '%sgrams per cubic %smeter' end;
-
-class function TKilogramPerCubicMeterQty.Prefixes: TPrefixes;
-begin result := [pKilo, pNone]; end;
-
-class function TKilogramPerCubicMeterQty.Exponents: TExponents;
-begin result := [1, -3]; end;
+class function TKilogramPerCubicMeterQty.Symbol: string; begin result := '%sg/%sm3' end;
+class function TKilogramPerCubicMeterQty.SingularName: string; begin result := '%sgram per cubic %smeter' end;
+class function TKilogramPerCubicMeterQty.PluralName: string; begin result := '%sgrams per cubic %smeter' end;
+class function TKilogramPerCubicMeterQty.Prefixes: TPrefixes; begin result := [pKilo, pNone]; end;
+class function TKilogramPerCubicMeterQty.Exponents: TExponents; begin result := [1, -3]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNewtonQty}{$i adim.inc}
-class function TNewtonQty.Symbol: string;
-begin result := '%sN' end;
-
-class function TNewtonQty.SingularName: string;
-begin result := '%snewton' end;
-
-class function TNewtonQty.PluralName: string;
-begin result := '%snewtons' end;
-
-class function TNewtonQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TNewtonQty.Exponents: TExponents;
-begin result := [1]; end;
+class function TNewtonQty.Symbol: string; begin result := '%sN' end;
+class function TNewtonQty.SingularName: string; begin result := '%snewton' end;
+class function TNewtonQty.PluralName: string; begin result := '%snewtons' end;
+class function TNewtonQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TNewtonQty.Exponents: TExponents; begin result := [1]; end;
 
 {$DEFINE IMPL_FACTORED}{$DEFINE TQuantity:=TPoundForceQty}{$i adim.inc}
-class function TPoundForceQty.Symbol: string;
-begin result := 'lbf' end;
-
-class function TPoundForceQty.SingularName: string;
-begin result := 'pound-force' end;
-
-class function TPoundForceQty.PluralName: string;
-begin result := 'pounds-force' end;
-
-class function TPoundForceQty.Prefixes: TPrefixes;
-begin result := []; end;
-
-class function TPoundForceQty.Exponents: TExponents;
-begin result := []; end;
-
-class function TPoundForceQty.ToBaseFactor: double;
-begin result := 4.4482216152605; end;
+class function TPoundForceQty.Symbol: string; begin result := 'lbf' end;
+class function TPoundForceQty.SingularName: string; begin result := 'pound-force' end;
+class function TPoundForceQty.PluralName: string; begin result := 'pounds-force' end;
+class function TPoundForceQty.Prefixes: TPrefixes; begin result := []; end;
+class function TPoundForceQty.Exponents: TExponents; begin result := []; end;
+class function TPoundForceQty.ToBaseFactor: double; begin result := 4.4482216152605; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareNewtonQty}{$i adim.inc}
-class function TSquareNewtonQty.Symbol: string;
-begin result := '%sN2' end;
-
-class function TSquareNewtonQty.SingularName: string;
-begin result := 'square %snewton' end;
-
-class function TSquareNewtonQty.PluralName: string;
-begin result := 'square %snewtons' end;
-
-class function TSquareNewtonQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TSquareNewtonQty.Exponents: TExponents;
-begin result := [2]; end;
+class function TSquareNewtonQty.Symbol: string; begin result := '%sN2' end;
+class function TSquareNewtonQty.SingularName: string; begin result := 'square %snewton' end;
+class function TSquareNewtonQty.PluralName: string; begin result := 'square %snewtons' end;
+class function TSquareNewtonQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TSquareNewtonQty.Exponents: TExponents; begin result := [2]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TPascalQty}{$i adim.inc}
-class function TPascalQty.Symbol: string;
-begin result := '%sPa' end;
-
-class function TPascalQty.SingularName: string;
-begin result := '%spascal' end;
-
-class function TPascalQty.PluralName: string;
-begin result := '%spascals' end;
-
-class function TPascalQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TPascalQty.Exponents: TExponents;
-begin result := [1]; end;
+class function TPascalQty.Symbol: string; begin result := '%sPa' end;
+class function TPascalQty.SingularName: string; begin result := '%spascal' end;
+class function TPascalQty.PluralName: string; begin result := '%spascals' end;
+class function TPascalQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TPascalQty.Exponents: TExponents; begin result := [1]; end;
 
 {$DEFINE IMPL_FACTORED}{$DEFINE TQuantity:=TBarQty}{$i adim.inc}
-class function TBarQty.Symbol: string;
-begin result := '%sbar' end;
-
-class function TBarQty.SingularName: string;
-begin result := '%sbar' end;
-
-class function TBarQty.PluralName: string;
-begin result := '%sbars' end;
-
-class function TBarQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TBarQty.Exponents: TExponents;
-begin result := [1]; end;
-
-class function TBarQty.ToBaseFactor: double;
-begin result := 1E+05; end;
+class function TBarQty.Symbol: string; begin result := '%sbar' end;
+class function TBarQty.SingularName: string; begin result := '%sbar' end;
+class function TBarQty.PluralName: string; begin result := '%sbars' end;
+class function TBarQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TBarQty.Exponents: TExponents; begin result := [1]; end;
+class function TBarQty.ToBaseFactor: double; begin result := 1E+05; end;
 
 {$DEFINE IMPL_FACTORED}{$DEFINE TQuantity:=TPoundPerSquareInchQty}{$i adim.inc}
-class function TPoundPerSquareInchQty.Symbol: string;
-begin result := '%spsi' end;
-
-class function TPoundPerSquareInchQty.SingularName: string;
-begin result := '%spound per square inch' end;
-
-class function TPoundPerSquareInchQty.PluralName: string;
-begin result := '%spounds per square inch' end;
-
-class function TPoundPerSquareInchQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TPoundPerSquareInchQty.Exponents: TExponents;
-begin result := [1]; end;
-
-class function TPoundPerSquareInchQty.ToBaseFactor: double;
-begin result := 6894.75729316836; end;
+class function TPoundPerSquareInchQty.Symbol: string; begin result := '%spsi' end;
+class function TPoundPerSquareInchQty.SingularName: string; begin result := '%spound per square inch' end;
+class function TPoundPerSquareInchQty.PluralName: string; begin result := '%spounds per square inch' end;
+class function TPoundPerSquareInchQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TPoundPerSquareInchQty.Exponents: TExponents; begin result := [1]; end;
+class function TPoundPerSquareInchQty.ToBaseFactor: double; begin result := 6894.75729316836; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TJoulePerCubicMeterQty}{$i adim.inc}
-class function TJoulePerCubicMeterQty.Symbol: string;
-begin result := '%sJ/%sm3' end;
-
-class function TJoulePerCubicMeterQty.SingularName: string;
-begin result := '%sjoule per cubic %smeter' end;
-
-class function TJoulePerCubicMeterQty.PluralName: string;
-begin result := '%sjoules per cubic %smeter' end;
-
-class function TJoulePerCubicMeterQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TJoulePerCubicMeterQty.Exponents: TExponents;
-begin result := [1, -3]; end;
+class function TJoulePerCubicMeterQty.Symbol: string; begin result := '%sJ/%sm3' end;
+class function TJoulePerCubicMeterQty.SingularName: string; begin result := '%sjoule per cubic %smeter' end;
+class function TJoulePerCubicMeterQty.PluralName: string; begin result := '%sjoules per cubic %smeter' end;
+class function TJoulePerCubicMeterQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TJoulePerCubicMeterQty.Exponents: TExponents; begin result := [1, -3]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TJouleQty}{$i adim.inc}
-class function TJouleQty.Symbol: string;
-begin result := '%sJ' end;
-
-class function TJouleQty.SingularName: string;
-begin result := '%sjoule' end;
-
-class function TJouleQty.PluralName: string;
-begin result := '%sjoules' end;
-
-class function TJouleQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TJouleQty.Exponents: TExponents;
-begin result := [1]; end;
+class function TJouleQty.Symbol: string; begin result := '%sJ' end;
+class function TJouleQty.SingularName: string; begin result := '%sjoule' end;
+class function TJouleQty.PluralName: string; begin result := '%sjoules' end;
+class function TJouleQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TJouleQty.Exponents: TExponents; begin result := [1]; end;
 
 {$DEFINE IMPL_FACTORED}{$DEFINE TQuantity:=TWattHourQty}{$i adim.inc}
-class function TWattHourQty.Symbol: string;
-begin result := '%sW·h' end;
-
-class function TWattHourQty.SingularName: string;
-begin result := '%swatt hour' end;
-
-class function TWattHourQty.PluralName: string;
-begin result := '%swatt hours' end;
-
-class function TWattHourQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TWattHourQty.Exponents: TExponents;
-begin result := [1]; end;
-
-class function TWattHourQty.ToBaseFactor: double;
-begin result := 3600; end;
+class function TWattHourQty.Symbol: string; begin result := '%sW·h' end;
+class function TWattHourQty.SingularName: string; begin result := '%swatt hour' end;
+class function TWattHourQty.PluralName: string; begin result := '%swatt hours' end;
+class function TWattHourQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TWattHourQty.Exponents: TExponents; begin result := [1]; end;
+class function TWattHourQty.ToBaseFactor: double; begin result := 3600; end;
 
 {$DEFINE IMPL_FACTORED}{$DEFINE TQuantity:=TElettronvoltQty}{$i adim.inc}
-class function TElettronvoltQty.Symbol: string;
-begin result := '%seV' end;
-
-class function TElettronvoltQty.SingularName: string;
-begin result := '%selettronvolt' end;
-
-class function TElettronvoltQty.PluralName: string;
-begin result := '%selettronvolts' end;
-
-class function TElettronvoltQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TElettronvoltQty.Exponents: TExponents;
-begin result := [1]; end;
-
-class function TElettronvoltQty.ToBaseFactor: double;
-begin result := 1.60217742320523E-019; end;
+class function TElettronvoltQty.Symbol: string; begin result := '%seV' end;
+class function TElettronvoltQty.SingularName: string; begin result := '%selettronvolt' end;
+class function TElettronvoltQty.PluralName: string; begin result := '%selettronvolts' end;
+class function TElettronvoltQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TElettronvoltQty.Exponents: TExponents; begin result := [1]; end;
+class function TElettronvoltQty.ToBaseFactor: double; begin result := 1.60217742320523E-019; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNewtonMeterQty}{$i adim.inc}
-class function TNewtonMeterQty.Symbol: string;
-begin result := '%sN·%sm' end;
-
-class function TNewtonMeterQty.SingularName: string;
-begin result := '%snewton %smeter' end;
-
-class function TNewtonMeterQty.PluralName: string;
-begin result := '%snewton %smeters' end;
-
-class function TNewtonMeterQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TNewtonMeterQty.Exponents: TExponents;
-begin result := [1, 1]; end;
+class function TNewtonMeterQty.Symbol: string; begin result := '%sN·%sm' end;
+class function TNewtonMeterQty.SingularName: string; begin result := '%snewton %smeter' end;
+class function TNewtonMeterQty.PluralName: string; begin result := '%snewton %smeters' end;
+class function TNewtonMeterQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TNewtonMeterQty.Exponents: TExponents; begin result := [1, 1]; end;
 
 {$DEFINE IMPL_FACTORED}{$DEFINE TQuantity:=TPoundForceInchQty}{$i adim.inc}
-class function TPoundForceInchQty.Symbol: string;
-begin result := 'lbf·in' end;
-
-class function TPoundForceInchQty.SingularName: string;
-begin result := 'pound-force inch' end;
-
-class function TPoundForceInchQty.PluralName: string;
-begin result := 'pound-force inches' end;
-
-class function TPoundForceInchQty.Prefixes: TPrefixes;
-begin result := []; end;
-
-class function TPoundForceInchQty.Exponents: TExponents;
-begin result := []; end;
-
-class function TPoundForceInchQty.ToBaseFactor: double;
-begin result := 0.112984829027617; end;
+class function TPoundForceInchQty.Symbol: string; begin result := 'lbf·in' end;
+class function TPoundForceInchQty.SingularName: string; begin result := 'pound-force inch' end;
+class function TPoundForceInchQty.PluralName: string; begin result := 'pound-force inches' end;
+class function TPoundForceInchQty.Prefixes: TPrefixes; begin result := []; end;
+class function TPoundForceInchQty.Exponents: TExponents; begin result := []; end;
+class function TPoundForceInchQty.ToBaseFactor: double; begin result := 0.112984829027617; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TWattQty}{$i adim.inc}
-class function TWattQty.Symbol: string;
-begin result := '%sW' end;
-
-class function TWattQty.SingularName: string;
-begin result := '%swatt' end;
-
-class function TWattQty.PluralName: string;
-begin result := '%swatts' end;
-
-class function TWattQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TWattQty.Exponents: TExponents;
-begin result := [1]; end;
+class function TWattQty.Symbol: string; begin result := '%sW' end;
+class function TWattQty.SingularName: string; begin result := '%swatt' end;
+class function TWattQty.PluralName: string; begin result := '%swatts' end;
+class function TWattQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TWattQty.Exponents: TExponents; begin result := [1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCoulombQty}{$i adim.inc}
-class function TCoulombQty.Symbol: string;
-begin result := '%sC' end;
-
-class function TCoulombQty.SingularName: string;
-begin result := '%scoulomb' end;
-
-class function TCoulombQty.PluralName: string;
-begin result := '%scoulombs' end;
-
-class function TCoulombQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TCoulombQty.Exponents: TExponents;
-begin result := [1]; end;
+class function TCoulombQty.Symbol: string; begin result := '%sC' end;
+class function TCoulombQty.SingularName: string; begin result := '%scoulomb' end;
+class function TCoulombQty.PluralName: string; begin result := '%scoulombs' end;
+class function TCoulombQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TCoulombQty.Exponents: TExponents; begin result := [1]; end;
 
 {$DEFINE IMPL_FACTORED}{$DEFINE TQuantity:=TAmpereHourQty}{$i adim.inc}
-class function TAmpereHourQty.Symbol: string;
-begin result := '%sA·h' end;
-
-class function TAmpereHourQty.SingularName: string;
-begin result := '%sampere hour' end;
-
-class function TAmpereHourQty.PluralName: string;
-begin result := '%sampere hours' end;
-
-class function TAmpereHourQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TAmpereHourQty.Exponents: TExponents;
-begin result := [1]; end;
-
-class function TAmpereHourQty.ToBaseFactor: double;
-begin result := 3600; end;
+class function TAmpereHourQty.Symbol: string; begin result := '%sA·h' end;
+class function TAmpereHourQty.SingularName: string; begin result := '%sampere hour' end;
+class function TAmpereHourQty.PluralName: string; begin result := '%sampere hours' end;
+class function TAmpereHourQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TAmpereHourQty.Exponents: TExponents; begin result := [1]; end;
+class function TAmpereHourQty.ToBaseFactor: double; begin result := 3600; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareCoulombQty}{$i adim.inc}
-class function TSquareCoulombQty.Symbol: string;
-begin result := '%sC2' end;
-
-class function TSquareCoulombQty.SingularName: string;
-begin result := 'square %scoulomb' end;
-
-class function TSquareCoulombQty.PluralName: string;
-begin result := 'square %scoulombs' end;
-
-class function TSquareCoulombQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TSquareCoulombQty.Exponents: TExponents;
-begin result := [2]; end;
+class function TSquareCoulombQty.Symbol: string; begin result := '%sC2' end;
+class function TSquareCoulombQty.SingularName: string; begin result := 'square %scoulomb' end;
+class function TSquareCoulombQty.PluralName: string; begin result := 'square %scoulombs' end;
+class function TSquareCoulombQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TSquareCoulombQty.Exponents: TExponents; begin result := [2]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TVoltQty}{$i adim.inc}
-class function TVoltQty.Symbol: string;
-begin result := '%sV' end;
-
-class function TVoltQty.SingularName: string;
-begin result := '%svolt' end;
-
-class function TVoltQty.PluralName: string;
-begin result := '%svolts' end;
-
-class function TVoltQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TVoltQty.Exponents: TExponents;
-begin result := [1]; end;
+class function TVoltQty.Symbol: string; begin result := '%sV' end;
+class function TVoltQty.SingularName: string; begin result := '%svolt' end;
+class function TVoltQty.PluralName: string; begin result := '%svolts' end;
+class function TVoltQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TVoltQty.Exponents: TExponents; begin result := [1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareVoltQty}{$i adim.inc}
-class function TSquareVoltQty.Symbol: string;
-begin result := '%sV2' end;
-
-class function TSquareVoltQty.SingularName: string;
-begin result := 'square %svolt' end;
-
-class function TSquareVoltQty.PluralName: string;
-begin result := 'square %svolts' end;
-
-class function TSquareVoltQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TSquareVoltQty.Exponents: TExponents;
-begin result := [2]; end;
+class function TSquareVoltQty.Symbol: string; begin result := '%sV2' end;
+class function TSquareVoltQty.SingularName: string; begin result := 'square %svolt' end;
+class function TSquareVoltQty.PluralName: string; begin result := 'square %svolts' end;
+class function TSquareVoltQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TSquareVoltQty.Exponents: TExponents; begin result := [2]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TFaradQty}{$i adim.inc}
-class function TFaradQty.Symbol: string;
-begin result := '%sF' end;
-
-class function TFaradQty.SingularName: string;
-begin result := '%sfarad' end;
-
-class function TFaradQty.PluralName: string;
-begin result := '%sfarads' end;
-
-class function TFaradQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TFaradQty.Exponents: TExponents;
-begin result := [1]; end;
+class function TFaradQty.Symbol: string; begin result := '%sF' end;
+class function TFaradQty.SingularName: string; begin result := '%sfarad' end;
+class function TFaradQty.PluralName: string; begin result := '%sfarads' end;
+class function TFaradQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TFaradQty.Exponents: TExponents; begin result := [1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TOhmQty}{$i adim.inc}
-class function TOhmQty.Symbol: string;
-begin result := '%sΩ' end;
-
-class function TOhmQty.SingularName: string;
-begin result := '%sohm' end;
-
-class function TOhmQty.PluralName: string;
-begin result := '%sohms' end;
-
-class function TOhmQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TOhmQty.Exponents: TExponents;
-begin result := [1]; end;
+class function TOhmQty.Symbol: string; begin result := '%sΩ' end;
+class function TOhmQty.SingularName: string; begin result := '%sohm' end;
+class function TOhmQty.PluralName: string; begin result := '%sohms' end;
+class function TOhmQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TOhmQty.Exponents: TExponents; begin result := [1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSiemensQty}{$i adim.inc}
-class function TSiemensQty.Symbol: string;
-begin result := '%sS' end;
-
-class function TSiemensQty.SingularName: string;
-begin result := '%ssiemens' end;
-
-class function TSiemensQty.PluralName: string;
-begin result := '%ssiemens' end;
-
-class function TSiemensQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TSiemensQty.Exponents: TExponents;
-begin result := [1]; end;
+class function TSiemensQty.Symbol: string; begin result := '%sS' end;
+class function TSiemensQty.SingularName: string; begin result := '%ssiemens' end;
+class function TSiemensQty.PluralName: string; begin result := '%ssiemens' end;
+class function TSiemensQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TSiemensQty.Exponents: TExponents; begin result := [1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TWeberQty}{$i adim.inc}
-class function TWeberQty.Symbol: string;
-begin result := '%sWb' end;
-
-class function TWeberQty.SingularName: string;
-begin result := '%sweber' end;
-
-class function TWeberQty.PluralName: string;
-begin result := '%swebers' end;
-
-class function TWeberQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TWeberQty.Exponents: TExponents;
-begin result := [1]; end;
+class function TWeberQty.Symbol: string; begin result := '%sWb' end;
+class function TWeberQty.SingularName: string; begin result := '%sweber' end;
+class function TWeberQty.PluralName: string; begin result := '%swebers' end;
+class function TWeberQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TWeberQty.Exponents: TExponents; begin result := [1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TTeslaQty}{$i adim.inc}
-class function TTeslaQty.Symbol: string;
-begin result := '%sT' end;
-
-class function TTeslaQty.SingularName: string;
-begin result := '%stesla' end;
-
-class function TTeslaQty.PluralName: string;
-begin result := '%steslas' end;
-
-class function TTeslaQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TTeslaQty.Exponents: TExponents;
-begin result := [1]; end;
+class function TTeslaQty.Symbol: string; begin result := '%sT' end;
+class function TTeslaQty.SingularName: string; begin result := '%stesla' end;
+class function TTeslaQty.PluralName: string; begin result := '%steslas' end;
+class function TTeslaQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TTeslaQty.Exponents: TExponents; begin result := [1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=THenryQty}{$i adim.inc}
-class function THenryQty.Symbol: string;
-begin result := '%sH' end;
-
-class function THenryQty.SingularName: string;
-begin result := '%shenry' end;
-
-class function THenryQty.PluralName: string;
-begin result := '%shenries' end;
-
-class function THenryQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function THenryQty.Exponents: TExponents;
-begin result := [1]; end;
+class function THenryQty.Symbol: string; begin result := '%sH' end;
+class function THenryQty.SingularName: string; begin result := '%shenry' end;
+class function THenryQty.PluralName: string; begin result := '%shenries' end;
+class function THenryQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function THenryQty.Exponents: TExponents; begin result := [1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TLumenQty}{$i adim.inc}
-class function TLumenQty.Symbol: string;
-begin result := '%slm' end;
-
-class function TLumenQty.SingularName: string;
-begin result := '%slumen' end;
-
-class function TLumenQty.PluralName: string;
-begin result := '%slumens' end;
-
-class function TLumenQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TLumenQty.Exponents: TExponents;
-begin result := [1]; end;
+class function TLumenQty.Symbol: string; begin result := '%slm' end;
+class function TLumenQty.SingularName: string; begin result := '%slumen' end;
+class function TLumenQty.PluralName: string; begin result := '%slumens' end;
+class function TLumenQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TLumenQty.Exponents: TExponents; begin result := [1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TLuxQty}{$i adim.inc}
-class function TLuxQty.Symbol: string;
-begin result := '%slx' end;
-
-class function TLuxQty.SingularName: string;
-begin result := '%slux' end;
-
-class function TLuxQty.PluralName: string;
-begin result := '%slux' end;
-
-class function TLuxQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TLuxQty.Exponents: TExponents;
-begin result := [1]; end;
+class function TLuxQty.Symbol: string; begin result := '%slx' end;
+class function TLuxQty.SingularName: string; begin result := '%slux' end;
+class function TLuxQty.PluralName: string; begin result := '%slux' end;
+class function TLuxQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TLuxQty.Exponents: TExponents; begin result := [1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TBequerelQty}{$i adim.inc}
-class function TBequerelQty.Symbol: string;
-begin result := '%sBq' end;
-
-class function TBequerelQty.SingularName: string;
-begin result := '%sbequerel' end;
-
-class function TBequerelQty.PluralName: string;
-begin result := '%sbequerels' end;
-
-class function TBequerelQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TBequerelQty.Exponents: TExponents;
-begin result := [1]; end;
+class function TBequerelQty.Symbol: string; begin result := '%sBq' end;
+class function TBequerelQty.SingularName: string; begin result := '%sbequerel' end;
+class function TBequerelQty.PluralName: string; begin result := '%sbequerels' end;
+class function TBequerelQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TBequerelQty.Exponents: TExponents; begin result := [1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TGrayQty}{$i adim.inc}
-class function TGrayQty.Symbol: string;
-begin result := '%sGy' end;
-
-class function TGrayQty.SingularName: string;
-begin result := '%sgray' end;
-
-class function TGrayQty.PluralName: string;
-begin result := '%sgrays' end;
-
-class function TGrayQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TGrayQty.Exponents: TExponents;
-begin result := [1]; end;
+class function TGrayQty.Symbol: string; begin result := '%sGy' end;
+class function TGrayQty.SingularName: string; begin result := '%sgray' end;
+class function TGrayQty.PluralName: string; begin result := '%sgrays' end;
+class function TGrayQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TGrayQty.Exponents: TExponents; begin result := [1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSievertQty}{$i adim.inc}
-class function TSievertQty.Symbol: string;
-begin result := '%sSv' end;
-
-class function TSievertQty.SingularName: string;
-begin result := '%ssievert' end;
-
-class function TSievertQty.PluralName: string;
-begin result := '%ssieverts' end;
-
-class function TSievertQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TSievertQty.Exponents: TExponents;
-begin result := [1]; end;
+class function TSievertQty.Symbol: string; begin result := '%sSv' end;
+class function TSievertQty.SingularName: string; begin result := '%ssievert' end;
+class function TSievertQty.PluralName: string; begin result := '%ssieverts' end;
+class function TSievertQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TSievertQty.Exponents: TExponents; begin result := [1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKatalQty}{$i adim.inc}
-class function TKatalQty.Symbol: string;
-begin result := '%skat' end;
-
-class function TKatalQty.SingularName: string;
-begin result := '%skatal' end;
-
-class function TKatalQty.PluralName: string;
-begin result := '%skatals' end;
-
-class function TKatalQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TKatalQty.Exponents: TExponents;
-begin result := [1]; end;
+class function TKatalQty.Symbol: string; begin result := '%skat' end;
+class function TKatalQty.SingularName: string; begin result := '%skatal' end;
+class function TKatalQty.PluralName: string; begin result := '%skatals' end;
+class function TKatalQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TKatalQty.Exponents: TExponents; begin result := [1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TJoulePerRadianQty}{$i adim.inc}
-class function TJoulePerRadianQty.Symbol: string;
-begin result := '%sJ/rad' end;
-
-class function TJoulePerRadianQty.SingularName: string;
-begin result := '%sjoule per radian' end;
-
-class function TJoulePerRadianQty.PluralName: string;
-begin result := '%sjoules per radian' end;
-
-class function TJoulePerRadianQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TJoulePerRadianQty.Exponents: TExponents;
-begin result := [1]; end;
+class function TJoulePerRadianQty.Symbol: string; begin result := '%sJ/rad' end;
+class function TJoulePerRadianQty.SingularName: string; begin result := '%sjoule per radian' end;
+class function TJoulePerRadianQty.PluralName: string; begin result := '%sjoules per radian' end;
+class function TJoulePerRadianQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TJoulePerRadianQty.Exponents: TExponents; begin result := [1]; end;
 
 {$DEFINE IMPL_FACTORED}{$DEFINE TQuantity:=TJoulePerDegreeQty}{$i adim.inc}
-class function TJoulePerDegreeQty.Symbol: string;
-begin result := '%sJ/deg' end;
-
-class function TJoulePerDegreeQty.SingularName: string;
-begin result := '%sjoule per degree' end;
-
-class function TJoulePerDegreeQty.PluralName: string;
-begin result := '%sjoules per degree' end;
-
-class function TJoulePerDegreeQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TJoulePerDegreeQty.Exponents: TExponents;
-begin result := [1]; end;
-
-class function TJoulePerDegreeQty.ToBaseFactor: double;
-begin result := 180/Pi; end;
+class function TJoulePerDegreeQty.Symbol: string; begin result := '%sJ/deg' end;
+class function TJoulePerDegreeQty.SingularName: string; begin result := '%sjoule per degree' end;
+class function TJoulePerDegreeQty.PluralName: string; begin result := '%sjoules per degree' end;
+class function TJoulePerDegreeQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TJoulePerDegreeQty.Exponents: TExponents; begin result := [1]; end;
+class function TJoulePerDegreeQty.ToBaseFactor: double; begin result := 180/Pi; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNewtonMeterPerRadianQty}{$i adim.inc}
-class function TNewtonMeterPerRadianQty.Symbol: string;
-begin result := '%sN·%sm/rad' end;
-
-class function TNewtonMeterPerRadianQty.SingularName: string;
-begin result := '%snewton %smeter per radian' end;
-
-class function TNewtonMeterPerRadianQty.PluralName: string;
-begin result := '%snewton %smeters per radian' end;
-
-class function TNewtonMeterPerRadianQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TNewtonMeterPerRadianQty.Exponents: TExponents;
-begin result := [1, 1]; end;
+class function TNewtonMeterPerRadianQty.Symbol: string; begin result := '%sN·%sm/rad' end;
+class function TNewtonMeterPerRadianQty.SingularName: string; begin result := '%snewton %smeter per radian' end;
+class function TNewtonMeterPerRadianQty.PluralName: string; begin result := '%snewton %smeters per radian' end;
+class function TNewtonMeterPerRadianQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TNewtonMeterPerRadianQty.Exponents: TExponents; begin result := [1, 1]; end;
 
 {$DEFINE IMPL_FACTORED}{$DEFINE TQuantity:=TNewtonMeterPerDegreeQty}{$i adim.inc}
-class function TNewtonMeterPerDegreeQty.Symbol: string;
-begin result := '%sN·%sm/deg' end;
-
-class function TNewtonMeterPerDegreeQty.SingularName: string;
-begin result := '%snewton %smeter per degree' end;
-
-class function TNewtonMeterPerDegreeQty.PluralName: string;
-begin result := '%snewton %smeters per degree' end;
-
-class function TNewtonMeterPerDegreeQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TNewtonMeterPerDegreeQty.Exponents: TExponents;
-begin result := [1, 1]; end;
-
-class function TNewtonMeterPerDegreeQty.ToBaseFactor: double;
-begin result := 180/Pi; end;
+class function TNewtonMeterPerDegreeQty.Symbol: string; begin result := '%sN·%sm/deg' end;
+class function TNewtonMeterPerDegreeQty.SingularName: string; begin result := '%snewton %smeter per degree' end;
+class function TNewtonMeterPerDegreeQty.PluralName: string; begin result := '%snewton %smeters per degree' end;
+class function TNewtonMeterPerDegreeQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TNewtonMeterPerDegreeQty.Exponents: TExponents; begin result := [1, 1]; end;
+class function TNewtonMeterPerDegreeQty.ToBaseFactor: double; begin result := 180/Pi; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNewtonPerCubicMeterQty}{$i adim.inc}
-class function TNewtonPerCubicMeterQty.Symbol: string;
-begin result := '%sN/%sm3' end;
-
-class function TNewtonPerCubicMeterQty.SingularName: string;
-begin result := '%snewton per cubic %smeter' end;
-
-class function TNewtonPerCubicMeterQty.PluralName: string;
-begin result := '%snewtons per cubic %smeter' end;
-
-class function TNewtonPerCubicMeterQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TNewtonPerCubicMeterQty.Exponents: TExponents;
-begin result := [1, -3]; end;
+class function TNewtonPerCubicMeterQty.Symbol: string; begin result := '%sN/%sm3' end;
+class function TNewtonPerCubicMeterQty.SingularName: string; begin result := '%snewton per cubic %smeter' end;
+class function TNewtonPerCubicMeterQty.PluralName: string; begin result := '%snewtons per cubic %smeter' end;
+class function TNewtonPerCubicMeterQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TNewtonPerCubicMeterQty.Exponents: TExponents; begin result := [1, -3]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNewtonPerMeterQty}{$i adim.inc}
-class function TNewtonPerMeterQty.Symbol: string;
-begin result := '%sN/%sm' end;
-
-class function TNewtonPerMeterQty.SingularName: string;
-begin result := '%snewton per %smeter' end;
-
-class function TNewtonPerMeterQty.PluralName: string;
-begin result := '%snewtons per %smeter' end;
-
-class function TNewtonPerMeterQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TNewtonPerMeterQty.Exponents: TExponents;
-begin result := [1, -1]; end;
+class function TNewtonPerMeterQty.Symbol: string; begin result := '%sN/%sm' end;
+class function TNewtonPerMeterQty.SingularName: string; begin result := '%snewton per %smeter' end;
+class function TNewtonPerMeterQty.PluralName: string; begin result := '%snewtons per %smeter' end;
+class function TNewtonPerMeterQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TNewtonPerMeterQty.Exponents: TExponents; begin result := [1, -1]; end;
 
 {$DEFINE IMPL_FACTORED}{$DEFINE TQuantity:=TPoundForcePerInchQty}{$i adim.inc}
-class function TPoundForcePerInchQty.Symbol: string;
-begin result := 'lbf/in' end;
-
-class function TPoundForcePerInchQty.SingularName: string;
-begin result := 'pound-force per inch' end;
-
-class function TPoundForcePerInchQty.PluralName: string;
-begin result := 'pounds-force per inch' end;
-
-class function TPoundForcePerInchQty.Prefixes: TPrefixes;
-begin result := []; end;
-
-class function TPoundForcePerInchQty.Exponents: TExponents;
-begin result := []; end;
-
-class function TPoundForcePerInchQty.ToBaseFactor: double;
-begin result := 175.126835246476; end;
+class function TPoundForcePerInchQty.Symbol: string; begin result := 'lbf/in' end;
+class function TPoundForcePerInchQty.SingularName: string; begin result := 'pound-force per inch' end;
+class function TPoundForcePerInchQty.PluralName: string; begin result := 'pounds-force per inch' end;
+class function TPoundForcePerInchQty.Prefixes: TPrefixes; begin result := []; end;
+class function TPoundForcePerInchQty.Exponents: TExponents; begin result := []; end;
+class function TPoundForcePerInchQty.ToBaseFactor: double; begin result := 175.126835246476; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCubicMeterPerSecondQty}{$i adim.inc}
-class function TCubicMeterPerSecondQty.Symbol: string;
-begin result := '%sm3/%ss' end;
-
-class function TCubicMeterPerSecondQty.SingularName: string;
-begin result := 'cubic %smeter per %ssecond' end;
-
-class function TCubicMeterPerSecondQty.PluralName: string;
-begin result := 'cubic %smeters per %ssecond' end;
-
-class function TCubicMeterPerSecondQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TCubicMeterPerSecondQty.Exponents: TExponents;
-begin result := [3, -1]; end;
+class function TCubicMeterPerSecondQty.Symbol: string; begin result := '%sm3/%ss' end;
+class function TCubicMeterPerSecondQty.SingularName: string; begin result := 'cubic %smeter per %ssecond' end;
+class function TCubicMeterPerSecondQty.PluralName: string; begin result := 'cubic %smeters per %ssecond' end;
+class function TCubicMeterPerSecondQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TCubicMeterPerSecondQty.Exponents: TExponents; begin result := [3, -1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKilogramPerSecondQty}{$i adim.inc}
-class function TKilogramPerSecondQty.Symbol: string;
-begin result := '%sg/%ss' end;
-
-class function TKilogramPerSecondQty.SingularName: string;
-begin result := '%sgram per %ssecond' end;
-
-class function TKilogramPerSecondQty.PluralName: string;
-begin result := '%sgrams per %ssecond' end;
-
-class function TKilogramPerSecondQty.Prefixes: TPrefixes;
-begin result := [pKilo, pNone]; end;
-
-class function TKilogramPerSecondQty.Exponents: TExponents;
-begin result := [1, -1]; end;
+class function TKilogramPerSecondQty.Symbol: string; begin result := '%sg/%ss' end;
+class function TKilogramPerSecondQty.SingularName: string; begin result := '%sgram per %ssecond' end;
+class function TKilogramPerSecondQty.PluralName: string; begin result := '%sgrams per %ssecond' end;
+class function TKilogramPerSecondQty.Prefixes: TPrefixes; begin result := [pKilo, pNone]; end;
+class function TKilogramPerSecondQty.Exponents: TExponents; begin result := [1, -1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TPoiseuilleQty}{$i adim.inc}
-class function TPoiseuilleQty.Symbol: string;
-begin result := '%sPl' end;
-
-class function TPoiseuilleQty.SingularName: string;
-begin result := '%spoiseuille' end;
-
-class function TPoiseuilleQty.PluralName: string;
-begin result := '%spoiseuilles' end;
-
-class function TPoiseuilleQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TPoiseuilleQty.Exponents: TExponents;
-begin result := [1]; end;
+class function TPoiseuilleQty.Symbol: string; begin result := '%sPl' end;
+class function TPoiseuilleQty.SingularName: string; begin result := '%spoiseuille' end;
+class function TPoiseuilleQty.PluralName: string; begin result := '%spoiseuilles' end;
+class function TPoiseuilleQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TPoiseuilleQty.Exponents: TExponents; begin result := [1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TPascalSecondQty}{$i adim.inc}
-class function TPascalSecondQty.Symbol: string;
-begin result := '%sPa·%ss' end;
-
-class function TPascalSecondQty.SingularName: string;
-begin result := '%spascal %ssecond' end;
-
-class function TPascalSecondQty.PluralName: string;
-begin result := '%spascal %sseconds' end;
-
-class function TPascalSecondQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TPascalSecondQty.Exponents: TExponents;
-begin result := [1, 1]; end;
+class function TPascalSecondQty.Symbol: string; begin result := '%sPa·%ss' end;
+class function TPascalSecondQty.SingularName: string; begin result := '%spascal %ssecond' end;
+class function TPascalSecondQty.PluralName: string; begin result := '%spascal %sseconds' end;
+class function TPascalSecondQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TPascalSecondQty.Exponents: TExponents; begin result := [1, 1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareMeterPerSecondQty}{$i adim.inc}
-class function TSquareMeterPerSecondQty.Symbol: string;
-begin result := '%sm2/%ss' end;
-
-class function TSquareMeterPerSecondQty.SingularName: string;
-begin result := 'square %smeter per %ssecond' end;
-
-class function TSquareMeterPerSecondQty.PluralName: string;
-begin result := 'square %smeters per %ssecond' end;
-
-class function TSquareMeterPerSecondQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TSquareMeterPerSecondQty.Exponents: TExponents;
-begin result := [2, -1]; end;
+class function TSquareMeterPerSecondQty.Symbol: string; begin result := '%sm2/%ss' end;
+class function TSquareMeterPerSecondQty.SingularName: string; begin result := 'square %smeter per %ssecond' end;
+class function TSquareMeterPerSecondQty.PluralName: string; begin result := 'square %smeters per %ssecond' end;
+class function TSquareMeterPerSecondQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TSquareMeterPerSecondQty.Exponents: TExponents; begin result := [2, -1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKilogramPerQuarticMeterQty}{$i adim.inc}
-class function TKilogramPerQuarticMeterQty.Symbol: string;
-begin result := '%sg/%sm4' end;
-
-class function TKilogramPerQuarticMeterQty.SingularName: string;
-begin result := '%sgram per quartic %smeter' end;
-
-class function TKilogramPerQuarticMeterQty.PluralName: string;
-begin result := '%sgrams per quartic %smeter' end;
-
-class function TKilogramPerQuarticMeterQty.Prefixes: TPrefixes;
-begin result := [pKilo, pNone]; end;
-
-class function TKilogramPerQuarticMeterQty.Exponents: TExponents;
-begin result := [1, -4]; end;
+class function TKilogramPerQuarticMeterQty.Symbol: string; begin result := '%sg/%sm4' end;
+class function TKilogramPerQuarticMeterQty.SingularName: string; begin result := '%sgram per quartic %smeter' end;
+class function TKilogramPerQuarticMeterQty.PluralName: string; begin result := '%sgrams per quartic %smeter' end;
+class function TKilogramPerQuarticMeterQty.Prefixes: TPrefixes; begin result := [pKilo, pNone]; end;
+class function TKilogramPerQuarticMeterQty.Exponents: TExponents; begin result := [1, -4]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TQuarticMeterSecondQty}{$i adim.inc}
-class function TQuarticMeterSecondQty.Symbol: string;
-begin result := '%sm4·%ss' end;
-
-class function TQuarticMeterSecondQty.SingularName: string;
-begin result := 'quartic %smeter %ssecond' end;
-
-class function TQuarticMeterSecondQty.PluralName: string;
-begin result := 'quartic %smeter %sseconds' end;
-
-class function TQuarticMeterSecondQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TQuarticMeterSecondQty.Exponents: TExponents;
-begin result := [4, 1]; end;
+class function TQuarticMeterSecondQty.Symbol: string; begin result := '%sm4·%ss' end;
+class function TQuarticMeterSecondQty.SingularName: string; begin result := 'quartic %smeter %ssecond' end;
+class function TQuarticMeterSecondQty.PluralName: string; begin result := 'quartic %smeter %sseconds' end;
+class function TQuarticMeterSecondQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TQuarticMeterSecondQty.Exponents: TExponents; begin result := [4, 1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKilogramPerQuarticMeterPerSecondQty}{$i adim.inc}
-class function TKilogramPerQuarticMeterPerSecondQty.Symbol: string;
-begin result := '%sg/%sm4/%ss' end;
-
-class function TKilogramPerQuarticMeterPerSecondQty.SingularName: string;
-begin result := '%sgram per quartic %smeter per %ssecond' end;
-
-class function TKilogramPerQuarticMeterPerSecondQty.PluralName: string;
-begin result := '%sgrams per quartic %smeter per %ssecond' end;
-
-class function TKilogramPerQuarticMeterPerSecondQty.Prefixes: TPrefixes;
-begin result := [pKilo, pNone, pNone]; end;
-
-class function TKilogramPerQuarticMeterPerSecondQty.Exponents: TExponents;
-begin result := [1, -4, -1]; end;
+class function TKilogramPerQuarticMeterPerSecondQty.Symbol: string; begin result := '%sg/%sm4/%ss' end;
+class function TKilogramPerQuarticMeterPerSecondQty.SingularName: string; begin result := '%sgram per quartic %smeter per %ssecond' end;
+class function TKilogramPerQuarticMeterPerSecondQty.PluralName: string; begin result := '%sgrams per quartic %smeter per %ssecond' end;
+class function TKilogramPerQuarticMeterPerSecondQty.Prefixes: TPrefixes; begin result := [pKilo, pNone, pNone]; end;
+class function TKilogramPerQuarticMeterPerSecondQty.Exponents: TExponents; begin result := [1, -4, -1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCubicMeterPerKilogramQty}{$i adim.inc}
-class function TCubicMeterPerKilogramQty.Symbol: string;
-begin result := '%sm3/%sg' end;
-
-class function TCubicMeterPerKilogramQty.SingularName: string;
-begin result := 'cubic %smeter per %sgram' end;
-
-class function TCubicMeterPerKilogramQty.PluralName: string;
-begin result := 'cubic %smeters per %sgram' end;
-
-class function TCubicMeterPerKilogramQty.Prefixes: TPrefixes;
-begin result := [pNone, pKilo]; end;
-
-class function TCubicMeterPerKilogramQty.Exponents: TExponents;
-begin result := [3, -1]; end;
+class function TCubicMeterPerKilogramQty.Symbol: string; begin result := '%sm3/%sg' end;
+class function TCubicMeterPerKilogramQty.SingularName: string; begin result := 'cubic %smeter per %sgram' end;
+class function TCubicMeterPerKilogramQty.PluralName: string; begin result := 'cubic %smeters per %sgram' end;
+class function TCubicMeterPerKilogramQty.Prefixes: TPrefixes; begin result := [pNone, pKilo]; end;
+class function TCubicMeterPerKilogramQty.Exponents: TExponents; begin result := [3, -1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKilogramSquareSecondQty}{$i adim.inc}
-class function TKilogramSquareSecondQty.Symbol: string;
-begin result := '%sg·%ss2' end;
-
-class function TKilogramSquareSecondQty.SingularName: string;
-begin result := '%sgram square %ssecond' end;
-
-class function TKilogramSquareSecondQty.PluralName: string;
-begin result := '%sgram square %sseconds' end;
-
-class function TKilogramSquareSecondQty.Prefixes: TPrefixes;
-begin result := [pKilo, pNone]; end;
-
-class function TKilogramSquareSecondQty.Exponents: TExponents;
-begin result := [1, 2]; end;
+class function TKilogramSquareSecondQty.Symbol: string; begin result := '%sg·%ss2' end;
+class function TKilogramSquareSecondQty.SingularName: string; begin result := '%sgram square %ssecond' end;
+class function TKilogramSquareSecondQty.PluralName: string; begin result := '%sgram square %sseconds' end;
+class function TKilogramSquareSecondQty.Prefixes: TPrefixes; begin result := [pKilo, pNone]; end;
+class function TKilogramSquareSecondQty.Exponents: TExponents; begin result := [1, 2]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCubicMeterPerSquareSecondQty}{$i adim.inc}
-class function TCubicMeterPerSquareSecondQty.Symbol: string;
-begin result := '%sm3/%ss2' end;
-
-class function TCubicMeterPerSquareSecondQty.SingularName: string;
-begin result := 'cubic %smeter per square %ssecond' end;
-
-class function TCubicMeterPerSquareSecondQty.PluralName: string;
-begin result := 'cubic %smeters per square %ssecond' end;
-
-class function TCubicMeterPerSquareSecondQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TCubicMeterPerSquareSecondQty.Exponents: TExponents;
-begin result := [3, -2]; end;
+class function TCubicMeterPerSquareSecondQty.Symbol: string; begin result := '%sm3/%ss2' end;
+class function TCubicMeterPerSquareSecondQty.SingularName: string; begin result := 'cubic %smeter per square %ssecond' end;
+class function TCubicMeterPerSquareSecondQty.PluralName: string; begin result := 'cubic %smeters per square %ssecond' end;
+class function TCubicMeterPerSquareSecondQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TCubicMeterPerSquareSecondQty.Exponents: TExponents; begin result := [3, -2]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNewtonSquareMeterQty}{$i adim.inc}
-class function TNewtonSquareMeterQty.Symbol: string;
-begin result := '%sN·%sm2' end;
-
-class function TNewtonSquareMeterQty.SingularName: string;
-begin result := '%snewton square %smeter' end;
-
-class function TNewtonSquareMeterQty.PluralName: string;
-begin result := '%snewton square %smeters' end;
-
-class function TNewtonSquareMeterQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TNewtonSquareMeterQty.Exponents: TExponents;
-begin result := [1, 2]; end;
+class function TNewtonSquareMeterQty.Symbol: string; begin result := '%sN·%sm2' end;
+class function TNewtonSquareMeterQty.SingularName: string; begin result := '%snewton square %smeter' end;
+class function TNewtonSquareMeterQty.PluralName: string; begin result := '%snewton square %smeters' end;
+class function TNewtonSquareMeterQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TNewtonSquareMeterQty.Exponents: TExponents; begin result := [1, 2]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNewtonPerSquareKilogramQty}{$i adim.inc}
-class function TNewtonPerSquareKilogramQty.Symbol: string;
-begin result := '%sN/%sg2' end;
-
-class function TNewtonPerSquareKilogramQty.SingularName: string;
-begin result := '%snewton per square %sgram' end;
-
-class function TNewtonPerSquareKilogramQty.PluralName: string;
-begin result := '%snewtons per square %sgram' end;
-
-class function TNewtonPerSquareKilogramQty.Prefixes: TPrefixes;
-begin result := [pNone, pKilo]; end;
-
-class function TNewtonPerSquareKilogramQty.Exponents: TExponents;
-begin result := [1, -2]; end;
+class function TNewtonPerSquareKilogramQty.Symbol: string; begin result := '%sN/%sg2' end;
+class function TNewtonPerSquareKilogramQty.SingularName: string; begin result := '%snewton per square %sgram' end;
+class function TNewtonPerSquareKilogramQty.PluralName: string; begin result := '%snewtons per square %sgram' end;
+class function TNewtonPerSquareKilogramQty.Prefixes: TPrefixes; begin result := [pNone, pKilo]; end;
+class function TNewtonPerSquareKilogramQty.Exponents: TExponents; begin result := [1, -2]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareKilogramPerMeterQty}{$i adim.inc}
-class function TSquareKilogramPerMeterQty.Symbol: string;
-begin result := '%sg2/%sm' end;
-
-class function TSquareKilogramPerMeterQty.SingularName: string;
-begin result := 'square %sgram per %smeter' end;
-
-class function TSquareKilogramPerMeterQty.PluralName: string;
-begin result := 'square %sgrams per %smeter' end;
-
-class function TSquareKilogramPerMeterQty.Prefixes: TPrefixes;
-begin result := [pKilo, pNone]; end;
-
-class function TSquareKilogramPerMeterQty.Exponents: TExponents;
-begin result := [2, -1]; end;
+class function TSquareKilogramPerMeterQty.Symbol: string; begin result := '%sg2/%sm' end;
+class function TSquareKilogramPerMeterQty.SingularName: string; begin result := 'square %sgram per %smeter' end;
+class function TSquareKilogramPerMeterQty.PluralName: string; begin result := 'square %sgrams per %smeter' end;
+class function TSquareKilogramPerMeterQty.Prefixes: TPrefixes; begin result := [pKilo, pNone]; end;
+class function TSquareKilogramPerMeterQty.Exponents: TExponents; begin result := [2, -1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareKilogramPerSquareMeterQty}{$i adim.inc}
-class function TSquareKilogramPerSquareMeterQty.Symbol: string;
-begin result := '%sg2/%sm2' end;
-
-class function TSquareKilogramPerSquareMeterQty.SingularName: string;
-begin result := 'square %sgram per square %smeter' end;
-
-class function TSquareKilogramPerSquareMeterQty.PluralName: string;
-begin result := 'square %sgrams per square %smeter' end;
-
-class function TSquareKilogramPerSquareMeterQty.Prefixes: TPrefixes;
-begin result := [pKilo, pNone]; end;
-
-class function TSquareKilogramPerSquareMeterQty.Exponents: TExponents;
-begin result := [2, -2]; end;
+class function TSquareKilogramPerSquareMeterQty.Symbol: string; begin result := '%sg2/%sm2' end;
+class function TSquareKilogramPerSquareMeterQty.SingularName: string; begin result := 'square %sgram per square %smeter' end;
+class function TSquareKilogramPerSquareMeterQty.PluralName: string; begin result := 'square %sgrams per square %smeter' end;
+class function TSquareKilogramPerSquareMeterQty.Prefixes: TPrefixes; begin result := [pKilo, pNone]; end;
+class function TSquareKilogramPerSquareMeterQty.Exponents: TExponents; begin result := [2, -2]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareMeterPerSquareKilogramQty}{$i adim.inc}
-class function TSquareMeterPerSquareKilogramQty.Symbol: string;
-begin result := '%sm2/%sg2' end;
-
-class function TSquareMeterPerSquareKilogramQty.SingularName: string;
-begin result := 'square %smeter per square %sgram' end;
-
-class function TSquareMeterPerSquareKilogramQty.PluralName: string;
-begin result := 'square %smeters per square %sgram' end;
-
-class function TSquareMeterPerSquareKilogramQty.Prefixes: TPrefixes;
-begin result := [pNone, pKilo]; end;
-
-class function TSquareMeterPerSquareKilogramQty.Exponents: TExponents;
-begin result := [2, -2]; end;
+class function TSquareMeterPerSquareKilogramQty.Symbol: string; begin result := '%sm2/%sg2' end;
+class function TSquareMeterPerSquareKilogramQty.SingularName: string; begin result := 'square %smeter per square %sgram' end;
+class function TSquareMeterPerSquareKilogramQty.PluralName: string; begin result := 'square %smeters per square %sgram' end;
+class function TSquareMeterPerSquareKilogramQty.Prefixes: TPrefixes; begin result := [pNone, pKilo]; end;
+class function TSquareMeterPerSquareKilogramQty.Exponents: TExponents; begin result := [2, -2]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNewtonSquareMeterPerSquareKilogramQty}{$i adim.inc}
-class function TNewtonSquareMeterPerSquareKilogramQty.Symbol: string;
-begin result := '%sN·%sm2/%sg2' end;
-
-class function TNewtonSquareMeterPerSquareKilogramQty.SingularName: string;
-begin result := '%snewton square %smeter per square %sgram' end;
-
-class function TNewtonSquareMeterPerSquareKilogramQty.PluralName: string;
-begin result := '%snewton square %smeters per square %sgram' end;
-
-class function TNewtonSquareMeterPerSquareKilogramQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone, pKilo]; end;
-
-class function TNewtonSquareMeterPerSquareKilogramQty.Exponents: TExponents;
-begin result := [1, 2, -2]; end;
+class function TNewtonSquareMeterPerSquareKilogramQty.Symbol: string; begin result := '%sN·%sm2/%sg2' end;
+class function TNewtonSquareMeterPerSquareKilogramQty.SingularName: string; begin result := '%snewton square %smeter per square %sgram' end;
+class function TNewtonSquareMeterPerSquareKilogramQty.PluralName: string; begin result := '%snewton square %smeters per square %sgram' end;
+class function TNewtonSquareMeterPerSquareKilogramQty.Prefixes: TPrefixes; begin result := [pNone, pNone, pKilo]; end;
+class function TNewtonSquareMeterPerSquareKilogramQty.Exponents: TExponents; begin result := [1, 2, -2]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TReciprocalKelvinQty}{$i adim.inc}
-class function TReciprocalKelvinQty.Symbol: string;
-begin result := '1/%sK' end;
-
-class function TReciprocalKelvinQty.SingularName: string;
-begin result := 'reciprocal %skelvin' end;
-
-class function TReciprocalKelvinQty.PluralName: string;
-begin result := 'reciprocal %skelvin' end;
-
-class function TReciprocalKelvinQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TReciprocalKelvinQty.Exponents: TExponents;
-begin result := [-1]; end;
+class function TReciprocalKelvinQty.Symbol: string; begin result := '1/%sK' end;
+class function TReciprocalKelvinQty.SingularName: string; begin result := 'reciprocal %skelvin' end;
+class function TReciprocalKelvinQty.PluralName: string; begin result := 'reciprocal %skelvin' end;
+class function TReciprocalKelvinQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TReciprocalKelvinQty.Exponents: TExponents; begin result := [-1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKilogramKelvinQty}{$i adim.inc}
-class function TKilogramKelvinQty.Symbol: string;
-begin result := '%sg·%sK' end;
-
-class function TKilogramKelvinQty.SingularName: string;
-begin result := '%sgram %skelvin' end;
-
-class function TKilogramKelvinQty.PluralName: string;
-begin result := '%sgram %skelvins' end;
-
-class function TKilogramKelvinQty.Prefixes: TPrefixes;
-begin result := [pKilo, pNone]; end;
-
-class function TKilogramKelvinQty.Exponents: TExponents;
-begin result := [1, 1]; end;
+class function TKilogramKelvinQty.Symbol: string; begin result := '%sg·%sK' end;
+class function TKilogramKelvinQty.SingularName: string; begin result := '%sgram %skelvin' end;
+class function TKilogramKelvinQty.PluralName: string; begin result := '%sgram %skelvins' end;
+class function TKilogramKelvinQty.Prefixes: TPrefixes; begin result := [pKilo, pNone]; end;
+class function TKilogramKelvinQty.Exponents: TExponents; begin result := [1, 1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TJoulePerKelvinQty}{$i adim.inc}
-class function TJoulePerKelvinQty.Symbol: string;
-begin result := '%sJ/%sK' end;
-
-class function TJoulePerKelvinQty.SingularName: string;
-begin result := '%sjoule per %skelvin' end;
-
-class function TJoulePerKelvinQty.PluralName: string;
-begin result := '%sjoules per %skelvin' end;
-
-class function TJoulePerKelvinQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TJoulePerKelvinQty.Exponents: TExponents;
-begin result := [1, -1]; end;
+class function TJoulePerKelvinQty.Symbol: string; begin result := '%sJ/%sK' end;
+class function TJoulePerKelvinQty.SingularName: string; begin result := '%sjoule per %skelvin' end;
+class function TJoulePerKelvinQty.PluralName: string; begin result := '%sjoules per %skelvin' end;
+class function TJoulePerKelvinQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TJoulePerKelvinQty.Exponents: TExponents; begin result := [1, -1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TJoulePerKilogramQty}{$i adim.inc}
-class function TJoulePerKilogramQty.Symbol: string;
-begin result := '%sJ/%sg' end;
-
-class function TJoulePerKilogramQty.SingularName: string;
-begin result := '%sjoule per %sgram' end;
-
-class function TJoulePerKilogramQty.PluralName: string;
-begin result := '%sjoules per %sgram' end;
-
-class function TJoulePerKilogramQty.Prefixes: TPrefixes;
-begin result := [pNone, pKilo]; end;
-
-class function TJoulePerKilogramQty.Exponents: TExponents;
-begin result := [1, -1]; end;
+class function TJoulePerKilogramQty.Symbol: string; begin result := '%sJ/%sg' end;
+class function TJoulePerKilogramQty.SingularName: string; begin result := '%sjoule per %sgram' end;
+class function TJoulePerKilogramQty.PluralName: string; begin result := '%sjoules per %sgram' end;
+class function TJoulePerKilogramQty.Prefixes: TPrefixes; begin result := [pNone, pKilo]; end;
+class function TJoulePerKilogramQty.Exponents: TExponents; begin result := [1, -1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TJoulePerKilogramPerKelvinQty}{$i adim.inc}
-class function TJoulePerKilogramPerKelvinQty.Symbol: string;
-begin result := '%sJ/%sg/%sK' end;
-
-class function TJoulePerKilogramPerKelvinQty.SingularName: string;
-begin result := '%sjoule per %sgram per %skelvin' end;
-
-class function TJoulePerKilogramPerKelvinQty.PluralName: string;
-begin result := '%sjoules per %sgram per %skelvin' end;
-
-class function TJoulePerKilogramPerKelvinQty.Prefixes: TPrefixes;
-begin result := [pNone, pKilo, pNone]; end;
-
-class function TJoulePerKilogramPerKelvinQty.Exponents: TExponents;
-begin result := [1, -1, -1]; end;
+class function TJoulePerKilogramPerKelvinQty.Symbol: string; begin result := '%sJ/%sg/%sK' end;
+class function TJoulePerKilogramPerKelvinQty.SingularName: string; begin result := '%sjoule per %sgram per %skelvin' end;
+class function TJoulePerKilogramPerKelvinQty.PluralName: string; begin result := '%sjoules per %sgram per %skelvin' end;
+class function TJoulePerKilogramPerKelvinQty.Prefixes: TPrefixes; begin result := [pNone, pKilo, pNone]; end;
+class function TJoulePerKilogramPerKelvinQty.Exponents: TExponents; begin result := [1, -1, -1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TMeterKelvinQty}{$i adim.inc}
-class function TMeterKelvinQty.Symbol: string;
-begin result := '%sm·%sK' end;
-
-class function TMeterKelvinQty.SingularName: string;
-begin result := '%smeter %skelvin' end;
-
-class function TMeterKelvinQty.PluralName: string;
-begin result := '%smeter %skelvins' end;
-
-class function TMeterKelvinQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TMeterKelvinQty.Exponents: TExponents;
-begin result := [1, 1]; end;
+class function TMeterKelvinQty.Symbol: string; begin result := '%sm·%sK' end;
+class function TMeterKelvinQty.SingularName: string; begin result := '%smeter %skelvin' end;
+class function TMeterKelvinQty.PluralName: string; begin result := '%smeter %skelvins' end;
+class function TMeterKelvinQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TMeterKelvinQty.Exponents: TExponents; begin result := [1, 1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKelvinPerMeterQty}{$i adim.inc}
-class function TKelvinPerMeterQty.Symbol: string;
-begin result := '%sK/%sm' end;
-
-class function TKelvinPerMeterQty.SingularName: string;
-begin result := '%skelvin per %smeter' end;
-
-class function TKelvinPerMeterQty.PluralName: string;
-begin result := '%skelvins per %smeter' end;
-
-class function TKelvinPerMeterQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TKelvinPerMeterQty.Exponents: TExponents;
-begin result := [1, -1]; end;
+class function TKelvinPerMeterQty.Symbol: string; begin result := '%sK/%sm' end;
+class function TKelvinPerMeterQty.SingularName: string; begin result := '%skelvin per %smeter' end;
+class function TKelvinPerMeterQty.PluralName: string; begin result := '%skelvins per %smeter' end;
+class function TKelvinPerMeterQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TKelvinPerMeterQty.Exponents: TExponents; begin result := [1, -1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TWattPerMeterQty}{$i adim.inc}
-class function TWattPerMeterQty.Symbol: string;
-begin result := '%sW/%sm' end;
-
-class function TWattPerMeterQty.SingularName: string;
-begin result := '%swatt per %smeter' end;
-
-class function TWattPerMeterQty.PluralName: string;
-begin result := '%swatts per %smeter' end;
-
-class function TWattPerMeterQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TWattPerMeterQty.Exponents: TExponents;
-begin result := [1, -1]; end;
+class function TWattPerMeterQty.Symbol: string; begin result := '%sW/%sm' end;
+class function TWattPerMeterQty.SingularName: string; begin result := '%swatt per %smeter' end;
+class function TWattPerMeterQty.PluralName: string; begin result := '%swatts per %smeter' end;
+class function TWattPerMeterQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TWattPerMeterQty.Exponents: TExponents; begin result := [1, -1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TWattPerSquareMeterQty}{$i adim.inc}
-class function TWattPerSquareMeterQty.Symbol: string;
-begin result := '%sW/%sm2' end;
-
-class function TWattPerSquareMeterQty.SingularName: string;
-begin result := '%swatt per square %smeter' end;
-
-class function TWattPerSquareMeterQty.PluralName: string;
-begin result := '%swatts per square %smeter' end;
-
-class function TWattPerSquareMeterQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TWattPerSquareMeterQty.Exponents: TExponents;
-begin result := [1, -2]; end;
+class function TWattPerSquareMeterQty.Symbol: string; begin result := '%sW/%sm2' end;
+class function TWattPerSquareMeterQty.SingularName: string; begin result := '%swatt per square %smeter' end;
+class function TWattPerSquareMeterQty.PluralName: string; begin result := '%swatts per square %smeter' end;
+class function TWattPerSquareMeterQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TWattPerSquareMeterQty.Exponents: TExponents; begin result := [1, -2]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TWattPerKelvinQty}{$i adim.inc}
-class function TWattPerKelvinQty.Symbol: string;
-begin result := '%sW/%sK' end;
-
-class function TWattPerKelvinQty.SingularName: string;
-begin result := '%swatt per %skelvin' end;
-
-class function TWattPerKelvinQty.PluralName: string;
-begin result := '%swatts per %skelvin' end;
-
-class function TWattPerKelvinQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TWattPerKelvinQty.Exponents: TExponents;
-begin result := [1, -1]; end;
+class function TWattPerKelvinQty.Symbol: string; begin result := '%sW/%sK' end;
+class function TWattPerKelvinQty.SingularName: string; begin result := '%swatt per %skelvin' end;
+class function TWattPerKelvinQty.PluralName: string; begin result := '%swatts per %skelvin' end;
+class function TWattPerKelvinQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TWattPerKelvinQty.Exponents: TExponents; begin result := [1, -1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TWattPerMeterPerKelvinQty}{$i adim.inc}
-class function TWattPerMeterPerKelvinQty.Symbol: string;
-begin result := '%sW/%sm/%sK' end;
-
-class function TWattPerMeterPerKelvinQty.SingularName: string;
-begin result := '%swatt per %smeter per %skelvin' end;
-
-class function TWattPerMeterPerKelvinQty.PluralName: string;
-begin result := '%swatts per %smeter per %skelvin' end;
-
-class function TWattPerMeterPerKelvinQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone, pNone]; end;
-
-class function TWattPerMeterPerKelvinQty.Exponents: TExponents;
-begin result := [1, -1, -1]; end;
+class function TWattPerMeterPerKelvinQty.Symbol: string; begin result := '%sW/%sm/%sK' end;
+class function TWattPerMeterPerKelvinQty.SingularName: string; begin result := '%swatt per %smeter per %skelvin' end;
+class function TWattPerMeterPerKelvinQty.PluralName: string; begin result := '%swatts per %smeter per %skelvin' end;
+class function TWattPerMeterPerKelvinQty.Prefixes: TPrefixes; begin result := [pNone, pNone, pNone]; end;
+class function TWattPerMeterPerKelvinQty.Exponents: TExponents; begin result := [1, -1, -1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareMeterKelvinQty}{$i adim.inc}
-class function TSquareMeterKelvinQty.Symbol: string;
-begin result := '%sm2·%sK' end;
-
-class function TSquareMeterKelvinQty.SingularName: string;
-begin result := 'square %smeter %skelvin' end;
-
-class function TSquareMeterKelvinQty.PluralName: string;
-begin result := 'square %smeter %skelvins' end;
-
-class function TSquareMeterKelvinQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TSquareMeterKelvinQty.Exponents: TExponents;
-begin result := [2, 1]; end;
+class function TSquareMeterKelvinQty.Symbol: string; begin result := '%sm2·%sK' end;
+class function TSquareMeterKelvinQty.SingularName: string; begin result := 'square %smeter %skelvin' end;
+class function TSquareMeterKelvinQty.PluralName: string; begin result := 'square %smeter %skelvins' end;
+class function TSquareMeterKelvinQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TSquareMeterKelvinQty.Exponents: TExponents; begin result := [2, 1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TWattPerSquareMeterPerKelvinQty}{$i adim.inc}
-class function TWattPerSquareMeterPerKelvinQty.Symbol: string;
-begin result := '%sW/%sm2/%sK' end;
-
-class function TWattPerSquareMeterPerKelvinQty.SingularName: string;
-begin result := '%swatt per square %smeter per %skelvin' end;
-
-class function TWattPerSquareMeterPerKelvinQty.PluralName: string;
-begin result := '%swatts per square %smeter per %skelvin' end;
-
-class function TWattPerSquareMeterPerKelvinQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone, pNone]; end;
-
-class function TWattPerSquareMeterPerKelvinQty.Exponents: TExponents;
-begin result := [1, -2, -1]; end;
+class function TWattPerSquareMeterPerKelvinQty.Symbol: string; begin result := '%sW/%sm2/%sK' end;
+class function TWattPerSquareMeterPerKelvinQty.SingularName: string; begin result := '%swatt per square %smeter per %skelvin' end;
+class function TWattPerSquareMeterPerKelvinQty.PluralName: string; begin result := '%swatts per square %smeter per %skelvin' end;
+class function TWattPerSquareMeterPerKelvinQty.Prefixes: TPrefixes; begin result := [pNone, pNone, pNone]; end;
+class function TWattPerSquareMeterPerKelvinQty.Exponents: TExponents; begin result := [1, -2, -1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareMeterQuarticKelvinQty}{$i adim.inc}
-class function TSquareMeterQuarticKelvinQty.Symbol: string;
-begin result := '%sm2·%sK4' end;
-
-class function TSquareMeterQuarticKelvinQty.SingularName: string;
-begin result := 'square %smeter quartic %skelvin' end;
-
-class function TSquareMeterQuarticKelvinQty.PluralName: string;
-begin result := 'square %smeter quartic %skelvins' end;
-
-class function TSquareMeterQuarticKelvinQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TSquareMeterQuarticKelvinQty.Exponents: TExponents;
-begin result := [2, 4]; end;
+class function TSquareMeterQuarticKelvinQty.Symbol: string; begin result := '%sm2·%sK4' end;
+class function TSquareMeterQuarticKelvinQty.SingularName: string; begin result := 'square %smeter quartic %skelvin' end;
+class function TSquareMeterQuarticKelvinQty.PluralName: string; begin result := 'square %smeter quartic %skelvins' end;
+class function TSquareMeterQuarticKelvinQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TSquareMeterQuarticKelvinQty.Exponents: TExponents; begin result := [2, 4]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TWattPerQuarticKelvinQty}{$i adim.inc}
-class function TWattPerQuarticKelvinQty.Symbol: string;
-begin result := '%sW/%sK4' end;
-
-class function TWattPerQuarticKelvinQty.SingularName: string;
-begin result := '%swatt per quartic %skelvin' end;
-
-class function TWattPerQuarticKelvinQty.PluralName: string;
-begin result := '%swatts per quartic %skelvin' end;
-
-class function TWattPerQuarticKelvinQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TWattPerQuarticKelvinQty.Exponents: TExponents;
-begin result := [1, -4]; end;
+class function TWattPerQuarticKelvinQty.Symbol: string; begin result := '%sW/%sK4' end;
+class function TWattPerQuarticKelvinQty.SingularName: string; begin result := '%swatt per quartic %skelvin' end;
+class function TWattPerQuarticKelvinQty.PluralName: string; begin result := '%swatts per quartic %skelvin' end;
+class function TWattPerQuarticKelvinQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TWattPerQuarticKelvinQty.Exponents: TExponents; begin result := [1, -4]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TWattPerSquareMeterPerQuarticKelvinQty}{$i adim.inc}
-class function TWattPerSquareMeterPerQuarticKelvinQty.Symbol: string;
-begin result := '%sW/%sm2/%sK4' end;
-
-class function TWattPerSquareMeterPerQuarticKelvinQty.SingularName: string;
-begin result := '%swatt per square %smeter per quartic %skelvin' end;
-
-class function TWattPerSquareMeterPerQuarticKelvinQty.PluralName: string;
-begin result := '%swatts per square %smeter per quartic %skelvin' end;
-
-class function TWattPerSquareMeterPerQuarticKelvinQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone, pNone]; end;
-
-class function TWattPerSquareMeterPerQuarticKelvinQty.Exponents: TExponents;
-begin result := [1, -2, -4]; end;
+class function TWattPerSquareMeterPerQuarticKelvinQty.Symbol: string; begin result := '%sW/%sm2/%sK4' end;
+class function TWattPerSquareMeterPerQuarticKelvinQty.SingularName: string; begin result := '%swatt per square %smeter per quartic %skelvin' end;
+class function TWattPerSquareMeterPerQuarticKelvinQty.PluralName: string; begin result := '%swatts per square %smeter per quartic %skelvin' end;
+class function TWattPerSquareMeterPerQuarticKelvinQty.Prefixes: TPrefixes; begin result := [pNone, pNone, pNone]; end;
+class function TWattPerSquareMeterPerQuarticKelvinQty.Exponents: TExponents; begin result := [1, -2, -4]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TJoulePerMoleQty}{$i adim.inc}
-class function TJoulePerMoleQty.Symbol: string;
-begin result := '%sJ/%smol' end;
-
-class function TJoulePerMoleQty.SingularName: string;
-begin result := '%sjoule per %smole' end;
-
-class function TJoulePerMoleQty.PluralName: string;
-begin result := '%sjoules per %smole' end;
-
-class function TJoulePerMoleQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TJoulePerMoleQty.Exponents: TExponents;
-begin result := [1, -1]; end;
+class function TJoulePerMoleQty.Symbol: string; begin result := '%sJ/%smol' end;
+class function TJoulePerMoleQty.SingularName: string; begin result := '%sjoule per %smole' end;
+class function TJoulePerMoleQty.PluralName: string; begin result := '%sjoules per %smole' end;
+class function TJoulePerMoleQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TJoulePerMoleQty.Exponents: TExponents; begin result := [1, -1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TMoleKelvinQty}{$i adim.inc}
-class function TMoleKelvinQty.Symbol: string;
-begin result := '%smol·%sK' end;
-
-class function TMoleKelvinQty.SingularName: string;
-begin result := '%smole %skelvin' end;
-
-class function TMoleKelvinQty.PluralName: string;
-begin result := '%smole %skelvins' end;
-
-class function TMoleKelvinQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TMoleKelvinQty.Exponents: TExponents;
-begin result := [1, 1]; end;
+class function TMoleKelvinQty.Symbol: string; begin result := '%smol·%sK' end;
+class function TMoleKelvinQty.SingularName: string; begin result := '%smole %skelvin' end;
+class function TMoleKelvinQty.PluralName: string; begin result := '%smole %skelvins' end;
+class function TMoleKelvinQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TMoleKelvinQty.Exponents: TExponents; begin result := [1, 1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TJoulePerMolePerKelvinQty}{$i adim.inc}
-class function TJoulePerMolePerKelvinQty.Symbol: string;
-begin result := '%sJ/%smol/%sK' end;
-
-class function TJoulePerMolePerKelvinQty.SingularName: string;
-begin result := '%sjoule per %smole per %skelvin' end;
-
-class function TJoulePerMolePerKelvinQty.PluralName: string;
-begin result := '%sjoules per %smole per %skelvin' end;
-
-class function TJoulePerMolePerKelvinQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone, pNone]; end;
-
-class function TJoulePerMolePerKelvinQty.Exponents: TExponents;
-begin result := [1, -1, -1]; end;
+class function TJoulePerMolePerKelvinQty.Symbol: string; begin result := '%sJ/%smol/%sK' end;
+class function TJoulePerMolePerKelvinQty.SingularName: string; begin result := '%sjoule per %smole per %skelvin' end;
+class function TJoulePerMolePerKelvinQty.PluralName: string; begin result := '%sjoules per %smole per %skelvin' end;
+class function TJoulePerMolePerKelvinQty.Prefixes: TPrefixes; begin result := [pNone, pNone, pNone]; end;
+class function TJoulePerMolePerKelvinQty.Exponents: TExponents; begin result := [1, -1, -1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TOhmMeterQty}{$i adim.inc}
-class function TOhmMeterQty.Symbol: string;
-begin result := '%sΩ·%sm' end;
-
-class function TOhmMeterQty.SingularName: string;
-begin result := '%sohm %smeter' end;
-
-class function TOhmMeterQty.PluralName: string;
-begin result := '%sohm %smeters' end;
-
-class function TOhmMeterQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TOhmMeterQty.Exponents: TExponents;
-begin result := [1, 1]; end;
+class function TOhmMeterQty.Symbol: string; begin result := '%sΩ·%sm' end;
+class function TOhmMeterQty.SingularName: string; begin result := '%sohm %smeter' end;
+class function TOhmMeterQty.PluralName: string; begin result := '%sohm %smeters' end;
+class function TOhmMeterQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TOhmMeterQty.Exponents: TExponents; begin result := [1, 1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TVoltPerMeterQty}{$i adim.inc}
-class function TVoltPerMeterQty.Symbol: string;
-begin result := '%sV/%sm' end;
-
-class function TVoltPerMeterQty.SingularName: string;
-begin result := '%svolt per %smeter' end;
-
-class function TVoltPerMeterQty.PluralName: string;
-begin result := '%svolts per %smeter' end;
-
-class function TVoltPerMeterQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TVoltPerMeterQty.Exponents: TExponents;
-begin result := [1, -1]; end;
+class function TVoltPerMeterQty.Symbol: string; begin result := '%sV/%sm' end;
+class function TVoltPerMeterQty.SingularName: string; begin result := '%svolt per %smeter' end;
+class function TVoltPerMeterQty.PluralName: string; begin result := '%svolts per %smeter' end;
+class function TVoltPerMeterQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TVoltPerMeterQty.Exponents: TExponents; begin result := [1, -1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNewtonPerCoulombQty}{$i adim.inc}
-class function TNewtonPerCoulombQty.Symbol: string;
-begin result := '%sN/%sC' end;
-
-class function TNewtonPerCoulombQty.SingularName: string;
-begin result := '%snewton per %scoulomb' end;
-
-class function TNewtonPerCoulombQty.PluralName: string;
-begin result := '%snewtons per %scoulomb' end;
-
-class function TNewtonPerCoulombQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TNewtonPerCoulombQty.Exponents: TExponents;
-begin result := [1, -1]; end;
+class function TNewtonPerCoulombQty.Symbol: string; begin result := '%sN/%sC' end;
+class function TNewtonPerCoulombQty.SingularName: string; begin result := '%snewton per %scoulomb' end;
+class function TNewtonPerCoulombQty.PluralName: string; begin result := '%snewtons per %scoulomb' end;
+class function TNewtonPerCoulombQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TNewtonPerCoulombQty.Exponents: TExponents; begin result := [1, -1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCoulombPerMeterQty}{$i adim.inc}
-class function TCoulombPerMeterQty.Symbol: string;
-begin result := '%sC/%sm' end;
-
-class function TCoulombPerMeterQty.SingularName: string;
-begin result := '%scoulomb per %smeter' end;
-
-class function TCoulombPerMeterQty.PluralName: string;
-begin result := '%scoulombs per %smeter' end;
-
-class function TCoulombPerMeterQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TCoulombPerMeterQty.Exponents: TExponents;
-begin result := [1, -1]; end;
+class function TCoulombPerMeterQty.Symbol: string; begin result := '%sC/%sm' end;
+class function TCoulombPerMeterQty.SingularName: string; begin result := '%scoulomb per %smeter' end;
+class function TCoulombPerMeterQty.PluralName: string; begin result := '%scoulombs per %smeter' end;
+class function TCoulombPerMeterQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TCoulombPerMeterQty.Exponents: TExponents; begin result := [1, -1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareCoulombPerMeterQty}{$i adim.inc}
-class function TSquareCoulombPerMeterQty.Symbol: string;
-begin result := '%sC2/%sm' end;
-
-class function TSquareCoulombPerMeterQty.SingularName: string;
-begin result := 'square %scoulomb per %smeter' end;
-
-class function TSquareCoulombPerMeterQty.PluralName: string;
-begin result := 'square %scoulombs per %smeter' end;
-
-class function TSquareCoulombPerMeterQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TSquareCoulombPerMeterQty.Exponents: TExponents;
-begin result := [2, -1]; end;
+class function TSquareCoulombPerMeterQty.Symbol: string; begin result := '%sC2/%sm' end;
+class function TSquareCoulombPerMeterQty.SingularName: string; begin result := 'square %scoulomb per %smeter' end;
+class function TSquareCoulombPerMeterQty.PluralName: string; begin result := 'square %scoulombs per %smeter' end;
+class function TSquareCoulombPerMeterQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TSquareCoulombPerMeterQty.Exponents: TExponents; begin result := [2, -1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCoulombPerSquareMeterQty}{$i adim.inc}
-class function TCoulombPerSquareMeterQty.Symbol: string;
-begin result := '%sC/%sm2' end;
-
-class function TCoulombPerSquareMeterQty.SingularName: string;
-begin result := '%scoulomb per square %smeter' end;
-
-class function TCoulombPerSquareMeterQty.PluralName: string;
-begin result := '%scoulombs per square %smeter' end;
-
-class function TCoulombPerSquareMeterQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TCoulombPerSquareMeterQty.Exponents: TExponents;
-begin result := [1, -2]; end;
+class function TCoulombPerSquareMeterQty.Symbol: string; begin result := '%sC/%sm2' end;
+class function TCoulombPerSquareMeterQty.SingularName: string; begin result := '%scoulomb per square %smeter' end;
+class function TCoulombPerSquareMeterQty.PluralName: string; begin result := '%scoulombs per square %smeter' end;
+class function TCoulombPerSquareMeterQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TCoulombPerSquareMeterQty.Exponents: TExponents; begin result := [1, -2]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareMeterPerSquareCoulombQty}{$i adim.inc}
-class function TSquareMeterPerSquareCoulombQty.Symbol: string;
-begin result := '%sm2/%sC2' end;
-
-class function TSquareMeterPerSquareCoulombQty.SingularName: string;
-begin result := 'square %smeter per square %scoulomb' end;
-
-class function TSquareMeterPerSquareCoulombQty.PluralName: string;
-begin result := 'square %smeters per square %scoulomb' end;
-
-class function TSquareMeterPerSquareCoulombQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TSquareMeterPerSquareCoulombQty.Exponents: TExponents;
-begin result := [2, -2]; end;
+class function TSquareMeterPerSquareCoulombQty.Symbol: string; begin result := '%sm2/%sC2' end;
+class function TSquareMeterPerSquareCoulombQty.SingularName: string; begin result := 'square %smeter per square %scoulomb' end;
+class function TSquareMeterPerSquareCoulombQty.PluralName: string; begin result := 'square %smeters per square %scoulomb' end;
+class function TSquareMeterPerSquareCoulombQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TSquareMeterPerSquareCoulombQty.Exponents: TExponents; begin result := [2, -2]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNewtonPerSquareCoulombQty}{$i adim.inc}
-class function TNewtonPerSquareCoulombQty.Symbol: string;
-begin result := '%sN/%sC2' end;
-
-class function TNewtonPerSquareCoulombQty.SingularName: string;
-begin result := '%snewton per square %scoulomb' end;
-
-class function TNewtonPerSquareCoulombQty.PluralName: string;
-begin result := '%snewtons per square %scoulomb' end;
-
-class function TNewtonPerSquareCoulombQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TNewtonPerSquareCoulombQty.Exponents: TExponents;
-begin result := [1, -2]; end;
+class function TNewtonPerSquareCoulombQty.Symbol: string; begin result := '%sN/%sC2' end;
+class function TNewtonPerSquareCoulombQty.SingularName: string; begin result := '%snewton per square %scoulomb' end;
+class function TNewtonPerSquareCoulombQty.PluralName: string; begin result := '%snewtons per square %scoulomb' end;
+class function TNewtonPerSquareCoulombQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TNewtonPerSquareCoulombQty.Exponents: TExponents; begin result := [1, -2]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNewtonSquareMeterPerSquareCoulombQty}{$i adim.inc}
-class function TNewtonSquareMeterPerSquareCoulombQty.Symbol: string;
-begin result := '%sN·%sm2/%sC2' end;
-
-class function TNewtonSquareMeterPerSquareCoulombQty.SingularName: string;
-begin result := '%snewton square %smeter per square %scoulomb' end;
-
-class function TNewtonSquareMeterPerSquareCoulombQty.PluralName: string;
-begin result := '%snewton square %smeters per square %scoulomb' end;
-
-class function TNewtonSquareMeterPerSquareCoulombQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone, pNone]; end;
-
-class function TNewtonSquareMeterPerSquareCoulombQty.Exponents: TExponents;
-begin result := [1, 2, -2]; end;
+class function TNewtonSquareMeterPerSquareCoulombQty.Symbol: string; begin result := '%sN·%sm2/%sC2' end;
+class function TNewtonSquareMeterPerSquareCoulombQty.SingularName: string; begin result := '%snewton square %smeter per square %scoulomb' end;
+class function TNewtonSquareMeterPerSquareCoulombQty.PluralName: string; begin result := '%snewton square %smeters per square %scoulomb' end;
+class function TNewtonSquareMeterPerSquareCoulombQty.Prefixes: TPrefixes; begin result := [pNone, pNone, pNone]; end;
+class function TNewtonSquareMeterPerSquareCoulombQty.Exponents: TExponents; begin result := [1, 2, -2]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TVoltMeterQty}{$i adim.inc}
-class function TVoltMeterQty.Symbol: string;
-begin result := '%sV·%sm' end;
-
-class function TVoltMeterQty.SingularName: string;
-begin result := '%svolt %smeter' end;
-
-class function TVoltMeterQty.PluralName: string;
-begin result := '%svolt %smeters' end;
-
-class function TVoltMeterQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TVoltMeterQty.Exponents: TExponents;
-begin result := [1, 1]; end;
+class function TVoltMeterQty.Symbol: string; begin result := '%sV·%sm' end;
+class function TVoltMeterQty.SingularName: string; begin result := '%svolt %smeter' end;
+class function TVoltMeterQty.PluralName: string; begin result := '%svolt %smeters' end;
+class function TVoltMeterQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TVoltMeterQty.Exponents: TExponents; begin result := [1, 1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNewtonSquareMeterPerCoulombQty}{$i adim.inc}
-class function TNewtonSquareMeterPerCoulombQty.Symbol: string;
-begin result := '%sN·%sm2/%sC' end;
-
-class function TNewtonSquareMeterPerCoulombQty.SingularName: string;
-begin result := '%snewton square %smeter per %scoulomb' end;
-
-class function TNewtonSquareMeterPerCoulombQty.PluralName: string;
-begin result := '%snewton square %smeters per %scoulomb' end;
-
-class function TNewtonSquareMeterPerCoulombQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone, pNone]; end;
-
-class function TNewtonSquareMeterPerCoulombQty.Exponents: TExponents;
-begin result := [1, 2, -1]; end;
+class function TNewtonSquareMeterPerCoulombQty.Symbol: string; begin result := '%sN·%sm2/%sC' end;
+class function TNewtonSquareMeterPerCoulombQty.SingularName: string; begin result := '%snewton square %smeter per %scoulomb' end;
+class function TNewtonSquareMeterPerCoulombQty.PluralName: string; begin result := '%snewton square %smeters per %scoulomb' end;
+class function TNewtonSquareMeterPerCoulombQty.Prefixes: TPrefixes; begin result := [pNone, pNone, pNone]; end;
+class function TNewtonSquareMeterPerCoulombQty.Exponents: TExponents; begin result := [1, 2, -1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TVoltMeterPerSecondQty}{$i adim.inc}
-class function TVoltMeterPerSecondQty.Symbol: string;
-begin result := '%sV·%sm/%ss' end;
-
-class function TVoltMeterPerSecondQty.SingularName: string;
-begin result := '%svolt %smeter per %ssecond' end;
-
-class function TVoltMeterPerSecondQty.PluralName: string;
-begin result := '%svolt %smeters per %ssecond' end;
-
-class function TVoltMeterPerSecondQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone, pNone]; end;
-
-class function TVoltMeterPerSecondQty.Exponents: TExponents;
-begin result := [1, 1, -1]; end;
+class function TVoltMeterPerSecondQty.Symbol: string; begin result := '%sV·%sm/%ss' end;
+class function TVoltMeterPerSecondQty.SingularName: string; begin result := '%svolt %smeter per %ssecond' end;
+class function TVoltMeterPerSecondQty.PluralName: string; begin result := '%svolt %smeters per %ssecond' end;
+class function TVoltMeterPerSecondQty.Prefixes: TPrefixes; begin result := [pNone, pNone, pNone]; end;
+class function TVoltMeterPerSecondQty.Exponents: TExponents; begin result := [1, 1, -1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TFaradPerMeterQty}{$i adim.inc}
-class function TFaradPerMeterQty.Symbol: string;
-begin result := '%sF/%sm' end;
-
-class function TFaradPerMeterQty.SingularName: string;
-begin result := '%sfarad per %smeter' end;
-
-class function TFaradPerMeterQty.PluralName: string;
-begin result := '%sfarads per %smeter' end;
-
-class function TFaradPerMeterQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TFaradPerMeterQty.Exponents: TExponents;
-begin result := [1, -1]; end;
+class function TFaradPerMeterQty.Symbol: string; begin result := '%sF/%sm' end;
+class function TFaradPerMeterQty.SingularName: string; begin result := '%sfarad per %smeter' end;
+class function TFaradPerMeterQty.PluralName: string; begin result := '%sfarads per %smeter' end;
+class function TFaradPerMeterQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TFaradPerMeterQty.Exponents: TExponents; begin result := [1, -1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TAmperePerMeterQty}{$i adim.inc}
-class function TAmperePerMeterQty.Symbol: string;
-begin result := '%sA/%sm' end;
-
-class function TAmperePerMeterQty.SingularName: string;
-begin result := '%sampere per %smeter' end;
-
-class function TAmperePerMeterQty.PluralName: string;
-begin result := '%samperes per %smeter' end;
-
-class function TAmperePerMeterQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TAmperePerMeterQty.Exponents: TExponents;
-begin result := [1, -1]; end;
+class function TAmperePerMeterQty.Symbol: string; begin result := '%sA/%sm' end;
+class function TAmperePerMeterQty.SingularName: string; begin result := '%sampere per %smeter' end;
+class function TAmperePerMeterQty.PluralName: string; begin result := '%samperes per %smeter' end;
+class function TAmperePerMeterQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TAmperePerMeterQty.Exponents: TExponents; begin result := [1, -1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TMeterPerAmpereQty}{$i adim.inc}
-class function TMeterPerAmpereQty.Symbol: string;
-begin result := '%sm/%sA' end;
-
-class function TMeterPerAmpereQty.SingularName: string;
-begin result := '%smeter per %sampere' end;
-
-class function TMeterPerAmpereQty.PluralName: string;
-begin result := '%smeters per %sampere' end;
-
-class function TMeterPerAmpereQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TMeterPerAmpereQty.Exponents: TExponents;
-begin result := [1, -1]; end;
+class function TMeterPerAmpereQty.Symbol: string; begin result := '%sm/%sA' end;
+class function TMeterPerAmpereQty.SingularName: string; begin result := '%smeter per %sampere' end;
+class function TMeterPerAmpereQty.PluralName: string; begin result := '%smeters per %sampere' end;
+class function TMeterPerAmpereQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TMeterPerAmpereQty.Exponents: TExponents; begin result := [1, -1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TTeslaMeterQty}{$i adim.inc}
-class function TTeslaMeterQty.Symbol: string;
-begin result := '%sT·%sm' end;
-
-class function TTeslaMeterQty.SingularName: string;
-begin result := '%stesla %smeter' end;
-
-class function TTeslaMeterQty.PluralName: string;
-begin result := '%stesla %smeters' end;
-
-class function TTeslaMeterQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TTeslaMeterQty.Exponents: TExponents;
-begin result := [1, 1]; end;
+class function TTeslaMeterQty.Symbol: string; begin result := '%sT·%sm' end;
+class function TTeslaMeterQty.SingularName: string; begin result := '%stesla %smeter' end;
+class function TTeslaMeterQty.PluralName: string; begin result := '%stesla %smeters' end;
+class function TTeslaMeterQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TTeslaMeterQty.Exponents: TExponents; begin result := [1, 1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNewtonPerAmpereQty}{$i adim.inc}
-class function TNewtonPerAmpereQty.Symbol: string;
-begin result := '%sN/%sA' end;
-
-class function TNewtonPerAmpereQty.SingularName: string;
-begin result := '%snewton per %sampere' end;
-
-class function TNewtonPerAmpereQty.PluralName: string;
-begin result := '%snewtons per %sampere' end;
-
-class function TNewtonPerAmpereQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TNewtonPerAmpereQty.Exponents: TExponents;
-begin result := [1, -1]; end;
+class function TNewtonPerAmpereQty.Symbol: string; begin result := '%sN/%sA' end;
+class function TNewtonPerAmpereQty.SingularName: string; begin result := '%snewton per %sampere' end;
+class function TNewtonPerAmpereQty.PluralName: string; begin result := '%snewtons per %sampere' end;
+class function TNewtonPerAmpereQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TNewtonPerAmpereQty.Exponents: TExponents; begin result := [1, -1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TTeslaPerAmpereQty}{$i adim.inc}
-class function TTeslaPerAmpereQty.Symbol: string;
-begin result := '%sT/%sA' end;
-
-class function TTeslaPerAmpereQty.SingularName: string;
-begin result := '%stesla per %sampere' end;
-
-class function TTeslaPerAmpereQty.PluralName: string;
-begin result := '%steslas per %sampere' end;
-
-class function TTeslaPerAmpereQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TTeslaPerAmpereQty.Exponents: TExponents;
-begin result := [1, -1]; end;
+class function TTeslaPerAmpereQty.Symbol: string; begin result := '%sT/%sA' end;
+class function TTeslaPerAmpereQty.SingularName: string; begin result := '%stesla per %sampere' end;
+class function TTeslaPerAmpereQty.PluralName: string; begin result := '%steslas per %sampere' end;
+class function TTeslaPerAmpereQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TTeslaPerAmpereQty.Exponents: TExponents; begin result := [1, -1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=THenryPerMeterQty}{$i adim.inc}
-class function THenryPerMeterQty.Symbol: string;
-begin result := '%sH/%sm' end;
-
-class function THenryPerMeterQty.SingularName: string;
-begin result := '%shenry per %smeter' end;
-
-class function THenryPerMeterQty.PluralName: string;
-begin result := '%shenries per %smeter' end;
-
-class function THenryPerMeterQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function THenryPerMeterQty.Exponents: TExponents;
-begin result := [1, -1]; end;
+class function THenryPerMeterQty.Symbol: string; begin result := '%sH/%sm' end;
+class function THenryPerMeterQty.SingularName: string; begin result := '%shenry per %smeter' end;
+class function THenryPerMeterQty.PluralName: string; begin result := '%shenries per %smeter' end;
+class function THenryPerMeterQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function THenryPerMeterQty.Exponents: TExponents; begin result := [1, -1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TTeslaMeterPerAmpereQty}{$i adim.inc}
-class function TTeslaMeterPerAmpereQty.Symbol: string;
-begin result := '%sT·%sm/%sA' end;
-
-class function TTeslaMeterPerAmpereQty.SingularName: string;
-begin result := '%stesla %smeter per %sampere' end;
-
-class function TTeslaMeterPerAmpereQty.PluralName: string;
-begin result := '%stesla %smeters per %sampere' end;
-
-class function TTeslaMeterPerAmpereQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone, pNone]; end;
-
-class function TTeslaMeterPerAmpereQty.Exponents: TExponents;
-begin result := [1, 1, -1]; end;
+class function TTeslaMeterPerAmpereQty.Symbol: string; begin result := '%sT·%sm/%sA' end;
+class function TTeslaMeterPerAmpereQty.SingularName: string; begin result := '%stesla %smeter per %sampere' end;
+class function TTeslaMeterPerAmpereQty.PluralName: string; begin result := '%stesla %smeters per %sampere' end;
+class function TTeslaMeterPerAmpereQty.Prefixes: TPrefixes; begin result := [pNone, pNone, pNone]; end;
+class function TTeslaMeterPerAmpereQty.Exponents: TExponents; begin result := [1, 1, -1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNewtonPerSquareAmpereQty}{$i adim.inc}
-class function TNewtonPerSquareAmpereQty.Symbol: string;
-begin result := '%sN/%sA2' end;
-
-class function TNewtonPerSquareAmpereQty.SingularName: string;
-begin result := '%snewton per square %sampere' end;
-
-class function TNewtonPerSquareAmpereQty.PluralName: string;
-begin result := '%snewtons per square %sampere' end;
-
-class function TNewtonPerSquareAmpereQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TNewtonPerSquareAmpereQty.Exponents: TExponents;
-begin result := [1, -2]; end;
+class function TNewtonPerSquareAmpereQty.Symbol: string; begin result := '%sN/%sA2' end;
+class function TNewtonPerSquareAmpereQty.SingularName: string; begin result := '%snewton per square %sampere' end;
+class function TNewtonPerSquareAmpereQty.PluralName: string; begin result := '%snewtons per square %sampere' end;
+class function TNewtonPerSquareAmpereQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TNewtonPerSquareAmpereQty.Exponents: TExponents; begin result := [1, -2]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TRadianPerMeterQty}{$i adim.inc}
-class function TRadianPerMeterQty.Symbol: string;
-begin result := 'rad/%sm' end;
-
-class function TRadianPerMeterQty.SingularName: string;
-begin result := 'radian per %smeter' end;
-
-class function TRadianPerMeterQty.PluralName: string;
-begin result := 'radians per %smeter' end;
-
-class function TRadianPerMeterQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TRadianPerMeterQty.Exponents: TExponents;
-begin result := [-1]; end;
+class function TRadianPerMeterQty.Symbol: string; begin result := 'rad/%sm' end;
+class function TRadianPerMeterQty.SingularName: string; begin result := 'radian per %smeter' end;
+class function TRadianPerMeterQty.PluralName: string; begin result := 'radians per %smeter' end;
+class function TRadianPerMeterQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TRadianPerMeterQty.Exponents: TExponents; begin result := [-1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareKilogramPerSquareSecondQty}{$i adim.inc}
-class function TSquareKilogramPerSquareSecondQty.Symbol: string;
-begin result := '%sg2/%ss2' end;
-
-class function TSquareKilogramPerSquareSecondQty.SingularName: string;
-begin result := 'square %sgram per square %ssecond' end;
-
-class function TSquareKilogramPerSquareSecondQty.PluralName: string;
-begin result := 'square %sgrams per square %ssecond' end;
-
-class function TSquareKilogramPerSquareSecondQty.Prefixes: TPrefixes;
-begin result := [pKilo, pNone]; end;
-
-class function TSquareKilogramPerSquareSecondQty.Exponents: TExponents;
-begin result := [2, -2]; end;
+class function TSquareKilogramPerSquareSecondQty.Symbol: string; begin result := '%sg2/%ss2' end;
+class function TSquareKilogramPerSquareSecondQty.SingularName: string; begin result := 'square %sgram per square %ssecond' end;
+class function TSquareKilogramPerSquareSecondQty.PluralName: string; begin result := 'square %sgrams per square %ssecond' end;
+class function TSquareKilogramPerSquareSecondQty.Prefixes: TPrefixes; begin result := [pKilo, pNone]; end;
+class function TSquareKilogramPerSquareSecondQty.Exponents: TExponents; begin result := [2, -2]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TReciprocalMeterQty}{$i adim.inc}
-class function TReciprocalMeterQty.Symbol: string;
-begin result := '1/%sm' end;
-
-class function TReciprocalMeterQty.SingularName: string;
-begin result := 'reciprocal %smeter' end;
-
-class function TReciprocalMeterQty.PluralName: string;
-begin result := 'reciprocal %smeters' end;
-
-class function TReciprocalMeterQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TReciprocalMeterQty.Exponents: TExponents;
-begin result := [-1]; end;
+class function TReciprocalMeterQty.Symbol: string; begin result := '1/%sm' end;
+class function TReciprocalMeterQty.SingularName: string; begin result := 'reciprocal %smeter' end;
+class function TReciprocalMeterQty.PluralName: string; begin result := 'reciprocal %smeters' end;
+class function TReciprocalMeterQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TReciprocalMeterQty.Exponents: TExponents; begin result := [-1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareSecondPerSquareMeterQty}{$i adim.inc}
-class function TSquareSecondPerSquareMeterQty.Symbol: string;
-begin result := '%ss2/%sm2' end;
-
-class function TSquareSecondPerSquareMeterQty.SingularName: string;
-begin result := 'square %ssecond per square %smeter' end;
-
-class function TSquareSecondPerSquareMeterQty.PluralName: string;
-begin result := 'square %sseconds per square %smeter' end;
-
-class function TSquareSecondPerSquareMeterQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TSquareSecondPerSquareMeterQty.Exponents: TExponents;
-begin result := [2, -2]; end;
+class function TSquareSecondPerSquareMeterQty.Symbol: string; begin result := '%ss2/%sm2' end;
+class function TSquareSecondPerSquareMeterQty.SingularName: string; begin result := 'square %ssecond per square %smeter' end;
+class function TSquareSecondPerSquareMeterQty.PluralName: string; begin result := 'square %sseconds per square %smeter' end;
+class function TSquareSecondPerSquareMeterQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TSquareSecondPerSquareMeterQty.Exponents: TExponents; begin result := [2, -2]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareJouleQty}{$i adim.inc}
-class function TSquareJouleQty.Symbol: string;
-begin result := '%sJ2' end;
-
-class function TSquareJouleQty.SingularName: string;
-begin result := 'square %sjoule' end;
-
-class function TSquareJouleQty.PluralName: string;
-begin result := 'square %sjoules' end;
-
-class function TSquareJouleQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TSquareJouleQty.Exponents: TExponents;
-begin result := [2]; end;
+class function TSquareJouleQty.Symbol: string; begin result := '%sJ2' end;
+class function TSquareJouleQty.SingularName: string; begin result := 'square %sjoule' end;
+class function TSquareJouleQty.PluralName: string; begin result := 'square %sjoules' end;
+class function TSquareJouleQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TSquareJouleQty.Exponents: TExponents; begin result := [2]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TJouleSecondQty}{$i adim.inc}
-class function TJouleSecondQty.Symbol: string;
-begin result := '%sJ·%ss' end;
-
-class function TJouleSecondQty.SingularName: string;
-begin result := '%sjoule %ssecond' end;
-
-class function TJouleSecondQty.PluralName: string;
-begin result := '%sjoule %sseconds' end;
-
-class function TJouleSecondQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TJouleSecondQty.Exponents: TExponents;
-begin result := [1, 1]; end;
+class function TJouleSecondQty.Symbol: string; begin result := '%sJ·%ss' end;
+class function TJouleSecondQty.SingularName: string; begin result := '%sjoule %ssecond' end;
+class function TJouleSecondQty.PluralName: string; begin result := '%sjoule %sseconds' end;
+class function TJouleSecondQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TJouleSecondQty.Exponents: TExponents; begin result := [1, 1]; end;
 
 {$DEFINE IMPL_FACTORED}{$DEFINE TQuantity:=TElettronvoltSecondQty}{$i adim.inc}
-class function TElettronvoltSecondQty.Symbol: string;
-begin result := '%seV·%ss' end;
-
-class function TElettronvoltSecondQty.SingularName: string;
-begin result := '%selettronvolt %ssecond' end;
-
-class function TElettronvoltSecondQty.PluralName: string;
-begin result := '%selettronvolt %sseconds' end;
-
-class function TElettronvoltSecondQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TElettronvoltSecondQty.Exponents: TExponents;
-begin result := [1, 1]; end;
-
-class function TElettronvoltSecondQty.ToBaseFactor: double;
-begin result := 1.60217742320523E-019; end;
+class function TElettronvoltSecondQty.Symbol: string; begin result := '%seV·%ss' end;
+class function TElettronvoltSecondQty.SingularName: string; begin result := '%selettronvolt %ssecond' end;
+class function TElettronvoltSecondQty.PluralName: string; begin result := '%selettronvolt %sseconds' end;
+class function TElettronvoltSecondQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TElettronvoltSecondQty.Exponents: TExponents; begin result := [1, 1]; end;
+class function TElettronvoltSecondQty.ToBaseFactor: double; begin result := 1.60217742320523E-019; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TLumenPerWattQty}{$i adim.inc}
-class function TLumenPerWattQty.Symbol: string;
-begin result := '%slm/%sW' end;
-
-class function TLumenPerWattQty.SingularName: string;
-begin result := '%slumen per %swatt' end;
-
-class function TLumenPerWattQty.PluralName: string;
-begin result := '%slumens per %swatt' end;
-
-class function TLumenPerWattQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TLumenPerWattQty.Exponents: TExponents;
-begin result := [1, -1]; end;
+class function TLumenPerWattQty.Symbol: string; begin result := '%slm/%sW' end;
+class function TLumenPerWattQty.SingularName: string; begin result := '%slumen per %swatt' end;
+class function TLumenPerWattQty.PluralName: string; begin result := '%slumens per %swatt' end;
+class function TLumenPerWattQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TLumenPerWattQty.Exponents: TExponents; begin result := [1, -1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TReciprocalMoleQty}{$i adim.inc}
-class function TReciprocalMoleQty.Symbol: string;
-begin result := '1/%smol' end;
-
-class function TReciprocalMoleQty.SingularName: string;
-begin result := 'reciprocal %smole' end;
-
-class function TReciprocalMoleQty.PluralName: string;
-begin result := 'reciprocal %smoles' end;
-
-class function TReciprocalMoleQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TReciprocalMoleQty.Exponents: TExponents;
-begin result := [-1]; end;
+class function TReciprocalMoleQty.Symbol: string; begin result := '1/%smol' end;
+class function TReciprocalMoleQty.SingularName: string; begin result := 'reciprocal %smole' end;
+class function TReciprocalMoleQty.PluralName: string; begin result := 'reciprocal %smoles' end;
+class function TReciprocalMoleQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TReciprocalMoleQty.Exponents: TExponents; begin result := [-1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TAmperePerSquareMeterQty}{$i adim.inc}
-class function TAmperePerSquareMeterQty.Symbol: string;
-begin result := '%sA/%sm2' end;
-
-class function TAmperePerSquareMeterQty.SingularName: string;
-begin result := '%sampere per square %smeter' end;
-
-class function TAmperePerSquareMeterQty.PluralName: string;
-begin result := '%samperes per square %smeter' end;
-
-class function TAmperePerSquareMeterQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TAmperePerSquareMeterQty.Exponents: TExponents;
-begin result := [1, -2]; end;
+class function TAmperePerSquareMeterQty.Symbol: string; begin result := '%sA/%sm2' end;
+class function TAmperePerSquareMeterQty.SingularName: string; begin result := '%sampere per square %smeter' end;
+class function TAmperePerSquareMeterQty.PluralName: string; begin result := '%samperes per square %smeter' end;
+class function TAmperePerSquareMeterQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TAmperePerSquareMeterQty.Exponents: TExponents; begin result := [1, -2]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TMolePerCubicMeterQty}{$i adim.inc}
-class function TMolePerCubicMeterQty.Symbol: string;
-begin result := '%smol/%sm3' end;
-
-class function TMolePerCubicMeterQty.SingularName: string;
-begin result := '%smole per cubic %smeter' end;
-
-class function TMolePerCubicMeterQty.PluralName: string;
-begin result := '%smoles per cubic %smeter' end;
-
-class function TMolePerCubicMeterQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TMolePerCubicMeterQty.Exponents: TExponents;
-begin result := [1, -3]; end;
+class function TMolePerCubicMeterQty.Symbol: string; begin result := '%smol/%sm3' end;
+class function TMolePerCubicMeterQty.SingularName: string; begin result := '%smole per cubic %smeter' end;
+class function TMolePerCubicMeterQty.PluralName: string; begin result := '%smoles per cubic %smeter' end;
+class function TMolePerCubicMeterQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TMolePerCubicMeterQty.Exponents: TExponents; begin result := [1, -3]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCandelaPerSquareMeterQty}{$i adim.inc}
-class function TCandelaPerSquareMeterQty.Symbol: string;
-begin result := '%scd/%sm2' end;
-
-class function TCandelaPerSquareMeterQty.SingularName: string;
-begin result := '%scandela per square %smeter' end;
-
-class function TCandelaPerSquareMeterQty.PluralName: string;
-begin result := '%scandelas per square %smeter' end;
-
-class function TCandelaPerSquareMeterQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TCandelaPerSquareMeterQty.Exponents: TExponents;
-begin result := [1, -2]; end;
+class function TCandelaPerSquareMeterQty.Symbol: string; begin result := '%scd/%sm2' end;
+class function TCandelaPerSquareMeterQty.SingularName: string; begin result := '%scandela per square %smeter' end;
+class function TCandelaPerSquareMeterQty.PluralName: string; begin result := '%scandelas per square %smeter' end;
+class function TCandelaPerSquareMeterQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TCandelaPerSquareMeterQty.Exponents: TExponents; begin result := [1, -2]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCoulombPerCubicMeterQty}{$i adim.inc}
-class function TCoulombPerCubicMeterQty.Symbol: string;
-begin result := '%sC/%sm3' end;
-
-class function TCoulombPerCubicMeterQty.SingularName: string;
-begin result := '%scoulomb per cubic %smeter' end;
-
-class function TCoulombPerCubicMeterQty.PluralName: string;
-begin result := '%scoulombs per cubic %smeter' end;
-
-class function TCoulombPerCubicMeterQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TCoulombPerCubicMeterQty.Exponents: TExponents;
-begin result := [1, -3]; end;
+class function TCoulombPerCubicMeterQty.Symbol: string; begin result := '%sC/%sm3' end;
+class function TCoulombPerCubicMeterQty.SingularName: string; begin result := '%scoulomb per cubic %smeter' end;
+class function TCoulombPerCubicMeterQty.PluralName: string; begin result := '%scoulombs per cubic %smeter' end;
+class function TCoulombPerCubicMeterQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TCoulombPerCubicMeterQty.Exponents: TExponents; begin result := [1, -3]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCoulombPerKilogramQty}{$i adim.inc}
-class function TCoulombPerKilogramQty.Symbol: string;
-begin result := '%sC/%sg' end;
-
-class function TCoulombPerKilogramQty.SingularName: string;
-begin result := '%scoulomb per %sgram' end;
-
-class function TCoulombPerKilogramQty.PluralName: string;
-begin result := '%scoulombs per %sgram' end;
-
-class function TCoulombPerKilogramQty.Prefixes: TPrefixes;
-begin result := [pNone, pKilo]; end;
-
-class function TCoulombPerKilogramQty.Exponents: TExponents;
-begin result := [1, -1]; end;
+class function TCoulombPerKilogramQty.Symbol: string; begin result := '%sC/%sg' end;
+class function TCoulombPerKilogramQty.SingularName: string; begin result := '%scoulomb per %sgram' end;
+class function TCoulombPerKilogramQty.PluralName: string; begin result := '%scoulombs per %sgram' end;
+class function TCoulombPerKilogramQty.Prefixes: TPrefixes; begin result := [pNone, pKilo]; end;
+class function TCoulombPerKilogramQty.Exponents: TExponents; begin result := [1, -1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TGrayPerSecondQty}{$i adim.inc}
-class function TGrayPerSecondQty.Symbol: string;
-begin result := '%sGy/%ss' end;
-
-class function TGrayPerSecondQty.SingularName: string;
-begin result := '%sgray per %ssecond' end;
-
-class function TGrayPerSecondQty.PluralName: string;
-begin result := '%sgrays per %ssecond' end;
-
-class function TGrayPerSecondQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TGrayPerSecondQty.Exponents: TExponents;
-begin result := [1, -1]; end;
+class function TGrayPerSecondQty.Symbol: string; begin result := '%sGy/%ss' end;
+class function TGrayPerSecondQty.SingularName: string; begin result := '%sgray per %ssecond' end;
+class function TGrayPerSecondQty.PluralName: string; begin result := '%sgrays per %ssecond' end;
+class function TGrayPerSecondQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TGrayPerSecondQty.Exponents: TExponents; begin result := [1, -1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TWattPerSteradianQty}{$i adim.inc}
-class function TWattPerSteradianQty.Symbol: string;
-begin result := '%sW/sr' end;
-
-class function TWattPerSteradianQty.SingularName: string;
-begin result := '%swatt per steradian' end;
-
-class function TWattPerSteradianQty.PluralName: string;
-begin result := '%swatts per steradian' end;
-
-class function TWattPerSteradianQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TWattPerSteradianQty.Exponents: TExponents;
-begin result := [1]; end;
+class function TWattPerSteradianQty.Symbol: string; begin result := '%sW/sr' end;
+class function TWattPerSteradianQty.SingularName: string; begin result := '%swatt per steradian' end;
+class function TWattPerSteradianQty.PluralName: string; begin result := '%swatts per steradian' end;
+class function TWattPerSteradianQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TWattPerSteradianQty.Exponents: TExponents; begin result := [1]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareMeterSteradianQty}{$i adim.inc}
-class function TSquareMeterSteradianQty.Symbol: string;
-begin result := '%sm2·sr' end;
-
-class function TSquareMeterSteradianQty.SingularName: string;
-begin result := 'square %smeter steradian' end;
-
-class function TSquareMeterSteradianQty.PluralName: string;
-begin result := 'square %smeter steradians' end;
-
-class function TSquareMeterSteradianQty.Prefixes: TPrefixes;
-begin result := [pNone]; end;
-
-class function TSquareMeterSteradianQty.Exponents: TExponents;
-begin result := [2]; end;
+class function TSquareMeterSteradianQty.Symbol: string; begin result := '%sm2·sr' end;
+class function TSquareMeterSteradianQty.SingularName: string; begin result := 'square %smeter steradian' end;
+class function TSquareMeterSteradianQty.PluralName: string; begin result := 'square %smeter steradians' end;
+class function TSquareMeterSteradianQty.Prefixes: TPrefixes; begin result := [pNone]; end;
+class function TSquareMeterSteradianQty.Exponents: TExponents; begin result := [2]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TWattPerSquareMeterPerSteradianQty}{$i adim.inc}
-class function TWattPerSquareMeterPerSteradianQty.Symbol: string;
-begin result := '%sW/%sm2/sr' end;
-
-class function TWattPerSquareMeterPerSteradianQty.SingularName: string;
-begin result := '%swatt per square %smeter per steradian' end;
-
-class function TWattPerSquareMeterPerSteradianQty.PluralName: string;
-begin result := '%swatts per square %smeter per steradian' end;
-
-class function TWattPerSquareMeterPerSteradianQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TWattPerSquareMeterPerSteradianQty.Exponents: TExponents;
-begin result := [1, -2]; end;
+class function TWattPerSquareMeterPerSteradianQty.Symbol: string; begin result := '%sW/%sm2/sr' end;
+class function TWattPerSquareMeterPerSteradianQty.SingularName: string; begin result := '%swatt per square %smeter per steradian' end;
+class function TWattPerSquareMeterPerSteradianQty.PluralName: string; begin result := '%swatts per square %smeter per steradian' end;
+class function TWattPerSquareMeterPerSteradianQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TWattPerSquareMeterPerSteradianQty.Exponents: TExponents; begin result := [1, -2]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKatalPerCubicMeterQty}{$i adim.inc}
-class function TKatalPerCubicMeterQty.Symbol: string;
-begin result := '%skat/%sm3' end;
-
-class function TKatalPerCubicMeterQty.SingularName: string;
-begin result := '%skatal per cubic %smeter' end;
-
-class function TKatalPerCubicMeterQty.PluralName: string;
-begin result := '%skatals per cubic %smeter' end;
-
-class function TKatalPerCubicMeterQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TKatalPerCubicMeterQty.Exponents: TExponents;
-begin result := [1, -3]; end;
+class function TKatalPerCubicMeterQty.Symbol: string; begin result := '%skat/%sm3' end;
+class function TKatalPerCubicMeterQty.SingularName: string; begin result := '%skatal per cubic %smeter' end;
+class function TKatalPerCubicMeterQty.PluralName: string; begin result := '%skatals per cubic %smeter' end;
+class function TKatalPerCubicMeterQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TKatalPerCubicMeterQty.Exponents: TExponents; begin result := [1, -3]; end;
 
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCoulombPerMoleQty}{$i adim.inc}
-class function TCoulombPerMoleQty.Symbol: string;
-begin result := '%sC/%smol' end;
-
-class function TCoulombPerMoleQty.SingularName: string;
-begin result := '%scoulomb per %smole' end;
-
-class function TCoulombPerMoleQty.PluralName: string;
-begin result := '%scoulombs per %smole' end;
-
-class function TCoulombPerMoleQty.Prefixes: TPrefixes;
-begin result := [pNone, pNone]; end;
-
-class function TCoulombPerMoleQty.Exponents: TExponents;
-begin result := [1, -1]; end;
+class function TCoulombPerMoleQty.Symbol: string; begin result := '%sC/%smol' end;
+class function TCoulombPerMoleQty.SingularName: string; begin result := '%scoulomb per %smole' end;
+class function TCoulombPerMoleQty.PluralName: string; begin result := '%scoulombs per %smole' end;
+class function TCoulombPerMoleQty.Prefixes: TPrefixes; begin result := [pNone, pNone]; end;
+class function TCoulombPerMoleQty.Exponents: TExponents; begin result := [1, -1]; end;
 
 class operator TSecondQty.*(const ALeft: TSecondQty; const ARight: TSecondQty): TSquareSecondQty;
 begin
@@ -7293,11 +5551,11 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-class operator TRadianPerSecondQty.:=(const AQuantity: TRadianPerSecondQty): THertzQty; inline;
+class operator TRadianPerSecondQty.:=(const AQuantity: TRadianPerSecondQty): THertzQty;
 begin
   result.FValue := AQuantity.FValue;
 end;
-class operator TRadianPerSecondQty.:=(const AQuantity: THertzQty): TRadianPerSecondQty; inline;
+class operator TRadianPerSecondQty.:=(const AQuantity: THertzQty): TRadianPerSecondQty;
 begin
   result.FValue := AQuantity.FValue;
 end;
@@ -12469,34 +10727,54 @@ end;
 { Trigonometric functions }
 
 function Cos(const AQuantity: TRadianQty): double;
-begin result := System.Cos(AQuantity.FValue); end;
+begin
+  result := System.Cos(AQuantity.FValue);
+end;
 
 function Sin(const AQuantity: TRadianQty): double;
-begin result := System.Sin(AQuantity.FValue); end;
+begin
+  result := System.Sin(AQuantity.FValue);
+end;
 
 function Tan(const AQuantity: TRadianQty): double;
-begin result := Math.Tan(AQuantity.FValue); end;
+begin
+  result := Math.Tan(AQuantity.FValue);
+end;
 
 function Cotan(const AQuantity: TRadianQty): double;
-begin result := Math.Cotan(AQuantity.FValue); end;
+begin
+  result := Math.Cotan(AQuantity.FValue);
+end;
 
 function Secant(const AQuantity: TRadianQty): double;
-begin result := Math.Secant(AQuantity.FValue); end;
+begin
+  result := Math.Secant(AQuantity.FValue);
+end;
 
 function Cosecant(const AQuantity: TRadianQty): double;
-begin result := Math.Cosecant(AQuantity.FValue); end;
+begin
+  result := Math.Cosecant(AQuantity.FValue);
+end;
 
 function ArcCos(const AValue: double): TRadianQty;
-begin result.FValue := Math.ArcCos(AValue); end;
+begin
+  result.FValue := Math.ArcCos(AValue);
+end;
 
 function ArcSin(const AValue: double): TRadianQty;
-begin result.FValue := Math.ArcSin(AValue); end;
+begin
+  result.FValue := Math.ArcSin(AValue);
+end;
 
 function ArcTan(const AValue: double): TRadianQty;
-begin result.FValue := System.ArcTan(AValue); end;
+begin
+  result.FValue := System.ArcTan(AValue);
+end;
 
 function ArcTan2(const x, y: double): TRadianQty;
-begin result.FValue := Math.ArcTan2(x, y); end;
+begin
+  result.FValue := Math.ArcTan2(x, y);
+end;
 
 end.
 

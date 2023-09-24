@@ -830,5 +830,13 @@ begin
   if (1.0*C).ToAmpereHour.ToString(4, 0, [pMilli]) <> '0.2778 mA·h' then halt(2);
   writeln('* TEST-94: PASSED');
 
+  // TEST-95
+  //omega := 10*rad/s;
+  //omega := 10/s;
+  //freq  := 10*rad/s; ;
+  //omega := 10/s;
+  //writeln('* TEST-95: PASSED');
+
+
   writeln('ADIM-TEST DONE.');
 end.
