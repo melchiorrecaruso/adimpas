@@ -123,9 +123,9 @@ const
   IMPL_QUANTITY = '{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=%s}{$i adim.inc}';
   IMPL_UNIT     = '{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=%s}{$DEFINE TUnit:=%s}{$i adim.inc}';
 
-  INTF_OP_CLASS = '  class operator %s(const ALeft: %s; const ARight: %s): %s; inline;';
+  INTF_OP_CLASS = '  class operator %s(const ALeft: %s; const ARight: %s): %s;';
   IMPL_OP_CLASS = 'class operator %s.%s(const ALeft: %s; const ARight: %s): %s;';
-  INTF_OP       = 'operator %s(const ALeft: %s; const ARight: %s): %s; inline;';
+  INTF_OP       = 'operator %s(const ALeft: %s; const ARight: %s): %s;';
   IMPL_OP       = 'operator %s(const ALeft: %s; const ARight: %s): %s;';
 
 var
@@ -547,24 +547,11 @@ begin
       SectionB2.Append(Format(IMPL_QUANTITY, [GetUnitQuantityType(AClassName)]));
       SectionB3.Append(Format(IMPL_UNIT, [GetUnitQuantityType(AClassName), GetUnitIdentifier(AClassName)]));
 
-      SectionB2.Append(Format('class function %s.Symbol: string;', [GetUnitQuantityType(AClassName)]));
-      SectionB2.Append(Format('begin result := ''%s'' end;', [GetSymbol(AShortSymbol)]));
-      SectionB2.Append('');
-
-      SectionB2.Append(Format('class function %s.SingularName: string;', [GetUnitQuantityType(AClassName)]));
-      SectionB2.Append(Format('begin result := ''%s'' end;', [GetSingularName(ALongSymbol)]));
-      SectionB2.Append('');
-
-      SectionB2.Append(Format('class function %s.PluralName: string;', [GetUnitQuantityType(AClassName)]));
-      SectionB2.Append(Format('begin result := ''%s'' end;', [GetPluralName(ALongSymbol)]));
-      SectionB2.Append('');
-
-      SectionB2.Append(Format('class function %s.Prefixes: TPrefixes;', [GetUnitQuantityType(AClassName)]));
-      SectionB2.Append(Format('begin result := [%s]; end;', [GetPrefixes(AShortSymbol)]));
-      SectionB2.Append('');
-
-      SectionB2.Append(Format('class function %s.Exponents: TExponents;', [GetUnitQuantityType(AClassName)]));
-      SectionB2.Append(Format('begin result := [%s]; end;', [GetExponents(AShortSymbol)]));
+      SectionB2.Append(Format('class function %s.Symbol: string; begin result := ''%s'' end;',       [GetUnitQuantityType(AClassName), GetSymbol(AShortSymbol)]));
+      SectionB2.Append(Format('class function %s.SingularName: string; begin result := ''%s'' end;', [GetUnitQuantityType(AClassName), GetSingularName(ALongSymbol)]));
+      SectionB2.Append(Format('class function %s.PluralName: string; begin result := ''%s'' end;',   [GetUnitQuantityType(AClassName), GetPluralName(ALongSymbol)]));
+      SectionB2.Append(Format('class function %s.Prefixes: TPrefixes; begin result := [%s]; end;',   [GetUnitQuantityType(AClassName), GetPrefixes(AShortSymbol)]));
+      SectionB2.Append(Format('class function %s.Exponents: TExponents; begin result := [%s]; end;', [GetUnitQuantityType(AClassName), GetExponents(AShortSymbol)]));
       SectionB2.Append('');
 
       if (AIdentifierSymbol <> '') then
@@ -598,24 +585,11 @@ begin
         SectionB2.Append(Format(IMPL_QUANTITY, [GetUnitQuantityType(AClassName)]));
         SectionB3.Append(Format(IMPL_UNIT, [GetUnitQuantityType(AClassName), GetUnitIdentifier(AClassName)]));
 
-        SectionB2.Append(Format('class function %s.Symbol: string;', [GetUnitQuantityType(AClassName)]));
-        SectionB2.Append(Format('begin result := ''%s'' end;', [GetSymbol(AShortSymbol)]));
-        SectionB2.Append('');
-
-        SectionB2.Append(Format('class function %s.SingularName: string;', [GetUnitQuantityType(AClassName)]));
-        SectionB2.Append(Format('begin result := ''%s'' end;', [GetSingularName(ALongSymbol)]));
-        SectionB2.Append('');
-
-        SectionB2.Append(Format('class function %s.PluralName: string;', [GetUnitQuantityType(AClassName)]));
-        SectionB2.Append(Format('begin result := ''%s'' end;', [GetPluralName(ALongSymbol)]));
-        SectionB2.Append('');
-
-        SectionB2.Append(Format('class function %s.Prefixes: TPrefixes;', [GetUnitQuantityType(AClassName)]));
-        SectionB2.Append(Format('begin result := [%s]; end;', [GetPrefixes(AShortSymbol)]));
-        SectionB2.Append('');
-
-        SectionB2.Append(Format('class function %s.Exponents: TExponents;', [GetUnitQuantityType(AClassName)]));
-        SectionB2.Append(Format('begin result := [%s]; end;', [GetExponents(AShortSymbol)]));
+        SectionB2.Append(Format('class function %s.Symbol: string; begin result := ''%s'' end;', [GetUnitQuantityType(AClassName), GetSymbol(AShortSymbol)]));
+        SectionB2.Append(Format('class function %s.SingularName: string; begin result := ''%s'' end;', [GetUnitQuantityType(AClassName), GetSingularName(ALongSymbol)]));
+        SectionB2.Append(Format('class function %s.PluralName: string; begin result := ''%s'' end;',   [GetUnitQuantityType(AClassName), GetPluralName(ALongSymbol)]));
+        SectionB2.Append(Format('class function %s.Prefixes: TPrefixes; begin result := [%s]; end;',   [GetUnitQuantityType(AClassName), GetPrefixes(AShortSymbol)]));
+        SectionB2.Append(Format('class function %s.Exponents: TExponents; begin result := [%s]; end;', [GetUnitQuantityType(AClassName), GetExponents(AShortSymbol)]));
         SectionB2.Append('');
 
         if (AIdentifierSymbol <> '') then
@@ -655,32 +629,16 @@ begin
 
         SectionB3.Append(Format(IMPL_UNIT, [GetUnitQuantityType(AClassName), GetUnitIdentifier(AClassName)]));
 
-        SectionB2.Append(Format('class function %s.Symbol: string;', [GetUnitQuantityType(AClassName)]));
-        SectionB2.Append(Format('begin result := ''%s'' end;', [GetSymbol(AShortSymbol)]));
-        SectionB2.Append('');
-
-        SectionB2.Append(Format('class function %s.SingularName: string;', [GetUnitQuantityType(AClassName)]));
-        SectionB2.Append(Format('begin result := ''%s'' end;', [GetSingularName(ALongSymbol)]));
-        SectionB2.Append('');
-
-        SectionB2.Append(Format('class function %s.PluralName: string;', [GetUnitQuantityType(AClassName)]));
-        SectionB2.Append(Format('begin result := ''%s'' end;', [GetPluralName(ALongSymbol)]));
-        SectionB2.Append('');
-
-        SectionB2.Append(Format('class function %s.Prefixes: TPrefixes;', [GetUnitQuantityType(AClassName)]));
-        SectionB2.Append(Format('begin result := [%s]; end;', [GetPrefixes(AShortSymbol)]));
-        SectionB2.Append('');
-
-        SectionB2.Append(Format('class function %s.Exponents: TExponents;', [GetUnitQuantityType(AClassName)]));
-        SectionB2.Append(Format('begin result := [%s]; end;', [GetExponents(AShortSymbol)]));
-        SectionB2.Append('');
-
+        SectionB2.Append(Format('class function %s.Symbol: string; begin result := ''%s'' end;',       [GetUnitQuantityType(AClassName), GetSymbol(AShortSymbol)]));
+        SectionB2.Append(Format('class function %s.SingularName: string; begin result := ''%s'' end;', [GetUnitQuantityType(AClassName), GetSingularName(ALongSymbol)]));
+        SectionB2.Append(Format('class function %s.PluralName: string; begin result := ''%s'' end;',   [GetUnitQuantityType(AClassName), GetPluralName(ALongSymbol)]));
+        SectionB2.Append(Format('class function %s.Prefixes: TPrefixes; begin result := [%s]; end;',   [GetUnitQuantityType(AClassName), GetPrefixes(AShortSymbol)]));
+        SectionB2.Append(Format('class function %s.Exponents: TExponents; begin result := [%s]; end;', [GetUnitQuantityType(AClassName), GetExponents(AShortSymbol)]));
         if Pos('%s', AFactor) = 0 then
         begin
-          SectionB2.Append(Format('class function %s.ToBaseFactor: double;', [GetUnitQuantityType(AClassName)]));
-          SectionB2.Append(Format('begin result := %s; end;', [AFactor]));
-          SectionB2.Append('');
+          SectionB2.Append(Format('class function %s.ToBaseFactor: double; begin result := %s; end;', [GetUnitQuantityType(AClassName), AFactor]));
         end;
+        SectionB2.Append('');
 
         if (AIdentifierSymbol <> '') then
         begin
@@ -1006,8 +964,8 @@ begin
   if i = iL then S := AClassName;
   if i = iR then S := ABaseClass;
 
-  SectionA2.Insert(i + 1, '  class operator ' +                           ':=(const AQuantity: ' + GetUnitQuantityType(AClassName) + '): ' + GetUnitQuantityType(ABaseClass) + '; inline;');
-  SectionB2.Append(         'class operator ' + GetUnitQuantityType(S) + '.:=(const AQuantity: ' + GetUnitQuantityType(AClassName) + '): ' + GetUnitQuantityType(ABaseClass) + '; inline;');
+  SectionA2.Insert(i + 1, '  class operator ' +                           ':=(const AQuantity: ' + GetUnitQuantityType(AClassName) + '): ' + GetUnitQuantityType(ABaseClass) + ';');
+  SectionB2.Append(         'class operator ' + GetUnitQuantityType(S) + '.:=(const AQuantity: ' + GetUnitQuantityType(AClassName) + '): ' + GetUnitQuantityType(ABaseClass) + ';');
 
   SectionB2.Append('begin');
   if GetUnitQuantityType(AClassName) = 'double' then
@@ -1257,9 +1215,6 @@ begin
   SectionA2 .Destroy;
   SectionA1 .Destroy;
   SectionA0 .Destroy;
-
-  Writeln(DivCount);
-  Writeln(MulCount);
 
   OperatorList.Destroy;
   ClassList.Destroy;
