@@ -26,7 +26,7 @@ interface
 uses
   Classes, SysUtils, fpspreadsheetgrid, fpspreadsheetctrls, fpsallformats, Forms,
   Controls, Graphics, Dialogs, Grids, Buttons, ComCtrls, StdCtrls, SynHighlighterPas,
-  SynEdit;
+  SynEdit, Common;
 
 type
   TDBItem = record
@@ -61,15 +61,13 @@ type
   private
     BaseUnitCount: longint;
     CheckList: array of TDBItem;
-
-    DivCount: longint;
-    MulCount: longint;
-
     ClassList: TStringList;
     FactoredUnitCount: longint;
     ExternalOperators: longint;
     InternalOperators: longint;
     OperatorList: TStringList;
+
+    FList: TToolkitList;
 
     SectionA0: TStringList;
     SectionA1: TStringList;
@@ -97,8 +95,7 @@ type
     procedure AddQuantityOperator(AOperator, ALeftParent, ARightParent, AResult: string);
     procedure AddUnitIdOperator(AOperator, ALeftParent, ARightParent, AResult: string);
 
-    procedure AddClass(const AClassName, AOperator, AClassParent1, AClassParent2, AComment,
-      ALongSymbol, AShortSymbol, AIdentifierSymbol, ABaseClass, AFactor, APrefixes: string; AddOP: boolean);
+    procedure AddClass(const AItem: TToolkitItem; AddOperator: boolean);
 
     procedure AddFactoredQuantity(ABaseClass, AIdentifierSymbol, AFactor, APrefixes: string);
     procedure AddPower(AOperator, AQuantity, AResult: string);
@@ -503,251 +500,229 @@ begin
   end;
 end;
 
-procedure TMainForm.AddClass(const AClassName, AOperator, AClassParent1, AClassParent2, AComment,
-  ALongSymbol, AShortSymbol, AIdentifierSymbol, ABaseClass, AFactor, APrefixes: string; AddOP: boolean);
-var
-  iL, iR, iX: longint;
+procedure TMainForm.AddClass(const AItem: TToolkitItem; AddOperator: boolean);
 begin
-  if ClassList.IndexOf(GetUnitQuantityType(AClassName)) = -1 then
+  if ClassList.IndexOf(GetUnitQuantityType(AItem.FClassName)) = -1 then
   begin
-    ClassList.Append(GetUnitQuantityType(AClassName));
-
-    if (ABaseClass = '') then
+    ClassList.Append(GetUnitQuantityType(AItem.FClassName));
+    if (AItem.FBaseClass = '') then
     begin
       // BASE UNIT
-      if (AOperator = '*') then
+      if (AItem.FOperator = '*') then
       begin
         SectionA2.Insert(0, '');
-        SectionA2.Insert(1, '{ Quantity of ' + GetUnitComment(AClassName) + ' }');
-        SectionA2.Insert(2, Format(INTF_QUANTITY, [GetUnitQuantityType(AClassName)]));
+        SectionA2.Insert(1, '{ Quantity of ' + GetUnitComment(AItem.FClassName) + ' }');
+        SectionA2.Insert(2, Format(INTF_QUANTITY, [GetUnitQuantityType(AItem.FClassName)]));
         SectionA2.Insert(3, Format(INTF_END, []));
         SectionA2.Insert(4, '');
 
         SectionA3.Append('');
-        SectionA3.Append('{ Unit of ' + GetUnitComment(AClassName) + ' }');
-        SectionA3.Append(Format(INTF_UNIT, [GetUnitQuantityType(AClassName), GetUnitIdentifier(AClassName)]));
+        SectionA3.Append('{ Unit of ' + GetUnitComment(AItem.FClassName) + ' }');
+        SectionA3.Append(Format(INTF_UNIT, [GetUnitQuantityType(AItem.FClassName), GetUnitIdentifier(AItem.FClassName)]));
         SectionA3.Append(Format(INTF_END, []));
       end else
       begin
         SectionA2.Append('');
-        SectionA2.Append('{ Quantity of ' + GetUnitComment(AClassName) + ' }');
-        SectionA2.Append(Format(INTF_QUANTITY, [GetUnitQuantityType(AClassName)]));
+        SectionA2.Append('{ Quantity of ' + GetUnitComment(AItem.FClassName) + ' }');
+        SectionA2.Append(Format(INTF_QUANTITY, [GetUnitQuantityType(AItem.FClassName)]));
         SectionA2.Append(Format(INTF_END, []));
         SectionA2.Append('');
 
         SectionA3.Append('');
-        SectionA3.Append('{ Unit of ' + GetUnitComment(AClassName) + ' }');
-        SectionA3.Append(Format(INTF_UNIT, [GetUnitQuantityType(AClassName), GetUnitIdentifier(AClassName)]));
+        SectionA3.Append('{ Unit of ' + GetUnitComment(AItem.FClassName) + ' }');
+        SectionA3.Append(Format(INTF_UNIT, [GetUnitQuantityType(AItem.FClassName), GetUnitIdentifier(AItem.FClassName)]));
         SectionA3.Append(Format(INTF_END, []));
       end;
       SectionA3.Append('');
       SectionA3.Append('type');
-      SectionA3.Append(Format('  %s = %s;', [GetUnitQuantity(AClassName), GetUnitQuantityType(AClassName)]));
+      SectionA3.Append(Format('  %s = %s;', [GetUnitQuantity(AItem.FClassName), GetUnitQuantityType(AItem.FClassName)]));
 
-      SectionB2.Append(Format(IMPL_QUANTITY, [GetUnitQuantityType(AClassName)]));
-      SectionB3.Append(Format(IMPL_UNIT, [GetUnitQuantityType(AClassName), GetUnitIdentifier(AClassName)]));
+      SectionB2.Append(Format(IMPL_QUANTITY, [GetUnitQuantityType(AItem.FClassName)]));
+      SectionB3.Append(Format(IMPL_UNIT, [GetUnitQuantityType(AItem.FClassName), GetUnitIdentifier(AItem.FClassName)]));
 
-      SectionB2.Append(Format('class function %s.Symbol: string; begin result := ''%s'' end;',       [GetUnitQuantityType(AClassName), GetSymbol(AShortSymbol)]));
-      SectionB2.Append(Format('class function %s.SingularName: string; begin result := ''%s'' end;', [GetUnitQuantityType(AClassName), GetSingularName(ALongSymbol)]));
-      SectionB2.Append(Format('class function %s.PluralName: string; begin result := ''%s'' end;',   [GetUnitQuantityType(AClassName), GetPluralName(ALongSymbol)]));
-      SectionB2.Append(Format('class function %s.Prefixes: TPrefixes; begin result := [%s]; end;',   [GetUnitQuantityType(AClassName), GetPrefixes(AShortSymbol)]));
-      SectionB2.Append(Format('class function %s.Exponents: TExponents; begin result := [%s]; end;', [GetUnitQuantityType(AClassName), GetExponents(AShortSymbol)]));
+      SectionB2.Append(Format('class function %s.Symbol: string; begin result := ''%s'' end;',       [GetUnitQuantityType(AItem.FClassName), GetSymbol      (AItem.FShortSymbol)]));
+      SectionB2.Append(Format('class function %s.SingularName: string; begin result := ''%s'' end;', [GetUnitQuantityType(AItem.FClassName), GetSingularName(AItem.FLongSymbol )]));
+      SectionB2.Append(Format('class function %s.PluralName: string; begin result := ''%s'' end;',   [GetUnitQuantityType(AItem.FClassName), GetPluralName  (AItem.FLongSymbol )]));
+      SectionB2.Append(Format('class function %s.Prefixes: TPrefixes; begin result := [%s]; end;',   [GetUnitQuantityType(AItem.FClassName), GetPrefixes    (AItem.FShortSymbol)]));
+      SectionB2.Append(Format('class function %s.Exponents: TExponents; begin result := [%s]; end;', [GetUnitQuantityType(AItem.FClassName), GetExponents   (AItem.FShortSymbol)]));
       SectionB2.Append('');
 
-      if (AIdentifierSymbol <> '') then
+      if (AItem.FIdentifierSymbol <> '') then
       begin
         SectionA3.Append('');
         SectionA3.Append('var');
-        SectionA3.Append(Format('  %s: %s;', [AIdentifierSymbol, GetUnitIdentifier(AClassName)]));
-        AddFactoredQuantity(AClassName, AIdentifierSymbol, '', APrefixes);
+        SectionA3.Append(Format('  %s: %s;', [AItem.FIdentifierSymbol, GetUnitIdentifier(AItem.FClassName)]));
+        AddFactoredQuantity(AItem.FClassName, AItem.FIdentifierSymbol, '', AItem.FPrefixes);
       end;
       Inc(BaseUnitCount);
     end else
     begin
       // CLONED UNIT
-      if AFactor = '' then
+      if AItem.FFactor = '' then
       begin
         SectionA2.Append('');
-        SectionA2.Append('{ Quantity of ' + GetUnitComment(AClassName) + ' }');
-        SectionA2.Append(Format(INTF_QUANTITY, [GetUnitQuantityType(AClassName)]));
+        SectionA2.Append('{ Quantity of ' + GetUnitComment(AItem.FClassName) + ' }');
+        SectionA2.Append(Format(INTF_QUANTITY, [GetUnitQuantityType(AItem.FClassName)]));
         SectionA2.Append(Format(INTF_END, []));
         SectionA2.Append('');
 
         SectionA3.Append('');
-        SectionA3.Append('{ Unit of ' + GetUnitComment(AClassName) + ' }');
-        SectionA3.Append(Format(INTF_UNIT, [GetUnitQuantityType(AClassName), GetUnitIdentifier(AClassName)]));
+        SectionA3.Append('{ Unit of ' + GetUnitComment(AItem.FClassName) + ' }');
+        SectionA3.Append(Format(INTF_UNIT, [GetUnitQuantityType(AItem.FClassName), GetUnitIdentifier(AItem.FClassName)]));
         SectionA3.Append(Format(INTF_END, []));
 
         SectionA3.Append('');
         SectionA3.Append('type');
-        SectionA3.Append(Format('  %s = %s;', [GetUnitQuantity(AClassName), GetUnitQuantityType(ABaseClass)]));
+        SectionA3.Append(Format('  %s = %s;', [GetUnitQuantity(AItem.FClassName), GetUnitQuantityType(AItem.FBaseClass)]));
 
-        SectionB2.Append(Format(IMPL_QUANTITY, [GetUnitQuantityType(AClassName)]));
-        SectionB3.Append(Format(IMPL_UNIT, [GetUnitQuantityType(AClassName), GetUnitIdentifier(AClassName)]));
+        SectionB2.Append(Format(IMPL_QUANTITY, [GetUnitQuantityType(AItem.FClassName)]));
+        SectionB3.Append(Format(IMPL_UNIT, [GetUnitQuantityType(AItem.FClassName), GetUnitIdentifier(AItem.FClassName)]));
 
-        SectionB2.Append(Format('class function %s.Symbol: string; begin result := ''%s'' end;', [GetUnitQuantityType(AClassName), GetSymbol(AShortSymbol)]));
-        SectionB2.Append(Format('class function %s.SingularName: string; begin result := ''%s'' end;', [GetUnitQuantityType(AClassName), GetSingularName(ALongSymbol)]));
-        SectionB2.Append(Format('class function %s.PluralName: string; begin result := ''%s'' end;',   [GetUnitQuantityType(AClassName), GetPluralName(ALongSymbol)]));
-        SectionB2.Append(Format('class function %s.Prefixes: TPrefixes; begin result := [%s]; end;',   [GetUnitQuantityType(AClassName), GetPrefixes(AShortSymbol)]));
-        SectionB2.Append(Format('class function %s.Exponents: TExponents; begin result := [%s]; end;', [GetUnitQuantityType(AClassName), GetExponents(AShortSymbol)]));
+        SectionB2.Append(Format('class function %s.Symbol: string; begin result := ''%s'' end;',       [GetUnitQuantityType(AItem.FClassName), GetSymbol(AItem.FShortSymbol)]));
+        SectionB2.Append(Format('class function %s.SingularName: string; begin result := ''%s'' end;', [GetUnitQuantityType(AItem.FClassName), GetSingularName(AItem.FLongSymbol)]));
+        SectionB2.Append(Format('class function %s.PluralName: string; begin result := ''%s'' end;',   [GetUnitQuantityType(AItem.FClassName), GetPluralName(AItem.FLongSymbol)]));
+        SectionB2.Append(Format('class function %s.Prefixes: TPrefixes; begin result := [%s]; end;',   [GetUnitQuantityType(AItem.FClassName), GetPrefixes(AItem.FShortSymbol)]));
+        SectionB2.Append(Format('class function %s.Exponents: TExponents; begin result := [%s]; end;', [GetUnitQuantityType(AItem.FClassName), GetExponents(AItem.FShortSymbol)]));
         SectionB2.Append('');
 
-        if (AIdentifierSymbol <> '') then
+        if (AItem.FIdentifierSymbol <> '') then
         begin
           SectionA3.Append('');
           SectionA3.Append('var');
-          SectionA3.Append(Format('  %s: %s;', [AIdentifierSymbol, GetUnitIdentifier(ABaseClass)]));
-          AddFactoredQuantity(ABaseClass, AIdentifierSymbol, AFactor, APrefixes);
+          SectionA3.Append(Format('  %s: %s;', [AItem.FIdentifierSymbol, GetUnitIdentifier(AItem.FBaseClass)]));
+          AddFactoredQuantity(AItem.FBaseClass, AItem.FIdentifierSymbol, AItem.FFactor, AItem.FPrefixes);
         end;
-        AddHelper(AClassName, ABaseClass, '');
+        AddHelper(AItem.FClassName, AItem.FBaseClass, '');
         Inc(FactoredUnitCount);
       end else
       begin
         // FACTORED UNIT
         SectionA2.Append('');
-        SectionA2.Append('{ Quantity of ' + GetUnitComment(AClassName) + ' }');
-        if Pos('%s', AFactor) = 0 then
-          SectionA2.Append(Format(INTF_FACTORED, [GetUnitQuantityType(AClassName)]))
+        SectionA2.Append('{ Quantity of ' + GetUnitComment(AItem.FClassName) + ' }');
+        if Pos('%s', AItem.FFactor) = 0 then
+          SectionA2.Append(Format(INTF_FACTORED, [GetUnitQuantityType(AItem.FClassName)]))
         else
-          SectionA2.Append(Format(INTF_QUANTITY, [GetUnitQuantityType(AClassName)]));
+          SectionA2.Append(Format(INTF_QUANTITY, [GetUnitQuantityType(AItem.FClassName)]));
         SectionA2.Append(Format(INTF_END, []));
         SectionA2.Append('');
 
         SectionA3.Append('');
-        SectionA3.Append('{ Unit of ' + GetUnitComment(AClassName) + ' }');
-        SectionA3.Append(Format(INTF_UNIT, [GetUnitQuantityType(AClassName), GetUnitIdentifier(AClassName)]));
+        SectionA3.Append('{ Unit of ' + GetUnitComment(AItem.FClassName) + ' }');
+        SectionA3.Append(Format(INTF_UNIT, [GetUnitQuantityType(AItem.FClassName), GetUnitIdentifier(AItem.FClassName)]));
         SectionA3.Append(Format(INTF_END, []));
 
         SectionA3.Append('');
         SectionA3.Append('type');
-        SectionA3.Append(Format('  %s = %s;', [GetUnitQuantity(AClassName), GetUnitQuantityType(ABaseClass)]));
+        SectionA3.Append(Format('  %s = %s;', [GetUnitQuantity(AItem.FClassName), GetUnitQuantityType(AItem.FBaseClass)]));
 
-        if Pos('%s', AFactor) = 0 then
-          SectionB2.Append(Format(IMPL_FACTORED, [GetUnitQuantityType(AClassName)]))
+        if Pos('%s', AItem.FFactor) = 0 then
+          SectionB2.Append(Format(IMPL_FACTORED, [GetUnitQuantityType(AItem.FClassName)]))
         else
-          SectionB2.Append(Format(IMPL_QUANTITY, [GetUnitQuantityType(AClassName)]));
+          SectionB2.Append(Format(IMPL_QUANTITY, [GetUnitQuantityType(AItem.FClassName)]));
 
-        SectionB3.Append(Format(IMPL_UNIT, [GetUnitQuantityType(AClassName), GetUnitIdentifier(AClassName)]));
+        SectionB3.Append(Format(IMPL_UNIT, [GetUnitQuantityType(AItem.FClassName), GetUnitIdentifier(AItem.FClassName)]));
 
-        SectionB2.Append(Format('class function %s.Symbol: string; begin result := ''%s'' end;',       [GetUnitQuantityType(AClassName), GetSymbol(AShortSymbol)]));
-        SectionB2.Append(Format('class function %s.SingularName: string; begin result := ''%s'' end;', [GetUnitQuantityType(AClassName), GetSingularName(ALongSymbol)]));
-        SectionB2.Append(Format('class function %s.PluralName: string; begin result := ''%s'' end;',   [GetUnitQuantityType(AClassName), GetPluralName(ALongSymbol)]));
-        SectionB2.Append(Format('class function %s.Prefixes: TPrefixes; begin result := [%s]; end;',   [GetUnitQuantityType(AClassName), GetPrefixes(AShortSymbol)]));
-        SectionB2.Append(Format('class function %s.Exponents: TExponents; begin result := [%s]; end;', [GetUnitQuantityType(AClassName), GetExponents(AShortSymbol)]));
-        if Pos('%s', AFactor) = 0 then
+        SectionB2.Append(Format('class function %s.Symbol: string; begin result := ''%s'' end;',       [GetUnitQuantityType(AItem.FClassName), GetSymbol(AItem.FShortSymbol)]));
+        SectionB2.Append(Format('class function %s.SingularName: string; begin result := ''%s'' end;', [GetUnitQuantityType(AItem.FClassName), GetSingularName(AItem.FLongSymbol)]));
+        SectionB2.Append(Format('class function %s.PluralName: string; begin result := ''%s'' end;',   [GetUnitQuantityType(AItem.FClassName), GetPluralName(AItem.FLongSymbol)]));
+        SectionB2.Append(Format('class function %s.Prefixes: TPrefixes; begin result := [%s]; end;',   [GetUnitQuantityType(AItem.FClassName), GetPrefixes(AItem.FShortSymbol)]));
+        SectionB2.Append(Format('class function %s.Exponents: TExponents; begin result := [%s]; end;', [GetUnitQuantityType(AItem.FClassName), GetExponents(AItem.FShortSymbol)]));
+        if Pos('%s', AItem.FFactor) = 0 then
         begin
-          SectionB2.Append(Format('class function %s.ToBaseFactor: double; begin result := %s; end;', [GetUnitQuantityType(AClassName), AFactor]));
+          SectionB2.Append(Format('class function %s.ToBaseFactor: double; begin result := %s; end;', [GetUnitQuantityType(AItem.FClassName), AItem.FFactor]));
         end;
         SectionB2.Append('');
 
-        if (AIdentifierSymbol <> '') then
+        if (AItem.FIdentifierSymbol <> '') then
         begin
-          if Pos('%s', AFactor) = 0 then
+          if Pos('%s', AItem.FFactor) = 0 then
           begin
             SectionA3.Append('');
             SectionA3.Append('const');
-            SectionA3.Append(Format('  %s: %s = (FValue: %s);', [AIdentifierSymbol, GetUnitQuantityType(ABaseClass), AFactor]));
-            AddFactoredQuantity(ABaseClass, AIdentifierSymbol, AFactor, APrefixes);
+            SectionA3.Append(Format('  %s: %s = (FValue: %s);', [AItem.FIdentifierSymbol, GetUnitQuantityType(AItem.FBaseClass), AItem.FFactor]));
+            AddFactoredQuantity(AItem.FBaseClass, AItem.FIdentifierSymbol, AItem.FFactor, AItem.FPrefixes);
           end else
           begin
             SectionA3.Append('');
             SectionA3.Append('var');
-            SectionA3.Append(Format('  %s: %s;', [AIdentifierSymbol, GetUnitIdentifier(AClassName)]));
+            SectionA3.Append(Format('  %s: %s;', [AItem.FIdentifierSymbol, GetUnitIdentifier(AItem.FClassName)]));
           end;
         end;
 
-        if Pos('%s', AFactor) = 0 then
+        if Pos('%s', AItem.FFactor) = 0 then
         begin
-          AddHelper(AClassName, ABaseClass, 'FValue / ' + GetUnitQuantityType(AClassName) + '.ToBaseFactor');
+          AddHelper(AItem.FClassName, AItem.FBaseClass, 'FValue / ' + GetUnitQuantityType(AItem.FClassName) + '.ToBaseFactor');
         end else
         begin
-          AddHelper(ABaseClass, AClassName, Format(Copy(AFactor, 1, Pos('|', AFactor) -1), ['FValue']));
-          AddHelper(AClassName, ABaseClass, Format(Copy(AFactor, Pos('|', AFactor) + 1, Length(AFactor)), ['FValue']));
+          AddHelper(AItem.FBaseClass, AItem.FClassName, Format(Copy(AItem.FFactor, 1, Pos('|', AItem.FFactor) -1), ['FValue']));
+          AddHelper(AItem.FClassName, AItem.FBaseClass, Format(Copy(AItem.FFactor, Pos('|', AItem.FFactor) + 1, Length(AItem.FFactor)), ['FValue']));
         end;
         Inc(FactoredUnitCount);
       end;
 
     end;
   end;
-  if not AddOP then Exit;
+  if not AddOperator then Exit;
 
-  if (ABaseClass = '') then
+  if (AItem.FBaseClass = '') then
   begin
-    CheckClass(AClassName, AOperator, AClassParent1, AClassParent2);
+    CheckClass(AItem.FClassName, AItem.FOperator, AItem.FClassParent1, AItem.FClassParent2);
 
-    if AOperator = '*' then
+    if AItem.FOperator = '*' then
     begin
-      Inc(MulCount);
 
-      iL := Find(Format(INTF_QUANTITY, [GetUnitQuantityType(AClassParent1)]), SectionA2);
-      iR := Find(Format(INTF_QUANTITY, [GetUnitQuantityType(AClassParent2)]), SectionA2);
-      iX := Find(Format(INTF_QUANTITY, [GetUnitQuantityType(AClassName   )]), SectionA2);
-
-      if not ((iX < iL) and (iX < iR)) then
-        Memo.Append('WARNING: ' + AClassParent1 + ' * ' + AClassParent2 + ' = ' + AClassName);
-
-      AddQuantityOperator('*', AClassParent1, AClassParent2, AClassName);
-      if AClassParent1 <> AClassParent2 then
+      AddQuantityOperator('*', AItem.FClassParent1, AItem.FClassParent2, AItem.FClassName);
+      if AItem.FClassParent1 <> AItem.FClassParent2 then
       begin
-        AddQuantityOperator('*', AClassParent2, AClassParent1, AClassName);
+        AddQuantityOperator('*', AItem.FClassParent2, AItem.FClassParent1, AItem.FClassName);
       end;
 
-      AddQuantityOperator('/', AClassName, AClassParent1, AClassParent2);
-      if AClassParent1 <> AClassParent2 then
+      AddQuantityOperator('/', AItem.FClassName, AItem.FClassParent1, AItem.FClassParent2);
+      if AItem.FClassParent1 <> AItem.FClassParent2 then
       begin
-        AddQuantityOperator('/', AClassName, AClassParent2, AClassParent1);
+        AddQuantityOperator('/', AItem.FClassName, AItem.FClassParent2, AItem.FClassParent1);
       end;
 
-      if Pos('OP1', AFactor) > 0 then AddUnitIdOperator('*', AClassParent1, AClassParent2, AClassName);
-      if Pos('OP2', AFactor) > 0 then AddUnitIdOperator('*', AClassParent2, AClassParent1, AClassName);
-      if Pos('OP3', AFactor) > 0 then AddUnitIdOperator('/', AClassName, AClassParent1, AClassParent2);
-      if Pos('OP4', AFactor) > 0 then AddUnitIdOperator('/', AClassName, AClassParent2, AClassParent1);
+      if Pos('OP1', AItem.FFactor) > 0 then AddUnitIdOperator('*', AItem.FClassParent1, AItem.FClassParent2, AItem.FClassName);
+      if Pos('OP2', AItem.FFactor) > 0 then AddUnitIdOperator('*', AItem.FClassParent2, AItem.FClassParent1, AItem.FClassName);
+      if Pos('OP3', AItem.FFactor) > 0 then AddUnitIdOperator('/', AItem.FClassName, AItem.FClassParent1, AItem.FClassParent2);
+      if Pos('OP4', AItem.FFactor) > 0 then AddUnitIdOperator('/', AItem.FClassName, AItem.FClassParent2, AItem.FClassParent1);
 
     end else
-      if AOperator = '/' then
+      if AItem.FOperator = '/' then
       begin
-        Inc(DivCount);
+        AddQuantityOperator('/', AItem.FClassParent1, AItem.FClassParent2, AItem.FClassName);
+        AddQuantityOperator('*', AItem.FClassParent2, AItem.FClassName,    AItem.FClassParent1);
+        AddQuantityOperator('*', AItem.FClassName,    AItem.FClassParent2, AItem.FClassParent1);
+        AddQuantityOperator('/', AItem.FClassParent1, AItem.FClassName,    AItem.FClassParent2);
 
-        iL := Find(Format(INTF_QUANTITY, [GetUnitQuantityType(AClassParent1)]), SectionA2);
-        iR := Find(Format(INTF_QUANTITY, [GetUnitQuantityType(AClassParent2)]), SectionA2);
-        iX := Find(Format(INTF_QUANTITY, [GetUnitQuantityType(AClassName   )]), SectionA2);
-
-        if (not ((iX < iL) and (iX < iR))) and
-           (not ((iX > iL) and (iX > iR))) then
-          Memo.Append('WARNING: ' + AClassParent1 + ' / ' + AClassParent2 + ' = ' + AClassName);
-
-        AddQuantityOperator('/', AClassParent1, AClassParent2, AClassName);
-        AddQuantityOperator('*', AClassParent2, AClassName,    AClassParent1);
-        AddQuantityOperator('*', AClassName,    AClassParent2, AClassParent1);
-        AddQuantityOperator('/', AClassParent1, AClassName,    AClassParent2);
-
-        if Pos('OP1', AFactor) > 0 then AddUnitIdOperator('/', AClassParent1, AClassParent2, AClassName);
-        if Pos('OP2', AFactor) > 0 then AddUnitIdOperator('*', AClassParent2, AClassName, AClassParent1);
-        if Pos('OP3', AFactor) > 0 then AddUnitIdOperator('*', AClassName, AClassParent2, AClassParent1);
-        if Pos('OP4', AFactor) > 0 then AddUnitIdOperator('/', AClassParent1, AClassName, AClassParent2);
+        if Pos('OP1', AItem.FFactor) > 0 then AddUnitIdOperator('/', AItem.FClassParent1, AItem.FClassParent2, AItem.FClassName);
+        if Pos('OP2', AItem.FFactor) > 0 then AddUnitIdOperator('*', AItem.FClassParent2, AItem.FClassName, AItem.FClassParent1);
+        if Pos('OP3', AItem.FFactor) > 0 then AddUnitIdOperator('*', AItem.FClassName, AItem.FClassParent2, AItem.FClassParent1);
+        if Pos('OP4', AItem.FFactor) > 0 then AddUnitIdOperator('/', AItem.FClassParent1, AItem.FClassName, AItem.FClassParent2);
 
       end else
-        if Pos('power', LowerCase(AOperator)) > 0 then
+        if Pos('power', LowerCase(AItem.FOperator)) > 0 then
         begin
-          AddPower(AOperator, AClassParent1, AClassName);
+          AddPower(AItem.FOperator, AItem.FClassParent1, AItem.FClassName);
         end;
 
   end else
-    if (AOperator = '=') then
+    if (AItem.FOperator = '=') then
     begin
       SectionA7.Append('');
       SectionB7.Append('');
-      AddEquivalence(AClassName, ABaseClass);
+      AddEquivalence(AItem.FClassName, AItem.FBaseClass);
       SectionB7.Append('');
-      AddEquivalence(ABaseClass, AClassName);
+      AddEquivalence(AItem.FBaseClass, AItem.FClassName);
       SectionB7.Append('');
       SectionA7.Append('');
     end else
-      if (AOperator = ':=') then
+      if (AItem.FOperator = ':=') then
       begin
         SectionA7.Append('');
         SectionB7.Append('');
-        AddEquivalence(AClassName, ABaseClass);
+        AddEquivalence(AItem.FClassName, AItem.FBaseClass);
         SectionB7.Append('');
         SectionA7.Append('');
       end;
@@ -1014,13 +989,12 @@ var
   I: longint;
   Document: TStringList;
   Stream: TResourceStream;
+  T: TToolkitItem;
 begin
   Document     := TSTringList.Create;
   ClassList    := TStringList.Create;
   CheckList    := nil;
-
-  MulCount     := 0;
-  DivCount     := 0;
+  FList        := TToolkitList.Create;
 
   OperatorList := TStringList.Create;
   SectionA0    := TStringList.Create;
@@ -1108,45 +1082,28 @@ begin
   InternalOperators := 0;
   for I := 0 to WorksheetGrid.Worksheet.GetLastRowIndex do
   begin
-    if (WorksheetGrid.Worksheet.ReadAsText(I, _class_name) <> '') then
+    T.FClassName        := WorksheetGrid.Worksheet.ReadAsText(I, _class_name);
+    T.FOperator         := WorksheetGrid.Worksheet.ReadAsText(I, _operator);
+    T.FClassParent1     := WorksheetGrid.Worksheet.ReadAsText(I, _class_parent_1);
+    T.FClassParent2     := WorksheetGrid.Worksheet.ReadAsText(I, _class_parent_2);
+    T.FComment          := WorksheetGrid.Worksheet.ReadAsText(I, _comment);
+    T.FLongSymbol       := WorksheetGrid.Worksheet.ReadAsText(I, _long_symbol);
+    T.FShortSymbol      := WorksheetGrid.Worksheet.ReadAsText(I, _short_symbol);
+    T.FIdentifierSymbol := WorksheetGrid.Worksheet.ReadAsText(I, _identifier_symbol);
+    T.FBaseClass        := WorksheetGrid.Worksheet.ReadAsText(I, _base_class);
+    T.FFactor           := WorksheetGrid.Worksheet.ReadAsText(I, _factor);
+    T.FPrefixes         := WorksheetGrid.Worksheet.ReadAsText(I, _prefixes);
+    T.FLongSymbol       := CleanUnitName(T.FLongSymbol);
+    T.FShortSymbol      := CleanUnitSymbol(T.FShortSymbol);
+
+    if (T.FClassName <> '') and (Pos('//', T.FClassName) = 0) then
     begin
-      if Pos('//', WorksheetGrid.Worksheet.ReadAsText(I, _class_name)) = 0 then
-      begin
-        AddClass(WorksheetGrid.Worksheet.ReadAsText(I, _class_name       ),
-                 WorksheetGrid.Worksheet.ReadAsText(I, _operator         ),
-                 WorksheetGrid.Worksheet.ReadAsText(I, _class_parent_1   ),
-                 WorksheetGrid.Worksheet.ReadAsText(I, _class_parent_2   ),
-                 WorksheetGrid.Worksheet.ReadAsText(I, _comment          ),
-   CleanUnitName(WorksheetGrid.Worksheet.ReadAsText(I, _long_symbol      )),
- CleanUnitSymbol(WorksheetGrid.Worksheet.ReadAsText(I, _short_symbol     )),
-                 WorksheetGrid.Worksheet.ReadAsText(I, _identifier_symbol),
-                 WorksheetGrid.Worksheet.ReadAsText(I, _base_class       ),
-                 WorksheetGrid.Worksheet.ReadAsText(I, _factor           ),
-                 WorksheetGrid.Worksheet.ReadAsText(I, _prefixes         ), FALSE);
-      end;
+      FList.Add(T);
     end;
   end;
 
-  for I := 0 to WorksheetGrid.Worksheet.GetLastRowIndex do
-  begin
-    if (WorksheetGrid.Worksheet.ReadAsText(I, _class_name) <> '') then
-    begin
-      if Pos('//', WorksheetGrid.Worksheet.ReadAsText(I, _class_name)) = 0 then
-      begin
-        AddClass(WorksheetGrid.Worksheet.ReadAsText(I, _class_name       ),
-                 WorksheetGrid.Worksheet.ReadAsText(I, _operator         ),
-                 WorksheetGrid.Worksheet.ReadAsText(I, _class_parent_1   ),
-                 WorksheetGrid.Worksheet.ReadAsText(I, _class_parent_2   ),
-                 WorksheetGrid.Worksheet.ReadAsText(I, _comment          ),
-   CleanUnitName(WorksheetGrid.Worksheet.ReadAsText(I, _long_symbol      )),
- CleanUnitSymbol(WorksheetGrid.Worksheet.ReadAsText(I, _short_symbol     )),
-                 WorksheetGrid.Worksheet.ReadAsText(I, _identifier_symbol),
-                 WorksheetGrid.Worksheet.ReadAsText(I, _base_class       ),
-                 WorksheetGrid.Worksheet.ReadAsText(I, _factor           ),
-                 WorksheetGrid.Worksheet.ReadAsText(I, _prefixes         ), TRUE);
-      end;
-    end;
-  end;
+  for I := 0 to FList.Count -1 do AddClass(FList[I], False);
+  for I := 0 to FList.Count -1 do AddClass(FList[I], True);
 
   SectionA0.Append('');
   SectionA0.Append('{');
@@ -1216,6 +1173,7 @@ begin
   SectionA1 .Destroy;
   SectionA0 .Destroy;
 
+  FList.Destroy;
   OperatorList.Destroy;
   ClassList.Destroy;
   CheckList := nil;

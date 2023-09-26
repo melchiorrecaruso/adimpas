@@ -30,7 +30,8 @@ uses
   {$ENDIF}
   Interfaces,
   Forms,
-  MainFrm;
+  MainFrm,
+  Common;
 
 {$R *.res}
 

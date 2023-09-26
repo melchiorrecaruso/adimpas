@@ -63,6 +63,11 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainFrm"/>
       </Unit>
+      <Unit>
+        <Filename Value="common.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Common"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
