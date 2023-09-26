@@ -576,6 +576,7 @@ object MainForm: TMainForm
         Height = 454
         Top = 4
         Width = 840
+        Anchors = [akTop, akLeft, akRight, akBottom]
         BorderSpacing.Left = 4
         BorderSpacing.Top = 4
         BorderSpacing.Right = 4
