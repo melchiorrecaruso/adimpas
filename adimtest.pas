@@ -831,12 +831,13 @@ begin
   writeln('* TEST-94: PASSED');
 
   // TEST-95
-  //omega := 10*rad/s;
-  //omega := 10/s;
-  //freq  := 10*rad/s; ;
-  //omega := 10/s;
-  //writeln('* TEST-95: PASSED');
-
+  omega := 10*rad/s;
+  omega := 10/s;
+  freq  := 10*rad/s;
+  freq  := 10/s;
+  omega := freq;
+  freq  := omega;
+  writeln('* TEST-95: PASSED');
 
   writeln('ADIM-TEST DONE.');
 end.
