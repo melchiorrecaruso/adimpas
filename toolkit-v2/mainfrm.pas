@@ -133,7 +133,7 @@ implementation
 {$R *.lfm}
 
 uses
-  LCLType, Math, StrUtils;
+  LCLType, Math, SimulatedAnnealing, StrUtils;
 
 const
   _class_name        = 00;
@@ -147,254 +147,6 @@ const
   _base_class        = 08;
   _factor            = 09;
   _prefixes          = 10;
-
-
-function Split(const AStr: string): TStringArray;
-var
-  I, Index: longint;
-begin
-  Index  := 0;
-  result := nil;
-  SetLength(result, Index + 10);
-  for I := Low(AStr) to High(AStr) do
-  begin
-
-    if AStr[I] in ['/', '.'] then
-    begin
-      Inc(Index);
-      if Index = Length(result) then
-        SetLength(result, Index + 10);
-      if AStr[I] <> ' ' then
-      begin
-        result[Index] := AStr[I];
-        Inc(Index);
-        if Index = Length(result) then
-           SetLength(result, Index + 10);
-      end;
-      result[Index] := '';
-    end else
-      result[Index] := result[Index] + AStr[I];
-   end;
-  SetLength(result, Index + 1);
-end;
-
-function GetSymbol(const AShortSymbol: string): string;
-begin
-  result := AShortSymbol;
-  result := StringReplace(result, '.', '·', [rfReplaceAll]);
-end;
-
-function GetSingularName(const ALongSymbol: string): string;
-begin
-  result := ALongSymbol;
-  result := StringReplace(StringReplace(result, '!', '', [rfReplaceAll]), '?', '', [rfReplaceAll]);
-end;
-
-function GetPluralName(const ALongSymbol: string): string;
-begin
-  result := ALongSymbol;
-  result := StringReplace(StringReplace(result, 'inch!', 'inches', [rfReplaceAll]), 'foot!', 'feet', [rfReplaceAll]);
-  result := StringReplace(StringReplace(result, 'y!',    'ies',    [rfReplaceAll]), '?',     's',    [rfReplaceAll]);
-end;
-
-function GetUnitComment(S: string): string;
-var
-  I: longint;
-begin
-  S := StringReplace(S, '!',  '', [rfReplaceAll]);
-  S := StringReplace(S, '?',  '', [rfReplaceAll]);
-  S := StringReplace(S, ' ',  '', [rfReplaceAll]);
-  if Pos('T', S) = 1 then
-    Delete(S, 1, 1);
-
-  result := '';
-  for I := low(S) to high(S) do
-  begin
-    if S[I] = UpCase(S[I]) then
-      result := result + ' ';
-     result := result + LowerCase(S[I]);
-  end;
-
-  if Pos(' ', result) = 1 then
-    Delete(result, 1, 1);
-end;
-
-function GetUnitDescription(const S: string): string;
-begin
-  Result := S;
-  Result := StringReplace(Result, '!',  '', [rfReplaceAll]);
-  Result := StringReplace(Result, '?',  '', [rfReplaceAll]);
-  Result := StringReplace(Result, ' ',  '', [rfReplaceAll]);
-  if Pos('T', Result) = 1 then
-    Delete(Result, 1, 1);
-end;
-
-function GetUnitClassName(const S: string): string;
-begin
-  Result := S;
-  Result := StringReplace(Result, '!',  '', [rfReplaceAll]);
-  Result := StringReplace(Result, '?',  '', [rfReplaceAll]);
-  Result := StringReplace(Result, ' ',  '', [rfReplaceAll]);
-
-  if Result = 'double' then Result := '';
-  if Result <> ''      then Result := Result + 'Unit';
-end;
-
-function GetUnitClassNameHelper(const S: string): string;
-begin
-  Result := S;
-  Result := StringReplace(Result, '!',  '', [rfReplaceAll]);
-  Result := StringReplace(Result, '?',  '', [rfReplaceAll]);
-  Result := StringReplace(Result, ' ',  '', [rfReplaceAll]);
-  Result := Result + 'Helper';
-end;
-
-function GetUnitIdentifier(const S: string): string;
-begin
-  Result := S;
-  Result := StringReplace(Result, '!',  '', [rfReplaceAll]);
-  Result := StringReplace(Result, '?',  '', [rfReplaceAll]);
-  Result := StringReplace(Result, ' ',  '', [rfReplaceAll]);
-  Result := Result + 'Unit';
-end;
-
-function GetUnitQuantity(const S: string): string;
-begin
-  Result := S;
-  Result := StringReplace(Result, 'Foot!', 'Feet',   [rfReplaceAll]);
-  Result := StringReplace(Result, 'Inch!', 'Inches', [rfReplaceAll]);
-  Result := StringReplace(Result, 'y!',    'ies',    [rfReplaceAll]);
-  Result := StringReplace(Result, '?',     's',      [rfReplaceAll]);
-  Result := StringReplace(Result, ' ',     '',       [rfReplaceAll]);
-end;
-
-function GetUnitQuantityType(const S: string): string;
-begin
-  Result := S;
-  if Result <> '' then
-  begin
-    Result := StringReplace(Result, 'Foot!', 'Foot', [rfReplaceAll]);
-    Result := StringReplace(Result, 'Inch!', 'Inch', [rfReplaceAll]);
-    Result := StringReplace(Result, 'y!',    'y',    [rfReplaceAll]);
-    Result := StringReplace(Result, '?',     '',     [rfReplaceAll]);
-    Result := StringReplace(Result, ' ',     '',     [rfReplaceAll]);
-    Result := Result + 'Qty';
-  end;
-end;
-
-function GetPrefixes(const AShortSymbol: string): string;
-var
-  I, J: longint;
-  S: TStringArray;
-begin
-  Result := '';
-  S := Split(AShortSymbol);
-  for I := Low(S) to High(S) do
-  begin
-    J := Pos('%s', S[I]);
-    if J > 0 then
-    begin
-      if (S[I] = '%sg') or (S[I] = '%sg2') then
-        result := result + ' pKilo,'
-      else
-        result := result + ' pNone,';
-    end;
-  end;
-  S := nil;
-
-  while (Length(Result) > 0) and (Result[Low (Result)] = ' ') do
-    Delete(Result, Low (Result), 1);
-
-  while (Length(Result) > 0) and (Result[High(Result)] = ',') do
-    Delete(Result, High(Result), 1);
-end;
-
-function GetExponents(const AShortSymbol: string): string;
-var
-  I, Exponent: longint;
-  S: TStringArray;
-begin
-  Result := '';
-  Exponent := 1;
-  S := Split(AShortSymbol);
-  for I := Low(S) to High(S) do
-  begin
-    if S[I] = '.' then
-      Exponent := 1
-    else
-      if S[I] = '/' then
-        Exponent := -1
-      else
-      begin
-        if Pos('%s', S[I]) > 0 then
-        begin
-          if S[I][Length(S[I])] in ['2', '3', '4', '5', '6', '7', '8', '9'] then
-          begin
-            if Exponent < 0 then
-              Result := Result + ' -' + S[I][Length(S[I])] + ','
-            else
-              Result := Result + ' ' + S[I][Length(S[I])] + ',';
-          end else
-          begin
-            if Exponent < 0 then
-              Result := Result + ' -1,'
-            else
-              Result := Result + ' 1,';
-          end;
-        end;
-      end;
-  end;
-  S := nil;
-
-  while (Length(Result) > 0) and (Result[Low (Result)] = ' ') do
-    Delete(Result, Low (Result), 1);
-
-  while (Length(Result) > 0) and (Result[High(Result)] = ',') do
-    Delete(Result, High(Result), 1);
-end;
-
-function CleanUnitName(const S: string): string;
-begin
-  Result := S;
-  while Pos('  ', Result) > 0 do
-  begin
-    Delete(Result, Pos('  ', Result), 1);
-  end;
-end;
-
-function CleanUnitSymbol(const S: string): string;
-begin
-  Result := S;
-  while Pos(' ', Result) > 0 do
-  begin
-    Delete(Result, Pos(' ', Result), 1);
-  end;
-end;
-
-procedure CleanDocument(S: TStringList);
-var
-  i: longint;
-begin
-  i := 0;
-  while i < S.Count do
-  begin
-    if IsEmptyStr(S[i], [' ']) then
-    begin
-      S.Delete(i);
-    end else
-      Break;
-  end;
-
-  while (i + 1) < S.Count do
-  begin
-    if IsEmptyStr(S[i],     [' ']) and
-       IsEmptyStr(S[i + 1], [' ']) then
-    begin
-      S.Delete(i + 1);
-    end else
-      inc(i);
-  end;
-end;
 
 procedure TMainForm.AddQuantityOperator(AOperator, ALeftParent, ARightParent, AResult: string);
 var
@@ -413,7 +165,13 @@ begin
     i := Max(iL, iR);
     if i = iL then ABaseClass := ALeftParent;
     if i = iR then ABaseClass := ARightParent;
-    if iX > i then ABaseClass := '';
+    if i < iX then ABaseClass := '';
+
+    if ABaseClass <> '' then
+    begin
+      // if (i = iL) and (GetUnitQuantityType(ALeftParent ) = 'THertzQty') then ABaseClass := '';
+      // if (i = iR) and (GetUnitQuantityType(ARightParent) = 'THertzQty') then ABaseClass := '';
+    end;
   end;
 
   if ABaseClass   <> 'double' then ABaseClass   := GetUnitQuantityType(ABaseClass);
@@ -593,6 +351,7 @@ begin
           AddFactoredQuantity(AItem.FBaseClass, AItem.FIdentifierSymbol, AItem.FFactor, AItem.FPrefixes);
         end;
         AddHelper(AItem.FClassName, AItem.FBaseClass, '');
+        AddHelper(AItem.FBaseClass, AItem.FClassName, '');
         Inc(FactoredUnitCount);
       end else
       begin
@@ -713,8 +472,10 @@ begin
       SectionA7.Append('');
       SectionB7.Append('');
       AddEquivalence(AItem.FClassName, AItem.FBaseClass);
+      AddHelper(AItem.FClassName, AItem.FBaseClass, '');
       SectionB7.Append('');
       AddEquivalence(AItem.FBaseClass, AItem.FClassName);
+      AddHelper(AItem.FBaseClass, AItem.FClassName, '');
       SectionB7.Append('');
       SectionA7.Append('');
     end else
@@ -723,6 +484,7 @@ begin
         SectionA7.Append('');
         SectionB7.Append('');
         AddEquivalence(AItem.FClassName, AItem.FBaseClass);
+        AddHelper(AItem.FClassName, AItem.FBaseClass, '');
         SectionB7.Append('');
         SectionA7.Append('');
       end;
@@ -986,7 +748,8 @@ end;
 
  procedure TMainForm.RunBtnClick(Sender: TObject);
 var
-  I: longint;
+  I, J: longint;
+  BestSolution: TSolution;
   Document: TStringList;
   Stream: TResourceStream;
   T: TToolkitItem;
@@ -1102,6 +865,21 @@ begin
     end;
   end;
 
+  (*
+  FList.Optimize(BestSolution);
+  for i := Low(BestSolution) to High(BestSolution) do
+  begin
+    for j := 0 to FList.Count -1 do
+    begin
+      if FList[j].FClassName = BestSolution[i] then
+      begin
+        AddClass(FList[j], False);
+        Break;
+      end;
+    end;
+  end;
+  BestSolution := nil;
+  *)
   for I := 0 to FList.Count -1 do AddClass(FList[I], False);
   for I := 0 to FList.Count -1 do AddClass(FList[I], True);
 

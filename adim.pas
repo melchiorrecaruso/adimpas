@@ -18,7 +18,7 @@
 }
 
 {
-  ADimPas library built on 24/09/2023.
+  ADimPas library built on 01/10/2023.
 
   Number of base units: 121
   Number of factored units: 63
@@ -3626,6 +3626,16 @@ type
   end;
 
 type
+  TRadianPerSecondSquaredHelper = record helper for TRadianPerSecondSquaredQty
+    function ToSquareHertz: TSquareHertzQty;
+  end;
+
+type
+  TSteradianPerSquareSecondHelper = record helper for TSteradianPerSquareSecondQty
+    function ToSquareHertz: TSquareHertzQty;
+  end;
+
+type
   TMeterPerSecondHelper = record helper for TMeterPerSecondQty
     function ToNauticalMilePerHour: TNauticalMilePerHourQty;
     function ToMilePerHour: TMilePerHourQty;
@@ -3639,8 +3649,18 @@ type
   end;
 
 type
+  TMeterPerSecondPerSecondHelper = record helper for TMeterPerSecondPerSecondQty
+    function ToMeterPerSecondSquared: TMeterPerSecondSquaredQty;
+  end;
+
+type
   TKilogramMeterPerSecondHelper = record helper for TKilogramMeterPerSecondQty
     function ToNewtonSecond: TNewtonSecondQty;
+  end;
+
+type
+  TNewtonSecondHelper = record helper for TNewtonSecondQty
+    function ToKilogramMeterPerSecond: TKilogramMeterPerSecondQty;
   end;
 
 type
@@ -3656,11 +3676,21 @@ type
   end;
 
 type
+  TJoulePerCubicMeterHelper = record helper for TJoulePerCubicMeterQty
+    function ToPascal: TPascalQty;
+  end;
+
+type
   TJouleHelper = record helper for TJouleQty
     function ToPoundForceInch: TPoundForceInchQty;
     function ToNewtonMeter: TNewtonMeterQty;
     function ToElettronvolt: TElettronvoltQty;
     function ToWattHour: TWattHourQty;
+  end;
+
+type
+  TNewtonMeterHelper = record helper for TNewtonMeterQty
+    function ToJoule: TJouleQty;
   end;
 
 type
@@ -3670,7 +3700,13 @@ type
 
 type
   THertzHelper = record helper for THertzQty
+    function ToRadianPerSecond: TRadianPerSecondQty;
     function ToBequerel: TBequerelQty;
+  end;
+
+type
+  TBequerelHelper = record helper for TBequerelQty
+    function ToHertz: THertzQty;
   end;
 
 type
@@ -3681,10 +3717,25 @@ type
   end;
 
 type
+  TGrayHelper = record helper for TGrayQty
+    function ToSquareMeterPerSquareSecond: TSquareMeterPerSquareSecondQty;
+  end;
+
+type
+  TSievertHelper = record helper for TSievertQty
+    function ToSquareMeterPerSquareSecond: TSquareMeterPerSquareSecondQty;
+  end;
+
+type
   TJoulePerRadianHelper = record helper for TJoulePerRadianQty
     function ToNewtonMeterPerDegree: TNewtonMeterPerDegreeQty;
     function ToNewtonMeterPerRadian: TNewtonMeterPerRadianQty;
     function ToJoulePerDegree: TJoulePerDegreeQty;
+  end;
+
+type
+  TNewtonMeterPerRadianHelper = record helper for TNewtonMeterPerRadianQty
+    function ToJoulePerRadian: TJoulePerRadianQty;
   end;
 
 type
@@ -3698,8 +3749,23 @@ type
   end;
 
 type
+  TPascalSecondHelper = record helper for TPascalSecondQty
+    function ToPoiseuille: TPoiseuilleQty;
+  end;
+
+type
+  TJoulePerKilogramHelper = record helper for TJoulePerKilogramQty
+    function ToSquareMeterPerSquareSecond: TSquareMeterPerSquareSecondQty;
+  end;
+
+type
   TVoltPerMeterHelper = record helper for TVoltPerMeterQty
     function ToNewtonPerCoulomb: TNewtonPerCoulombQty;
+  end;
+
+type
+  TNewtonPerCoulombHelper = record helper for TNewtonPerCoulombQty
+    function ToVoltPerMeter: TVoltPerMeterQty;
   end;
 
 type
@@ -3708,8 +3774,18 @@ type
   end;
 
 type
+  TNewtonSquareMeterPerCoulombHelper = record helper for TNewtonSquareMeterPerCoulombQty
+    function ToVoltMeter: TVoltMeterQty;
+  end;
+
+type
   TTeslaMeterHelper = record helper for TTeslaMeterQty
     function ToNewtonPerAmpere: TNewtonPerAmpereQty;
+  end;
+
+type
+  TNewtonPerAmpereHelper = record helper for TNewtonPerAmpereQty
+    function ToTeslaMeter: TTeslaMeterQty;
   end;
 
 type
@@ -3719,9 +3795,29 @@ type
   end;
 
 type
+  TTeslaMeterPerAmpereHelper = record helper for TTeslaMeterPerAmpereQty
+    function ToHenryPerMeter: THenryPerMeterQty;
+  end;
+
+type
+  TNewtonPerSquareAmpereHelper = record helper for TNewtonPerSquareAmpereQty
+    function ToHenryPerMeter: THenryPerMeterQty;
+  end;
+
+type
   TKilogramSquareMeterPerSecondHelper = record helper for TKilogramSquareMeterPerSecondQty
     function ToElettronvoltSecond: TElettronvoltSecondQty;
     function ToJouleSecond: TJouleSecondQty;
+  end;
+
+type
+  TJouleSecondHelper = record helper for TJouleSecondQty
+    function ToKilogramSquareMeterPerSecond: TKilogramSquareMeterPerSecondQty;
+  end;
+
+type
+  TRadianPerSecondHelper = record helper for TRadianPerSecondQty
+    function ToHertz: THertzQty;
   end;
 
 function SquarePower(AQuantity: TSecondQty): TSquareSecondQty;
@@ -10344,7 +10440,17 @@ begin
   result.FValue := FValue;
 end;
 
+function TRadianPerSecondSquaredHelper.ToSquareHertz: TSquareHertzQty;
+begin
+  result.FValue := FValue;
+end;
+
 function TSquareHertzHelper.ToSteradianPerSquareSecond: TSteradianPerSquareSecondQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TSteradianPerSquareSecondHelper.ToSquareHertz: TSquareHertzQty;
 begin
   result.FValue := FValue;
 end;
@@ -10369,12 +10475,22 @@ begin
   result.FValue := FValue;
 end;
 
+function TMeterPerSecondPerSecondHelper.ToMeterPerSecondSquared: TMeterPerSecondSquaredQty;
+begin
+  result.FValue := FValue;
+end;
+
 function TMeterPerSecondSquaredHelper.ToMeterPerHourPerSecond: TMeterPerHourPerSecondQty;
 begin
   result.FValue := FValue / TMeterPerHourPerSecondQty.ToBaseFactor;
 end;
 
 function TKilogramMeterPerSecondHelper.ToNewtonSecond: TNewtonSecondQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TNewtonSecondHelper.ToKilogramMeterPerSecond: TKilogramMeterPerSecondQty;
 begin
   result.FValue := FValue;
 end;
@@ -10399,6 +10515,11 @@ begin
   result.FValue := FValue;
 end;
 
+function TJoulePerCubicMeterHelper.ToPascal: TPascalQty;
+begin
+  result.FValue := FValue;
+end;
+
 function TJouleHelper.ToWattHour: TWattHourQty;
 begin
   result.FValue := FValue / TWattHourQty.ToBaseFactor;
@@ -10410,6 +10531,11 @@ begin
 end;
 
 function TJouleHelper.ToNewtonMeter: TNewtonMeterQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TNewtonMeterHelper.ToJoule: TJouleQty;
 begin
   result.FValue := FValue;
 end;
@@ -10429,12 +10555,27 @@ begin
   result.FValue := FValue;
 end;
 
+function TBequerelHelper.ToHertz: THertzQty;
+begin
+  result.FValue := FValue;
+end;
+
 function TSquareMeterPerSquareSecondHelper.ToGray: TGrayQty;
 begin
   result.FValue := FValue;
 end;
 
+function TGrayHelper.ToSquareMeterPerSquareSecond: TSquareMeterPerSquareSecondQty;
+begin
+  result.FValue := FValue;
+end;
+
 function TSquareMeterPerSquareSecondHelper.ToSievert: TSievertQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TSievertHelper.ToSquareMeterPerSquareSecond: TSquareMeterPerSquareSecondQty;
 begin
   result.FValue := FValue;
 end;
@@ -10445,6 +10586,11 @@ begin
 end;
 
 function TJoulePerRadianHelper.ToNewtonMeterPerRadian: TNewtonMeterPerRadianQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TNewtonMeterPerRadianHelper.ToJoulePerRadian: TJoulePerRadianQty;
 begin
   result.FValue := FValue;
 end;
@@ -10464,7 +10610,17 @@ begin
   result.FValue := FValue;
 end;
 
+function TPascalSecondHelper.ToPoiseuille: TPoiseuilleQty;
+begin
+  result.FValue := FValue;
+end;
+
 function TSquareMeterPerSquareSecondHelper.ToJoulePerKilogram: TJoulePerKilogramQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TJoulePerKilogramHelper.ToSquareMeterPerSquareSecond: TSquareMeterPerSquareSecondQty;
 begin
   result.FValue := FValue;
 end;
@@ -10474,7 +10630,17 @@ begin
   result.FValue := FValue;
 end;
 
+function TNewtonPerCoulombHelper.ToVoltPerMeter: TVoltPerMeterQty;
+begin
+  result.FValue := FValue;
+end;
+
 function TVoltMeterHelper.ToNewtonSquareMeterPerCoulomb: TNewtonSquareMeterPerCoulombQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TNewtonSquareMeterPerCoulombHelper.ToVoltMeter: TVoltMeterQty;
 begin
   result.FValue := FValue;
 end;
@@ -10484,7 +10650,17 @@ begin
   result.FValue := FValue;
 end;
 
+function TNewtonPerAmpereHelper.ToTeslaMeter: TTeslaMeterQty;
+begin
+  result.FValue := FValue;
+end;
+
 function THenryPerMeterHelper.ToTeslaMeterPerAmpere: TTeslaMeterPerAmpereQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TTeslaMeterPerAmpereHelper.ToHenryPerMeter: THenryPerMeterQty;
 begin
   result.FValue := FValue;
 end;
@@ -10494,7 +10670,17 @@ begin
   result.FValue := FValue;
 end;
 
+function TNewtonPerSquareAmpereHelper.ToHenryPerMeter: THenryPerMeterQty;
+begin
+  result.FValue := FValue;
+end;
+
 function TKilogramSquareMeterPerSecondHelper.ToJouleSecond: TJouleSecondQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TJouleSecondHelper.ToKilogramSquareMeterPerSecond: TKilogramSquareMeterPerSecondQty;
 begin
   result.FValue := FValue;
 end;
@@ -10502,6 +10688,16 @@ end;
 function TKilogramSquareMeterPerSecondHelper.ToElettronvoltSecond: TElettronvoltSecondQty;
 begin
   result.FValue := FValue / TElettronvoltSecondQty.ToBaseFactor;
+end;
+
+function THertzHelper.ToRadianPerSecond: TRadianPerSecondQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TRadianPerSecondHelper.ToHertz: THertzQty;
+begin
+  result.FValue := FValue;
 end;
 
 function SquarePower(AQuantity: TSecondQty): TSquareSecondQty;

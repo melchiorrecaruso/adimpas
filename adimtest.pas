@@ -294,6 +294,8 @@ begin
   torque       := 10*N*m;
   angularspeed := 2*rad/s;
   power        := torque*angularspeed;
+  angularspeed := power/torque;
+  torque       := power/angularspeed;
   if power.ToString(5, 0, []) <> '20 W' then halt(1);
   writeln('* TEST-12: PASSED');
 
@@ -837,6 +839,8 @@ begin
   freq  := 10/s;
   omega := freq;
   freq  := omega;
+  if omega.ToHertz          .ToString <> '10 Hz'    then halt(1);
+  if freq .ToRadianPerSecond.ToString <> '10 rad/s' then halt(2);
   writeln('* TEST-95: PASSED');
 
   writeln('ADIM-TEST DONE.');
