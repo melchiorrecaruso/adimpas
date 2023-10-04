@@ -47,7 +47,7 @@ type
     destructor Destroy; override;
     procedure Execute(var BestSolution: TSolution);
     procedure CreateSolution(var Neighbour: TSolution); virtual; abstract;
-    function CalculateEnergy(const Solution: TSolution): single; virtual; abstract;
+    function CalculateEnergy(const Solution: TSolution): double; virtual; abstract;
   published
     property CoolingRate: double read fCoolingRate write fCoolingRate;
     property InitialTemperature: double read fInitialTemperature
@@ -99,10 +99,10 @@ end;
 
 procedure TSimulatedAnnealing.Execute(var BestSolution: TSolution);
 var
-  BestEnergy: single;
-  CurrentEnergy: single;
+  BestEnergy: double;
+  CurrentEnergy: double;
   CurrentSolution: TSolution = nil;
-  NeighbourEnergy: single;
+  NeighbourEnergy: double;
   NeighbourSolution: TSolution = nil;
   StartTime: tdatetime;
   Temperature: double;
@@ -118,7 +118,7 @@ begin
   setlength(NeighbourSolution, system.length(BestSolution));
   // loop until system has cooled
   StartTime := Now;
-  while SecondsBetween(Now, StartTime) < fExecutionTime do
+  while (Temperature > 0) and (SecondsBetween(Now, StartTime) < fExecutionTime) do
   begin
     // create new neighbour BestSolution
     CopySolution(CurrentSolution, NeighbourSolution);
@@ -136,7 +136,7 @@ begin
     BestEnergy := CalculateEnergy(BestSolution);
     if CurrentEnergy < BestEnergy then
     begin
-      writeln(CurrentEnergy:0:2);
+      Writeln(CurrentEnergy:0:2);
       CopySolution(CurrentSolution, BestSolution);
     end;
     // cool system

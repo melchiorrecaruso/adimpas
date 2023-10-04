@@ -1,5 +1,5 @@
 {
-  Description: Common unit.
+  Description: Common routines.
 
   Copyright (C) 2023 Melchiorre Caruso <melchiorrecaruso@gmail.com>
 
@@ -24,42 +24,22 @@ unit Common;
 interface
 
 uses
-  Classes, SimulatedAnnealing, SysUtils;
+  Classes, SysUtils;
 
-type
-  TToolKitItem = record
-    FClassName: string;
-    FOperator: string;
-    FClassParent1: string;
-    FClassParent2: string;
-    FComment: string;
-    FLongSymbol: string;
-    FShortSymbol: string;
-    FIdentifierSymbol: string;
-    FBaseClass: string;
-    FFactor: string;
-    FPrefixes: string;
-  end;
+const
+  INTF_FACTORED = '{$DEFINE INTF_FACTORED}{$DEFINE TQuantity:=%s}{$i adim.inc}';
+  INTF_QUANTITY = '{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=%s}{$i adim.inc}';
+  INTF_UNIT     = '{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=%s}{$DEFINE TUnit:=%s}{$i adim.inc}';
+  INTF_END      = '{$DEFINE INTF_END}{$i adim.inc}';
 
-  TToolKitList = class(TSimulatedAnnealing)
-  private
-    FList: array of TToolkitItem;
-    function GetCount: longint;
-    function GetItem(Index: longint): TToolkitItem;
-    procedure AddToSolution(var ASolution: TSolution; const AClassName: string);
-    function FindInSolution(const ASolution: TSolution; const AClassName: string): longint;
-  public
-    function CalculateEnergy(const ASolution: TSolution): single; override;
-    procedure CreateSolution(var ANeighbour: TSolution); override;
-  public
-    constructor Create;
-    destructor Destroy; override;
-    procedure Add(const AItem: TToolkitItem);
-    procedure Optimize(var BestSolution: TSolution);
-  public
-    property Items[Index: longint]: TToolkitItem read GetItem; Default;
-    property Count: longint read GetCount;
-  end;
+  IMPL_FACTORED = '{$DEFINE IMPL_FACTORED}{$DEFINE TQuantity:=%s}{$i adim.inc}';
+  IMPL_QUANTITY = '{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=%s}{$i adim.inc}';
+  IMPL_UNIT     = '{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=%s}{$DEFINE TUnit:=%s}{$i adim.inc}';
+
+  INTF_OP_CLASS = '  class operator %s(const ALeft: %s; const ARight: %s): %s;';
+  IMPL_OP_CLASS = 'class operator %s.%s(const ALeft: %s; const ARight: %s): %s;';
+  INTF_OP       = 'operator %s(const ALeft: %s; const ARight: %s): %s;';
+  IMPL_OP       = 'operator %s(const ALeft: %s; const ARight: %s): %s;';
 
 
 function GetSymbol(const AShortSymbol: string): string;
@@ -75,15 +55,14 @@ function GetUnitQuantity(const S: string): string;
 function GetPrefixes(const AShortSymbol: string): string;
 function GetExponents(const AShortSymbol: string): string;
 
-function CleanUnitName(const S: string): string;
-function CleanUnitSymbol(const S: string): string;
+function  CleanUnitName(const S: string): string;
+function  CleanUnitSymbol(const S: string): string;
 procedure CleanDocument(S: TStringList);
-
 
 implementation
 
 uses
-  Math, StrUtils;
+  StrUtils;
 
 function Split(const AStr: string): TStringArray;
 var
@@ -330,182 +309,6 @@ begin
     end else
       inc(i);
   end;
-end;
-
-// TToolKitOptimizer
-
-procedure TToolkitList.AddToSolution(var ASolution: TSolution; const AClassName: string);
-var
-  i: longint;
-begin
-  i := Length(ASolution);
-  SetLength(ASolution, i + 1);
-  ASolution[i] := AClassName;
-end;
-
-function TToolkitList.FindInSolution(const ASolution: TSolution; const AClassName: string): longint;
-var
-  i: longint;
-begin
-  for i := Low(ASolution) to High(ASolution) do
-  begin
-    if AClassName = ASolution[i] then Exit(i);
-  end;
-  Result := -1;
-end;
-
-procedure TToolkitList.CreateSolution(var ANeighbour: TSolution);
-var
-  i, j: longint;
-  temp: string;
-begin
-  i := Random(Length(ANeighbour));
-  repeat
-    j := Random(Length(ANeighbour));
-  until i <> j;
-
-  temp          := ANeighbour[i];
-  ANeighbour[i] := ANeighbour[j];
-  ANeighbour[j] := temp;
-end;
-
-function TToolkitList.CalculateEnergy(const ASolution: TSolution): single;
-var
-  ABaseClass: string;
-  ExternalOperator: longint;
-  InternalOperator: longint;
-  TotalOperator: longint;
-  i, iL, iR, iX: longint;
-  j: longint;
-  S: TStringList;
-
-  procedure Calculate(const AOperator, ALeftClass, ARightClass, AClassName: string);
-  begin
-    iL := FindInSolution(ASolution, ALeftClass);
-    iR := FindInSolution(ASolution, ARightClass);
-    iX := FindInSolution(ASolution, AClassName);
-
-    ABaseClass := '';
-    if (iL > -1) or
-       (iR > -1) then
-    begin
-      i := Max(iL, iR);
-      if i = iL then ABaseClass := ALeftClass;
-      if i = iR then ABaseClass := ARightClass;
-      if i < iX then ABaseClass := '';
-
-      if ABaseClass <> '' then
-      begin
-        if (i = iL) and (ALeftClass  = 'THertz') then ABaseClass := '';
-        if (i = iR) and (ARightClass = 'THertz') then ABaseClass := '';
-      end;
-    end;
-
-    //if S.IndexOf(ABaseClass + '.' + ALeftClass + AOperator + ARightClass) = -1 then
-    begin
-      S.Add(ABaseClass + '.' + ALeftClass + AOperator + ARightClass);
-
-      if ABaseClass = '' then
-        Inc(ExternalOperator)
-      else
-        Inc(InternalOperator);
-      Inc(TotalOperator);
-    end;
-  end;
-
-begin
-  ExternalOperator := 0;
-  InternalOperator := 0;
-  TotalOperator    := 0;
-
-  S := TStringList.Create;
-  for j := Low(FList) to High(FList) do
-  begin
-    if (FList[j].FOperator = '*') then
-    begin
-      Calculate('*', FList[j].FClassParent1, FList[j].FClassParent2, FList[j].FClassName);
-      if FList[j].FClassParent1 <> FList[j].FClassParent2 then
-        Calculate('*', FList[j].FClassParent2, FList[j].FClassParent1, FList[j].FClassName);
-
-      Calculate('/', FList[j].FClassName, FList[j].FClassParent1, FList[j].FClassParent2);
-      if FList[j].FClassParent1 <> FList[j].FClassParent2 then
-        Calculate('/', FList[j].FClassName, FList[j].FClassParent2, FList[j].FClassParent1);
-
-    end else
-      if (FList[j].FOperator = '/') then
-      begin
-        Calculate('/', FList[j].FClassParent1,  FList[j].FClassParent2, FList[j].FClassName);
-        Calculate('*', FList[j].FClassParent2,  FList[j].FClassName,    FList[j].FClassParent1);
-        Calculate('*', FList[j].FClassName,     FList[j].FClassParent2, FList[j].FClassParent1);
-        Calculate('/', FList[j].FClassParent1,  FList[j].FClassName,    FList[j].FClassParent2);
-      end;
-
-  end;
-  S.Destroy;
-
-  Result := ExternalOperator;
-end;
-
-procedure TToolkitList.Optimize(var BestSolution: TSolution);
-var
-  i: longint;
-  S: TStringList;
-begin
-  BestSolution := nil;
-  S := TStringList.Create;
-  for i := Low(FList) to High(FList) do
-    if S.IndexOf(FList[i].FClassName) = -1 then
-    begin
-      S.Add(FList[i].FClassName);
-      if FList[i].FBaseClass = '' then
-      begin
-        AddToSolution(BestSolution, FList[i].FClassName);
-      end;
-    end;
-  S.Destroy;
-  Writeln(Length(BestSolution));
-
-  InitialTemperature := 1000000;
-  CoolingRate        := 0.1;
-  ExecutionTime      := 120;
-
-  writeln('START');
-  Execute(BestSolution);
-  writeln('END');
-end;
-
-// TToolkitList
-
-constructor TToolkitList.Create;
-begin
-  inherited Create;
-  FList := nil;
-  Randomize;
-end;
-
-destructor TToolkitList.Destroy;
-begin
-  FList := nil;
-  inherited Destroy;
-end;
-
-procedure TToolkitList.Add(const AItem: TToolkitItem);
-var
-  index: longint;
-begin
-  index := Length(FList);
-  SetLength(FList, index + 1);
-  FList[index] := AItem;
-end;
-
-function TToolkitList.GetItem(Index: longint): TToolkitItem;
-begin
-  Result := FList[Index];
-end;
-
-function TToolkitList.GetCount: longint;
-begin
-  Result := Length(FList);
 end;
 
 end.

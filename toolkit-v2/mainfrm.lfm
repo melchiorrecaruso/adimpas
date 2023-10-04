@@ -789,23 +789,39 @@ object MainForm: TMainForm
     OnClick = ExportBtnClick
     TabOrder = 3
   end
-  object TrigonometricCheckBox: TCheckBox
+  object OptimizeBox: TCheckBox
     AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = OptimizationTime
+    AnchorSideRight.Control = OptimizationTime
+    AnchorSideBottom.Control = OptimizationTime
+    AnchorSideBottom.Side = asrBottom
+    Left = 466
+    Height = 22
+    Top = 13
+    Width = 92
+    Anchors = [akTop, akRight, akBottom]
+    BorderSpacing.Left = 20
+    BorderSpacing.Right = 10
+    Caption = 'Use optimizer'
+    Checked = True
+    State = cbChecked
+    TabOrder = 4
+  end
+  object OptimizationTime: TSpinEdit
     AnchorSideTop.Control = ExportBtn
     AnchorSideRight.Control = ExportBtn
     AnchorSideBottom.Control = ExportBtn
     AnchorSideBottom.Side = asrBottom
-    Left = 467
-    Height = 32
-    Top = 8
-    Width = 171
+    Left = 568
+    Height = 22
+    Top = 13
+    Width = 70
+    Alignment = taRightJustify
     Anchors = [akTop, akRight, akBottom]
-    BorderSpacing.Left = 20
+    BorderSpacing.Top = 5
     BorderSpacing.Right = 10
-    Caption = 'Add trigonometric functions'
-    Checked = True
-    State = cbChecked
-    TabOrder = 4
+    BorderSpacing.Bottom = 5
+    TabOrder = 5
   end
   object SaveDialog: TSaveDialog
     Filter = 'Lazarus unit (*.pas; *.pp)|*.pas;*.pp;'

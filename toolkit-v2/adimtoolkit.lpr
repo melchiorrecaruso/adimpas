@@ -31,7 +31,7 @@ uses
   Interfaces,
   Forms,
   MainFrm,
-  Common;
+  toolkitunit, common;
 
 {$R *.res}
 
