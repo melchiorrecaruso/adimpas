@@ -143,8 +143,8 @@ begin
   end;
 
   List.ExecutionTime      := OptimizationTime.Value;
-  List.InitialTemperature := 1000000;
-  List.CoolingRate        := 0.5;
+  List.InitialTemperature := 1000000000;
+  List.CoolingRate        := 0.1;
 
   Document := TStringList.Create;
   Messages := TStringList.Create;
