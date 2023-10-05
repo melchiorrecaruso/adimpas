@@ -163,10 +163,10 @@ begin
   if i = iR then ABaseClass := ARightClass;
   if i < iX then ABaseClass := '';
 
-  if ABaseClass <> '' then
+  if (ABaseClass <> '') and FOptimize then
   begin
-   if (i = iL) and (GetUnitQuantityType(ALeftClass ) = 'THertzQty') then ABaseClass := '';
-   if (i = iR) and (GetUnitQuantityType(ARightClass) = 'THertzQty') then ABaseClass := '';
+    if (i = iL) and (GetUnitQuantityType(ALeftClass ) = 'THertzQty') then ABaseClass := '';
+    if (i = iR) and (GetUnitQuantityType(ARightClass) = 'THertzQty') then ABaseClass := '';
   end;
 
   if ABaseClass   <> 'double' then ABaseClass   := GetUnitQuantityType(ABaseClass);
