@@ -51,40 +51,37 @@ type
     CheckList: array of TToolKitExponent;
     ClassList: TStringList;
 
-
-    BaseUnitCount: longint;
+    BaseUnitCount:     longint;
     FactoredUnitCount: longint;
     ExternalOperators: longint;
+    ForcedOperators:   longint;
     InternalOperators: longint;
 
-
-    FDocument: TStringList;
     FList: array of TToolkitItem;
-    FMessages: TStringList;
 
-    FOptimize: boolean;
-
-    SectionA0: TStringList;
-    SectionA1: TStringList;
-    SectionA2: TStringList;
-    SectionA3: TStringList;
-    SectionA4: TStringList;
-    SectionA5: TStringList;
-    SectionA6: TStringList;
-    SectionA7: TStringList;
-    SectionA8: TStringList;
-    SectionA9: TStringList;
+    FDocument:  TStringList;
+    FMessages:  TStringList;
+    SectionA0:  TStringList;
+    SectionA1:  TStringList;
+    SectionA2:  TStringList;
+    SectionA3:  TStringList;
+    SectionA4:  TStringList;
+    SectionA5:  TStringList;
+    SectionA6:  TStringList;
+    SectionA7:  TStringList;
+    SectionA8:  TStringList;
+    SectionA9:  TStringList;
     SectionA10: TStringList;
 
-    SectionB1: TStringList;
-    SectionB2: TStringList;
-    SectionB3: TStringList;
-    SectionB4: TStringList;
-    SectionB5: TStringList;
-    SectionB6: TStringList;
-    SectionB7: TStringList;
-    SectionB8: TStringList;
-    SectionB9: TStringList;
+    SectionB1:  TStringList;
+    SectionB2:  TStringList;
+    SectionB3:  TStringList;
+    SectionB4:  TStringList;
+    SectionB5:  TStringList;
+    SectionB6:  TStringList;
+    SectionB7:  TStringList;
+    SectionB8:  TStringList;
+    SectionB9:  TStringList;
     SectionB10: TStringList;
 
     function GetCount: longint;
@@ -105,14 +102,15 @@ type
 
     procedure CreateSolution(var ANeighbour: TSolution); override;
     function CalculateEnergy(const ASolution: TSolution): double; override;
-    procedure AddMessage(const AMessage: string);
   public
     constructor Create;
     destructor Destroy; override;
     procedure Add(const AItem: TToolkitItem);
-    procedure RunWithOptimizer(ADocument, AMessages: TStringList);
-    procedure Run(ADocument, AMessages: TStringList; ASolution: TSolution);
+    procedure RunWithOptimizer;
+    procedure Run(ASolution: TSolution);
   public
+    property Document: TStringList read FDocument;
+    property Messages: TStringList read FMessages;
     property Items[Index: longint]: TToolkitItem read GetItem; Default;
     property Count: longint read GetCount;
   end;
@@ -121,31 +119,25 @@ type
 implementation
 
 uses
-  Common, LCLType, Math;
+  Common, DateUtils, LCLType, Math;
 
 // TToolkitList
 
 constructor TToolkitList.Create;
 begin
   inherited Create;
-  FOptimize := False;
-  FList := nil;
+  FList     := nil;
+  FDocument := TStringList.Create;
+  FMessages := TStringList.Create;
   Randomize;
 end;
 
 destructor TToolkitList.Destroy;
 begin
   FList := nil;
+  FMessages.Destroy;
+  FDocument.Destroy;
   inherited Destroy;
-end;
-
-procedure TToolkitList.AddMessage(const AMessage: string);
-begin
-  if Assigned(FMessages) then
-    if FMessages.IndexOf(AMessage) = -1 then
-    begin
-      FMessages.Add(AMessage);
-    end;
 end;
 
 procedure TToolkitList.AddQuantityOperator(AOperator, ALeftClass, ARightClass, AResultClass: string);
@@ -163,10 +155,11 @@ begin
   if i = iR then ABaseClass := ARightClass;
   if i < iX then ABaseClass := '';
 
-  if (ABaseClass <> '') and FOptimize then
+  if ABaseClass <> '' then
   begin
     if (i = iL) and (GetUnitQuantityType(ALeftClass ) = 'THertzQty') then ABaseClass := '';
     if (i = iR) and (GetUnitQuantityType(ARightClass) = 'THertzQty') then ABaseClass := '';
+    if ABaseClass = '' then Inc(ForcedOperators);
   end;
 
   if ABaseClass   <> 'double' then ABaseClass   := GetUnitQuantityType(ABaseClass);
@@ -179,44 +172,44 @@ begin
     ClassList.Append(ABaseClass + '.' + ALeftClass + AOperator + ARightClass);
 
     if ABaseClass = '' then
-      Inc(ExternalOperators)
-    else
-      Inc(InternalOperators);
-
-    if FOptimize = False then
     begin
-      if ABaseClass = '' then
-      begin
-        SectionA2.Append(Format(INTF_OP, [AOperator, ALeftClass, ARightClass, AResultClass]));
-        SectionB2.Append(Format(IMPL_OP, [AOperator, ALeftClass, ARightClass, AResultClass]));
-      end else
-      begin
-        SectionA2.Insert(i + 1, Format(INTF_OP_CLASS, [            AOperator, ALeftClass, ARightClass, AResultClass]));
-        SectionB2.Append(       Format(IMPL_OP_CLASS, [ABaseClass, AOperator, ALeftClass, ARightClass, AResultClass]));
-      end;
 
-      if AResultClass = 'double' then
-        S := '  result :='
+      if (GetUnitQuantityType(ALeftClass ) = 'THertzQty') or
+         (GetUnitQuantityType(ARightClass) = 'THertzQty') then
+        SectionA4.Append(   Format(INTF_OP, [AOperator, ALeftClass, ARightClass, AResultClass]))
       else
-        S := '  result.FValue :=';
+        SectionA4.Insert(0, Format(INTF_OP, [AOperator, ALeftClass, ARightClass, AResultClass]));
 
-      if ALeftClass = 'double' then
-        S := S + ' ALeft ' + AOperator
-      else
-        S := S + ' ALeft.FValue ' + AOperator;
-
-      if ARightClass = 'double' then
-        S := S + ' ARight;'
-      else
-        S := S + ' ARight.FValue;';
-
-      SectionB2.Append('begin');
-      SectionB2.Append(S);
-      SectionB2.Append('end;');
-      SectionB2.Append('');
+      SectionB2.Append(Format(IMPL_OP, [AOperator, ALeftClass, ARightClass, AResultClass]));
+      Inc(ExternalOperators);
+    end else
+    begin
+      SectionA2.Insert(i + 1, Format(INTF_OP_CLASS, [            AOperator, ALeftClass, ARightClass, AResultClass]));
+      SectionB2.Append(       Format(IMPL_OP_CLASS, [ABaseClass, AOperator, ALeftClass, ARightClass, AResultClass]));
+      Inc(InternalOperators);
     end;
+
+    if AResultClass = 'double' then
+      S := '  result :='
+    else
+      S := '  result.FValue :=';
+
+    if ALeftClass = 'double' then
+      S := S + ' ALeft ' + AOperator
+    else
+      S := S + ' ALeft.FValue ' + AOperator;
+
+    if ARightClass = 'double' then
+      S := S + ' ARight;'
+    else
+      S := S + ' ARight.FValue;';
+
+    SectionB2.Append('begin');
+    SectionB2.Append(S);
+    SectionB2.Append('end;');
+    SectionB2.Append('');
   end else
-    AddMessage('ERROR: operator ' + AOperator + '(' + ALeftClass + '; ' + ARightClass + ') : ' + AResultClass + '; already esists.');
+    FMessages.Append('ERROR: operator ' + AOperator + '(' + ALeftClass + '; ' + ARightClass + ') : ' + AResultClass + '; already esists.');
 end;
 
 procedure TToolkitList.AddUnitIdOperator(AOperator, ALeftClass, ARightClass, AResultClass: string);
@@ -235,30 +228,26 @@ begin
   begin
     ClassList.Append(ALeftClass + AOperator + ARightClass);
 
-    if FOptimize = False then
+    SectionA3.Insert(i + 1, Format(INTF_OP_CLASS, [                               AOperator, ALeftClass, ARightClass, AResultClass]));
+    SectionB3.Append('');
+    SectionB3.Append(       Format(IMPL_OP_CLASS, [GetUnitIdentifier(ABaseClass), AOperator, ALeftClass, ARightClass, AResultClass]));
+
+    SectionB3.Append('begin');
+    if AResultClass <> 'double' then
     begin
-      SectionA3.Insert(i + 1, Format(INTF_OP_CLASS, [                               AOperator, ALeftClass, ARightClass, AResultClass]));
-      SectionB3.Append('');
-      SectionB3.Append(       Format(IMPL_OP_CLASS, [GetUnitIdentifier(ABaseClass), AOperator, ALeftClass, ARightClass, AResultClass]));
-
-      SectionB3.Append('begin');
-      if AResultClass <> 'double' then
-      begin
-        if ALeftClass <> 'double' then
-          SectionB3.Append('  result.FValue := ALeft.FValue;')
-        else
-          SectionB3.Append('  result.FValue := ALeft;');
-      end else
-      begin
-        if ALeftClass <> 'double' then
-          SectionB3.Append('  result := ALeft.FValue;')
-        else
-          SectionB3.Append('  result := ALeft;');
-      end;
-      SectionB3.Append('end;');
-      SectionB3.Append('');
+      if ALeftClass <> 'double' then
+        SectionB3.Append('  result.FValue := ALeft.FValue;')
+      else
+        SectionB3.Append('  result.FValue := ALeft;');
+    end else
+    begin
+      if ALeftClass <> 'double' then
+        SectionB3.Append('  result := ALeft.FValue;')
+      else
+        SectionB3.Append('  result := ALeft;');
     end;
-
+    SectionB3.Append('end;');
+    SectionB3.Append('');
     Inc(InternalOperators);
   end;
 end;
@@ -438,7 +427,6 @@ begin
 
     if AItem.FOperator = '*' then
     begin
-
       AddQuantityOperator('*', AItem.FClassParent1, AItem.FClassParent2, AItem.FClassName);
       if AItem.FClassParent1 <> AItem.FClassParent2 then
       begin
@@ -515,8 +503,6 @@ var
   Power: longint;
   Str: string;
 begin
-  if FOptimize then Exit;
-
   Str := '  %s: %s = (FValue: %s);';
   if AFactor <> '' then
     AFactor := AFactor + ' * ';
@@ -625,8 +611,6 @@ procedure TToolkitList.AddPower(AOperator, AQuantity, AResult: string);
 var
   S1, S2, S3: string;
 begin
-  if FOptimize then Exit;
-
   S1 := '';
   S2 := '';
   S3 := '';
@@ -684,8 +668,6 @@ procedure TToolkitList.AddHelper(AClassName, ABaseClass, AFactor: string);
 var
   Index: longint;
 begin
-  if FOptimize then Exit;
-
   Index := SectionA8.IndexOf('  ' + GetUnitClassNameHelper(ABaseClass) + ' = record helper for ' + GetUnitQuantityType(ABaseClass));
   if Index = -1 then
   begin
@@ -717,9 +699,6 @@ var
   i, iL, iR: longint;
   S: string;
 begin
-  Inc(InternalOperators);
-  if FOptimize then Exit;
-
   iL := Find(Format(INTF_QUANTITY, [GetUnitQuantityType(AClassName)]), SectionA2);
   iR := Find(Format(INTF_QUANTITY, [GetUnitQuantityType(ABaseClass)]), SectionA2);
 
@@ -741,6 +720,7 @@ begin
       SectionB2.Append('  result.FValue := AQuantity.FValue;');
   SectionB2.Append('end;');
   SectionB2.Append('');
+  Inc(InternalOperators);
 end;
 
 procedure TToolkitList.CreateSolution(var ANeighbour: TSolution);
@@ -760,17 +740,16 @@ end;
 
 function TToolkitList.CalculateEnergy(const ASolution: TSolution): double;
 begin
-  Run(nil, nil, ASolution);
-  Result := ExternalOperators;
+  Run(ASolution);
+  Result := ForcedOperators + ExternalOperators;
 end;
 
-procedure TToolkitList.RunWithOptimizer(ADocument, AMessages: TStringList);
+procedure TToolkitList.RunWithOptimizer;
 var
   i, j: longint;
   S: TStringList;
   BestSolution: TSolution;
 begin
-  FOptimize := True;
   BestSolution := nil;
   S := TStringList.Create;
   for i := Low(FList) to High(FList) do
@@ -786,29 +765,28 @@ begin
     end;
   S.Destroy;
 
-  for i := Low(BestSolution) to high(BestSolution) do
-  begin
+  for i := 0 to 1000 do
     CreateSolution(BestSolution);
-  end;
-  Execute(BestSolution);
 
-  FOptimize := False;
+  Execute(BestSolution);
   begin
-    Run(ADocument, AMessages, BestSolution);
+    Run(BestSolution);
   end;
+  Writeln('Forced   Operators: ', ForcedOperators);
+  Writeln('External Operators: ', ExternalOperators);
+  Writeln('Internal Operators: ', InternalOperators);
 end;
 
-procedure TToolkitList.Run(ADocument, AMessages: TStringList; ASolution: TSolution);
+procedure TToolkitList.Run(ASolution: TSolution);
 var
   I, J: longint;
   Stream: TResourceStream;
 begin
-  FDocument  := ADocument;
-  FMessages  := AMessages;
-
-  CheckList  := nil;
-  ClassList  := TStringList.Create;
+  CheckList := nil;
+  ClassList := TStringList.Create;
   ClassList.Sorted := TRUE;
+  FDocument.Clear;
+  FMessages.Clear;
 
   SectionA0  := TStringList.Create;
   SectionA1  := TStringList.Create;
@@ -888,6 +866,7 @@ begin
   BaseUnitCount     := 0;
   FactoredUnitCount := 0;
   ExternalOperators := 0;
+  ForcedOperators   := 0;
   InternalOperators := 0;
 
   if Length(ASolution) > 0 then
@@ -918,34 +897,29 @@ begin
   SectionA0.Append('}');
   SectionA0.Append('');
 
-  if Assigned(FDocument) then
-  begin
-    for I := 0 to SectionA0 .Count -1 do FDocument.Append(SectionA0 [I]);
-    for I := 0 to SectionA1 .Count -1 do FDocument.Append(SectionA1 [I]);
-    for I := 0 to SectionA2 .Count -1 do FDocument.Append(SectionA2 [I]);
-    for I := 0 to SectionA3 .Count -1 do FDocument.Append(SectionA3 [I]);
-    for I := 0 to SectionA4 .Count -1 do FDocument.Append(SectionA4 [I]);
-    for I := 0 to SectionA5 .Count -1 do FDocument.Append(SectionA5 [I]);
-    for I := 0 to SectionA6 .Count -1 do FDocument.Append(SectionA6 [I]);
-    for I := 0 to SectionA7 .Count -1 do FDocument.Append(SectionA7 [I]);
-    for I := 0 to SectionA8 .Count -1 do FDocument.Append(SectionA8 [I]);
-    for I := 0 to SectionA9 .Count -1 do FDocument.Append(SectionA9 [I]);
-    for I := 0 to SectionA10.Count -1 do FDocument.Append(SectionA10[I]);
+  for I := 0 to SectionA0 .Count -1 do FDocument.Append(SectionA0 [I]);
+  for I := 0 to SectionA1 .Count -1 do FDocument.Append(SectionA1 [I]);
+  for I := 0 to SectionA2 .Count -1 do FDocument.Append(SectionA2 [I]);
+  for I := 0 to SectionA3 .Count -1 do FDocument.Append(SectionA3 [I]);
+  for I := 0 to SectionA4 .Count -1 do FDocument.Append(SectionA4 [I]);
+  for I := 0 to SectionA5 .Count -1 do FDocument.Append(SectionA5 [I]);
+  for I := 0 to SectionA6 .Count -1 do FDocument.Append(SectionA6 [I]);
+  for I := 0 to SectionA7 .Count -1 do FDocument.Append(SectionA7 [I]);
+  for I := 0 to SectionA8 .Count -1 do FDocument.Append(SectionA8 [I]);
+  for I := 0 to SectionA9 .Count -1 do FDocument.Append(SectionA9 [I]);
+  for I := 0 to SectionA10.Count -1 do FDocument.Append(SectionA10[I]);
 
-    for I := 0 to SectionB1 .Count -1 do FDocument.Append(SectionB1 [I]);
-    for I := 0 to SectionB2 .Count -1 do FDocument.Append(SectionB2 [I]);
-    for I := 0 to SectionB3 .Count -1 do FDocument.Append(SectionB3 [I]);
-    for I := 0 to SectionB4 .Count -1 do FDocument.Append(SectionB4 [I]);
-    for I := 0 to SectionB5 .Count -1 do FDocument.Append(SectionB5 [I]);
-    for I := 0 to SectionB6 .Count -1 do FDocument.Append(SectionB6 [I]);
-    for I := 0 to SectionB7 .Count -1 do FDocument.Append(SectionB7 [I]);
-    for I := 0 to SectionB8 .Count -1 do FDocument.Append(SectionB8 [I]);
-    for I := 0 to SectionB9 .Count -1 do FDocument.Append(SectionB9 [I]);
-    for I := 0 to SectionB10.Count -1 do FDocument.Append(SectionB10[I]);
-
-    FDocument.Append('');
-    CleanDocument(FDocument);
-  end;
+  for I := 0 to SectionB1 .Count -1 do FDocument.Append(SectionB1 [I]);
+  for I := 0 to SectionB2 .Count -1 do FDocument.Append(SectionB2 [I]);
+  for I := 0 to SectionB3 .Count -1 do FDocument.Append(SectionB3 [I]);
+  for I := 0 to SectionB4 .Count -1 do FDocument.Append(SectionB4 [I]);
+  for I := 0 to SectionB5 .Count -1 do FDocument.Append(SectionB5 [I]);
+  for I := 0 to SectionB6 .Count -1 do FDocument.Append(SectionB6 [I]);
+  for I := 0 to SectionB7 .Count -1 do FDocument.Append(SectionB7 [I]);
+  for I := 0 to SectionB8 .Count -1 do FDocument.Append(SectionB8 [I]);
+  for I := 0 to SectionB9 .Count -1 do FDocument.Append(SectionB9 [I]);
+  for I := 0 to SectionB10.Count -1 do FDocument.Append(SectionB10[I]);
+  CleanDocument(FDocument);
 
   SectionB10.Destroy;
   SectionB9 .Destroy;
@@ -1035,7 +1009,7 @@ begin
       begin
         if (GetUnitClassName(AClassName) <> 'TRadianUnit'   ) and
            (GetUnitClassName(AClassName) <> 'TSteradianUnit') then
-          AddMessage('ERROR:3 ');
+          FMessages.Append('ERROR:3 ');
         Exit;
       end;
 
@@ -1056,7 +1030,6 @@ begin
         end;
       end;
 
-
       for I := Low(CheckList) to High(CheckList) do
       begin
         if (CheckList[I].FExponents[1] = T.FExponents[1]) and
@@ -1067,7 +1040,7 @@ begin
            (CheckList[I].FExponents[6] = T.FExponents[6]) and
            (CheckList[I].FExponents[7] = T.FExponents[7]) then
         begin
-          AddMessage('WARNING: ' + CheckList[I].FClassName + ' is equal to ' + GetUnitClassName(AClassName) + ' ' + GetSIUnit(I) + ';');
+          FMessages.Append('WARNING: ' + CheckList[I].FClassName + ' is equal to ' + GetUnitClassName(AClassName) + ' ' + GetSIUnit(I) + ';');
         end;
       end;
 
@@ -1100,7 +1073,7 @@ begin
            (CheckList[I].FExponents[6] <> T.FExponents[6]) or
            (CheckList[I].FExponents[7] <> T.FExponents[7]) then
         begin
-          AddMessage('ERROR:   ' + CheckList[I].FClassName + ' doesn''t match previous declaration ' + GetSIUnit(I) + ';');
+          FMessages.Append('ERROR:   ' + CheckList[I].FClassName + ' doesn''t match previous declaration ' + GetSIUnit(I) + ';');
         end;
       end;
     end;

@@ -113,8 +113,6 @@ end;
 procedure TMainForm.RunBtnClick(Sender: TObject);
 var
   i: longint;
-  Document: TStringList;
-  Messages: TStringList;
   List: TToolkitList;
   T: TToolkitItem;
 begin
@@ -145,20 +143,18 @@ begin
   List.ExecutionTime      := OptimizationTime.Value;
   List.InitialTemperature := 1000000000;
   List.CoolingRate        := 0.1;
-
-  Document := TStringList.Create;
-  Messages := TStringList.Create;
   case OptimizeBox.Checked of
-    True:  List.RunWithOptimizer(Document, Messages);
-    False: List.Run(Document, Messages, nil);
+    True:  List.RunWithOptimizer;
+    False: List.Run(nil);
   end;
   SynEdit.BeginUpdate(True);
   SynEdit.Lines.Clear;
-  for I := 0 to Document.Count - 1 do SynEdit.Append(Document[I]);
-  for I := 0 to Messages.Count - 1 do Memo.Lines.Add(Messages[I]);
+  with List do
+  begin
+    for I := 0 to Document.Count - 1 do SynEdit.Append(Document[I]);
+    for I := 0 to Messages.Count - 1 do Memo.Lines.Add(Messages[I]);
+  end;
   SynEdit.EndUpdate;
-  Messages.Destroy;
-  Document.Destroy;
   List.Destroy;
 
   PageControl.TabIndex := 1;

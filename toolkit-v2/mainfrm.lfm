@@ -821,7 +821,9 @@ object MainForm: TMainForm
     BorderSpacing.Top = 5
     BorderSpacing.Right = 10
     BorderSpacing.Bottom = 5
+    MinValue = 1
     TabOrder = 5
+    Value = 120
   end
   object SaveDialog: TSaveDialog
     Filter = 'Lazarus unit (*.pas; *.pp)|*.pas;*.pp;'
