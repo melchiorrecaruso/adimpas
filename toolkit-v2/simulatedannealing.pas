@@ -18,9 +18,9 @@
   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 }
 
-unit simulatedannealing;
+unit SimulatedAnnealing;
 
-{$mode objfpc}
+{$mode ObjFPC}{$H+}
 
 interface
 
@@ -28,31 +28,34 @@ uses
   Classes, DateUtils, SysUtils;
 
 type
-  // TSolution
+  // tsolution
 
   TSolution = array of string;
+
+  TMessageEvent = procedure(const AMessage: string) of object;
 
   // tsimulatedannealing
 
   TSimulatedAnnealing = class
-  private
-    fCoolingRate: double;
-    fExecutionTime: longint;
-    fInitialTemperature: double;
+  protected
+    FCoolingRate: double;
+    FExecutionTime: longint;
+    FInitialTemperature: double;
+    FOnMessageEvent: TMessageEvent;
     procedure CopySolution(const Source: TSolution; var Dest: TSolution);
     function AcceptanceProbability(
       const Energy, NeighbourEnergy, Temperature: double): double;
   public
-    constructor Create;
+    constructor Create(OnMessageEvent: TMessageEvent);
     destructor Destroy; override;
     procedure Execute(var BestSolution: TSolution);
     procedure CreateSolution(var Neighbour: TSolution); virtual; abstract;
     function CalculateEnergy(const Solution: TSolution): double; virtual; abstract;
   published
-    property CoolingRate: double read fCoolingRate write fCoolingRate;
-    property InitialTemperature: double read fInitialTemperature
-      write fInitialTemperature;
-    property ExecutionTime: longint read fExecutionTime write fExecutionTime;
+    property CoolingRate: double read FCoolingRate write FCoolingRate;
+    property InitialTemperature: double read FInitialTemperature
+      write FInitialTemperature;
+    property ExecutionTime: longint read FExecutionTime write FExecutionTime;
   end;
 
 
@@ -60,12 +63,13 @@ implementation
 
 // TSimulatedAnnealing
 
-constructor TSimulatedAnnealing.Create;
+constructor TSimulatedAnnealing.Create(OnMessageEvent: TMessageEvent);
 begin
   inherited Create;
-  fCoolingRate := 0.001; // cooling rate
-  fExecutionTime := 10;
-  fInitialTemperature := 10; // set initial temp
+  FCoolingRate := 0.001; // cooling rate
+  FExecutionTime := 10;
+  FInitialTemperature := 10; // set initial temp
+  FOnMessageEvent := OnMessageEvent;
 end;
 
 destructor TSimulatedAnnealing.Destroy;
@@ -107,8 +111,10 @@ var
   StartTime: tdatetime;
   Temperature: double;
 begin
+  if Assigned(FOnMessageEvent) then
+    FOnMessageEvent('Optimizer starting ...');
   // initialize temperature
-  Temperature := fInitialTemperature;
+  Temperature := FInitialTemperature;
   // initialize current solution
   SetLength(CurrentSolution, system.length(BestSolution));
   CopySolution(BestSolution, CurrentSolution);
@@ -118,7 +124,7 @@ begin
   setlength(NeighbourSolution, system.length(BestSolution));
   // loop until system has cooled
   StartTime := Now;
-  while (Temperature > 0) and (SecondsBetween(Now, StartTime) < fExecutionTime) do
+  while (Temperature > 0) and (SecondsBetween(Now, StartTime) < FExecutionTime) do
   begin
     // create new neighbour BestSolution
     CopySolution(CurrentSolution, NeighbourSolution);
@@ -136,14 +142,17 @@ begin
     BestEnergy := CalculateEnergy(BestSolution);
     if CurrentEnergy < BestEnergy then
     begin
-      Writeln(CurrentEnergy:0:2);
+      if Assigned(FOnMessageEvent) then
+        FOnMessageEvent('Current energy: ' + FloatToStr(CurrentEnergy));
       CopySolution(CurrentSolution, BestSolution);
     end;
     // cool system
-    Temperature := Temperature * (1 - fCoolingRate);
+    Temperature := Temperature * (1 - FCoolingRate);
   end;
   SetLength(NeighbourSolution, 0);
   SetLength(CurrentSolution, 0);
+  if Assigned(FOnMessageEvent) then
+    FOnMessageEvent('Optimizer finished.');
 end;
 
 end.

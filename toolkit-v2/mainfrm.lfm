@@ -6,6 +6,7 @@ object MainForm: TMainForm
   Caption = 'ADimPas Toolkit-v2'
   ClientHeight = 530
   ClientWidth = 856
+  OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   LCLVersion = '2.2.6.0'
   object PageControl: TPageControl
@@ -81,7 +82,7 @@ object MainForm: TMainForm
         ParentColor = False
         ParentFont = False
         TabOrder = 0
-        Gutter.Width = 57
+        Gutter.Width = 0
         Gutter.MouseActions = <>
         RightGutter.Width = 0
         RightGutter.MouseActions = <>
@@ -531,39 +532,6 @@ object MainForm: TMainForm
         LineHighlightColor.Background = clNone
         LineHighlightColor.Foreground = clNone
         inline SynLeftGutterPartList1: TSynGutterPartList
-          object SynGutterMarks1: TSynGutterMarks
-            Width = 24
-            MouseActions = <>
-          end
-          object SynGutterLineNumber1: TSynGutterLineNumber
-            Width = 17
-            MouseActions = <>
-            MarkupInfo.Background = clBtnFace
-            MarkupInfo.Foreground = clNone
-            DigitCount = 2
-            ShowOnlyLineNumbersMultiplesOf = 1
-            ZeroStart = False
-            LeadingZeros = False
-          end
-          object SynGutterChanges1: TSynGutterChanges
-            Width = 4
-            MouseActions = <>
-            ModifiedColor = 59900
-            SavedColor = clGreen
-          end
-          object SynGutterSeparator1: TSynGutterSeparator
-            Width = 2
-            MouseActions = <>
-            MarkupInfo.Background = clWhite
-            MarkupInfo.Foreground = clGray
-          end
-          object SynGutterCodeFolding1: TSynGutterCodeFolding
-            MouseActions = <>
-            MarkupInfo.Background = clNone
-            MarkupInfo.Foreground = clGray
-            MouseActionsExpanded = <>
-            MouseActionsCollapsed = <>
-          end
         end
       end
     end
@@ -795,14 +763,14 @@ object MainForm: TMainForm
     AnchorSideRight.Control = OptimizationTime
     AnchorSideBottom.Control = OptimizationTime
     AnchorSideBottom.Side = asrBottom
-    Left = 466
+    Left = 388
     Height = 22
     Top = 13
-    Width = 92
+    Width = 170
     Anchors = [akTop, akRight, akBottom]
     BorderSpacing.Left = 20
     BorderSpacing.Right = 10
-    Caption = 'Use optimizer'
+    Caption = 'Optimizer execution time (s)'
     Checked = True
     State = cbChecked
     TabOrder = 4
@@ -827,7 +795,7 @@ object MainForm: TMainForm
   end
   object SaveDialog: TSaveDialog
     Filter = 'Lazarus unit (*.pas; *.pp)|*.pas;*.pp;'
-    Left = 104
+    Left = 96
     Top = 200
   end
   object OpenDialog: TOpenDialog
@@ -841,7 +809,7 @@ object MainForm: TMainForm
     CompilerMode = pcmFPC
     NestedComments = True
     TypeHelpers = False
-    Left = 104
+    Left = 96
     Top = 136
   end
   object WorkbookSource: TsWorkbookSource

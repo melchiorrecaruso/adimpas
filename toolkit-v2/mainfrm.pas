@@ -26,7 +26,7 @@ interface
 uses
   Classes, SysUtils, fpspreadsheetgrid, fpspreadsheetctrls, fpsallformats,
   Forms, Controls, Graphics, Dialogs, Grids, Buttons, ComCtrls, StdCtrls, Spin,
-  SynHighlighterPas, SynEdit, toolkitunit;
+  SynHighlighterPas, SynEdit, ToolKitUnit;
 
 type
   { TMainForm }
@@ -49,16 +49,31 @@ type
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
     TabSheet4: TTabSheet;
+    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FormCreate(Sender: TObject);
     procedure LoadBtnClick(Sender: TObject);
     procedure ExportBtnClick(Sender: TObject);
     procedure RunBtnClick(Sender: TObject);
+    procedure OnTerminate(Sender: TObject);
+    procedure OnMessage(const AMessage: string);
+    procedure UpdateButton(Value: boolean);
   private
   public
   end;
 
+  TToolKitManager = class(TThread)
+  private
+    FList: TToolkitList;
+  public
+    constructor Create;
+    destructor Destroy; override;
+    procedure Execute; override;
+  end;
+
+
 var
   MainForm: TMainForm;
+  ToolKitManager: TToolKitManager = nil;
 
 implementation
 
@@ -89,6 +104,19 @@ begin
   WorksheetGrid.AutoFillColumns := True;
 end;
 
+procedure TMainForm.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+begin
+  CanClose := ToolKitManager = nil;
+  if not CanClose then
+  begin
+    if MessageDlg('The optimizer is still running', 'Do you want to terminate it?',
+      mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+    begin
+      ToolKitManager.FList.ExecutionTime := 0;
+    end;
+  end;
+end;
+
 procedure TMainForm.LoadBtnClick(Sender: TObject);
 begin
   if OpenDialog.Execute then
@@ -113,12 +141,12 @@ end;
 procedure TMainForm.RunBtnClick(Sender: TObject);
 var
   i: longint;
-  List: TToolkitList;
   T: TToolkitItem;
 begin
   Memo.Clear;
-  SynEdit.Clear;
-  List := TToolKitList.Create;
+  UpdateButton(False);
+  ToolKitManager := TToolKitManager.Create;
+  ToolKitManager.OnTerminate := @OnTerminate;
   for i := 0 to WorksheetGrid.Worksheet.GetLastRowIndex do
   begin
     T.FClassName        := WorksheetGrid.Worksheet.ReadAsText(i, _class_name);
@@ -136,28 +164,71 @@ begin
     T.FShortSymbol      := CleanUnitSymbol(T.FShortSymbol);
     if (T.FClassName <> '') and (Pos('//', T.FClassName) = 0) then
     begin
-      List.Add(T);
+      ToolKitManager.FList.Add(T);
     end;
   end;
+  ToolKitManager.Start;
+end;
 
-  List.ExecutionTime      := OptimizationTime.Value;
-  List.InitialTemperature := 1000000000;
-  List.CoolingRate        := 0.1;
-  case OptimizeBox.Checked of
-    True:  List.RunWithOptimizer;
-    False: List.Run(nil);
-  end;
+procedure TMainForm.OnTerminate(Sender: TObject);
+var
+  I: longint;
+begin
+  UpdateButton(True);
   SynEdit.BeginUpdate(True);
   SynEdit.Lines.Clear;
-  with List do
+  with ToolKitManager.FList do
   begin
     for I := 0 to Document.Count - 1 do SynEdit.Append(Document[I]);
     for I := 0 to Messages.Count - 1 do Memo.Lines.Add(Messages[I]);
   end;
   SynEdit.EndUpdate;
-  List.Destroy;
+  ToolKitManager := nil;
+end;
 
-  PageControl.TabIndex := 1;
+procedure TMainForm.UpdateButton(Value: boolean);
+begin
+  SynEdit.Clear;
+  LoadBtn.Enabled          := Value;
+  OptimizeBox.Enabled      := Value;
+  OptimizationTime.Enabled := Value;
+  ExportBtn.Enabled        := Value;
+  RunBtn.Enabled           := Value;
+  case Value of
+    True:  PageControl.TabIndex := 1;
+    False: PageControl.TabIndex := 2;
+  end;
+end;
+
+procedure TMainForm.OnMessage(const AMessage: string);
+begin
+  Memo.Append(AMessage);
+end;
+
+{ TToolKitThread }
+
+constructor TToolKitManager.Create;
+begin
+  FList := TToolkitList.Create(@MainForm.OnMessage);
+  FreeOnTerminate := True;
+  inherited Create(True);
+end;
+
+destructor TToolKitManager.Destroy;
+begin
+  FList.Destroy;
+  inherited Destroy;
+end;
+
+procedure TToolKitManager.Execute;
+begin
+  FList.ExecutionTime      := MainForm.OptimizationTime.Value;
+  FList.InitialTemperature := 1000000000;
+  FList.CoolingRate        := 0.1;
+  case MainForm.OptimizeBox.Checked of
+    True:  FList.RunWithOptimizer;
+    False: FList.Run(nil);
+  end;
 end;
 
 end.

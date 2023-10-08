@@ -28,17 +28,17 @@ uses
 
 type
   TToolKitItem = record
-    FClassName: string;
-    FOperator: string;
-    FClassParent1: string;
-    FClassParent2: string;
-    FComment: string;
-    FLongSymbol: string;
-    FShortSymbol: string;
+    FClassName:        string;
+    FOperator:         string;
+    FClassParent1:     string;
+    FClassParent2:     string;
+    FComment:          string;
+    FLongSymbol:       string;
+    FShortSymbol:      string;
     FIdentifierSymbol: string;
-    FBaseClass: string;
-    FFactor: string;
-    FPrefixes: string;
+    FBaseClass:        string;
+    FFactor:           string;
+    FPrefixes:         string;
   end;
 
   TToolKitExponent = record
@@ -49,15 +49,13 @@ type
   TToolKitList = class(TSimulatedAnnealing)
   private
     CheckList: array of TToolKitExponent;
-    ClassList: TStringList;
+    ClassList:  TStringList;
 
     BaseUnitCount:     longint;
     FactoredUnitCount: longint;
     ExternalOperators: longint;
     ForcedOperators:   longint;
     InternalOperators: longint;
-
-    FList: array of TToolkitItem;
 
     FDocument:  TStringList;
     FMessages:  TStringList;
@@ -84,6 +82,9 @@ type
     SectionB9:  TStringList;
     SectionB10: TStringList;
 
+    FList: array of TToolkitItem;
+    FOnMessage: TMessageEvent;
+
     function GetCount: longint;
     function GetItem(Index: longint): TToolkitItem;
 
@@ -100,10 +101,10 @@ type
     function GetSIunit(Index: longint): string;
     function Find(const S: string; List: TStringList): longint;
 
-    procedure CreateSolution(var ANeighbour: TSolution); override;
     function CalculateEnergy(const ASolution: TSolution): double; override;
+    procedure CreateSolution(var ANeighbour: TSolution); override;
   public
-    constructor Create;
+    constructor Create(OnMessage: TMessageEvent);
     destructor Destroy; override;
     procedure Add(const AItem: TToolkitItem);
     procedure RunWithOptimizer;
@@ -123,21 +124,45 @@ uses
 
 // TToolkitList
 
-constructor TToolkitList.Create;
+constructor TToolkitList.Create(OnMessage: TMessageEvent);
 begin
-  inherited Create;
-  FList     := nil;
-  FDocument := TStringList.Create;
-  FMessages := TStringList.Create;
+  inherited Create(OnMessage);
+  FOnMessage := OnMessage;
+  FList      := nil;
+  ClassList  := TStringList.Create;
+  FDocument  := TStringList.Create;
+  FMessages  := TStringList.Create;
+
+  ClassList .Sorted := TRUE;
   Randomize;
 end;
 
 destructor TToolkitList.Destroy;
 begin
   FList := nil;
+  ClassList.Destroy;
   FMessages.Destroy;
   FDocument.Destroy;
   inherited Destroy;
+end;
+
+procedure TToolkitList.Add(const AItem: TToolkitItem);
+var
+  index: longint;
+begin
+  index := Length(FList);
+  SetLength(FList, index + 1);
+  FList[index] := AItem;
+end;
+
+function TToolkitList.GetItem(Index: longint): TToolkitItem;
+begin
+  Result := FList[Index];
+end;
+
+function TToolkitList.GetCount: longint;
+begin
+  Result := Length(FList);
 end;
 
 procedure TToolkitList.AddQuantityOperator(AOperator, ALeftClass, ARightClass, AResultClass: string);
@@ -173,13 +198,7 @@ begin
 
     if ABaseClass = '' then
     begin
-
-      if (GetUnitQuantityType(ALeftClass ) = 'THertzQty') or
-         (GetUnitQuantityType(ARightClass) = 'THertzQty') then
-        SectionA4.Append(   Format(INTF_OP, [AOperator, ALeftClass, ARightClass, AResultClass]))
-      else
-        SectionA4.Insert(0, Format(INTF_OP, [AOperator, ALeftClass, ARightClass, AResultClass]));
-
+      SectionA4.Append(Format(INTF_OP, [AOperator, ALeftClass, ARightClass, AResultClass]));
       SectionB2.Append(Format(IMPL_OP, [AOperator, ALeftClass, ARightClass, AResultClass]));
       Inc(ExternalOperators);
     end else
@@ -765,16 +784,19 @@ begin
     end;
   S.Destroy;
 
-  for i := 0 to 1000 do
-    CreateSolution(BestSolution);
-
-  Execute(BestSolution);
+  if FExecutionTime > 0 then
   begin
-    Run(BestSolution);
+    for i := 0 to 1000 do
+      CreateSolution(BestSolution);
+    Execute(BestSolution);
   end;
-  Writeln('Forced   Operators: ', ForcedOperators);
-  Writeln('External Operators: ', ExternalOperators);
-  Writeln('Internal Operators: ', InternalOperators);
+  Run(BestSolution);
+  if Assigned(FOnMessage) then
+  begin
+    FOnMessage('Forced   Operators: ' + IntToStr(ForcedOperators));
+    FOnMessage('External Operators: ' + IntToStr(ExternalOperators));
+    FOnMessage('Internal Operators: ' + IntToStr(InternalOperators));
+  end;
 end;
 
 procedure TToolkitList.Run(ASolution: TSolution);
@@ -782,9 +804,8 @@ var
   I, J: longint;
   Stream: TResourceStream;
 begin
-  CheckList := nil;
-  ClassList := TStringList.Create;
-  ClassList.Sorted := TRUE;
+  CheckList  := nil;
+  ClassList.Clear;
   FDocument.Clear;
   FMessages.Clear;
 
@@ -866,8 +887,8 @@ begin
   BaseUnitCount     := 0;
   FactoredUnitCount := 0;
   ExternalOperators := 0;
-  ForcedOperators   := 0;
   InternalOperators := 0;
+  ForcedOperators   := 0;
 
   if Length(ASolution) > 0 then
   begin
@@ -900,8 +921,10 @@ begin
   for I := 0 to SectionA0 .Count -1 do FDocument.Append(SectionA0 [I]);
   for I := 0 to SectionA1 .Count -1 do FDocument.Append(SectionA1 [I]);
   for I := 0 to SectionA2 .Count -1 do FDocument.Append(SectionA2 [I]);
-  for I := 0 to SectionA3 .Count -1 do FDocument.Append(SectionA3 [I]);
+
   for I := 0 to SectionA4 .Count -1 do FDocument.Append(SectionA4 [I]);
+  for I := 0 to SectionA3 .Count -1 do FDocument.Append(SectionA3 [I]);
+
   for I := 0 to SectionA5 .Count -1 do FDocument.Append(SectionA5 [I]);
   for I := 0 to SectionA6 .Count -1 do FDocument.Append(SectionA6 [I]);
   for I := 0 to SectionA7 .Count -1 do FDocument.Append(SectionA7 [I]);
@@ -944,29 +967,11 @@ begin
   SectionA1 .Destroy;
   SectionA0 .Destroy;
 
-  ClassList.Destroy;
   CheckList := nil;
 end;
 
 
-procedure TToolkitList.Add(const AItem: TToolkitItem);
-var
-  index: longint;
-begin
-  index := Length(FList);
-  SetLength(FList, index + 1);
-  FList[index] := AItem;
-end;
 
-function TToolkitList.GetItem(Index: longint): TToolkitItem;
-begin
-  Result := FList[Index];
-end;
-
-function TToolkitList.GetCount: longint;
-begin
-  Result := Length(FList);
-end;
 
 procedure TToolkitList.CheckClass(AClassName, AOperator, AClassParent1, AClassParent2: string);
 var
