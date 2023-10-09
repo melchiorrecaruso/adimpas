@@ -120,7 +120,7 @@ type
 implementation
 
 uses
-  Common, DateUtils, LCLType, Math;
+  Common, DateUtils, LCLType, Math, Process;
 
 // TToolkitList
 
@@ -184,6 +184,20 @@ begin
   begin
     if (i = iL) and (GetUnitQuantityType(ALeftClass ) = 'THertzQty') then ABaseClass := '';
     if (i = iR) and (GetUnitQuantityType(ARightClass) = 'THertzQty') then ABaseClass := '';
+    (*
+    if AOperator = '*' then
+    begin
+      if (GetUnitQuantityType(ALeftClass ) = 'THertzQty') and (GetUnitQuantityType(ARightClass) = 'TMeterQty') then ABaseClass := '';
+      if (GetUnitQuantityType(ALeftClass ) = 'TMeterQty') and (GetUnitQuantityType(ARightClass) = 'THertzQty') then ABaseClass := '';
+      if (GetUnitQuantityType(ALeftClass ) = 'THertzQty') and (GetUnitQuantityType(ARightClass) = 'TJouleQty') then ABaseClass := '';
+      if (GetUnitQuantityType(ALeftClass ) = 'TJouleQty') and (GetUnitQuantityType(ARightClass) = 'THertzQty') then ABaseClass := '';
+      if (GetUnitQuantityType(ALeftClass ) = 'THertzQty') and (GetUnitQuantityType(ARightClass) = 'THertzQty') then ABaseClass := '';
+    end else
+      if AOperator = '/' then
+      begin
+        if (GetUnitQuantityType(ALeftClass ) = 'TWattQty') and (GetUnitQuantityType(ARightClass) = 'THertzQty') then ABaseClass := '';
+      end;
+    *)
     if ABaseClass = '' then Inc(ForcedOperators);
   end;
 
@@ -758,8 +772,24 @@ begin
 end;
 
 function TToolkitList.CalculateEnergy(const ASolution: TSolution): double;
+//var
+//  AProcess: TProcess;
+//  AStartTime: qword;
 begin
   Run(ASolution);
+  (*
+  FDocument.SaveToFile('adim.pas');
+
+  AStartTime := GetTickCount64;
+  AProcess := TProcess.Create(nil);
+  AProcess.Executable:= 'lazbuild';
+  AProcess.Parameters.Add('-B');
+  AProcess.Parameters.Add('adimtest.lpi');
+  AProcess.Options := AProcess.Options + [poWaitOnExit, poNoConsole];
+  AProcess.Execute;
+  AProcess.Free;
+  Result := GetTickCount64 - AStartTime;
+  *)
   Result := ForcedOperators + ExternalOperators;
 end;
 
@@ -770,27 +800,55 @@ var
   BestSolution: TSolution;
 begin
   BestSolution := nil;
-  S := TStringList.Create;
-  for i := Low(FList) to High(FList) do
-    if S.IndexOf(FList[i].FClassName) = -1 then
+  if FileExists('solution.bk') then
+  begin
+    if Assigned(FOnMessage) then
+      FOnMessage('Loading backup ...');
+    S := TStringList.Create;
+    S.LoadFromFile('solution.bk');
+    SetLength(BestSolution, S.Count);
+    for i := Low(BestSolution) to High(BestSolution) do
+      BestSolution[i] := S[i];
+    S.Destroy;
+    if Assigned(FOnMessage) then
+      FOnMessage('Backup loaded.');
+    Execute(BestSolution);
+  end else
+  begin
+    S := TStringList.Create;
+    for i := Low(FList) to High(FList) do
     begin
-      S.Add(FList[i].FClassName);
-      if FList[i].FBaseClass = '' then
+      if S.IndexOf(FList[i].FClassName) = -1 then
       begin
-        j := Length(BestSolution);
-        SetLength(BestSolution, j + 1);
-        BestSolution[j] := FList[i].FClassName;
+        S.Add(FList[i].FClassName);
+        if FList[i].FBaseClass = '' then
+        begin
+          j := Length(BestSolution);
+          SetLength(BestSolution, j + 1);
+          BestSolution[j] := FList[i].FClassName;
+        end;
       end;
     end;
-  S.Destroy;
+    S.Destroy;
 
-  if FExecutionTime > 0 then
-  begin
-    for i := 0 to 1000 do
-      CreateSolution(BestSolution);
-    Execute(BestSolution);
+    if FExecutionTime > 0 then
+    begin
+      for i := 0 to 1000 do
+        CreateSolution(BestSolution);
+      Execute(BestSolution);
+    end;
   end;
+
   Run(BestSolution);
+  if Assigned(FOnMessage) then
+    FOnMessage('Storing backup ...');
+  S := TStringList.Create;
+  for i := Low(BestSolution) to High(BestSolution) do
+    S.Add(BestSolution[i]);
+  S.SaveToFile('solution.bk');
+  S.Destroy;
+  if Assigned(FOnMessage) then
+    FOnMessage('Backup stored.');
   if Assigned(FOnMessage) then
   begin
     FOnMessage('Forced   Operators: ' + IntToStr(ForcedOperators));

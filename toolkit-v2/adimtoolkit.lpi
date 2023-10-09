@@ -73,6 +73,11 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="Common"/>
       </Unit>
+      <Unit>
+        <Filename Value="simulatedannealing.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="SimulatedAnnealing"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -98,6 +103,11 @@
         <UseLineInfoUnit Value="False"/>
       </Debugging>
       <LinkSmart Value="True"/>
+      <Options>
+        <Win32>
+          <GraphicApplication Value="True"/>
+        </Win32>
+      </Options>
     </Linking>
   </CompilerOptions>
   <Debugging>
