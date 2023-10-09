@@ -103,16 +103,17 @@ type
 
     function CalculateEnergy(const ASolution: TSolution): double; override;
     procedure CreateSolution(var ANeighbour: TSolution); override;
+    procedure Run(ASolution: TSolution);
   public
     constructor Create(OnMessage: TMessageEvent);
     destructor Destroy; override;
+
+    procedure Run;
     procedure Add(const AItem: TToolkitItem);
-    procedure RunWithOptimizer;
-    procedure Run(ASolution: TSolution);
   public
+    property Items[Index: longint]: TToolkitItem read GetItem; Default;
     property Document: TStringList read FDocument;
     property Messages: TStringList read FMessages;
-    property Items[Index: longint]: TToolkitItem read GetItem; Default;
     property Count: longint read GetCount;
   end;
 
@@ -793,7 +794,7 @@ begin
   Result := ForcedOperators + ExternalOperators;
 end;
 
-procedure TToolkitList.RunWithOptimizer;
+procedure TToolkitList.Run;
 var
   i, j: longint;
   S: TStringList;
@@ -814,30 +815,28 @@ begin
       FOnMessage('Backup loaded.');
     Execute(BestSolution);
   end else
-  begin
-    S := TStringList.Create;
-    for i := Low(FList) to High(FList) do
-    begin
-      if S.IndexOf(FList[i].FClassName) = -1 then
-      begin
-        S.Add(FList[i].FClassName);
-        if FList[i].FBaseClass = '' then
-        begin
-          j := Length(BestSolution);
-          SetLength(BestSolution, j + 1);
-          BestSolution[j] := FList[i].FClassName;
-        end;
-      end;
-    end;
-    S.Destroy;
-
     if FExecutionTime > 0 then
     begin
+      S := TStringList.Create;
+      for i := Low(FList) to High(FList) do
+      begin
+        if S.IndexOf(FList[i].FClassName) = -1 then
+        begin
+          S.Add(FList[i].FClassName);
+          if FList[i].FBaseClass = '' then
+          begin
+            j := Length(BestSolution);
+            SetLength(BestSolution, j + 1);
+            BestSolution[j] := FList[i].FClassName;
+          end;
+        end;
+      end;
+      S.Destroy;
+
       for i := 0 to 1000 do
         CreateSolution(BestSolution);
       Execute(BestSolution);
     end;
-  end;
 
   Run(BestSolution);
   if Assigned(FOnMessage) then
