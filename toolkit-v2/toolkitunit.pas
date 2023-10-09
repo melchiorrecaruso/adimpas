@@ -108,8 +108,8 @@ type
     constructor Create(OnMessage: TMessageEvent);
     destructor Destroy; override;
 
-    procedure Run;
     procedure Add(const AItem: TToolkitItem);
+    procedure Run;
   public
     property Items[Index: longint]: TToolkitItem read GetItem; Default;
     property Document: TStringList read FDocument;
@@ -813,41 +813,50 @@ begin
     S.Destroy;
     if Assigned(FOnMessage) then
       FOnMessage('Backup loaded.');
-    Execute(BestSolution);
-  end else
-    if FExecutionTime > 0 then
+  end;
+
+  if Length(BestSolution) = 0 then
+  begin
+    S := TStringList.Create;
+    for i := Low(FList) to High(FList) do
     begin
-      S := TStringList.Create;
-      for i := Low(FList) to High(FList) do
+      if S.IndexOf(FList[i].FClassName) = -1 then
       begin
-        if S.IndexOf(FList[i].FClassName) = -1 then
+        S.Add(FList[i].FClassName);
+        if FList[i].FBaseClass = '' then
         begin
-          S.Add(FList[i].FClassName);
-          if FList[i].FBaseClass = '' then
-          begin
-            j := Length(BestSolution);
-            SetLength(BestSolution, j + 1);
-            BestSolution[j] := FList[i].FClassName;
-          end;
+          j := Length(BestSolution);
+          SetLength(BestSolution, j + 1);
+          BestSolution[j] := FList[i].FClassName;
         end;
       end;
-      S.Destroy;
+    end;
+    S.Destroy;
 
+    if Length(BestSolution) > 0 then
       for i := 0 to 1000 do
         CreateSolution(BestSolution);
+  end;
+
+  if FExecutionTime > 0 then
+  begin
+    if Length(BestSolution) > 0 then
       Execute(BestSolution);
-    end;
+  end;
 
   Run(BestSolution);
-  if Assigned(FOnMessage) then
-    FOnMessage('Storing backup ...');
-  S := TStringList.Create;
-  for i := Low(BestSolution) to High(BestSolution) do
-    S.Add(BestSolution[i]);
-  S.SaveToFile('solution.bk');
-  S.Destroy;
-  if Assigned(FOnMessage) then
-    FOnMessage('Backup stored.');
+  if Length(BestSolution) > 0 then
+  begin
+    if Assigned(FOnMessage) then
+      FOnMessage('Storing backup ...');
+    S := TStringList.Create;
+    for i := Low(BestSolution) to High(BestSolution) do
+      S.Add(BestSolution[i]);
+    S.SaveToFile('solution.bk');
+    S.Destroy;
+    if Assigned(FOnMessage) then
+      FOnMessage('Backup stored.');
+  end;
   if Assigned(FOnMessage) then
   begin
     FOnMessage('Forced   Operators: ' + IntToStr(ForcedOperators));
@@ -861,7 +870,7 @@ var
   I, J: longint;
   Stream: TResourceStream;
 begin
-  CheckList  := nil;
+  CheckList := nil;
   ClassList.Clear;
   FDocument.Clear;
   FMessages.Clear;
