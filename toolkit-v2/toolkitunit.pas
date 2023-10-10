@@ -101,13 +101,12 @@ type
     function GetSIunit(Index: longint): string;
     function Find(const S: string; List: TStringList): longint;
 
-    function CalculateEnergy(const ASolution: TSolution): double; override;
-    procedure CreateSolution(var ANeighbour: TSolution); override;
     procedure Run(ASolution: TSolution);
   public
     constructor Create(OnMessage: TMessageEvent);
     destructor Destroy; override;
-
+    function CalculateEnergy(const ASolution: TSolution): double; override;
+    procedure CreateSolution(var ANeighbour: TSolution); override;
     procedure Add(const AItem: TToolkitItem);
     procedure Run;
   public
@@ -183,22 +182,8 @@ begin
 
   if ABaseClass <> '' then
   begin
-    //if (i = iL) and (GetUnitQuantityType(ALeftClass ) = 'THertzQty') then ABaseClass := '';
-    //if (i = iR) and (GetUnitQuantityType(ARightClass) = 'THertzQty') then ABaseClass := '';
-    (*
-    if AOperator = '*' then
-    begin
-      if (GetUnitQuantityType(ALeftClass ) = 'THertzQty') and (GetUnitQuantityType(ARightClass) = 'TMeterQty') then ABaseClass := '';
-      if (GetUnitQuantityType(ALeftClass ) = 'TMeterQty') and (GetUnitQuantityType(ARightClass) = 'THertzQty') then ABaseClass := '';
-      if (GetUnitQuantityType(ALeftClass ) = 'THertzQty') and (GetUnitQuantityType(ARightClass) = 'TJouleQty') then ABaseClass := '';
-      if (GetUnitQuantityType(ALeftClass ) = 'TJouleQty') and (GetUnitQuantityType(ARightClass) = 'THertzQty') then ABaseClass := '';
-      if (GetUnitQuantityType(ALeftClass ) = 'THertzQty') and (GetUnitQuantityType(ARightClass) = 'THertzQty') then ABaseClass := '';
-    end else
-      if AOperator = '/' then
-      begin
-        if (GetUnitQuantityType(ALeftClass ) = 'TWattQty') and (GetUnitQuantityType(ARightClass) = 'THertzQty') then ABaseClass := '';
-      end;
-    *)
+    if (i = iL) and (GetUnitQuantityType(ALeftClass ) = 'THertzQty') then ABaseClass := '';
+    if (i = iR) and (GetUnitQuantityType(ARightClass) = 'THertzQty') then ABaseClass := '';
     if ABaseClass = '' then Inc(ForcedOperators);
   end;
 
@@ -773,25 +758,22 @@ begin
 end;
 
 function TToolkitList.CalculateEnergy(const ASolution: TSolution): double;
-//var
-//  AProcess: TProcess;
-//  AStartTime: qword;
+var
+  AProcess: TProcess;
+  AStartTime: qword;
 begin
   Run(ASolution);
-  (*
   FDocument.SaveToFile('adim.pas');
-
   AStartTime := GetTickCount64;
   AProcess := TProcess.Create(nil);
   AProcess.Executable:= 'lazbuild';
   AProcess.Parameters.Add('-B');
   AProcess.Parameters.Add('adimtest.lpi');
-  AProcess.Options := AProcess.Options + [poWaitOnExit, poNoConsole];
+  AProcess.Options := AProcess.Options + [poWaitOnExit];
   AProcess.Execute;
   AProcess.Free;
-  Result := GetTickCount64 - AStartTime;
-  *)
-  Result := ForcedOperators + ExternalOperators;
+  Result := (GetTickCount64 - AStartTime)/100;
+//Result := ForcedOperators + ExternalOperators;
 end;
 
 procedure TToolkitList.Run;
