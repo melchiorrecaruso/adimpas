@@ -222,10 +222,10 @@ end;
 
 procedure TToolKitManager.Execute;
 begin
-  case MainForm.OptimizeBox.Checked of
-    True:  FList.ExecutionTime := MainForm.OptimizationTime.Value;
-    False: FList.ExecutionTime := 0;
-  end;
+  FList.ExecutionTime := 0;
+  if MainForm.OptimizeBox.Checked then
+    FList.ExecutionTime := MainForm.OptimizationTime.Value;
+
   FList.InitialTemperature := 1000000000;
   FList.CoolingRate        := 0.1;
   FList.Run;
