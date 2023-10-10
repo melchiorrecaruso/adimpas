@@ -183,8 +183,8 @@ begin
 
   if ABaseClass <> '' then
   begin
-    if (i = iL) and (GetUnitQuantityType(ALeftClass ) = 'THertzQty') then ABaseClass := '';
-    if (i = iR) and (GetUnitQuantityType(ARightClass) = 'THertzQty') then ABaseClass := '';
+    //if (i = iL) and (GetUnitQuantityType(ALeftClass ) = 'THertzQty') then ABaseClass := '';
+    //if (i = iR) and (GetUnitQuantityType(ARightClass) = 'THertzQty') then ABaseClass := '';
     (*
     if AOperator = '*' then
     begin
@@ -801,18 +801,23 @@ var
   BestSolution: TSolution;
 begin
   BestSolution := nil;
-  if FileExists('solution.bk') then
+  if FExecutionTime > 0 then
   begin
-    if Assigned(FOnMessage) then
-      FOnMessage('Loading backup ...');
-    S := TStringList.Create;
-    S.LoadFromFile('solution.bk');
-    SetLength(BestSolution, S.Count);
-    for i := Low(BestSolution) to High(BestSolution) do
-      BestSolution[i] := S[i];
-    S.Destroy;
-    if Assigned(FOnMessage) then
-      FOnMessage('Backup loaded.');
+    if FileExists('solution.bk') then
+    begin
+      if Assigned(FOnMessage) then
+        FOnMessage('Loading backup ...');
+      S := TStringList.Create;
+      S.LoadFromFile('solution.bk');
+      SetLength(BestSolution, S.Count);
+      for i := Low(BestSolution) to High(BestSolution) do
+        BestSolution[i] := S[i];
+      S.Destroy;
+      if Assigned(FOnMessage) then
+        FOnMessage('Backup loaded.');
+      if Length(BestSolution) > 0 then
+        Execute(BestSolution);
+    end;
   end;
 
   if Length(BestSolution) = 0 then
@@ -833,19 +838,17 @@ begin
     end;
     S.Destroy;
 
-    if Length(BestSolution) > 0 then
-      for i := 0 to 1000 do
-        CreateSolution(BestSolution);
-  end;
-
-  if FExecutionTime > 0 then
-  begin
-    if Length(BestSolution) > 0 then
-      Execute(BestSolution);
+    if FExecutionTime > 0 then
+      if Length(BestSolution) > 0 then
+      begin
+        for I := 0 to 1000 do
+          CreateSolution(BestSolution);
+        Execute(BestSolution);
+      end;
   end;
 
   Run(BestSolution);
-  if Length(BestSolution) > 0 then
+  if FExecutionTime > 0 then
   begin
     if Assigned(FOnMessage) then
       FOnMessage('Storing backup ...');
