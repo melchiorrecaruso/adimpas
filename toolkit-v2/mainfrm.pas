@@ -226,7 +226,7 @@ begin
   if MainForm.OptimizeBox.Checked then
     FList.ExecutionTime := MainForm.OptimizationTime.Value;
 
-  FList.InitialTemperature := 1000000000;
+  FList.InitialTemperature := 1000000;
   FList.CoolingRate        := 0.1;
   FList.Run;
 end;

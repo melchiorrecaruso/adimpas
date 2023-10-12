@@ -759,20 +759,54 @@ end;
 
 function TToolkitList.CalculateEnergy(const ASolution: TSolution): double;
 var
+  Buffer: array[0..4095] of byte;
+  i, j, AIndex, ACount, ReadSize: longint;
+  AMemoryStream: TMemoryStream;
   AProcess: TProcess;
-  AStartTime: qword;
+  AStringList: TStringList;
+  ResultStr: string;
 begin
   Run(ASolution);
+  Result := MaxDouble;
   FDocument.SaveToFile('adim.pas');
-  AStartTime := GetTickCount64;
   AProcess := TProcess.Create(nil);
   AProcess.Executable:= 'lazbuild';
   AProcess.Parameters.Add('-B');
   AProcess.Parameters.Add('adimtest.lpi');
-  AProcess.Options := AProcess.Options + [poWaitOnExit];
+  AProcess.Options := AProcess.Options + [poNoConsole, poUsePipes];
   AProcess.Execute;
+
+  AStringList := TStringList.Create;
+  AMemoryStream := TMemoryStream.Create;
+  while AProcess.Running do
+  begin
+    if AProcess.Output.NumBytesAvailable > 0 then
+    begin
+      ReadSize := AProcess.Output.NumBytesAvailable;
+      if ReadSize > SizeOf(Buffer) then
+        ReadSize := SizeOf(Buffer);
+      ReadSize := AProcess.Output.Read(Buffer[0], ReadSize);
+      AMemoryStream.Write(Buffer[0], ReadSize);
+    end;
+  end;
+  AMemoryStream.Seek(0, soFromBeginning);
+  AStringList.LoadFromStream(AMemoryStream);
+  for i := 0 to AStringList.Count -1 do
+    if AStringList[i].Contains(' lines compiled,') then
+    begin
+      AIndex := Pos(', ', AStringList[i]) + 2;
+      ACount := Pos(' sec,', AStringList[i]) - AIndex;
+      ResultStr := Copy(AStringList[i], AIndex, ACount);
+
+      for j := Low(ResultStr) to High(ResultStr) do
+        if ResultStr[j] in ['.', ','] then
+          ResultStr[j] := DefaultFormatSettings.DecimalSeparator;
+      Result := StrToFloat(ResultStr);
+      Break;
+    end;
+  AMemoryStream.Destroy;
+  AStringList.Free;
   AProcess.Free;
-  Result := (GetTickCount64 - AStartTime)/100;
 //Result := ForcedOperators + ExternalOperators;
 end;
 
@@ -830,7 +864,7 @@ begin
   end;
 
   Run(BestSolution);
-  if FExecutionTime > 0 then
+//if FExecutionTime > 0 then
   begin
     if Assigned(FOnMessage) then
       FOnMessage('Storing backup ...');

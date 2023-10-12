@@ -115,11 +115,12 @@ begin
     FOnMessageEvent('Optimizer starting ...');
   // initialize temperature
   Temperature := FInitialTemperature;
+  // initalize best solution
+  BestEnergy := CalculateEnergy(BestSolution);
   // initialize current solution
   SetLength(CurrentSolution, system.length(BestSolution));
   CopySolution(BestSolution, CurrentSolution);
-  // initalize best solution
-  BestEnergy := CalculateEnergy(BestSolution);
+  CurrentEnergy := BestEnergy;
   // initialize NeighbourSolution
   setlength(NeighbourSolution, system.length(BestSolution));
   // loop until system has cooled
@@ -129,22 +130,20 @@ begin
     // create new neighbour BestSolution
     CopySolution(CurrentSolution, NeighbourSolution);
     CreateSolution(NeighbourSolution);
-    // get BestEnergy of solutions
-    CurrentEnergy := CalculateEnergy(CurrentSolution);
     NeighbourEnergy := CalculateEnergy(NeighbourSolution);
     // decide if we should accept the neighbour
     if AcceptanceProbability(CurrentEnergy, NeighbourEnergy, Temperature) > random then
     begin
       CopySolution(NeighbourSolution, CurrentSolution);
+      CurrentEnergy := NeighbourEnergy;
     end;
-    // keep track of the best bestsolution found
-    CurrentEnergy := CalculateEnergy(CurrentSolution);
-    BestEnergy := CalculateEnergy(BestSolution);
+    // get BestEnergy of solutions
     if CurrentEnergy < BestEnergy then
     begin
       if Assigned(FOnMessageEvent) then
         FOnMessageEvent('Current energy: ' + FloatToStr(CurrentEnergy));
       CopySolution(CurrentSolution, BestSolution);
+      BestEnergy := CurrentEnergy;
     end;
     // cool system
     Temperature := Temperature * (1 - FCoolingRate);
