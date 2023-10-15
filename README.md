@@ -6,7 +6,8 @@ Another unit for type checking of dimensioned quantities at compile time in Free
 
 ## <u>Requirements:</u>
 
-- FreePascal (trunk version)
+- [FreePascal compiler](https://www.freepascal.org)
+- [Lazarus IDE](https://www.lazarus-ide.org)
 
 ## <u>Supported mathematical formulae:<u>
 
