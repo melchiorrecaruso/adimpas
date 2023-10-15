@@ -56,6 +56,7 @@ type
     ExternalOperators: longint;
     ForcedOperators:   longint;
     InternalOperators: longint;
+    TestingCount:      longint;
 
     FDocument:  TStringList;
     FMessages:  TStringList;
@@ -133,6 +134,7 @@ begin
   FDocument  := TStringList.Create;
   FMessages  := TStringList.Create;
 
+  TestingCount      := 0;
   ClassList .Sorted := TRUE;
   Randomize;
 end;
@@ -766,20 +768,33 @@ var
   AStringList: TStringList;
   ResultStr: string;
 begin
+  Result := 0;
   Run(ASolution);
-  Result := MaxDouble;
   FDocument.SaveToFile('adim.pas');
+
   AProcess := TProcess.Create(nil);
-  AProcess.Executable:= 'lazbuild';
-  AProcess.Parameters.Add('-B');
-  AProcess.Parameters.Add('adimtest.lpi');
-  AProcess.Options := AProcess.Options + [poNoConsole, poUsePipes];
+  AProcess.Executable:= 'fpc';
+  AProcess.Parameters.Add('-MObjFPC');
+  AProcess.Parameters.Add('-Scghi');
+  AProcess.Parameters.Add('-l');
+  AProcess.Parameters.Add('-vewnhibq');
+  AProcess.Parameters.Add('-Fibuild\lib');
+  AProcess.Parameters.Add('-Fubuild\i386-win32');
+  AProcess.Parameters.Add('-FuC:\fpcupdeluxe\lazarus\packager\units\i386-win32');
+  AProcess.Parameters.Add('-Fu.');
+  AProcess.Parameters.Add('-FUbuild\lib');
+  AProcess.Parameters.Add('-FEbuild');
+  AProcess.Parameters.Add('-obuild\adimtest.exe');
+  AProcess.Parameters.Add('adimtest.pas');
+  AProcess.Options  := [poUsePipes, poNoConsole];
+  AProcess.Priority := ppHigh;
   AProcess.Execute;
 
   AStringList := TStringList.Create;
   AMemoryStream := TMemoryStream.Create;
   while AProcess.Running do
   begin
+    Sleep(100);
     if AProcess.Output.NumBytesAvailable > 0 then
     begin
       ReadSize := AProcess.Output.NumBytesAvailable;
@@ -789,25 +804,31 @@ begin
       AMemoryStream.Write(Buffer[0], ReadSize);
     end;
   end;
+
   AMemoryStream.Seek(0, soFromBeginning);
   AStringList.LoadFromStream(AMemoryStream);
   for i := 0 to AStringList.Count -1 do
+  begin
+    //FOnMessage(AStringList[i]);
     if AStringList[i].Contains(' lines compiled,') then
     begin
       AIndex := Pos(', ', AStringList[i]) + 2;
-      ACount := Pos(' sec,', AStringList[i]) - AIndex;
+      ACount := Pos(' sec', AStringList[i]) - AIndex;
       ResultStr := Copy(AStringList[i], AIndex, ACount);
 
       for j := Low(ResultStr) to High(ResultStr) do
         if ResultStr[j] in ['.', ','] then
           ResultStr[j] := DefaultFormatSettings.DecimalSeparator;
-      Result := StrToFloat(ResultStr);
+      Result := Result + StrToFloat(ResultStr);
       Break;
     end;
+  end;
   AMemoryStream.Destroy;
   AStringList.Free;
   AProcess.Free;
-//Result := ForcedOperators + ExternalOperators;
+
+  Inc(TestingCount);
+  FOnMessage(' -> ' + TestingCount.ToString + ' : ' + Result.ToString);
 end;
 
 procedure TToolkitList.Run;
@@ -817,23 +838,21 @@ var
   BestSolution: TSolution;
 begin
   BestSolution := nil;
-  if FExecutionTime > 0 then
+  if FileExists('solution.bk') then
   begin
-    if FileExists('solution.bk') then
-    begin
-      if Assigned(FOnMessage) then
-        FOnMessage('Loading backup ...');
-      S := TStringList.Create;
-      S.LoadFromFile('solution.bk');
-      SetLength(BestSolution, S.Count);
-      for i := Low(BestSolution) to High(BestSolution) do
-        BestSolution[i] := S[i];
-      S.Destroy;
-      if Assigned(FOnMessage) then
-        FOnMessage('Backup loaded.');
+    if Assigned(FOnMessage) then
+      FOnMessage('Loading backup ...');
+    S := TStringList.Create;
+    S.LoadFromFile('solution.bk');
+    SetLength(BestSolution, S.Count);
+    for i := Low(BestSolution) to High(BestSolution) do
+      BestSolution[i] := S[i];
+    S.Destroy;
+    if Assigned(FOnMessage) then
+      FOnMessage('Backup loaded.');
+    if FExecutionTime > 0 then
       if Length(BestSolution) > 0 then
         Execute(BestSolution);
-    end;
   end;
 
   if Length(BestSolution) = 0 then
@@ -864,18 +883,16 @@ begin
   end;
 
   Run(BestSolution);
-//if FExecutionTime > 0 then
-  begin
-    if Assigned(FOnMessage) then
-      FOnMessage('Storing backup ...');
-    S := TStringList.Create;
-    for i := Low(BestSolution) to High(BestSolution) do
-      S.Add(BestSolution[i]);
-    S.SaveToFile('solution.bk');
-    S.Destroy;
-    if Assigned(FOnMessage) then
-      FOnMessage('Backup stored.');
-  end;
+  if Assigned(FOnMessage) then
+    FOnMessage('Storing backup ...');
+  S := TStringList.Create;
+  for i := Low(BestSolution) to High(BestSolution) do
+    S.Add(BestSolution[i]);
+  S.SaveToFile('solution.bk');
+  S.Destroy;
+  if Assigned(FOnMessage) then
+    FOnMessage('Backup stored.');
+
   if Assigned(FOnMessage) then
   begin
     FOnMessage('Forced   Operators: ' + IntToStr(ForcedOperators));
