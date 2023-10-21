@@ -27,33 +27,49 @@ uses
   Classes, SysUtils;
 
 const
-  INTF_FACTORED = '{$DEFINE INTF_FACTORED}{$DEFINE TQuantity:=%s}{$i adim.inc}';
-  INTF_QUANTITY = '{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=%s}{$i adim.inc}';
-  INTF_UNIT     = '{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=%s}{$DEFINE TUnit:=%s}{$i adim.inc}';
-  INTF_END      = '{$DEFINE INTF_END}{$i adim.inc}';
+  INTF_QUANTITY      = '{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=%s}{$i adim.inc}';
+  INTF_UNIT          = '{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=%s}{$DEFINE TUnit:=%s}{$i adim.inc}';
+  INTF_END           = '{$DEFINE INTF_END}{$i adim.inc}';
 
-  IMPL_FACTORED = '{$DEFINE IMPL_FACTORED}{$DEFINE TQuantity:=%s}{$i adim.inc}';
-  IMPL_QUANTITY = '{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=%s}{$i adim.inc}';
-  IMPL_UNIT     = '{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=%s}{$DEFINE TUnit:=%s}{$i adim.inc}';
+  IMPL_QUANTITY      = '{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=%s}{$i adim.inc}';
+  IMPL_UNIT          = '{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=%s}{$DEFINE TUnit:=%s}{$i adim.inc}';
 
-  INTF_OP_CLASS = '  class operator %s(const ALeft: %s; const ARight: %s): %s;';
-  IMPL_OP_CLASS = 'class operator %s.%s(const ALeft: %s; const ARight: %s): %s;';
-  INTF_OP       = 'operator %s(const ALeft: %s; const ARight: %s): %s;';
-  IMPL_OP       = 'operator %s(const ALeft: %s; const ARight: %s): %s;';
+  IMPL_CSYMBOL       = '{$DEFINE CSYMBOL:=%s}';
+  IMPL_CSINGULARNAME = '{$DEFINE CSINGULARNAME:=%s}';
+  IMPL_CPLURALNAME   = '{$DEFINE CPLURALNAME:=%s}';
+  IMPL_CPREFIXES     = '{$DEFINE CPREFIXES:=%s}';
+  IMPL_CEXPONENTS    = '{$DEFINE CEXPONENTS:=%s}';
+  IMPL_CFACTOR       = '{$DEFINE CFACTOR:=%s}';
 
+  INTF_OP_CLASS      = '  class operator %s(const ALeft: %s; const ARight: %s): %s;';
+  IMPL_OP_CLASS      = 'class operator %s.%s(const ALeft: %s; const ARight: %s): %s;';
+  INTF_OP            = 'operator %s(const ALeft: %s; const ARight: %s): %s;';
+  IMPL_OP            = 'operator %s(const ALeft: %s; const ARight: %s): %s;';
+
+
+function GetSymbolResourceString(const AClassName: string): string;
+function GetSingularNameResourceString(const AClassName: string): string;
+function GetPluralNameResourceString(const AClassName: string): string;
+function GetPrefixesConst(const AClassName: string): string;
+function GetExponentsConst(const AClassName: string): string;
+function GetFactorConst(const AClassName: string): string;
 
 function GetSymbol(const AShortSymbol: string): string;
 function GetSingularName(const ALongSymbol: string): string;
 function GetPluralName(const ALongSymbol: string): string;
-function GetUnitQuantityType(const S: string): string;
-function GetUnitComment(S: string): string;
-function GetUnitDescription(const S: string): string;
-function GetUnitClassName(const S: string): string;
-function GetUnitClassNameHelper(const S: string): string;
-function GetUnitIdentifier(const S: string): string;
-function GetUnitQuantity(const S: string): string;
 function GetPrefixes(const AShortSymbol: string): string;
 function GetExponents(const AShortSymbol: string): string;
+
+function GetQuantityType(const S: string): string;
+function GetQuantity(const S: string): string;
+function GetUnitType(const S: string): string;
+
+
+function GetUnitID(const S: string): string;
+
+function GetUnitTypeHelper(const S: string): string;
+function GetUnitIdentifier(const S: string): string;
+
 
 function  CleanUnitName(const S: string): string;
 function  CleanUnitSymbol(const S: string): string;
@@ -93,6 +109,36 @@ begin
   SetLength(result, Index + 1);
 end;
 
+function GetSymbolResourceString(const AClassName: string): string;
+begin
+  result := Format('rs%sSymbol', [GetUnitID(AClassName)]);
+end;
+
+function GetSingularNameResourceString(const AClassName: string): string;
+begin
+  result := Format('rs%sName', [GetUnitID(AClassName)]);
+end;
+
+function GetPluralNameResourceString(const AClassName: string): string;
+begin
+  result := Format('rs%sPluralName', [GetUnitID(AClassName)]);
+end;
+
+function GetPrefixesConst(const AClassName: string): string;
+begin
+  result := Format('c%sPrefixes', [GetUnitID(AClassName)]);
+end;
+
+function GetExponentsConst(const AClassName: string): string;
+begin
+  result := Format('c%sExponents', [GetUnitID(AClassName)]);
+end;
+
+function GetFactorConst(const AClassName: string): string;
+begin
+  result := Format('c%sFactor', [GetUnitID(AClassName)]);
+end;
+
 function GetSymbol(const AShortSymbol: string): string;
 begin
   result := AShortSymbol;
@@ -112,7 +158,7 @@ begin
   result := StringReplace(StringReplace(result, 'y!',    'ies',    [rfReplaceAll]), '?',     's',    [rfReplaceAll]);
 end;
 
-function GetUnitQuantityType(const S: string): string;
+function GetQuantityType(const S: string): string;
 begin
   Result := S;
   if Result <> '' then
@@ -123,6 +169,19 @@ begin
     Result := StringReplace(Result, '?',     '',     [rfReplaceAll]);
     Result := StringReplace(Result, ' ',     '',     [rfReplaceAll]);
     Result := Result + 'Qty';
+  end;
+end;
+
+function GetQuantity(const S: string): string;
+begin
+  Result := S;
+  if Result <> '' then
+  begin
+    Result := StringReplace(Result, 'Foot!', 'Feet',   [rfReplaceAll]);
+    Result := StringReplace(Result, 'Inch!', 'Inches', [rfReplaceAll]);
+    Result := StringReplace(Result, 'y!',    'ies',    [rfReplaceAll]);
+    Result := StringReplace(Result, '?',     's',      [rfReplaceAll]);
+    Result := StringReplace(Result, ' ',     '',       [rfReplaceAll]);
   end;
 end;
 
@@ -148,7 +207,7 @@ begin
     Delete(result, 1, 1);
 end;
 
-function GetUnitDescription(const S: string): string;
+function GetUnitID(const S: string): string;
 begin
   Result := S;
   Result := StringReplace(Result, '!',  '', [rfReplaceAll]);
@@ -158,7 +217,7 @@ begin
     Delete(Result, 1, 1);
 end;
 
-function GetUnitClassName(const S: string): string;
+function GetUnitType(const S: string): string;
 begin
   Result := S;
   Result := StringReplace(Result, '!',  '', [rfReplaceAll]);
@@ -169,7 +228,7 @@ begin
   if Result <> ''      then Result := Result + 'Unit';
 end;
 
-function GetUnitClassNameHelper(const S: string): string;
+function GetUnitTypeHelper(const S: string): string;
 begin
   Result := S;
   Result := StringReplace(Result, '!',  '', [rfReplaceAll]);
@@ -185,16 +244,6 @@ begin
   Result := StringReplace(Result, '?',  '', [rfReplaceAll]);
   Result := StringReplace(Result, ' ',  '', [rfReplaceAll]);
   Result := Result + 'Unit';
-end;
-
-function GetUnitQuantity(const S: string): string;
-begin
-  Result := S;
-  Result := StringReplace(Result, 'Foot!', 'Feet',   [rfReplaceAll]);
-  Result := StringReplace(Result, 'Inch!', 'Inches', [rfReplaceAll]);
-  Result := StringReplace(Result, 'y!',    'ies',    [rfReplaceAll]);
-  Result := StringReplace(Result, '?',     's',      [rfReplaceAll]);
-  Result := StringReplace(Result, ' ',     '',       [rfReplaceAll]);
 end;
 
 function GetPrefixes(const AShortSymbol: string): string;
@@ -223,6 +272,8 @@ begin
   while (Length(Result) > 0) and (Result[High(Result)] = ',') do
     Delete(Result, High(Result), 1);
 end;
+
+
 
 function GetExponents(const AShortSymbol: string): string;
 var
@@ -267,6 +318,8 @@ begin
   while (Length(Result) > 0) and (Result[High(Result)] = ',') do
     Delete(Result, High(Result), 1);
 end;
+
+
 
 function CleanUnitName(const S: string): string;
 begin

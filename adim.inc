@@ -1,23 +1,9 @@
-{$IFDEF INTF_FACTORED}
-  {$DEFINE INTF_QUANTITY}
-{$ENDIF}
-
 {$IFDEF INTF_QUANTITY}
 {$UNDEF INTF_QUANTITY}
 type
   TQuantity = record
   private
     FValue: double;
-  public
-    class function Symbol: string; static;
-    class function SingularName: string; static;
-    class function PluralName: string; static;
-    class function Prefixes: TPrefixes; static;
-    class function Exponents: TExponents; static;
-    {$IFDEF INTF_FACTORED}
-    {$UNDEF INTF_FACTORED}
-    class function ToBaseFactor: double; static;
-    {$ENDIF}
   public
     function Abs: TQuantity;
     function Value: double;
@@ -34,7 +20,7 @@ type
     class operator *  (const ASelf: TQuantity; const AValue: double): TQuantity;
     class operator /  (const ASelf: TQuantity; const AValue: double): TQuantity;
     class operator /  (const ALeft, ARight: TQuantity): double;
-    class operator mod(const ALeft, ARight: TQuantity): TQuantity;    
+    class operator mod(const ALeft, ARight: TQuantity): TQuantity;
     class operator =  (const ALeft, ARight: TQuantity): boolean;
     class operator <  (const ALeft, ARight: TQuantity): boolean;
     class operator >  (const ALeft, ARight: TQuantity): boolean;
@@ -42,8 +28,9 @@ type
     class operator >= (const ALeft, ARight: TQuantity): boolean;
 {$ENDIF}
 
-{$IFDEF IMPL_FACTORED}
-  {$DEFINE IMPL_QUANTITY}
+{$IFDEF INTF_END}
+{$UNDEF INTF_END}
+end;
 {$ENDIF}
 
 {$IFDEF IMPL_QUANTITY}
@@ -65,14 +52,14 @@ var
   PrefixCount: longint;
 begin
   PrefixCount := Length(APrefixes);
-  if PrefixCount = Length(Prefixes) then
+  if PrefixCount = Length(CPREFIXES) then
   begin
     Exponent := 0;
     for I := 0 to PrefixCount -1 do
-      Inc(Exponent, PrefixTable[Prefixes[I]].Exponent * Exponents[I]);
+      Inc(Exponent, PrefixTable[CPREFIXES[I]].Exponent * CEXPONENTS[I]);
 
     for I := 0 to PrefixCount -1 do
-      Dec(Exponent, PrefixTable[APrefixes[I]].Exponent * Exponents[I]);
+      Dec(Exponent, PrefixTable[APrefixes[I]].Exponent * CEXPONENTS[I]);
     
     if Exponent <> 0 then  
       result := FValue * IntPower(10, Exponent)
@@ -87,15 +74,15 @@ end;
 
 function TQuantity.ToString: string;
 begin
-  result := FloatToStr(FValue) + ' ' + GetSymbol(Symbol, Prefixes);
+  result := FloatToStr(FValue) + ' ' + GetSymbol(CSYMBOL, CPREFIXES);
 end;
 
 function TQuantity.ToVerboseString: string;
 begin
   if (FValue < -1) or (FValue > 1) then
-    result := FloatToStr(FValue) + ' ' + GetName(PluralName, Prefixes) 
+    result := FloatToStr(FValue) + ' ' + GetName(CPLURALNAME, CPREFIXES)
   else
-    result := FloatToStr(FValue) + ' ' + GetName(SingularName, Prefixes);
+    result := FloatToStr(FValue) + ' ' + GetName(CSINGULARNAME, CPREFIXES);
 end;
 
 function TQuantity.ToString(APrecision, ADigits: longint; const APrefixes: TPrefixes): string;
@@ -105,9 +92,9 @@ begin
   FactoredValue := Value(APrefixes);
 
   if Length(APrefixes) = 0 then
-    result := FloatToStrF(FactoredValue, ffGeneral, APrecision, ADigits) + ' ' + GetSymbol(Symbol, Prefixes)
+    result := FloatToStrF(FactoredValue, ffGeneral, APrecision, ADigits) + ' ' + GetSymbol(CSYMBOL, CPREFIXES)
   else
-    result := FloatToStrF(FactoredValue, ffGeneral, APrecision, ADigits) + ' ' + GetSymbol(Symbol, APrefixes); 
+    result := FloatToStrF(FactoredValue, ffGeneral, APrecision, ADigits) + ' ' + GetSymbol(CSYMBOL, APrefixes);
 end;
 
 function TQuantity.ToVerboseString(APrecision, ADigits: longint; const APrefixes: TPrefixes): string;
@@ -119,15 +106,15 @@ begin
   if (FactoredValue < -1) or (FactoredValue > 1) then
   begin
     if Length(APrefixes) = 0 then
-      result := FloatToStrF(FactoredValue, ffGeneral, APrecision, ADigits) + ' ' + GetName(PluralName, Prefixes)
+      result := FloatToStrF(FactoredValue, ffGeneral, APrecision, ADigits) + ' ' + GetName(CPLURALNAME, CPREFIXES)
     else
-      result := FloatToStrF(FactoredValue, ffGeneral, APrecision, ADigits) + ' ' + GetName(PluralName, APrefixes); 
+      result := FloatToStrF(FactoredValue, ffGeneral, APrecision, ADigits) + ' ' + GetName(CPLURALNAME, APrefixes);
   end else
   begin
     if Length(APrefixes) = 0 then
-      result := FloatToStrF(FactoredValue, ffGeneral, APrecision, ADigits) + ' ' + GetName(SingularName, Prefixes)
+      result := FloatToStrF(FactoredValue, ffGeneral, APrecision, ADigits) + ' ' + GetName(CSINGULARNAME, CPREFIXES)
     else
-      result := FloatToStrF(FactoredValue, ffGeneral, APrecision, ADigits) + ' ' + GetName(SingularName, APrefixes)
+      result := FloatToStrF(FactoredValue, ffGeneral, APrecision, ADigits) + ' ' + GetName(CSINGULARNAME, APrefixes)
   end; 
 end;                                             
 
@@ -200,9 +187,6 @@ class operator TQuantity.>=(const ALeft, ARight: TQuantity): boolean;
 begin
   result := ALeft.FValue >= ARight.FValue;
 end;
-{$IFDEF IMPL_FACTORED}
-  {$UNDEF IMPL_FACTORED}
-{$ENDIF}
 {$ENDIF}
 
 {$IFDEF INTF_UNIT}
@@ -226,7 +210,3 @@ begin
 end;
 {$ENDIF}
 
-{$IFDEF INTF_END}
-{$UNDEF INTF_END}
-end;
-{$ENDIF}

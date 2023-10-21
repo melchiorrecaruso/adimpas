@@ -1,4 +1,6 @@
 
+{ Prefix table }
+
 const
   PrefixTable: array[pQuetta..pQuecto] of 
     record  Symbol, Name: string; Exponent: longint end = (
@@ -28,6 +30,8 @@ const
     (Symbol: 'r';   Name: 'ronto';   Exponent: -27),
     (Symbol: 'q';   Name: 'quecto';  Exponent: -30)
   );
+
+{ Useful routines }
 
 function GetSymbol(const ASymbol: string; const Prefixes: TPrefixes): string;
 function GetName(const AName: string; const Prefixes: TPrefixes): string;
