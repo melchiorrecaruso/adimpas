@@ -9,9 +9,11 @@ type
     function Value: double;
     function Value(const APrefixes: TPrefixes): double;
     function ToString: string;
-    function ToVerboseString: string;
     function ToString(APrecision, ADigits: longint; const APrefixes: TPrefixes): string;
+    function ToString(const ATolerance: TQuantity; APrecision, ADigits: longint; const APrefixes: TPrefixes): string;
+    function ToVerboseString: string;
     function ToVerboseString(APrecision, ADigits: longint; const APrefixes: TPrefixes): string;
+    function ToVerboseString(const ATolerance: TQuantity; APrecision, ADigits: longint; const APrefixes: TPrefixes): string;
     class operator +  (const AValue: TQuantity): TQuantity;
     class operator -  (const AValue: TQuantity): TQuantity;
     class operator +  (const ALeft, ARight: TQuantity): TQuantity;
@@ -70,7 +72,7 @@ begin
       result := FValue
     else  
       raise Exception.Create('Wrong number of prefixes.');   
-end;     
+end;
 
 function TQuantity.ToString: string;
 begin
@@ -116,7 +118,42 @@ begin
     else
       result := FloatToStrF(FactoredValue, ffGeneral, APrecision, ADigits) + ' ' + GetName(CSINGULARNAME, APrefixes)
   end; 
-end;                                             
+end;      
+
+function TQuantity.ToString(const ATolerance: TQuantity; APrecision, ADigits: longint; const APrefixes: TPrefixes): string;
+var  
+  FactoredTol: double; 
+  FactoredValue: double;
+begin
+  FactoredValue := Value(APrefixes);
+  FactoredTol   := ATolerance.Value(APrefixes);
+
+  if Length(APrefixes) = 0 then
+  begin
+    result := FloatToStrF(FactoredValue, ffGeneral, APrecision, ADigits) + ' ±' +
+              FloatToStrF(FactoredTol,   ffGeneral, APrecision, ADigits) + ' '  + GetSymbol(CSYMBOL, CPREFIXES)
+  end else
+  begin
+    result := FloatToStrF(FactoredValue, ffGeneral, APrecision, ADigits) + ' ±' +
+              FloatToStrF(FactoredTol,   ffGeneral, APrecision, ADigits) + ' '  + GetSymbol(CSYMBOL, APrefixes);
+  end;                                   
+end;
+
+function TQuantity.ToVerboseString(const ATolerance: TQuantity; APrecision, ADigits: longint; const APrefixes: TPrefixes): string;
+var  
+  FactoredTol: double; 
+  FactoredValue: double;
+begin
+  FactoredValue := Value(APrefixes);
+  FactoredTol   := ATolerance.Value(APrefixes);
+
+  if Length(APrefixes) = 0 then
+    result := FloatToStrF(FactoredValue, ffGeneral, APrecision, ADigits) + ' ±' +
+              FloatToStrF(FactoredTol,   ffGeneral, APrecision, ADigits) + ' '  + GetName(CPLURALNAME, CPREFIXES)
+  else
+    result := FloatToStrF(FactoredValue, ffGeneral, APrecision, ADigits) + ' ±' +
+              FloatToStrF(FactoredTol,   ffGeneral, APrecision, ADigits) + ' '  + GetName(CPLURALNAME, APrefixes);
+end;
 
 class operator TQuantity.+(const AValue: TQuantity): TQuantity;
 begin

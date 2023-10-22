@@ -35,12 +35,14 @@ var
   capacitance: TFarads;
 
   distance: TMeters;
+  tolerance: TMeters;
   time: TSeconds;
   speed: TMetersPerSecond;
   acc: TMetersPerSecondSquared;
   density: TKilogramsPerCubicMeter;
   specificw: TNewtonsPerCubicMeter;
   force, normal: TNewtons;
+
 
   torque: TNewtonMeters;
   work: TJoules;
@@ -842,6 +844,13 @@ begin
   if omega.ToHertz          .ToString <> '10 Hz'    then halt(1);
   if freq .ToRadianPerSecond.ToString <> '10 rad/s' then halt(2);
   writeln('* TEST-95: PASSED');
+
+  // TEST-96
+  distance  := 10.5*mm;
+  tolerance := 0.2*mm;
+  if Utf8ToAnsi(distance.ToString       (tolerance, 5, 5, [pMilli])) <> Utf8ToAnsi('10.5 ±0.2 mm')          then halt(1);
+  if Utf8ToAnsi(distance.ToVerboseString(tolerance, 5, 5, [pMilli])) <> Utf8ToAnsi('10.5 ±0.2 millimeters') then halt(2);
+  writeln('* TEST-96: PASSED');
 
   writeln('ADIM-TEST DONE.');
 end.
