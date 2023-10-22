@@ -18,10 +18,10 @@
 }
 
 {
-  ADimPas library built on 21/10/2023.
+  ADimPas library built on 22/10/2023.
 
-  Number of base units: 121
-  Number of factored units: 63
+  Number of base units: 123
+  Number of factored units: 61
   Number of operators: 961 (226 external, 735 internal)
 }
 
@@ -2021,10 +2021,10 @@ operator /(const ALeft: TJoulePerMoleQty; const ARight: TCoulombPerMoleQty): TVo
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TSquareDegreeQty}{$DEFINE TUnit:=TSquareDegreeUnit}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
-{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TSquareHertzQty}{$DEFINE TUnit:=TRadianPerSecondSquaredUnit}{$i adim.inc}
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TRadianPerSecondSquaredQty}{$DEFINE TUnit:=TRadianPerSecondSquaredUnit}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
-{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TSquareHertzQty}{$DEFINE TUnit:=TSteradianPerSquareSecondUnit}{$i adim.inc}
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TSteradianPerSquareSecondQty}{$DEFINE TUnit:=TSteradianPerSquareSecondUnit}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TMeterPerHourQty}{$DEFINE TUnit:=TMeterPerHourUnit}{$i adim.inc}
@@ -4723,7 +4723,7 @@ const
 { Quantity of TRadiansPerSecondSquared }
 
 type
-  TRadiansPerSecondSquared = TSquareHertzQty;
+  TRadiansPerSecondSquared = TRadianPerSecondSquaredQty;
 
 const
   rsRadianPerSecondSquaredSymbol     = 'rad/%ss2';
@@ -4737,7 +4737,7 @@ const
 { Quantity of TSteradiansPerSquareSecond }
 
 type
-  TSteradiansPerSquareSecond = TSquareHertzQty;
+  TSteradiansPerSquareSecond = TSteradianPerSquareSecondQty;
 
 const
   rsSteradianPerSquareSecondSymbol     = 'rad2/%ss2';
@@ -11324,8 +11324,8 @@ end;
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TDegreeFahrenheitQty}{$DEFINE TUnit:=TDegreeFahrenheitUnit}{$i adim.inc}
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TDegreeQty}{$DEFINE TUnit:=TDegreeUnit}{$i adim.inc}
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TSquareDegreeQty}{$DEFINE TUnit:=TSquareDegreeUnit}{$i adim.inc}
-{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TSquareHertzQty}{$DEFINE TUnit:=TRadianPerSecondSquaredUnit}{$i adim.inc}
-{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TSquareHertzQty}{$DEFINE TUnit:=TSteradianPerSquareSecondUnit}{$i adim.inc}
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TRadianPerSecondSquaredQty}{$DEFINE TUnit:=TRadianPerSecondSquaredUnit}{$i adim.inc}
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TSteradianPerSquareSecondQty}{$DEFINE TUnit:=TSteradianPerSquareSecondUnit}{$i adim.inc}
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TMeterPerHourQty}{$DEFINE TUnit:=TMeterPerHourUnit}{$i adim.inc}
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TMilePerHourQty}{$DEFINE TUnit:=TMilePerHourUnit}{$i adim.inc}
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TNauticalMilePerHourQty}{$DEFINE TUnit:=TNauticalMilePerHourUnit}{$i adim.inc}
