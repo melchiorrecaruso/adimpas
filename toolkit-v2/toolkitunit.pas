@@ -49,7 +49,8 @@ type
   TToolKitList = class(TSimulatedAnnealing)
   private
     CheckList: array of TToolKitExponent;
-    ClassList:  TStringList;
+    ClassList: TStringList;
+    CommUnits: TStringList;
 
     BaseUnitCount:     longint;
     FactoredUnitCount: longint;
@@ -138,10 +139,11 @@ begin
   FOnMessage := OnMessage;
   FList      := nil;
   ClassList  := TStringList.Create;
+  CommUnits  := TStringList.Create;
   FDocument  := TStringList.Create;
   FMessages  := TStringList.Create;
 
-  TestingCount      := 0;
+  TestingCount := 0;
   ClassList .Sorted := TRUE;
   Randomize;
 end;
@@ -150,6 +152,7 @@ destructor TToolkitList.Destroy;
 begin
   FList := nil;
   ClassList.Destroy;
+  CommUnits.Destroy;
   FMessages.Destroy;
   FDocument.Destroy;
   inherited Destroy;
@@ -176,7 +179,7 @@ end;
 
 procedure TToolkitList.AddQuantityOperator(AOperator, ALeftClass, ARightClass, AResultClass: string);
 var
-  i, iL, iR, iX: longint;
+  i, iL, iR, iX, j: longint;
   ABaseClass, S: string;
 begin
   iL := Find(Format(INTF_QUANTITY, [GetQuantityType(ALeftClass  )]), SectionA2);
@@ -189,11 +192,14 @@ begin
   if i = iR then ABaseClass := ARightClass;
   if i < iX then ABaseClass := '';
 
-  if ABaseClass <> '' then
+  for j := 0 to CommUnits.Count -1 do
   begin
-    if (i = iL) and (GetQuantityType(ALeftClass ) = GetQuantityType('THertz')) then ABaseClass := '';
-    if (i = iR) and (GetQuantityType(ARightClass) = GetQuantityType('THertz')) then ABaseClass := '';
-    if ABaseClass = '' then Inc(ForcedOperators);
+    if ABaseClass <> '' then
+    begin
+      if (i = iL) and (GetQuantityType(ALeftClass ) = GetQuantityType(CommUnits[j])) then ABaseClass := '';
+      if (i = iR) and (GetQuantityType(ARightClass) = GetQuantityType(CommUnits[j])) then ABaseClass := '';
+      if ABaseClass = '' then Inc(ForcedOperators);
+    end;
   end;
 
   if ABaseClass   <> 'double' then ABaseClass   := GetQuantityType(ABaseClass);
@@ -451,6 +457,10 @@ begin
   end else
     if (AItem.FOperator = '=') then
     begin
+
+      if AItem.FBaseClass <> '' then;
+        CommUnits.Add(AItem.FBaseClass);
+
       SectionA7.Append('');
       SectionB7.Append('');
       AddEquivalence(AItem.FClassName, AItem.FBaseClass);
@@ -461,25 +471,16 @@ begin
       SectionB7.Append('');
       SectionA7.Append('');
     end else
-      if (AItem.FOperator = ':=') then
+      if (LowerCase(AItem.FOperator) = 'helper') then
       begin
         SectionA7.Append('');
         SectionB7.Append('');
-        AddEquivalence(AItem.FClassName, AItem.FBaseClass);
         AddHelper(AItem.FClassName, AItem.FBaseClass, '');
         SectionB7.Append('');
+        AddHelper(AItem.FBaseClass, AItem.FClassName, '');
+        SectionB7.Append('');
         SectionA7.Append('');
-      end else
-        if (LowerCase(AItem.FOperator) = 'helper') then
-        begin
-          SectionA7.Append('');
-          SectionB7.Append('');
-          AddHelper(AItem.FClassName, AItem.FBaseClass, '');
-          SectionB7.Append('');
-          AddHelper(AItem.FBaseClass, AItem.FClassName, '');
-          SectionB7.Append('');
-          SectionA7.Append('');
-        end;
+      end;
 end;
 
 procedure TToolkitList.AddFactoredQuantity(ABaseClass, AIdentifierSymbol, AFactor, APrefixes: string);
@@ -955,6 +956,7 @@ var
 begin
   CheckList := nil;
   ClassList.Clear;
+  CommUnits.Clear;
   FDocument.Clear;
   FMessages.Clear;
 
