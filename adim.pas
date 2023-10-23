@@ -18,7 +18,7 @@
 }
 
 {
-  ADimPas library built on 22/10/2023.
+  ADimPas library built on 23/10/2023.
 
   Number of base units: 123
   Number of factored units: 61
@@ -2160,13 +2160,13 @@ var
   m: TMeterUnit;
 
 const
-  km: TMeterQty = (FValue: 1E+03);
-  dm: TMeterQty = (FValue: 1E-01);
-  cm: TMeterQty = (FValue: 1E-02);
-  mm: TMeterQty = (FValue: 1E-03);
+   km: TMeterQty = (FValue: 1E+03);
+   dm: TMeterQty = (FValue: 1E-01);
+   cm: TMeterQty = (FValue: 1E-02);
+   mm: TMeterQty = (FValue: 1E-03);
   mim: TMeterQty = (FValue: 1E-06);
-  nm: TMeterQty = (FValue: 1E-09);
-  pm: TMeterQty = (FValue: 1E-12);
+   nm: TMeterQty = (FValue: 1E-09);
+   pm: TMeterQty = (FValue: 1E-12);
 
 const
   rsMeterSymbol     = '%sm';
@@ -2327,12 +2327,12 @@ var
   s: TSecondUnit;
 
 const
-  ds: TSecondQty = (FValue: 1E-01);
-  cs: TSecondQty = (FValue: 1E-02);
-  ms: TSecondQty = (FValue: 1E-03);
+   ds: TSecondQty = (FValue: 1E-01);
+   cs: TSecondQty = (FValue: 1E-02);
+   ms: TSecondQty = (FValue: 1E-03);
   mis: TSecondQty = (FValue: 1E-06);
-  ns: TSecondQty = (FValue: 1E-09);
-  ps: TSecondQty = (FValue: 1E-12);
+   ns: TSecondQty = (FValue: 1E-09);
+   ps: TSecondQty = (FValue: 1E-12);
 
 const
   rsSecondSymbol     = '%ss';
@@ -2418,9 +2418,9 @@ var
   H: THenryUnit;
 
 const
-  mH: THenryQty = (FValue: 1E-03);
+   mH: THenryQty = (FValue: 1E-03);
   miH: THenryQty = (FValue: 1E-06);
-  nH: THenryQty = (FValue: 1E-09);
+   nH: THenryQty = (FValue: 1E-09);
 
 const
   rsHenrySymbol     = '%sH';
@@ -2454,10 +2454,10 @@ var
   W: TWattUnit;
 
 const
-  TW: TWattQty = (FValue: 1E+12);
-  GW: TWattQty = (FValue: 1E+09);
-  MW: TWattQty = (FValue: 1E+06);
-  kW: TWattQty = (FValue: 1E+03);
+      TW: TWattQty = (FValue: 1E+12);
+      GW: TWattQty = (FValue: 1E+09);
+      MW: TWattQty = (FValue: 1E+06);
+      kW: TWattQty = (FValue: 1E+03);
   milliW: TWattQty = (FValue: 1E-03);
 
 const
@@ -2547,15 +2547,15 @@ type
 var
   kg: TKilogramUnit;
 
-  hg: TKilogramQty = (FValue: 1E-01);
+   hg: TKilogramQty = (FValue: 1E-01);
   dag: TKilogramQty = (FValue: 1E-02);
-  g: TKilogramQty = (FValue: 1E-03);
-  dg: TKilogramQty = (FValue: 1E-04);
-  cg: TKilogramQty = (FValue: 1E-05);
-  mg: TKilogramQty = (FValue: 1E-06);
+    g: TKilogramQty = (FValue: 1E-03);
+   dg: TKilogramQty = (FValue: 1E-04);
+   cg: TKilogramQty = (FValue: 1E-05);
+   mg: TKilogramQty = (FValue: 1E-06);
   mig: TKilogramQty = (FValue: 1E-09);
-  ng: TKilogramQty = (FValue: 1E-12);
-  pg: TKilogramQty = (FValue: 1E-15);
+   ng: TKilogramQty = (FValue: 1E-12);
+   pg: TKilogramQty = (FValue: 1E-15);
 
 const
   rsKilogramSymbol     = '%sg';
@@ -2665,10 +2665,10 @@ var
   N: TNewtonUnit;
 
 const
-  GN: TNewtonQty = (FValue: 1E+09);
-  MN: TNewtonQty = (FValue: 1E+06);
-  kN: TNewtonQty = (FValue: 1E+03);
-  hN: TNewtonQty = (FValue: 1E+02);
+   GN: TNewtonQty = (FValue: 1E+09);
+   MN: TNewtonQty = (FValue: 1E+06);
+   kN: TNewtonQty = (FValue: 1E+03);
+   hN: TNewtonQty = (FValue: 1E+02);
   daN: TNewtonQty = (FValue: 1E+01);
 
 const
@@ -2869,15 +2869,15 @@ var
   C2: TSquareCoulombUnit;
 
 const
-  kC2: TSquareCoulombQty = (FValue: 1E+06);
-  hC2: TSquareCoulombQty = (FValue: 1E+04);
+   kC2: TSquareCoulombQty = (FValue: 1E+06);
+   hC2: TSquareCoulombQty = (FValue: 1E+04);
   daC2: TSquareCoulombQty = (FValue: 1E+02);
-  dC2: TSquareCoulombQty = (FValue: 1E-02);
-  cC2: TSquareCoulombQty = (FValue: 1E-04);
-  mC2: TSquareCoulombQty = (FValue: 1E-06);
+   dC2: TSquareCoulombQty = (FValue: 1E-02);
+   cC2: TSquareCoulombQty = (FValue: 1E-04);
+   mC2: TSquareCoulombQty = (FValue: 1E-06);
   miC2: TSquareCoulombQty = (FValue: 1E-12);
-  nC2: TSquareCoulombQty = (FValue: 1E-18);
-  pC2: TSquareCoulombQty = (FValue: 1E-24);
+   nC2: TSquareCoulombQty = (FValue: 1E-18);
+   pC2: TSquareCoulombQty = (FValue: 1E-24);
 
 const
   rsSquareCoulombSymbol     = '%sC2';
@@ -2897,15 +2897,15 @@ var
   C: TCoulombUnit;
 
 const
-  kC: TCoulombQty = (FValue: 1E+03);
-  hC: TCoulombQty = (FValue: 1E+02);
+   kC: TCoulombQty = (FValue: 1E+03);
+   hC: TCoulombQty = (FValue: 1E+02);
   daC: TCoulombQty = (FValue: 1E+01);
-  dC: TCoulombQty = (FValue: 1E-01);
-  cC: TCoulombQty = (FValue: 1E-02);
-  mC: TCoulombQty = (FValue: 1E-03);
+   dC: TCoulombQty = (FValue: 1E-01);
+   cC: TCoulombQty = (FValue: 1E-02);
+   mC: TCoulombQty = (FValue: 1E-03);
   miC: TCoulombQty = (FValue: 1E-06);
-  nC: TCoulombQty = (FValue: 1E-09);
-  pC: TCoulombQty = (FValue: 1E-12);
+   nC: TCoulombQty = (FValue: 1E-09);
+   pC: TCoulombQty = (FValue: 1E-12);
 
 const
   rsCoulombSymbol     = '%sC';
@@ -2942,9 +2942,9 @@ var
   T: TTeslaUnit;
 
 const
-  mT: TTeslaQty = (FValue: 1E-03);
+   mT: TTeslaQty = (FValue: 1E-03);
   miT: TTeslaQty = (FValue: 1E-06);
-  nT: TTeslaQty = (FValue: 1E-09);
+   nT: TTeslaQty = (FValue: 1E-09);
 
 const
   rsTeslaSymbol     = '%sT';
@@ -3027,8 +3027,8 @@ var
   Pl: TPoiseuilleUnit;
 
 const
-  cPl: TPoiseuilleQty = (FValue: 1E-02);
-  mPl: TPoiseuilleQty = (FValue: 1E-03);
+   cPl: TPoiseuilleQty = (FValue: 1E-02);
+   mPl: TPoiseuilleQty = (FValue: 1E-03);
   miPl: TPoiseuilleQty = (FValue: 1E-06);
 
 const
@@ -3063,13 +3063,13 @@ var
   m3: TCubicMeterUnit;
 
 const
-  km3: TCubicMeterQty = (FValue: 1E+09);
-  dm3: TCubicMeterQty = (FValue: 1E-03);
-  cm3: TCubicMeterQty = (FValue: 1E-06);
-  mm3: TCubicMeterQty = (FValue: 1E-09);
+   km3: TCubicMeterQty = (FValue: 1E+09);
+   dm3: TCubicMeterQty = (FValue: 1E-03);
+   cm3: TCubicMeterQty = (FValue: 1E-06);
+   mm3: TCubicMeterQty = (FValue: 1E-09);
   mim3: TCubicMeterQty = (FValue: 1E-18);
-  nm3: TCubicMeterQty = (FValue: 1E-27);
-  pm3: TCubicMeterQty = (FValue: 1E-36);
+   nm3: TCubicMeterQty = (FValue: 1E-27);
+   pm3: TCubicMeterQty = (FValue: 1E-36);
 
 const
   rsCubicMeterSymbol     = '%sm3';
@@ -3134,8 +3134,8 @@ var
   mol: TMoleUnit;
 
 const
-  kmol: TMoleQty = (FValue: 1E+03);
-  hmol: TMoleQty = (FValue: 1E+02);
+   kmol: TMoleQty = (FValue: 1E+03);
+   hmol: TMoleQty = (FValue: 1E+02);
   damol: TMoleQty = (FValue: 1E+01);
 
 const
@@ -3266,13 +3266,13 @@ var
   m6: TSexticMeterUnit;
 
 const
-  km6: TSexticMeterQty = (FValue: 1E+18);
-  dm6: TSexticMeterQty = (FValue: 1E-06);
-  cm6: TSexticMeterQty = (FValue: 1E-12);
-  mm6: TSexticMeterQty = (FValue: 1E-18);
+   km6: TSexticMeterQty = (FValue: 1E+18);
+   dm6: TSexticMeterQty = (FValue: 1E-06);
+   cm6: TSexticMeterQty = (FValue: 1E-12);
+   mm6: TSexticMeterQty = (FValue: 1E-18);
   mim6: TSexticMeterQty = (FValue: 1E-36);
-  nm6: TSexticMeterQty = (FValue: 1E-54);
-  pm6: TSexticMeterQty = (FValue: 1E-72);
+   nm6: TSexticMeterQty = (FValue: 1E-54);
+   pm6: TSexticMeterQty = (FValue: 1E-72);
 
 const
   rsSexticMeterSymbol     = '%sm6';
@@ -3292,12 +3292,12 @@ var
   s2: TSquareSecondUnit;
 
 const
-  ds2: TSquareSecondQty = (FValue: 1E-02);
-  cs2: TSquareSecondQty = (FValue: 1E-04);
-  ms2: TSquareSecondQty = (FValue: 1E-06);
+   ds2: TSquareSecondQty = (FValue: 1E-02);
+   cs2: TSquareSecondQty = (FValue: 1E-04);
+   ms2: TSquareSecondQty = (FValue: 1E-06);
   mis2: TSquareSecondQty = (FValue: 1E-12);
-  ns2: TSquareSecondQty = (FValue: 1E-18);
-  ps2: TSquareSecondQty = (FValue: 1E-24);
+   ns2: TSquareSecondQty = (FValue: 1E-18);
+   ps2: TSquareSecondQty = (FValue: 1E-24);
 
 const
   rsSquareSecondSymbol     = '%ss2';
@@ -3418,14 +3418,14 @@ var
   A2: TSquareAmpereUnit;
 
 const
-  kA2: TSquareAmpereQty = (FValue: 1E+06);
-  hA2: TSquareAmpereQty = (FValue: 1E+04);
-  daA2: TSquareAmpereQty = (FValue: 1E+02);
-  dA2: TSquareAmpereQty = (FValue: 1E-02);
-  cA2: TSquareAmpereQty = (FValue: 1E-04);
-  mA2: TSquareAmpereQty = (FValue: 1E-06);
-  miA2: TSquareAmpereQty = (FValue: 1E-12);
-  nA2: TSquareAmpereQty = (FValue: 1E-18);
+     kA2: TSquareAmpereQty = (FValue: 1E+06);
+     hA2: TSquareAmpereQty = (FValue: 1E+04);
+    daA2: TSquareAmpereQty = (FValue: 1E+02);
+     dA2: TSquareAmpereQty = (FValue: 1E-02);
+     cA2: TSquareAmpereQty = (FValue: 1E-04);
+     mA2: TSquareAmpereQty = (FValue: 1E-06);
+    miA2: TSquareAmpereQty = (FValue: 1E-12);
+     nA2: TSquareAmpereQty = (FValue: 1E-18);
   picoA2: TSquareAmpereQty = (FValue: 1E-24);
 
 const
@@ -3529,15 +3529,15 @@ type
 var
   kg2: TSquareKilogramUnit;
 
-  hg2: TSquareKilogramQty = (FValue: 1E-02);
+   hg2: TSquareKilogramQty = (FValue: 1E-02);
   dag2: TSquareKilogramQty = (FValue: 1E-04);
-  g2: TSquareKilogramQty = (FValue: 1E-06);
-  dg2: TSquareKilogramQty = (FValue: 1E-08);
-  cg2: TSquareKilogramQty = (FValue: 1E-10);
-  mg2: TSquareKilogramQty = (FValue: 1E-12);
+    g2: TSquareKilogramQty = (FValue: 1E-06);
+   dg2: TSquareKilogramQty = (FValue: 1E-08);
+   cg2: TSquareKilogramQty = (FValue: 1E-10);
+   mg2: TSquareKilogramQty = (FValue: 1E-12);
   mig2: TSquareKilogramQty = (FValue: 1E-18);
-  ng2: TSquareKilogramQty = (FValue: 1E-24);
-  pg2: TSquareKilogramQty = (FValue: 1E-30);
+   ng2: TSquareKilogramQty = (FValue: 1E-24);
+   pg2: TSquareKilogramQty = (FValue: 1E-30);
 
 const
   rsSquareKilogramSymbol     = '%sg2';
@@ -3599,10 +3599,10 @@ var
   N2: TSquareNewtonUnit;
 
 const
-  GN2: TSquareNewtonQty = (FValue: 1E+18);
-  MN2: TSquareNewtonQty = (FValue: 1E+12);
-  kN2: TSquareNewtonQty = (FValue: 1E+06);
-  hN2: TSquareNewtonQty = (FValue: 1E+04);
+   GN2: TSquareNewtonQty = (FValue: 1E+18);
+   MN2: TSquareNewtonQty = (FValue: 1E+12);
+   kN2: TSquareNewtonQty = (FValue: 1E+06);
+   hN2: TSquareNewtonQty = (FValue: 1E+04);
   daN2: TSquareNewtonQty = (FValue: 1E+02);
 
 const
@@ -3842,14 +3842,14 @@ var
   A: TAmpereUnit;
 
 const
-  kA: TAmpereQty = (FValue: 1E+03);
-  hA: TAmpereQty = (FValue: 1E+02);
-  daA: TAmpereQty = (FValue: 1E+01);
-  dA: TAmpereQty = (FValue: 1E-01);
-  cA: TAmpereQty = (FValue: 1E-02);
-  mA: TAmpereQty = (FValue: 1E-03);
-  miA: TAmpereQty = (FValue: 1E-06);
-  nA: TAmpereQty = (FValue: 1E-09);
+     kA: TAmpereQty = (FValue: 1E+03);
+     hA: TAmpereQty = (FValue: 1E+02);
+    daA: TAmpereQty = (FValue: 1E+01);
+     dA: TAmpereQty = (FValue: 1E-01);
+     cA: TAmpereQty = (FValue: 1E-02);
+     mA: TAmpereQty = (FValue: 1E-03);
+    miA: TAmpereQty = (FValue: 1E-06);
+     nA: TAmpereQty = (FValue: 1E-09);
   picoA: TAmpereQty = (FValue: 1E-12);
 
 const
@@ -3872,7 +3872,7 @@ var
 const
   millisiemens: TSiemensQty = (FValue: 1E-03);
   microsiemens: TSiemensQty = (FValue: 1E-06);
-  nanosiemens: TSiemensQty = (FValue: 1E-09);
+   nanosiemens: TSiemensQty = (FValue: 1E-09);
 
 const
   rsSiemensSymbol     = '%sS';
@@ -3920,13 +3920,13 @@ var
   m2: TSquareMeterUnit;
 
 const
-  km2: TSquareMeterQty = (FValue: 1E+06);
-  dm2: TSquareMeterQty = (FValue: 1E-02);
-  cm2: TSquareMeterQty = (FValue: 1E-04);
-  mm2: TSquareMeterQty = (FValue: 1E-06);
+   km2: TSquareMeterQty = (FValue: 1E+06);
+   dm2: TSquareMeterQty = (FValue: 1E-02);
+   cm2: TSquareMeterQty = (FValue: 1E-04);
+   mm2: TSquareMeterQty = (FValue: 1E-06);
   mim2: TSquareMeterQty = (FValue: 1E-12);
-  nm2: TSquareMeterQty = (FValue: 1E-18);
-  pm2: TSquareMeterQty = (FValue: 1E-24);
+   nm2: TSquareMeterQty = (FValue: 1E-18);
+   pm2: TSquareMeterQty = (FValue: 1E-24);
 
 const
   rsSquareMeterSymbol     = '%sm2';
@@ -4011,12 +4011,12 @@ var
   ohm: TOhmUnit;
 
 const
-  Gohm: TOhmQty = (FValue: 1E+09);
+     Gohm: TOhmQty = (FValue: 1E+09);
   megaohm: TOhmQty = (FValue: 1E+06);
-  kohm: TOhmQty = (FValue: 1E+03);
-  mohm: TOhmQty = (FValue: 1E-03);
-  miohm: TOhmQty = (FValue: 1E-06);
-  nohm: TOhmQty = (FValue: 1E-09);
+     kohm: TOhmQty = (FValue: 1E+03);
+     mohm: TOhmQty = (FValue: 1E-03);
+    miohm: TOhmQty = (FValue: 1E-06);
+     nohm: TOhmQty = (FValue: 1E-09);
 
 const
   rsOhmSymbol     = '%sΩ';
@@ -4064,13 +4064,13 @@ var
   m4: TQuarticMeterUnit;
 
 const
-  km4: TQuarticMeterQty = (FValue: 1E+12);
-  dm4: TQuarticMeterQty = (FValue: 1E-04);
-  cm4: TQuarticMeterQty = (FValue: 1E-08);
-  mm4: TQuarticMeterQty = (FValue: 1E-12);
+   km4: TQuarticMeterQty = (FValue: 1E+12);
+   dm4: TQuarticMeterQty = (FValue: 1E-04);
+   cm4: TQuarticMeterQty = (FValue: 1E-08);
+   mm4: TQuarticMeterQty = (FValue: 1E-12);
   mim4: TQuarticMeterQty = (FValue: 1E-24);
-  nm4: TQuarticMeterQty = (FValue: 1E-36);
-  pm4: TQuarticMeterQty = (FValue: 1E-48);
+   nm4: TQuarticMeterQty = (FValue: 1E-36);
+   pm4: TQuarticMeterQty = (FValue: 1E-48);
 
 const
   rsQuarticMeterSymbol     = '%sm4';
@@ -4104,13 +4104,13 @@ var
   m5: TQuinticMeterUnit;
 
 const
-  km5: TQuinticMeterQty = (FValue: 1E+15);
-  dm5: TQuinticMeterQty = (FValue: 1E-05);
-  cm5: TQuinticMeterQty = (FValue: 1E-10);
-  mm5: TQuinticMeterQty = (FValue: 1E-15);
+   km5: TQuinticMeterQty = (FValue: 1E+15);
+   dm5: TQuinticMeterQty = (FValue: 1E-05);
+   cm5: TQuinticMeterQty = (FValue: 1E-10);
+   mm5: TQuinticMeterQty = (FValue: 1E-15);
   mim5: TQuinticMeterQty = (FValue: 1E-30);
-  nm5: TQuinticMeterQty = (FValue: 1E-45);
-  pm5: TQuinticMeterQty = (FValue: 1E-60);
+   nm5: TQuinticMeterQty = (FValue: 1E-45);
+   pm5: TQuinticMeterQty = (FValue: 1E-60);
 
 const
   rsQuinticMeterSymbol     = '%sm5';
@@ -4144,10 +4144,10 @@ var
   F: TFaradUnit;
 
 const
-  mF: TFaradQty = (FValue: 1E-03);
+   mF: TFaradQty = (FValue: 1E-03);
   miF: TFaradQty = (FValue: 1E-06);
-  nF: TFaradQty = (FValue: 1E-09);
-  pF: TFaradQty = (FValue: 1E-12);
+   nF: TFaradQty = (FValue: 1E-09);
+   pF: TFaradQty = (FValue: 1E-12);
 
 const
   rsFaradSymbol     = '%sF';
@@ -5003,11 +5003,11 @@ var
   Bq: THertzUnit;
 
 const
-  kBq: THertzQty = (FValue: 1E+03);
-  mBq: THertzQty = (FValue: 1E-03);
+   kBq: THertzQty = (FValue: 1E+03);
+   mBq: THertzQty = (FValue: 1E-03);
   miBq: THertzQty = (FValue: 1E-06);
-  nBq: THertzQty = (FValue: 1E-09);
-  pBq: THertzQty = (FValue: 1E-12);
+   nBq: THertzQty = (FValue: 1E-09);
+   pBq: THertzQty = (FValue: 1E-12);
 
 const
   rsBequerelSymbol     = '%sBq';
@@ -5027,10 +5027,10 @@ var
   Gy: TSquareMeterPerSquareSecondUnit;
 
 const
-  kGy: TSquareMeterPerSquareSecondQty = (FValue: 1E+03);
-  mGy: TSquareMeterPerSquareSecondQty = (FValue: 1E-03);
+   kGy: TSquareMeterPerSquareSecondQty = (FValue: 1E+03);
+   mGy: TSquareMeterPerSquareSecondQty = (FValue: 1E-03);
   miGy: TSquareMeterPerSquareSecondQty = (FValue: 1E-06);
-  nGy: TSquareMeterPerSquareSecondQty = (FValue: 1E-09);
+   nGy: TSquareMeterPerSquareSecondQty = (FValue: 1E-09);
 
 const
   rsGraySymbol     = '%sGy';
@@ -5050,10 +5050,10 @@ var
   Sv: TSquareMeterPerSquareSecondUnit;
 
 const
-  kSv: TSquareMeterPerSquareSecondQty = (FValue: 1E+03);
-  mSv: TSquareMeterPerSquareSecondQty = (FValue: 1E-03);
+   kSv: TSquareMeterPerSquareSecondQty = (FValue: 1E+03);
+   mSv: TSquareMeterPerSquareSecondQty = (FValue: 1E-03);
   miSv: TSquareMeterPerSquareSecondQty = (FValue: 1E-06);
-  nSv: TSquareMeterPerSquareSecondQty = (FValue: 1E-09);
+   nSv: TSquareMeterPerSquareSecondQty = (FValue: 1E-09);
 
 const
   rsSievertSymbol     = '%sSv';

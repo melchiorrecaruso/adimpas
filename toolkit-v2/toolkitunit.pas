@@ -485,8 +485,10 @@ end;
 
 procedure TToolkitList.AddFactoredQuantity(ABaseClass, AIdentifierSymbol, AFactor, APrefixes: string);
 var
+  i, j: longint;
   Params: string;
   Power: longint;
+  LocList: TStringList;
   Str: string;
 begin
   Str := '  %s: %s = (FValue: %s);';
@@ -511,86 +513,97 @@ begin
   if Pos('8', AIdentifierSymbol) > 0 then Power := 8;
   if Pos('9', AIdentifierSymbol) > 0 then Power := 9;
 
+  LocList := TStringList.Create;
   if (LowerCase(AIdentifierSymbol) <> 'kg' ) and
      (LowerCase(AIdentifierSymbol) <> 'kg2') then
   begin
-    if Params[ 1] = 'L' then SectionA4.Append(Format(Str, ['quetta' + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +30*Power))]));
-    if Params[ 1] = 'S' then SectionA4.Append(Format(Str, ['Q'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +30*Power))]));
-    if Params[ 2] = 'L' then SectionA4.Append(Format(Str, ['ronna'  + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +27*Power))]));
-    if Params[ 2] = 'S' then SectionA4.Append(Format(Str, ['R'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +27*Power))]));
-    if Params[ 3] = 'L' then SectionA4.Append(Format(Str, ['yotta'  + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +24*Power))]));
-    if Params[ 3] = 'S' then SectionA4.Append(Format(Str, ['Y'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +24*Power))]));
-    if Params[ 4] = 'L' then SectionA4.Append(Format(Str, ['zetta'  + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +21*Power))]));
-    if Params[ 4] = 'S' then SectionA4.Append(Format(Str, ['Z'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +21*Power))]));
-    if Params[ 5] = 'L' then SectionA4.Append(Format(Str, ['exa'    + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +18*Power))]));
-    if Params[ 5] = 'S' then SectionA4.Append(Format(Str, ['E'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +18*Power))]));
-    if Params[ 6] = 'L' then SectionA4.Append(Format(Str, ['peta'   + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +15*Power))]));
-    if Params[ 6] = 'S' then SectionA4.Append(Format(Str, ['P'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +15*Power))]));
+    if Params[ 1] = 'L' then LocList.Append(Format(Str, ['quetta' + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +30*Power))]));
+    if Params[ 1] = 'S' then LocList.Append(Format(Str, ['Q'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +30*Power))]));
+    if Params[ 2] = 'L' then LocList.Append(Format(Str, ['ronna'  + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +27*Power))]));
+    if Params[ 2] = 'S' then LocList.Append(Format(Str, ['R'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +27*Power))]));
+    if Params[ 3] = 'L' then LocList.Append(Format(Str, ['yotta'  + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +24*Power))]));
+    if Params[ 3] = 'S' then LocList.Append(Format(Str, ['Y'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +24*Power))]));
+    if Params[ 4] = 'L' then LocList.Append(Format(Str, ['zetta'  + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +21*Power))]));
+    if Params[ 4] = 'S' then LocList.Append(Format(Str, ['Z'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +21*Power))]));
+    if Params[ 5] = 'L' then LocList.Append(Format(Str, ['exa'    + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +18*Power))]));
+    if Params[ 5] = 'S' then LocList.Append(Format(Str, ['E'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +18*Power))]));
+    if Params[ 6] = 'L' then LocList.Append(Format(Str, ['peta'   + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +15*Power))]));
+    if Params[ 6] = 'S' then LocList.Append(Format(Str, ['P'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +15*Power))]));
 
-    if Params[ 7] = 'L' then SectionA4.Append(Format(Str, ['tera'   + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +12*Power))]));
-    if Params[ 7] = 'S' then SectionA4.Append(Format(Str, ['T'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +12*Power))]));
-    if Params[ 8] = 'L' then SectionA4.Append(Format(Str, ['giga'   + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 9*Power))]));
-    if Params[ 8] = 'S' then SectionA4.Append(Format(Str, ['G'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 9*Power))]));
-    if Params[ 9] = 'L' then SectionA4.Append(Format(Str, ['mega'   + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 6*Power))]));
-    if Params[ 9] = 'S' then SectionA4.Append(Format(Str, ['M'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 6*Power))]));
-    if Params[10] = 'L' then SectionA4.Append(Format(Str, ['kilo'   + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 3*Power))]));
-    if Params[10] = 'S' then SectionA4.Append(Format(Str, ['k'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 3*Power))]));
-    if Params[11] = 'L' then SectionA4.Append(Format(Str, ['hecto'  + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 2*Power))]));
-    if Params[11] = 'S' then SectionA4.Append(Format(Str, ['h'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 2*Power))]));
-    if Params[12] = 'L' then SectionA4.Append(Format(Str, ['deca'   + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 1*Power))]));
-    if Params[12] = 'S' then SectionA4.Append(Format(Str, ['da'     + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 1*Power))]));
-    if Params[13] = 'L' then SectionA4.Append(Format(Str, ['deci'   + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 1*Power))]));
-    if Params[13] = 'S' then SectionA4.Append(Format(Str, ['d'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 1*Power))]));
-    if Params[14] = 'L' then SectionA4.Append(Format(Str, ['centi'  + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 2*Power))]));
-    if Params[14] = 'S' then SectionA4.Append(Format(Str, ['c'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 2*Power))]));
-    if Params[15] = 'L' then SectionA4.Append(Format(Str, ['milli'  + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 3*Power))]));
-    if Params[15] = 'S' then SectionA4.Append(Format(Str, ['m'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 3*Power))]));
-    if Params[16] = 'L' then SectionA4.Append(Format(Str, ['micro'  + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 6*Power))]));
-    if Params[16] = 'S' then SectionA4.Append(Format(Str, ['mi'     + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 6*Power))]));
-    if Params[17] = 'L' then SectionA4.Append(Format(Str, ['nano'   + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 9*Power))]));
-    if Params[17] = 'S' then SectionA4.Append(Format(Str, ['n'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 9*Power))]));
-    if Params[18] = 'L' then SectionA4.Append(Format(Str, ['pico'   + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -12*Power))]));
-    if Params[18] = 'S' then SectionA4.Append(Format(Str, ['p'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -12*Power))]));
+    if Params[ 7] = 'L' then LocList.Append(Format(Str, ['tera'   + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +12*Power))]));
+    if Params[ 7] = 'S' then LocList.Append(Format(Str, ['T'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +12*Power))]));
+    if Params[ 8] = 'L' then LocList.Append(Format(Str, ['giga'   + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 9*Power))]));
+    if Params[ 8] = 'S' then LocList.Append(Format(Str, ['G'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 9*Power))]));
+    if Params[ 9] = 'L' then LocList.Append(Format(Str, ['mega'   + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 6*Power))]));
+    if Params[ 9] = 'S' then LocList.Append(Format(Str, ['M'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 6*Power))]));
+    if Params[10] = 'L' then LocList.Append(Format(Str, ['kilo'   + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 3*Power))]));
+    if Params[10] = 'S' then LocList.Append(Format(Str, ['k'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 3*Power))]));
+    if Params[11] = 'L' then LocList.Append(Format(Str, ['hecto'  + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 2*Power))]));
+    if Params[11] = 'S' then LocList.Append(Format(Str, ['h'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 2*Power))]));
+    if Params[12] = 'L' then LocList.Append(Format(Str, ['deca'   + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 1*Power))]));
+    if Params[12] = 'S' then LocList.Append(Format(Str, ['da'     + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 1*Power))]));
+    if Params[13] = 'L' then LocList.Append(Format(Str, ['deci'   + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 1*Power))]));
+    if Params[13] = 'S' then LocList.Append(Format(Str, ['d'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 1*Power))]));
+    if Params[14] = 'L' then LocList.Append(Format(Str, ['centi'  + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 2*Power))]));
+    if Params[14] = 'S' then LocList.Append(Format(Str, ['c'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 2*Power))]));
+    if Params[15] = 'L' then LocList.Append(Format(Str, ['milli'  + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 3*Power))]));
+    if Params[15] = 'S' then LocList.Append(Format(Str, ['m'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 3*Power))]));
+    if Params[16] = 'L' then LocList.Append(Format(Str, ['micro'  + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 6*Power))]));
+    if Params[16] = 'S' then LocList.Append(Format(Str, ['mi'     + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 6*Power))]));
+    if Params[17] = 'L' then LocList.Append(Format(Str, ['nano'   + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 9*Power))]));
+    if Params[17] = 'S' then LocList.Append(Format(Str, ['n'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 9*Power))]));
+    if Params[18] = 'L' then LocList.Append(Format(Str, ['pico'   + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -12*Power))]));
+    if Params[18] = 'S' then LocList.Append(Format(Str, ['p'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -12*Power))]));
 
-    if Params[19] = 'L' then SectionA4.Append(Format(Str, ['femto'  + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -15*Power))]));
-    if Params[19] = 'S' then SectionA4.Append(Format(Str, ['f'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -15*Power))]));
-    if Params[20] = 'L' then SectionA4.Append(Format(Str, ['atto'   + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -18*Power))]));
-    if Params[20] = 'S' then SectionA4.Append(Format(Str, ['a'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -18*Power))]));
-    if Params[21] = 'L' then SectionA4.Append(Format(Str, ['zepto'  + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -21*Power))]));
-    if Params[21] = 'S' then SectionA4.Append(Format(Str, ['z'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -21*Power))]));
-    if Params[22] = 'L' then SectionA4.Append(Format(Str, ['yocto'  + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -24*Power))]));
-    if Params[22] = 'S' then SectionA4.Append(Format(Str, ['y'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -24*Power))]));
-    if Params[23] = 'L' then SectionA4.Append(Format(Str, ['ronto'  + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -27*Power))]));
-    if Params[23] = 'S' then SectionA4.Append(Format(Str, ['r'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -27*Power))]));
-    if Params[24] = 'L' then SectionA4.Append(Format(Str, ['quecto' + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -30*Power))]));
-    if Params[24] = 'S' then SectionA4.Append(Format(Str, ['q'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -30*Power))]));
+    if Params[19] = 'L' then LocList.Append(Format(Str, ['femto'  + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -15*Power))]));
+    if Params[19] = 'S' then LocList.Append(Format(Str, ['f'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -15*Power))]));
+    if Params[20] = 'L' then LocList.Append(Format(Str, ['atto'   + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -18*Power))]));
+    if Params[20] = 'S' then LocList.Append(Format(Str, ['a'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -18*Power))]));
+    if Params[21] = 'L' then LocList.Append(Format(Str, ['zepto'  + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -21*Power))]));
+    if Params[21] = 'S' then LocList.Append(Format(Str, ['z'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -21*Power))]));
+    if Params[22] = 'L' then LocList.Append(Format(Str, ['yocto'  + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -24*Power))]));
+    if Params[22] = 'S' then LocList.Append(Format(Str, ['y'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -24*Power))]));
+    if Params[23] = 'L' then LocList.Append(Format(Str, ['ronto'  + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -27*Power))]));
+    if Params[23] = 'S' then LocList.Append(Format(Str, ['r'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -27*Power))]));
+    if Params[24] = 'L' then LocList.Append(Format(Str, ['quecto' + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -30*Power))]));
+    if Params[24] = 'S' then LocList.Append(Format(Str, ['q'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -30*Power))]));
   end else
     if (LowerCase(AIdentifierSymbol) = 'kg') then
     begin
       AIdentifierSymbol := 'g';
-      SectionA4.Append(Format(Str, ['h'  + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-01']));
-      SectionA4.Append(Format(Str, ['da' + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-02']));
-      SectionA4.Append(Format(Str, [''   + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-03']));
-      SectionA4.Append(Format(Str, ['d'  + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-04']));
-      SectionA4.Append(Format(Str, ['c'  + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-05']));
-      SectionA4.Append(Format(Str, ['m'  + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-06']));
-      SectionA4.Append(Format(Str, ['mi' + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-09']));
-      SectionA4.Append(Format(Str, ['n'  + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-12']));
-      SectionA4.Append(Format(Str, ['p'  + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-15']));
+      LocList.Append(Format(Str, ['h'  + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-01']));
+      LocList.Append(Format(Str, ['da' + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-02']));
+      LocList.Append(Format(Str, [''   + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-03']));
+      LocList.Append(Format(Str, ['d'  + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-04']));
+      LocList.Append(Format(Str, ['c'  + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-05']));
+      LocList.Append(Format(Str, ['m'  + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-06']));
+      LocList.Append(Format(Str, ['mi' + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-09']));
+      LocList.Append(Format(Str, ['n'  + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-12']));
+      LocList.Append(Format(Str, ['p'  + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-15']));
     end else
       if (LowerCase(AIdentifierSymbol) = 'kg2') then
       begin
          AIdentifierSymbol := 'g2';
-        SectionA4.Append(Format(Str, ['h'  + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-02']));
-        SectionA4.Append(Format(Str, ['da' + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-04']));
-        SectionA4.Append(Format(Str, [''   + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-06']));
-        SectionA4.Append(Format(Str, ['d'  + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-08']));
-        SectionA4.Append(Format(Str, ['c'  + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-10']));
-        SectionA4.Append(Format(Str, ['m'  + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-12']));
-        SectionA4.Append(Format(Str, ['mi' + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-18']));
-        SectionA4.Append(Format(Str, ['n'  + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-24']));
-        SectionA4.Append(Format(Str, ['p'  + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-30']));
+        LocList.Append(Format(Str, ['h'  + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-02']));
+        LocList.Append(Format(Str, ['da' + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-04']));
+        LocList.Append(Format(Str, [''   + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-06']));
+        LocList.Append(Format(Str, ['d'  + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-08']));
+        LocList.Append(Format(Str, ['c'  + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-10']));
+        LocList.Append(Format(Str, ['m'  + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-12']));
+        LocList.Append(Format(Str, ['mi' + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-18']));
+        LocList.Append(Format(Str, ['n'  + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-24']));
+        LocList.Append(Format(Str, ['p'  + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-30']));
       end;
+
+  j := 0;
+  for i := 0 to LocList.Count -1 do j := Max(j, Length(LocList[i]));
+  for i := 0 to LocList.Count -1 do
+  begin
+    while Length(LocList[i]) < j do
+      LocList[i] := ' ' + LocList[i];
+    SectionA4.Append(LocList[i]);
+  end;
+  LocList.Destroy;
 end;
 
 procedure TToolkitList.AddPower(AOperator, AQuantity, AResult: string);
