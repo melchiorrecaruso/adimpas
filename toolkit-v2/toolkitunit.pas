@@ -853,11 +853,11 @@ begin
     end;
   end;
 
+  ResultStr := '';
   AMemoryStream.Seek(0, soFromBeginning);
   AStringList.LoadFromStream(AMemoryStream);
   for i := 0 to AStringList.Count -1 do
   begin
-    //FOnMessage(AStringList[i]);
     if AStringList[i].Contains(' lines compiled,') then
     begin
       AIndex := Pos(', ', AStringList[i]) + 2;
@@ -871,6 +871,12 @@ begin
       Break;
     end;
   end;
+
+  if ResultStr = '' then
+    if Assigned(FOnMessage) then
+      for i := 0 to AStringList.Count -1 do
+        FOnMessage(AStringList[i]);
+
   AMemoryStream.Destroy;
   AStringList.Free;
   AProcess.Free;
