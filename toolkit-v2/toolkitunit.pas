@@ -179,7 +179,8 @@ end;
 
 procedure TToolkitList.AddQuantityOperator(AOperator, ALeftClass, ARightClass, AResultClass: string);
 var
-  i, iL, iR, iX, j: longint;
+  i, iL, iR, iX: longint;
+  j: longint;
   ABaseClass, S: string;
 begin
   iL := Find(Format(INTF_QUANTITY, [GetQuantityType(ALeftClass  )]), SectionA2);
@@ -211,7 +212,7 @@ begin
   begin
     ClassList.Append(ABaseClass + '.' + ALeftClass + AOperator + ARightClass);
 
-
+    j := -1;
     if ABaseClass = '' then
     begin
       SectionA22.Append(Format(INTF_OP, [AOperator, ALeftClass, ARightClass, AResultClass]));
@@ -219,8 +220,9 @@ begin
       Inc(ExternalOperators);
     end else
     begin
-      SectionA2 .Insert(i + 1, Format(INTF_OP_CLASS, [            AOperator, ALeftClass, ARightClass, AResultClass]));
-      SectionB21.Append(       Format(IMPL_OP_CLASS, [ABaseClass, AOperator, ALeftClass, ARightClass, AResultClass]));
+      j := Find(Format(IMPL_QUANTITY, [ABaseClass]), SectionB2);
+      SectionA2.Insert(i + 1, Format(INTF_OP_CLASS, [            AOperator, ALeftClass, ARightClass, AResultClass]));
+      SectionB2.Insert(j + 2, Format(IMPL_OP_CLASS, [ABaseClass, AOperator, ALeftClass, ARightClass, AResultClass]));
       Inc(InternalOperators);
     end;
 
@@ -247,10 +249,10 @@ begin
       SectionB22.Append('');
     end else
     begin
-      SectionB21.Append('begin');
-      SectionB21.Append(S);
-      SectionB21.Append('end;');
-      SectionB21.Append('');
+      SectionB2.Insert(j + 3, 'begin');
+      SectionB2.Insert(j + 4, S);
+      SectionB2.Insert(j + 5, 'end;');
+      SectionB2.Insert(j + 6, '');
     end;
 
   end else
