@@ -848,8 +848,8 @@ begin
   // TEST-96
   distance  := 10.5*mm;
   tolerance := 0.2*mm;
-  if Utf8ToAnsi(distance.ToString       (tolerance, 5, 5, [pMilli])) <> Utf8ToAnsi('10.5 ±0.2 mm')          then halt(1);
-  if Utf8ToAnsi(distance.ToVerboseString(tolerance, 5, 5, [pMilli])) <> Utf8ToAnsi('10.5 ±0.2 millimeters') then halt(2);
+  if Utf8ToAnsi(distance.ToString       (tolerance, 5, 5, [pMilli])) <> Utf8ToAnsi('10.5 ± 0.2 mm')          then halt(1);
+  if Utf8ToAnsi(distance.ToVerboseString(tolerance, 5, 5, [pMilli])) <> Utf8ToAnsi('10.5 ± 0.2 millimeters') then halt(2);
   writeln('* TEST-96: PASSED');
 
   writeln('ADIM-TEST DONE.');

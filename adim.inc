@@ -130,12 +130,12 @@ begin
 
   if Length(APrefixes) = 0 then
   begin
-    result := FloatToStrF(FactoredValue, ffGeneral, APrecision, ADigits) + ' ±' +
-              FloatToStrF(FactoredTol,   ffGeneral, APrecision, ADigits) + ' '  + GetSymbol(CSYMBOL, CPREFIXES)
+    result := FloatToStrF(FactoredValue, ffGeneral, APrecision, ADigits) + ' ± ' +
+              FloatToStrF(FactoredTol,   ffGeneral, APrecision, ADigits) + ' '   + GetSymbol(CSYMBOL, CPREFIXES)
   end else
   begin
-    result := FloatToStrF(FactoredValue, ffGeneral, APrecision, ADigits) + ' ±' +
-              FloatToStrF(FactoredTol,   ffGeneral, APrecision, ADigits) + ' '  + GetSymbol(CSYMBOL, APrefixes);
+    result := FloatToStrF(FactoredValue, ffGeneral, APrecision, ADigits) + ' ± ' +
+              FloatToStrF(FactoredTol,   ffGeneral, APrecision, ADigits) + ' '   + GetSymbol(CSYMBOL, APrefixes);
   end;                                   
 end;
 
@@ -148,11 +148,11 @@ begin
   FactoredTol   := ATolerance.Value(APrefixes);
 
   if Length(APrefixes) = 0 then
-    result := FloatToStrF(FactoredValue, ffGeneral, APrecision, ADigits) + ' ±' +
-              FloatToStrF(FactoredTol,   ffGeneral, APrecision, ADigits) + ' '  + GetName(CPLURALNAME, CPREFIXES)
+    result := FloatToStrF(FactoredValue, ffGeneral, APrecision, ADigits) + ' ± ' +
+              FloatToStrF(FactoredTol,   ffGeneral, APrecision, ADigits) + ' '   + GetName(CPLURALNAME, CPREFIXES)
   else
-    result := FloatToStrF(FactoredValue, ffGeneral, APrecision, ADigits) + ' ±' +
-              FloatToStrF(FactoredTol,   ffGeneral, APrecision, ADigits) + ' '  + GetName(CPLURALNAME, APrefixes);
+    result := FloatToStrF(FactoredValue, ffGeneral, APrecision, ADigits) + ' ± ' +
+              FloatToStrF(FactoredTol,   ffGeneral, APrecision, ADigits) + ' '   + GetName(CPLURALNAME, APrefixes);
 end;
 
 class operator TQuantity.+(const AValue: TQuantity): TQuantity;
