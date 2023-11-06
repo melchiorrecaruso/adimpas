@@ -18,10 +18,10 @@
 }
 
 {
-  ADimPas library built on 24/10/2023.
+  ADimPas library built on 06/11/2023.
 
   Number of base units: 123
-  Number of factored units: 61
+  Number of factored units: 62
   Number of operators: 961 (226 external, 735 internal)
 }
 
@@ -1143,6 +1143,9 @@ type
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TNewtonSecondQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TPoundPerCubicInchQty}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TPoundForceQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
@@ -2043,6 +2046,9 @@ operator /(const ALeft: TJoulePerMoleQty; const ARight: TCoulombPerMoleQty): TVo
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TKilogramMeterPerSecondQty}{$DEFINE TUnit:=TNewtonSecondUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TPoundPerCubicInchQty}{$DEFINE TUnit:=TPoundPerCubicInchUnit}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TPoundForceQty}{$DEFINE TUnit:=TPoundForceUnit}{$i adim.inc}
@@ -4836,6 +4842,21 @@ const
   cNewtonSecondPrefixes  : TPrefixes  = (pNone, pNone);
   cNewtonSecondExponents : TExponents = (1, 1);
 
+{ Quantity of TPoundsPerCubicInch }
+
+type
+  TPoundsPerCubicInch = TKilogramPerCubicMeterQty;
+
+const
+  rsPoundPerCubicInchSymbol     = 'lb/in3';
+  rsPoundPerCubicInchName       = 'pound per cubic inch';
+  rsPoundPerCubicInchPluralName = 'pounds per cubic inch';
+
+const
+  cPoundPerCubicInchPrefixes  : TPrefixes  = ();
+  cPoundPerCubicInchExponents : TExponents = ();
+  cPoundPerCubicInchFactor                 = 27679.9047102031;
+
 { Quantity of TPoundsForce }
 
 type
@@ -5361,6 +5382,10 @@ type
 
   TNewtonSecondHelper = record helper for TNewtonSecondQty
     function ToKilogramMeterPerSecond: TKilogramMeterPerSecondQty;
+  end;
+
+  TKilogramPerCubicMeterHelper = record helper for TKilogramPerCubicMeterQty
+    function ToPoundPerCubicInch: TPoundPerCubicInchQty;
   end;
 
   TNewtonHelper = record helper for TNewtonQty
@@ -9843,6 +9868,14 @@ end;
 {$DEFINE CEXPONENTS:=cNewtonSecondExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNewtonSecondQty}{$i adim.inc}
 
+{$DEFINE CSYMBOL:=rsPoundPerCubicInchSymbol}
+{$DEFINE CSINGULARNAME:=rsPoundPerCubicInchName}
+{$DEFINE CPLURALNAME:=rsPoundPerCubicInchPluralName}
+{$DEFINE CPREFIXES:=cPoundPerCubicInchPrefixes}
+{$DEFINE CEXPONENTS:=cPoundPerCubicInchExponents}
+{$DEFINE CFACTOR:=cPoundPerCubicInchFactor}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TPoundPerCubicInchQty}{$i adim.inc}
+
 {$DEFINE CSYMBOL:=rsPoundForceSymbol}
 {$DEFINE CSINGULARNAME:=rsPoundForceName}
 {$DEFINE CPLURALNAME:=rsPoundForcePluralName}
@@ -11332,6 +11365,7 @@ end;
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TMeterPerSecondSquaredQty}{$DEFINE TUnit:=TMeterPerSecondPerSecondUnit}{$i adim.inc}
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TMeterPerHourPerSecondQty}{$DEFINE TUnit:=TMeterPerHourPerSecondUnit}{$i adim.inc}
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TKilogramMeterPerSecondQty}{$DEFINE TUnit:=TNewtonSecondUnit}{$i adim.inc}
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TPoundPerCubicInchQty}{$DEFINE TUnit:=TPoundPerCubicInchUnit}{$i adim.inc}
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TPoundForceQty}{$DEFINE TUnit:=TPoundForceUnit}{$i adim.inc}
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TBarQty}{$DEFINE TUnit:=TBarUnit}{$i adim.inc}
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TPoundPerSquareInchQty}{$DEFINE TUnit:=TPoundPerSquareInchUnit}{$i adim.inc}
@@ -12183,6 +12217,11 @@ end;
 function TNewtonSecondHelper.ToKilogramMeterPerSecond: TKilogramMeterPerSecondQty;
 begin
   result.FValue := FValue;
+end;
+
+function TKilogramPerCubicMeterHelper.ToPoundPerCubicInch: TPoundPerCubicInchQty;
+begin
+  result.FValue := FValue / cPoundPerCubicInchFactor;
 end;
 
 function TNewtonHelper.ToPoundForce: TPoundForceQty;
