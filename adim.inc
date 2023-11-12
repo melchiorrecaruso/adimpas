@@ -4,7 +4,7 @@ type
   TQuantity = record
   private
     FValue: double;
-  public
+  public       
     function Abs: TQuantity;
     function Value: double;
     function Value(const APrefixes: TPrefixes): double;
@@ -13,7 +13,9 @@ type
     function ToString(const ATolerance: TQuantity; APrecision, ADigits: longint; const APrefixes: TPrefixes): string;
     function ToVerboseString: string;
     function ToVerboseString(APrecision, ADigits: longint; const APrefixes: TPrefixes): string;
-    function ToVerboseString(const ATolerance: TQuantity; APrecision, ADigits: longint; const APrefixes: TPrefixes): string;
+    function ToVerboseString(const ATolerance: TQuantity; APrecision, ADigits: longint; const APrefixes: TPrefixes): string;   
+    function IsZero: boolean;
+    procedure SetZero;
     class operator +  (const AValue: TQuantity): TQuantity;
     class operator -  (const AValue: TQuantity): TQuantity;
     class operator +  (const ALeft, ARight: TQuantity): TQuantity;
@@ -153,6 +155,16 @@ begin
   else
     result := FloatToStrF(FactoredValue, ffGeneral, APrecision, ADigits) + ' ± ' +
               FloatToStrF(FactoredTol,   ffGeneral, APrecision, ADigits) + ' '   + GetName(CPLURALNAME, APrefixes);
+end;
+
+function TQuantity.IsZero: boolean;
+begin
+  result := System.Abs(FValue) <= 1E-12;
+end;  
+
+procedure TQuantity.SetZero;
+begin
+  FValue := 0;
 end;
 
 class operator TQuantity.+(const AValue: TQuantity): TQuantity;
