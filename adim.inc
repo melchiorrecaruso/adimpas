@@ -15,7 +15,6 @@ type
     function ToVerboseString(APrecision, ADigits: longint; const APrefixes: TPrefixes): string;
     function ToVerboseString(const ATolerance: TQuantity; APrecision, ADigits: longint; const APrefixes: TPrefixes): string;   
     function IsZero: boolean;
-    procedure SetZero;
     class operator +  (const AValue: TQuantity): TQuantity;
     class operator -  (const AValue: TQuantity): TQuantity;
     class operator +  (const ALeft, ARight: TQuantity): TQuantity;
@@ -161,11 +160,6 @@ function TQuantity.IsZero: boolean;
 begin
   result := System.Abs(FValue) <= 1E-12;
 end;  
-
-procedure TQuantity.SetZero;
-begin
-  FValue := 0;
-end;
 
 class operator TQuantity.+(const AValue: TQuantity): TQuantity;
 begin
