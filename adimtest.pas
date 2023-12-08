@@ -19,6 +19,10 @@
 
 program adimtest;
 
+{$if FPC_FULLVERSION >= 30301}
+  {$modeswitch implicitfunctionspecialization}
+{$endif}
+
 uses
   SysUtils, ADim;
 
@@ -860,9 +864,13 @@ begin
   writeln('* TEST-97: PASSED');
 
   // TEST-98
-  // Waiting for {$modeswitch implicitfunctionspecialization}
+  {$if FPC_FULLVERSION >= 30301}
+  if Min(5.0*m, 6.0*m) <> (5.0*m) then halt(1);
+  if Max(5.0*m, 6.0*m) <> (6.0*m) then halt(2);
+  {$else}
   if specialize Min<TMeters>(5.0*m, 6.0*m) <> (5.0*m) then halt(1);
   if specialize Max<TMeters>(5.0*m, 6.0*m) <> (6.0*m) then halt(2);
+  {$endif}
   writeln('* TEST-98: PASSED');
 
   writeln('ADIM-TEST DONE.');
