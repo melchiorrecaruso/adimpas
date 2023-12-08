@@ -13,10 +13,8 @@ type
     function ToString(const ATolerance: TQuantity; APrecision, ADigits: longint; const APrefixes: TPrefixes): string;
     function ToVerboseString: string;
     function ToVerboseString(APrecision, ADigits: longint; const APrefixes: TPrefixes): string;
-    function ToVerboseString(const ATolerance: TQuantity; APrecision, ADigits: longint; const APrefixes: TPrefixes): string;           
-    function Min(const AValue1, AValue2: TQuantity): TQuantity;
-    function Max(const AValue1, AValue2: TQuantity): TQuantity;
-    function SameValue(const AValue1, AValue2: TQuantity): boolean;
+    function ToVerboseString(const ATolerance: TQuantity; APrecision, ADigits: longint; const APrefixes: TPrefixes): string;
+    function IsSame(const AValue: TQuantity): boolean;
     function IsZero: boolean;
     class operator +  (const AValue: TQuantity): TQuantity;
     class operator -  (const AValue: TQuantity): TQuantity;
@@ -159,22 +157,9 @@ begin
               FloatToStrF(FactoredTol,   ffGeneral, APrecision, ADigits) + ' '   + GetName(CPLURALNAME, APrefixes);
 end;
 
-function TQuantity.Min(const AValue1, AValue2: TQuantity): TQuantity;
+function TQuantity.IsSame(const AValue: TQuantity): boolean;
 begin
-  result.FValue := Math.Min(AValue1.FValue, AValue2.FValue);
-end;
-
-function TQuantity.Max(const AValue1, AValue2: TQuantity): TQuantity;
-begin
-  result.FValue := Math.Max(AValue1.FValue, AValue2.FValue);
-end;
-
-function TQuantity.SameValue(const AValue1, AValue2: TQuantity): boolean;
-begin
-  if (AValue1.FValue > AValue2.FValue) then
-    Result := ((AValue1.FValue - AValue2.FValue) <= 1E-12)
-  else
-    Result := ((AValue2.FValue - AValue1.FValue) <= 1E-12);
+  Result := Math.SameValue(FValue, AValue.FValue);
 end;
 
 function TQuantity.IsZero: boolean;

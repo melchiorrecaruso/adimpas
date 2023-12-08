@@ -852,5 +852,12 @@ begin
   if Utf8ToAnsi(distance.ToVerboseString(tolerance, 5, 5, [pMilli])) <> Utf8ToAnsi('10.5 ± 0.2 millimeters') then halt(2);
   writeln('* TEST-96: PASSED');
 
+  // TEST-97
+  distance := 5.0*m;
+  if distance.IsSame((5.0+1E-13)*m) = False then halt(1);
+  if distance.IsSame((5.0+1E-12)*m) = False then halt(2);
+  if distance.IsSame((5.0+1E-11)*m) = True  then halt(3);
+  writeln('* TEST-97: PASSED');
+
   writeln('ADIM-TEST DONE.');
 end.
