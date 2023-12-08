@@ -59,6 +59,7 @@ begin
   else
     result := AValue2;
 end;
+
 generic function Max<TQuantity>(const AValue1, AValue2: TQuantity): TQuantity;
 begin
   if AValue1 > AValue2 then
