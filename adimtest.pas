@@ -859,5 +859,11 @@ begin
   if distance.IsSame((5.0+1E-11)*m) = True  then halt(3);
   writeln('* TEST-97: PASSED');
 
+  // TEST-98
+  // Waiting for {$modeswitch implicitfunctionspecialization}
+  if specialize Min<TMeters>(5.0*m, 6.0*m) <> (5.0*m) then halt(1);
+  if specialize Max<TMeters>(5.0*m, 6.0*m) <> (6.0*m) then halt(2);
+  writeln('* TEST-98: PASSED');
+
   writeln('ADIM-TEST DONE.');
 end.

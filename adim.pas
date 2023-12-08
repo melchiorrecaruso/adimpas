@@ -28,7 +28,7 @@
 unit ADim;
 
 {$H+}
-{$modeSwitch advancedrecords}
+{$modeswitch advancedrecords}
 {$WARN 05024 OFF} // Suppress warning for unused routine parameter.
 {$WARN 05033 OFF} // Suppress warning for unassigned function's return value.
 {$MACRO ON}
@@ -5567,6 +5567,11 @@ function ArcCos(const AValue: double): TRadians;
 function ArcSin(const AValue: double): TRadians;
 function ArcTan(const AValue: double): TRadians;
 function ArcTan2(const x, y: double): TRadians;
+
+{ Math functions }
+
+generic function Min<TQuantity>(const AValue1, AValue2: TQuantity): TQuantity;
+generic function Max<TQuantity>(const AValue1, AValue2: TQuantity): TQuantity;
 
 { Prefix table }
 
@@ -12691,6 +12696,24 @@ end;
 function ArcTan2(const x, y: double): TRadianQty;
 begin
   result.FValue := Math.ArcTan2(x, y);
+end;
+
+{ Math functions }
+
+generic function Min<TQuantity>(const AValue1, AValue2: TQuantity): TQuantity;
+begin
+  if AValue1 < AValue2 then
+    result := AValue1
+  else
+    result := AValue2;
+end;
+
+generic function Max<TQuantity>(const AValue1, AValue2: TQuantity): TQuantity;
+begin
+  if AValue1 > AValue2 then
+    result := AValue1
+  else
+    result := AValue2;
 end;
 
 end.

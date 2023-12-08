@@ -50,4 +50,21 @@ begin
   result.FValue := Math.ArcTan2(x, y);
 end;
 
+{ Math functions }
+
+generic function Min<TQuantity>(const AValue1, AValue2: TQuantity): TQuantity;
+begin
+  if AValue1 < AValue2 then
+    result := AValue1
+  else
+    result := AValue2;
+end;
+generic function Max<TQuantity>(const AValue1, AValue2: TQuantity): TQuantity;
+begin
+  if AValue1 > AValue2 then
+    result := AValue1
+  else
+    result := AValue2;
+end;
+
 end.

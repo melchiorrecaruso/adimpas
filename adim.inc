@@ -159,7 +159,7 @@ end;
 
 function TQuantity.IsSame(const AValue: TQuantity): boolean;
 begin
-  Result := Math.SameValue(FValue, AValue.FValue);
+  result := Math.SameValue(FValue, AValue.FValue);
 end;
 
 function TQuantity.IsZero: boolean;

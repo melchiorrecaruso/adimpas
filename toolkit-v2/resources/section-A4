@@ -11,3 +11,8 @@ function ArcCos(const AValue: double): TRadians;
 function ArcSin(const AValue: double): TRadians;
 function ArcTan(const AValue: double): TRadians;
 function ArcTan2(const x, y: double): TRadians;
+
+{ Math functions }
+generic function Min<TQuantity>(const AValue1, AValue2: TQuantity): TQuantity;
+generic function Max<TQuantity>(const AValue1, AValue2: TQuantity): TQuantity;
+
