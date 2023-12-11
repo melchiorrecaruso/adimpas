@@ -26,11 +26,15 @@ type
   public
     function Abs: TSelf;
     function Value: double;
-    function Value(const Prefixes: TPrefixes): double;    
+    function Value(const APrefixes: TPrefixes): double;    
     function ToString: string;
+    function ToString(APrecision, ADigits: longint; const APrefixes: TPrefixes): string;
+    function ToString(const ATolerance: TQuantity; APrecision, ADigits: longint; const APrefixes: TPrefixes): string;
     function ToVerboseString: string;
-    function ToString(Precision, Digits: longint; const Prefixes: TPrefixes): string;
-    function ToVerboseString(Precision, Digits: longint; const Prefixes: TPrefixes): string;
+    function ToVerboseString(APrecision, ADigits: longint; const APrefixes: TPrefixes): string;
+    function ToVerboseString(const ATolerance: TQuantity; APrecision, ADigits: longint; const APrefixes: TPrefixes): string;
+    function IsSame(const AValue: TSelf): boolean;
+    function IsZero: boolean;    
     class operator +  (const AValue: TSelf): TSelf;
     class operator -  (const AValue: TSelf): TSelf;
     class operator +  (const ALeft, ARight: TSelf): TSelf;

@@ -593,16 +593,21 @@ begin
       SectionA1.Append('');
       SectionB1.Append('');
       AddEquivalence(AClassName, ABaseClass);
+      AddHelper(AClassName, ABaseClass, '');
       SectionB1.Append('');
       AddEquivalence(ABaseClass, AClassName);
+      AddHelper(ABaseClass, AClassName, '');
       SectionB1.Append('');
       SectionA1.Append('');
     end else
-      if (':=' = AOperator) then
+      if ('helper' = lowercase(AOperator)) then
       begin
         SectionA1.Append('');
         SectionB1.Append('');
-        AddEquivalence(AClassName, ABaseClass);
+        AddHelper(AClassName, ABaseClass, '');
+        SectionB1.Append('');
+        SectionA1.Append('');
+        AddHelper(ABaseClass, AClassName, '');
         SectionB1.Append('');
         SectionA1.Append('');
       end;

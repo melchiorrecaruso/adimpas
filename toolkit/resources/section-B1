@@ -109,13 +109,13 @@ begin
   result := FValue;
 end;
 
-function TQuantity.Value(const Prefixes: TPrefixes): double;
+function TQuantity.Value(const APrefixes: TPrefixes): double;
 var
   I: longint;
   Exponent: longint;
   PrefixCount: longint;
 begin
-  PrefixCount := Length(Prefixes);
+  PrefixCount := Length(APrefixes);
   if PrefixCount = Length(U.Prefixes) then
   begin
     Exponent := 0;
@@ -123,7 +123,7 @@ begin
       Inc(Exponent, PrefixTable[U.Prefixes[I]].Exponent * U.PrefixExponents[I]);
 
     for I := 0 to PrefixCount -1 do
-      Dec(Exponent, PrefixTable[Prefixes[I]].Exponent * U.PrefixExponents[I]);
+      Dec(Exponent, PrefixTable[APrefixes[I]].Exponent * U.PrefixExponents[I]);
     
     if Exponent <> 0 then  
       result := FValue * IntPower(10, Exponent)
@@ -141,6 +141,37 @@ begin
   result := FloatToStr(FValue) + ' ' + GetSymbol(U.Symbol, U.Prefixes);
 end;
 
+function TQuantity.ToString(APrecision, ADigits: longint; const APrefixes: TPrefixes): string;
+var
+  FactoredValue: double;
+begin
+  FactoredValue := Value(APrefixes);
+
+  if Length(APrefixes) = 0 then
+    result := FloatToStrF(FactoredValue, ffGeneral, APrecision, ADigits) + ' ' + GetSymbol(U.Symbol, U.Prefixes)
+  else
+    result := FloatToStrF(FactoredValue, ffGeneral, APrecision, ADigits) + ' ' + GetSymbol(U.Symbol, APrefixes) 
+end;
+
+function TQuantity.ToString(const ATolerance: TQuantity; APrecision, ADigits: longint; const APrefixes: TPrefixes): string;
+var  
+  FactoredTol: double; 
+  FactoredValue: double;
+begin
+  FactoredValue := Value(APrefixes);
+  FactoredTol   := ATolerance.Value(APrefixes);
+
+  if Length(APrefixes) = 0 then
+  begin
+    result := FloatToStrF(FactoredValue, ffGeneral, APrecision, ADigits) + ' ± ' +
+              FloatToStrF(FactoredTol,   ffGeneral, APrecision, ADigits) + ' '   + GetSymbol(U.Symbol, U.Prefixes)
+  end else
+  begin
+    result := FloatToStrF(FactoredValue, ffGeneral, APrecision, ADigits) + ' ± ' +
+              FloatToStrF(FactoredTol,   ffGeneral, APrecision, ADigits) + ' '   + GetSymbol(U.Symbol, APrefixes);
+  end;                                   
+end;
+
 function TQuantity.ToVerboseString: string;
 begin
   if (FValue < -1) or (FValue > 1) then
@@ -149,38 +180,52 @@ begin
     result := FloatToStr(FValue) + ' ' + GetSingularName(U.SingularName, U.Prefixes);
 end;
 
-function TQuantity.ToString(Precision, Digits: longint; const Prefixes: TPrefixes): string;
+function TQuantity.ToVerboseString(APrecision, ADigits: longint; const APrefixes: TPrefixes): string;
 var
   FactoredValue: double;
 begin
-  FactoredValue := Value(Prefixes);
-
-  if Length(Prefixes) = 0 then
-    result := FloatToStrF(FactoredValue, ffGeneral, Precision, Digits) + ' ' + GetSymbol(U.Symbol, U.Prefixes)
-  else
-    result := FloatToStrF(FactoredValue, ffGeneral, Precision, Digits) + ' ' + GetSymbol(U.Symbol, Prefixes) 
-end;
-
-function TQuantity.ToVerboseString(Precision, Digits: longint; const Prefixes: TPrefixes): string;
-var
-  FactoredValue: double;
-begin
-  FactoredValue := Value(Prefixes);
+  FactoredValue := Value(APrefixes);
 
   if (FactoredValue < -1) or (FactoredValue > 1) then
   begin
-    if Length(Prefixes) = 0 then
-      result := FloatToStrF(FactoredValue, ffGeneral, Precision, Digits) + ' ' + GetPluralName(U.PluralName, U.Prefixes)
+    if Length(APrefixes) = 0 then
+      result := FloatToStrF(FactoredValue, ffGeneral, APrecision, ADigits) + ' ' + GetPluralName(U.PluralName, U.Prefixes)
     else
-      result := FloatToStrF(FactoredValue, ffGeneral, Precision, Digits) + ' ' + GetPluralName(U.PluralName, Prefixes); 
+      result := FloatToStrF(FactoredValue, ffGeneral, APrecision, ADigits) + ' ' + GetPluralName(U.PluralName, APrefixes); 
   end else
   begin
-    if Length(Prefixes) = 0 then
-      result := FloatToStrF(FactoredValue, ffGeneral, Precision, Digits) + ' ' + GetSingularName(U.SingularName, U.Prefixes)
+    if Length(APrefixes) = 0 then
+      result := FloatToStrF(FactoredValue, ffGeneral, APrecision, ADigits) + ' ' + GetSingularName(U.SingularName, U.Prefixes)
     else
-      result := FloatToStrF(FactoredValue, ffGeneral, Precision, Digits) + ' ' + GetSingularName(U.SingularName, Prefixes)
+      result := FloatToStrF(FactoredValue, ffGeneral, APrecision, ADigits) + ' ' + GetSingularName(U.SingularName, APrefixes)
   end; 
-end;                                             
+end;     
+
+function TQuantity.ToVerboseString(const ATolerance: TQuantity; APrecision, ADigits: longint; const APrefixes: TPrefixes): string;
+var  
+  FactoredTol: double; 
+  FactoredValue: double;
+begin
+  FactoredValue := Value(APrefixes);
+  FactoredTol   := ATolerance.Value(APrefixes);
+
+  if Length(APrefixes) = 0 then
+    result := FloatToStrF(FactoredValue, ffGeneral, APrecision, ADigits) + ' ± ' +
+              FloatToStrF(FactoredTol,   ffGeneral, APrecision, ADigits) + ' '   + GetPluralName(U.PluralName, U.Prefixes)
+  else
+    result := FloatToStrF(FactoredValue, ffGeneral, APrecision, ADigits) + ' ± ' +
+              FloatToStrF(FactoredTol,   ffGeneral, APrecision, ADigits) + ' '   + GetPluralName(U.PluralName, APrefixes);
+end;
+
+function TQuantity.IsSame(const AValue: TSelf): boolean;
+begin  
+  result := SameValue(FValue, AValue.FValue);
+end;
+
+function TQuantity.IsZero: boolean;
+begin
+  result := System.Abs(FValue) <= 1E-12;
+end; 
 
 class operator TQuantity.+(const AValue: TSelf): TSelf;
 begin
