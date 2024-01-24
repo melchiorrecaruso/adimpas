@@ -18,11 +18,11 @@
 }
 
 {
-  ADimPas library built on 08/12/2023.
+  ADimPas library built on 17/12/2023.
 
-  Number of base units: 123
+  Number of base units: 124
   Number of factored units: 62
-  Number of operators: 961 (226 external, 735 internal)
+  Number of operators: 967 (227 external, 740 internal)
 }
 
 unit ADim;
@@ -49,6 +49,9 @@ type
   TExponents = array of longint;
 
 { TQuantity classes }
+
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSquareKilogramSquareMeterPerSquareSecondQty}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TQuinticMeterQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
@@ -162,6 +165,8 @@ type
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TKilogramMeterPerSecondQty}{$i adim.inc}
+  class operator /(const ALeft: TSquareKilogramSquareMeterPerSquareSecondQty; const ARight: TKilogramMeterPerSecondQty): TKilogramMeterPerSecondQty;
+  class operator *(const ALeft: TKilogramMeterPerSecondQty; const ARight: TKilogramMeterPerSecondQty): TSquareKilogramSquareMeterPerSquareSecondQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TNewtonQty}{$i adim.inc}
@@ -343,6 +348,9 @@ type
   class operator /(const ALeft: TKilogramSquareSecondQty; const ARight: TKilogramQty): TSquareSecondQty;
   class operator *(const ALeft: TSquareSecondQty; const ARight: TKilogramQty): TKilogramSquareSecondQty;
   class operator *(const ALeft: TKilogramQty; const ARight: TSquareSecondQty): TKilogramSquareSecondQty;
+  class operator *(const ALeft: TJouleQty; const ARight: TKilogramQty): TSquareKilogramSquareMeterPerSquareSecondQty;
+  class operator *(const ALeft: TKilogramQty; const ARight: TJouleQty): TSquareKilogramSquareMeterPerSquareSecondQty;
+  class operator /(const ALeft: TSquareKilogramSquareMeterPerSquareSecondQty; const ARight: TKilogramQty): TJouleQty;
   class operator /(const ALeft: TJouleQty; const ARight: TKilogramQty): TSquareMeterPerSquareSecondQty;
   class operator *(const ALeft: TSquareMeterPerSquareSecondQty; const ARight: TKilogramQty): TJouleQty;
   class operator *(const ALeft: TKilogramQty; const ARight: TSquareMeterPerSquareSecondQty): TJouleQty;
@@ -1279,6 +1287,7 @@ operator /(const ALeft: TKilogramSquareMeterQty; const ARight: TSquareSecondQty)
 operator *(const ALeft: TSecondQty; const ARight: TJouleQty): TKilogramSquareMeterPerSecondQty;
 operator *(const ALeft: TJouleQty; const ARight: TSecondQty): TKilogramSquareMeterPerSecondQty;
 operator /(const ALeft: TJouleQty; const ARight: THertzQty): TKilogramSquareMeterPerSecondQty;
+operator /(const ALeft: TSquareKilogramSquareMeterPerSquareSecondQty; const ARight: TJouleQty): TKilogramQty;
 operator /(const ALeft: TJouleQty; const ARight: TSecondQty): TWattQty;
 operator *(const ALeft: TJouleQty; const ARight: THertzQty): TWattQty;
 operator *(const ALeft: THertzQty; const ARight: TJouleQty): TWattQty;
@@ -2043,6 +2052,9 @@ operator /(const ALeft: TJoulePerMoleQty; const ARight: TCoulombPerMoleQty): TVo
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TMeterPerHourPerSecondQty}{$DEFINE TUnit:=TMeterPerHourPerSecondUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TSquareKilogramSquareMeterPerSquareSecondQty}{$DEFINE TUnit:=TSquareKilogramSquareMeterPerSquareSecondUnit}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TKilogramMeterPerSecondQty}{$DEFINE TUnit:=TNewtonSecondUnit}{$i adim.inc}
@@ -4828,6 +4840,20 @@ const
   cMeterPerHourPerSecondExponents : TExponents = (1, -1);
   cMeterPerHourPerSecondFactor                 = 1/3600;
 
+{ Quantity of TSquareKilogramSquareMetersPerSquareSecond }
+
+type
+  TSquareKilogramSquareMetersPerSquareSecond = TSquareKilogramSquareMeterPerSquareSecondQty;
+
+const
+  rsSquareKilogramSquareMeterPerSquareSecondSymbol     = '%sg2·%sm2/%ss2';
+  rsSquareKilogramSquareMeterPerSquareSecondName       = 'square%sgram square%smeter per square%ssecond';
+  rsSquareKilogramSquareMeterPerSquareSecondPluralName = 'square%sgram square%smeters per square%ssecond';
+
+const
+  cSquareKilogramSquareMeterPerSquareSecondPrefixes  : TPrefixes  = (pKilo, pNone, pNone);
+  cSquareKilogramSquareMeterPerSquareSecondExponents : TExponents = (2, 2, -2);
+
 { Quantity of TNewtonSeconds }
 
 type
@@ -5543,6 +5569,8 @@ function SquarePower(AQuantity: THertzQty): TSquareHertzQty;
 function SquareRoot(AQuantity: TSquareHertzQty): THertzQty;
 function SquarePower(AQuantity: TMeterPerSecondQty): TSquareMeterPerSquareSecondQty;
 function SquareRoot(AQuantity: TSquareMeterPerSquareSecondQty): TMeterPerSecondQty;
+function SquarePower(AQuantity: TKilogramMeterPerSecondQty): TSquareKilogramSquareMeterPerSquareSecondQty;
+function SquareRoot(AQuantity: TSquareKilogramSquareMeterPerSquareSecondQty): TKilogramMeterPerSecondQty;
 function SquarePower(AQuantity: TNewtonQty): TSquareNewtonQty;
 function SquareRoot(AQuantity: TSquareNewtonQty): TNewtonQty;
 function SquarePower(AQuantity: TCoulombQty): TSquareCoulombQty;
@@ -6268,6 +6296,21 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
+class operator TKilogramQty.*(const ALeft: TJouleQty; const ARight: TKilogramQty): TSquareKilogramSquareMeterPerSquareSecondQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TKilogramQty.*(const ALeft: TKilogramQty; const ARight: TJouleQty): TSquareKilogramSquareMeterPerSquareSecondQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TKilogramQty./(const ALeft: TSquareKilogramSquareMeterPerSquareSecondQty; const ARight: TKilogramQty): TJouleQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
 class operator TKilogramQty./(const ALeft: TJouleQty; const ARight: TKilogramQty): TSquareMeterPerSquareSecondQty;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -6558,6 +6601,16 @@ end;
 {$DEFINE CPREFIXES:=cKilogramMeterPerSecondPrefixes}
 {$DEFINE CEXPONENTS:=cKilogramMeterPerSecondExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKilogramMeterPerSecondQty}{$i adim.inc}
+
+class operator TKilogramMeterPerSecondQty./(const ALeft: TSquareKilogramSquareMeterPerSquareSecondQty; const ARight: TKilogramMeterPerSecondQty): TKilogramMeterPerSecondQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+class operator TKilogramMeterPerSecondQty.*(const ALeft: TKilogramMeterPerSecondQty; const ARight: TKilogramMeterPerSecondQty): TSquareKilogramSquareMeterPerSquareSecondQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
 
 {$DEFINE CSYMBOL:=rsKatalPerCubicMeterSymbol}
 {$DEFINE CSINGULARNAME:=rsKatalPerCubicMeterName}
@@ -9866,6 +9919,13 @@ end;
 {$DEFINE CFACTOR:=cMeterPerHourPerSecondFactor}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TMeterPerHourPerSecondQty}{$i adim.inc}
 
+{$DEFINE CSYMBOL:=rsSquareKilogramSquareMeterPerSquareSecondSymbol}
+{$DEFINE CSINGULARNAME:=rsSquareKilogramSquareMeterPerSquareSecondName}
+{$DEFINE CPLURALNAME:=rsSquareKilogramSquareMeterPerSquareSecondPluralName}
+{$DEFINE CPREFIXES:=cSquareKilogramSquareMeterPerSquareSecondPrefixes}
+{$DEFINE CEXPONENTS:=cSquareKilogramSquareMeterPerSquareSecondExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareKilogramSquareMeterPerSquareSecondQty}{$i adim.inc}
+
 {$DEFINE CSYMBOL:=rsNewtonSecondSymbol}
 {$DEFINE CSINGULARNAME:=rsNewtonSecondName}
 {$DEFINE CPLURALNAME:=rsNewtonSecondPluralName}
@@ -10355,6 +10415,11 @@ begin
 end;
 
 operator /(const ALeft: TJouleQty; const ARight: THertzQty): TKilogramSquareMeterPerSecondQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TSquareKilogramSquareMeterPerSquareSecondQty; const ARight: TJouleQty): TKilogramQty;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
@@ -11369,6 +11434,7 @@ end;
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TNauticalMilePerHourQty}{$DEFINE TUnit:=TNauticalMilePerHourUnit}{$i adim.inc}
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TMeterPerSecondSquaredQty}{$DEFINE TUnit:=TMeterPerSecondPerSecondUnit}{$i adim.inc}
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TMeterPerHourPerSecondQty}{$DEFINE TUnit:=TMeterPerHourPerSecondUnit}{$i adim.inc}
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TSquareKilogramSquareMeterPerSquareSecondQty}{$DEFINE TUnit:=TSquareKilogramSquareMeterPerSquareSecondUnit}{$i adim.inc}
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TKilogramMeterPerSecondQty}{$DEFINE TUnit:=TNewtonSecondUnit}{$i adim.inc}
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TPoundPerCubicInchQty}{$DEFINE TUnit:=TPoundPerCubicInchUnit}{$i adim.inc}
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TPoundForceQty}{$DEFINE TUnit:=TPoundForceUnit}{$i adim.inc}
@@ -12592,6 +12658,16 @@ begin
 end;
 
 function SquareRoot(AQuantity: TSquareMeterPerSquareSecondQty): TMeterPerSecondQty;
+begin
+  result.FValue := Power(AQuantity.FValue, 1/2);
+end;
+
+function SquarePower(AQuantity: TKilogramMeterPerSecondQty): TSquareKilogramSquareMeterPerSquareSecondQty;
+begin
+  result.FValue := IntPower(AQuantity.FValue, 2);
+end;
+
+function SquareRoot(AQuantity: TSquareKilogramSquareMeterPerSquareSecondQty): TKilogramMeterPerSecondQty;
 begin
   result.FValue := Power(AQuantity.FValue, 1/2);
 end;

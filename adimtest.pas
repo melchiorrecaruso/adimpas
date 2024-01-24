@@ -100,6 +100,7 @@ var
   Uel: TJoules;
 
   p: TKilogramMetersPerSecond;
+  p2: TSquareKilogramSquareMetersPerSquareSecond;
   impulse: TKilogramMetersPerSecond;
 
   flowrate: TCubicMetersPerSecond;
@@ -508,7 +509,10 @@ begin
   mass  := 10*kg;
   speed := 5*m/s;
   p     := mass*speed;
-  if p.ToString(4, 2, []) <> '50 kg·m/s' then halt(1);
+  p2    := p*p;
+  Uc    := 0.5*p2/mass;
+  if  p .ToString(4, 2, []) <> '50 kg·m/s'      then halt(1);
+  if  p2.ToString(4, 2, []) <> '2500 kg2·m2/s2' then halt(2);
   writeln('* TEST-37: PASSED');
 
   // TEST-38 - IMPULSE
