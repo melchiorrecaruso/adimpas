@@ -18,11 +18,11 @@
 }
 
 {
-  ADimPas library built on 17/12/2023.
+  ADimPas library built on 04/02/2024.
 
-  Number of base units: 124
-  Number of factored units: 62
-  Number of operators: 967 (227 external, 740 internal)
+  Number of base units: 125
+  Number of factored units: 68
+  Number of operators: 969 (227 external, 742 internal)
 }
 
 unit ADim;
@@ -35,7 +35,7 @@ unit ADim;
 
 interface
 
-uses SysUtils;
+uses Cl3, SysUtils;
 
 type
   { Prefix }
@@ -49,6 +49,9 @@ type
   TExponents = array of longint;
 
 { TQuantity classes }
+
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCL3MeterQty}{$i adimVEC.inc}
+{$DEFINE INTF_END}{$i adimVEC.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSquareKilogramSquareMeterPerSquareSecondQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
@@ -213,6 +216,7 @@ type
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TMeterQty}{$i adim.inc}
+  class operator *(const ALeft: TVector; const ARight: TMeterQty): TCL3MeterQty;
   class operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TMeterQty): TJouleQty;
   class operator *(const ALeft: TMeterQty; const ARight: TJouleQty): TNewtonSquareMeterQty;
   class operator *(const ALeft: TJouleQty; const ARight: TMeterQty): TNewtonSquareMeterQty;
@@ -1229,6 +1233,24 @@ type
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TElettronvoltSecondQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCL3AstronomicalQty}{$i adimVEC.inc}
+{$DEFINE INTF_END}{$i adimVEC.inc}
+
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCL3InchQty}{$i adimVEC.inc}
+{$DEFINE INTF_END}{$i adimVEC.inc}
+
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCL3FootQty}{$i adimVEC.inc}
+{$DEFINE INTF_END}{$i adimVEC.inc}
+
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCL3YardQty}{$i adimVEC.inc}
+{$DEFINE INTF_END}{$i adimVEC.inc}
+
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCL3MileQty}{$i adimVEC.inc}
+{$DEFINE INTF_END}{$i adimVEC.inc}
+
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCL3NauticalMileQty}{$i adimVEC.inc}
+{$DEFINE INTF_END}{$i adimVEC.inc}
+
 { External Operators }
 
 operator /(const ALeft: TCubicMeterQty; const ARight: TSquareMeterQty): TMeterQty;
@@ -1468,6 +1490,7 @@ operator /(const ALeft: TJoulePerMoleQty; const ARight: TCoulombPerMoleQty): TVo
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TMeterQty}{$DEFINE TUnit:=TMeterUnit}{$i adim.inc}
+  class operator *(const ALeft: TVector; const ARight: TMeterUnit): TCL3MeterQty;
   class operator /(const ALeft: double; const ARight: TMeterUnit): TReciprocalMeterQty;
   class operator /(const ALeft: TRadianQty; const ARight: TMeterUnit): TRadianPerMeterQty;
   class operator *(const ALeft: TTeslaPerAmpereQty; const ARight: TMeterUnit): THenryPerMeterQty;
@@ -5704,6 +5727,11 @@ end;
 {$DEFINE CPREFIXES:=cMeterPrefixes}
 {$DEFINE CEXPONENTS:=cMeterExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TMeterQty}{$i adim.inc}
+
+class operator TMeterQty.*(const ALeft: TVector; const ARight: TMeterQty): TCL3MeterQty;
+begin
+  result.FValue := ALeft * ARight.FValue;
+end;
 
 class operator TMeterQty./(const ALeft: TNewtonSquareMeterQty; const ARight: TMeterQty): TJouleQty;
 begin
@@ -10127,6 +10155,61 @@ end;
 {$DEFINE CFACTOR:=cElettronvoltSecondFactor}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TElettronvoltSecondQty}{$i adim.inc}
 
+{$DEFINE CSYMBOL:=rsMeterSymbol}
+{$DEFINE CSINGULARNAME:=rsMeterName}
+{$DEFINE CPLURALNAME:=rsMeterPluralName}
+{$DEFINE CPREFIXES:=cMeterPrefixes}
+{$DEFINE CEXPONENTS:=cMeterExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCL3MeterQty}{$i adimVEC.inc}
+
+{$DEFINE CSYMBOL:=rsAstronomicalSymbol}
+{$DEFINE CSINGULARNAME:=rsAstronomicalName}
+{$DEFINE CPLURALNAME:=rsAstronomicalPluralName}
+{$DEFINE CPREFIXES:=cAstronomicalPrefixes}
+{$DEFINE CEXPONENTS:=cAstronomicalExponents}
+{$DEFINE CFACTOR:=cAstronomicalFactor}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCL3AstronomicalQty}{$i adimVEC.inc}
+
+{$DEFINE CSYMBOL:=rsInchSymbol}
+{$DEFINE CSINGULARNAME:=rsInchName}
+{$DEFINE CPLURALNAME:=rsInchPluralName}
+{$DEFINE CPREFIXES:=cInchPrefixes}
+{$DEFINE CEXPONENTS:=cInchExponents}
+{$DEFINE CFACTOR:=cInchFactor}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCL3InchQty}{$i adimVEC.inc}
+
+{$DEFINE CSYMBOL:=rsFootSymbol}
+{$DEFINE CSINGULARNAME:=rsFootName}
+{$DEFINE CPLURALNAME:=rsFootPluralName}
+{$DEFINE CPREFIXES:=cFootPrefixes}
+{$DEFINE CEXPONENTS:=cFootExponents}
+{$DEFINE CFACTOR:=cFootFactor}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCL3FootQty}{$i adimVEC.inc}
+
+{$DEFINE CSYMBOL:=rsYardSymbol}
+{$DEFINE CSINGULARNAME:=rsYardName}
+{$DEFINE CPLURALNAME:=rsYardPluralName}
+{$DEFINE CPREFIXES:=cYardPrefixes}
+{$DEFINE CEXPONENTS:=cYardExponents}
+{$DEFINE CFACTOR:=cYardFactor}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCL3YardQty}{$i adimVEC.inc}
+
+{$DEFINE CSYMBOL:=rsMileSymbol}
+{$DEFINE CSINGULARNAME:=rsMileName}
+{$DEFINE CPLURALNAME:=rsMilePluralName}
+{$DEFINE CPREFIXES:=cMilePrefixes}
+{$DEFINE CEXPONENTS:=cMileExponents}
+{$DEFINE CFACTOR:=cMileFactor}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCL3MileQty}{$i adimVEC.inc}
+
+{$DEFINE CSYMBOL:=rsNauticalMileSymbol}
+{$DEFINE CSINGULARNAME:=rsNauticalMileName}
+{$DEFINE CPLURALNAME:=rsNauticalMilePluralName}
+{$DEFINE CPREFIXES:=cNauticalMilePrefixes}
+{$DEFINE CEXPONENTS:=cNauticalMileExponents}
+{$DEFINE CFACTOR:=cNauticalMileFactor}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCL3NauticalMileQty}{$i adimVEC.inc}
+
 class operator TRadianPerSecondQty.:=(const AQuantity: TRadianPerSecondQty): THertzQty;
 begin
   result.FValue := AQuantity.FValue;
@@ -12056,6 +12139,11 @@ end;
 class operator TMoleUnit./(const ALeft: TCoulombQty; const ARight: TMoleUnit): TCoulombPerMoleQty;
 begin
   result.FValue := ALeft.FValue;
+end;
+
+class operator TMeterUnit.*(const ALeft: TVector; const ARight: TMeterUnit): TCL3MeterQty;
+begin
+  result.FValue := ALeft;
 end;
 
 { Helpers }
