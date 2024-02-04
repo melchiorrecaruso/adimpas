@@ -27,12 +27,12 @@ uses
   Classes, SysUtils;
 
 const
-  INTF_QUANTITY      = '{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=%s}{$i adim.inc}';
-  INTF_UNIT          = '{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=%s}{$DEFINE TUnit:=%s}{$i adim.inc}';
-  INTF_END           = '{$DEFINE INTF_END}{$i adim.inc}';
+  INTF_QUANTITY      = '{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=%s}{$i adim%s.inc}';
+  INTF_UNIT          = '{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=%s}{$DEFINE TUnit:=%s}{$i adim%s.inc}';
+  INTF_END           = '{$DEFINE INTF_END}{$i adim%s.inc}';
 
-  IMPL_QUANTITY      = '{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=%s}{$i adim.inc}';
-  IMPL_UNIT          = '{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=%s}{$DEFINE TUnit:=%s}{$i adim.inc}';
+  IMPL_QUANTITY      = '{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=%s}{$i adim%s.inc}';
+  IMPL_UNIT          = '{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=%s}{$DEFINE TUnit:=%s}{$i adim%s.inc}';
 
   IMPL_CSYMBOL       = '{$DEFINE CSYMBOL:=%s}';
   IMPL_CSINGULARNAME = '{$DEFINE CSINGULARNAME:=%s}';

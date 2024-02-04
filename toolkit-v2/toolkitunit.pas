@@ -183,9 +183,9 @@ var
   j: longint;
   ABaseClass, S: string;
 begin
-  iL := Find(Format(INTF_QUANTITY, [GetQuantityType(ALeftClass  )]), SectionA2);
-  iR := Find(Format(INTF_QUANTITY, [GetQuantityType(ARightClass )]), SectionA2);
-  iX := Find(Format(INTF_QUANTITY, [GetQuantityType(AResultClass)]), SectionA2);
+  iL := Find(Format(INTF_QUANTITY, [GetQuantityType(ALeftClass  ), '']), SectionA2);
+  iR := Find(Format(INTF_QUANTITY, [GetQuantityType(ARightClass ), '']), SectionA2);
+  iX := Find(Format(INTF_QUANTITY, [GetQuantityType(AResultClass), '']), SectionA2);
 
   ABaseClass := '';
   i := Max(iL, iR);
@@ -220,7 +220,7 @@ begin
       Inc(ExternalOperators);
     end else
     begin
-      j := Find(Format(IMPL_QUANTITY, [ABaseClass]), SectionB2);
+      j := Find(Format(IMPL_QUANTITY, [ABaseClass, '']), SectionB2);
       SectionA2.Insert(i + 1, Format(INTF_OP_CLASS, [            AOperator, ALeftClass, ARightClass, AResultClass]));
       SectionB2.Insert(j + 2, Format(IMPL_OP_CLASS, [ABaseClass, AOperator, ALeftClass, ARightClass, AResultClass]));
       Inc(InternalOperators);
@@ -264,7 +264,7 @@ var
   i: longint;
   ABaseClass: string;
 begin
-  i := Find(Format(INTF_UNIT, [GetQuantityType(ARightClass), GetUnitType(ARightClass)]), SectionA3);
+  i := Find(Format(INTF_UNIT, [GetQuantityType(ARightClass), GetUnitType(ARightClass), '']), SectionA3);
 
   ABaseClass := ARightClass;
   if ALeftClass   <> 'double' then ALeftClass   := GetQuantityType  (ALeftClass);
@@ -311,24 +311,24 @@ begin
       if (AItem.FOperator = '*') then
       begin
         SectionA2.Insert(3, '');
-        SectionA2.Insert(4, Format(INTF_QUANTITY, [GetQuantityType(AItem.FClassName)]));
-        SectionA2.Insert(5, Format(INTF_END, []));
+        SectionA2.Insert(4, Format(INTF_QUANTITY, [GetQuantityType(AItem.FClassName), '']));
+        SectionA2.Insert(5, Format(INTF_END, ['']));
         SectionA2.Insert(6, '');
 
         SectionA3.Append('');
-        SectionA3.Append(Format(INTF_UNIT, [GetQuantityType(AItem.FClassName), GetUnitType(AItem.FClassName)]));
-        SectionA3.Append(Format(INTF_END, []));
+        SectionA3.Append(Format(INTF_UNIT, [GetQuantityType(AItem.FClassName), GetUnitType(AItem.FClassName), '']));
+        SectionA3.Append(Format(INTF_END, ['']));
         SectionA3.Append('');
       end else
       begin
         SectionA2.Append('');
-        SectionA2.Append(Format(INTF_QUANTITY, [GetQuantityType(AItem.FClassName)]));
-        SectionA2.Append(Format(INTF_END, []));
+        SectionA2.Append(Format(INTF_QUANTITY, [GetQuantityType(AItem.FClassName), '']));
+        SectionA2.Append(Format(INTF_END, ['']));
         SectionA2.Append('');
 
         SectionA3.Append('');
-        SectionA3.Append(Format(INTF_UNIT, [GetQuantityType(AItem.FClassName), GetUnitType(AItem.FClassName)]));
-        SectionA3.Append(Format(INTF_END, []));
+        SectionA3.Append(Format(INTF_UNIT, [GetQuantityType(AItem.FClassName), GetUnitType(AItem.FClassName), '']));
+        SectionA3.Append(Format(INTF_END, ['']));
         SectionA3.Append('');
       end;
 
@@ -337,10 +337,10 @@ begin
       SectionB2.Append(Format(IMPL_CPLURALNAME,   [GetPluralNameResourceString  (AItem.FClassName)]));
       SectionB2.Append(Format(IMPL_CPREFIXES,     [GetPrefixesConst             (AItem.FClassName)]));
       SectionB2.Append(Format(IMPL_CEXPONENTS,    [GetExponentsConst            (AItem.FClassName)]));
-      SectionB2.Append(Format(IMPL_QUANTITY,      [GetQuantityType              (AItem.FClassName)]));
+      SectionB2.Append(Format(IMPL_QUANTITY,      [GetQuantityType              (AItem.FClassName), '']));
       SectionB2.Append('');
 
-      SectionB3.Append(Format(IMPL_UNIT, [GetQuantityType(AItem.FClassName), GetUnitType(AItem.FClassName)]));
+      SectionB3.Append(Format(IMPL_UNIT, [GetQuantityType(AItem.FClassName), GetUnitType(AItem.FClassName), '']));
 
       AddItemResource(AItem);
       Inc(BaseUnitCount);
@@ -350,13 +350,13 @@ begin
       if AItem.FFactor = '' then
       begin
         SectionA2.Append('');
-        SectionA2.Append(Format(INTF_QUANTITY, [GetQuantityType(AItem.FClassName)]));
-        SectionA2.Append(Format(INTF_END, []));
+        SectionA2.Append(Format(INTF_QUANTITY, [GetQuantityType(AItem.FClassName), '']));
+        SectionA2.Append(Format(INTF_END, ['']));
         SectionA2.Append('');
 
         SectionA3.Append('');
-        SectionA3.Append(Format(INTF_UNIT, [GetQuantityType(AItem.FBaseClass), GetUnitType(AItem.FClassName)]));
-        SectionA3.Append(Format(INTF_END, []));
+        SectionA3.Append(Format(INTF_UNIT, [GetQuantityType(AItem.FBaseClass), GetUnitType(AItem.FClassName), '']));
+        SectionA3.Append(Format(INTF_END, ['']));
         SectionA3.Append('');
 
         SectionB2.Append(Format(IMPL_CSYMBOL,       [GetSymbolResourceString      (AItem.FClassName)]));
@@ -364,10 +364,10 @@ begin
         SectionB2.Append(Format(IMPL_CPLURALNAME,   [GetPluralNameResourceString  (AItem.FClassName)]));
         SectionB2.Append(Format(IMPL_CPREFIXES,     [GetPrefixesConst             (AItem.FClassName)]));
         SectionB2.Append(Format(IMPL_CEXPONENTS,    [GetExponentsConst            (AItem.FClassName)]));
-        SectionB2.Append(Format(IMPL_QUANTITY,      [GetQuantityType              (AItem.FClassName)]));
+        SectionB2.Append(Format(IMPL_QUANTITY,      [GetQuantityType              (AItem.FClassName), '']));
         SectionB2.Append('');
 
-        SectionB3.Append(Format(IMPL_UNIT, [GetQuantityType(AItem.FBaseClass), GetUnitType(AItem.FClassName)]));
+        SectionB3.Append(Format(IMPL_UNIT, [GetQuantityType(AItem.FBaseClass), GetUnitType(AItem.FClassName), '']));
 
         AddItemResource(AItem);
         AddHelper(AItem.FClassName, AItem.FBaseClass, '');
@@ -378,13 +378,13 @@ begin
       begin
         // FACTORED UNIT
         SectionA2.Append('');
-        SectionA2.Append(Format(INTF_QUANTITY, [GetQuantityType(AItem.FClassName)]));
-        SectionA2.Append(Format(INTF_END, []));
+        SectionA2.Append(Format(INTF_QUANTITY, [GetQuantityType(AItem.FClassName), '']));
+        SectionA2.Append(Format(INTF_END, ['']));
         SectionA2.Append('');
 
         SectionA3.Append('');
-        SectionA3.Append(Format(INTF_UNIT, [GetQuantityType(AItem.FClassName), GetUnitType(AItem.FClassName)]));
-        SectionA3.Append(Format(INTF_END, []));
+        SectionA3.Append(Format(INTF_UNIT, [GetQuantityType(AItem.FClassName), GetUnitType(AItem.FClassName), '']));
+        SectionA3.Append(Format(INTF_END, ['']));
 
         SectionB2.Append(Format(IMPL_CSYMBOL,       [GetSymbolResourceString      (AItem.FClassName)]));
         SectionB2.Append(Format(IMPL_CSINGULARNAME, [GetSingularNameResourceString(AItem.FClassName)]));
@@ -392,10 +392,10 @@ begin
         SectionB2.Append(Format(IMPL_CPREFIXES,     [GetPrefixesConst             (AItem.FClassName)]));
         SectionB2.Append(Format(IMPL_CEXPONENTS,    [GetExponentsConst            (AItem.FClassName)]));
         SectionB2.Append(Format(IMPL_CFACTOR,       [GetFactorConst               (AItem.FClassName)]));
-        SectionB2.Append(Format(IMPL_QUANTITY,      [GetQuantityType              (AItem.FClassName)]));
+        SectionB2.Append(Format(IMPL_QUANTITY,      [GetQuantityType              (AItem.FClassName), '']));
         SectionB2.Append('');
 
-        SectionB3.Append(Format(IMPL_UNIT, [GetQuantityType(AItem.FClassName), GetUnitType(AItem.FClassName)]));
+        SectionB3.Append(Format(IMPL_UNIT, [GetQuantityType(AItem.FClassName), GetUnitType(AItem.FClassName), '']));
 
         AddItemResource(AItem);
         if AItem.FFactor.Contains('%s') = FALSE then
@@ -698,8 +698,8 @@ var
   i, iL, iR: longint;
   S: string;
 begin
-  iL := Find(Format(INTF_QUANTITY, [GetQuantityType(AClassName)]), SectionA2);
-  iR := Find(Format(INTF_QUANTITY, [GetQuantityType(ABaseClass)]), SectionA2);
+  iL := Find(Format(INTF_QUANTITY, [GetQuantityType(AClassName), '']), SectionA2);
+  iR := Find(Format(INTF_QUANTITY, [GetQuantityType(ABaseClass), '']), SectionA2);
 
   S := '';
   i := Max(iL, iR);
