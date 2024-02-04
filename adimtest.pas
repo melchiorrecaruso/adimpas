@@ -24,7 +24,7 @@ program adimtest;
 {$endif}
 
 uses
-  SysUtils, ADim;
+  ADim, CL3, SysUtils;
 
 var
   side1, side2, side3, side4: TMeters;
@@ -156,6 +156,9 @@ var
 
   I: TKilogramSquareMeters;
   Re: double;
+
+  displacement: TCL3MeterQty;
+
 begin
   ExitCode := 0;
   DefaultFormatSettings.DecimalSeparator := '.';
@@ -876,6 +879,14 @@ begin
   if specialize Max<TMeters>(5.0*m, 6.0*m) <> (6.0*m) then halt(2);
   {$endif}
   writeln('* TEST-98: PASSED');
+
+
+  // TEST-99
+
+  displacement := (2*e1 + 6*e2)*m;
+  displacement := (2*e1 + 6*e2)*au;
+
+
 
   writeln('ADIM-TEST DONE.');
 end.
