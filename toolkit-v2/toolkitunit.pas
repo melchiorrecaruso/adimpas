@@ -1,7 +1,7 @@
 {
   Description: Common unit.
 
-  Copyright (C) 2023 Melchiorre Caruso <melchiorrecaruso@gmail.com>
+  Copyright (C) 2024 Melchiorre Caruso <melchiorrecaruso@gmail.com>
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU Lesser General Public License as published by
@@ -96,10 +96,16 @@ type
     function GetCount: longint;
     function GetItem(Index: longint): TToolkitItem;
 
+    procedure AddItem(const AItem: TToolkitItem; AddOperator: boolean);
+    procedure AddBaseItem(const AItem: TToolkitItem);
+    procedure AddClonedItem(const AItem: TToolkitItem);
+    procedure AddFactoredItem(const AItem: TToolkitItem);
+
+    procedure AddItemOperators(const AItem: TToolkitItem);
     procedure AddQuantityOperator(AOperator, ALeftClass, ARightClass, AResultClass: string);
     procedure AddUnitOperator(AOperator, ALeftClass, ARightClass, AResultClass: string);
-    procedure AddClass(const AItem: TToolkitItem; AddOperator: boolean);
-    procedure AddFactoredQuantity(ABaseClass, AIdentifierSymbol, AFactor, APrefixes: string);
+
+    procedure AddFactoredQuantities(ABaseClass, AIdentifierSymbol, AFactor, APrefixes: string);
     procedure AddPower(AOperator, AQuantity, AResult: string);
     procedure AddHelper(AClassName, ABaseClass, AFactor: string);
     procedure AddEquivalence(AClassName, ABaseClass: string);
@@ -175,6 +181,212 @@ end;
 function TToolkitList.GetCount: longint;
 begin
   Result := Length(FList);
+end;
+
+procedure TToolkitList.AddItem(const AItem: TToolkitItem; AddOperator: boolean);
+begin
+  if ClassList.IndexOf(GetQuantityType(AItem.FClassName)) = -1 then
+  begin
+    ClassList.Append(GetQuantityType(AItem.FClassName));
+
+    if (AItem.FBaseClass = '') then
+      AddBaseItem(AItem)
+    else
+      if (AItem.FFactor = '') then
+        AddClonedItem(AItem)
+      else
+        AddFactoredItem(AItem);
+  end;
+  if AddOperator then
+    AddItemOperators(AItem);
+end;
+
+procedure TToolkitList.AddBaseItem(const AItem: TToolkitItem);
+var
+  Suffix: string;
+begin
+  Suffix := '';
+  // BASE UNIT
+  if (AItem.FOperator = '*') then
+  begin
+    SectionA2.Insert(3, '');
+    SectionA2.Insert(4, Format(INTF_QUANTITY, [GetQuantityType(AItem.FClassName), Suffix]));
+    SectionA2.Insert(5, Format(INTF_END, [Suffix]));
+    SectionA2.Insert(6, '');
+
+    SectionA3.Append('');
+    SectionA3.Append(Format(INTF_UNIT, [GetQuantityType(AItem.FClassName), GetUnitType(AItem.FClassName), Suffix]));
+    SectionA3.Append(Format(INTF_END, [Suffix]));
+    SectionA3.Append('');
+  end else
+  begin
+    SectionA2.Append('');
+    SectionA2.Append(Format(INTF_QUANTITY, [GetQuantityType(AItem.FClassName), Suffix]));
+    SectionA2.Append(Format(INTF_END, [Suffix]));
+    SectionA2.Append('');
+
+    SectionA3.Append('');
+    SectionA3.Append(Format(INTF_UNIT, [GetQuantityType(AItem.FClassName), GetUnitType(AItem.FClassName), Suffix]));
+    SectionA3.Append(Format(INTF_END, [Suffix]));
+    SectionA3.Append('');
+  end;
+
+  SectionB2.Append(Format(IMPL_CSYMBOL,       [GetSymbolResourceString      (AItem.FClassName)]));
+  SectionB2.Append(Format(IMPL_CSINGULARNAME, [GetSingularNameResourceString(AItem.FClassName)]));
+  SectionB2.Append(Format(IMPL_CPLURALNAME,   [GetPluralNameResourceString  (AItem.FClassName)]));
+  SectionB2.Append(Format(IMPL_CPREFIXES,     [GetPrefixesConst             (AItem.FClassName)]));
+  SectionB2.Append(Format(IMPL_CEXPONENTS,    [GetExponentsConst            (AItem.FClassName)]));
+  SectionB2.Append(Format(IMPL_QUANTITY,      [GetQuantityType              (AItem.FClassName), Suffix]));
+  SectionB2.Append('');
+
+  SectionB3.Append(Format(IMPL_UNIT, [GetQuantityType(AItem.FClassName), GetUnitType(AItem.FClassName), Suffix]));
+
+  AddItemResource(AItem);
+  Inc(BaseUnitCount);
+end;
+
+procedure TToolkitList.AddClonedItem(const AItem: TToolkitItem);
+var
+  Suffix: string;
+begin
+  Suffix := '';
+  // CLONED UNIT
+  SectionA2.Append('');
+  SectionA2.Append(Format(INTF_QUANTITY, [GetQuantityType(AItem.FClassName), Suffix]));
+  SectionA2.Append(Format(INTF_END, [Suffix]));
+  SectionA2.Append('');
+
+  SectionA3.Append('');
+  SectionA3.Append(Format(INTF_UNIT, [GetQuantityType(AItem.FBaseClass), GetUnitType(AItem.FClassName), Suffix]));
+  SectionA3.Append(Format(INTF_END, [Suffix]));
+  SectionA3.Append('');
+
+  SectionB2.Append(Format(IMPL_CSYMBOL,       [GetSymbolResourceString      (AItem.FClassName)]));
+  SectionB2.Append(Format(IMPL_CSINGULARNAME, [GetSingularNameResourceString(AItem.FClassName)]));
+  SectionB2.Append(Format(IMPL_CPLURALNAME,   [GetPluralNameResourceString  (AItem.FClassName)]));
+  SectionB2.Append(Format(IMPL_CPREFIXES,     [GetPrefixesConst             (AItem.FClassName)]));
+  SectionB2.Append(Format(IMPL_CEXPONENTS,    [GetExponentsConst            (AItem.FClassName)]));
+  SectionB2.Append(Format(IMPL_QUANTITY,      [GetQuantityType              (AItem.FClassName), Suffix]));
+  SectionB2.Append('');
+
+  SectionB3.Append(Format(IMPL_UNIT, [GetQuantityType(AItem.FBaseClass), GetUnitType(AItem.FClassName), Suffix]));
+
+  AddItemResource(AItem);
+  AddHelper(AItem.FClassName, AItem.FBaseClass, '');
+  AddHelper(AItem.FBaseClass, AItem.FClassName, '');
+
+  Inc(FactoredUnitCount);
+end;
+
+procedure TToolkitList.AddFactoredItem(const AItem: TToolkitItem);
+var
+  Suffix: string;
+begin
+  Suffix := '';
+  // FACTORED UNIT
+  SectionA2.Append('');
+  SectionA2.Append(Format(INTF_QUANTITY, [GetQuantityType(AItem.FClassName), Suffix]));
+  SectionA2.Append(Format(INTF_END, [Suffix]));
+  SectionA2.Append('');
+
+  SectionA3.Append('');
+  SectionA3.Append(Format(INTF_UNIT, [GetQuantityType(AItem.FClassName), GetUnitType(AItem.FClassName), Suffix]));
+  SectionA3.Append(Format(INTF_END, [Suffix]));
+
+  SectionB2.Append(Format(IMPL_CSYMBOL,       [GetSymbolResourceString      (AItem.FClassName)]));
+  SectionB2.Append(Format(IMPL_CSINGULARNAME, [GetSingularNameResourceString(AItem.FClassName)]));
+  SectionB2.Append(Format(IMPL_CPLURALNAME,   [GetPluralNameResourceString  (AItem.FClassName)]));
+  SectionB2.Append(Format(IMPL_CPREFIXES,     [GetPrefixesConst             (AItem.FClassName)]));
+  SectionB2.Append(Format(IMPL_CEXPONENTS,    [GetExponentsConst            (AItem.FClassName)]));
+  SectionB2.Append(Format(IMPL_CFACTOR,       [GetFactorConst               (AItem.FClassName)]));
+  SectionB2.Append(Format(IMPL_QUANTITY,      [GetQuantityType              (AItem.FClassName), Suffix]));
+  SectionB2.Append('');
+
+  SectionB3.Append(Format(IMPL_UNIT, [GetQuantityType(AItem.FClassName), GetUnitType(AItem.FClassName), Suffix]));
+
+  AddItemResource(AItem);
+  if AItem.FFactor.Contains('%s') = FALSE then
+  begin
+    AddHelper(AItem.FClassName, AItem.FBaseClass, 'FValue / ' + GetFactorConst(AItem.FClassName));
+  end else
+  begin
+    AddHelper(AItem.FBaseClass, AItem.FClassName, Format(Copy(AItem.FFactor, 1, Pos('|', AItem.FFactor) -1), ['FValue']));
+    AddHelper(AItem.FClassName, AItem.FBaseClass, Format(Copy(AItem.FFactor, Pos('|', AItem.FFactor) + 1, Length(AItem.FFactor)), ['FValue']));
+  end;
+  Inc(FactoredUnitCount);
+end;
+
+procedure TToolkitList.AddItemOperators(const AItem: TToolkitItem);
+begin
+  if (AItem.FBaseClass = '') then
+  begin
+    CheckClass(AItem.FClassName, AItem.FOperator, AItem.FClassParent1, AItem.FClassParent2);
+
+    if AItem.FOperator = '*' then
+    begin
+      AddQuantityOperator('*', AItem.FClassParent1, AItem.FClassParent2, AItem.FClassName);
+      if AItem.FClassParent1 <> AItem.FClassParent2 then
+      begin
+        AddQuantityOperator('*', AItem.FClassParent2, AItem.FClassParent1, AItem.FClassName);
+      end;
+
+      AddQuantityOperator('/', AItem.FClassName, AItem.FClassParent1, AItem.FClassParent2);
+      if AItem.FClassParent1 <> AItem.FClassParent2 then
+      begin
+        AddQuantityOperator('/', AItem.FClassName, AItem.FClassParent2, AItem.FClassParent1);
+      end;
+
+      if Pos('OP1', AItem.FFactor) > 0 then AddUnitOperator('*', AItem.FClassParent1, AItem.FClassParent2, AItem.FClassName);
+      if Pos('OP2', AItem.FFactor) > 0 then AddUnitOperator('*', AItem.FClassParent2, AItem.FClassParent1, AItem.FClassName);
+      if Pos('OP3', AItem.FFactor) > 0 then AddUnitOperator('/', AItem.FClassName, AItem.FClassParent1, AItem.FClassParent2);
+      if Pos('OP4', AItem.FFactor) > 0 then AddUnitOperator('/', AItem.FClassName, AItem.FClassParent2, AItem.FClassParent1);
+
+    end else
+      if AItem.FOperator = '/' then
+      begin
+        AddQuantityOperator('/', AItem.FClassParent1, AItem.FClassParent2, AItem.FClassName);
+        AddQuantityOperator('*', AItem.FClassParent2, AItem.FClassName,    AItem.FClassParent1);
+        AddQuantityOperator('*', AItem.FClassName,    AItem.FClassParent2, AItem.FClassParent1);
+        AddQuantityOperator('/', AItem.FClassParent1, AItem.FClassName,    AItem.FClassParent2);
+
+        if Pos('OP1', AItem.FFactor) > 0 then AddUnitOperator('/', AItem.FClassParent1, AItem.FClassParent2, AItem.FClassName);
+        if Pos('OP2', AItem.FFactor) > 0 then AddUnitOperator('*', AItem.FClassParent2, AItem.FClassName, AItem.FClassParent1);
+        if Pos('OP3', AItem.FFactor) > 0 then AddUnitOperator('*', AItem.FClassName, AItem.FClassParent2, AItem.FClassParent1);
+        if Pos('OP4', AItem.FFactor) > 0 then AddUnitOperator('/', AItem.FClassParent1, AItem.FClassName, AItem.FClassParent2);
+
+      end else
+        if Pos('power', LowerCase(AItem.FOperator)) > 0 then
+        begin
+          AddPower(AItem.FOperator, AItem.FClassParent1, AItem.FClassName);
+        end;
+
+  end else
+    if (AItem.FOperator = '=') then
+    begin
+
+      if AItem.FBaseClass <> '' then;
+        CommUnits.Add(AItem.FBaseClass);
+
+      SectionA7.Append('');
+      SectionB7.Append('');
+      AddEquivalence(AItem.FClassName, AItem.FBaseClass);
+      AddHelper(AItem.FClassName, AItem.FBaseClass, '');
+      SectionB7.Append('');
+      AddEquivalence(AItem.FBaseClass, AItem.FClassName);
+      AddHelper(AItem.FBaseClass, AItem.FClassName, '');
+      SectionB7.Append('');
+      SectionA7.Append('');
+    end else
+      if (LowerCase(AItem.FOperator) = 'helper') then
+      begin
+        SectionA7.Append('');
+        SectionB7.Append('');
+        AddHelper(AItem.FClassName, AItem.FBaseClass, '');
+        SectionB7.Append('');
+        AddHelper(AItem.FBaseClass, AItem.FClassName, '');
+        SectionB7.Append('');
+        SectionA7.Append('');
+      end;
 end;
 
 procedure TToolkitList.AddQuantityOperator(AOperator, ALeftClass, ARightClass, AResultClass: string);
@@ -297,315 +509,6 @@ begin
     SectionB31.Append('');
     Inc(InternalOperators);
   end;
-end;
-
-procedure TToolkitList.AddClass(const AItem: TToolkitItem; AddOperator: boolean);
-begin
-  if ClassList.IndexOf(GetQuantityType(AItem.FClassName)) = -1 then
-  begin
-    ClassList.Append(GetQuantityType(AItem.FClassName));
-
-    if (AItem.FBaseClass = '') then
-    begin
-      // BASE UNIT
-      if (AItem.FOperator = '*') then
-      begin
-        SectionA2.Insert(3, '');
-        SectionA2.Insert(4, Format(INTF_QUANTITY, [GetQuantityType(AItem.FClassName), '']));
-        SectionA2.Insert(5, Format(INTF_END, ['']));
-        SectionA2.Insert(6, '');
-
-        SectionA3.Append('');
-        SectionA3.Append(Format(INTF_UNIT, [GetQuantityType(AItem.FClassName), GetUnitType(AItem.FClassName), '']));
-        SectionA3.Append(Format(INTF_END, ['']));
-        SectionA3.Append('');
-      end else
-      begin
-        SectionA2.Append('');
-        SectionA2.Append(Format(INTF_QUANTITY, [GetQuantityType(AItem.FClassName), '']));
-        SectionA2.Append(Format(INTF_END, ['']));
-        SectionA2.Append('');
-
-        SectionA3.Append('');
-        SectionA3.Append(Format(INTF_UNIT, [GetQuantityType(AItem.FClassName), GetUnitType(AItem.FClassName), '']));
-        SectionA3.Append(Format(INTF_END, ['']));
-        SectionA3.Append('');
-      end;
-
-      SectionB2.Append(Format(IMPL_CSYMBOL,       [GetSymbolResourceString      (AItem.FClassName)]));
-      SectionB2.Append(Format(IMPL_CSINGULARNAME, [GetSingularNameResourceString(AItem.FClassName)]));
-      SectionB2.Append(Format(IMPL_CPLURALNAME,   [GetPluralNameResourceString  (AItem.FClassName)]));
-      SectionB2.Append(Format(IMPL_CPREFIXES,     [GetPrefixesConst             (AItem.FClassName)]));
-      SectionB2.Append(Format(IMPL_CEXPONENTS,    [GetExponentsConst            (AItem.FClassName)]));
-      SectionB2.Append(Format(IMPL_QUANTITY,      [GetQuantityType              (AItem.FClassName), '']));
-      SectionB2.Append('');
-
-      SectionB3.Append(Format(IMPL_UNIT, [GetQuantityType(AItem.FClassName), GetUnitType(AItem.FClassName), '']));
-
-      AddItemResource(AItem);
-      Inc(BaseUnitCount);
-    end else
-    begin
-      // CLONED UNIT
-      if AItem.FFactor = '' then
-      begin
-        SectionA2.Append('');
-        SectionA2.Append(Format(INTF_QUANTITY, [GetQuantityType(AItem.FClassName), '']));
-        SectionA2.Append(Format(INTF_END, ['']));
-        SectionA2.Append('');
-
-        SectionA3.Append('');
-        SectionA3.Append(Format(INTF_UNIT, [GetQuantityType(AItem.FBaseClass), GetUnitType(AItem.FClassName), '']));
-        SectionA3.Append(Format(INTF_END, ['']));
-        SectionA3.Append('');
-
-        SectionB2.Append(Format(IMPL_CSYMBOL,       [GetSymbolResourceString      (AItem.FClassName)]));
-        SectionB2.Append(Format(IMPL_CSINGULARNAME, [GetSingularNameResourceString(AItem.FClassName)]));
-        SectionB2.Append(Format(IMPL_CPLURALNAME,   [GetPluralNameResourceString  (AItem.FClassName)]));
-        SectionB2.Append(Format(IMPL_CPREFIXES,     [GetPrefixesConst             (AItem.FClassName)]));
-        SectionB2.Append(Format(IMPL_CEXPONENTS,    [GetExponentsConst            (AItem.FClassName)]));
-        SectionB2.Append(Format(IMPL_QUANTITY,      [GetQuantityType              (AItem.FClassName), '']));
-        SectionB2.Append('');
-
-        SectionB3.Append(Format(IMPL_UNIT, [GetQuantityType(AItem.FBaseClass), GetUnitType(AItem.FClassName), '']));
-
-        AddItemResource(AItem);
-        AddHelper(AItem.FClassName, AItem.FBaseClass, '');
-        AddHelper(AItem.FBaseClass, AItem.FClassName, '');
-
-        Inc(FactoredUnitCount);
-      end else
-      begin
-        // FACTORED UNIT
-        SectionA2.Append('');
-        SectionA2.Append(Format(INTF_QUANTITY, [GetQuantityType(AItem.FClassName), '']));
-        SectionA2.Append(Format(INTF_END, ['']));
-        SectionA2.Append('');
-
-        SectionA3.Append('');
-        SectionA3.Append(Format(INTF_UNIT, [GetQuantityType(AItem.FClassName), GetUnitType(AItem.FClassName), '']));
-        SectionA3.Append(Format(INTF_END, ['']));
-
-        SectionB2.Append(Format(IMPL_CSYMBOL,       [GetSymbolResourceString      (AItem.FClassName)]));
-        SectionB2.Append(Format(IMPL_CSINGULARNAME, [GetSingularNameResourceString(AItem.FClassName)]));
-        SectionB2.Append(Format(IMPL_CPLURALNAME,   [GetPluralNameResourceString  (AItem.FClassName)]));
-        SectionB2.Append(Format(IMPL_CPREFIXES,     [GetPrefixesConst             (AItem.FClassName)]));
-        SectionB2.Append(Format(IMPL_CEXPONENTS,    [GetExponentsConst            (AItem.FClassName)]));
-        SectionB2.Append(Format(IMPL_CFACTOR,       [GetFactorConst               (AItem.FClassName)]));
-        SectionB2.Append(Format(IMPL_QUANTITY,      [GetQuantityType              (AItem.FClassName), '']));
-        SectionB2.Append('');
-
-        SectionB3.Append(Format(IMPL_UNIT, [GetQuantityType(AItem.FClassName), GetUnitType(AItem.FClassName), '']));
-
-        AddItemResource(AItem);
-        if AItem.FFactor.Contains('%s') = FALSE then
-        begin
-          AddHelper(AItem.FClassName, AItem.FBaseClass, 'FValue / ' + GetFactorConst(AItem.FClassName));
-        end else
-        begin
-          AddHelper(AItem.FBaseClass, AItem.FClassName, Format(Copy(AItem.FFactor, 1, Pos('|', AItem.FFactor) -1), ['FValue']));
-          AddHelper(AItem.FClassName, AItem.FBaseClass, Format(Copy(AItem.FFactor, Pos('|', AItem.FFactor) + 1, Length(AItem.FFactor)), ['FValue']));
-        end;
-
-        Inc(FactoredUnitCount);
-      end;
-
-    end;
-  end;
-  if not AddOperator then Exit;
-
-  if (AItem.FBaseClass = '') then
-  begin
-    CheckClass(AItem.FClassName, AItem.FOperator, AItem.FClassParent1, AItem.FClassParent2);
-
-    if AItem.FOperator = '*' then
-    begin
-      AddQuantityOperator('*', AItem.FClassParent1, AItem.FClassParent2, AItem.FClassName);
-      if AItem.FClassParent1 <> AItem.FClassParent2 then
-      begin
-        AddQuantityOperator('*', AItem.FClassParent2, AItem.FClassParent1, AItem.FClassName);
-      end;
-
-      AddQuantityOperator('/', AItem.FClassName, AItem.FClassParent1, AItem.FClassParent2);
-      if AItem.FClassParent1 <> AItem.FClassParent2 then
-      begin
-        AddQuantityOperator('/', AItem.FClassName, AItem.FClassParent2, AItem.FClassParent1);
-      end;
-
-      if Pos('OP1', AItem.FFactor) > 0 then AddUnitOperator('*', AItem.FClassParent1, AItem.FClassParent2, AItem.FClassName);
-      if Pos('OP2', AItem.FFactor) > 0 then AddUnitOperator('*', AItem.FClassParent2, AItem.FClassParent1, AItem.FClassName);
-      if Pos('OP3', AItem.FFactor) > 0 then AddUnitOperator('/', AItem.FClassName, AItem.FClassParent1, AItem.FClassParent2);
-      if Pos('OP4', AItem.FFactor) > 0 then AddUnitOperator('/', AItem.FClassName, AItem.FClassParent2, AItem.FClassParent1);
-
-    end else
-      if AItem.FOperator = '/' then
-      begin
-        AddQuantityOperator('/', AItem.FClassParent1, AItem.FClassParent2, AItem.FClassName);
-        AddQuantityOperator('*', AItem.FClassParent2, AItem.FClassName,    AItem.FClassParent1);
-        AddQuantityOperator('*', AItem.FClassName,    AItem.FClassParent2, AItem.FClassParent1);
-        AddQuantityOperator('/', AItem.FClassParent1, AItem.FClassName,    AItem.FClassParent2);
-
-        if Pos('OP1', AItem.FFactor) > 0 then AddUnitOperator('/', AItem.FClassParent1, AItem.FClassParent2, AItem.FClassName);
-        if Pos('OP2', AItem.FFactor) > 0 then AddUnitOperator('*', AItem.FClassParent2, AItem.FClassName, AItem.FClassParent1);
-        if Pos('OP3', AItem.FFactor) > 0 then AddUnitOperator('*', AItem.FClassName, AItem.FClassParent2, AItem.FClassParent1);
-        if Pos('OP4', AItem.FFactor) > 0 then AddUnitOperator('/', AItem.FClassParent1, AItem.FClassName, AItem.FClassParent2);
-
-      end else
-        if Pos('power', LowerCase(AItem.FOperator)) > 0 then
-        begin
-          AddPower(AItem.FOperator, AItem.FClassParent1, AItem.FClassName);
-        end;
-
-  end else
-    if (AItem.FOperator = '=') then
-    begin
-
-      if AItem.FBaseClass <> '' then;
-        CommUnits.Add(AItem.FBaseClass);
-
-      SectionA7.Append('');
-      SectionB7.Append('');
-      AddEquivalence(AItem.FClassName, AItem.FBaseClass);
-      AddHelper(AItem.FClassName, AItem.FBaseClass, '');
-      SectionB7.Append('');
-      AddEquivalence(AItem.FBaseClass, AItem.FClassName);
-      AddHelper(AItem.FBaseClass, AItem.FClassName, '');
-      SectionB7.Append('');
-      SectionA7.Append('');
-    end else
-      if (LowerCase(AItem.FOperator) = 'helper') then
-      begin
-        SectionA7.Append('');
-        SectionB7.Append('');
-        AddHelper(AItem.FClassName, AItem.FBaseClass, '');
-        SectionB7.Append('');
-        AddHelper(AItem.FBaseClass, AItem.FClassName, '');
-        SectionB7.Append('');
-        SectionA7.Append('');
-      end;
-end;
-
-procedure TToolkitList.AddFactoredQuantity(ABaseClass, AIdentifierSymbol, AFactor, APrefixes: string);
-var
-  i, j: longint;
-  Params: string;
-  Power: longint;
-  LocList: TStringList;
-  Str: string;
-begin
-  Str := '  %s: %s = (FValue: %s);';
-  if AFactor <> '' then
-    AFactor := AFactor + ' * ';
-
-  if Length(APrefixes) = 24 then
-  begin
-    Params := APrefixes;
-    SectionA4.Append('');
-    SectionA4.Append('const');
-  end else
-    Params := '------------------------';
-
-  Power  := 1;
-  if Pos('2', AIdentifierSymbol) > 0 then Power := 2;
-  if Pos('3', AIdentifierSymbol) > 0 then Power := 3;
-  if Pos('4', AIdentifierSymbol) > 0 then Power := 4;
-  if Pos('5', AIdentifierSymbol) > 0 then Power := 5;
-  if Pos('6', AIdentifierSymbol) > 0 then Power := 6;
-  if Pos('7', AIdentifierSymbol) > 0 then Power := 7;
-  if Pos('8', AIdentifierSymbol) > 0 then Power := 8;
-  if Pos('9', AIdentifierSymbol) > 0 then Power := 9;
-
-  LocList := TStringList.Create;
-  if (LowerCase(AIdentifierSymbol) <> 'kg' ) and
-     (LowerCase(AIdentifierSymbol) <> 'kg2') then
-  begin
-    if Params[ 1] = 'L' then LocList.Append(Format(Str, ['quetta' + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +30*Power))]));
-    if Params[ 1] = 'S' then LocList.Append(Format(Str, ['Q'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +30*Power))]));
-    if Params[ 2] = 'L' then LocList.Append(Format(Str, ['ronna'  + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +27*Power))]));
-    if Params[ 2] = 'S' then LocList.Append(Format(Str, ['R'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +27*Power))]));
-    if Params[ 3] = 'L' then LocList.Append(Format(Str, ['yotta'  + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +24*Power))]));
-    if Params[ 3] = 'S' then LocList.Append(Format(Str, ['Y'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +24*Power))]));
-    if Params[ 4] = 'L' then LocList.Append(Format(Str, ['zetta'  + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +21*Power))]));
-    if Params[ 4] = 'S' then LocList.Append(Format(Str, ['Z'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +21*Power))]));
-    if Params[ 5] = 'L' then LocList.Append(Format(Str, ['exa'    + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +18*Power))]));
-    if Params[ 5] = 'S' then LocList.Append(Format(Str, ['E'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +18*Power))]));
-    if Params[ 6] = 'L' then LocList.Append(Format(Str, ['peta'   + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +15*Power))]));
-    if Params[ 6] = 'S' then LocList.Append(Format(Str, ['P'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +15*Power))]));
-
-    if Params[ 7] = 'L' then LocList.Append(Format(Str, ['tera'   + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +12*Power))]));
-    if Params[ 7] = 'S' then LocList.Append(Format(Str, ['T'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +12*Power))]));
-    if Params[ 8] = 'L' then LocList.Append(Format(Str, ['giga'   + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 9*Power))]));
-    if Params[ 8] = 'S' then LocList.Append(Format(Str, ['G'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 9*Power))]));
-    if Params[ 9] = 'L' then LocList.Append(Format(Str, ['mega'   + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 6*Power))]));
-    if Params[ 9] = 'S' then LocList.Append(Format(Str, ['M'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 6*Power))]));
-    if Params[10] = 'L' then LocList.Append(Format(Str, ['kilo'   + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 3*Power))]));
-    if Params[10] = 'S' then LocList.Append(Format(Str, ['k'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 3*Power))]));
-    if Params[11] = 'L' then LocList.Append(Format(Str, ['hecto'  + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 2*Power))]));
-    if Params[11] = 'S' then LocList.Append(Format(Str, ['h'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 2*Power))]));
-    if Params[12] = 'L' then LocList.Append(Format(Str, ['deca'   + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 1*Power))]));
-    if Params[12] = 'S' then LocList.Append(Format(Str, ['da'     + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 1*Power))]));
-    if Params[13] = 'L' then LocList.Append(Format(Str, ['deci'   + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 1*Power))]));
-    if Params[13] = 'S' then LocList.Append(Format(Str, ['d'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 1*Power))]));
-    if Params[14] = 'L' then LocList.Append(Format(Str, ['centi'  + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 2*Power))]));
-    if Params[14] = 'S' then LocList.Append(Format(Str, ['c'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 2*Power))]));
-    if Params[15] = 'L' then LocList.Append(Format(Str, ['milli'  + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 3*Power))]));
-    if Params[15] = 'S' then LocList.Append(Format(Str, ['m'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 3*Power))]));
-    if Params[16] = 'L' then LocList.Append(Format(Str, ['micro'  + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 6*Power))]));
-    if Params[16] = 'S' then LocList.Append(Format(Str, ['mi'     + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 6*Power))]));
-    if Params[17] = 'L' then LocList.Append(Format(Str, ['nano'   + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 9*Power))]));
-    if Params[17] = 'S' then LocList.Append(Format(Str, ['n'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 9*Power))]));
-    if Params[18] = 'L' then LocList.Append(Format(Str, ['pico'   + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -12*Power))]));
-    if Params[18] = 'S' then LocList.Append(Format(Str, ['p'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -12*Power))]));
-
-    if Params[19] = 'L' then LocList.Append(Format(Str, ['femto'  + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -15*Power))]));
-    if Params[19] = 'S' then LocList.Append(Format(Str, ['f'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -15*Power))]));
-    if Params[20] = 'L' then LocList.Append(Format(Str, ['atto'   + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -18*Power))]));
-    if Params[20] = 'S' then LocList.Append(Format(Str, ['a'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -18*Power))]));
-    if Params[21] = 'L' then LocList.Append(Format(Str, ['zepto'  + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -21*Power))]));
-    if Params[21] = 'S' then LocList.Append(Format(Str, ['z'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -21*Power))]));
-    if Params[22] = 'L' then LocList.Append(Format(Str, ['yocto'  + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -24*Power))]));
-    if Params[22] = 'S' then LocList.Append(Format(Str, ['y'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -24*Power))]));
-    if Params[23] = 'L' then LocList.Append(Format(Str, ['ronto'  + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -27*Power))]));
-    if Params[23] = 'S' then LocList.Append(Format(Str, ['r'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -27*Power))]));
-    if Params[24] = 'L' then LocList.Append(Format(Str, ['quecto' + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -30*Power))]));
-    if Params[24] = 'S' then LocList.Append(Format(Str, ['q'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -30*Power))]));
-  end else
-    if (LowerCase(AIdentifierSymbol) = 'kg') then
-    begin
-      AIdentifierSymbol := 'g';
-      LocList.Append(Format(Str, ['h'  + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-01']));
-      LocList.Append(Format(Str, ['da' + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-02']));
-      LocList.Append(Format(Str, [''   + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-03']));
-      LocList.Append(Format(Str, ['d'  + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-04']));
-      LocList.Append(Format(Str, ['c'  + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-05']));
-      LocList.Append(Format(Str, ['m'  + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-06']));
-      LocList.Append(Format(Str, ['mi' + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-09']));
-      LocList.Append(Format(Str, ['n'  + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-12']));
-      LocList.Append(Format(Str, ['p'  + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-15']));
-    end else
-      if (LowerCase(AIdentifierSymbol) = 'kg2') then
-      begin
-         AIdentifierSymbol := 'g2';
-        LocList.Append(Format(Str, ['h'  + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-02']));
-        LocList.Append(Format(Str, ['da' + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-04']));
-        LocList.Append(Format(Str, [''   + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-06']));
-        LocList.Append(Format(Str, ['d'  + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-08']));
-        LocList.Append(Format(Str, ['c'  + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-10']));
-        LocList.Append(Format(Str, ['m'  + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-12']));
-        LocList.Append(Format(Str, ['mi' + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-18']));
-        LocList.Append(Format(Str, ['n'  + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-24']));
-        LocList.Append(Format(Str, ['p'  + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-30']));
-      end;
-
-  j := 0;
-  for i := 0 to LocList.Count -1 do j := Max(j, Length(LocList[i]));
-  for i := 0 to LocList.Count -1 do
-  begin
-    while Length(LocList[i]) < j do
-      LocList[i] := ' ' + LocList[i];
-    SectionA4.Append(LocList[i]);
-  end;
-  LocList.Destroy;
 end;
 
 procedure TToolkitList.AddPower(AOperator, AQuantity, AResult: string);
@@ -741,7 +644,7 @@ begin
       SectionA4.Append('var');
       SectionA4.Append(Format('  %s: %s;', [AItem.FIdentifierSymbol, GetUnitIdentifier(AItem.FClassName)]));
       SectionA4.Append('');
-      AddFactoredQuantity(AItem.FClassName, AItem.FIdentifierSymbol, '', AItem.FPrefixes);
+      AddFactoredQuantities(AItem.FClassName, AItem.FIdentifierSymbol, '', AItem.FPrefixes);
     end;
 
   end else
@@ -759,7 +662,7 @@ begin
         SectionA4.Append('var');
         SectionA4.Append(Format('  %s: %s;', [AItem.FIdentifierSymbol, GetUnitIdentifier(AItem.FBaseClass)]));
         SectionA4.Append('');
-        AddFactoredQuantity(AItem.FBaseClass, AItem.FIdentifierSymbol, AItem.FFactor, AItem.FPrefixes);
+        AddFactoredQuantities(AItem.FBaseClass, AItem.FIdentifierSymbol, AItem.FFactor, AItem.FPrefixes);
       end;
 
     end else
@@ -777,7 +680,7 @@ begin
           SectionA4.Append('');
           SectionA4.Append('const');
           SectionA4.Append(Format('  %s: %s = (FValue: %s);', [AItem.FIdentifierSymbol, GetQuantityType(AItem.FBaseClass), AItem.FFactor]));
-          AddFactoredQuantity(AItem.FBaseClass, AItem.FIdentifierSymbol, AItem.FFactor, AItem.FPrefixes);
+          AddFactoredQuantities(AItem.FBaseClass, AItem.FIdentifierSymbol, AItem.FFactor, AItem.FPrefixes);
         end else
         begin
           SectionA4.Append('');
@@ -805,6 +708,129 @@ begin
     if not AItem.FFactor.Contains('%s') then
       SectionA4.Append(Format('  c%sFactor                 = %s;', [GetUnitID(AItem.FClassName), AItem.FFactor]));
   end;
+end;
+
+procedure TToolkitList.AddFactoredQuantities(ABaseClass, AIdentifierSymbol, AFactor, APrefixes: string);
+var
+  i, j: longint;
+  Params: string;
+  Power: longint;
+  LocList: TStringList;
+  Str: string;
+begin
+  Str := '  %s: %s = (FValue: %s);';
+  if AFactor <> '' then
+    AFactor := AFactor + ' * ';
+
+  if Length(APrefixes) = 24 then
+  begin
+    Params := APrefixes;
+    SectionA4.Append('');
+    SectionA4.Append('const');
+  end else
+    Params := '------------------------';
+
+  Power  := 1;
+  if Pos('2', AIdentifierSymbol) > 0 then Power := 2;
+  if Pos('3', AIdentifierSymbol) > 0 then Power := 3;
+  if Pos('4', AIdentifierSymbol) > 0 then Power := 4;
+  if Pos('5', AIdentifierSymbol) > 0 then Power := 5;
+  if Pos('6', AIdentifierSymbol) > 0 then Power := 6;
+  if Pos('7', AIdentifierSymbol) > 0 then Power := 7;
+  if Pos('8', AIdentifierSymbol) > 0 then Power := 8;
+  if Pos('9', AIdentifierSymbol) > 0 then Power := 9;
+
+  LocList := TStringList.Create;
+  if (LowerCase(AIdentifierSymbol) <> 'kg' ) and
+     (LowerCase(AIdentifierSymbol) <> 'kg2') then
+  begin
+    if Params[ 1] = 'L' then LocList.Append(Format(Str, ['quetta' + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +30*Power))]));
+    if Params[ 1] = 'S' then LocList.Append(Format(Str, ['Q'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +30*Power))]));
+    if Params[ 2] = 'L' then LocList.Append(Format(Str, ['ronna'  + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +27*Power))]));
+    if Params[ 2] = 'S' then LocList.Append(Format(Str, ['R'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +27*Power))]));
+    if Params[ 3] = 'L' then LocList.Append(Format(Str, ['yotta'  + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +24*Power))]));
+    if Params[ 3] = 'S' then LocList.Append(Format(Str, ['Y'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +24*Power))]));
+    if Params[ 4] = 'L' then LocList.Append(Format(Str, ['zetta'  + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +21*Power))]));
+    if Params[ 4] = 'S' then LocList.Append(Format(Str, ['Z'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +21*Power))]));
+    if Params[ 5] = 'L' then LocList.Append(Format(Str, ['exa'    + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +18*Power))]));
+    if Params[ 5] = 'S' then LocList.Append(Format(Str, ['E'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +18*Power))]));
+    if Params[ 6] = 'L' then LocList.Append(Format(Str, ['peta'   + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +15*Power))]));
+    if Params[ 6] = 'S' then LocList.Append(Format(Str, ['P'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +15*Power))]));
+
+    if Params[ 7] = 'L' then LocList.Append(Format(Str, ['tera'   + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +12*Power))]));
+    if Params[ 7] = 'S' then LocList.Append(Format(Str, ['T'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, +12*Power))]));
+    if Params[ 8] = 'L' then LocList.Append(Format(Str, ['giga'   + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 9*Power))]));
+    if Params[ 8] = 'S' then LocList.Append(Format(Str, ['G'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 9*Power))]));
+    if Params[ 9] = 'L' then LocList.Append(Format(Str, ['mega'   + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 6*Power))]));
+    if Params[ 9] = 'S' then LocList.Append(Format(Str, ['M'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 6*Power))]));
+    if Params[10] = 'L' then LocList.Append(Format(Str, ['kilo'   + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 3*Power))]));
+    if Params[10] = 'S' then LocList.Append(Format(Str, ['k'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 3*Power))]));
+    if Params[11] = 'L' then LocList.Append(Format(Str, ['hecto'  + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 2*Power))]));
+    if Params[11] = 'S' then LocList.Append(Format(Str, ['h'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 2*Power))]));
+    if Params[12] = 'L' then LocList.Append(Format(Str, ['deca'   + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 1*Power))]));
+    if Params[12] = 'S' then LocList.Append(Format(Str, ['da'     + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, + 1*Power))]));
+    if Params[13] = 'L' then LocList.Append(Format(Str, ['deci'   + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 1*Power))]));
+    if Params[13] = 'S' then LocList.Append(Format(Str, ['d'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 1*Power))]));
+    if Params[14] = 'L' then LocList.Append(Format(Str, ['centi'  + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 2*Power))]));
+    if Params[14] = 'S' then LocList.Append(Format(Str, ['c'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 2*Power))]));
+    if Params[15] = 'L' then LocList.Append(Format(Str, ['milli'  + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 3*Power))]));
+    if Params[15] = 'S' then LocList.Append(Format(Str, ['m'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 3*Power))]));
+    if Params[16] = 'L' then LocList.Append(Format(Str, ['micro'  + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 6*Power))]));
+    if Params[16] = 'S' then LocList.Append(Format(Str, ['mi'     + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 6*Power))]));
+    if Params[17] = 'L' then LocList.Append(Format(Str, ['nano'   + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 9*Power))]));
+    if Params[17] = 'S' then LocList.Append(Format(Str, ['n'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, - 9*Power))]));
+    if Params[18] = 'L' then LocList.Append(Format(Str, ['pico'   + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -12*Power))]));
+    if Params[18] = 'S' then LocList.Append(Format(Str, ['p'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -12*Power))]));
+
+    if Params[19] = 'L' then LocList.Append(Format(Str, ['femto'  + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -15*Power))]));
+    if Params[19] = 'S' then LocList.Append(Format(Str, ['f'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -15*Power))]));
+    if Params[20] = 'L' then LocList.Append(Format(Str, ['atto'   + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -18*Power))]));
+    if Params[20] = 'S' then LocList.Append(Format(Str, ['a'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -18*Power))]));
+    if Params[21] = 'L' then LocList.Append(Format(Str, ['zepto'  + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -21*Power))]));
+    if Params[21] = 'S' then LocList.Append(Format(Str, ['z'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -21*Power))]));
+    if Params[22] = 'L' then LocList.Append(Format(Str, ['yocto'  + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -24*Power))]));
+    if Params[22] = 'S' then LocList.Append(Format(Str, ['y'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -24*Power))]));
+    if Params[23] = 'L' then LocList.Append(Format(Str, ['ronto'  + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -27*Power))]));
+    if Params[23] = 'S' then LocList.Append(Format(Str, ['r'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -27*Power))]));
+    if Params[24] = 'L' then LocList.Append(Format(Str, ['quecto' + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -30*Power))]));
+    if Params[24] = 'S' then LocList.Append(Format(Str, ['q'      + AIdentifierSymbol, GetQuantityType(ABaseClass), AFactor + FormatFloat('0E+00', IntPower(10, -30*Power))]));
+  end else
+    if (LowerCase(AIdentifierSymbol) = 'kg') then
+    begin
+      AIdentifierSymbol := 'g';
+      LocList.Append(Format(Str, ['h'  + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-01']));
+      LocList.Append(Format(Str, ['da' + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-02']));
+      LocList.Append(Format(Str, [''   + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-03']));
+      LocList.Append(Format(Str, ['d'  + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-04']));
+      LocList.Append(Format(Str, ['c'  + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-05']));
+      LocList.Append(Format(Str, ['m'  + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-06']));
+      LocList.Append(Format(Str, ['mi' + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-09']));
+      LocList.Append(Format(Str, ['n'  + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-12']));
+      LocList.Append(Format(Str, ['p'  + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-15']));
+    end else
+      if (LowerCase(AIdentifierSymbol) = 'kg2') then
+      begin
+         AIdentifierSymbol := 'g2';
+        LocList.Append(Format(Str, ['h'  + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-02']));
+        LocList.Append(Format(Str, ['da' + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-04']));
+        LocList.Append(Format(Str, [''   + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-06']));
+        LocList.Append(Format(Str, ['d'  + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-08']));
+        LocList.Append(Format(Str, ['c'  + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-10']));
+        LocList.Append(Format(Str, ['m'  + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-12']));
+        LocList.Append(Format(Str, ['mi' + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-18']));
+        LocList.Append(Format(Str, ['n'  + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-24']));
+        LocList.Append(Format(Str, ['p'  + AIdentifierSymbol, GetQuantityType(ABaseClass), '1E-30']));
+      end;
+
+  j := 0;
+  for i := 0 to LocList.Count -1 do j := Max(j, Length(LocList[i]));
+  for i := 0 to LocList.Count -1 do
+  begin
+    while Length(LocList[i]) < j do
+      LocList[i] := ' ' + LocList[i];
+    SectionA4.Append(LocList[i]);
+  end;
+  LocList.Destroy;
 end;
 
 procedure TToolkitList.CreateSolution(var ANeighbour: TSolution);
@@ -1105,15 +1131,15 @@ begin
       for J := Low(FList) to High(FList) do
         if FList[J].FClassName = ASolution[I] then
         begin
-          AddClass(FList[J], FALSE);
+          AddItem(FList[J], FALSE);
           Break;
         end;
 
-    for J := Low(FList) to High(FList) do AddClass(FList[J], TRUE);
+    for J := Low(FList) to High(FList) do AddItem(FList[J], TRUE);
   end else
   begin
-    for J := Low(FList) to High(FList) do AddClass(FList[J], FALSE);
-    for J := Low(FList) to High(FList) do AddClass(FList[J], TRUE);
+    for J := Low(FList) to High(FList) do AddItem(FList[J], FALSE);
+    for J := Low(FList) to High(FList) do AddItem(FList[J], TRUE);
   end;
 
   SectionA0.Append('');
@@ -1192,9 +1218,6 @@ begin
 
   CheckList := nil;
 end;
-
-
-
 
 procedure TToolkitList.CheckClass(AClassName, AOperator, AClassParent1, AClassParent2: string);
 var
