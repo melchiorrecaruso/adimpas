@@ -27,12 +27,12 @@ uses
   Classes, SysUtils;
 
 const
-  INTF_QUANTITY      = '{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=%s}{$i adim%s.inc}';
-  INTF_UNIT          = '{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=%s}{$DEFINE TUnit:=%s}{$i adim%s.inc}';
-  INTF_END           = '{$DEFINE INTF_END}{$i adim%s.inc}';
+  INTF_QUANTITY      = '{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=%s}{$i %s}';
+  INTF_UNIT          = '{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=%s}{$DEFINE TUnit:=%s}{$i %s}';
+  INTF_END           = '{$DEFINE INTF_END}{$i %s}';
 
-  IMPL_QUANTITY      = '{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=%s}{$i adim%s.inc}';
-  IMPL_UNIT          = '{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=%s}{$DEFINE TUnit:=%s}{$i adim%s.inc}';
+  IMPL_QUANTITY      = '{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=%s}{$i %s}';
+  IMPL_UNIT          = '{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=%s}{$DEFINE TUnit:=%s}{$i %s}';
 
   IMPL_CSYMBOL       = '{$DEFINE CSYMBOL:=%s}';
   IMPL_CSINGULARNAME = '{$DEFINE CSINGULARNAME:=%s}';
@@ -64,11 +64,12 @@ function GetQuantityType(const S: string): string;
 function GetQuantity(const S: string): string;
 function GetUnitType(const S: string): string;
 
-
 function GetUnitID(const S: string): string;
 
 function GetUnitTypeHelper(const S: string): string;
 function GetUnitIdentifier(const S: string): string;
+
+function GetBaseClass(const S: string): string;
 
 
 function  CleanUnitName(const S: string): string;
@@ -168,7 +169,14 @@ begin
     Result := StringReplace(Result, 'y!',    'y',    [rfReplaceAll]);
     Result := StringReplace(Result, '?',     '',     [rfReplaceAll]);
     Result := StringReplace(Result, ' ',     '',     [rfReplaceAll]);
-    Result := Result + 'Qty';
+
+    Result := StringReplace(Result, 'Unit',  '',     [rfReplaceAll]);
+    Result := StringReplace(Result, 'Qty',   '',     [rfReplaceAll]);
+
+    if (Result <> 'double'      ) and
+       (Result <> 'TVector'     ) and
+       (Result <> 'TBivector'   ) and
+       (Result <> 'TMultivector') then Result := Result + 'Qty';
   end;
 end;
 
@@ -245,6 +253,20 @@ begin
   Result := StringReplace(Result, ' ',  '', [rfReplaceAll]);
   Result := Result + 'Unit';
 end;
+
+function GetBaseClass(const S: string): string;
+begin
+  Result := S;
+  Result := StringReplace(Result, 'Unit',   '',      [rfReplaceAll]);
+  Result := StringReplace(Result, 'Qty',    '',      [rfReplaceAll]);
+
+  Result := StringReplace(Result, 'Feet',   'Foot!', [rfReplaceAll]);
+  Result := StringReplace(Result, 'Inches', 'Inch!', [rfReplaceAll]);
+  Result := StringReplace(Result, 'ies',    'y!',    [rfReplaceAll]);
+  Result := StringReplace(Result, 's',      '?',     [rfReplaceAll]);
+  Result := StringReplace(Result, ' ',      '',      [rfReplaceAll]);
+end;
+
 
 function GetPrefixes(const AShortSymbol: string): string;
 var
