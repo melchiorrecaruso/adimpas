@@ -111,7 +111,7 @@ type
     procedure AddVECItemOperators(const AItem: TToolkitItem);
 
 
-    procedure AddQuantityOperator(AOperator, ALeftClass, ARightClass, AResultClass: string);
+    procedure AddQuantityOperator(const AOperator, ALeftClass, ARightClass, AResultClass: string);
     procedure AddUnitOperator(const AOperator, ALeftClass, ARightClass, AResultClass: string);
 
     procedure AddFactoredQuantities(ABaseClass, AIdentifierSymbol, AFactor, APrefixes: string);
@@ -272,6 +272,8 @@ begin
 end;
 
 procedure TToolkitList.AddVECBaseItem(const AItem: TToolkitItem);
+var
+  xClassName: string;
 begin
   // VEC BASE UNIT
 
@@ -280,12 +282,14 @@ begin
   SectionA2.Insert(5, Format(INTF_END, [adimVECinc]));
   SectionA2.Insert(6, '');
 
+  xClassName := AItem.FClassName;
+  while Pos('CL3', xClassName) > 0 do Delete(xClassName, Pos('CL3', xClassName), Length('CL3'));
 
-  SectionB2.Append(Format(IMPL_CSYMBOL,       [GetSymbolResourceString      (AItem.FClassName)]));
-  SectionB2.Append(Format(IMPL_CSINGULARNAME, [GetSingularNameResourceString(AItem.FClassName)]));
-  SectionB2.Append(Format(IMPL_CPLURALNAME,   [GetPluralNameResourceString  (AItem.FClassName)]));
-  SectionB2.Append(Format(IMPL_CPREFIXES,     [GetPrefixesConst             (AItem.FClassName)]));
-  SectionB2.Append(Format(IMPL_CEXPONENTS,    [GetExponentsConst            (AItem.FClassName)]));
+  SectionB2.Append(Format(IMPL_CSYMBOL,       [GetSymbolResourceString      (xClassName)]));
+  SectionB2.Append(Format(IMPL_CSINGULARNAME, [GetSingularNameResourceString(xClassName)]));
+  SectionB2.Append(Format(IMPL_CPLURALNAME,   [GetPluralNameResourceString  (xClassName)]));
+  SectionB2.Append(Format(IMPL_CPREFIXES,     [GetPrefixesConst             (xClassName)]));
+  SectionB2.Append(Format(IMPL_CEXPONENTS,    [GetExponentsConst            (xClassName)]));
   SectionB2.Append(Format(IMPL_QUANTITY,      [GetQuantityType              (AItem.FClassName), adimVECinc]));
   SectionB2.Append('');
 
@@ -365,6 +369,8 @@ begin
 end;
 
 procedure TToolkitList.AddVECFactoredItem(const AItem: TToolkitItem);
+var
+  xClassName: string;
 begin
   // VEC FACTORED UNIT
   SectionA2.Append('');
@@ -376,12 +382,15 @@ begin
   //SectionA3.Append(Format(INTF_UNIT, [GetQuantityType(AItem.FClassName), GetUnitType(AItem.FClassName), adimVECinc]));
   //SectionA3.Append(Format(INTF_END, [adimVECinc]));
 
-  SectionB2.Append(Format(IMPL_CSYMBOL,       [GetSymbolResourceString      (AItem.FClassName)]));
-  SectionB2.Append(Format(IMPL_CSINGULARNAME, [GetSingularNameResourceString(AItem.FClassName)]));
-  SectionB2.Append(Format(IMPL_CPLURALNAME,   [GetPluralNameResourceString  (AItem.FClassName)]));
-  SectionB2.Append(Format(IMPL_CPREFIXES,     [GetPrefixesConst             (AItem.FClassName)]));
-  SectionB2.Append(Format(IMPL_CEXPONENTS,    [GetExponentsConst            (AItem.FClassName)]));
-  SectionB2.Append(Format(IMPL_CFACTOR,       [GetFactorConst               (AItem.FClassName)]));
+  xClassName := AItem.FClassName;
+  while Pos('CL3', xClassName) > 0 do Delete(xClassName, Pos('CL3', xClassName), Length('CL3'));
+
+  SectionB2.Append(Format(IMPL_CSYMBOL,       [GetSymbolResourceString      (xClassName)]));
+  SectionB2.Append(Format(IMPL_CSINGULARNAME, [GetSingularNameResourceString(xClassName)]));
+  SectionB2.Append(Format(IMPL_CPLURALNAME,   [GetPluralNameResourceString  (xClassName)]));
+  SectionB2.Append(Format(IMPL_CPREFIXES,     [GetPrefixesConst             (xClassName)]));
+  SectionB2.Append(Format(IMPL_CEXPONENTS,    [GetExponentsConst            (xClassName)]));
+  SectionB2.Append(Format(IMPL_CFACTOR,       [GetFactorConst               (xClassName)]));
   SectionB2.Append(Format(IMPL_QUANTITY,      [GetQuantityType              (AItem.FClassName), adimVECinc]));
   SectionB2.Append('');
 
@@ -409,17 +418,11 @@ begin
 
     if AItem.FOperator = '*' then
     begin
-      AddQuantityOperator('*', AItem.FClassParent1, AItem.FClassParent2, AItem.FClassName);
-      if AItem.FClassParent1 <> AItem.FClassParent2 then
-      begin
-        AddQuantityOperator('*', AItem.FClassParent2, AItem.FClassParent1, AItem.FClassName);
-      end;
+                                                         AddQuantityOperator('*', GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName));
+      if AItem.FClassParent1 <> AItem.FClassParent2 then AddQuantityOperator('*', GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassName));
 
-      AddQuantityOperator('/', AItem.FClassName, AItem.FClassParent1, AItem.FClassParent2);
-      if AItem.FClassParent1 <> AItem.FClassParent2 then
-      begin
-        AddQuantityOperator('/', AItem.FClassName, AItem.FClassParent2, AItem.FClassParent1);
-      end;
+                                                         AddQuantityOperator('/', GetQuantityType(AItem.FClassName), GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2));
+      if AItem.FClassParent1 <> AItem.FClassParent2 then AddQuantityOperator('/', GetQuantityType(AItem.FClassName), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1));
 
       // OP1: A*B=C
       // OP2: B*A=C
@@ -434,10 +437,10 @@ begin
     end else
       if AItem.FOperator = '/' then
       begin
-        AddQuantityOperator('/', AItem.FClassParent1, AItem.FClassParent2, AItem.FClassName   );
-        AddQuantityOperator('*', AItem.FClassParent2, AItem.FClassName,    AItem.FClassParent1);
-        AddQuantityOperator('*', AItem.FClassName,    AItem.FClassParent2, AItem.FClassParent1);
-        AddQuantityOperator('/', AItem.FClassParent1, AItem.FClassName,    AItem.FClassParent2);
+        AddQuantityOperator('/', GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName));
+        AddQuantityOperator('*', GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName),    GetQuantityType(AItem.FClassParent1));
+        AddQuantityOperator('*', GetQuantityType(AItem.FClassName),    GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1));
+        AddQuantityOperator('/', GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassName),    GetQuantityType(AItem.FClassParent2));
 
         // OP1: C=A/B
         // OP2: B*C=A
@@ -460,7 +463,7 @@ begin
     begin
 
       if AItem.FBaseClass <> '' then;
-        CommUnits.Add(AItem.FBaseClass);
+        CommUnits.Add(GetQuantityType(AItem.FBaseClass));
 
       SectionA7.Append('');
       SectionB7.Append('');
@@ -521,15 +524,15 @@ end;
 
 
 
-procedure TToolkitList.AddQuantityOperator(AOperator, ALeftClass, ARightClass, AResultClass: string);
+procedure TToolkitList.AddQuantityOperator(const AOperator, ALeftClass, ARightClass, AResultClass: string);
 var
   i, iL, iR, iX: longint;
   j: longint;
   ABaseClass, S: string;
 begin
-  iL := Find(Format(INTF_QUANTITY, [GetQuantityType(ALeftClass  ), adiminc]), SectionA2);
-  iR := Find(Format(INTF_QUANTITY, [GetQuantityType(ARightClass ), adiminc]), SectionA2);
-  iX := Find(Format(INTF_QUANTITY, [GetQuantityType(AResultClass), adiminc]), SectionA2);
+  iL := Find(Format(INTF_QUANTITY, [ALeftClass  , AdimInc]), SectionA2);
+  iR := Find(Format(INTF_QUANTITY, [ARightClass , AdimInc]), SectionA2);
+  iX := Find(Format(INTF_QUANTITY, [AResultClass, AdimInc]), SectionA2);
 
   ABaseClass := '';
   i := Max(iL, iR);
@@ -541,16 +544,11 @@ begin
   begin
     if ABaseClass <> '' then
     begin
-      if (i = iL) and (GetQuantityType(ALeftClass ) = GetQuantityType(CommUnits[j])) then ABaseClass := '';
-      if (i = iR) and (GetQuantityType(ARightClass) = GetQuantityType(CommUnits[j])) then ABaseClass := '';
+      if (i = iL) and (ALeftClass  = CommUnits[j]) then ABaseClass := '';
+      if (i = iR) and (ARightClass = CommUnits[j]) then ABaseClass := '';
       if ABaseClass = '' then Inc(ForcedOperators);
     end;
   end;
-
-  if ABaseClass   <> 'double' then ABaseClass   := GetQuantityType(ABaseClass);
-  if ALeftClass   <> 'double' then ALeftClass   := GetQuantityType(ALeftClass);
-  if ARightClass  <> 'double' then ARightClass  := GetQuantityType(ARightClass);
-  if AResultClass <> 'double' then AResultClass := GetQuantityType(AResultClass);
 
   if ClassList.IndexOf(ABaseClass + '.' + ALeftClass + AOperator + ARightClass) = -1 then
   begin
