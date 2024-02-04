@@ -39,6 +39,7 @@ type
     FBaseClass:        string;
     FFactor:           string;
     FPrefixes:         string;
+    FVector:           string;
   end;
 
   TToolKitExponent = record
@@ -101,7 +102,15 @@ type
     procedure AddClonedItem(const AItem: TToolkitItem);
     procedure AddFactoredItem(const AItem: TToolkitItem);
 
+    procedure AddVECBaseItem(const AItem: TToolkitItem);
+    procedure AddVECClonedItem(const AItem: TToolkitItem);
+    procedure AddVECFactoredItem(const AItem: TToolkitItem);
+
+
     procedure AddItemOperators(const AItem: TToolkitItem);
+    procedure AddVECItemOperators(const AItem: TToolkitItem);
+
+
     procedure AddQuantityOperator(AOperator, ALeftClass, ARightClass, AResultClass: string);
     procedure AddUnitOperator(AOperator, ALeftClass, ARightClass, AResultClass: string);
 
@@ -109,7 +118,12 @@ type
     procedure AddPower(AOperator, AQuantity, AResult: string);
     procedure AddHelper(AClassName, ABaseClass, AFactor: string);
     procedure AddEquivalence(AClassName, ABaseClass: string);
+
+
+
     procedure AddItemResource(const AItem: TToolkitItem);
+    procedure AddVECItemResource(const AItem: TToolkitItem);
+
 
     procedure CheckClass(AClassName, AOperator, AClassParent1, AClassParent2: string);
     function GetIndex(const AClassName: string): longint;
@@ -136,6 +150,13 @@ implementation
 
 uses
   Common, DateUtils, LCLType, Math, Process;
+
+const
+  adiminc     = 'adim.inc';
+  adimVECinc  = 'adimVEC.inc';
+  adimBVECinc = 'adimBVEC.inc';
+  adimMVECinc = 'adimMVEC.inc';
+
 
 // TToolkitList
 
@@ -189,45 +210,50 @@ begin
   begin
     ClassList.Append(GetQuantityType(AItem.FClassName));
 
-    if (AItem.FBaseClass = '') then
-      AddBaseItem(AItem)
-    else
-      if (AItem.FFactor = '') then
-        AddClonedItem(AItem)
-      else
-        AddFactoredItem(AItem);
+    if AItem.FVector = '' then
+    begin
+      if (AItem.FBaseClass = '') then AddBaseItem  (AItem) else
+      if (AItem.FFactor    = '') then AddClonedItem(AItem) else AddFactoredItem(AItem);
+    end else
+    begin
+      if (AItem.FBaseClass = '') then AddVECBaseItem  (AItem) else
+      if (AItem.FFactor    = '') then AddVECClonedItem(AItem) else AddVECFactoredItem(AItem);
+    end;
   end;
+
   if AddOperator then
-    AddItemOperators(AItem);
+  begin
+    if AItem.FVector = '' then
+      AddItemOperators(AItem)
+    else
+      AddVECItemOperators(AItem);
+  end;
 end;
 
 procedure TToolkitList.AddBaseItem(const AItem: TToolkitItem);
-var
-  Suffix: string;
 begin
-  Suffix := '';
   // BASE UNIT
   if (AItem.FOperator = '*') then
   begin
     SectionA2.Insert(3, '');
-    SectionA2.Insert(4, Format(INTF_QUANTITY, [GetQuantityType(AItem.FClassName), Suffix]));
-    SectionA2.Insert(5, Format(INTF_END, [Suffix]));
+    SectionA2.Insert(4, Format(INTF_QUANTITY, [GetQuantityType(AItem.FClassName), adiminc]));
+    SectionA2.Insert(5, Format(INTF_END, [adiminc]));
     SectionA2.Insert(6, '');
 
     SectionA3.Append('');
-    SectionA3.Append(Format(INTF_UNIT, [GetQuantityType(AItem.FClassName), GetUnitType(AItem.FClassName), Suffix]));
-    SectionA3.Append(Format(INTF_END, [Suffix]));
+    SectionA3.Append(Format(INTF_UNIT, [GetQuantityType(AItem.FClassName), GetUnitType(AItem.FClassName), adiminc]));
+    SectionA3.Append(Format(INTF_END, [adiminc]));
     SectionA3.Append('');
   end else
   begin
     SectionA2.Append('');
-    SectionA2.Append(Format(INTF_QUANTITY, [GetQuantityType(AItem.FClassName), Suffix]));
-    SectionA2.Append(Format(INTF_END, [Suffix]));
+    SectionA2.Append(Format(INTF_QUANTITY, [GetQuantityType(AItem.FClassName), adiminc]));
+    SectionA2.Append(Format(INTF_END, [adiminc]));
     SectionA2.Append('');
 
     SectionA3.Append('');
-    SectionA3.Append(Format(INTF_UNIT, [GetQuantityType(AItem.FClassName), GetUnitType(AItem.FClassName), Suffix]));
-    SectionA3.Append(Format(INTF_END, [Suffix]));
+    SectionA3.Append(Format(INTF_UNIT, [GetQuantityType(AItem.FClassName), GetUnitType(AItem.FClassName), adiminc]));
+    SectionA3.Append(Format(INTF_END, [adiminc]));
     SectionA3.Append('');
   end;
 
@@ -236,29 +262,49 @@ begin
   SectionB2.Append(Format(IMPL_CPLURALNAME,   [GetPluralNameResourceString  (AItem.FClassName)]));
   SectionB2.Append(Format(IMPL_CPREFIXES,     [GetPrefixesConst             (AItem.FClassName)]));
   SectionB2.Append(Format(IMPL_CEXPONENTS,    [GetExponentsConst            (AItem.FClassName)]));
-  SectionB2.Append(Format(IMPL_QUANTITY,      [GetQuantityType              (AItem.FClassName), Suffix]));
+  SectionB2.Append(Format(IMPL_QUANTITY,      [GetQuantityType              (AItem.FClassName), adiminc]));
   SectionB2.Append('');
 
-  SectionB3.Append(Format(IMPL_UNIT, [GetQuantityType(AItem.FClassName), GetUnitType(AItem.FClassName), Suffix]));
+  SectionB3.Append(Format(IMPL_UNIT, [GetQuantityType(AItem.FClassName), GetUnitType(AItem.FClassName), adiminc]));
 
   AddItemResource(AItem);
   Inc(BaseUnitCount);
 end;
 
-procedure TToolkitList.AddClonedItem(const AItem: TToolkitItem);
-var
-  Suffix: string;
+procedure TToolkitList.AddVECBaseItem(const AItem: TToolkitItem);
 begin
-  Suffix := '';
+  // VEC BASE UNIT
+
+  SectionA2.Insert(3, '');
+  SectionA2.Insert(4, Format(INTF_QUANTITY, [GetQuantityType(AItem.FClassName), adimVECinc]));
+  SectionA2.Insert(5, Format(INTF_END, [adimVECinc]));
+  SectionA2.Insert(6, '');
+
+
+  SectionB2.Append(Format(IMPL_CSYMBOL,       [GetSymbolResourceString      (AItem.FClassName)]));
+  SectionB2.Append(Format(IMPL_CSINGULARNAME, [GetSingularNameResourceString(AItem.FClassName)]));
+  SectionB2.Append(Format(IMPL_CPLURALNAME,   [GetPluralNameResourceString  (AItem.FClassName)]));
+  SectionB2.Append(Format(IMPL_CPREFIXES,     [GetPrefixesConst             (AItem.FClassName)]));
+  SectionB2.Append(Format(IMPL_CEXPONENTS,    [GetExponentsConst            (AItem.FClassName)]));
+  SectionB2.Append(Format(IMPL_QUANTITY,      [GetQuantityType              (AItem.FClassName), adimVECinc]));
+  SectionB2.Append('');
+
+  //SectionB3.Append(Format(IMPL_UNIT, [GetQuantityType(AItem.FClassName), GetUnitType(AItem.FClassName), adimVECinc]));
+  Inc(BaseUnitCount);
+end;
+
+
+procedure TToolkitList.AddClonedItem(const AItem: TToolkitItem);
+begin
   // CLONED UNIT
   SectionA2.Append('');
-  SectionA2.Append(Format(INTF_QUANTITY, [GetQuantityType(AItem.FClassName), Suffix]));
-  SectionA2.Append(Format(INTF_END, [Suffix]));
+  SectionA2.Append(Format(INTF_QUANTITY, [GetQuantityType(AItem.FClassName), adiminc]));
+  SectionA2.Append(Format(INTF_END, [adiminc]));
   SectionA2.Append('');
 
   SectionA3.Append('');
-  SectionA3.Append(Format(INTF_UNIT, [GetQuantityType(AItem.FBaseClass), GetUnitType(AItem.FClassName), Suffix]));
-  SectionA3.Append(Format(INTF_END, [Suffix]));
+  SectionA3.Append(Format(INTF_UNIT, [GetQuantityType(AItem.FBaseClass), GetUnitType(AItem.FClassName), adiminc]));
+  SectionA3.Append(Format(INTF_END, [adiminc]));
   SectionA3.Append('');
 
   SectionB2.Append(Format(IMPL_CSYMBOL,       [GetSymbolResourceString      (AItem.FClassName)]));
@@ -266,10 +312,10 @@ begin
   SectionB2.Append(Format(IMPL_CPLURALNAME,   [GetPluralNameResourceString  (AItem.FClassName)]));
   SectionB2.Append(Format(IMPL_CPREFIXES,     [GetPrefixesConst             (AItem.FClassName)]));
   SectionB2.Append(Format(IMPL_CEXPONENTS,    [GetExponentsConst            (AItem.FClassName)]));
-  SectionB2.Append(Format(IMPL_QUANTITY,      [GetQuantityType              (AItem.FClassName), Suffix]));
+  SectionB2.Append(Format(IMPL_QUANTITY,      [GetQuantityType              (AItem.FClassName), adiminc]));
   SectionB2.Append('');
 
-  SectionB3.Append(Format(IMPL_UNIT, [GetQuantityType(AItem.FBaseClass), GetUnitType(AItem.FClassName), Suffix]));
+  SectionB3.Append(Format(IMPL_UNIT, [GetQuantityType(AItem.FBaseClass), GetUnitType(AItem.FClassName), adiminc]));
 
   AddItemResource(AItem);
   AddHelper(AItem.FClassName, AItem.FBaseClass, '');
@@ -278,20 +324,22 @@ begin
   Inc(FactoredUnitCount);
 end;
 
-procedure TToolkitList.AddFactoredItem(const AItem: TToolkitItem);
-var
-  Suffix: string;
+procedure TToolkitList.AddVECClonedItem(const AItem: TToolkitItem);
 begin
-  Suffix := '';
+
+end;
+
+procedure TToolkitList.AddFactoredItem(const AItem: TToolkitItem);
+begin
   // FACTORED UNIT
   SectionA2.Append('');
-  SectionA2.Append(Format(INTF_QUANTITY, [GetQuantityType(AItem.FClassName), Suffix]));
-  SectionA2.Append(Format(INTF_END, [Suffix]));
+  SectionA2.Append(Format(INTF_QUANTITY, [GetQuantityType(AItem.FClassName), adiminc]));
+  SectionA2.Append(Format(INTF_END, [adiminc]));
   SectionA2.Append('');
 
   SectionA3.Append('');
-  SectionA3.Append(Format(INTF_UNIT, [GetQuantityType(AItem.FClassName), GetUnitType(AItem.FClassName), Suffix]));
-  SectionA3.Append(Format(INTF_END, [Suffix]));
+  SectionA3.Append(Format(INTF_UNIT, [GetQuantityType(AItem.FClassName), GetUnitType(AItem.FClassName), adiminc]));
+  SectionA3.Append(Format(INTF_END, [adiminc]));
 
   SectionB2.Append(Format(IMPL_CSYMBOL,       [GetSymbolResourceString      (AItem.FClassName)]));
   SectionB2.Append(Format(IMPL_CSINGULARNAME, [GetSingularNameResourceString(AItem.FClassName)]));
@@ -299,10 +347,10 @@ begin
   SectionB2.Append(Format(IMPL_CPREFIXES,     [GetPrefixesConst             (AItem.FClassName)]));
   SectionB2.Append(Format(IMPL_CEXPONENTS,    [GetExponentsConst            (AItem.FClassName)]));
   SectionB2.Append(Format(IMPL_CFACTOR,       [GetFactorConst               (AItem.FClassName)]));
-  SectionB2.Append(Format(IMPL_QUANTITY,      [GetQuantityType              (AItem.FClassName), Suffix]));
+  SectionB2.Append(Format(IMPL_QUANTITY,      [GetQuantityType              (AItem.FClassName), adiminc]));
   SectionB2.Append('');
 
-  SectionB3.Append(Format(IMPL_UNIT, [GetQuantityType(AItem.FClassName), GetUnitType(AItem.FClassName), Suffix]));
+  SectionB3.Append(Format(IMPL_UNIT, [GetQuantityType(AItem.FClassName), GetUnitType(AItem.FClassName), adiminc]));
 
   AddItemResource(AItem);
   if AItem.FFactor.Contains('%s') = FALSE then
@@ -313,6 +361,43 @@ begin
     AddHelper(AItem.FBaseClass, AItem.FClassName, Format(Copy(AItem.FFactor, 1, Pos('|', AItem.FFactor) -1), ['FValue']));
     AddHelper(AItem.FClassName, AItem.FBaseClass, Format(Copy(AItem.FFactor, Pos('|', AItem.FFactor) + 1, Length(AItem.FFactor)), ['FValue']));
   end;
+  Inc(FactoredUnitCount);
+end;
+
+procedure TToolkitList.AddVECFactoredItem(const AItem: TToolkitItem);
+begin
+  // VEC FACTORED UNIT
+  SectionA2.Append('');
+  SectionA2.Append(Format(INTF_QUANTITY, [GetQuantityType(AItem.FClassName), adimVECinc]));
+  SectionA2.Append(Format(INTF_END, [adimVECinc]));
+  SectionA2.Append('');
+
+  //SectionA3.Append('');
+  //SectionA3.Append(Format(INTF_UNIT, [GetQuantityType(AItem.FClassName), GetUnitType(AItem.FClassName), adimVECinc]));
+  //SectionA3.Append(Format(INTF_END, [adimVECinc]));
+
+  SectionB2.Append(Format(IMPL_CSYMBOL,       [GetSymbolResourceString      (AItem.FClassName)]));
+  SectionB2.Append(Format(IMPL_CSINGULARNAME, [GetSingularNameResourceString(AItem.FClassName)]));
+  SectionB2.Append(Format(IMPL_CPLURALNAME,   [GetPluralNameResourceString  (AItem.FClassName)]));
+  SectionB2.Append(Format(IMPL_CPREFIXES,     [GetPrefixesConst             (AItem.FClassName)]));
+  SectionB2.Append(Format(IMPL_CEXPONENTS,    [GetExponentsConst            (AItem.FClassName)]));
+  SectionB2.Append(Format(IMPL_CFACTOR,       [GetFactorConst               (AItem.FClassName)]));
+  SectionB2.Append(Format(IMPL_QUANTITY,      [GetQuantityType              (AItem.FClassName), adimVECinc]));
+  SectionB2.Append('');
+
+  //SectionB3.Append(Format(IMPL_UNIT, [GetQuantityType(AItem.FClassName), GetUnitType(AItem.FClassName), adimVECinc]));
+
+
+  (*
+  if AItem.FFactor.Contains('%s') = FALSE then
+  begin
+    AddHelper(AItem.FClassName, AItem.FBaseClass, 'FValue / ' + GetFactorConst(AItem.FClassName));
+  end else
+  begin
+    AddHelper(AItem.FBaseClass, AItem.FClassName, Format(Copy(AItem.FFactor, 1, Pos('|', AItem.FFactor) -1), ['FValue']));
+    AddHelper(AItem.FClassName, AItem.FBaseClass, Format(Copy(AItem.FFactor, Pos('|', AItem.FFactor) + 1, Length(AItem.FFactor)), ['FValue']));
+  end;
+  *)
   Inc(FactoredUnitCount);
 end;
 
@@ -344,7 +429,7 @@ begin
     end else
       if AItem.FOperator = '/' then
       begin
-        AddQuantityOperator('/', AItem.FClassParent1, AItem.FClassParent2, AItem.FClassName);
+        AddQuantityOperator('/', AItem.FClassParent1, AItem.FClassParent2, AItem.FClassName   );
         AddQuantityOperator('*', AItem.FClassParent2, AItem.FClassName,    AItem.FClassParent1);
         AddQuantityOperator('*', AItem.FClassName,    AItem.FClassParent2, AItem.FClassParent1);
         AddQuantityOperator('/', AItem.FClassParent1, AItem.FClassName,    AItem.FClassParent2);
@@ -389,15 +474,52 @@ begin
       end;
 end;
 
+procedure TToolkitList.AddVECItemOperators(const AItem: TToolkitItem);
+var
+  xClassName: string;
+
+
+begin
+  if (AItem.FBaseClass = '') then
+  begin
+
+
+    xClassName := AItem.FClassName;
+    while Pos('CL3', xClassName) > 0 do Delete(xClassName, Pos('CL3', xClassName), Length('CL3'));
+
+
+    AddUnitOperator    ('*', AItem.FVector, xClassName, AItem.FClassName);
+    AddQuantityOperator('*', AItem.FVector, xClassName, AItem.FClassName);
+
+
+  end else
+    if (AItem.FOperator = '=') then
+    begin
+
+
+    end else
+      if (LowerCase(AItem.FOperator) = 'helper') then
+      begin
+
+
+
+
+
+
+      end;
+end;
+
+
+
 procedure TToolkitList.AddQuantityOperator(AOperator, ALeftClass, ARightClass, AResultClass: string);
 var
   i, iL, iR, iX: longint;
   j: longint;
   ABaseClass, S: string;
 begin
-  iL := Find(Format(INTF_QUANTITY, [GetQuantityType(ALeftClass  ), '']), SectionA2);
-  iR := Find(Format(INTF_QUANTITY, [GetQuantityType(ARightClass ), '']), SectionA2);
-  iX := Find(Format(INTF_QUANTITY, [GetQuantityType(AResultClass), '']), SectionA2);
+  iL := Find(Format(INTF_QUANTITY, [GetQuantityType(ALeftClass  ), adiminc]), SectionA2);
+  iR := Find(Format(INTF_QUANTITY, [GetQuantityType(ARightClass ), adiminc]), SectionA2);
+  iX := Find(Format(INTF_QUANTITY, [GetQuantityType(AResultClass), adiminc]), SectionA2);
 
   ABaseClass := '';
   i := Max(iL, iR);
@@ -432,7 +554,7 @@ begin
       Inc(ExternalOperators);
     end else
     begin
-      j := Find(Format(IMPL_QUANTITY, [ABaseClass, '']), SectionB2);
+      j := Find(Format(IMPL_QUANTITY, [ABaseClass, adiminc]), SectionB2);
       SectionA2.Insert(i + 1, Format(INTF_OP_CLASS, [            AOperator, ALeftClass, ARightClass, AResultClass]));
       SectionB2.Insert(j + 2, Format(IMPL_OP_CLASS, [ABaseClass, AOperator, ALeftClass, ARightClass, AResultClass]));
       Inc(InternalOperators);
@@ -443,7 +565,8 @@ begin
     else
       S := '  result.FValue :=';
 
-    if ALeftClass = 'double' then
+    if (ALeftClass = 'double' ) or
+       (ALeftClass = 'TVector') then
       S := S + ' ALeft ' + AOperator
     else
       S := S + ' ALeft.FValue ' + AOperator;
@@ -476,7 +599,7 @@ var
   i: longint;
   ABaseClass: string;
 begin
-  i := Find(Format(INTF_UNIT, [GetQuantityType(ARightClass), GetUnitType(ARightClass), '']), SectionA3);
+  i := Find(Format(INTF_UNIT, [GetQuantityType(ARightClass), GetUnitType(ARightClass), adiminc]), SectionA3);
 
   ABaseClass := ARightClass;
   if ALeftClass   <> 'double' then ALeftClass   := GetQuantityType  (ALeftClass);
@@ -494,10 +617,15 @@ begin
     SectionB31.Append('begin');
     if AResultClass <> 'double' then
     begin
-      if ALeftClass <> 'double' then
-        SectionB31.Append('  result.FValue := ALeft.FValue;')
+
+      if (ALeftClass = 'double'      ) or
+         (ALeftClass = 'TVector'     ) or
+         (ALeftClass = 'TBivector'   ) or
+         (ALeftClass = 'TMultivector') then
+        SectionB31.Append('  result.FValue := ALeft;')
       else
-        SectionB31.Append('  result.FValue := ALeft;');
+        SectionB31.Append('  result.FValue := ALeft.FValue;');
+
     end else
     begin
       if ALeftClass <> 'double' then
@@ -601,8 +729,8 @@ var
   i, iL, iR: longint;
   S: string;
 begin
-  iL := Find(Format(INTF_QUANTITY, [GetQuantityType(AClassName), '']), SectionA2);
-  iR := Find(Format(INTF_QUANTITY, [GetQuantityType(ABaseClass), '']), SectionA2);
+  iL := Find(Format(INTF_QUANTITY, [GetQuantityType(AClassName), adiminc]), SectionA2);
+  iR := Find(Format(INTF_QUANTITY, [GetQuantityType(ABaseClass), adiminc]), SectionA2);
 
   S := '';
   i := Max(iL, iR);
@@ -708,6 +836,14 @@ begin
     if not AItem.FFactor.Contains('%s') then
       SectionA4.Append(Format('  c%sFactor                 = %s;', [GetUnitID(AItem.FClassName), AItem.FFactor]));
   end;
+end;
+
+procedure TToolkitList.AddVECItemResource(const AItem: TToolkitItem);
+begin
+
+
+
+
 end;
 
 procedure TToolkitList.AddFactoredQuantities(ABaseClass, AIdentifierSymbol, AFactor, APrefixes: string);
