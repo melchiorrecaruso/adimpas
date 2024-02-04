@@ -112,7 +112,7 @@ type
 
 
     procedure AddQuantityOperator(AOperator, ALeftClass, ARightClass, AResultClass: string);
-    procedure AddUnitOperator(AOperator, ALeftClass, ARightClass, AResultClass: string);
+    procedure AddUnitOperator(const AOperator, ALeftClass, ARightClass, AResultClass: string);
 
     procedure AddFactoredQuantities(ABaseClass, AIdentifierSymbol, AFactor, APrefixes: string);
     procedure AddPower(AOperator, AQuantity, AResult: string);
@@ -421,10 +421,15 @@ begin
         AddQuantityOperator('/', AItem.FClassName, AItem.FClassParent2, AItem.FClassParent1);
       end;
 
-      if Pos('OP1', AItem.FFactor) > 0 then AddUnitOperator('*', AItem.FClassParent1, AItem.FClassParent2, AItem.FClassName);
-      if Pos('OP2', AItem.FFactor) > 0 then AddUnitOperator('*', AItem.FClassParent2, AItem.FClassParent1, AItem.FClassName);
-      if Pos('OP3', AItem.FFactor) > 0 then AddUnitOperator('/', AItem.FClassName, AItem.FClassParent1, AItem.FClassParent2);
-      if Pos('OP4', AItem.FFactor) > 0 then AddUnitOperator('/', AItem.FClassName, AItem.FClassParent2, AItem.FClassParent1);
+      // OP1: A*B=C
+      // OP2: B*A=C
+      // OP3: B=C/A
+      // OP4: A=C/B
+
+      if Pos('OP1', AItem.FFactor) > 0 then AddUnitOperator('*', GetQuantityType(AItem.FClassParent1), GetUnitType(AItem.FClassParent2), GetQuantityType(AItem.FClassName));
+      if Pos('OP2', AItem.FFactor) > 0 then AddUnitOperator('*', GetQuantityType(AItem.FClassParent2), GetUnitType(AItem.FClassParent1), GetQuantityType(AItem.FClassName));
+      if Pos('OP3', AItem.FFactor) > 0 then AddUnitOperator('/', GetQuantityType(AItem.FClassName),    GetUnitType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2));
+      if Pos('OP4', AItem.FFactor) > 0 then AddUnitOperator('/', GetQuantityType(AItem.FClassName),    GetUnitType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1));
 
     end else
       if AItem.FOperator = '/' then
@@ -434,10 +439,15 @@ begin
         AddQuantityOperator('*', AItem.FClassName,    AItem.FClassParent2, AItem.FClassParent1);
         AddQuantityOperator('/', AItem.FClassParent1, AItem.FClassName,    AItem.FClassParent2);
 
-        if Pos('OP1', AItem.FFactor) > 0 then AddUnitOperator('/', AItem.FClassParent1, AItem.FClassParent2, AItem.FClassName);
-        if Pos('OP2', AItem.FFactor) > 0 then AddUnitOperator('*', AItem.FClassParent2, AItem.FClassName, AItem.FClassParent1);
-        if Pos('OP3', AItem.FFactor) > 0 then AddUnitOperator('*', AItem.FClassName, AItem.FClassParent2, AItem.FClassParent1);
-        if Pos('OP4', AItem.FFactor) > 0 then AddUnitOperator('/', AItem.FClassParent1, AItem.FClassName, AItem.FClassParent2);
+        // OP1: C=A/B
+        // OP2: B*C=A
+        // OP3: C*B=A
+        // OP4: B=A/C
+
+        if Pos('OP1', AItem.FFactor) > 0 then AddUnitOperator('/', GetQuantityType(AItem.FClassParent1), GetUnitType(AItem.FClassParent2), GetQuantityType(AItem.FClassName));
+        if Pos('OP2', AItem.FFactor) > 0 then AddUnitOperator('*', GetQuantityType(AItem.FClassParent2), GetUnitType(AItem.FClassName),    GetQuantityType(AItem.FClassParent1));
+        if Pos('OP3', AItem.FFactor) > 0 then AddUnitOperator('*', GetQuantityType(AItem.FClassName),    GetUnitType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1));
+        if Pos('OP4', AItem.FFactor) > 0 then AddUnitOperator('/', GetQuantityType(AItem.FClassParent1), GetUnitType(AItem.FClassName),    GetQuantityType(AItem.FClassParent2));
 
       end else
         if Pos('power', LowerCase(AItem.FOperator)) > 0 then
@@ -488,8 +498,8 @@ begin
     while Pos('CL3', xClassName) > 0 do Delete(xClassName, Pos('CL3', xClassName), Length('CL3'));
 
 
-    AddUnitOperator    ('*', AItem.FVector, xClassName, AItem.FClassName);
-    AddQuantityOperator('*', AItem.FVector, xClassName, AItem.FClassName);
+    AddUnitOperator    ('*', AItem.FVector, GetUnitType    (xClassName), GetQuantityType(AItem.FClassName));
+    AddQuantityOperator('*', AItem.FVector, GetQuantityType(xClassName), GetQuantityType(AItem.FClassName));
 
 
   end else
@@ -594,26 +604,21 @@ begin
     FMessages.Append('ERROR: operator ' + AOperator + '(' + ALeftClass + '; ' + ARightClass + ') : ' + AResultClass + '; already esists.');
 end;
 
-procedure TToolkitList.AddUnitOperator(AOperator, ALeftClass, ARightClass, AResultClass: string);
+procedure TToolkitList.AddUnitOperator(const AOperator, ALeftClass, ARightClass, AResultClass: string);
 var
   i: longint;
-  ABaseClass: string;
+  BaseQuantity: string;
 begin
-  i := Find(Format(INTF_UNIT, [GetQuantityType(ARightClass), GetUnitType(ARightClass), adiminc]), SectionA3);
-
-  ABaseClass := ARightClass;
-  if ALeftClass   <> 'double' then ALeftClass   := GetQuantityType  (ALeftClass);
-  if ARightClass  <> 'double' then ARightClass  := GetUnitIdentifier(ARightClass);
-  if AResultClass <> 'double' then AResultClass := GetQuantityType  (AResultClass);
-
+  BaseQuantity := GetQuantityType(GetBaseClass(ARightClass));
   if ClassList.IndexOf(ALeftClass + AOperator + ARightClass) = -1 then
   begin
     ClassList.Append(ALeftClass + AOperator + ARightClass);
 
-    SectionA3 .Insert(i + 1, Format(INTF_OP_CLASS, [                               AOperator, ALeftClass, ARightClass, AResultClass]));
-    SectionB31.Append('');
-    SectionB31.Append(       Format(IMPL_OP_CLASS, [GetUnitIdentifier(ABaseClass), AOperator, ALeftClass, ARightClass, AResultClass]));
+    i := Find(Format(INTF_UNIT, [BaseQuantity, ARightClass, AdimInc]), SectionA3);
 
+    SectionA3 .Insert(i + 1, Format(INTF_OP_CLASS, [             AOperator, ALeftClass, ARightClass, AResultClass]));
+    SectionB31.Append('');
+    SectionB31.Append(       Format(IMPL_OP_CLASS, [ARightClass, AOperator, ALeftClass, ARightClass, AResultClass]));
     SectionB31.Append('begin');
     if AResultClass <> 'double' then
     begin
