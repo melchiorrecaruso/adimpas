@@ -94,6 +94,7 @@ const
   _base_class        = 08;
   _factor            = 09;
   _prefixes          = 10;
+  _vector            = 11;
 
 { TMainForm }
 
@@ -160,6 +161,8 @@ begin
     T.FBaseClass        := WorksheetGrid.Worksheet.ReadAsText(i, _base_class);
     T.FFactor           := WorksheetGrid.Worksheet.ReadAsText(i, _factor);
     T.FPrefixes         := WorksheetGrid.Worksheet.ReadAsText(i, _prefixes);
+    T.FVector           := WorksheetGrid.Worksheet.ReadAsText(i, _vector);
+
     T.FLongSymbol       := CleanUnitName(T.FLongSymbol);
     T.FShortSymbol      := CleanUnitSymbol(T.FShortSymbol);
     if (T.FClassName <> '') and (Pos('//', T.FClassName) = 0) then
