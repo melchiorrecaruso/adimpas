@@ -294,6 +294,7 @@ begin
   SectionB2.Append('');
 
   //SectionB3.Append(Format(IMPL_UNIT, [GetQuantityType(AItem.FClassName), GetUnitType(AItem.FClassName), adimVECinc]));
+  AddVECItemResource(AItem);
   Inc(BaseUnitCount);
 end;
 
@@ -488,21 +489,30 @@ begin
 end;
 
 procedure TToolkitList.AddVECItemOperators(const AItem: TToolkitItem);
-var
-  xClassName: string;
-
 
 begin
   if (AItem.FBaseClass = '') then
   begin
 
 
-    xClassName := AItem.FClassName;
-    while Pos('CL3', xClassName) > 0 do Delete(xClassName, Pos('CL3', xClassName), Length('CL3'));
+    if AItem.FOperator = '*' then
+    begin
+
+      AddUnitOperator    ('*', GetQuantityType(AItem.FClassParent1), GetUnitType    (AItem.FClassParent2), GetQuantityType(AItem.FClassName));
+      AddQuantityOperator('*', GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName));
+
+    end else
+      if AItem.FOperator = '/' then
+      begin
+
+        AddUnitOperator    ('/', GetQuantityType(AItem.FClassParent1), GetUnitType    (AItem.FClassParent2), GetQuantityType(AItem.FClassName));
+        AddQuantityOperator('/', GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName));
 
 
-    AddUnitOperator    ('*', AItem.FVector, GetUnitType    (xClassName), GetQuantityType(AItem.FClassName));
-    AddQuantityOperator('*', AItem.FVector, GetQuantityType(xClassName), GetQuantityType(AItem.FClassName));
+
+
+      end
+
 
 
   end else
@@ -520,6 +530,8 @@ begin
 
 
       end;
+
+
 end;
 
 
@@ -843,6 +855,18 @@ end;
 
 procedure TToolkitList.AddVECItemResource(const AItem: TToolkitItem);
 begin
+
+  if AItem.FBaseClass = '' then
+  begin
+
+    SectionA4.Append('');
+    SectionA4.Append('type');
+    SectionA4.Append(Format('  %s = %s;', [GetQuantity(AItem.FClassName), GetQuantityType(AItem.FClassName)]));
+    SectionA4.Append('');
+
+
+
+  end;
 
 
 
