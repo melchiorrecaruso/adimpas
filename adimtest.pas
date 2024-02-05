@@ -157,7 +157,8 @@ var
   I: TKilogramSquareMeters;
   Re: double;
 
-  displacement: TCL3MeterQty;
+  displacement: TCL3Meters;
+  speedvec: TCL3MetersPerSecond;
 
 begin
   ExitCode := 0;
@@ -885,6 +886,8 @@ begin
 
   displacement := (2*e1 + 6*e2)*m;
   displacement := (2*e1 + 6*e2)*au;
+
+  speedvec := displacement/(10*s);
 
 
 
