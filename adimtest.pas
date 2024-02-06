@@ -159,6 +159,7 @@ var
 
   displacement: TCL3Meters;
   speedvec: TCL3MetersPerSecond;
+  accvex: TCL3MetersPerSecondSquared;
 
 begin
   ExitCode := 0;
@@ -513,6 +514,10 @@ begin
   mass  := 10*kg;
   speed := 5*m/s;
   p     := mass*speed;
+
+  p     := 50*kg*m/s;
+
+
   p2    := p*p;
   Uc    := 0.5*p2/mass;
   if  p .ToString(4, 2, []) <> '50 kg·m/s'      then halt(1);
@@ -888,6 +893,7 @@ begin
   displacement := (2*e1 + 6*e2)*au;
 
   speedvec := displacement/(10*s);
+  accvex   := speedvec/(5*s);
 
 
 

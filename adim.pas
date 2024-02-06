@@ -18,11 +18,11 @@
 }
 
 {
-  ADimPas library built on 05/02/2024.
+  ADimPas library built on 06/02/2024.
 
-  Number of base units: 126
-  Number of factored units: 71
-  Number of operators: 973 (228 external, 745 internal)
+  Number of base units: 128
+  Number of factored units: 72
+  Number of operators: 980 (228 external, 752 internal)
 }
 
 unit ADim;
@@ -49,6 +49,12 @@ type
   TExponents = array of longint;
 
 { TQuantity classes }
+
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCL3KilogramMeterPerSecondQty}{$i adimVEC.inc}
+{$DEFINE INTF_END}{$i adimVEC.inc}
+
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCL3MeterPerSecondSquaredQty}{$i adimVEC.inc}
+{$DEFINE INTF_END}{$i adimVEC.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCL3MeterPerSecondQty}{$i adimVEC.inc}
 {$DEFINE INTF_END}{$i adimVEC.inc}
@@ -110,6 +116,7 @@ type
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSquareSecondQty}{$i adim.inc}
+  class operator /(const ALeft: TCL3MeterQty; const ARight: TSquareSecondQty): TCL3MeterPerSecondSquaredQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSexticMeterQty}{$i adim.inc}
@@ -279,6 +286,7 @@ type
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSecondQty}{$i adim.inc}
+  class operator /(const ALeft: TCL3MeterPerSecondQty; const ARight: TSecondQty): TCL3MeterPerSecondSquaredQty;
   class operator /(const ALeft: TCL3MeterQty; const ARight: TSecondQty): TCL3MeterPerSecondQty;
   class operator /(const ALeft: TQuarticMeterSecondQty; const ARight: TSecondQty): TQuarticMeterQty;
   class operator *(const ALeft: TSecondQty; const ARight: TQuarticMeterQty): TQuarticMeterSecondQty;
@@ -350,6 +358,7 @@ type
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TKilogramQty}{$i adim.inc}
+  class operator *(const ALeft: TKilogramQty; const ARight: TCL3MeterPerSecondQty): TCL3KilogramMeterPerSecondQty;
   class operator *(const ALeft: TNewtonSquareMeterPerSquareKilogramQty; const ARight: TKilogramQty): TCubicMeterPerSquareSecondQty;
   class operator *(const ALeft: TKilogramQty; const ARight: TNewtonSquareMeterPerSquareKilogramQty): TCubicMeterPerSquareSecondQty;
   class operator /(const ALeft: TCubicMeterPerSquareSecondQty; const ARight: TKilogramQty): TNewtonSquareMeterPerSquareKilogramQty;
@@ -836,6 +845,7 @@ type
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSquareHertzQty}{$i adim.inc}
+  class operator *(const ALeft: TCL3MeterQty; const ARight: TSquareHertzQty): TCL3MeterPerSecondSquaredQty;
   class operator /(const ALeft: TNewtonPerMeterQty; const ARight: TSquareHertzQty): TKilogramQty;
   class operator *(const ALeft: TSquareHertzQty; const ARight: TKilogramQty): TNewtonPerMeterQty;
   class operator *(const ALeft: TKilogramQty; const ARight: TSquareHertzQty): TNewtonPerMeterQty;
@@ -1264,6 +1274,9 @@ type
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCL3NauticalMilePerHourQty}{$i adimVEC.inc}
 {$DEFINE INTF_END}{$i adimVEC.inc}
 
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCL3MeterPerHourPerSecondQty}{$i adimVEC.inc}
+{$DEFINE INTF_END}{$i adimVEC.inc}
+
 { External Operators }
 
 operator /(const ALeft: TCubicMeterQty; const ARight: TSquareMeterQty): TMeterQty;
@@ -1557,6 +1570,7 @@ operator *(const ALeft: TCL3MeterQty; const ARight: THertzQty): TCL3MeterPerSeco
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TSecondQty}{$DEFINE TUnit:=TSecondUnit}{$i adim.inc}
+  class operator /(const ALeft: TCL3MeterPerSecondQty; const ARight: TSecondUnit): TCL3MeterPerSecondSquaredQty;
   class operator /(const ALeft: TCL3MeterQty; const ARight: TSecondUnit): TCL3MeterPerSecondQty;
   class operator /(const ALeft: TSquareMeterPerSquareSecondQty; const ARight: TSecondUnit): TGrayPerSecondQty;
   class operator /(const ALeft: TVoltMeterQty; const ARight: TSecondUnit): TVoltMeterPerSecondQty;
@@ -1623,7 +1637,6 @@ operator *(const ALeft: TCL3MeterQty; const ARight: THertzQty): TCL3MeterPerSeco
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TMeterPerSecondQty}{$DEFINE TUnit:=TMeterPerSecondUnit}{$i adim.inc}
-  class operator *(const ALeft: TKilogramQty; const ARight: TMeterPerSecondUnit): TKilogramMeterPerSecondQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TKilogramPerQuarticMeterQty}{$DEFINE TUnit:=TKilogramPerQuarticMeterUnit}{$i adim.inc}
@@ -1781,6 +1794,7 @@ operator *(const ALeft: TCL3MeterQty; const ARight: THertzQty): TCL3MeterPerSeco
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TSquareSecondQty}{$DEFINE TUnit:=TSquareSecondUnit}{$i adim.inc}
+  class operator /(const ALeft: TCL3MeterQty; const ARight: TSquareSecondUnit): TCL3MeterPerSecondSquaredQty;
   class operator /(const ALeft: TSquareKilogramQty; const ARight: TSquareSecondUnit): TSquareKilogramPerSquareSecondQty;
   class operator /(const ALeft: TCubicMeterQty; const ARight: TSquareSecondUnit): TCubicMeterPerSquareSecondQty;
   class operator *(const ALeft: TKilogramQty; const ARight: TSquareSecondUnit): TKilogramSquareSecondQty;
@@ -1898,6 +1912,7 @@ operator *(const ALeft: TCL3MeterQty; const ARight: THertzQty): TCL3MeterPerSeco
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TSquareHertzQty}{$DEFINE TUnit:=TSquareHertzUnit}{$i adim.inc}
+  class operator *(const ALeft: TCL3MeterQty; const ARight: TSquareHertzUnit): TCL3MeterPerSecondSquaredQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TAmpereQty}{$DEFINE TUnit:=TAmpereUnit}{$i adim.inc}
@@ -5342,6 +5357,12 @@ type
 type
   TCL3MetersPerSecond = TCL3MeterPerSecondQty;
 
+type
+  TCL3MetersPerSecondSquared = TCL3MeterPerSecondSquaredQty;
+
+type
+  TCL3KilogramMetersPerSecond = TCL3KilogramMeterPerSecondQty;
+
 { Helpers }
 
 type
@@ -6025,6 +6046,11 @@ end;
 {$DEFINE CEXPONENTS:=cSecondExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSecondQty}{$i adim.inc}
 
+class operator TSecondQty./(const ALeft: TCL3MeterPerSecondQty; const ARight: TSecondQty): TCL3MeterPerSecondSquaredQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
 class operator TSecondQty./(const ALeft: TCL3MeterQty; const ARight: TSecondQty): TCL3MeterPerSecondQty;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -6320,6 +6346,11 @@ end;
 {$DEFINE CPREFIXES:=cKilogramPrefixes}
 {$DEFINE CEXPONENTS:=cKilogramExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKilogramQty}{$i adim.inc}
+
+class operator TKilogramQty.*(const ALeft: TKilogramQty; const ARight: TCL3MeterPerSecondQty): TCL3KilogramMeterPerSecondQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
 
 class operator TKilogramQty.*(const ALeft: TNewtonSquareMeterPerSquareKilogramQty; const ARight: TKilogramQty): TCubicMeterPerSquareSecondQty;
 begin
@@ -7767,6 +7798,11 @@ end;
 {$DEFINE CEXPONENTS:=cSquareSecondExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareSecondQty}{$i adim.inc}
 
+class operator TSquareSecondQty./(const ALeft: TCL3MeterQty; const ARight: TSquareSecondQty): TCL3MeterPerSecondSquaredQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
 {$DEFINE CSYMBOL:=rsWattPerMeterSymbol}
 {$DEFINE CSINGULARNAME:=rsWattPerMeterName}
 {$DEFINE CPLURALNAME:=rsWattPerMeterPluralName}
@@ -8704,6 +8740,11 @@ end;
 {$DEFINE CPREFIXES:=cSquareHertzPrefixes}
 {$DEFINE CEXPONENTS:=cSquareHertzExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareHertzQty}{$i adim.inc}
+
+class operator TSquareHertzQty.*(const ALeft: TCL3MeterQty; const ARight: TSquareHertzQty): TCL3MeterPerSecondSquaredQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
 
 class operator TSquareHertzQty./(const ALeft: TNewtonPerMeterQty; const ARight: TSquareHertzQty): TKilogramQty;
 begin
@@ -10268,6 +10309,28 @@ end;
 {$DEFINE CFACTOR:=cNauticalMilePerHourFactor}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCL3NauticalMilePerHourQty}{$i adimVEC.inc}
 
+{$DEFINE CSYMBOL:=rsMeterPerSecondSquaredSymbol}
+{$DEFINE CSINGULARNAME:=rsMeterPerSecondSquaredName}
+{$DEFINE CPLURALNAME:=rsMeterPerSecondSquaredPluralName}
+{$DEFINE CPREFIXES:=cMeterPerSecondSquaredPrefixes}
+{$DEFINE CEXPONENTS:=cMeterPerSecondSquaredExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCL3MeterPerSecondSquaredQty}{$i adimVEC.inc}
+
+{$DEFINE CSYMBOL:=rsMeterPerHourPerSecondSymbol}
+{$DEFINE CSINGULARNAME:=rsMeterPerHourPerSecondName}
+{$DEFINE CPLURALNAME:=rsMeterPerHourPerSecondPluralName}
+{$DEFINE CPREFIXES:=cMeterPerHourPerSecondPrefixes}
+{$DEFINE CEXPONENTS:=cMeterPerHourPerSecondExponents}
+{$DEFINE CFACTOR:=cMeterPerHourPerSecondFactor}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCL3MeterPerHourPerSecondQty}{$i adimVEC.inc}
+
+{$DEFINE CSYMBOL:=rsKilogramMeterPerSecondSymbol}
+{$DEFINE CSINGULARNAME:=rsKilogramMeterPerSecondName}
+{$DEFINE CPLURALNAME:=rsKilogramMeterPerSecondPluralName}
+{$DEFINE CPREFIXES:=cKilogramMeterPerSecondPrefixes}
+{$DEFINE CEXPONENTS:=cKilogramMeterPerSecondExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCL3KilogramMeterPerSecondQty}{$i adimVEC.inc}
+
 class operator TRadianPerSecondQty.:=(const AQuantity: TRadianPerSecondQty): THertzQty;
 begin
   result.FValue := AQuantity.FValue;
@@ -11664,11 +11727,6 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
-class operator TMeterPerSecondUnit.*(const ALeft: TKilogramQty; const ARight: TMeterPerSecondUnit): TKilogramMeterPerSecondQty;
-begin
-  result.FValue := ALeft.FValue;
-end;
-
 class operator TSquareMeterUnit.*(const ALeft: TKilogramQty; const ARight: TSquareMeterUnit): TKilogramSquareMeterQty;
 begin
   result.FValue := ALeft.FValue;
@@ -12215,6 +12273,21 @@ begin
 end;
 
 class operator THertzUnit.*(const ALeft: TCL3MeterQty; const ARight: THertzUnit): TCL3MeterPerSecondQty;
+begin
+  result.FValue := ALeft.FValue;
+end;
+
+class operator TSecondUnit./(const ALeft: TCL3MeterPerSecondQty; const ARight: TSecondUnit): TCL3MeterPerSecondSquaredQty;
+begin
+  result.FValue := ALeft.FValue;
+end;
+
+class operator TSquareSecondUnit./(const ALeft: TCL3MeterQty; const ARight: TSquareSecondUnit): TCL3MeterPerSecondSquaredQty;
+begin
+  result.FValue := ALeft.FValue;
+end;
+
+class operator TSquareHertzUnit.*(const ALeft: TCL3MeterQty; const ARight: TSquareHertzUnit): TCL3MeterPerSecondSquaredQty;
 begin
   result.FValue := ALeft.FValue;
 end;

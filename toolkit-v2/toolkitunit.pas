@@ -239,23 +239,18 @@ begin
     SectionA2.Insert(4, Format(INTF_QUANTITY, [GetQuantityType(AItem.FClassName), adiminc]));
     SectionA2.Insert(5, Format(INTF_END, [adiminc]));
     SectionA2.Insert(6, '');
-
-    SectionA3.Append('');
-    SectionA3.Append(Format(INTF_UNIT, [GetQuantityType(AItem.FClassName), GetUnitType(AItem.FClassName), adiminc]));
-    SectionA3.Append(Format(INTF_END, [adiminc]));
-    SectionA3.Append('');
   end else
   begin
     SectionA2.Append('');
     SectionA2.Append(Format(INTF_QUANTITY, [GetQuantityType(AItem.FClassName), adiminc]));
     SectionA2.Append(Format(INTF_END, [adiminc]));
     SectionA2.Append('');
-
-    SectionA3.Append('');
-    SectionA3.Append(Format(INTF_UNIT, [GetQuantityType(AItem.FClassName), GetUnitType(AItem.FClassName), adiminc]));
-    SectionA3.Append(Format(INTF_END, [adiminc]));
-    SectionA3.Append('');
   end;
+
+  SectionA3.Append('');
+  SectionA3.Append(Format(INTF_UNIT, [GetQuantityType(AItem.FClassName), GetUnitType(AItem.FClassName), adiminc]));
+  SectionA3.Append(Format(INTF_END, [adiminc]));
+  SectionA3.Append('');
 
   SectionB2.Append(Format(IMPL_CSYMBOL,       [GetSymbolResourceString      (AItem.FClassName)]));
   SectionB2.Append(Format(IMPL_CSINGULARNAME, [GetSingularNameResourceString(AItem.FClassName)]));
@@ -282,6 +277,7 @@ begin
   SectionA2.Insert(5, Format(INTF_END, [adimVECinc]));
   SectionA2.Insert(6, '');
 
+
   xClassName := AItem.FClassName;
   while Pos('CL3', xClassName) > 0 do Delete(xClassName, Pos('CL3', xClassName), Length('CL3'));
 
@@ -293,7 +289,7 @@ begin
   SectionB2.Append(Format(IMPL_QUANTITY,      [GetQuantityType              (AItem.FClassName), adimVECinc]));
   SectionB2.Append('');
 
-  //SectionB3.Append(Format(IMPL_UNIT, [GetQuantityType(AItem.FClassName), GetUnitType(AItem.FClassName), adimVECinc]));
+//SectionB3.Append(Format(IMPL_UNIT, [GetQuantityType(AItem.FClassName), GetUnitType(AItem.FClassName), adimVECinc]));
   AddVECItemResource(AItem);
   Inc(BaseUnitCount);
 end;
