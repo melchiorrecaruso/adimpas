@@ -508,6 +508,7 @@ begin
   // TEST-37 - MOMENTUM
   mass  := 10*kg;
   speed := 5*m/s;
+  p     := 10*5*kg*m/s;
   p     := mass*speed;
   p2    := p*p;
   Uc    := 0.5*p2/mass;

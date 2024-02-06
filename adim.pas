@@ -18,11 +18,11 @@
 }
 
 {
-  ADimPas library built on 17/12/2023.
+  ADimPas library built on 06/02/2024.
 
-  Number of base units: 124
+  Number of base units: 125
   Number of factored units: 62
-  Number of operators: 967 (227 external, 740 internal)
+  Number of operators: 984 (233 external, 751 internal)
 }
 
 unit ADim;
@@ -51,6 +51,9 @@ type
 { TQuantity classes }
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSquareKilogramSquareMeterPerSquareSecondQty}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TKilogramMeterQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TQuinticMeterQty}{$i adim.inc}
@@ -164,17 +167,15 @@ type
   class operator *(const ALeft: TSquareKilogramQty; const ARight: TNewtonSquareMeterPerSquareKilogramQty): TNewtonSquareMeterQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
-{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TKilogramMeterPerSecondQty}{$i adim.inc}
-  class operator /(const ALeft: TSquareKilogramSquareMeterPerSquareSecondQty; const ARight: TKilogramMeterPerSecondQty): TKilogramMeterPerSecondQty;
-  class operator *(const ALeft: TKilogramMeterPerSecondQty; const ARight: TKilogramMeterPerSecondQty): TSquareKilogramSquareMeterPerSquareSecondQty;
-{$DEFINE INTF_END}{$i adim.inc}
-
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TNewtonQty}{$i adim.inc}
   class operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TNewtonQty): TSquareMeterQty;
   class operator *(const ALeft: TSquareMeterQty; const ARight: TNewtonQty): TNewtonSquareMeterQty;
   class operator *(const ALeft: TNewtonQty; const ARight: TSquareMeterQty): TNewtonSquareMeterQty;
   class operator /(const ALeft: TSquareNewtonQty; const ARight: TNewtonQty): TNewtonQty;
   class operator *(const ALeft: TNewtonQty; const ARight: TNewtonQty): TSquareNewtonQty;
+  class operator /(const ALeft: TKilogramMeterQty; const ARight: TNewtonQty): TSquareSecondQty;
+  class operator *(const ALeft: TNewtonQty; const ARight: TSquareSecondQty): TKilogramMeterQty;
+  class operator *(const ALeft: TSquareSecondQty; const ARight: TNewtonQty): TKilogramMeterQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TQuarticKelvinQty}{$i adim.inc}
@@ -275,9 +276,6 @@ type
   class operator /(const ALeft: TQuarticMeterSecondQty; const ARight: TSecondQty): TQuarticMeterQty;
   class operator *(const ALeft: TSecondQty; const ARight: TQuarticMeterQty): TQuarticMeterSecondQty;
   class operator *(const ALeft: TQuarticMeterQty; const ARight: TSecondQty): TQuarticMeterSecondQty;
-  class operator *(const ALeft: TNewtonQty; const ARight: TSecondQty): TKilogramMeterPerSecondQty;
-  class operator *(const ALeft: TSecondQty; const ARight: TNewtonQty): TKilogramMeterPerSecondQty;
-  class operator /(const ALeft: TKilogramMeterPerSecondQty; const ARight: TSecondQty): TNewtonQty;
   class operator *(const ALeft: THertzQty; const ARight: TSecondQty): double;
   class operator *(const ALeft: TSecondQty; const ARight: THertzQty): double;
   class operator /(const ALeft: double; const ARight: TSecondQty): THertzQty;
@@ -357,6 +355,9 @@ type
   class operator /(const ALeft: TKilogramSquareMeterQty; const ARight: TKilogramQty): TSquareMeterQty;
   class operator *(const ALeft: TSquareMeterQty; const ARight: TKilogramQty): TKilogramSquareMeterQty;
   class operator *(const ALeft: TKilogramQty; const ARight: TSquareMeterQty): TKilogramSquareMeterQty;
+  class operator /(const ALeft: TKilogramMeterQty; const ARight: TKilogramQty): TMeterQty;
+  class operator *(const ALeft: TMeterQty; const ARight: TKilogramQty): TKilogramMeterQty;
+  class operator *(const ALeft: TKilogramQty; const ARight: TMeterQty): TKilogramMeterQty;
   class operator /(const ALeft: TSquareKilogramQty; const ARight: TKilogramQty): TKilogramQty;
   class operator *(const ALeft: TKilogramQty; const ARight: TKilogramQty): TSquareKilogramQty;
 {$DEFINE INTF_END}{$i adim.inc}
@@ -365,12 +366,6 @@ type
   class operator /(const ALeft: TWattQty; const ARight: TMeterPerSecondQty): TNewtonQty;
   class operator *(const ALeft: TMeterPerSecondQty; const ARight: TNewtonQty): TWattQty;
   class operator *(const ALeft: TNewtonQty; const ARight: TMeterPerSecondQty): TWattQty;
-  class operator /(const ALeft: TJouleQty; const ARight: TMeterPerSecondQty): TKilogramMeterPerSecondQty;
-  class operator *(const ALeft: TMeterPerSecondQty; const ARight: TKilogramMeterPerSecondQty): TJouleQty;
-  class operator *(const ALeft: TKilogramMeterPerSecondQty; const ARight: TMeterPerSecondQty): TJouleQty;
-  class operator /(const ALeft: TKilogramMeterPerSecondQty; const ARight: TMeterPerSecondQty): TKilogramQty;
-  class operator *(const ALeft: TMeterPerSecondQty; const ARight: TKilogramQty): TKilogramMeterPerSecondQty;
-  class operator *(const ALeft: TKilogramQty; const ARight: TMeterPerSecondQty): TKilogramMeterPerSecondQty;
   class operator /(const ALeft: TSquareMeterPerSquareSecondQty; const ARight: TMeterPerSecondQty): TMeterPerSecondQty;
   class operator *(const ALeft: TMeterPerSecondQty; const ARight: TMeterPerSecondQty): TSquareMeterPerSquareSecondQty;
   class operator /(const ALeft: TMeterPerSecondQty; const ARight: THertzQty): TMeterQty;
@@ -402,6 +397,21 @@ type
   class operator /(const ALeft: TSquareKilogramQty; const ARight: TSquareKilogramPerMeterQty): TMeterQty;
   class operator *(const ALeft: TSquareKilogramPerMeterQty; const ARight: TMeterQty): TSquareKilogramQty;
   class operator *(const ALeft: TMeterQty; const ARight: TSquareKilogramPerMeterQty): TSquareKilogramQty;
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TKilogramMeterPerSecondQty}{$i adim.inc}
+  class operator /(const ALeft: TJouleQty; const ARight: TKilogramMeterPerSecondQty): TMeterPerSecondQty;
+  class operator *(const ALeft: TMeterPerSecondQty; const ARight: TKilogramMeterPerSecondQty): TJouleQty;
+  class operator *(const ALeft: TKilogramMeterPerSecondQty; const ARight: TMeterPerSecondQty): TJouleQty;
+  class operator /(const ALeft: TKilogramMeterPerSecondQty; const ARight: TNewtonQty): TSecondQty;
+  class operator /(const ALeft: TKilogramMeterPerSecondQty; const ARight: TSecondQty): TNewtonQty;
+  class operator /(const ALeft: TSquareKilogramSquareMeterPerSquareSecondQty; const ARight: TKilogramMeterPerSecondQty): TKilogramMeterPerSecondQty;
+  class operator *(const ALeft: TKilogramMeterPerSecondQty; const ARight: TKilogramMeterPerSecondQty): TSquareKilogramSquareMeterPerSquareSecondQty;
+  class operator /(const ALeft: TKilogramMeterPerSecondQty; const ARight: TMeterPerSecondQty): TKilogramQty;
+  class operator /(const ALeft: TKilogramMeterPerSecondQty; const ARight: TKilogramQty): TMeterPerSecondQty;
+  class operator /(const ALeft: TKilogramMeterQty; const ARight: TKilogramMeterPerSecondQty): TSecondQty;
+  class operator *(const ALeft: TKilogramMeterPerSecondQty; const ARight: TSecondQty): TKilogramMeterQty;
+  class operator *(const ALeft: TSecondQty; const ARight: TKilogramMeterPerSecondQty): TKilogramMeterQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TKatalPerCubicMeterQty}{$i adim.inc}
@@ -974,13 +984,16 @@ type
   class operator /(const ALeft: TKilogramPerSecondQty; const ARight: TPoiseuilleQty): TMeterQty;
   class operator /(const ALeft: TKilogramPerSecondQty; const ARight: TMeterQty): TPoiseuilleQty;
   class operator /(const ALeft: TWattQty; const ARight: TKilogramPerSecondQty): TSquareMeterPerSquareSecondQty;
-  class operator *(const ALeft: TKilogramPerSecondQty; const ARight: TSquareMeterPerSquareSecondQty): TWattQty;
   class operator *(const ALeft: TSquareMeterPerSquareSecondQty; const ARight: TKilogramPerSecondQty): TWattQty;
+  class operator *(const ALeft: TKilogramPerSecondQty; const ARight: TSquareMeterPerSquareSecondQty): TWattQty;
+  class operator /(const ALeft: TNewtonQty; const ARight: TKilogramPerSecondQty): TMeterPerSecondQty;
+  class operator *(const ALeft: TMeterPerSecondQty; const ARight: TKilogramPerSecondQty): TNewtonQty;
+  class operator *(const ALeft: TKilogramPerSecondQty; const ARight: TMeterPerSecondQty): TNewtonQty;
+  class operator /(const ALeft: TKilogramMeterPerSecondQty; const ARight: TKilogramPerSecondQty): TMeterQty;
+  class operator *(const ALeft: TMeterQty; const ARight: TKilogramPerSecondQty): TKilogramMeterPerSecondQty;
+  class operator *(const ALeft: TKilogramPerSecondQty; const ARight: TMeterQty): TKilogramMeterPerSecondQty;
   class operator /(const ALeft: TKilogramPerSecondQty; const ARight: TMeterPerSecondQty): TKilogramPerMeterQty;
   class operator /(const ALeft: TKilogramPerSecondQty; const ARight: TKilogramPerMeterQty): TMeterPerSecondQty;
-  class operator /(const ALeft: TNewtonQty; const ARight: TKilogramPerSecondQty): TMeterPerSecondQty;
-  class operator *(const ALeft: TKilogramPerSecondQty; const ARight: TMeterPerSecondQty): TNewtonQty;
-  class operator *(const ALeft: TMeterPerSecondQty; const ARight: TKilogramPerSecondQty): TNewtonQty;
   class operator /(const ALeft: TKilogramQty; const ARight: TKilogramPerSecondQty): TSecondQty;
   class operator *(const ALeft: TKilogramPerSecondQty; const ARight: TSecondQty): TKilogramQty;
   class operator *(const ALeft: TSecondQty; const ARight: TKilogramPerSecondQty): TKilogramQty;
@@ -1262,7 +1275,14 @@ operator /(const ALeft: TMeterQty; const ARight: TSquareSecondQty): TMeterPerSec
 operator /(const ALeft: TMeterPerSecondSquaredQty; const ARight: TMeterQty): TSquareHertzQty;
 operator /(const ALeft: TSquareMeterQty; const ARight: TSquareSecondQty): TSquareMeterPerSquareSecondQty;
 operator /(const ALeft: TSquareMeterPerSquareSecondQty; const ARight: TMeterQty): TMeterPerSecondSquaredQty;
-operator /(const ALeft: TKilogramMeterPerSecondQty; const ARight: TKilogramQty): TMeterPerSecondQty;
+operator /(const ALeft: TKilogramMeterQty; const ARight: TMeterQty): TKilogramQty;
+operator /(const ALeft: TKilogramQty; const ARight: TSecondQty): TKilogramPerSecondQty;
+operator *(const ALeft: TKilogramPerMeterQty; const ARight: TMeterPerSecondQty): TKilogramPerSecondQty;
+operator *(const ALeft: TMeterPerSecondQty; const ARight: TKilogramPerMeterQty): TKilogramPerSecondQty;
+operator /(const ALeft: TKilogramMeterQty; const ARight: TSecondQty): TKilogramMeterPerSecondQty;
+operator /(const ALeft: TKilogramMeterPerSecondQty; const ARight: TMeterQty): TKilogramPerSecondQty;
+operator *(const ALeft: TKilogramQty; const ARight: TMeterPerSecondQty): TKilogramMeterPerSecondQty;
+operator *(const ALeft: TMeterPerSecondQty; const ARight: TKilogramQty): TKilogramMeterPerSecondQty;
 operator /(const ALeft: TKilogramSquareMeterQty; const ARight: TSquareMeterQty): TKilogramQty;
 operator /(const ALeft: TKilogramSquareMeterQty; const ARight: TSecondQty): TKilogramSquareMeterPerSecondQty;
 operator *(const ALeft: TKilogramSquareMeterQty; const ARight: THertzQty): TKilogramSquareMeterPerSecondQty;
@@ -1275,12 +1295,15 @@ operator /(const ALeft: TKilogramQty; const ARight: TCubicMeterQty): TKilogramPe
 operator /(const ALeft: TKilogramPerSquareMeterQty; const ARight: TMeterQty): TKilogramPerCubicMeterQty;
 operator /(const ALeft: TNewtonQty; const ARight: TKilogramQty): TMeterPerSecondSquaredQty;
 operator /(const ALeft: TNewtonQty; const ARight: TSquareMeterPerSquareSecondQty): TKilogramPerMeterQty;
-operator /(const ALeft: TKilogramMeterPerSecondQty; const ARight: TNewtonQty): TSecondQty;
+operator /(const ALeft: TNewtonQty; const ARight: TMeterPerSecondQty): TKilogramPerSecondQty;
+operator *(const ALeft: TSecondQty; const ARight: TNewtonQty): TKilogramMeterPerSecondQty;
+operator *(const ALeft: TNewtonQty; const ARight: TSecondQty): TKilogramMeterPerSecondQty;
+operator /(const ALeft: TKilogramMeterQty; const ARight: TSquareSecondQty): TNewtonQty;
 operator /(const ALeft: TNewtonQty; const ARight: TSquareMeterQty): TPascalQty;
 operator /(const ALeft: TPascalQty; const ARight: TSquareMeterPerSquareSecondQty): TKilogramPerCubicMeterQty;
 operator /(const ALeft: TJouleQty; const ARight: TNewtonQty): TMeterQty;
 operator /(const ALeft: TJouleQty; const ARight: TCubicMeterQty): TPascalQty;
-operator /(const ALeft: TJouleQty; const ARight: TKilogramMeterPerSecondQty): TMeterPerSecondQty;
+operator /(const ALeft: TJouleQty; const ARight: TMeterPerSecondQty): TKilogramMeterPerSecondQty;
 operator /(const ALeft: TJouleQty; const ARight: TSquareMeterPerSquareSecondQty): TKilogramQty;
 operator /(const ALeft: TJouleQty; const ARight: TKilogramSquareMeterQty): TSquareHertzQty;
 operator /(const ALeft: TKilogramSquareMeterQty; const ARight: TSquareSecondQty): TJouleQty;
@@ -1292,6 +1315,7 @@ operator /(const ALeft: TJouleQty; const ARight: TSecondQty): TWattQty;
 operator *(const ALeft: TJouleQty; const ARight: THertzQty): TWattQty;
 operator *(const ALeft: THertzQty; const ARight: TJouleQty): TWattQty;
 operator /(const ALeft: TWattQty; const ARight: TNewtonQty): TMeterPerSecondQty;
+operator /(const ALeft: TWattQty; const ARight: TSquareMeterPerSquareSecondQty): TKilogramPerSecondQty;
 operator /(const ALeft: TCoulombQty; const ARight: TSecondQty): TAmpereQty;
 operator *(const ALeft: TCoulombQty; const ARight: TCoulombQty): TSquareCoulombQty;
 operator /(const ALeft: TWattQty; const ARight: TVoltQty): TAmpereQty;
@@ -1324,11 +1348,6 @@ operator /(const ALeft: TNewtonPerMeterQty; const ARight: TKilogramQty): TSquare
 operator /(const ALeft: TCubicMeterQty; const ARight: TSecondQty): TCubicMeterPerSecondQty;
 operator *(const ALeft: TSquareMeterQty; const ARight: TMeterPerSecondQty): TCubicMeterPerSecondQty;
 operator *(const ALeft: TMeterPerSecondQty; const ARight: TSquareMeterQty): TCubicMeterPerSecondQty;
-operator /(const ALeft: TKilogramQty; const ARight: TSecondQty): TKilogramPerSecondQty;
-operator /(const ALeft: TNewtonQty; const ARight: TMeterPerSecondQty): TKilogramPerSecondQty;
-operator *(const ALeft: TKilogramPerMeterQty; const ARight: TMeterPerSecondQty): TKilogramPerSecondQty;
-operator *(const ALeft: TMeterPerSecondQty; const ARight: TKilogramPerMeterQty): TKilogramPerSecondQty;
-operator /(const ALeft: TWattQty; const ARight: TSquareMeterPerSquareSecondQty): TKilogramPerSecondQty;
 operator /(const ALeft: TPoiseuilleQty; const ARight: TSecondQty): TPascalQty;
 operator /(const ALeft: TPoiseuilleQty; const ARight: TMeterPerSecondQty): TKilogramPerSquareMeterQty;
 operator *(const ALeft: TMeterQty; const ARight: TPoiseuilleQty): TKilogramPerSecondQty;
@@ -1488,6 +1507,8 @@ operator /(const ALeft: TJoulePerMoleQty; const ARight: TCoulombPerMoleQty): TVo
   class operator /(const ALeft: TNewtonQty; const ARight: TMeterUnit): TNewtonPerMeterQty;
   class operator *(const ALeft: TNewtonQty; const ARight: TMeterUnit): TJouleQty;
   class operator /(const ALeft: TKilogramQty; const ARight: TMeterUnit): TKilogramPerMeterQty;
+  class operator *(const ALeft: TKilogramPerSecondQty; const ARight: TMeterUnit): TKilogramMeterPerSecondQty;
+  class operator *(const ALeft: TKilogramQty; const ARight: TMeterUnit): TKilogramMeterQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TJoulePerMoleQty}{$DEFINE TUnit:=TJoulePerMoleUnit}{$i adim.inc}
@@ -1525,13 +1546,14 @@ operator /(const ALeft: TJoulePerMoleQty; const ARight: TCoulombPerMoleQty): TVo
   class operator *(const ALeft: TQuarticMeterQty; const ARight: TSecondUnit): TQuarticMeterSecondQty;
   class operator /(const ALeft: TSquareMeterQty; const ARight: TSecondUnit): TSquareMeterPerSecondQty;
   class operator *(const ALeft: TPascalQty; const ARight: TSecondUnit): TPoiseuilleQty;
-  class operator /(const ALeft: TKilogramQty; const ARight: TSecondUnit): TKilogramPerSecondQty;
   class operator /(const ALeft: TCubicMeterQty; const ARight: TSecondUnit): TCubicMeterPerSecondQty;
   class operator /(const ALeft: TMoleQty; const ARight: TSecondUnit): TKatalQty;
   class operator *(const ALeft: TVoltQty; const ARight: TSecondUnit): TWeberQty;
   class operator /(const ALeft: TJouleQty; const ARight: TSecondUnit): TWattQty;
   class operator *(const ALeft: TJouleQty; const ARight: TSecondUnit): TKilogramSquareMeterPerSecondQty;
   class operator /(const ALeft: TKilogramSquareMeterQty; const ARight: TSecondUnit): TKilogramSquareMeterPerSecondQty;
+  class operator /(const ALeft: TKilogramMeterQty; const ARight: TSecondUnit): TKilogramMeterPerSecondQty;
+  class operator /(const ALeft: TKilogramQty; const ARight: TSecondUnit): TKilogramPerSecondQty;
   class operator /(const ALeft: TMeterPerSecondQty; const ARight: TSecondUnit): TMeterPerSecondSquaredQty;
   class operator /(const ALeft: TMeterQty; const ARight: TSecondUnit): TMeterPerSecondQty;
   class operator /(const ALeft: TRadianPerSecondQty; const ARight: TSecondUnit): TRadianPerSecondSquaredQty;
@@ -1584,7 +1606,6 @@ operator /(const ALeft: TJoulePerMoleQty; const ARight: TCoulombPerMoleQty): TVo
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TMeterPerSecondQty}{$DEFINE TUnit:=TMeterPerSecondUnit}{$i adim.inc}
-  class operator *(const ALeft: TKilogramQty; const ARight: TMeterPerSecondUnit): TKilogramMeterPerSecondQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TKilogramPerQuarticMeterQty}{$DEFINE TUnit:=TKilogramPerQuarticMeterUnit}{$i adim.inc}
@@ -1735,7 +1756,6 @@ operator /(const ALeft: TJoulePerMoleQty; const ARight: TCoulombPerMoleQty): TVo
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TMeterPerSecondSquaredQty}{$DEFINE TUnit:=TMeterPerSecondSquaredUnit}{$i adim.inc}
-  class operator *(const ALeft: TKilogramQty; const ARight: TMeterPerSecondSquaredUnit): TNewtonQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TSexticMeterQty}{$DEFINE TUnit:=TSexticMeterUnit}{$i adim.inc}
@@ -2052,6 +2072,9 @@ operator /(const ALeft: TJoulePerMoleQty; const ARight: TCoulombPerMoleQty): TVo
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TMeterPerHourPerSecondQty}{$DEFINE TUnit:=TMeterPerHourPerSecondUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TKilogramMeterQty}{$DEFINE TUnit:=TKilogramMeterUnit}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TSquareKilogramSquareMeterPerSquareSecondQty}{$DEFINE TUnit:=TSquareKilogramSquareMeterPerSquareSecondUnit}{$i adim.inc}
@@ -4840,6 +4863,20 @@ const
   cMeterPerHourPerSecondExponents : TExponents = (1, -1);
   cMeterPerHourPerSecondFactor                 = 1/3600;
 
+{ Quantity of TKilogramMeters }
+
+type
+  TKilogramMeters = TKilogramMeterQty;
+
+const
+  rsKilogramMeterSymbol     = '%sg·%sm';
+  rsKilogramMeterName       = '%sgram %smeter';
+  rsKilogramMeterPluralName = '%sgram %smeters';
+
+const
+  cKilogramMeterPrefixes  : TPrefixes  = (pKilo, pNone);
+  cKilogramMeterExponents : TExponents = (1, 1);
+
 { Quantity of TSquareKilogramSquareMetersPerSquareSecond }
 
 type
@@ -5990,21 +6027,6 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-class operator TSecondQty.*(const ALeft: TNewtonQty; const ARight: TSecondQty): TKilogramMeterPerSecondQty;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
-
-class operator TSecondQty.*(const ALeft: TSecondQty; const ARight: TNewtonQty): TKilogramMeterPerSecondQty;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
-
-class operator TSecondQty./(const ALeft: TKilogramMeterPerSecondQty; const ARight: TSecondQty): TNewtonQty;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
-
 class operator TSecondQty.*(const ALeft: THertzQty; const ARight: TSecondQty): double;
 begin
   result := ALeft.FValue * ARight.FValue;
@@ -6341,6 +6363,21 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
+class operator TKilogramQty./(const ALeft: TKilogramMeterQty; const ARight: TKilogramQty): TMeterQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+class operator TKilogramQty.*(const ALeft: TMeterQty; const ARight: TKilogramQty): TKilogramMeterQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TKilogramQty.*(const ALeft: TKilogramQty; const ARight: TMeterQty): TKilogramMeterQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
 class operator TKilogramQty./(const ALeft: TSquareKilogramQty; const ARight: TKilogramQty): TKilogramQty;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -6369,36 +6406,6 @@ begin
 end;
 
 class operator TMeterPerSecondQty.*(const ALeft: TNewtonQty; const ARight: TMeterPerSecondQty): TWattQty;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
-
-class operator TMeterPerSecondQty./(const ALeft: TJouleQty; const ARight: TMeterPerSecondQty): TKilogramMeterPerSecondQty;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
-
-class operator TMeterPerSecondQty.*(const ALeft: TMeterPerSecondQty; const ARight: TKilogramMeterPerSecondQty): TJouleQty;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
-
-class operator TMeterPerSecondQty.*(const ALeft: TKilogramMeterPerSecondQty; const ARight: TMeterPerSecondQty): TJouleQty;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
-
-class operator TMeterPerSecondQty./(const ALeft: TKilogramMeterPerSecondQty; const ARight: TMeterPerSecondQty): TKilogramQty;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
-
-class operator TMeterPerSecondQty.*(const ALeft: TMeterPerSecondQty; const ARight: TKilogramQty): TKilogramMeterPerSecondQty;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
-
-class operator TMeterPerSecondQty.*(const ALeft: TKilogramQty; const ARight: TMeterPerSecondQty): TKilogramMeterPerSecondQty;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
@@ -6595,6 +6602,21 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
+class operator TNewtonQty./(const ALeft: TKilogramMeterQty; const ARight: TNewtonQty): TSquareSecondQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+class operator TNewtonQty.*(const ALeft: TNewtonQty; const ARight: TSquareSecondQty): TKilogramMeterQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TNewtonQty.*(const ALeft: TSquareSecondQty; const ARight: TNewtonQty): TKilogramMeterQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
 {$DEFINE CSYMBOL:=rsKilogramMeterPerSecondSymbol}
 {$DEFINE CSINGULARNAME:=rsKilogramMeterPerSecondName}
 {$DEFINE CPLURALNAME:=rsKilogramMeterPerSecondPluralName}
@@ -6602,12 +6624,62 @@ end;
 {$DEFINE CEXPONENTS:=cKilogramMeterPerSecondExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKilogramMeterPerSecondQty}{$i adim.inc}
 
+class operator TKilogramMeterPerSecondQty./(const ALeft: TJouleQty; const ARight: TKilogramMeterPerSecondQty): TMeterPerSecondQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+class operator TKilogramMeterPerSecondQty.*(const ALeft: TMeterPerSecondQty; const ARight: TKilogramMeterPerSecondQty): TJouleQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TKilogramMeterPerSecondQty.*(const ALeft: TKilogramMeterPerSecondQty; const ARight: TMeterPerSecondQty): TJouleQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TKilogramMeterPerSecondQty./(const ALeft: TKilogramMeterPerSecondQty; const ARight: TNewtonQty): TSecondQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+class operator TKilogramMeterPerSecondQty./(const ALeft: TKilogramMeterPerSecondQty; const ARight: TSecondQty): TNewtonQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
 class operator TKilogramMeterPerSecondQty./(const ALeft: TSquareKilogramSquareMeterPerSquareSecondQty; const ARight: TKilogramMeterPerSecondQty): TKilogramMeterPerSecondQty;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
 class operator TKilogramMeterPerSecondQty.*(const ALeft: TKilogramMeterPerSecondQty; const ARight: TKilogramMeterPerSecondQty): TSquareKilogramSquareMeterPerSquareSecondQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TKilogramMeterPerSecondQty./(const ALeft: TKilogramMeterPerSecondQty; const ARight: TMeterPerSecondQty): TKilogramQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+class operator TKilogramMeterPerSecondQty./(const ALeft: TKilogramMeterPerSecondQty; const ARight: TKilogramQty): TMeterPerSecondQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+class operator TKilogramMeterPerSecondQty./(const ALeft: TKilogramMeterQty; const ARight: TKilogramMeterPerSecondQty): TSecondQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+class operator TKilogramMeterPerSecondQty.*(const ALeft: TKilogramMeterPerSecondQty; const ARight: TSecondQty): TKilogramMeterQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TKilogramMeterPerSecondQty.*(const ALeft: TSecondQty; const ARight: TKilogramMeterPerSecondQty): TKilogramMeterQty;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
@@ -9338,12 +9410,42 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+class operator TKilogramPerSecondQty.*(const ALeft: TSquareMeterPerSquareSecondQty; const ARight: TKilogramPerSecondQty): TWattQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
 class operator TKilogramPerSecondQty.*(const ALeft: TKilogramPerSecondQty; const ARight: TSquareMeterPerSquareSecondQty): TWattQty;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-class operator TKilogramPerSecondQty.*(const ALeft: TSquareMeterPerSquareSecondQty; const ARight: TKilogramPerSecondQty): TWattQty;
+class operator TKilogramPerSecondQty./(const ALeft: TNewtonQty; const ARight: TKilogramPerSecondQty): TMeterPerSecondQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+class operator TKilogramPerSecondQty.*(const ALeft: TMeterPerSecondQty; const ARight: TKilogramPerSecondQty): TNewtonQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TKilogramPerSecondQty.*(const ALeft: TKilogramPerSecondQty; const ARight: TMeterPerSecondQty): TNewtonQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TKilogramPerSecondQty./(const ALeft: TKilogramMeterPerSecondQty; const ARight: TKilogramPerSecondQty): TMeterQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+class operator TKilogramPerSecondQty.*(const ALeft: TMeterQty; const ARight: TKilogramPerSecondQty): TKilogramMeterPerSecondQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TKilogramPerSecondQty.*(const ALeft: TKilogramPerSecondQty; const ARight: TMeterQty): TKilogramMeterPerSecondQty;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
@@ -9356,21 +9458,6 @@ end;
 class operator TKilogramPerSecondQty./(const ALeft: TKilogramPerSecondQty; const ARight: TKilogramPerMeterQty): TMeterPerSecondQty;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
-end;
-
-class operator TKilogramPerSecondQty./(const ALeft: TNewtonQty; const ARight: TKilogramPerSecondQty): TMeterPerSecondQty;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
-
-class operator TKilogramPerSecondQty.*(const ALeft: TKilogramPerSecondQty; const ARight: TMeterPerSecondQty): TNewtonQty;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
-
-class operator TKilogramPerSecondQty.*(const ALeft: TMeterPerSecondQty; const ARight: TKilogramPerSecondQty): TNewtonQty;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
 class operator TKilogramPerSecondQty./(const ALeft: TKilogramQty; const ARight: TKilogramPerSecondQty): TSecondQty;
@@ -9919,6 +10006,13 @@ end;
 {$DEFINE CFACTOR:=cMeterPerHourPerSecondFactor}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TMeterPerHourPerSecondQty}{$i adim.inc}
 
+{$DEFINE CSYMBOL:=rsKilogramMeterSymbol}
+{$DEFINE CSINGULARNAME:=rsKilogramMeterName}
+{$DEFINE CPLURALNAME:=rsKilogramMeterPluralName}
+{$DEFINE CPREFIXES:=cKilogramMeterPrefixes}
+{$DEFINE CEXPONENTS:=cKilogramMeterExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKilogramMeterQty}{$i adim.inc}
+
 {$DEFINE CSYMBOL:=rsSquareKilogramSquareMeterPerSquareSecondSymbol}
 {$DEFINE CSINGULARNAME:=rsSquareKilogramSquareMeterPerSquareSecondName}
 {$DEFINE CPLURALNAME:=rsSquareKilogramSquareMeterPerSquareSecondPluralName}
@@ -10294,9 +10388,44 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-operator /(const ALeft: TKilogramMeterPerSecondQty; const ARight: TKilogramQty): TMeterPerSecondQty;
+operator /(const ALeft: TKilogramMeterQty; const ARight: TMeterQty): TKilogramQty;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TKilogramQty; const ARight: TSecondQty): TKilogramPerSecondQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator *(const ALeft: TKilogramPerMeterQty; const ARight: TMeterPerSecondQty): TKilogramPerSecondQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator *(const ALeft: TMeterPerSecondQty; const ARight: TKilogramPerMeterQty): TKilogramPerSecondQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator /(const ALeft: TKilogramMeterQty; const ARight: TSecondQty): TKilogramMeterPerSecondQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TKilogramMeterPerSecondQty; const ARight: TMeterQty): TKilogramPerSecondQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator *(const ALeft: TKilogramQty; const ARight: TMeterPerSecondQty): TKilogramMeterPerSecondQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator *(const ALeft: TMeterPerSecondQty; const ARight: TKilogramQty): TKilogramMeterPerSecondQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
 operator /(const ALeft: TKilogramSquareMeterQty; const ARight: TSquareMeterQty): TKilogramQty;
@@ -10359,7 +10488,22 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-operator /(const ALeft: TKilogramMeterPerSecondQty; const ARight: TNewtonQty): TSecondQty;
+operator /(const ALeft: TNewtonQty; const ARight: TMeterPerSecondQty): TKilogramPerSecondQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator *(const ALeft: TSecondQty; const ARight: TNewtonQty): TKilogramMeterPerSecondQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator *(const ALeft: TNewtonQty; const ARight: TSecondQty): TKilogramMeterPerSecondQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator /(const ALeft: TKilogramMeterQty; const ARight: TSquareSecondQty): TNewtonQty;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
@@ -10384,7 +10528,7 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-operator /(const ALeft: TJouleQty; const ARight: TKilogramMeterPerSecondQty): TMeterPerSecondQty;
+operator /(const ALeft: TJouleQty; const ARight: TMeterPerSecondQty): TKilogramMeterPerSecondQty;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
@@ -10440,6 +10584,11 @@ begin
 end;
 
 operator /(const ALeft: TWattQty; const ARight: TNewtonQty): TMeterPerSecondQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TWattQty; const ARight: TSquareMeterPerSquareSecondQty): TKilogramPerSecondQty;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
@@ -10602,31 +10751,6 @@ end;
 operator *(const ALeft: TMeterPerSecondQty; const ARight: TSquareMeterQty): TCubicMeterPerSecondQty;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
-end;
-
-operator /(const ALeft: TKilogramQty; const ARight: TSecondQty): TKilogramPerSecondQty;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
-
-operator /(const ALeft: TNewtonQty; const ARight: TMeterPerSecondQty): TKilogramPerSecondQty;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
-
-operator *(const ALeft: TKilogramPerMeterQty; const ARight: TMeterPerSecondQty): TKilogramPerSecondQty;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
-
-operator *(const ALeft: TMeterPerSecondQty; const ARight: TKilogramPerMeterQty): TKilogramPerSecondQty;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
-
-operator /(const ALeft: TWattQty; const ARight: TSquareMeterPerSquareSecondQty): TKilogramPerSecondQty;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
 operator /(const ALeft: TPoiseuilleQty; const ARight: TSecondQty): TPascalQty;
@@ -11434,6 +11558,7 @@ end;
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TNauticalMilePerHourQty}{$DEFINE TUnit:=TNauticalMilePerHourUnit}{$i adim.inc}
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TMeterPerSecondSquaredQty}{$DEFINE TUnit:=TMeterPerSecondPerSecondUnit}{$i adim.inc}
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TMeterPerHourPerSecondQty}{$DEFINE TUnit:=TMeterPerHourPerSecondUnit}{$i adim.inc}
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TKilogramMeterQty}{$DEFINE TUnit:=TKilogramMeterUnit}{$i adim.inc}
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TSquareKilogramSquareMeterPerSquareSecondQty}{$DEFINE TUnit:=TSquareKilogramSquareMeterPerSquareSecondUnit}{$i adim.inc}
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TKilogramMeterPerSecondQty}{$DEFINE TUnit:=TNewtonSecondUnit}{$i adim.inc}
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TPoundPerCubicInchQty}{$DEFINE TUnit:=TPoundPerCubicInchUnit}{$i adim.inc}
@@ -11518,7 +11643,22 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
-class operator TMeterPerSecondUnit.*(const ALeft: TKilogramQty; const ARight: TMeterPerSecondUnit): TKilogramMeterPerSecondQty;
+class operator TMeterUnit.*(const ALeft: TKilogramQty; const ARight: TMeterUnit): TKilogramMeterQty;
+begin
+  result.FValue := ALeft.FValue;
+end;
+
+class operator TSecondUnit./(const ALeft: TKilogramQty; const ARight: TSecondUnit): TKilogramPerSecondQty;
+begin
+  result.FValue := ALeft.FValue;
+end;
+
+class operator TSecondUnit./(const ALeft: TKilogramMeterQty; const ARight: TSecondUnit): TKilogramMeterPerSecondQty;
+begin
+  result.FValue := ALeft.FValue;
+end;
+
+class operator TMeterUnit.*(const ALeft: TKilogramPerSecondQty; const ARight: TMeterUnit): TKilogramMeterPerSecondQty;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -11544,11 +11684,6 @@ begin
 end;
 
 class operator TCubicMeterUnit./(const ALeft: TKilogramQty; const ARight: TCubicMeterUnit): TKilogramPerCubicMeterQty;
-begin
-  result.FValue := ALeft.FValue;
-end;
-
-class operator TMeterPerSecondSquaredUnit.*(const ALeft: TKilogramQty; const ARight: TMeterPerSecondSquaredUnit): TNewtonQty;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -11654,11 +11789,6 @@ begin
 end;
 
 class operator TSecondUnit./(const ALeft: TCubicMeterQty; const ARight: TSecondUnit): TCubicMeterPerSecondQty;
-begin
-  result.FValue := ALeft.FValue;
-end;
-
-class operator TSecondUnit./(const ALeft: TKilogramQty; const ARight: TSecondUnit): TKilogramPerSecondQty;
 begin
   result.FValue := ALeft.FValue;
 end;
