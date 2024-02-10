@@ -117,6 +117,16 @@ type
     procedure AddFactoredQuantities(ABaseClass, AIdentifierSymbol, AFactor, APrefixes: string);
     procedure AddPower(AOperator, AQuantity, AResult: string);
     procedure AddHelper(AClassName, ABaseClass, AFactor: string);
+
+    procedure AddHelperSquaredNorm(const AItem: TToolkitItem);
+    procedure AddHelperNorm(const AItem: TToolkitItem);
+
+    procedure AddHelperDot(const AItem: TToolkitItem);
+    procedure AddHelperCross(const AItem: TToolkitItem);
+    procedure AddHelperWedge(const AItem: TToolkitItem);
+
+
+
     procedure AddEquivalence(AClassName, ABaseClass: string);
 
 
@@ -271,12 +281,15 @@ var
   xClassName: string;
 begin
   // VEC BASE UNIT
-
   SectionA2.Insert(3, '');
   SectionA2.Insert(4, Format(INTF_QUANTITY, [GetQuantityType(AItem.FClassName), adimVECinc]));
   SectionA2.Insert(5, Format(INTF_END, [adimVECinc]));
   SectionA2.Insert(6, '');
 
+  //SectionA3.Append('');
+  //SectionA3.Append(Format(INTF_UNIT, [GetQuantityType(AItem.FClassName), GetUnitType(AItem.FClassName), adiminc]));
+  //SectionA3.Append(Format(INTF_END, [adiminc]));
+  //SectionA3.Append('');
 
   xClassName := AItem.FClassName;
   while Pos('CL3', xClassName) > 0 do Delete(xClassName, Pos('CL3', xClassName), Length('CL3'));
@@ -289,7 +302,8 @@ begin
   SectionB2.Append(Format(IMPL_QUANTITY,      [GetQuantityType              (AItem.FClassName), adimVECinc]));
   SectionB2.Append('');
 
-//SectionB3.Append(Format(IMPL_UNIT, [GetQuantityType(AItem.FClassName), GetUnitType(AItem.FClassName), adimVECinc]));
+  //SectionB3.Append(Format(IMPL_UNIT, [GetQuantityType(AItem.FClassName), GetUnitType(AItem.FClassName), adimVECinc]));
+
   AddVECItemResource(AItem);
   Inc(BaseUnitCount);
 end;
@@ -485,30 +499,40 @@ begin
 end;
 
 procedure TToolkitList.AddVECItemOperators(const AItem: TToolkitItem);
-
 begin
+
+
   if (AItem.FBaseClass = '') then
   begin
-
 
     if AItem.FOperator = '*' then
     begin
 
-      AddUnitOperator    ('*', GetQuantityType(AItem.FClassParent1), GetUnitType    (AItem.FClassParent2), GetQuantityType(AItem.FClassName));
+      if Pos('OP1', AItem.FFactor) > 0 then AddUnitOperator('*', GetQuantityType(AItem.FClassParent1), GetUnitType(AItem.FClassParent2), GetQuantityType(AItem.FClassName));
+
       AddQuantityOperator('*', GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName));
+
+      if (GetQuantityType(AItem.FClassParent1) <> 'TVector') and
+         (GetQuantityType(AItem.FClassParent2) <> 'TVector') then
+      begin
+        AddQuantityOperator('*', GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassName));
+      end;
 
     end else
       if AItem.FOperator = '/' then
       begin
 
-        AddUnitOperator    ('/', GetQuantityType(AItem.FClassParent1), GetUnitType    (AItem.FClassParent2), GetQuantityType(AItem.FClassName));
+        if Pos('OP1', AItem.FFactor) > 0 then AddUnitOperator('/', GetQuantityType(AItem.FClassParent1), GetUnitType(AItem.FClassParent2), GetQuantityType(AItem.FClassName));
+
         AddQuantityOperator('/', GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName));
+        AddQuantityOperator('*', GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName),    GetQuantityType(AItem.FClassParent1));
+        AddQuantityOperator('*', GetQuantityType(AItem.FClassName),    GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1));
 
+      end else
 
-
-
-      end
-
+        if AItem.FOperator = 'DOT'   then AddHelperDot        (AItem) else
+        if AItem.FOperator = 'NORM'  then AddHelperNorm       (AItem) else
+        if AItem.FOperator = 'NORM2' then AddHelperSquaredNorm(AItem);
 
 
   end else
@@ -520,12 +544,10 @@ begin
       if (LowerCase(AItem.FOperator) = 'helper') then
       begin
 
-
-
-
-
-
       end;
+
+
+
 
 
 end;
@@ -731,6 +753,148 @@ begin
     SectionB8.Append('  result.FValue := FValue;')
   else
     SectionB8.Append('  result.FValue := ' + AFactor + ';');
+  SectionB8.Append('end;');
+  SectionB8.Append('');
+end;
+
+
+procedure TToolkitList.AddHelperSquaredNorm(const AItem: TToolkitItem);
+var
+  Index: longint;
+begin
+  Index := SectionA8.IndexOf('  ' + GetUnitTypeHelper(AItem.FClassName) + ' = record helper for ' + GetQuantityType(AItem.FClassName));
+  if Index = -1 then
+  begin
+    SectionA8.Append(Format('  %s = record helper for %s', [GetUnitTypeHelper(AItem.FClassName), GetQuantityType(AItem.FClassName)]));
+    SectionA8.Append(Format('    function SquaredNorm: %s;', [GetQuantityType(AItem.FClassParent1)]));
+    SectionA8.Append('  end;');
+    SectionA8.Append('');
+  end else
+  begin
+    SectionA8.Insert(Index + 1, Format('    function SquaredNorm: %s;', [GetQuantityType(AItem.FClassParent1)]));
+  end;
+
+  SectionB8.Append('');
+  SectionB8.Append(Format('function %s.SquaredNorm: %s;', [GetUnitTypeHelper(AItem.FClassName), GetQuantityType(AItem.FClassParent1)]));
+  SectionB8.Append('begin');
+  SectionB8.Append('  result.FValue := FValue.SquaredNorm;');
+  SectionB8.Append('end;');
+  SectionB8.Append('');
+end;
+
+procedure TToolkitList.AddHelperNorm(const AItem: TToolkitItem);
+var
+  Index: longint;
+begin
+  Index := SectionA8.IndexOf('  ' + GetUnitTypeHelper(AItem.FClassName) + ' = record helper for ' + GetQuantityType(AItem.FClassName));
+  if Index = -1 then
+  begin
+    SectionA8.Append(Format('  %s = record helper for %s', [GetUnitTypeHelper(AItem.FClassName), GetQuantityType(AItem.FClassName)]));
+    SectionA8.Append(Format('    function Norm: %s;', [GetQuantityType(AItem.FClassParent1)]));
+    SectionA8.Append('  end;');
+    SectionA8.Append('');
+  end else
+  begin
+    SectionA8.Insert(Index + 1, Format('    function Norm: %s;', [GetQuantityType(AItem.FClassParent1)]));
+  end;
+
+  SectionB8.Append('');
+  SectionB8.Append(Format('function %s.Norm: %s;', [GetUnitTypeHelper(AItem.FClassName), GetQuantityType(AItem.FClassParent1)]));
+  SectionB8.Append('begin');
+  SectionB8.Append('  result.FValue := FValue.Norm;');
+  SectionB8.Append('end;');
+  SectionB8.Append('');
+end;
+
+procedure TToolkitList.AddHelperDot(const AItem: TToolkitItem);
+var
+  Index: longint;
+begin
+  Index := SectionA8.IndexOf('  ' + GetUnitTypeHelper(AItem.FClassParent1) + ' = record helper for ' + GetQuantityType(AItem.FClassParent1));
+  if Index = -1 then
+  begin
+    SectionA8.Append(Format('  %s = record helper for %s', [GetUnitTypeHelper(AItem.FClassParent1), GetQuantityType(AItem.FClassParent1)]));
+    SectionA8.Append(Format('    function Dot(AValue: %s): %s;', [GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName)]));
+    SectionA8.Append('  end;');
+    SectionA8.Append('');
+  end else
+  begin
+    SectionA8.Insert(Index + 1, Format('    function Dot(AValue: %s): %s;', [GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName)]));
+  end;
+
+  SectionB8.Append('');
+  SectionB8.Append(Format('function %s.Dot(AValue: %s): %s;', [GetUnitTypeHelper(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName)]));
+  SectionB8.Append('begin');
+  SectionB8.Append('  result.FValue := FValue.Dot(AValue.FValue);');
+  SectionB8.Append('end;');
+  SectionB8.Append('');
+
+  // Commutate
+
+  Index := SectionA8.IndexOf('  ' + GetUnitTypeHelper(AItem.FClassParent2) + ' = record helper for ' + GetQuantityType(AItem.FClassParent2));
+  if Index = -1 then
+  begin
+    SectionA8.Append(Format('  %s = record helper for %s', [GetUnitTypeHelper(AItem.FClassParent2), GetQuantityType(AItem.FClassParent2)]));
+    SectionA8.Append(Format('    function Dot(AValue: %s): %s;', [GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassName)]));
+    SectionA8.Append('  end;');
+    SectionA8.Append('');
+  end else
+  begin
+    SectionA8.Insert(Index + 1, Format('    function Dot(AValue: %s): %s;', [GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassName)]));
+  end;
+
+  SectionB8.Append('');
+  SectionB8.Append(Format('function %s.Dot(AValue: %s): %s;', [GetUnitTypeHelper(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassName)]));
+  SectionB8.Append('begin');
+  SectionB8.Append('  result.FValue := FValue.Dot(AValue.FValue);');
+  SectionB8.Append('end;');
+  SectionB8.Append('');
+end;
+
+procedure TToolkitList.AddHelperCross(const AItem: TToolkitItem);
+var
+  Index: longint;
+begin
+  Index := SectionA8.IndexOf('  ' + GetUnitTypeHelper(AItem.FClassParent1) + ' = record helper for ' + GetQuantityType(AItem.FClassParent1));
+  if Index = -1 then
+  begin
+    SectionA8.Append(Format('  %s = record helper for %s', [GetUnitTypeHelper(AItem.FClassParent1), GetQuantityType(AItem.FClassParent1)]));
+    SectionA8.Append(Format('    function Cross(AValue: %s): %s;', [GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName)]));
+    SectionA8.Append('  end;');
+    SectionA8.Append('');
+  end else
+  begin
+    SectionA8.Insert(Index + 1, Format('    function Cross(AValue: %s): %s;', [GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName)]));
+  end;
+
+  SectionB8.Append('');
+  SectionB8.Append(Format('function %s.Cross(AValue: %s): %s;', [GetUnitTypeHelper(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName)]));
+  SectionB8.Append('begin');
+  SectionB8.Append('  result.FValue := FValue.Cross(AValue.FValue);');
+  SectionB8.Append('end;');
+  SectionB8.Append('');
+end;
+
+procedure TToolkitList.AddHelperWedge(const AItem: TToolkitItem);
+var
+  Index: longint;
+begin
+  Index := SectionA8.IndexOf('  ' + GetUnitTypeHelper(AItem.FClassParent1) + ' = record helper for ' + GetQuantityType(AItem.FClassParent1));
+  if Index = -1 then
+  begin
+    SectionA8.Append(Format('  %s = record helper for %s', [GetUnitTypeHelper(AItem.FClassParent1), GetQuantityType(AItem.FClassParent1)]));
+    SectionA8.Append(Format('    function Wedge(AValue: %s): %s;', [GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName)]));
+    SectionA8.Append('  end;');
+    SectionA8.Append('');
+  end else
+  begin
+    SectionA8.Insert(Index + 1, Format('    function Wedge(AValue: %s): %s;', [GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName)]));
+  end;
+
+  SectionB8.Append('');
+  SectionB8.Append(Format('function %s.Wedge(AValue: %s): %s;', [GetUnitTypeHelper(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName)]));
+  SectionB8.Append('begin');
+  SectionB8.Append('  result.FValue := FValue.Wedge(AValue.FValue);');
   SectionB8.Append('end;');
   SectionB8.Append('');
 end;

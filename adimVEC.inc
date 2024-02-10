@@ -4,17 +4,13 @@ type
   TQuantity = record
   private
     FValue: TVector;
-  public       
-    function Norm: double;
-    function Norm(const APrefixes: TPrefixes): double;
-  //function Value(Index: longint): double;
-  //function Value(Index: longint; const APrefixes: TPrefixes): double;
+  public
+    function Value: TVector;
+    function Value(const APrefixes: TPrefixes): TVector;
     function ToString: string;
     function ToString(APrecision, ADigits: longint; const APrefixes: TPrefixes): string;
-  //function ToString(const ATolerance: TQuantity; APrecision, ADigits: longint; const APrefixes: TPrefixes): string;
     function ToVerboseString: string;
     function ToVerboseString(APrecision, ADigits: longint; const APrefixes: TPrefixes): string;
-  //function ToVerboseString(const ATolerance: TQuantity; APrecision, ADigits: longint; const APrefixes: TPrefixes): string;
     function IsSame(const AValue: TQuantity): boolean;
     function IsZero: boolean;
     class operator + (const AValue: TQuantity): TQuantity;
@@ -34,12 +30,13 @@ end;
 
 {$IFDEF IMPL_QUANTITY}
 {$UNDEF IMPL_QUANTITY}
-function TQuantity.Norm: double;
+
+function TQuantity.Value: TVector;
 begin
-  result := FValue.Norm;
+  result := FValue;
 end;
 
-function TQuantity.Norm(const APrefixes: TPrefixes): double;
+function TQuantity.Value(const APrefixes: TPrefixes): TVector;
 var
   I: longint;
   Exponent: longint;
@@ -54,16 +51,16 @@ begin
 
     for I := 0 to PrefixCount -1 do
       Dec(Exponent, PrefixTable[APrefixes[I]].Exponent * CEXPONENTS[I]);
-    
-    if Exponent <> 0 then  
-      result := FValue.Norm * IntPower(10, Exponent)
-    else  
-      result := FValue.Norm;
-  end else   
-    if PrefixCount = 0 then 
-      result := FValue.Norm
-    else  
-      raise Exception.Create('Wrong number of prefixes.');   
+
+    if Exponent <> 0 then
+      result := FValue * IntPower(10, Exponent)
+    else
+      result := FValue;
+  end else
+    if PrefixCount = 0 then
+      result := FValue
+    else
+      raise Exception.Create('Wrong number of prefixes.');
 end;
 
 function TQuantity.ToString: string;
@@ -84,70 +81,35 @@ end;
 
 function TQuantity.ToString(APrecision, ADigits: longint; const APrefixes: TPrefixes): string;
 var
-  Return: double;
+  FactoredNorm: double;
 begin
-  Return := Norm(APrefixes);
+  FactoredNorm := Value(APrefixes).Norm;
   if Length(APrefixes) = 0 then
-    result := FloatToStrF(Return, ffGeneral, APrecision, ADigits) + ' ' + GetSymbol(CSYMBOL, CPREFIXES)
+    result := FloatToStrF(FactoredNorm, ffGeneral, APrecision, ADigits) + ' ' + GetSymbol(CSYMBOL, CPREFIXES)
   else
-    result := FloatToStrF(Return, ffGeneral, APrecision, ADigits) + ' ' + GetSymbol(CSYMBOL, APrefixes);
+    result := FloatToStrF(FactoredNorm, ffGeneral, APrecision, ADigits) + ' ' + GetSymbol(CSYMBOL, APrefixes);
 end;
 
 function TQuantity.ToVerboseString(APrecision, ADigits: longint; const APrefixes: TPrefixes): string;
 var
-  Return: double;
+  FactoredNorm: double;
 begin
-  Return := Norm(APrefixes);
-  if (Return < -1) or (Return > 1) then
+  FactoredNorm := Value(APrefixes).Norm;
+  if (FactoredNorm < -1) or (FactoredNorm > 1) then
   begin
     if Length(APrefixes) = 0 then
-      result := FloatToStrF(Return, ffGeneral, APrecision, ADigits) + ' ' + GetName(CPLURALNAME, CPREFIXES)
+      result := FloatToStrF(FactoredNorm, ffGeneral, APrecision, ADigits) + ' ' + GetName(CPLURALNAME, CPREFIXES)
     else
-      result := FloatToStrF(Return, ffGeneral, APrecision, ADigits) + ' ' + GetName(CPLURALNAME, APrefixes);
+      result := FloatToStrF(FactoredNorm, ffGeneral, APrecision, ADigits) + ' ' + GetName(CPLURALNAME, APrefixes);
   end else
   begin
     if Length(APrefixes) = 0 then
-      result := FloatToStrF(Return, ffGeneral, APrecision, ADigits) + ' ' + GetName(CSINGULARNAME, CPREFIXES)
+      result := FloatToStrF(FactoredNorm, ffGeneral, APrecision, ADigits) + ' ' + GetName(CSINGULARNAME, CPREFIXES)
     else
-      result := FloatToStrF(Return, ffGeneral, APrecision, ADigits) + ' ' + GetName(CSINGULARNAME, APrefixes)
+      result := FloatToStrF(FactoredNorm, ffGeneral, APrecision, ADigits) + ' ' + GetName(CSINGULARNAME, APrefixes)
   end; 
-end;      
-(*
-function TQuantity.ToString(const ATolerance: TQuantity; APrecision, ADigits: longint; const APrefixes: TPrefixes): string;
-var  
-  ReturnTol: double;
-  ReturnValue: double;
-begin
-  ReturnValue := Norm(APrefixes);
-  ReturnTol   := ATolerance.Value(APrefixes);
-
-  if Length(APrefixes) = 0 then
-  begin
-    result := FloatToStrF(ReturnValue, ffGeneral, APrecision, ADigits) + ' ± ' +
-              FloatToStrF(ReturnTol,   ffGeneral, APrecision, ADigits) + ' '   + GetSymbol(CSYMBOL, CPREFIXES)
-  end else
-  begin
-    result := FloatToStrF(ReturnValue, ffGeneral, APrecision, ADigits) + ' ± ' +
-              FloatToStrF(ReturnTol,   ffGeneral, APrecision, ADigits) + ' '   + GetSymbol(CSYMBOL, APrefixes);
-  end;                                   
 end;
 
-function TQuantity.ToVerboseString(const ATolerance: TQuantity; APrecision, ADigits: longint; const APrefixes: TPrefixes): string;
-var  
-  ReturnTol: double;
-  ReturnValue: double;
-begin
-  ReturnValue := Norm(APrefixes);
-  ReturnTol   := ATolerance.Value(APrefixes);
-
-  if Length(APrefixes) = 0 then
-    result := FloatToStrF(ReturnValue, ffGeneral, APrecision, ADigits) + ' ± ' +
-              FloatToStrF(ReturnTol,   ffGeneral, APrecision, ADigits) + ' '   + GetName(CPLURALNAME, CPREFIXES)
-  else
-    result := FloatToStrF(ReturnValue, ffGeneral, APrecision, ADigits) + ' ± ' +
-              FloatToStrF(ReturnTol,   ffGeneral, APrecision, ADigits) + ' '   + GetName(CPLURALNAME, APrefixes);
-end;
-*)
 function TQuantity.IsSame(const AValue: TQuantity): boolean;
 begin
   result := FValue.SameValue(AValue.FValue);
@@ -199,3 +161,12 @@ begin
 end;
 {$ENDIF}
 
+{$IFDEF INTF_UNIT}
+{$UNDEF INTF_UNIT}
+type
+  TUnit = record
+{$ENDIF}
+
+{$IFDEF IMPL_UNIT}
+{$UNDEF IMPL_UNIT}
+{$ENDIF}

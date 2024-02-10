@@ -161,6 +161,12 @@ var
   speedvec: TCL3MetersPerSecond;
   accvex: TCL3MetersPerSecondSquared;
 
+  Momentum: TCL3KilogramMetersPerSecond;
+
+  anglevec: TCL3Radians;
+  angularspeedvec: TCL3RadiansPerSecond;
+  angularaccvec: TCL3RadiansPerSecondSquared;
+
 begin
   ExitCode := 0;
   DefaultFormatSettings.DecimalSeparator := '.';
@@ -888,13 +894,37 @@ begin
 
 
   // TEST-99
+  (*
 
   displacement := (2*e1 + 6*e2)*m;
   displacement := (2*e1 + 6*e2)*au;
 
-  speedvec := displacement/(10*s);
-  accvex   := speedvec/(5*s);
+  speedvec     := (2*e1 + 6*e2)*m/s;
+  speedvec     := displacement/(10*s);
 
+  displacement := (6.0*e1)       *m;
+  speedvec     := (2.0*e1 + 5*e2)*m/s;
+
+  writeln((displacement.SquaredNorm/displacement.Dot(speedvec)).ToString);
+
+
+
+  accvex   := speedvec/(5*s);
+  accvex   := (2*e1 + 6*e2)*m/s2;
+
+
+
+
+
+  momentum := (10*kg)*speedvec;
+
+  anglevec := (10*e3)*rad;
+  angularspeedvec := anglevec/(10*s);
+  angularaccvec   := angularspeedvec/(4*s);
+
+  writeln(angularspeedvec.ToString);
+  writeln(angularaccvec.ToString);
+  *)
 
 
   writeln('ADIM-TEST DONE.');
