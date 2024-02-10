@@ -69,45 +69,24 @@ begin
 end;
 
 function TQuantity.ToVerboseString: string;
-var
-  Return: double;
 begin
-  Return := FValue.Norm;
-  if (Return < -1) or (Return > 1) then
-    result := FloatToStr(Return) + ' ' + GetName(CPLURALNAME, CPREFIXES)
-  else
-    result := FloatToStr(Return) + ' ' + GetName(CSINGULARNAME, CPREFIXES);
+  result := '(' + FValue.ToString + ') ' + GetSymbol(CSYMBOL, CPREFIXES);
 end;
 
 function TQuantity.ToString(APrecision, ADigits: longint; const APrefixes: TPrefixes): string;
-var
-  FactoredNorm: double;
 begin
-  FactoredNorm := Value(APrefixes).Norm;
   if Length(APrefixes) = 0 then
-    result := FloatToStrF(FactoredNorm, ffGeneral, APrecision, ADigits) + ' ' + GetSymbol(CSYMBOL, CPREFIXES)
+    result := FloatToStrF(Value           .Norm, ffGeneral, APrecision, ADigits) + ' ' + GetSymbol(CSYMBOL, CPREFIXES)
   else
-    result := FloatToStrF(FactoredNorm, ffGeneral, APrecision, ADigits) + ' ' + GetSymbol(CSYMBOL, APrefixes);
+    result := FloatToStrF(Value(APrefixes).Norm, ffGeneral, APrecision, ADigits) + ' ' + GetSymbol(CSYMBOL, APrefixes);
 end;
 
 function TQuantity.ToVerboseString(APrecision, ADigits: longint; const APrefixes: TPrefixes): string;
-var
-  FactoredNorm: double;
 begin
-  FactoredNorm := Value(APrefixes).Norm;
-  if (FactoredNorm < -1) or (FactoredNorm > 1) then
-  begin
-    if Length(APrefixes) = 0 then
-      result := FloatToStrF(FactoredNorm, ffGeneral, APrecision, ADigits) + ' ' + GetName(CPLURALNAME, CPREFIXES)
-    else
-      result := FloatToStrF(FactoredNorm, ffGeneral, APrecision, ADigits) + ' ' + GetName(CPLURALNAME, APrefixes);
-  end else
-  begin
-    if Length(APrefixes) = 0 then
-      result := FloatToStrF(FactoredNorm, ffGeneral, APrecision, ADigits) + ' ' + GetName(CSINGULARNAME, CPREFIXES)
-    else
-      result := FloatToStrF(FactoredNorm, ffGeneral, APrecision, ADigits) + ' ' + GetName(CSINGULARNAME, APrefixes)
-  end; 
+  if Length(APrefixes) = 0 then
+    result := '(' + Value           .ToVerboseString(APrecision, ADigits) + ') ' + GetSymbol(CSYMBOL, CPREFIXES)
+  else
+    result := '(' + Value(APrefixes).ToVerboseString(APrecision, ADigits) + ') ' + GetSymbol(CSYMBOL, APrefixes);
 end;
 
 function TQuantity.IsSame(const AValue: TQuantity): boolean;
