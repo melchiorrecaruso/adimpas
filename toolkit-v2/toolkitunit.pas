@@ -278,31 +278,27 @@ end;
 
 procedure TToolkitList.AddVECBaseItem(const AItem: TToolkitItem);
 var
-  xClassName: string;
+  BaseClass: string;
+  BaseInc: string;
 begin
-  // VEC BASE UNIT
+  // VEC UNIT
+  BaseInc := adiminc;
+  if AItem.FVector = 'TVector'   then BaseInc := adimVECinc;
+  if AItem.FVector = 'TBivector' then BaseInc := adimBVECinc;
+
   SectionA2.Insert(3, '');
-  SectionA2.Insert(4, Format(INTF_QUANTITY, [GetQuantityType(AItem.FClassName), adimVECinc]));
-  SectionA2.Insert(5, Format(INTF_END, [adimVECinc]));
+  SectionA2.Insert(4, Format(INTF_QUANTITY, [GetQuantityType(AItem.FClassName), BaseInc]));
+  SectionA2.Insert(5, Format(INTF_END, [BaseInc]));
   SectionA2.Insert(6, '');
 
-  //SectionA3.Append('');
-  //SectionA3.Append(Format(INTF_UNIT, [GetQuantityType(AItem.FClassName), GetUnitType(AItem.FClassName), adiminc]));
-  //SectionA3.Append(Format(INTF_END, [adiminc]));
-  //SectionA3.Append('');
+  BaseClass := AItem.FClassName;
+  while Pos('CL3', BaseClass) > 0 do Delete(BaseClass, Pos('CL3', BaseClass), Length('CL3'));
 
-  xClassName := AItem.FClassName;
-  while Pos('CL3', xClassName) > 0 do Delete(xClassName, Pos('CL3', xClassName), Length('CL3'));
-
-  SectionB2.Append(Format(IMPL_CSYMBOL,       [GetSymbolResourceString      (xClassName)]));
-  SectionB2.Append(Format(IMPL_CSINGULARNAME, [GetSingularNameResourceString(xClassName)]));
-  SectionB2.Append(Format(IMPL_CPLURALNAME,   [GetPluralNameResourceString  (xClassName)]));
-  SectionB2.Append(Format(IMPL_CPREFIXES,     [GetPrefixesConst             (xClassName)]));
-  SectionB2.Append(Format(IMPL_CEXPONENTS,    [GetExponentsConst            (xClassName)]));
-  SectionB2.Append(Format(IMPL_QUANTITY,      [GetQuantityType              (AItem.FClassName), adimVECinc]));
+  SectionB2.Append(Format(IMPL_CSYMBOL,       [GetSymbolResourceString(BaseClass)]));
+  SectionB2.Append(Format(IMPL_CPREFIXES,     [GetPrefixesConst       (BaseClass)]));
+  SectionB2.Append(Format(IMPL_CEXPONENTS,    [GetExponentsConst      (BaseClass)]));
+  SectionB2.Append(Format(IMPL_QUANTITY,      [GetQuantityType        (AItem.FClassName), BaseInc]));
   SectionB2.Append('');
-
-  //SectionB3.Append(Format(IMPL_UNIT, [GetQuantityType(AItem.FClassName), GetUnitType(AItem.FClassName), adimVECinc]));
 
   AddVECItemResource(AItem);
   Inc(BaseUnitCount);
@@ -512,8 +508,10 @@ begin
 
       AddQuantityOperator('*', GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName));
 
-      if (GetQuantityType(AItem.FClassParent1) <> 'TVector') and
-         (GetQuantityType(AItem.FClassParent2) <> 'TVector') then
+      if (GetQuantityType(AItem.FClassParent1) <> 'TVector')   and
+         (GetQuantityType(AItem.FClassParent2) <> 'TVector')   and
+         (GetQuantityType(AItem.FClassParent1) <> 'TBivector') and
+         (GetQuantityType(AItem.FClassParent2) <> 'TBivector') then
       begin
         AddQuantityOperator('*', GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassName));
       end;
@@ -604,7 +602,8 @@ begin
       S := '  result.FValue :=';
 
     if (ALeftClass = 'double' ) or
-       (ALeftClass = 'TVector') then
+       (ALeftClass = 'TVector') or
+       (ALeftClass = 'TBivector') then
       S := S + ' ALeft ' + AOperator
     else
       S := S + ' ALeft.FValue ' + AOperator;
@@ -1018,14 +1017,10 @@ begin
 
   if AItem.FBaseClass = '' then
   begin
-
     SectionA4.Append('');
     SectionA4.Append('type');
     SectionA4.Append(Format('  %s = %s;', [GetQuantity(AItem.FClassName), GetQuantityType(AItem.FClassName)]));
     SectionA4.Append('');
-
-
-
   end;
 
 
