@@ -96,7 +96,7 @@ end;
 
 function TQuantity.IsZero: boolean;
 begin
-  result := FValue.SameValue(NullVector);
+  result := FValue.SameValue(NullBivector);
 end;  
 
 class operator TQuantity.+(const AValue: TQuantity): TQuantity;
