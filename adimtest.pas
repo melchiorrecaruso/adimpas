@@ -1,7 +1,7 @@
 {
   Description: ADimPas Test program.
 
-  Copyright (C) 2023 Melchiorre Caruso <melchiorrecaruso@gmail.com>
+  Copyright (C) 2023-2024 Melchiorre Caruso <melchiorrecaruso@gmail.com>
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU Lesser General Public License as published by
@@ -159,13 +159,15 @@ var
 
   displacement: TCL3Meters;
   speedvec: TCL3MetersPerSecond;
-  accvex: TCL3MetersPerSecondSquared;
+  accvec: TCL3MetersPerSecondSquared;
 
-  Momentum: TCL3KilogramMetersPerSecond;
+  momentum: TCL3KilogramMetersPerSecond;
 
   anglevec: TCL3Radians;
   angularspeedvec: TCL3RadiansPerSecond;
   angularaccvec: TCL3RadiansPerSecondSquared;
+
+  forcevec: TCL3Newtons;
 
 begin
   ExitCode := 0;
@@ -892,9 +894,7 @@ begin
   {$endif}
   writeln('* TEST-98: PASSED');
 
-
   // TEST-99
-  (*
 
   displacement := (2*e1 + 6*e2)*m;
   displacement := (2*e1 + 6*e2)*au;
@@ -905,26 +905,19 @@ begin
   displacement := (6.0*e1)       *m;
   speedvec     := (2.0*e1 + 5*e2)*m/s;
 
-  writeln((displacement.SquaredNorm/displacement.Dot(speedvec)).ToString);
-
-
-
-  accvex   := speedvec/(5*s);
-  accvex   := (2*e1 + 6*e2)*m/s2;
-
-
-
-
-
+  accvec   := speedvec/(5*s);
+  accvec   := (2*e1 + 6*e2)*m/s2;
   momentum := (10*kg)*speedvec;
+  anglevec := (10*e31)*rad;
 
-  anglevec := (10*e3)*rad;
   angularspeedvec := anglevec/(10*s);
   angularaccvec   := angularspeedvec/(4*s);
 
-  writeln(angularspeedvec.ToString);
-  writeln(angularaccvec.ToString);
-  *)
+  accvec   := (2*e1 + 2*e2)*m/s2;
+  forcevec := (5*kg)*accvec;
+
+  writeln(forcevec.ToString(5, 3, []));
+  writeln(forcevec.ToVerboseString);
 
 
   writeln('ADIM-TEST DONE.');
