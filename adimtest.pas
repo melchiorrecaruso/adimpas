@@ -910,14 +910,19 @@ begin
   momentum := (10*kg)*speedvec;
   anglevec := (10*e31)*rad;
 
-  angularspeedvec := anglevec/(10*s);
+  angularspeedvec := anglevec/(2.5*s);
   angularaccvec   := angularspeedvec/(4*s);
 
   accvec   := (2*e1 + 2*e2)*m/s2;
   forcevec := (5*kg)*accvec;
 
-  writeln(forcevec.ToString(5, 3, []));
-  writeln(forcevec.ToVerboseString);
+  writeln(angularspeedvec.ToString(5, 3, []));
+  writeln(angularspeedvec.ToVerboseString);
+  writeln;
+  writeln(anglevec.ToString);
+  writeln(angularspeedvec.ToString);
+  writeln((anglevec.Norm/angularspeedvec.Projection(anglevec.Value).Norm).ToString);
+
 
 
   writeln('ADIM-TEST DONE.');
