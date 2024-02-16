@@ -13,6 +13,8 @@ type
     function ToVerboseString(APrecision, ADigits: longint; const APrefixes: TPrefixes): string;
     function IsSame(const AValue: TQuantity): boolean;
     function IsZero: boolean;
+    function Projection(const AValue: TVector): TQuantity;
+    function Rejection(const AValue: TVector): TQuantity;
     class operator + (const AValue: TQuantity): TQuantity;
     class operator - (const AValue: TQuantity): TQuantity;
     class operator + (const ALeft, ARight: TQuantity): TQuantity;
@@ -97,7 +99,17 @@ end;
 function TQuantity.IsZero: boolean;
 begin
   result := FValue.SameValue(NullVector);
-end;  
+end;
+
+function TQuantity.Projection(const AValue: TVector): TQuantity;
+begin
+  result.FValue := FValue.Projection(AValue);
+end;
+
+function TQuantity.Rejection(const AValue: TVector): TQuantity;
+begin
+  result.FValue := FValue.Rejection(AValue);
+end;
 
 class operator TQuantity.+(const AValue: TQuantity): TQuantity;
 begin
