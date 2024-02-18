@@ -168,6 +168,8 @@ var
   angularaccvec: TCL3RadiansPerSecondSquared;
 
   forcevec: TCL3Newtons;
+  areavec: TCL3SquareMeters;
+
 
 begin
   ExitCode := 0;
@@ -908,6 +910,8 @@ begin
   accvec   := speedvec/(5*s);
   accvec   := (2*e1 + 6*e2)*m/s2;
   momentum := (10*kg)*speedvec;
+  momentum := (10*e1)*m/s*kg;
+  momentum := (10*e1)*m*kg/s;
   anglevec := (10*e31)*deg;
 
   angularspeedvec := anglevec/(2.5*s);
@@ -917,8 +921,14 @@ begin
   accvec   := (2*e1 + 2*e2)*m/s2;
   forcevec := (5*kg)*accvec;
   forcevec := momentum/(10*s);
+  forcevec := (5*e1)*m/s2*kg;
+  forcevec := (5*e1)*m*kg/s2;
   forcevec := (5*e1)*N;
   accvec   := forcevec/mass;
+
+
+  areavec  := (10*e1*m).Wedge(5*e2*m);
+
 
   writeln(accvec.ToString);
 

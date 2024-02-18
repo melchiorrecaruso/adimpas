@@ -125,10 +125,7 @@ type
     procedure AddHelperCross(const AItem: TToolkitItem);
     procedure AddHelperWedge(const AItem: TToolkitItem);
 
-
-
     procedure AddEquivalence(AClassName, ABaseClass: string);
-
 
 
     procedure AddItemResource(const AItem: TToolkitItem);
@@ -531,6 +528,7 @@ begin
     begin
 
       if Pos('OP1', AItem.FFactor) > 0 then AddUnitOperator('*', GetQuantityType(AItem.FClassParent1), GetUnitType(AItem.FClassParent2), GetQuantityType(AItem.FClassName));
+      if Pos('OP2', AItem.FFactor) > 0 then AddUnitOperator('*', GetQuantityType(AItem.FClassParent2), GetUnitType(AItem.FClassParent1), GetQuantityType(AItem.FClassName));
 
       if IsAVector(GetQuantityType(AItem.FClassParent1)) xor
          IsAVector(GetQuantityType(AItem.FClassParent2)) then
@@ -571,6 +569,7 @@ begin
       end else
 
         if AItem.FOperator = 'DOT'   then AddHelperDot        (AItem) else
+        if AItem.FOperator = 'WEDGE' then AddHelperWEDGE      (AItem) else
         if AItem.FOperator = 'NORM'  then AddHelperNorm       (AItem) else
         if AItem.FOperator = 'NORM2' then AddHelperSquaredNorm(AItem);
 
