@@ -20,9 +20,9 @@
 {
   ADimPas library built on 18/02/2024.
 
-  Number of base units: 141
+  Number of base units: 142
   Number of factored units: 75
-  Number of operators: 1080 (242 external, 838 internal)
+  Number of operators: 1085 (245 external, 840 internal)
 }
 
 unit ADim;
@@ -49,6 +49,9 @@ type
   TExponents = array of longint;
 
 { TQuantity classes }
+
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCL3NewtonMeterQty}{$i adimBVEC.inc}
+{$DEFINE INTF_END}{$i adimBVEC.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCL3KilogramSquareMeterPerSecondQty}{$i adimBVEC.inc}
 {$DEFINE INTF_END}{$i adimBVEC.inc}
@@ -1637,6 +1640,9 @@ operator /(const ALeft: TSteradianPerSecondSquaredQty; const ARight: TSecondQty)
 operator *(const ALeft: TCL3RadianQty; const ARight: THertzQty): TCL3RadianPerSecondQty;
 operator *(const ALeft: THertzQty; const ARight: TCL3RadianQty): TCL3RadianPerSecondQty;
 operator /(const ALeft: TCL3RadianPerSecondQty; const ARight: THertzQty): TCL3RadianQty;
+operator *(const ALeft: TCL3KilogramSquareMeterQty; const ARight: THertzQty): TCL3KilogramSquareMeterPerSecondQty;
+operator *(const ALeft: THertzQty; const ARight: TCL3KilogramSquareMeterQty): TCL3KilogramSquareMeterPerSecondQty;
+operator /(const ALeft: TCL3KilogramSquareMeterPerSecondQty; const ARight: THertzQty): TCL3KilogramSquareMeterQty;
 
 { TUnit classes }
 
@@ -1647,6 +1653,7 @@ operator /(const ALeft: TCL3RadianPerSecondQty; const ARight: THertzQty): TCL3Ra
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TMeterQty}{$DEFINE TUnit:=TMeterUnit}{$i adim.inc}
+  class operator *(const ALeft: TCL3NewtonQty; const ARight: TMeterUnit): TCL3NewtonMeterQty;
   class operator *(const ALeft: TVector; const ARight: TMeterUnit): TCL3MeterQty;
   class operator /(const ALeft: double; const ARight: TMeterUnit): TReciprocalMeterQty;
   class operator /(const ALeft: TRadianQty; const ARight: TMeterUnit): TRadianPerMeterQty;
@@ -1691,6 +1698,7 @@ operator /(const ALeft: TCL3RadianPerSecondQty; const ARight: THertzQty): TCL3Ra
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=THertzQty}{$DEFINE TUnit:=THertzUnit}{$i adim.inc}
+  class operator *(const ALeft: TCL3KilogramSquareMeterQty; const ARight: THertzUnit): TCL3KilogramSquareMeterPerSecondQty;
   class operator *(const ALeft: TCL3RadianQty; const ARight: THertzUnit): TCL3RadianPerSecondQty;
   class operator *(const ALeft: TCL3MeterQty; const ARight: THertzUnit): TCL3MeterPerSecondQty;
   class operator *(const ALeft: TMeterQty; const ARight: THertzUnit): TMeterPerSecondQty;
@@ -5621,6 +5629,9 @@ type
 type
   TCL3KilogramSquareMetersPerSecond = TCL3KilogramSquareMeterPerSecondQty;
 
+type
+  TCL3NewtonMeters = TCL3NewtonMeterQty;
+
 { Helpers }
 
 type
@@ -5918,6 +5929,10 @@ type
 
   TCL3KilogramMeterHelper = record helper for TCL3KilogramMeterQty
     function Wedge(AValue: TCL3MeterQty): TCL3KilogramSquareMeterQty;
+  end;
+
+  TCL3NewtonHelper = record helper for TCL3NewtonQty
+    function Wedge(AValue: TCL3MeterQty): TCL3NewtonMeterQty;
   end;
 
 { Power functions }
@@ -11077,6 +11092,11 @@ end;
 {$DEFINE CEXPONENTS:=cKilogramSquareMeterPerSecondExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCL3KilogramSquareMeterPerSecondQty}{$i adimBVEC.inc}
 
+{$DEFINE CSYMBOL:=rsNewtonMeterSymbol}
+{$DEFINE CPREFIXES:=cNewtonMeterPrefixes}
+{$DEFINE CEXPONENTS:=cNewtonMeterExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCL3NewtonMeterQty}{$i adimBVEC.inc}
+
 class operator TRadianPerSecondQty.:=(const AQuantity: TRadianPerSecondQty): THertzQty;
 begin
   result.FValue := AQuantity.FValue;
@@ -12299,6 +12319,21 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+operator *(const ALeft: TCL3KilogramSquareMeterQty; const ARight: THertzQty): TCL3KilogramSquareMeterPerSecondQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator *(const ALeft: THertzQty; const ARight: TCL3KilogramSquareMeterQty): TCL3KilogramSquareMeterPerSecondQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator /(const ALeft: TCL3KilogramSquareMeterPerSecondQty; const ARight: THertzQty): TCL3KilogramSquareMeterQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
 { TUnit classes }
 
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TJoulePerKelvinQty}{$DEFINE TUnit:=TJoulePerKelvinUnit}{$i adim.inc}
@@ -13208,6 +13243,16 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+class operator THertzUnit.*(const ALeft: TCL3KilogramSquareMeterQty; const ARight: THertzUnit): TCL3KilogramSquareMeterPerSecondQty;
+begin
+  result.FValue := ALeft.FValue;
+end;
+
+class operator TMeterUnit.*(const ALeft: TCL3NewtonQty; const ARight: TMeterUnit): TCL3NewtonMeterQty;
+begin
+  result.FValue := ALeft.FValue.Dual;
+end;
+
 { Helpers }
 
 function TSecondHelper.ToDay: TDayQty;
@@ -13801,6 +13846,11 @@ begin
 end;
 
 function TCL3MeterHelper.Wedge(AValue: TCL3KilogramMeterPerSecondQty): TCL3KilogramSquareMeterPerSecondQty;
+begin
+  result.FValue := FValue.Wedge(AValue.FValue);
+end;
+
+function TCL3NewtonHelper.Wedge(AValue: TCL3MeterQty): TCL3NewtonMeterQty;
 begin
   result.FValue := FValue.Wedge(AValue.FValue);
 end;

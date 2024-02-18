@@ -170,6 +170,8 @@ var
   forcevec: TCL3Newtons;
   areavec: TCL3SquareMeters;
 
+  torquevec: TCL3NewtonMeters;
+
 
 begin
   ExitCode := 0;
@@ -928,6 +930,13 @@ begin
 
 
   areavec  := (10*e1*m).Wedge(5*e2*m);
+
+  torquevec := (10*e3)*N*m;
+  writeln(torquevec.ToVerboseString);
+
+  torquevec := (10*e1*N).Wedge(1*e2*m);
+  writeln(torquevec.ToVerboseString);
+
 
 
   writeln(accvec.ToString);

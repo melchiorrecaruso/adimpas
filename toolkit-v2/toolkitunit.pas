@@ -114,6 +114,10 @@ type
     procedure AddQuantityOperator(const AOperator, ALeftClass, ARightClass, AResultClass: string);
     procedure AddUnitOperator(const AOperator, ALeftClass, ARightClass, AResultClass: string);
 
+    procedure AddUnitOperatorDual(const AOperator, ALeftClass, ARightClass, AResultClass: string);
+
+
+
     procedure AddFactoredQuantities(ABaseClass, AIdentifierSymbol, AFactor, APrefixes: string);
     procedure AddPower(AOperator, AQuantity, AResult: string);
     procedure AddHelper(AClassName, ABaseClass, AFactor: string);
@@ -518,8 +522,9 @@ begin
 end;
 
 procedure TToolkitList.AddVECItemOperators(const AItem: TToolkitItem);
+var
+  BaseUnit: string;
 begin
-
 
   if (AItem.FBaseClass = '') then
   begin
@@ -568,10 +573,41 @@ begin
 
       end else
 
-        if AItem.FOperator = 'DOT'   then AddHelperDot        (AItem) else
-        if AItem.FOperator = 'WEDGE' then AddHelperWEDGE      (AItem) else
         if AItem.FOperator = 'NORM'  then AddHelperNorm       (AItem) else
-        if AItem.FOperator = 'NORM2' then AddHelperSquaredNorm(AItem);
+        if AItem.FOperator = 'NORM2' then AddHelperSquaredNorm(AItem) else
+        if AItem.FOperator = 'DOT'   then AddHelperDot        (AItem) else
+        if AItem.FOperator = 'WEDGE' then
+        begin
+
+          if Pos('OP1', AItem.FFactor) > 0 then
+          begin
+            BaseUnit := GetUnitType(AItem.FClassParent2);
+            if Pos('TCL3', BaseUnit) = 1 then
+              Delete(BaseUnit, Pos('CL3', BaseUnit), Length('CL3'));
+
+            AddUnitOperatorDual('*', GetQuantityType(AItem.FClassParent1), BaseUnit, GetQuantityType(AItem.FClassName));
+          end;
+          AddHelperWEDGE(AItem);
+
+        end else
+          if AItem.FOperator = 'CROSS' then
+          begin
+
+            if Pos('OP1', AItem.FFactor) > 0 then
+            begin
+              BaseUnit := GetUnitType(AItem.FClassParent2);
+              if Pos('TCL3', BaseUnit) = 1 then
+                Delete(BaseUnit, Pos('CL3', BaseUnit), Length('CL3'));
+
+              AddUnitOperator('*', GetQuantityType(AItem.FClassParent1), BaseUnit, GetQuantityType(AItem.FClassName));
+            end;
+            AddHelperCROSS(AItem);
+
+          end;
+
+
+
+
 
 
   end else
@@ -711,6 +747,48 @@ begin
     Inc(InternalOperators);
   end;
 end;
+
+procedure TToolkitList.AddUnitOperatorDual(const AOperator, ALeftClass, ARightClass, AResultClass: string);
+var
+  i: longint;
+  BaseQuantity: string;
+begin
+  BaseQuantity := GetQuantityType(GetBaseClass(ARightClass));
+  if ClassList.IndexOf(ALeftClass + AOperator + ARightClass) = -1 then
+  begin
+    ClassList.Append(ALeftClass + AOperator + ARightClass);
+
+    i := Find(Format(INTF_UNIT, [BaseQuantity, ARightClass, AdimInc]), SectionA3);
+
+    SectionA3 .Insert(i + 1, Format(INTF_OP_CLASS, [             AOperator, ALeftClass, ARightClass, AResultClass]));
+    SectionB31.Append('');
+    SectionB31.Append(       Format(IMPL_OP_CLASS, [ARightClass, AOperator, ALeftClass, ARightClass, AResultClass]));
+    SectionB31.Append('begin');
+    if AResultClass <> 'double' then
+    begin
+
+      if (ALeftClass = 'double'      ) or
+         (ALeftClass = 'TVector'     ) or
+         (ALeftClass = 'TBivector'   ) or
+         (ALeftClass = 'TMultivector') then
+        SectionB31.Append('  result.FValue := ALeft;')
+      else
+        SectionB31.Append('  result.FValue := ALeft.FValue.Dual;');
+
+    end else
+    begin
+      if ALeftClass <> 'double' then
+        SectionB31.Append('  result := ALeft.FValue;')
+      else
+        SectionB31.Append('  result := ALeft;');
+    end;
+    SectionB31.Append('end;');
+    SectionB31.Append('');
+    Inc(InternalOperators);
+  end;
+end;
+
+
 
 procedure TToolkitList.AddPower(AOperator, AQuantity, AResult: string);
 var
