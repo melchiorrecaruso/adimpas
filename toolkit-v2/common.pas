@@ -71,6 +71,7 @@ function GetUnitIdentifier(const S: string): string;
 
 function GetBaseClass(const S: string): string;
 
+function IsAVector(const S: string): boolean;
 
 function  CleanUnitName(const S: string): string;
 function  CleanUnitSymbol(const S: string): string;
@@ -341,6 +342,16 @@ begin
     Delete(Result, High(Result), 1);
 end;
 
+function IsAVector(const S: string): boolean;
+begin
+  Result := False;
+  if UpperCase(S) = 'TVECTOR'      then Result := True;
+  if UpperCase(S) = 'TBIVECTOR'    then Result := True;
+  if UpperCase(S) = 'TTRIVECTOR'   then Result := True;
+  if UpperCase(S) = 'TMULTIVECTOR' then Result := True;
+
+  if Pos('TCL3', S) = 1 then Result := True;
+end;
 
 
 function CleanUnitName(const S: string): string;
