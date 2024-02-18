@@ -21,7 +21,7 @@
   ADimPas library built on 18/02/2024.
 
   Number of base units: 138
-  Number of factored units: 73
+  Number of factored units: 75
   Number of operators: 1068 (242 external, 826 internal)
 }
 
@@ -1356,6 +1356,9 @@ type
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCL3NauticalMilePerHourQty}{$i adimVEC.inc}
 {$DEFINE INTF_END}{$i adimVEC.inc}
 
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCL3MeterPerSecondPerSecondQty}{$i adimVEC.inc}
+{$DEFINE INTF_END}{$i adimVEC.inc}
+
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCL3MeterPerHourPerSecondQty}{$i adimVEC.inc}
 {$DEFINE INTF_END}{$i adimVEC.inc}
 
@@ -1370,6 +1373,9 @@ type
   class operator *(const ALeft: TSteradianPerCubicSecondQty; const ARight: TSecondQty): TSteradianPerSecondSquaredQty;
   class operator *(const ALeft: TSecondQty; const ARight: TSteradianPerCubicSecondQty): TSteradianPerSecondSquaredQty;
 {$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCL3NewtonSecondQty}{$i adimVEC.inc}
+{$DEFINE INTF_END}{$i adimVEC.inc}
 
 { External Operators }
 
@@ -5844,10 +5850,15 @@ type
   end;
 
   TCL3MeterPerSecondSquaredHelper = record helper for TCL3MeterPerSecondSquaredQty
+    function ToCL3MeterPerSecondPerSecond: TCL3MeterPerSecondPerSecondQty;
     function Dot(AValue: TCL3MeterQty): TSquareMeterPerSquareSecondQty;
     function Dot(AValue: TCL3MeterPerSecondQty): TSquareMeterPerCubicSecondQty;
     function SquaredNorm: TSquareMeterPerQuarticSecondQty;
     function Norm: TMeterPerSecondSquaredQty;
+  end;
+
+  TCL3MeterPerSecondPerSecondHelper = record helper for TCL3MeterPerSecondPerSecondQty
+    function ToCL3MeterPerSecondSquared: TCL3MeterPerSecondSquaredQty;
   end;
 
   TCL3RadianPerSecondHelper = record helper for TCL3RadianPerSecondQty
@@ -5863,9 +5874,14 @@ type
   end;
 
   TCL3KilogramMeterPerSecondHelper = record helper for TCL3KilogramMeterPerSecondQty
+    function ToCL3NewtonSecond: TCL3NewtonSecondQty;
     function Dot(AValue: TCL3MeterPerSecondQty): TKilogramQty;
     function SquaredNorm: TSquareKilogramSquareMeterPerSquareSecondQty;
     function Norm: TKilogramMeterPerSecondQty;
+  end;
+
+  TCL3NewtonSecondHelper = record helper for TCL3NewtonSecondQty
+    function ToCL3KilogramMeterPerSecond: TCL3KilogramMeterPerSecondQty;
   end;
 
 { Power functions }
@@ -10888,6 +10904,11 @@ end;
 {$DEFINE CEXPONENTS:=cMeterPerSecondSquaredExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCL3MeterPerSecondSquaredQty}{$i adimVEC.inc}
 
+{$DEFINE CSYMBOL:=rsMeterPerSecondPerSecondSymbol}
+{$DEFINE CPREFIXES:=cMeterPerSecondPerSecondPrefixes}
+{$DEFINE CEXPONENTS:=cMeterPerSecondPerSecondExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCL3MeterPerSecondPerSecondQty}{$i adimVEC.inc}
+
 {$DEFINE CSYMBOL:=rsMeterPerHourPerSecondSymbol}
 {$DEFINE CSINGULARNAME:=rsMeterPerHourPerSecondName}
 {$DEFINE CPLURALNAME:=rsMeterPerHourPerSecondPluralName}
@@ -10964,6 +10985,11 @@ end;
 {$DEFINE CPREFIXES:=cNewtonPrefixes}
 {$DEFINE CEXPONENTS:=cNewtonExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCL3NewtonQty}{$i adimVEC.inc}
+
+{$DEFINE CSYMBOL:=rsNewtonSecondSymbol}
+{$DEFINE CPREFIXES:=cNewtonSecondPrefixes}
+{$DEFINE CEXPONENTS:=cNewtonSecondExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCL3NewtonSecondQty}{$i adimVEC.inc}
 
 class operator TRadianPerSecondQty.:=(const AQuantity: TRadianPerSecondQty): THertzQty;
 begin
@@ -13573,6 +13599,16 @@ begin
   result.FValue := FValue.Dot(AValue.FValue);
 end;
 
+function TCL3MeterPerSecondSquaredHelper.ToCL3MeterPerSecondPerSecond: TCL3MeterPerSecondPerSecondQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TCL3MeterPerSecondPerSecondHelper.ToCL3MeterPerSecondSquared: TCL3MeterPerSecondSquaredQty;
+begin
+  result.FValue := FValue;
+end;
+
 function TCL3RadianPerSecondHelper.Norm: TRadianPerSecondQty;
 begin
   result.FValue := FValue.Norm;
@@ -13631,6 +13667,16 @@ end;
 function TCL3KilogramMeterPerSecondHelper.Dot(AValue: TCL3MeterPerSecondQty): TKilogramQty;
 begin
   result.FValue := FValue.Dot(AValue.FValue);
+end;
+
+function TCL3KilogramMeterPerSecondHelper.ToCL3NewtonSecond: TCL3NewtonSecondQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TCL3NewtonSecondHelper.ToCL3KilogramMeterPerSecond: TCL3KilogramMeterPerSecondQty;
+begin
+  result.FValue := FValue;
 end;
 
 { Power functions }

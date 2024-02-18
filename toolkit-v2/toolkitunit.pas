@@ -283,8 +283,8 @@ var
 begin
   // VEC UNIT
   BaseInc := adiminc;
-  if AItem.FVector = 'TVector'   then BaseInc := adimVECinc;
-  if AItem.FVector = 'TBivector' then BaseInc := adimBVECinc;
+  if Uppercase(AItem.FVector) = 'TVECTOR'   then BaseInc := adimVECinc;
+  if Uppercase(AItem.FVector) = 'TBIVECTOR' then BaseInc := adimBVECinc;
 
   SectionA2.Insert(3, '');
   SectionA2.Insert(4, Format(INTF_QUANTITY, [GetQuantityType(AItem.FClassName), BaseInc]));
@@ -292,12 +292,12 @@ begin
   SectionA2.Insert(6, '');
 
   BaseClass := AItem.FClassName;
-  while Pos('CL3', BaseClass) > 0 do Delete(BaseClass, Pos('CL3', BaseClass), Length('CL3'));
+  if Pos('TCL3', BaseClass) = 1 then Delete(BaseClass, Pos('CL3', BaseClass), Length('CL3'));
 
-  SectionB2.Append(Format(IMPL_CSYMBOL,       [GetSymbolResourceString(BaseClass)]));
-  SectionB2.Append(Format(IMPL_CPREFIXES,     [GetPrefixesConst       (BaseClass)]));
-  SectionB2.Append(Format(IMPL_CEXPONENTS,    [GetExponentsConst      (BaseClass)]));
-  SectionB2.Append(Format(IMPL_QUANTITY,      [GetQuantityType        (AItem.FClassName), BaseInc]));
+  SectionB2.Append(Format(IMPL_CSYMBOL,    [GetSymbolResourceString(BaseClass)]));
+  SectionB2.Append(Format(IMPL_CPREFIXES,  [GetPrefixesConst       (BaseClass)]));
+  SectionB2.Append(Format(IMPL_CEXPONENTS, [GetExponentsConst      (BaseClass)]));
+  SectionB2.Append(Format(IMPL_QUANTITY,   [GetQuantityType        (AItem.FClassName), BaseInc]));
   SectionB2.Append('');
 
   AddVECItemResource(AItem);
@@ -336,8 +336,34 @@ begin
 end;
 
 procedure TToolkitList.AddVECClonedItem(const AItem: TToolkitItem);
+var
+  BaseClass: string;
+  BaseInc: string;
 begin
+  // VEC CLONED UNIT
+  BaseInc := adiminc;
+  if Uppercase(AItem.FVector) = 'TVECTOR'   then BaseInc := adimVECinc;
+  if Uppercase(AItem.FVector) = 'TBIVECTOR' then BaseInc := adimBVECinc;
 
+  SectionA2.Append('');
+  SectionA2.Append(Format(INTF_QUANTITY, [GetQuantityType(AItem.FClassName), BaseInc]));
+  SectionA2.Append(Format(INTF_END, [BaseInc]));
+  SectionA2.Append('');
+
+  BaseClass := AItem.FClassName;
+  if Pos('TCL3', BaseClass) = 1 then Delete(BaseClass, Pos('CL3', BaseClass), Length('CL3'));
+
+  SectionB2.Append(Format(IMPL_CSYMBOL,    [GetSymbolResourceString(BaseClass)]));
+  SectionB2.Append(Format(IMPL_CPREFIXES,  [GetPrefixesConst       (BaseClass)]));
+  SectionB2.Append(Format(IMPL_CEXPONENTS, [GetExponentsConst      (BaseClass)]));
+  SectionB2.Append(Format(IMPL_QUANTITY,   [GetQuantityType        (AItem.FClassName), BaseInc]));
+  SectionB2.Append('');
+
+  AddVECItemResource(AItem);
+  AddHelper(AItem.FClassName, AItem.FBaseClass, '');
+  AddHelper(AItem.FBaseClass, AItem.FClassName, '');
+
+  Inc(FactoredUnitCount);
 end;
 
 procedure TToolkitList.AddFactoredItem(const AItem: TToolkitItem);
