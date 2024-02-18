@@ -897,7 +897,7 @@ begin
   // TEST-99
 
   displacement := (2*e1 + 6*e2)*m;
-  displacement := (2*e1 + 6*e2)*au;
+  displacement := (2*e1 + 6*e2)*inch;
 
   speedvec     := (2*e1 + 6*e2)*m/s;
   speedvec     := displacement/(10*s);
@@ -908,13 +908,20 @@ begin
   accvec   := speedvec/(5*s);
   accvec   := (2*e1 + 6*e2)*m/s2;
   momentum := (10*kg)*speedvec;
-  anglevec := (10*e31)*rad;
+  anglevec := (10*e31)*deg;
 
   angularspeedvec := anglevec/(2.5*s);
   angularaccvec   := angularspeedvec/(4*s);
 
+  mass     := 10*kg;
   accvec   := (2*e1 + 2*e2)*m/s2;
   forcevec := (5*kg)*accvec;
+  forcevec := momentum/(10*s);
+  forcevec := (5*e1)*N;
+  accvec   := forcevec/mass;
+
+  writeln(accvec.ToString);
+
 
   writeln(angularspeedvec.ToString(5, 3, []));
   writeln(angularspeedvec.ToVerboseString);
@@ -922,6 +929,9 @@ begin
   writeln(anglevec.ToString);
   writeln(angularspeedvec.ToString);
   writeln((anglevec.Norm/angularspeedvec.Projection(anglevec.Value).Norm).ToString);
+
+
+
 
 
 
