@@ -506,15 +506,31 @@ begin
 
       if Pos('OP1', AItem.FFactor) > 0 then AddUnitOperator('*', GetQuantityType(AItem.FClassParent1), GetUnitType(AItem.FClassParent2), GetQuantityType(AItem.FClassName));
 
-      AddQuantityOperator('*', GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName));
-
-      if (GetQuantityType(AItem.FClassParent1) <> 'TVector')   and
-         (GetQuantityType(AItem.FClassParent2) <> 'TVector')   and
-         (GetQuantityType(AItem.FClassParent1) <> 'TBivector') and
-         (GetQuantityType(AItem.FClassParent2) <> 'TBivector') then
+      if IsAVector(GetQuantityType(AItem.FClassParent1)) xor
+         IsAVector(GetQuantityType(AItem.FClassParent2)) then
       begin
-        AddQuantityOperator('*', GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassName));
+        AddQuantityOperator('*', GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName));
+
+        if (UpperCase(AItem.FClassParent1) <> 'TVECTOR'  ) and
+           (UpperCase(AItem.FClassParent1) <> 'TBIVECTOR') then
+        begin
+          AddQuantityOperator('*', GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassName));
+        end;
+
+        if IsAVector(GetQuantityType(AItem.FClassParent1)) then
+        begin
+          if (UpperCase(AItem.FClassParent1) <> 'TVECTOR'  ) and
+             (UpperCase(AItem.FClassParent1) <> 'TBIVECTOR') then AddQuantityOperator('/', GetQuantityType(AItem.FClassName), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1));
+        end;
+
+        if IsAVector(GetQuantityType(AItem.FClassParent2)) then
+        begin
+
+          if (UpperCase(AItem.FClassParent2) <> 'TVECTOR'  ) and
+             (UpperCase(AItem.FClassParent2) <> 'TBIVECTOR') then AddQuantityOperator('/', GetQuantityType(AItem.FClassName), GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2));
+        end;
       end;
+
 
     end else
       if AItem.FOperator = '/' then
