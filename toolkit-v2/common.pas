@@ -177,6 +177,7 @@ begin
     if (Result <> 'double'      ) and
        (Result <> 'TVector'     ) and
        (Result <> 'TBivector'   ) and
+       (Result <> 'TTrivector'  ) and
        (Result <> 'TMultivector') then Result := Result + 'Qty';
   end;
 end;
