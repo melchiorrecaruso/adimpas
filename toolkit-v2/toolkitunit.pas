@@ -166,6 +166,7 @@ const
   adiminc     = 'adim.inc';
   adimVECinc  = 'adimVEC.inc';
   adimBVECinc = 'adimBVEC.inc';
+  adimTVECinc = 'adimTVEC.inc';
   adimMVECinc = 'adimMVEC.inc';
 
 
@@ -284,8 +285,10 @@ var
 begin
   // VEC UNIT
   BaseInc := adiminc;
-  if Uppercase(AItem.FVector) = 'TVECTOR'   then BaseInc := adimVECinc;
-  if Uppercase(AItem.FVector) = 'TBIVECTOR' then BaseInc := adimBVECinc;
+  if Uppercase(AItem.FVector) = 'TVECTOR'      then BaseInc := adimVECinc;
+  if Uppercase(AItem.FVector) = 'TBIVECTOR'    then BaseInc := adimBVECinc;
+  if Uppercase(AItem.FVector) = 'TTRIVECTOR'   then BaseInc := adimTVECinc;
+  if Uppercase(AItem.FVector) = 'TMULTIVECTOR' then BaseInc := adimMVECinc;
 
   SectionA2.Insert(3, '');
   SectionA2.Insert(4, Format(INTF_QUANTITY, [GetQuantityType(AItem.FClassName), BaseInc]));
@@ -343,8 +346,10 @@ var
 begin
   // VEC CLONED UNIT
   BaseInc := adiminc;
-  if Uppercase(AItem.FVector) = 'TVECTOR'   then BaseInc := adimVECinc;
-  if Uppercase(AItem.FVector) = 'TBIVECTOR' then BaseInc := adimBVECinc;
+  if Uppercase(AItem.FVector) = 'TVECTOR'      then BaseInc := adimVECinc;
+  if Uppercase(AItem.FVector) = 'TBIVECTOR'    then BaseInc := adimBVECinc;
+  if Uppercase(AItem.FVector) = 'TTRIVECTOR'   then BaseInc := adimTVECinc;
+  if Uppercase(AItem.FVector) = 'TMULTIVECTOR' then BaseInc := adimMVECinc;
 
   SectionA2.Append('');
   SectionA2.Append(Format(INTF_QUANTITY, [GetQuantityType(AItem.FClassName), BaseInc]));
@@ -540,23 +545,29 @@ begin
       begin
         AddQuantityOperator('*', GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName));
 
-        if (UpperCase(AItem.FClassParent1) <> 'TVECTOR'  ) and
-           (UpperCase(AItem.FClassParent1) <> 'TBIVECTOR') then
+        if (UpperCase(AItem.FClassParent1) <> 'TVECTOR'     ) and
+           (UpperCase(AItem.FClassParent1) <> 'TBIVECTOR'   ) and
+           (UpperCase(AItem.FClassParent1) <> 'TTRIVECTOR'  ) and
+           (UpperCase(AItem.FClassParent1) <> 'TMULTIVECTOR') then
         begin
           AddQuantityOperator('*', GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassName));
         end;
 
         if IsAVector(GetQuantityType(AItem.FClassParent1)) then
         begin
-          if (UpperCase(AItem.FClassParent1) <> 'TVECTOR'  ) and
-             (UpperCase(AItem.FClassParent1) <> 'TBIVECTOR') then AddQuantityOperator('/', GetQuantityType(AItem.FClassName), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1));
+          if (UpperCase(AItem.FClassParent1) <> 'TVECTOR'     ) and
+             (UpperCase(AItem.FClassParent1) <> 'TBIVECTOR'   ) and
+             (UpperCase(AItem.FClassParent1) <> 'TTRIVECTOR'  ) and
+             (UpperCase(AItem.FClassParent1) <> 'TMULTIVECTOR') then AddQuantityOperator('/', GetQuantityType(AItem.FClassName), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1));
         end;
 
         if IsAVector(GetQuantityType(AItem.FClassParent2)) then
         begin
 
-          if (UpperCase(AItem.FClassParent2) <> 'TVECTOR'  ) and
-             (UpperCase(AItem.FClassParent2) <> 'TBIVECTOR') then AddQuantityOperator('/', GetQuantityType(AItem.FClassName), GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2));
+          if (UpperCase(AItem.FClassParent2) <> 'TVECTOR'     ) and
+             (UpperCase(AItem.FClassParent2) <> 'TBIVECTOR'   ) and
+             (UpperCase(AItem.FClassParent2) <> 'TTRIVECTOR'  ) and
+             (UpperCase(AItem.FClassParent2) <> 'TMULTIVECTOR') then AddQuantityOperator('/', GetQuantityType(AItem.FClassName), GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2));
         end;
       end;
 
@@ -678,9 +689,11 @@ begin
     else
       S := '  result.FValue :=';
 
-    if (ALeftClass = 'double' ) or
-       (ALeftClass = 'TVector') or
-       (ALeftClass = 'TBivector') then
+    if (ALeftClass = 'double'      ) or
+       (ALeftClass = 'TVector'     ) or
+       (ALeftClass = 'TBivector'   ) or
+       (ALeftClass = 'TTrivector'  ) or
+       (ALeftClass = 'TMultivector') then
       S := S + ' ALeft ' + AOperator
     else
       S := S + ' ALeft.FValue ' + AOperator;
@@ -730,6 +743,7 @@ begin
       if (ALeftClass = 'double'      ) or
          (ALeftClass = 'TVector'     ) or
          (ALeftClass = 'TBivector'   ) or
+         (ALeftClass = 'TTrivector'  ) or
          (ALeftClass = 'TMultivector') then
         SectionB31.Append('  result.FValue := ALeft;')
       else
@@ -770,6 +784,7 @@ begin
       if (ALeftClass = 'double'      ) or
          (ALeftClass = 'TVector'     ) or
          (ALeftClass = 'TBivector'   ) or
+         (ALeftClass = 'TTrivector'  ) or
          (ALeftClass = 'TMultivector') then
         SectionB31.Append('  result.FValue := ALeft;')
       else
