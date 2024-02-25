@@ -172,6 +172,13 @@ var
 
   torquevec: TCL3NewtonMeters;
 
+  magneticfluxvec: TCL3Webers;
+  magneticfieldvec: TCL3Teslas;
+
+  pressurevec: TCL3Pascals;
+
+  torquestifness: TCL3NewtonMetersPerRadian;
+
 
 begin
   ExitCode := 0;
@@ -906,6 +913,7 @@ begin
   speedvec     := (2*e1 + 6*e2)*m/s;
   speedvec     := displacement/(10*s);
 
+
   displacement := (6.0*e1)       *m;
   speedvec     := (2.0*e1 + 5*e2)*m/s;
 
@@ -929,19 +937,14 @@ begin
   accvec   := forcevec/mass;
 
 
-  areavec  := (10*e1*m).Wedge(5*e2*m);
+  areavec   := (10*e1*m).Wedge(5*e2*m);
 
-  torquevec := (10*e3)*N*m;
-  writeln(torquevec.ToVerboseString);
-
-  torquevec := (10*e1*N).Wedge(1*e2*m);
-  writeln(torquevec.ToVerboseString);
-
+  torquevec := (10*e3)*N*m;                  writeln(torquevec.ToVerboseString);
+  torquevec := (1*e2*m).Wedge(10*e1*N);      writeln(torquevec.ToVerboseString);
+  torquevec := (10*e12)*m2*kg/s2;            writeln(torquevec.ToVerboseString);
 
 
   writeln(accvec.ToString);
-
-
   writeln(angularspeedvec.ToString(5, 3, []));
   writeln(angularspeedvec.ToVerboseString);
   writeln;
@@ -949,10 +952,45 @@ begin
   writeln(angularspeedvec.ToString);
   writeln((anglevec.Norm/angularspeedvec.Projection(anglevec.Value).Norm).ToString);
 
+  writeln(anglevec.dotR(angularspeedvec).ToString);
+  writeln(angularspeedvec.dotR(anglevec).ToString);
+
+  forcevec     := 10*e2*N;
+  displacement :=  5*e1*m;
+  torquevec    := displacement.Wedge(forcevec);
+  torquevec    := 10*e3*N*m;
+  writeln(torquevec.ToVerboseString);
+
+  displacement := torquevec.dotR(forcevec);
+  forcevec     := displacement.Rdot(torquevec);
+
+  writeln(displacement.ToVerboseString);
+  writeln(forcevec.ToVerboseString);
+
+  writeln('WEBER');
+  magneticfieldvec := (10*e12)*T;                                writeln(magneticfieldvec.ToVerboseString);
+  areavec          := (1*e12)*m2;                                writeln(areavec.ToVerboseString);
+  magneticfluxvec  := magneticfieldvec.Dwedge(areavec);          writeln(magneticfluxvec.ToVerboseString);
+  magneticfieldvec := magneticfluxvec.dotDR(areavec);            writeln(magneticfieldvec.ToVerboseString);
+  areavec          := magneticfieldvec.DRdot(magneticfluxvec);   writeln(areavec.ToVerboseString);
+
+  magneticfluxvec.Assign(10*V*s);
+
+  writeln('PASCAL');
+  areavec     := 1*e12*m2;                                       writeln(areavec.ToVerboseString);
+  forcevec    := 10*e3*N;                                        writeln(forcevec.ToVerboseString);
+  pressurevec := forcevec.wedgeR(areavec);                       writeln(pressurevec.ToVerboseString);
+  forcevec    := pressurevec.dot(areavec);                       writeln(forcevec.ToVerboseString);
+  areavec     := forcevec.dotR(pressurevec);                     writeln(areavec.ToVerboseString);
 
 
 
+  areavec     := forcevec.dot(pressurevec.Reciprocal);
 
+
+
+  torquestifness := 10*e3*N*m/rad;
+  torquevec      := (torquestifness.Value.Dot(1*e12))*e3*N*m;
 
   writeln('ADIM-TEST DONE.');
 end.

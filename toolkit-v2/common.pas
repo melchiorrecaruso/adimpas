@@ -46,6 +46,8 @@ const
   INTF_OP            = 'operator %s(const ALeft: %s; const ARight: %s): %s;';
   IMPL_OP            = 'operator %s(const ALeft: %s; const ARight: %s): %s;';
 
+  VECPrefix          = 'CL3';
+
 
 function GetSymbolResourceString(const AClassName: string): string;
 function GetSingularNameResourceString(const AClassName: string): string;
@@ -63,6 +65,9 @@ function GetExponents(const AShortSymbol: string): string;
 function GetQuantityType(const S: string): string;
 function GetQuantity(const S: string): string;
 function GetUnitType(const S: string): string;
+
+function GetBaseUnitType(const S: string): string;
+
 
 function GetUnitID(const S: string): string;
 
@@ -174,11 +179,11 @@ begin
     Result := StringReplace(Result, 'Unit',  '',     [rfReplaceAll]);
     Result := StringReplace(Result, 'Qty',   '',     [rfReplaceAll]);
 
-    if (Result <> 'double'      ) and
-       (Result <> 'TVector'     ) and
-       (Result <> 'TBivector'   ) and
-       (Result <> 'TTrivector'  ) and
-       (Result <> 'TMultivector') then Result := Result + 'Qty';
+    if (UpperCase(Result) <> 'DOUBLE'      ) and
+       (UpperCase(Result) <> 'TVECTOR'     ) and
+       (UpperCase(Result) <> 'TBIVECTOR'   ) and
+       (UpperCase(Result) <> 'TTRIVECTOR'  ) and
+       (UpperCase(Result) <> 'TMULTIVECTOR') then Result := Result + 'Qty';
   end;
 end;
 
@@ -238,6 +243,15 @@ begin
   if Result <> ''      then Result := Result + 'Unit';
 end;
 
+function GetBaseUnitType(const S: string): string;
+begin
+  Result := GetUnitType(S);
+  if Pos('T' + VECPrefix, Result ) = 1 then
+  begin
+    Delete(Result, Pos(VECPrefix, Result), Length(VECPrefix));
+  end;
+end;
+
 function GetUnitTypeHelper(const S: string): string;
 begin
   Result := S;
@@ -265,8 +279,10 @@ begin
   Result := StringReplace(Result, 'Feet',   'Foot!', [rfReplaceAll]);
   Result := StringReplace(Result, 'Inches', 'Inch!', [rfReplaceAll]);
   Result := StringReplace(Result, 'ies',    'y!',    [rfReplaceAll]);
-  Result := StringReplace(Result, 's',      '?',     [rfReplaceAll]);
   Result := StringReplace(Result, ' ',      '',      [rfReplaceAll]);
+
+  if Result[Length(Result)] = 's' then
+    Result[Length(Result)] := '?';
 end;
 
 
