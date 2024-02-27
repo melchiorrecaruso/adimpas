@@ -5904,6 +5904,10 @@ type
   end;
 
   TJouleHelper = record helper for TJouleQty
+    function dotR(AValue: TCL3KilogramMeterPerSecondQty): TCL3MeterPerSecondQty;
+    function dotR(AValue: TCL3MeterPerSecondQty): TCL3KilogramMeterPerSecondQty;
+    function dotR(AValue: TCL3NewtonQty): TCL3MeterQty;
+    function dotR(AValue: TCL3MeterQty): TCL3NewtonQty;
     function ToPoundForceInch: TPoundForceInchQty;
     function ToNewtonMeter: TNewtonMeterQty;
     function ToElettronvolt: TElettronvoltQty;
@@ -6009,6 +6013,8 @@ type
   end;
 
   TCL3MeterHelper = record helper for TCL3MeterQty
+    function dotR(AValue: TJouleQty): TCL3NewtonQty;
+    function dot(AValue: TCL3NewtonQty): TJouleQty;
     function dotR(AValue: TCL3NewtonMeterQty): TCL3NewtonQty;
     function wedge(AValue: TCL3NewtonQty): TCL3NewtonMeterQty;
     function dotR(AValue: TCL3KilogramSquareMeterPerSecondQty): TCL3KilogramMeterPerSecondQty;
@@ -6045,6 +6051,10 @@ type
   end;
 
   TCL3MeterPerSecondHelper = record helper for TCL3MeterPerSecondQty
+    function dotR(AValue: TWattQty): TCL3NewtonQty;
+    function dot(AValue: TCL3NewtonQty): TWattQty;
+    function dotR(AValue: TJouleQty): TCL3KilogramMeterPerSecondQty;
+    function dot(AValue: TCL3KilogramMeterPerSecondQty): TJouleQty;
     function dotR(AValue: TCL3MeterPerSecondSquaredQty): TSecondQty;
     function SquaredNorm: TSquareMeterPerSquareSecondQty;
     function Norm: TMeterPerSecondQty;
@@ -6082,6 +6092,8 @@ type
   end;
 
   TCL3KilogramMeterPerSecondHelper = record helper for TCL3KilogramMeterPerSecondQty
+    function dotR(AValue: TJouleQty): TCL3MeterPerSecondQty;
+    function dot(AValue: TCL3MeterPerSecondQty): TJouleQty;
     function dotR(AValue: TCL3KilogramSquareMeterPerSecondQty): TCL3MeterQty;
     function wedge(AValue: TCL3MeterQty): TCL3KilogramSquareMeterPerSecondQty;
     function ToCL3NewtonSecond: TCL3NewtonSecondQty;
@@ -6093,6 +6105,10 @@ type
   end;
 
   TCL3NewtonHelper = record helper for TCL3NewtonQty
+    function dotR(AValue: TWattQty): TCL3MeterPerSecondQty;
+    function dot(AValue: TCL3MeterPerSecondQty): TWattQty;
+    function dotR(AValue: TJouleQty): TCL3MeterQty;
+    function dot(AValue: TCL3MeterQty): TJouleQty;
     function dotR(AValue: TCL3PascalQty): TCL3SquareMeterQty;
     function wedgeR(AValue: TCL3SquareMeterQty): TCL3PascalQty;
     function dotR(AValue: TCL3NewtonMeterQty): TCL3MeterQty;
@@ -6139,6 +6155,11 @@ type
     procedure Assign(AValue: TWeberQty);
     function dotR(AValue: TCL3SquareMeterQty): TCL3TeslaQty;
     function dotR(AValue: TCL3TeslaQty): TCL3SquareMeterQty;
+  end;
+
+  TWattHelper = record helper for TWattQty
+    function dotR(AValue: TCL3NewtonQty): TCL3MeterPerSecondQty;
+    function dotR(AValue: TCL3MeterPerSecondQty): TCL3NewtonQty;
   end;
 
 { Power functions }
@@ -14317,6 +14338,96 @@ end;
 procedure TCL3WeberHelper.Assign(AValue: TWeberQty);
 begin
   FValue := AValue.FValue*e123;
+end;
+
+function TCL3NewtonHelper.dot(AValue: TCL3MeterQty): TJouleQty;
+begin
+  result.FValue := FValue.dot(AValue.FValue);
+end;
+
+function TCL3MeterHelper.dot(AValue: TCL3NewtonQty): TJouleQty;
+begin
+  result.FValue := FValue.dot(AValue.FValue);
+end;
+
+function TJouleHelper.dotR(AValue: TCL3MeterQty): TCL3NewtonQty;
+begin
+  result.FValue := FValue * AValue.FValue.Reciprocal;
+end;
+
+function TCL3MeterHelper.dotR(AValue: TJouleQty): TCL3NewtonQty;
+begin
+  result.FValue := FValue.Reciprocal * AValue.FValue;
+end;
+
+function TJouleHelper.dotR(AValue: TCL3NewtonQty): TCL3MeterQty;
+begin
+  result.FValue := FValue * AValue.FValue.Reciprocal;
+end;
+
+function TCL3NewtonHelper.dotR(AValue: TJouleQty): TCL3MeterQty;
+begin
+  result.FValue := FValue.Reciprocal * AValue.FValue;
+end;
+
+function TCL3KilogramMeterPerSecondHelper.dot(AValue: TCL3MeterPerSecondQty): TJouleQty;
+begin
+  result.FValue := FValue.dot(AValue.FValue);
+end;
+
+function TCL3MeterPerSecondHelper.dot(AValue: TCL3KilogramMeterPerSecondQty): TJouleQty;
+begin
+  result.FValue := FValue.dot(AValue.FValue);
+end;
+
+function TJouleHelper.dotR(AValue: TCL3MeterPerSecondQty): TCL3KilogramMeterPerSecondQty;
+begin
+  result.FValue := FValue * AValue.FValue.Reciprocal;
+end;
+
+function TCL3MeterPerSecondHelper.dotR(AValue: TJouleQty): TCL3KilogramMeterPerSecondQty;
+begin
+  result.FValue := FValue.Reciprocal * AValue.FValue;
+end;
+
+function TJouleHelper.dotR(AValue: TCL3KilogramMeterPerSecondQty): TCL3MeterPerSecondQty;
+begin
+  result.FValue := FValue * AValue.FValue.Reciprocal;
+end;
+
+function TCL3KilogramMeterPerSecondHelper.dotR(AValue: TJouleQty): TCL3MeterPerSecondQty;
+begin
+  result.FValue := FValue.Reciprocal * AValue.FValue;
+end;
+
+function TCL3NewtonHelper.dot(AValue: TCL3MeterPerSecondQty): TWattQty;
+begin
+  result.FValue := FValue.dot(AValue.FValue);
+end;
+
+function TCL3MeterPerSecondHelper.dot(AValue: TCL3NewtonQty): TWattQty;
+begin
+  result.FValue := FValue.dot(AValue.FValue);
+end;
+
+function TWattHelper.dotR(AValue: TCL3MeterPerSecondQty): TCL3NewtonQty;
+begin
+  result.FValue := FValue * AValue.FValue.Reciprocal;
+end;
+
+function TCL3MeterPerSecondHelper.dotR(AValue: TWattQty): TCL3NewtonQty;
+begin
+  result.FValue := FValue.Reciprocal * AValue.FValue;
+end;
+
+function TWattHelper.dotR(AValue: TCL3NewtonQty): TCL3MeterPerSecondQty;
+begin
+  result.FValue := FValue * AValue.FValue.Reciprocal;
+end;
+
+function TCL3NewtonHelper.dotR(AValue: TWattQty): TCL3MeterPerSecondQty;
+begin
+  result.FValue := FValue.Reciprocal * AValue.FValue;
 end;
 
 { Power functions }
