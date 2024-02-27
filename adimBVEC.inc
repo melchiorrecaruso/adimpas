@@ -14,7 +14,6 @@ type
     function IsSame(const AValue: TQuantity): boolean;
     function IsZero: boolean;
     function Projection(const AValue: TBivector): TQuantity;
-    function Reciprocal: TQuantity;
     class operator + (const AValue: TQuantity): TQuantity;
     class operator - (const AValue: TQuantity): TQuantity;
     class operator + (const ALeft, ARight: TQuantity): TQuantity;
@@ -104,11 +103,6 @@ end;
 function TQuantity.Projection(const AValue: TBivector): TQuantity;
 begin
   result.FValue := FValue.Projection(AValue);
-end;
-
-function TQuantity.Reciprocal: TQuantity;
-begin
-  result.FValue := FValue/FValue.SquaredNorm;
 end;
 
 class operator TQuantity.+(const AValue: TQuantity): TQuantity;
