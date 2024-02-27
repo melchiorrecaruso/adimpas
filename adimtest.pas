@@ -962,30 +962,31 @@ begin
   writeln(torquevec.ToVerboseString);
 
   displacement := torquevec.dotR(forcevec);
-  forcevec     := displacement.Rdot(torquevec);
+  forcevec     := torquevec.dotR(displacement);
 
   writeln(displacement.ToVerboseString);
   writeln(forcevec.ToVerboseString);
 
   writeln('WEBER');
-  magneticfieldvec := (10*e12)*T;                                writeln(magneticfieldvec.ToVerboseString);
-  areavec          := (1*e12)*m2;                                writeln(areavec.ToVerboseString);
-  magneticfluxvec  := magneticfieldvec.Dwedge(areavec);          writeln(magneticfluxvec.ToVerboseString);
-  magneticfieldvec := magneticfluxvec.dotDR(areavec);            writeln(magneticfieldvec.ToVerboseString);
-  areavec          := magneticfieldvec.DRdot(magneticfluxvec);   writeln(areavec.ToVerboseString);
+  magneticfieldvec := (10*e12)*T;                               writeln(magneticfieldvec.ToVerboseString);
+  areavec          := (1*e12)*m2;                               writeln(areavec.ToVerboseString);
+  magneticfluxvec  := magneticfieldvec.wedgeR(areavec);         writeln(magneticfluxvec.ToVerboseString);
+  magneticfieldvec := magneticfluxvec.dotR(areavec);            writeln(magneticfieldvec.ToVerboseString);
+  areavec          := magneticfieldvec.dotR(magneticfluxvec);   writeln(areavec.ToVerboseString);
 
   magneticfluxvec.Assign(10*V*s);
 
   writeln('PASCAL');
-  areavec     := 1*e12*m2;                                       writeln(areavec.ToVerboseString);
-  forcevec    := 10*e3*N;                                        writeln(forcevec.ToVerboseString);
-  pressurevec := forcevec.wedgeR(areavec);                       writeln(pressurevec.ToVerboseString);
-  forcevec    := pressurevec.dot(areavec);                       writeln(forcevec.ToVerboseString);
-  areavec     := forcevec.dotR(pressurevec);                     writeln(areavec.ToVerboseString);
+  areavec     := 1*e12*m2;                                      writeln(areavec.ToVerboseString);
+  forcevec    := 10*e3*N;                                       writeln(forcevec.ToVerboseString);
+  pressurevec := forcevec.wedgeR(areavec);                      writeln(pressurevec.ToVerboseString);
+  forcevec    := pressurevec.dotR(areavec);                     writeln(forcevec.ToVerboseString);
+  areavec     := forcevec.dotR(pressurevec.Reciprocal);         writeln(areavec.ToVerboseString);
+  areavec     := pressurevec.dotR(forcevec);                    writeln(areavec.ToVerboseString);
 
 
 
-  areavec     := forcevec.dot(pressurevec.Reciprocal);
+  areavec     := forcevec.dotR(pressurevec);
 
 
 
