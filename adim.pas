@@ -6034,6 +6034,7 @@ type
     function dotR(AValue: TCL3WeberQty): TCL3TeslaQty;
     function wedgeR(AValue: TCL3TeslaQty): TCL3WeberQty;
     function dotR(AValue: TCL3PascalQty): TCL3NewtonQty;
+    function wedgeR(AValue: TCL3NewtonQty): TCL3PascalQty;
     function dotR(AValue: TCL3CubicMeterQty): TCL3MeterQty;
     function wedge(AValue: TCL3MeterQty): TCL3CubicMeterQty;
     function dotR(AValue: TCL3MeterQty): TCL3MeterQty;
@@ -14283,6 +14284,11 @@ end;
 function TCL3NewtonHelper.wedgeR(AValue: TCL3SquareMeterQty): TCL3PascalQty;
 begin
   result.FValue := FValue.wedge(AValue.FValue.Reciprocal);
+end;
+
+function TCL3SquareMeterHelper.wedgeR(AValue: TCL3NewtonQty): TCL3PascalQty;
+begin
+  result.FValue := FValue.Reciprocal.wedge(AValue.FValue);
 end;
 
 function TCL3PascalHelper.dotR(AValue: TCL3SquareMeterQty): TCL3NewtonQty;
