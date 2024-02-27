@@ -627,6 +627,7 @@ begin
         begin
           // OK
           AddHelperWEDGE(GetUnitTypeHelper(AItem.FClassParent1), GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName), [poR1Reciprocal]);
+          AddHelperWEDGE(GetUnitTypeHelper(AItem.FClassParent2), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassName), [poL1Reciprocal]);
 
           AddHelperDOT(GetUnitTypeHelper(AItem.FClassName),    GetQuantityType(AItem.FClassName), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1), [poR1Reciprocal]);
           AddHelperDOT(GetUnitTypeHelper(AItem.FClassParent2), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName), GetQuantityType(AItem.FClassParent1), [poL1Reciprocal]);
