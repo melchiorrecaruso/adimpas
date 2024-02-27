@@ -18,7 +18,7 @@
 }
 
 {
-  ADimPas library built on 25/02/2024.
+  ADimPas library built on 27/02/2024.
 
   Number of base units: 143
   Number of factored units: 76
@@ -5541,56 +5541,236 @@ const
 type
   TCL3Meters = TCL3MeterQty;
 
+const
+  rsCL3MeterSymbol     = '%sm';
+  rsCL3MeterName       = '%smeter';
+  rsCL3MeterPluralName = '%smeters';
+
+const
+  cCL3MeterPrefixes  : TPrefixes  = (pNone);
+  cCL3MeterExponents : TExponents = (1);
+
 type
   TCL3SquareMeters = TCL3SquareMeterQty;
+
+const
+  rsCL3SquareMeterSymbol     = '%sm2';
+  rsCL3SquareMeterName       = 'square %smeter';
+  rsCL3SquareMeterPluralName = 'square %smeters';
+
+const
+  cCL3SquareMeterPrefixes  : TPrefixes  = (pNone);
+  cCL3SquareMeterExponents : TExponents = (2);
 
 type
   TCL3CubicMeters = TCL3CubicMeterQty;
 
+const
+  rsCL3CubicMeterSymbol     = '%sm3';
+  rsCL3CubicMeterName       = 'cubic %smeter';
+  rsCL3CubicMeterPluralName = 'cubic %smeters';
+
+const
+  cCL3CubicMeterPrefixes  : TPrefixes  = (pNone);
+  cCL3CubicMeterExponents : TExponents = (3);
+
 type
   TCL3Radians = TCL3RadianQty;
+
+const
+  rsCL3RadianSymbol     = 'rad';
+  rsCL3RadianName       = 'radian';
+  rsCL3RadianPluralName = 'radians';
+
+const
+  cCL3RadianPrefixes  : TPrefixes  = ();
+  cCL3RadianExponents : TExponents = ();
 
 type
   TCL3MetersPerSecond = TCL3MeterPerSecondQty;
 
+const
+  rsCL3MeterPerSecondSymbol     = '%sm/%ss';
+  rsCL3MeterPerSecondName       = '%smeter per %ssecond';
+  rsCL3MeterPerSecondPluralName = '%smeters per %ssecond';
+
+const
+  cCL3MeterPerSecondPrefixes  : TPrefixes  = (pNone, pNone);
+  cCL3MeterPerSecondExponents : TExponents = (1, -1);
+
 type
   TCL3MetersPerSecondSquared = TCL3MeterPerSecondSquaredQty;
+
+const
+  rsCL3MeterPerSecondSquaredSymbol     = '%sm/%ss2';
+  rsCL3MeterPerSecondSquaredName       = '%smeter per %ssecond squared';
+  rsCL3MeterPerSecondSquaredPluralName = '%smeters per %ssecond squared';
+
+const
+  cCL3MeterPerSecondSquaredPrefixes  : TPrefixes  = (pNone, pNone);
+  cCL3MeterPerSecondSquaredExponents : TExponents = (1, -2);
+
+const
+  rsCL3MeterPerSecondPerSecondSymbol     = '%sm/%ss/%ss';
+  rsCL3MeterPerSecondPerSecondName       = '%smeter per %ssecond per %ssecond';
+  rsCL3MeterPerSecondPerSecondPluralName = '%smeters per %ssecond per %ssecond';
+
+const
+  cCL3MeterPerSecondPerSecondPrefixes  : TPrefixes  = (pNone, pNone, pNone);
+  cCL3MeterPerSecondPerSecondExponents : TExponents = (1, -1, -1);
 
 type
   TCL3RadiansPerSecond = TCL3RadianPerSecondQty;
 
+const
+  rsCL3RadianPerSecondSymbol     = 'rad/%ss';
+  rsCL3RadianPerSecondName       = 'radian per %ssecond';
+  rsCL3RadianPerSecondPluralName = 'radians per %ssecond';
+
+const
+  cCL3RadianPerSecondPrefixes  : TPrefixes  = (pNone);
+  cCL3RadianPerSecondExponents : TExponents = (-1);
+
 type
   TCL3RadiansPerSecondSquared = TCL3RadianPerSecondSquaredQty;
+
+const
+  rsCL3RadianPerSecondSquaredSymbol     = 'rad/%ss2';
+  rsCL3RadianPerSecondSquaredName       = 'radian per %ssecond squared';
+  rsCL3RadianPerSecondSquaredPluralName = 'radians per %ssecond squared';
+
+const
+  cCL3RadianPerSecondSquaredPrefixes  : TPrefixes  = (pNone);
+  cCL3RadianPerSecondSquaredExponents : TExponents = (-2);
 
 type
   TCL3KilogramMeters = TCL3KilogramMeterQty;
 
+const
+  rsCL3KilogramMeterSymbol     = '%sg·%sm';
+  rsCL3KilogramMeterName       = '%sgram %smeter';
+  rsCL3KilogramMeterPluralName = '%sgram %smeters';
+
+const
+  cCL3KilogramMeterPrefixes  : TPrefixes  = (pKilo, pNone);
+  cCL3KilogramMeterExponents : TExponents = (1, 1);
+
 type
   TCL3KilogramMetersPerSecond = TCL3KilogramMeterPerSecondQty;
+
+const
+  rsCL3KilogramMeterPerSecondSymbol     = '%sg·%sm/%ss';
+  rsCL3KilogramMeterPerSecondName       = '%sgram %smeter per %ssecond';
+  rsCL3KilogramMeterPerSecondPluralName = '%sgram %smeters per %ssecond';
+
+const
+  cCL3KilogramMeterPerSecondPrefixes  : TPrefixes  = (pKilo, pNone, pNone);
+  cCL3KilogramMeterPerSecondExponents : TExponents = (1, 1, -1);
 
 type
   TCL3Newtons = TCL3NewtonQty;
 
+const
+  rsCL3NewtonSymbol     = '%sN';
+  rsCL3NewtonName       = '%snewton';
+  rsCL3NewtonPluralName = '%snewtons';
+
+const
+  cCL3NewtonPrefixes  : TPrefixes  = (pNone);
+  cCL3NewtonExponents : TExponents = (1);
+
+const
+  rsCL3NewtonSecondSymbol     = '%sN·%ss';
+  rsCL3NewtonSecondName       = '%snewton %ssecond';
+  rsCL3NewtonSecondPluralName = '%snewton %sseconds';
+
+const
+  cCL3NewtonSecondPrefixes  : TPrefixes  = (pNone, pNone);
+  cCL3NewtonSecondExponents : TExponents = (1, 1);
+
 type
   TCL3KilogramSquareMeters = TCL3KilogramSquareMeterQty;
+
+const
+  rsCL3KilogramSquareMeterSymbol     = '%sg·%sm2';
+  rsCL3KilogramSquareMeterName       = '%sgram sqaure %smeter';
+  rsCL3KilogramSquareMeterPluralName = '%sgram sqaure %smeters';
+
+const
+  cCL3KilogramSquareMeterPrefixes  : TPrefixes  = (pKilo, pNone);
+  cCL3KilogramSquareMeterExponents : TExponents = (1, 2);
 
 type
   TCL3KilogramSquareMetersPerSecond = TCL3KilogramSquareMeterPerSecondQty;
 
+const
+  rsCL3KilogramSquareMeterPerSecondSymbol     = '%sg·%sm2/%ss';
+  rsCL3KilogramSquareMeterPerSecondName       = '%sgram aquare %smeter per %ssecond';
+  rsCL3KilogramSquareMeterPerSecondPluralName = '%sgram aquare %smeters per %ssecond';
+
+const
+  cCL3KilogramSquareMeterPerSecondPrefixes  : TPrefixes  = (pKilo, pNone, pNone);
+  cCL3KilogramSquareMeterPerSecondExponents : TExponents = (1, 2, -1);
+
 type
   TCL3NewtonMeters = TCL3NewtonMeterQty;
+
+const
+  rsCL3NewtonMeterSymbol     = '%sg·%sm2/%ss';
+  rsCL3NewtonMeterName       = '%sgram square %smeter per %ssecond';
+  rsCL3NewtonMeterPluralName = '%sgram square %smeters per %ssecond';
+
+const
+  cCL3NewtonMeterPrefixes  : TPrefixes  = (pKilo, pNone, pNone);
+  cCL3NewtonMeterExponents : TExponents = (1, 2, -1);
 
 type
   TCL3NewtonMetersPerRadian = TCL3NewtonMeterPerRadianQty;
 
+const
+  rsCL3NewtonMeterPerRadianSymbol     = '%sN·%sm/rad';
+  rsCL3NewtonMeterPerRadianName       = '%snewton %smeter per radian';
+  rsCL3NewtonMeterPerRadianPluralName = '%snewton %smeters per radian';
+
+const
+  cCL3NewtonMeterPerRadianPrefixes  : TPrefixes  = (pNone, pNone);
+  cCL3NewtonMeterPerRadianExponents : TExponents = (1, 1);
+
 type
   TCL3Pascals = TCL3PascalQty;
+
+const
+  rsCL3PascalSymbol     = '%sPa';
+  rsCL3PascalName       = '%spascal';
+  rsCL3PascalPluralName = '%spascals';
+
+const
+  cCL3PascalPrefixes  : TPrefixes  = (pNone);
+  cCL3PascalExponents : TExponents = (1);
 
 type
   TCL3Teslas = TCL3TeslaQty;
 
+const
+  rsCL3TeslaSymbol     = '%sT';
+  rsCL3TeslaName       = '%stesla';
+  rsCL3TeslaPluralName = '%steslas';
+
+const
+  cCL3TeslaPrefixes  : TPrefixes  = (pNone);
+  cCL3TeslaExponents : TExponents = (1);
+
 type
   TCL3Webers = TCL3WeberQty;
+
+const
+  rsCL3WeberSymbol     = '%sWb';
+  rsCL3WeberName       = '%sweber';
+  rsCL3WeberPluralName = '%swebers';
+
+const
+  cCL3WeberPrefixes  : TPrefixes  = (pNone);
+  cCL3WeberExponents : TExponents = (1);
 
 { Helpers }
 
@@ -5829,28 +6009,33 @@ type
   end;
 
   TCL3MeterHelper = record helper for TCL3MeterQty
-    function Rdot(AValue: TCL3NewtonMeterQty): TCL3NewtonQty;
+    function dotR(AValue: TCL3NewtonMeterQty): TCL3NewtonQty;
     function wedge(AValue: TCL3NewtonQty): TCL3NewtonMeterQty;
-    function Rdot(AValue: TCL3KilogramSquareMeterPerSecondQty): TCL3KilogramMeterPerSecondQty;
+    function dotR(AValue: TCL3KilogramSquareMeterPerSecondQty): TCL3KilogramMeterPerSecondQty;
     function wedge(AValue: TCL3KilogramMeterPerSecondQty): TCL3KilogramSquareMeterPerSecondQty;
+    function dotR(AValue: TCL3KilogramSquareMeterQty): TCL3KilogramMeterQty;
+    function wedge(AValue: TCL3KilogramMeterQty): TCL3KilogramSquareMeterQty;
     function dotR(AValue: TCL3MeterPerSecondSquaredQty): TSquareSecondQty;
     function dotR(AValue: TCL3MeterPerSecondQty): TSecondQty;
-    function Rdot(AValue: TCL3CubicMeterQty): TCL3SquareMeterQty;
+    function dotR(AValue: TCL3CubicMeterQty): TCL3SquareMeterQty;
     function wedge(AValue: TCL3SquareMeterQty): TCL3CubicMeterQty;
-    function Rdot(AValue: TCL3SquareMeterQty): TCL3MeterQty;
+    function dotR(AValue: TCL3SquareMeterQty): TCL3MeterQty;
     function wedge(AValue: TCL3MeterQty): TCL3SquareMeterQty;
     function Norm: TMeterQty;
   end;
 
   TCL3SquareMeterHelper = record helper for TCL3SquareMeterQty
-    function Rdot(AValue: TCL3CubicMeterQty): TCL3MeterQty;
+    function dotR(AValue: TCL3WeberQty): TCL3TeslaQty;
+    function wedgeR(AValue: TCL3TeslaQty): TCL3WeberQty;
+    function dotR(AValue: TCL3PascalQty): TCL3NewtonQty;
+    function dotR(AValue: TCL3CubicMeterQty): TCL3MeterQty;
     function wedge(AValue: TCL3MeterQty): TCL3CubicMeterQty;
     function dotR(AValue: TCL3MeterQty): TCL3MeterQty;
   end;
 
   TCL3CubicMeterHelper = record helper for TCL3CubicMeterQty
-    function dotR(AValue: TCL3MeterQty): TCL3SquareMeterQty;
     function dotR(AValue: TCL3SquareMeterQty): TCL3MeterQty;
+    function dotR(AValue: TCL3MeterQty): TCL3SquareMeterQty;
   end;
 
   TCL3RadianHelper = record helper for TCL3RadianQty
@@ -5889,7 +6074,7 @@ type
   end;
 
   TCL3KilogramMeterHelper = record helper for TCL3KilogramMeterQty
-    function Rdot(AValue: TCL3KilogramSquareMeterQty): TCL3MeterQty;
+    function dotR(AValue: TCL3KilogramSquareMeterQty): TCL3MeterQty;
     function wedge(AValue: TCL3MeterQty): TCL3KilogramSquareMeterQty;
     function dotR(AValue: TCL3NewtonQty): TSquareSecondQty;
     function dotR(AValue: TCL3KilogramMeterPerSecondQty): TSecondQty;
@@ -5897,6 +6082,8 @@ type
   end;
 
   TCL3KilogramMeterPerSecondHelper = record helper for TCL3KilogramMeterPerSecondQty
+    function dotR(AValue: TCL3KilogramSquareMeterPerSecondQty): TCL3MeterQty;
+    function wedge(AValue: TCL3MeterQty): TCL3KilogramSquareMeterPerSecondQty;
     function ToCL3NewtonSecond: TCL3NewtonSecondQty;
     function dotR(AValue: TCL3NewtonQty): TSecondQty;
     function SquaredNorm: TSquareKilogramSquareMeterPerSquareSecondQty;
@@ -5908,6 +6095,8 @@ type
   TCL3NewtonHelper = record helper for TCL3NewtonQty
     function dotR(AValue: TCL3PascalQty): TCL3SquareMeterQty;
     function wedgeR(AValue: TCL3SquareMeterQty): TCL3PascalQty;
+    function dotR(AValue: TCL3NewtonMeterQty): TCL3MeterQty;
+    function wedge(AValue: TCL3MeterQty): TCL3NewtonMeterQty;
     function dotR(AValue: TCL3MeterPerSecondQty): TKilogramPerSecondQty;
     function dotR(AValue: TCL3MeterPerSecondSquaredQty): TKilogramQty;
   end;
@@ -5920,31 +6109,36 @@ type
     function dotR(AValue: TCL3NewtonMeterQty): TSquareSecondQty;
     function dotR(AValue: TCL3KilogramSquareMeterPerSecondQty): TSecondQty;
     function dotR(AValue: TCL3MeterQty): TCL3KilogramMeterQty;
+    function dotR(AValue: TCL3KilogramMeterQty): TCL3MeterQty;
     function dotR(AValue: TCL3SquareMeterQty): TKilogramQty;
   end;
 
   TCL3KilogramSquareMeterPerSecondHelper = record helper for TCL3KilogramSquareMeterPerSecondQty
     function dotR(AValue: TCL3NewtonMeterQty): TSecondQty;
     function dotR(AValue: TCL3KilogramMeterPerSecondQty): TCL3MeterQty;
+    function dotR(AValue: TCL3MeterQty): TCL3KilogramMeterPerSecondQty;
     function dotR(AValue: TCL3KilogramSquareMeterQty): THertzQty;
   end;
 
   TCL3NewtonMeterHelper = record helper for TCL3NewtonMeterQty
     function dotR(AValue: TCL3NewtonQty): TCL3MeterQty;
+    function dotR(AValue: TCL3MeterQty): TCL3NewtonQty;
   end;
 
   TCL3PascalHelper = record helper for TCL3PascalQty
-    function dot(AValue: TCL3SquareMeterQty): TCL3NewtonQty;
+    function dotR(AValue: TCL3NewtonQty): TCL3SquareMeterQty;
+    function dotR(AValue: TCL3SquareMeterQty): TCL3NewtonQty;
   end;
 
   TCL3TeslaHelper = record helper for TCL3TeslaQty
-    function DRdot(AValue: TCL3WeberQty): TCL3SquareMeterQty;
-    function Dwedge(AValue: TCL3SquareMeterQty): TCL3WeberQty;
+    function dotR(AValue: TCL3WeberQty): TCL3SquareMeterQty;
+    function wedgeR(AValue: TCL3SquareMeterQty): TCL3WeberQty;
   end;
 
   TCL3WeberHelper = record helper for TCL3WeberQty
     procedure Assign(AValue: TWeberQty);
-    function dotDR(AValue: TCL3SquareMeterQty): TCL3TeslaQty;
+    function dotR(AValue: TCL3SquareMeterQty): TCL3TeslaQty;
+    function dotR(AValue: TCL3TeslaQty): TCL3SquareMeterQty;
   end;
 
 { Power functions }
@@ -10938,9 +11132,11 @@ end;
 {$DEFINE CFACTOR:=cElettronvoltSecondFactor}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TElettronvoltSecondQty}{$i adim.inc}
 
-{$DEFINE CSYMBOL:=rsMeterSymbol}
-{$DEFINE CPREFIXES:=cMeterPrefixes}
-{$DEFINE CEXPONENTS:=cMeterExponents}
+{$DEFINE CSYMBOL:=rsCL3MeterSymbol}
+{$DEFINE CSINGULARNAME:=rsCL3MeterName}
+{$DEFINE CPLURALNAME:=rsCL3MeterPluralName}
+{$DEFINE CPREFIXES:=cCL3MeterPrefixes}
+{$DEFINE CEXPONENTS:=cCL3MeterExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCL3MeterQty}{$i adimVEC.inc}
 
 {$DEFINE CSYMBOL:=rsAstronomicalSymbol}
@@ -10979,19 +11175,25 @@ end;
 {$DEFINE CFACTOR:=cNauticalMileFactor}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCL3NauticalMileQty}{$i adimVEC.inc}
 
-{$DEFINE CSYMBOL:=rsSquareMeterSymbol}
-{$DEFINE CPREFIXES:=cSquareMeterPrefixes}
-{$DEFINE CEXPONENTS:=cSquareMeterExponents}
+{$DEFINE CSYMBOL:=rsCL3SquareMeterSymbol}
+{$DEFINE CSINGULARNAME:=rsCL3SquareMeterName}
+{$DEFINE CPLURALNAME:=rsCL3SquareMeterPluralName}
+{$DEFINE CPREFIXES:=cCL3SquareMeterPrefixes}
+{$DEFINE CEXPONENTS:=cCL3SquareMeterExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCL3SquareMeterQty}{$i adimBVEC.inc}
 
-{$DEFINE CSYMBOL:=rsCubicMeterSymbol}
-{$DEFINE CPREFIXES:=cCubicMeterPrefixes}
-{$DEFINE CEXPONENTS:=cCubicMeterExponents}
+{$DEFINE CSYMBOL:=rsCL3CubicMeterSymbol}
+{$DEFINE CSINGULARNAME:=rsCL3CubicMeterName}
+{$DEFINE CPLURALNAME:=rsCL3CubicMeterPluralName}
+{$DEFINE CPREFIXES:=cCL3CubicMeterPrefixes}
+{$DEFINE CEXPONENTS:=cCL3CubicMeterExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCL3CubicMeterQty}{$i adimTVEC.inc}
 
-{$DEFINE CSYMBOL:=rsRadianSymbol}
-{$DEFINE CPREFIXES:=cRadianPrefixes}
-{$DEFINE CEXPONENTS:=cRadianExponents}
+{$DEFINE CSYMBOL:=rsCL3RadianSymbol}
+{$DEFINE CSINGULARNAME:=rsCL3RadianName}
+{$DEFINE CPLURALNAME:=rsCL3RadianPluralName}
+{$DEFINE CPREFIXES:=cCL3RadianPrefixes}
+{$DEFINE CEXPONENTS:=cCL3RadianExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCL3RadianQty}{$i adimBVEC.inc}
 
 {$DEFINE CSYMBOL:=rsDegreeSymbol}
@@ -11000,9 +11202,11 @@ end;
 {$DEFINE CFACTOR:=cDegreeFactor}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCL3DegreeQty}{$i adimVEC.inc}
 
-{$DEFINE CSYMBOL:=rsMeterPerSecondSymbol}
-{$DEFINE CPREFIXES:=cMeterPerSecondPrefixes}
-{$DEFINE CEXPONENTS:=cMeterPerSecondExponents}
+{$DEFINE CSYMBOL:=rsCL3MeterPerSecondSymbol}
+{$DEFINE CSINGULARNAME:=rsCL3MeterPerSecondName}
+{$DEFINE CPLURALNAME:=rsCL3MeterPerSecondPluralName}
+{$DEFINE CPREFIXES:=cCL3MeterPerSecondPrefixes}
+{$DEFINE CEXPONENTS:=cCL3MeterPerSecondExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCL3MeterPerSecondQty}{$i adimVEC.inc}
 
 {$DEFINE CSYMBOL:=rsMeterPerHourSymbol}
@@ -11023,9 +11227,11 @@ end;
 {$DEFINE CFACTOR:=cNauticalMilePerHourFactor}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCL3NauticalMilePerHourQty}{$i adimVEC.inc}
 
-{$DEFINE CSYMBOL:=rsMeterPerSecondSquaredSymbol}
-{$DEFINE CPREFIXES:=cMeterPerSecondSquaredPrefixes}
-{$DEFINE CEXPONENTS:=cMeterPerSecondSquaredExponents}
+{$DEFINE CSYMBOL:=rsCL3MeterPerSecondSquaredSymbol}
+{$DEFINE CSINGULARNAME:=rsCL3MeterPerSecondSquaredName}
+{$DEFINE CPLURALNAME:=rsCL3MeterPerSecondSquaredPluralName}
+{$DEFINE CPREFIXES:=cCL3MeterPerSecondSquaredPrefixes}
+{$DEFINE CEXPONENTS:=cCL3MeterPerSecondSquaredExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCL3MeterPerSecondSquaredQty}{$i adimVEC.inc}
 
 {$DEFINE CSYMBOL:=rsMeterPerSecondPerSecondSymbol}
@@ -11039,29 +11245,39 @@ end;
 {$DEFINE CFACTOR:=cMeterPerHourPerSecondFactor}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCL3MeterPerHourPerSecondQty}{$i adimVEC.inc}
 
-{$DEFINE CSYMBOL:=rsRadianPerSecondSymbol}
-{$DEFINE CPREFIXES:=cRadianPerSecondPrefixes}
-{$DEFINE CEXPONENTS:=cRadianPerSecondExponents}
+{$DEFINE CSYMBOL:=rsCL3RadianPerSecondSymbol}
+{$DEFINE CSINGULARNAME:=rsCL3RadianPerSecondName}
+{$DEFINE CPLURALNAME:=rsCL3RadianPerSecondPluralName}
+{$DEFINE CPREFIXES:=cCL3RadianPerSecondPrefixes}
+{$DEFINE CEXPONENTS:=cCL3RadianPerSecondExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCL3RadianPerSecondQty}{$i adimBVEC.inc}
 
-{$DEFINE CSYMBOL:=rsRadianPerSecondSquaredSymbol}
-{$DEFINE CPREFIXES:=cRadianPerSecondSquaredPrefixes}
-{$DEFINE CEXPONENTS:=cRadianPerSecondSquaredExponents}
+{$DEFINE CSYMBOL:=rsCL3RadianPerSecondSquaredSymbol}
+{$DEFINE CSINGULARNAME:=rsCL3RadianPerSecondSquaredName}
+{$DEFINE CPLURALNAME:=rsCL3RadianPerSecondSquaredPluralName}
+{$DEFINE CPREFIXES:=cCL3RadianPerSecondSquaredPrefixes}
+{$DEFINE CEXPONENTS:=cCL3RadianPerSecondSquaredExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCL3RadianPerSecondSquaredQty}{$i adimBVEC.inc}
 
-{$DEFINE CSYMBOL:=rsKilogramMeterSymbol}
-{$DEFINE CPREFIXES:=cKilogramMeterPrefixes}
-{$DEFINE CEXPONENTS:=cKilogramMeterExponents}
+{$DEFINE CSYMBOL:=rsCL3KilogramMeterSymbol}
+{$DEFINE CSINGULARNAME:=rsCL3KilogramMeterName}
+{$DEFINE CPLURALNAME:=rsCL3KilogramMeterPluralName}
+{$DEFINE CPREFIXES:=cCL3KilogramMeterPrefixes}
+{$DEFINE CEXPONENTS:=cCL3KilogramMeterExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCL3KilogramMeterQty}{$i adimVEC.inc}
 
-{$DEFINE CSYMBOL:=rsKilogramMeterPerSecondSymbol}
-{$DEFINE CPREFIXES:=cKilogramMeterPerSecondPrefixes}
-{$DEFINE CEXPONENTS:=cKilogramMeterPerSecondExponents}
+{$DEFINE CSYMBOL:=rsCL3KilogramMeterPerSecondSymbol}
+{$DEFINE CSINGULARNAME:=rsCL3KilogramMeterPerSecondName}
+{$DEFINE CPLURALNAME:=rsCL3KilogramMeterPerSecondPluralName}
+{$DEFINE CPREFIXES:=cCL3KilogramMeterPerSecondPrefixes}
+{$DEFINE CEXPONENTS:=cCL3KilogramMeterPerSecondExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCL3KilogramMeterPerSecondQty}{$i adimVEC.inc}
 
-{$DEFINE CSYMBOL:=rsNewtonSymbol}
-{$DEFINE CPREFIXES:=cNewtonPrefixes}
-{$DEFINE CEXPONENTS:=cNewtonExponents}
+{$DEFINE CSYMBOL:=rsCL3NewtonSymbol}
+{$DEFINE CSINGULARNAME:=rsCL3NewtonName}
+{$DEFINE CPLURALNAME:=rsCL3NewtonPluralName}
+{$DEFINE CPREFIXES:=cCL3NewtonPrefixes}
+{$DEFINE CEXPONENTS:=cCL3NewtonExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCL3NewtonQty}{$i adimVEC.inc}
 
 {$DEFINE CSYMBOL:=rsPoundForceSymbol}
@@ -11075,39 +11291,53 @@ end;
 {$DEFINE CEXPONENTS:=cNewtonSecondExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCL3NewtonSecondQty}{$i adimVEC.inc}
 
-{$DEFINE CSYMBOL:=rsKilogramSquareMeterSymbol}
-{$DEFINE CPREFIXES:=cKilogramSquareMeterPrefixes}
-{$DEFINE CEXPONENTS:=cKilogramSquareMeterExponents}
+{$DEFINE CSYMBOL:=rsCL3KilogramSquareMeterSymbol}
+{$DEFINE CSINGULARNAME:=rsCL3KilogramSquareMeterName}
+{$DEFINE CPLURALNAME:=rsCL3KilogramSquareMeterPluralName}
+{$DEFINE CPREFIXES:=cCL3KilogramSquareMeterPrefixes}
+{$DEFINE CEXPONENTS:=cCL3KilogramSquareMeterExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCL3KilogramSquareMeterQty}{$i adimBVEC.inc}
 
-{$DEFINE CSYMBOL:=rsKilogramSquareMeterPerSecondSymbol}
-{$DEFINE CPREFIXES:=cKilogramSquareMeterPerSecondPrefixes}
-{$DEFINE CEXPONENTS:=cKilogramSquareMeterPerSecondExponents}
+{$DEFINE CSYMBOL:=rsCL3KilogramSquareMeterPerSecondSymbol}
+{$DEFINE CSINGULARNAME:=rsCL3KilogramSquareMeterPerSecondName}
+{$DEFINE CPLURALNAME:=rsCL3KilogramSquareMeterPerSecondPluralName}
+{$DEFINE CPREFIXES:=cCL3KilogramSquareMeterPerSecondPrefixes}
+{$DEFINE CEXPONENTS:=cCL3KilogramSquareMeterPerSecondExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCL3KilogramSquareMeterPerSecondQty}{$i adimBVEC.inc}
 
-{$DEFINE CSYMBOL:=rsNewtonMeterSymbol}
-{$DEFINE CPREFIXES:=cNewtonMeterPrefixes}
-{$DEFINE CEXPONENTS:=cNewtonMeterExponents}
+{$DEFINE CSYMBOL:=rsCL3NewtonMeterSymbol}
+{$DEFINE CSINGULARNAME:=rsCL3NewtonMeterName}
+{$DEFINE CPLURALNAME:=rsCL3NewtonMeterPluralName}
+{$DEFINE CPREFIXES:=cCL3NewtonMeterPrefixes}
+{$DEFINE CEXPONENTS:=cCL3NewtonMeterExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCL3NewtonMeterQty}{$i adimBVEC.inc}
 
-{$DEFINE CSYMBOL:=rsNewtonMeterPerRadianSymbol}
-{$DEFINE CPREFIXES:=cNewtonMeterPerRadianPrefixes}
-{$DEFINE CEXPONENTS:=cNewtonMeterPerRadianExponents}
+{$DEFINE CSYMBOL:=rsCL3NewtonMeterPerRadianSymbol}
+{$DEFINE CSINGULARNAME:=rsCL3NewtonMeterPerRadianName}
+{$DEFINE CPLURALNAME:=rsCL3NewtonMeterPerRadianPluralName}
+{$DEFINE CPREFIXES:=cCL3NewtonMeterPerRadianPrefixes}
+{$DEFINE CEXPONENTS:=cCL3NewtonMeterPerRadianExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCL3NewtonMeterPerRadianQty}{$i adimBVEC.inc}
 
-{$DEFINE CSYMBOL:=rsPascalSymbol}
-{$DEFINE CPREFIXES:=cPascalPrefixes}
-{$DEFINE CEXPONENTS:=cPascalExponents}
+{$DEFINE CSYMBOL:=rsCL3PascalSymbol}
+{$DEFINE CSINGULARNAME:=rsCL3PascalName}
+{$DEFINE CPLURALNAME:=rsCL3PascalPluralName}
+{$DEFINE CPREFIXES:=cCL3PascalPrefixes}
+{$DEFINE CEXPONENTS:=cCL3PascalExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCL3PascalQty}{$i adimTVEC.inc}
 
-{$DEFINE CSYMBOL:=rsTeslaSymbol}
-{$DEFINE CPREFIXES:=cTeslaPrefixes}
-{$DEFINE CEXPONENTS:=cTeslaExponents}
+{$DEFINE CSYMBOL:=rsCL3TeslaSymbol}
+{$DEFINE CSINGULARNAME:=rsCL3TeslaName}
+{$DEFINE CPLURALNAME:=rsCL3TeslaPluralName}
+{$DEFINE CPREFIXES:=cCL3TeslaPrefixes}
+{$DEFINE CEXPONENTS:=cCL3TeslaExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCL3TeslaQty}{$i adimBVEC.inc}
 
-{$DEFINE CSYMBOL:=rsWeberSymbol}
-{$DEFINE CPREFIXES:=cWeberPrefixes}
-{$DEFINE CEXPONENTS:=cWeberExponents}
+{$DEFINE CSYMBOL:=rsCL3WeberSymbol}
+{$DEFINE CSINGULARNAME:=rsCL3WeberName}
+{$DEFINE CPLURALNAME:=rsCL3WeberPluralName}
+{$DEFINE CPREFIXES:=cCL3WeberPrefixes}
+{$DEFINE CEXPONENTS:=cCL3WeberExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCL3WeberQty}{$i adimTVEC.inc}
 
 class operator TRadianPerSecondQty.:=(const AQuantity: TRadianPerSecondQty): THertzQty;
@@ -13721,27 +13951,17 @@ end;
 
 function TCL3SquareMeterHelper.dotR(AValue: TCL3MeterQty): TCL3MeterQty;
 begin
-  result.FValue := FValue.Dot(AValue.FValue.Reciprocal);
+  result.FValue := FValue.dot(AValue.FValue.Reciprocal);
 end;
 
-function TCL3MeterHelper.Rdot(AValue: TCL3SquareMeterQty): TCL3MeterQty;
+function TCL3MeterHelper.dotR(AValue: TCL3SquareMeterQty): TCL3MeterQty;
 begin
-  result.FValue := (FValue.Reciprocal).Dot(AValue.FValue);
+  result.FValue := FValue.Reciprocal.dot(AValue.FValue);
 end;
 
 function TCL3MeterHelper.wedge(AValue: TCL3SquareMeterQty): TCL3CubicMeterQty;
 begin
   result.FValue := FValue.wedge(AValue.FValue);
-end;
-
-function TCL3CubicMeterHelper.dotR(AValue: TCL3SquareMeterQty): TCL3MeterQty;
-begin
-  result.FValue := FValue.Dot(AValue.FValue.Reciprocal);
-end;
-
-function TCL3MeterHelper.Rdot(AValue: TCL3CubicMeterQty): TCL3SquareMeterQty;
-begin
-  result.FValue := (FValue.Reciprocal).Dot(AValue.FValue);
 end;
 
 function TCL3SquareMeterHelper.wedge(AValue: TCL3MeterQty): TCL3CubicMeterQty;
@@ -13751,12 +13971,22 @@ end;
 
 function TCL3CubicMeterHelper.dotR(AValue: TCL3MeterQty): TCL3SquareMeterQty;
 begin
-  result.FValue := FValue.Dot(AValue.FValue.Reciprocal);
+  result.FValue := FValue.dot(AValue.FValue.Reciprocal);
 end;
 
-function TCL3SquareMeterHelper.Rdot(AValue: TCL3CubicMeterQty): TCL3MeterQty;
+function TCL3MeterHelper.dotR(AValue: TCL3CubicMeterQty): TCL3SquareMeterQty;
 begin
-  result.FValue := (FValue.Reciprocal).Dot(AValue.FValue);
+  result.FValue := FValue.Reciprocal.dot(AValue.FValue);
+end;
+
+function TCL3CubicMeterHelper.dotR(AValue: TCL3SquareMeterQty): TCL3MeterQty;
+begin
+  result.FValue := FValue.dot(AValue.FValue.Reciprocal);
+end;
+
+function TCL3SquareMeterHelper.dotR(AValue: TCL3CubicMeterQty): TCL3MeterQty;
+begin
+  result.FValue := FValue.Reciprocal.dot(AValue.FValue);
 end;
 
 function TCL3RadianHelper.Norm: TRadianQty;
@@ -13766,12 +13996,12 @@ end;
 
 function TCL3MeterHelper.dotR(AValue: TCL3MeterPerSecondQty): TSecondQty;
 begin
-  result.FValue := FValue.Dot(AValue.FValue.Reciprocal);
+  result.FValue := FValue.dot(AValue.FValue.Reciprocal);
 end;
 
 function TCL3MeterPerSecondHelper.dotR(AValue: TCL3MeterQty): THertzQty;
 begin
-  result.FValue := FValue.Dot(AValue.FValue.Reciprocal);
+  result.FValue := FValue.dot(AValue.FValue.Reciprocal);
 end;
 
 function TCL3MeterPerSecondHelper.Norm: TMeterPerSecondQty;
@@ -13786,17 +14016,17 @@ end;
 
 function TCL3MeterPerSecondHelper.dotR(AValue: TCL3MeterPerSecondSquaredQty): TSecondQty;
 begin
-  result.FValue := FValue.Dot(AValue.FValue.Reciprocal);
+  result.FValue := FValue.dot(AValue.FValue.Reciprocal);
 end;
 
 function TCL3MeterHelper.dotR(AValue: TCL3MeterPerSecondSquaredQty): TSquareSecondQty;
 begin
-  result.FValue := FValue.Dot(AValue.FValue.Reciprocal);
+  result.FValue := FValue.dot(AValue.FValue.Reciprocal);
 end;
 
 function TCL3MeterPerSecondSquaredHelper.dotR(AValue: TCL3MeterQty): TSquareHertzQty;
 begin
-  result.FValue := FValue.Dot(AValue.FValue.Reciprocal);
+  result.FValue := FValue.dot(AValue.FValue.Reciprocal);
 end;
 
 function TCL3MeterPerSecondSquaredHelper.Norm: TMeterPerSecondSquaredQty;
@@ -13816,12 +14046,12 @@ end;
 
 function TCL3RadianHelper.dotR(AValue: TCL3RadianPerSecondQty): TSecondQty;
 begin
-  result.FValue := FValue.Dot(AValue.FValue.Reciprocal);
+  result.FValue := FValue.dot(AValue.FValue.Reciprocal);
 end;
 
 function TCL3RadianPerSecondHelper.dotR(AValue: TCL3RadianQty): THertzQty;
 begin
-  result.FValue := FValue.Dot(AValue.FValue.Reciprocal);
+  result.FValue := FValue.dot(AValue.FValue.Reciprocal);
 end;
 
 function TCL3RadianPerSecondHelper.Norm: TRadianPerSecondQty;
@@ -13836,17 +14066,17 @@ end;
 
 function TCL3RadianPerSecondHelper.dotR(AValue: TCL3RadianPerSecondSquaredQty): TSecondQty;
 begin
-  result.FValue := FValue.Dot(AValue.FValue.Reciprocal);
+  result.FValue := FValue.dot(AValue.FValue.Reciprocal);
 end;
 
 function TCL3RadianHelper.dotR(AValue: TCL3RadianPerSecondSquaredQty): TSquareSecondQty;
 begin
-  result.FValue := FValue.Dot(AValue.FValue.Reciprocal);
+  result.FValue := FValue.dot(AValue.FValue.Reciprocal);
 end;
 
 function TCL3RadianPerSecondSquaredHelper.dotR(AValue: TCL3RadianQty): TSquareHertzQty;
 begin
-  result.FValue := FValue.Dot(AValue.FValue.Reciprocal);
+  result.FValue := FValue.dot(AValue.FValue.Reciprocal);
 end;
 
 function TCL3RadianPerSecondSquaredHelper.Norm: TRadianPerSecondSquaredQty;
@@ -13856,22 +14086,22 @@ end;
 
 function TCL3KilogramMeterHelper.dotR(AValue: TCL3MeterQty): TKilogramQty;
 begin
-  result.FValue := FValue.Dot(AValue.FValue.Reciprocal);
+  result.FValue := FValue.dot(AValue.FValue.Reciprocal);
 end;
 
 function TCL3KilogramMeterHelper.dotR(AValue: TCL3KilogramMeterPerSecondQty): TSecondQty;
 begin
-  result.FValue := FValue.Dot(AValue.FValue.Reciprocal);
+  result.FValue := FValue.dot(AValue.FValue.Reciprocal);
 end;
 
 function TCL3KilogramMeterPerSecondHelper.dotR(AValue: TCL3MeterPerSecondQty): TKilogramQty;
 begin
-  result.FValue := FValue.Dot(AValue.FValue.Reciprocal);
+  result.FValue := FValue.dot(AValue.FValue.Reciprocal);
 end;
 
 function TCL3KilogramMeterPerSecondHelper.dotR(AValue: TCL3MeterQty): TKilogramPerSecondQty;
 begin
-  result.FValue := FValue.Dot(AValue.FValue.Reciprocal);
+  result.FValue := FValue.dot(AValue.FValue.Reciprocal);
 end;
 
 function TCL3KilogramMeterPerSecondHelper.Norm: TKilogramMeterPerSecondQty;
@@ -13886,22 +14116,22 @@ end;
 
 function TCL3NewtonHelper.dotR(AValue: TCL3MeterPerSecondSquaredQty): TKilogramQty;
 begin
-  result.FValue := FValue.Dot(AValue.FValue.Reciprocal);
+  result.FValue := FValue.dot(AValue.FValue.Reciprocal);
 end;
 
 function TCL3KilogramMeterHelper.dotR(AValue: TCL3NewtonQty): TSquareSecondQty;
 begin
-  result.FValue := FValue.Dot(AValue.FValue.Reciprocal);
+  result.FValue := FValue.dot(AValue.FValue.Reciprocal);
 end;
 
 function TCL3KilogramMeterPerSecondHelper.dotR(AValue: TCL3NewtonQty): TSecondQty;
 begin
-  result.FValue := FValue.Dot(AValue.FValue.Reciprocal);
+  result.FValue := FValue.dot(AValue.FValue.Reciprocal);
 end;
 
 function TCL3NewtonHelper.dotR(AValue: TCL3MeterPerSecondQty): TKilogramPerSecondQty;
 begin
-  result.FValue := FValue.Dot(AValue.FValue.Reciprocal);
+  result.FValue := FValue.dot(AValue.FValue.Reciprocal);
 end;
 
 function TCL3KilogramMeterPerSecondHelper.ToCL3NewtonSecond: TCL3NewtonSecondQty;
@@ -13916,7 +14146,7 @@ end;
 
 function TCL3KilogramSquareMeterHelper.dotR(AValue: TCL3SquareMeterQty): TKilogramQty;
 begin
-  result.FValue := FValue.Dot(AValue.FValue.Reciprocal);
+  result.FValue := FValue.dot(AValue.FValue.Reciprocal);
 end;
 
 function TCL3KilogramMeterHelper.wedge(AValue: TCL3MeterQty): TCL3KilogramSquareMeterQty;
@@ -13924,24 +14154,39 @@ begin
   result.FValue := FValue.wedge(AValue.FValue);
 end;
 
-function TCL3KilogramSquareMeterHelper.dotR(AValue: TCL3MeterQty): TCL3KilogramMeterQty;
+function TCL3MeterHelper.wedge(AValue: TCL3KilogramMeterQty): TCL3KilogramSquareMeterQty;
 begin
-  result.FValue := FValue.Dot(AValue.FValue.Reciprocal);
+  result.FValue := FValue.wedge(AValue.FValue);
 end;
 
-function TCL3KilogramMeterHelper.Rdot(AValue: TCL3KilogramSquareMeterQty): TCL3MeterQty;
+function TCL3KilogramSquareMeterHelper.dotR(AValue: TCL3KilogramMeterQty): TCL3MeterQty;
 begin
-  result.FValue := (FValue.Reciprocal).Dot(AValue.FValue);
+  result.FValue := FValue.dot(AValue.FValue.Reciprocal);
+end;
+
+function TCL3KilogramMeterHelper.dotR(AValue: TCL3KilogramSquareMeterQty): TCL3MeterQty;
+begin
+  result.FValue := FValue.Reciprocal.dot(AValue.FValue);
+end;
+
+function TCL3KilogramSquareMeterHelper.dotR(AValue: TCL3MeterQty): TCL3KilogramMeterQty;
+begin
+  result.FValue := FValue.dot(AValue.FValue.Reciprocal);
+end;
+
+function TCL3MeterHelper.dotR(AValue: TCL3KilogramSquareMeterQty): TCL3KilogramMeterQty;
+begin
+  result.FValue := FValue.Reciprocal.dot(AValue.FValue);
 end;
 
 function TCL3KilogramSquareMeterHelper.dotR(AValue: TCL3KilogramSquareMeterPerSecondQty): TSecondQty;
 begin
-  result.FValue := FValue.Dot(AValue.FValue.Reciprocal);
+  result.FValue := FValue.dot(AValue.FValue.Reciprocal);
 end;
 
 function TCL3KilogramSquareMeterPerSecondHelper.dotR(AValue: TCL3KilogramSquareMeterQty): THertzQty;
 begin
-  result.FValue := FValue.Dot(AValue.FValue.Reciprocal);
+  result.FValue := FValue.dot(AValue.FValue.Reciprocal);
 end;
 
 function TCL3MeterHelper.wedge(AValue: TCL3KilogramMeterPerSecondQty): TCL3KilogramSquareMeterPerSecondQty;
@@ -13949,14 +14194,29 @@ begin
   result.FValue := FValue.wedge(AValue.FValue);
 end;
 
-function TCL3KilogramSquareMeterPerSecondHelper.dotR(AValue: TCL3KilogramMeterPerSecondQty): TCL3MeterQty;
+function TCL3KilogramMeterPerSecondHelper.wedge(AValue: TCL3MeterQty): TCL3KilogramSquareMeterPerSecondQty;
 begin
-  result.FValue := FValue.Dot(AValue.FValue.Reciprocal);
+  result.FValue := FValue.wedge(AValue.FValue);
 end;
 
-function TCL3MeterHelper.Rdot(AValue: TCL3KilogramSquareMeterPerSecondQty): TCL3KilogramMeterPerSecondQty;
+function TCL3KilogramSquareMeterPerSecondHelper.dotR(AValue: TCL3MeterQty): TCL3KilogramMeterPerSecondQty;
 begin
-  result.FValue := (FValue.Reciprocal).Dot(AValue.FValue);
+  result.FValue := FValue.dot(AValue.FValue.Reciprocal);
+end;
+
+function TCL3MeterHelper.dotR(AValue: TCL3KilogramSquareMeterPerSecondQty): TCL3KilogramMeterPerSecondQty;
+begin
+  result.FValue := FValue.Reciprocal.dot(AValue.FValue);
+end;
+
+function TCL3KilogramSquareMeterPerSecondHelper.dotR(AValue: TCL3KilogramMeterPerSecondQty): TCL3MeterQty;
+begin
+  result.FValue := FValue.dot(AValue.FValue.Reciprocal);
+end;
+
+function TCL3KilogramMeterPerSecondHelper.dotR(AValue: TCL3KilogramSquareMeterPerSecondQty): TCL3MeterQty;
+begin
+  result.FValue := FValue.Reciprocal.dot(AValue.FValue);
 end;
 
 function TCL3MeterHelper.wedge(AValue: TCL3NewtonQty): TCL3NewtonMeterQty;
@@ -13964,54 +14224,94 @@ begin
   result.FValue := FValue.wedge(AValue.FValue);
 end;
 
-function TCL3NewtonMeterHelper.dotR(AValue: TCL3NewtonQty): TCL3MeterQty;
+function TCL3NewtonHelper.wedge(AValue: TCL3MeterQty): TCL3NewtonMeterQty;
 begin
-  result.FValue := FValue.Dot(AValue.FValue.Reciprocal);
+  result.FValue := FValue.wedge(AValue.FValue);
 end;
 
-function TCL3MeterHelper.Rdot(AValue: TCL3NewtonMeterQty): TCL3NewtonQty;
+function TCL3NewtonMeterHelper.dotR(AValue: TCL3MeterQty): TCL3NewtonQty;
 begin
-  result.FValue := (FValue.Reciprocal).Dot(AValue.FValue);
+  result.FValue := FValue.dot(AValue.FValue.Reciprocal);
+end;
+
+function TCL3MeterHelper.dotR(AValue: TCL3NewtonMeterQty): TCL3NewtonQty;
+begin
+  result.FValue := FValue.Reciprocal.dot(AValue.FValue);
+end;
+
+function TCL3NewtonMeterHelper.dotR(AValue: TCL3NewtonQty): TCL3MeterQty;
+begin
+  result.FValue := FValue.dot(AValue.FValue.Reciprocal);
+end;
+
+function TCL3NewtonHelper.dotR(AValue: TCL3NewtonMeterQty): TCL3MeterQty;
+begin
+  result.FValue := FValue.Reciprocal.dot(AValue.FValue);
 end;
 
 function TCL3KilogramSquareMeterHelper.dotR(AValue: TCL3NewtonMeterQty): TSquareSecondQty;
 begin
-  result.FValue := FValue.Dot(AValue.FValue.Reciprocal);
+  result.FValue := FValue.dot(AValue.FValue.Reciprocal);
 end;
 
 function TCL3KilogramSquareMeterPerSecondHelper.dotR(AValue: TCL3NewtonMeterQty): TSecondQty;
 begin
-  result.FValue := FValue.Dot(AValue.FValue.Reciprocal);
+  result.FValue := FValue.dot(AValue.FValue.Reciprocal);
 end;
 
 function TCL3NewtonHelper.wedgeR(AValue: TCL3SquareMeterQty): TCL3PascalQty;
 begin
-  result.FValue := FValue.Wedge(AValue.FValue.Reciprocal);
+  result.FValue := FValue.wedge(AValue.FValue.Reciprocal);
 end;
 
-function TCL3PascalHelper.dot(AValue: TCL3SquareMeterQty): TCL3NewtonQty;
+function TCL3PascalHelper.dotR(AValue: TCL3SquareMeterQty): TCL3NewtonQty;
 begin
-  result.FValue := FValue.dot(AValue.FValue);
+  result.FValue := FValue.dot(AValue.FValue.Reciprocal);
+end;
+
+function TCL3SquareMeterHelper.dotR(AValue: TCL3PascalQty): TCL3NewtonQty;
+begin
+  result.FValue := FValue.Reciprocal.dot(AValue.FValue);
 end;
 
 function TCL3NewtonHelper.dotR(AValue: TCL3PascalQty): TCL3SquareMeterQty;
 begin
-  result.FValue := FValue.Dot(AValue.FValue.Reciprocal);
+  result.FValue := FValue.dot(AValue.FValue.Reciprocal);
 end;
 
-function TCL3TeslaHelper.Dwedge(AValue: TCL3SquareMeterQty): TCL3WeberQty;
+function TCL3PascalHelper.dotR(AValue: TCL3NewtonQty): TCL3SquareMeterQty;
 begin
-  result.FValue := FValue.Dual.Wedge(AValue.FValue);
+  result.FValue := FValue.Reciprocal.dot(AValue.FValue);
 end;
 
-function TCL3WeberHelper.dotDR(AValue: TCL3SquareMeterQty): TCL3TeslaQty;
+function TCL3TeslaHelper.wedgeR(AValue: TCL3SquareMeterQty): TCL3WeberQty;
 begin
-  result.FValue := FValue.Dot(AValue.FValue.Dual.Reciprocal);
+  result.FValue := FValue.Dual.wedge(AValue.FValue.Reciprocal);
 end;
 
-function TCL3TeslaHelper.DRdot(AValue: TCL3WeberQty): TCL3SquareMeterQty;
+function TCL3SquareMeterHelper.wedgeR(AValue: TCL3TeslaQty): TCL3WeberQty;
 begin
-  result.FValue := FValue.Dual.Reciprocal.Dot(AValue.FValue);
+  result.FValue := FValue.Reciprocal.wedge(AValue.FValue.Dual);
+end;
+
+function TCL3WeberHelper.dotR(AValue: TCL3TeslaQty): TCL3SquareMeterQty;
+begin
+  result.FValue := FValue.dot(AValue.FValue.Dual.Reciprocal);
+end;
+
+function TCL3TeslaHelper.dotR(AValue: TCL3WeberQty): TCL3SquareMeterQty;
+begin
+  result.FValue := FValue.Reciprocal.Dual.dot(AValue.FValue);
+end;
+
+function TCL3WeberHelper.dotR(AValue: TCL3SquareMeterQty): TCL3TeslaQty;
+begin
+  result.FValue := FValue.dot(AValue.FValue.Reciprocal).Dual;
+end;
+
+function TCL3SquareMeterHelper.dotR(AValue: TCL3WeberQty): TCL3TeslaQty;
+begin
+  result.FValue := FValue.Reciprocal.dot(AValue.FValue).Dual;
 end;
 
 procedure TCL3WeberHelper.Assign(AValue: TWeberQty);
