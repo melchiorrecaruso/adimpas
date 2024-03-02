@@ -113,12 +113,12 @@ end;
 
 class operator TQuantity.+(const AValue: TQuantity): TQuantity;
 begin
-  result := AValue;
+  result.FValue := AValue.FValue;
 end;
 
 class operator TQuantity.-(const AValue: TQuantity): TQuantity;
 begin
-  result := -AValue;
+  result.FValue := -AValue.FValue;
 end;
 
 class operator TQuantity.+(const ALeft, ARight: TQuantity): TQuantity;
