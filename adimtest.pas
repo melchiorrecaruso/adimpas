@@ -157,27 +157,27 @@ var
   I: TKilogramSquareMeters;
   Re: double;
 
-  displacement: TCL3Meters;
-  speedvec: TCL3MetersPerSecond;
-  accvec: TCL3MetersPerSecondSquared;
+  displacement: TCLMeters;
+  speedvec: TCLMetersPerSecond;
+  accvec: TCLMetersPerSecondSquared;
 
-  momentum: TCL3KilogramMetersPerSecond;
+  momentum: TCLKilogramMetersPerSecond;
 
-  anglevec: TCL3Radians;
-  angularspeedvec: TCL3RadiansPerSecond;
-  angularaccvec: TCL3RadiansPerSecondSquared;
+  anglevec: TCLRadians;
+  angularspeedvec: TCLRadiansPerSecond;
+  angularaccvec: TCLRadiansPerSecondSquared;
 
-  forcevec: TCL3Newtons;
-  areavec: TCL3SquareMeters;
+  forcevec: TCLNewtons;
+  areavec: TCLSquareMeters;
 
-  torquevec: TCL3NewtonMeters;
+  torquevec: TCLNewtonMeters;
 
-  magneticfluxvec: TCL3Webers;
-  magneticfieldvec: TCL3Teslas;
+  magneticfluxvec: TCLWebers;
+  magneticfieldvec: TCLTeslas;
 
-  pressurevec: TCL3Pascals;
+  pressurevec: TCLPascals;
 
-  torquestifness: TCL3NewtonMetersPerRadian;
+  torquestifness: TCLNewtonMetersPerRadian;
 
 
 begin
@@ -955,39 +955,29 @@ begin
   writeln(anglevec.dotR(angularspeedvec).ToString);
   writeln(angularspeedvec.dotR(anglevec).ToString);
 
-  forcevec     := 10*e2*N;
-  displacement :=  5*e1*m;
-  torquevec    := displacement.Wedge(forcevec);
-  torquevec    := 10*e3*N*m;
-  writeln(torquevec.ToVerboseString);
 
-  displacement := torquevec.dotR(forcevec);
-  forcevec     := torquevec.dotR(displacement);
-
-  writeln(displacement.ToVerboseString);
-  writeln(forcevec.ToVerboseString);
+  writeln('TORQUE');
+  forcevec     := 10*e2*N;                       writeln(forcevec    .ToVerboseString);
+  displacement :=  5*e1*m;                       writeln(displacement.ToVerboseString);
+  torquevec    := 50*e3*N*m;                     writeln(torquevec   .ToVerboseString);
+  torquevec    := displacement.wedge(forcevec);  writeln(torquevec   .ToVerboseString);
+  forcevec     := displacement.dotR(torquevec);  writeln(forcevec    .ToVerboseString);
+  displacement := torquevec.dotR(forcevec);      writeln(displacement.ToVerboseString);
 
   writeln('WEBER');
   magneticfieldvec := (10*e12)*T;                               writeln(magneticfieldvec.ToVerboseString);
-  areavec          := (1*e12)*m2;                               writeln(areavec.ToVerboseString);
-  magneticfluxvec  := magneticfieldvec.wedgeR(areavec);         writeln(magneticfluxvec.ToVerboseString);
-  magneticfieldvec := magneticfluxvec.dotR(areavec);            writeln(magneticfieldvec.ToVerboseString);
-  areavec          := magneticfieldvec.dotR(magneticfluxvec);   writeln(areavec.ToVerboseString);
-
-  magneticfluxvec.Assign(10*V*s);
+  areavec          := ( 5*e12)*m2;                              writeln(areavec.ToVerboseString);
+  magneticfluxvec  := -magneticfieldvec.wedgeR(areavec);        writeln(magneticfluxvec.ToVerboseString);
+  magneticfieldvec := -magneticfluxvec.dot(areavec);            writeln(magneticfieldvec.ToVerboseString);
+  areavec          := -magneticfieldvec.dotR(magneticfluxvec);   writeln(areavec.ToVerboseString);
+  magneticfluxvec.Assign(50*V*s);
 
   writeln('PASCAL');
   areavec     := 1*e12*m2;                                      writeln(areavec.ToVerboseString);
   forcevec    := 10*e3*N;                                       writeln(forcevec.ToVerboseString);
   pressurevec := forcevec.wedgeR(areavec);                      writeln(pressurevec.ToVerboseString);
-  forcevec    := pressurevec.dotR(areavec);                     writeln(forcevec.ToVerboseString);
-  areavec     := forcevec.dotR(pressurevec.Reciprocal);         writeln(areavec.ToVerboseString);
-  areavec     := pressurevec.dotR(forcevec);                    writeln(areavec.ToVerboseString);
-
-
-
-  areavec     := forcevec.dotR(pressurevec);
-
+  forcevec    := -pressurevec.dot(areavec);                      writeln(forcevec.ToVerboseString);
+  areavec     := forcevec.dotR(pressurevec);                    writeln(areavec.ToVerboseString);
 
 
   torquestifness := 10*e3*N*m/rad;
