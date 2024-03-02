@@ -46,7 +46,7 @@ const
   INTF_OP            = 'operator %s(const ALeft: %s; const ARight: %s): %s;';
   IMPL_OP            = 'operator %s(const ALeft: %s; const ARight: %s): %s;';
 
-  VECPrefix          = 'CL3';
+  VECPrefix          = 'CL';
 
 
 function GetSymbolResourceString(const AClassName: string): string;
@@ -367,7 +367,7 @@ begin
   if UpperCase(S) = 'TTRIVECTOR'   then Result := True;
   if UpperCase(S) = 'TMULTIVECTOR' then Result := True;
 
-  if Pos('TCL3', S) = 1 then Result := True;
+  if Pos('T' + VECPrefix, S) = 1 then Result := True;
 end;
 
 
