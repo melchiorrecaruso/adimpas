@@ -6169,6 +6169,7 @@ type
   TCLPascalHelper = record helper for TCLPascalQty
     function dot(AValue: TCLSquareMeterQty): TCLNewtonQty;
     function dotR(AValue: TCLNewtonQty): TCLSquareMeterQty;
+    function Dual: TPascalQty;
     function Norm: TPascalQty;
   end;
 
@@ -6185,6 +6186,7 @@ type
   TCLWeberHelper = record helper for TCLWeberQty
     function dotR(AValue: TCLSquareMeterQty): TCLTeslaDualQty;
     function dotR(AValue: TCLTeslaDualQty): TCLSquareMeterQty;
+    function Dual: TWeberQty;
     procedure Assign(AValue: TWeberQty);
   end;
 
@@ -14358,6 +14360,11 @@ begin
   result.FValue := FValue.Norm;
 end;
 
+function TCLPascalHelper.Dual: TPascalQty;
+begin
+  result.FValue := FValue.Dual;
+end;
+
 function TCLTeslaDualHelper.Dual: TCLTeslaQty;
 begin
   result.FValue := FValue.Dual;
@@ -14381,6 +14388,11 @@ end;
 function TCLSquareMeterHelper.wedge(AValue: TCLTeslaDualQty): TCLWeberQty;
 begin
   result.FValue := (FValue).wedge(AValue.FValue);
+end;
+
+function TCLWeberHelper.Dual: TWeberQty;
+begin
+  result.FValue := FValue.Dual;
 end;
 
 function TCLNewtonHelper.dot(AValue: TCLMeterQty): TJouleQty;

@@ -971,6 +971,13 @@ begin
   magneticfieldvec := -magneticfluxvec.dotR(areavec).Dual;          writeln(magneticfieldvec.ToVerboseString);
   areavec          := -magneticfieldvec.Dual.dotR(magneticfluxvec); writeln(areavec.ToVerboseString);
   magneticfluxvec.Assign(50*V*s);
+  magneticfluxvec.Assign(magneticflux);
+
+  writeln('HENRY');
+  inductance := magneticfluxvec.Dual/current;
+
+
+
 
   writeln('PASCAL');
   areavec     := 1*e12*m2;                       writeln(areavec.ToVerboseString);
