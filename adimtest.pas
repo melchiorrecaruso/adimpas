@@ -967,8 +967,8 @@ begin
   writeln('WEBER');
   magneticfieldvec := (10*e12)*T;                                   writeln(magneticfieldvec.ToVerboseString);
   areavec          := ( 5*e12)*m2;                                  writeln(areavec.ToVerboseString);
-  magneticfluxvec  := -magneticfieldvec.Dual.wedgeR(areavec);       writeln(magneticfluxvec.ToVerboseString);
-  magneticfieldvec := -magneticfluxvec.dot(areavec).Dual;           writeln(magneticfieldvec.ToVerboseString);
+  magneticfluxvec  := -magneticfieldvec.Dual.wedge(areavec);        writeln(magneticfluxvec.ToVerboseString);
+  magneticfieldvec := -magneticfluxvec.dotR(areavec).Dual;          writeln(magneticfieldvec.ToVerboseString);
   areavec          := -magneticfieldvec.Dual.dotR(magneticfluxvec); writeln(areavec.ToVerboseString);
   magneticfluxvec.Assign(50*V*s);
 

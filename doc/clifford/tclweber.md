@@ -4,7 +4,7 @@
 
 ### Magnetic flux
 
-$\overline \Phi_{123} = -\displaystyle\frac{\overline {IB}_{23} ⋀ \overline{S}_{23}}{|S_{23}|^2}$ , 
+$\overline \Phi_{123} = -\displaystyle\overline {IB}_{23}$ ⋀ $\overline{S}_{23}$ , 
 
 where 
 
@@ -15,9 +15,9 @@ where
 and
 
 
-- $\overline {IB}_{23} = -\displaystyle \overline \Phi_{123} ⋅ \overline S_{23}$ ;
+- $\overline {IB}_{23} = -\displaystyle\frac{\overline \Phi_{123} ⋅ \overline S_{23}}{|\overline S_{23}|^2}$ . 
 
-- $\overline S_{23} = -\displaystyle\frac{\overline {IB}_{123} ⋅ \overline \Phi_{123}}{|B_{23}|^2}$ . 
+- $\overline S_{23} = -\displaystyle\frac{\overline {IB}_{123} ⋅ \overline \Phi_{123}}{|\overline B_{23}|^2}$ . 
 
 #
 [Go To Home](https://github.com/melchiorrecaruso/ADimPas)
