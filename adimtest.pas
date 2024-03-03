@@ -965,19 +965,19 @@ begin
   displacement := torquevec.dotR(forcevec);      writeln(displacement.ToVerboseString);
 
   writeln('WEBER');
-  magneticfieldvec := (10*e12)*T;                               writeln(magneticfieldvec.ToVerboseString);
-  areavec          := ( 5*e12)*m2;                              writeln(areavec.ToVerboseString);
-  magneticfluxvec  := -magneticfieldvec.wedgeR(areavec);        writeln(magneticfluxvec.ToVerboseString);
-  magneticfieldvec := -magneticfluxvec.dot(areavec);            writeln(magneticfieldvec.ToVerboseString);
-  areavec          := -magneticfieldvec.dotR(magneticfluxvec);   writeln(areavec.ToVerboseString);
+  magneticfieldvec := (10*e12)*T;                                   writeln(magneticfieldvec.ToVerboseString);
+  areavec          := ( 5*e12)*m2;                                  writeln(areavec.ToVerboseString);
+  magneticfluxvec  := -magneticfieldvec.Dual.wedgeR(areavec);       writeln(magneticfluxvec.ToVerboseString);
+  magneticfieldvec := -magneticfluxvec.dot(areavec).Dual;           writeln(magneticfieldvec.ToVerboseString);
+  areavec          := -magneticfieldvec.Dual.dotR(magneticfluxvec); writeln(areavec.ToVerboseString);
   magneticfluxvec.Assign(50*V*s);
 
   writeln('PASCAL');
-  areavec     := 1*e12*m2;                                      writeln(areavec.ToVerboseString);
-  forcevec    := 10*e3*N;                                       writeln(forcevec.ToVerboseString);
-  pressurevec := forcevec.wedgeR(areavec);                      writeln(pressurevec.ToVerboseString);
-  forcevec    := -pressurevec.dot(areavec);                      writeln(forcevec.ToVerboseString);
-  areavec     := forcevec.dotR(pressurevec);                    writeln(areavec.ToVerboseString);
+  areavec     := 1*e12*m2;                       writeln(areavec.ToVerboseString);
+  forcevec    := 10*e3*N;                        writeln(forcevec.ToVerboseString);
+  pressurevec := forcevec.wedgeR(areavec);       writeln(pressurevec.ToVerboseString);
+  forcevec    := -pressurevec.dot(areavec);      writeln(forcevec.ToVerboseString);
+  areavec     := forcevec.dotR(pressurevec);     writeln(areavec.ToVerboseString);
 
 
   torquestifness := 10*e3*N*m/rad;

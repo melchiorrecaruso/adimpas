@@ -18,9 +18,9 @@
 }
 
 {
-  ADimPas library built on 02/03/2024.
+  ADimPas library built on 03/03/2024.
 
-  Number of base units: 143
+  Number of base units: 144
   Number of factored units: 76
   Number of operators: 1092 (242 external, 850 internal)
 }
@@ -55,6 +55,9 @@ type
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCLTeslaQty}{$i adimBVEC.inc}
 {$DEFINE INTF_END}{$i adimBVEC.inc}
+
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCLTeslaDualQty}{$i adimVEC.inc}
+{$DEFINE INTF_END}{$i adimVEC.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCLPascalQty}{$i adimTVEC.inc}
 {$DEFINE INTF_END}{$i adimTVEC.inc}
@@ -5749,6 +5752,18 @@ const
   cCLPascalExponents : TExponents = (1);
 
 type
+  TCLTeslaDual = TCLTeslaDualQty;
+
+const
+  rsCLTeslaDualSymbol     = '%sT';
+  rsCLTeslaDualName       = '%stesla';
+  rsCLTeslaDualPluralName = '%steslas';
+
+const
+  cCLTeslaDualPrefixes  : TPrefixes  = (pNone);
+  cCLTeslaDualExponents : TExponents = (1);
+
+type
   TCLTeslas = TCLTeslaQty;
 
 const
@@ -6035,11 +6050,11 @@ type
   end;
 
   TCLSquareMeterHelper = record helper for TCLSquareMeterQty
-    function dot(AValue: TCLWeberQty): TCLTeslaQty;
+    function dot(AValue: TCLWeberQty): TCLTeslaDualQty;
     function dot(AValue: TCLPascalQty): TCLNewtonQty;
     function dotR(AValue: TCLCubicMeterQty): TCLMeterQty;
     function dotR(AValue: TCLMeterQty): TCLMeterQty;
-    function wedgeR(AValue: TCLTeslaQty): TCLWeberQty;
+    function wedgeR(AValue: TCLTeslaDualQty): TCLWeberQty;
     function wedgeR(AValue: TCLNewtonQty): TCLPascalQty;
     function wedge(AValue: TCLMeterQty): TCLCubicMeterQty;
   end;
@@ -6151,25 +6166,31 @@ type
     function dotR(AValue: TCLKilogramSquareMeterQty): TSquareSecondQty;
   end;
 
-  TCLWeberHelper = record helper for TCLWeberQty
-    function dot(AValue: TCLSquareMeterQty): TCLTeslaQty;
-    function dotR(AValue: TCLTeslaQty): TCLSquareMeterQty;
-    procedure Assign(AValue: TWeberQty);
+  TCLPascalHelper = record helper for TCLPascalQty
+    function dot(AValue: TCLSquareMeterQty): TCLNewtonQty;
+    function dotR(AValue: TCLNewtonQty): TCLSquareMeterQty;
+    function Norm: TPascalQty;
+  end;
+
+  TCLTeslaDualHelper = record helper for TCLTeslaDualQty
+    function dotR(AValue: TCLWeberQty): TCLSquareMeterQty;
+    function wedgeR(AValue: TCLSquareMeterQty): TCLWeberQty;
+    function Dual: TCLTeslaQty;
   end;
 
   TCLTeslaHelper = record helper for TCLTeslaQty
-    function dotR(AValue: TCLWeberQty): TCLSquareMeterQty;
-    function wedgeR(AValue: TCLSquareMeterQty): TCLWeberQty;
+    function Dual: TCLTeslaDualQty;
+  end;
+
+  TCLWeberHelper = record helper for TCLWeberQty
+    function dot(AValue: TCLSquareMeterQty): TCLTeslaDualQty;
+    function dotR(AValue: TCLTeslaDualQty): TCLSquareMeterQty;
+    procedure Assign(AValue: TWeberQty);
   end;
 
   TCLCubicMeterHelper = record helper for TCLCubicMeterQty
     function dotR(AValue: TCLMeterQty): TCLSquareMeterQty;
     function dotR(AValue: TCLSquareMeterQty): TCLMeterQty;
-  end;
-
-  TCLPascalHelper = record helper for TCLPascalQty
-    function dot(AValue: TCLSquareMeterQty): TCLNewtonQty;
-    function dotR(AValue: TCLNewtonQty): TCLSquareMeterQty;
   end;
 
 { Power functions }
@@ -11357,6 +11378,13 @@ end;
 {$DEFINE CEXPONENTS:=cCLPascalExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCLPascalQty}{$i adimTVEC.inc}
 
+{$DEFINE CSYMBOL:=rsCLTeslaDualSymbol}
+{$DEFINE CSINGULARNAME:=rsCLTeslaDualName}
+{$DEFINE CPLURALNAME:=rsCLTeslaDualPluralName}
+{$DEFINE CPREFIXES:=cCLTeslaDualPrefixes}
+{$DEFINE CEXPONENTS:=cCLTeslaDualExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCLTeslaDualQty}{$i adimVEC.inc}
+
 {$DEFINE CSYMBOL:=rsCLTeslaSymbol}
 {$DEFINE CSINGULARNAME:=rsCLTeslaName}
 {$DEFINE CPLURALNAME:=rsCLTeslaPluralName}
@@ -14325,19 +14353,34 @@ begin
   result.FValue := (FValue/FValue.SquaredNorm).wedge(AValue.FValue);
 end;
 
+function TCLPascalHelper.Norm: TPascalQty;
+begin
+  result.FValue := FValue.Norm;
+end;
+
+function TCLTeslaDualHelper.Dual: TCLTeslaQty;
+begin
+  result.FValue := FValue.Dual;
+end;
+
+function TCLTeslaHelper.Dual: TCLTeslaDualQty;
+begin
+  result.FValue := FValue.Dual;
+end;
+
 procedure TCLWeberHelper.Assign(AValue: TWeberQty);
 begin
   FValue := AValue.FValue*e123;
 end;
 
-function TCLTeslaHelper.wedgeR(AValue: TCLSquareMeterQty): TCLWeberQty;
+function TCLTeslaDualHelper.wedgeR(AValue: TCLSquareMeterQty): TCLWeberQty;
 begin
-  result.FValue := (FValue.Dual).wedge(AValue.FValue/AValue.FValue.SquaredNorm);
+  result.FValue := (FValue).wedge(AValue.FValue/AValue.FValue.SquaredNorm);
 end;
 
-function TCLSquareMeterHelper.wedgeR(AValue: TCLTeslaQty): TCLWeberQty;
+function TCLSquareMeterHelper.wedgeR(AValue: TCLTeslaDualQty): TCLWeberQty;
 begin
-  result.FValue := (FValue/FValue.SquaredNorm).wedge(AValue.FValue.Dual);
+  result.FValue := (FValue/FValue.SquaredNorm).wedge(AValue.FValue);
 end;
 
 function TCLNewtonHelper.dot(AValue: TCLMeterQty): TJouleQty;
@@ -14440,14 +14483,14 @@ begin
   result.FValue := (FValue/FValue.SquaredNorm).dot(AValue.FValue);
 end;
 
-function TCLTeslaHelper.dotR(AValue: TCLWeberQty): TCLSquareMeterQty;
+function TCLTeslaDualHelper.dotR(AValue: TCLWeberQty): TCLSquareMeterQty;
 begin
-  result.FValue := (FValue.Dual).dot(AValue.FValue/AValue.FValue.SquaredNorm);
+  result.FValue := (FValue).dot(AValue.FValue/AValue.FValue.SquaredNorm);
 end;
 
-function TCLWeberHelper.dotR(AValue: TCLTeslaQty): TCLSquareMeterQty;
+function TCLWeberHelper.dotR(AValue: TCLTeslaDualQty): TCLSquareMeterQty;
 begin
-  result.FValue := (FValue/FValue.SquaredNorm).dot(AValue.FValue.Dual);
+  result.FValue := (FValue/FValue.SquaredNorm).dot(AValue.FValue);
 end;
 
 function TCLPascalHelper.dot(AValue: TCLSquareMeterQty): TCLNewtonQty;
@@ -14470,14 +14513,14 @@ begin
   result.FValue := (FValue/FValue.SquaredNorm).dot(AValue.FValue);
 end;
 
-function TCLWeberHelper.dot(AValue: TCLSquareMeterQty): TCLTeslaQty;
+function TCLWeberHelper.dot(AValue: TCLSquareMeterQty): TCLTeslaDualQty;
 begin
-  result.FValue := (FValue).dot(AValue.FValue).Dual;
+  result.FValue := (FValue).dot(AValue.FValue);
 end;
 
-function TCLSquareMeterHelper.dot(AValue: TCLWeberQty): TCLTeslaQty;
+function TCLSquareMeterHelper.dot(AValue: TCLWeberQty): TCLTeslaDualQty;
 begin
-  result.FValue := (FValue).dot(AValue.FValue).Dual;
+  result.FValue := (FValue).dot(AValue.FValue);
 end;
 
 function TCLKilogramSquareMeterPerSecondHelper.dotR(AValue: TCLMeterQty): TCLKilogramMeterPerSecondQty;

@@ -126,6 +126,7 @@ type
 
     procedure AddHelperSquaredNorm(const AItem: TToolkitItem);
     procedure AddHelperNorm(const AItem: TToolkitItem);
+    procedure AddHelperDual(const AItem: TToolkitItem);
 
     procedure AddHelperDOT  (const ABaseUnit, ABaseQuantity, AInputQuantity, AResultQuantity: string; Option: TProductOptions);
     procedure AddHelperWEDGE(const ABaseUnit, ABaseQuantity, AInputQuantity, AResultQuantity: string; Option: TProductOptions);
@@ -577,6 +578,10 @@ begin
     begin
       AddHelperSquaredNorm(AItem);
     end else
+    if AItem.FOperator = 'DUAL' then
+    begin
+      AddHelperDual(AItem);
+    end else
     if Pos('DOT', AItem.FOperator) = 1 then
     begin
       Options := [];
@@ -940,6 +945,30 @@ begin
   SectionB8.Append(Format('function %s.Norm: %s;', [GetUnitTypeHelper(AItem.FClassName), GetQuantityType(AItem.FClassParent1)]));
   SectionB8.Append('begin');
   SectionB8.Append('  result.FValue := FValue.Norm;');
+  SectionB8.Append('end;');
+  SectionB8.Append('');
+end;
+
+procedure TToolkitList.AddHelperDual(const AItem: TToolkitItem);
+var
+  Index: longint;
+begin
+  Index := SectionA8.IndexOf('  ' + GetUnitTypeHelper(AItem.FClassName) + ' = record helper for ' + GetQuantityType(AItem.FClassName));
+  if Index = -1 then
+  begin
+    SectionA8.Append(Format('  %s = record helper for %s', [GetUnitTypeHelper(AItem.FClassName), GetQuantityType(AItem.FClassName)]));
+    SectionA8.Append(Format('    function Dual: %s;', [GetQuantityType(AItem.FClassParent1)]));
+    SectionA8.Append('  end;');
+    SectionA8.Append('');
+  end else
+  begin
+    SectionA8.Insert(Index + 1, Format('    function Dual: %s;', [GetQuantityType(AItem.FClassParent1)]));
+  end;
+
+  SectionB8.Append('');
+  SectionB8.Append(Format('function %s.Dual: %s;', [GetUnitTypeHelper(AItem.FClassName), GetQuantityType(AItem.FClassParent1)]));
+  SectionB8.Append('begin');
+  SectionB8.Append('  result.FValue := FValue.Dual;');
   SectionB8.Append('end;');
   SectionB8.Append('');
 end;
