@@ -4,18 +4,19 @@
 
 ### Speed
 
-$\overline v_{1} = \displaystyle\frac{\overline s_{1}}{t}$ ,
+$\overline v = \displaystyle\ \frac{\Delta\overline r}{\Delta t}$ ,
 
-where 
-
-- $\overline s_1$ is the displacement-vector along $e_1$ axis, $[m]$;
-- $t$ is the time elapsed, $[s]$;
-- $v_{1}$ is the speed-vector along $e_{1}$ axis, $[m/s]$;
+where
+ 
+- $\overline v$ is the speed-vector, $[m/s]$;
+- $\Delta \overline r$ is the displacement-vector, $[m]$;
+- $\Delta t$ is the time elapsed, $[s]$;
 
 and
 
-- $\overline s_{1} = \displaystyle\overline v_{1} ⋅ t$ ;
-- $t = \displaystyle\frac{\overline s_{1} ⋅ \overline v_{1}}{|\overline v_{1}|^2}$ .
+- $\Delta\overline r = \displaystyle\overline v ⋅ \Delta t$ ;
+
+- $\Delta t = \displaystyle\frac{\Delta\overline s ⋅ \overline v}{|\overline v|^2}$ .
 
 #
 [Go To Home](https://github.com/melchiorrecaruso/ADimPas)
