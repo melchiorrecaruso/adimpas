@@ -905,7 +905,13 @@ begin
   {$endif}
   writeln('* TEST-98: PASSED');
 
-  // TEST-99
+  // TEST-99 - COMPTON WAVE LEGNTH
+  plank      := 6.62607015*1E-34*J*s;
+  mass       := 9.11*1E-31*kg;
+  lightspeed := 299792458*m/s;
+  wavelen    := plank/(mass*speed);
+
+  // TEST-100
 
   displacement := (2*e1 + 6*e2)*m;
   displacement := (2*e1 + 6*e2)*inch;
