@@ -4,13 +4,13 @@
 
 ### Torque
 
-$\overline T_{12} = \displaystyle\overline{r}_1$ ⋀ $\overline F_2$ , 
+$\overline T_{12} = \displaystyle\overline{r}_1 ∧ \overline F_2$ , 
 
 where 
 
 - $\overline r_{1}$ is bracket-vector of force along $e_{1}$ axis, $[m]$;
 - $\overline F_{2}$ is the force-vector along $e_{2}$ axis, $[N]$;
-- $\overline T_{12}$ is the torque-bivector on $e_{12}$ plane, $[N⋅m]$.
+- $\overline T_{12}$ is the torque-bivector on $e_{12}$ plane, $[N⋅m]$;
 
 and
 

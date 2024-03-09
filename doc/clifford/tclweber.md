@@ -4,7 +4,7 @@
 
 ### Magnetic flux
 
-$\overline\Phi_{123} = -\overline I \overline B_{23}$ ⋀ $\overline{S}_{23}$ , 
+$\overline\Phi_{123} = -\overline I \overline B_{23} ∧ \overline{S}_{23}$ , 
 
 where 
 
