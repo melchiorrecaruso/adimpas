@@ -179,11 +179,19 @@ begin
     Result := StringReplace(Result, 'Unit',  '',     [rfReplaceAll]);
     Result := StringReplace(Result, 'Qty',   '',     [rfReplaceAll]);
 
-    if (UpperCase(Result) <> 'DOUBLE'      ) and
-       (UpperCase(Result) <> 'TVECTOR'     ) and
-       (UpperCase(Result) <> 'TBIVECTOR'   ) and
-       (UpperCase(Result) <> 'TTRIVECTOR'  ) and
-       (UpperCase(Result) <> 'TMULTIVECTOR') then Result := Result + 'Qty';
+    if (UpperCase(Result) <> 'DOUBLE'       ) and
+       (UpperCase(Result) <> 'TVECTOR'      ) and
+       (UpperCase(Result) <> 'TBIVECTOR'    ) and
+       (UpperCase(Result) <> 'TTRIVECTOR'   ) and
+       (UpperCase(Result) <> 'TMULTIVECTOR' ) and
+       (UpperCase(Result) <> 'TVERSOR0'     ) and
+       (UpperCase(Result) <> 'TVERSOR1'     ) and
+       (UpperCase(Result) <> 'TVERSOR2'     ) and
+       (UpperCase(Result) <> 'TVERSOR3'     ) and
+       (UpperCase(Result) <> 'TVERSOR12'    ) and
+       (UpperCase(Result) <> 'TVERSOR23'    ) and
+       (UpperCase(Result) <> 'TVERSOR31'    ) and
+       (UpperCase(Result) <> 'TVERSOR123'   ) then Result := Result + 'Qty';
   end;
 end;
 
@@ -234,6 +242,10 @@ end;
 
 function GetUnitType(const S: string): string;
 begin
+  if Pos('TTriversor', S) = 1 then Exit(S);
+  if Pos('TBiVersor',  S) = 1 then Exit(S);
+  if Pos('TVersor',    S) = 1 then Exit(S);
+
   Result := S;
   Result := StringReplace(Result, '!',  '', [rfReplaceAll]);
   Result := StringReplace(Result, '?',  '', [rfReplaceAll]);
@@ -280,6 +292,10 @@ begin
   Result := StringReplace(Result, 'Inches', 'Inch!', [rfReplaceAll]);
   Result := StringReplace(Result, 'ies',    'y!',    [rfReplaceAll]);
   Result := StringReplace(Result, ' ',      '',      [rfReplaceAll]);
+
+
+  if Result = 'TSiemens' then Exit;
+
 
   if Result[Length(Result)] = 's' then
     Result[Length(Result)] := '?';

@@ -32,6 +32,7 @@ type
   { TMainForm }
 
   TMainForm = class(TForm)
+    SkipVectorialUnits: TCheckBox;
     Memo: TMemo;
     OptimizationTime: TSpinEdit;
     TabSheet3: TTabSheet;
@@ -94,7 +95,8 @@ const
   _base_class        = 08;
   _factor            = 09;
   _prefixes          = 10;
-  _vector            = 11;
+  _vectorclass       = 11;
+  _vectorclass1      = 12;
 
 { TMainForm }
 
@@ -161,7 +163,8 @@ begin
     T.FBaseClass        := WorksheetGrid.Worksheet.ReadAsText(i, _base_class);
     T.FFactor           := WorksheetGrid.Worksheet.ReadAsText(i, _factor);
     T.FPrefixes         := WorksheetGrid.Worksheet.ReadAsText(i, _prefixes);
-    T.FVector           := WorksheetGrid.Worksheet.ReadAsText(i, _vector);
+    T.FVecClass         := WorksheetGrid.Worksheet.ReadAsText(i, _vectorclass);
+    T.FOptions          := WorksheetGrid.Worksheet.ReadAsText(i, _vectorclass1);
 
     T.FLongSymbol       := CleanUnitName(T.FLongSymbol);
     T.FShortSymbol      := CleanUnitSymbol(T.FShortSymbol);
@@ -213,6 +216,7 @@ end;
 constructor TToolKitManager.Create;
 begin
   FList := TToolkitList.Create(@MainForm.OnMessage);
+  FList.SkipVectorialUnits := Mainform.SkipVectorialUnits.Checked;
   FreeOnTerminate := True;
   inherited Create(True);
 end;
