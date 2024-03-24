@@ -15,6 +15,7 @@ type
     function IsZero: boolean;
     function Projection(const AValue: TVector): TQuantity;
     function Rejection(const AValue: TVector): TQuantity;
+    function Extract(AComponents: TVectorComponents): TQuantity;
     class operator + (const AValue: TQuantity): TQuantity;
     class operator - (const AValue: TQuantity): TQuantity;
     class operator + (const ALeft, ARight: TQuantity): TQuantity;
@@ -109,6 +110,11 @@ end;
 function TQuantity.Rejection(const AValue: TVector): TQuantity;
 begin
   result.FValue := FValue.Rejection(AValue);
+end;
+
+function TQuantity.Extract(AComponents: TVectorComponents): TQuantity;
+begin
+  result.FValue := FValue.Extract(AComponents);
 end;
 
 class operator TQuantity.+(const AValue: TQuantity): TQuantity;
