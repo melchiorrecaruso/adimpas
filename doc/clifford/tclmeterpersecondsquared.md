@@ -15,6 +15,7 @@ where
 and
 
 - $\overline v_{1} = \displaystyle\overline a_{1} ⋅ t$ ;
+
 - $t = \displaystyle\frac{\overline v_{1} ⋅ \overline a_{1}}{|\overline a_{1}|^2}$ .
 
 #
