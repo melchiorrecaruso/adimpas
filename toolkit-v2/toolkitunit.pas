@@ -792,18 +792,7 @@ begin
     else
       S := '  result.FValue :=';
 
-    if (ALeftClass = 'double'       ) or
-       (ALeftClass = 'TVector'      ) or
-       (ALeftClass = 'TBivector'    ) or
-       (ALeftClass = 'TTrivector'   ) or
-       (ALeftClass = 'TMultivector' ) or
-       (ALeftClass = 'TVersor123'   ) or
-       (ALeftClass = 'TVersor12'    ) or
-       (ALeftClass = 'TVersor23'    ) or
-       (ALeftClass = 'TVersor31'    ) or
-       (ALeftClass = 'TVersor1'     ) or
-       (ALeftClass = 'TVersor2'     ) or
-       (ALeftClass = 'TVersor3'     ) then
+    if IsAspecialKey(ALeftClass) then
       S := S + ' ALeft '
     else
       S := S + ' ALeft.FValue';
@@ -817,18 +806,7 @@ begin
 
     S := S + ' ' + AOperator;
 
-    if (ARightClass = 'double'       ) or
-       (ARightClass = 'TVector'      ) or
-       (ARightClass = 'TBivector'    ) or
-       (ARightClass = 'TTrivector'   ) or
-       (ARightClass = 'TMultivector' ) or
-       (ARightClass = 'TVersor123'   ) or
-       (ARightClass = 'TVersor12'    ) or
-       (ARightClass = 'TVersor23'    ) or
-       (ARightClass = 'TVersor31'    ) or
-       (ARightClass = 'TVersor1'     ) or
-       (ARightClass = 'TVersor2'     ) or
-       (ARightClass = 'TVersor3'     ) then
+    if IsAspecialKey(ARightClass) then
       S := S + ' ARight'
     else
       S := S + ' ARight.FValue';
@@ -880,18 +858,7 @@ begin
     if AResultClass <> 'double' then
     begin
 
-      if (ALeftClass = 'double'       ) or
-         (ALeftClass = 'TVector'      ) or
-         (ALeftClass = 'TBivector'    ) or
-         (ALeftClass = 'TTrivector'   ) or
-         (ALeftClass = 'TMultivector' ) or
-         (ALeftClass = 'TVersor123'   ) or
-         (ALeftClass = 'TVersor12'    ) or
-         (ALeftClass = 'TVersor23'    ) or
-         (ALeftClass = 'TVersor31'    ) or
-         (ALeftClass = 'TVersor1'     ) or
-         (ALeftClass = 'TVersor2'     ) or
-         (ALeftClass = 'TVersor3'     ) then
+      if IsAspecialKey(ALeftClass) then
         SectionB31.Append('  result.FValue := ALeft;')
       else
         SectionB31.Append('  result.FValue := ALeft.FValue;');
@@ -928,11 +895,7 @@ begin
     if AResultClass <> 'double' then
     begin
 
-      if (ALeftClass = 'double'      ) or
-         (ALeftClass = 'TVector'     ) or
-         (ALeftClass = 'TBivector'   ) or
-         (ALeftClass = 'TTrivector'  ) or
-         (ALeftClass = 'TMultivector') then
+      if  IsAspecialKey(ALeftClass) then
         SectionB31.Append('  result.FValue := ALeft;')
       else
         SectionB31.Append('  result.FValue := ALeft.FValue.Dual;');

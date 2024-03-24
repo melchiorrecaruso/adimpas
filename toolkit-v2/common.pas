@@ -76,16 +76,46 @@ function GetUnitIdentifier(const S: string): string;
 
 function GetBaseClass(const S: string): string;
 
-function IsAVector(const S: string): boolean;
+
 
 function  CleanUnitName(const S: string): string;
 function  CleanUnitSymbol(const S: string): string;
 procedure CleanDocument(S: TStringList);
 
+function IsASpecialKey(const AKey: string): boolean;
+function IsAVector(const AClassName: string): boolean;
+
 implementation
 
 uses
   StrUtils;
+
+function IsASpecialKey(const AKey: string): boolean;
+begin
+  Result := (UpperCase(AKey) = 'DOUBLE'       ) or
+            (UpperCase(AKey) = 'TVECTOR'      ) or
+            (UpperCase(AKey) = 'TBIVECTOR'    ) or
+            (UpperCase(AKey) = 'TTRIVECTOR'   ) or
+            (UpperCase(AKey) = 'TMULTIVECTOR' ) or
+            (UpperCase(AKey) = 'TTRIVERSOR123') or
+            (UpperCase(AKey) = 'TBIVERSOR12'  ) or
+            (UpperCase(AKey) = 'TBIVERSOR23'  ) or
+            (UpperCase(AKey) = 'TBIVERSOR31'  ) or
+            (UpperCase(AKey) = 'TVERSOR1'     ) or
+            (UpperCase(AKey) = 'TVERSOR2'     ) or
+            (UpperCase(AKey) = 'TVERSOR3'     );
+end;
+
+function IsAVector(const AClassName: string): boolean;
+begin
+  Result := False;
+  if UpperCase(AClassName) = 'TVECTOR'      then Result := True;
+  if UpperCase(AClassName) = 'TBIVECTOR'    then Result := True;
+  if UpperCase(AClassName) = 'TTRIVECTOR'   then Result := True;
+  if UpperCase(AClassName) = 'TMULTIVECTOR' then Result := True;
+
+  if Pos('T' + VECPrefix, AClassName) = 1 then Result := True;
+end;
 
 function Split(const AStr: string): TStringArray;
 var
@@ -179,19 +209,7 @@ begin
     Result := StringReplace(Result, 'Unit',  '',     [rfReplaceAll]);
     Result := StringReplace(Result, 'Qty',   '',     [rfReplaceAll]);
 
-    if (UpperCase(Result) <> 'DOUBLE'       ) and
-       (UpperCase(Result) <> 'TVECTOR'      ) and
-       (UpperCase(Result) <> 'TBIVECTOR'    ) and
-       (UpperCase(Result) <> 'TTRIVECTOR'   ) and
-       (UpperCase(Result) <> 'TMULTIVECTOR' ) and
-       (UpperCase(Result) <> 'TVERSOR0'     ) and
-       (UpperCase(Result) <> 'TVERSOR1'     ) and
-       (UpperCase(Result) <> 'TVERSOR2'     ) and
-       (UpperCase(Result) <> 'TVERSOR3'     ) and
-       (UpperCase(Result) <> 'TVERSOR12'    ) and
-       (UpperCase(Result) <> 'TVERSOR23'    ) and
-       (UpperCase(Result) <> 'TVERSOR31'    ) and
-       (UpperCase(Result) <> 'TVERSOR123'   ) then Result := Result + 'Qty';
+    if not IsASpecialKey(Result) then Result := Result + 'Qty';
   end;
 end;
 
@@ -242,9 +260,7 @@ end;
 
 function GetUnitType(const S: string): string;
 begin
-  if Pos('TTriversor', S) = 1 then Exit(S);
-  if Pos('TBiVersor',  S) = 1 then Exit(S);
-  if Pos('TVersor',    S) = 1 then Exit(S);
+  if IsASpecialKey(S) then Exit(S);
 
   Result := S;
   Result := StringReplace(Result, '!',  '', [rfReplaceAll]);
@@ -374,18 +390,6 @@ begin
   while (Length(Result) > 0) and (Result[High(Result)] = ',') do
     Delete(Result, High(Result), 1);
 end;
-
-function IsAVector(const S: string): boolean;
-begin
-  Result := False;
-  if UpperCase(S) = 'TVECTOR'      then Result := True;
-  if UpperCase(S) = 'TBIVECTOR'    then Result := True;
-  if UpperCase(S) = 'TTRIVECTOR'   then Result := True;
-  if UpperCase(S) = 'TMULTIVECTOR' then Result := True;
-
-  if Pos('T' + VECPrefix, S) = 1 then Result := True;
-end;
-
 
 function CleanUnitName(const S: string): string;
 begin
