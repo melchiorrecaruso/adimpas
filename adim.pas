@@ -22,7 +22,7 @@
 
   Number of base units: 149
   Number of factored units: 76
-  Number of operators: 1124 (248 external, 876 internal)
+  Number of operators: 1126 (248 external, 878 internal)
 }
 
 unit ADim;
@@ -70,6 +70,8 @@ type
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCLOhmQty}{$i adimMVEC.inc}
   class operator /(const ALeft: double; const ARight: TCLOhmQty): TCLSiemensQty;
+  class operator *(const ALeft: TCLSiemensQty; const ARight: TCLOhmQty): double;
+  class operator *(const ALeft: TCLOhmQty; const ARight: TCLSiemensQty): double;
 {$DEFINE INTF_END}{$i adimMVEC.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCLPascalQty}{$i adimTVEC.inc}
@@ -150,9 +152,9 @@ type
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSquareMeterQty}{$i adim.inc}
-  class operator *(const ALeft: TSquareMeterQty; const ARight: TVersor31): TCLSquareMeterQty;
-  class operator *(const ALeft: TSquareMeterQty; const ARight: TVersor23): TCLSquareMeterQty;
-  class operator *(const ALeft: TSquareMeterQty; const ARight: TVersor12): TCLSquareMeterQty;
+  class operator *(const ALeft: TSquareMeterQty; const ARight: TBiversor31): TCLSquareMeterQty;
+  class operator *(const ALeft: TSquareMeterQty; const ARight: TBiversor23): TCLSquareMeterQty;
+  class operator *(const ALeft: TSquareMeterQty; const ARight: TBiversor12): TCLSquareMeterQty;
   class operator *(const ALeft: TBivector; const ARight: TSquareMeterQty): TCLSquareMeterQty;
   class operator /(const ALeft: TQuarticMeterQty; const ARight: TSquareMeterQty): TSquareMeterQty;
   class operator *(const ALeft: TSquareMeterQty; const ARight: TSquareMeterQty): TQuarticMeterQty;
@@ -207,7 +209,7 @@ type
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TWeberQty}{$i adim.inc}
-  class operator *(const ALeft: TWeberQty; const ARight: TVersor123): TCLWeberQty;
+  class operator *(const ALeft: TWeberQty; const ARight: TTriversor123): TCLWeberQty;
   class operator *(const ALeft: TTrivector; const ARight: TWeberQty): TCLWeberQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
@@ -215,7 +217,7 @@ type
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCubicMeterQty}{$i adim.inc}
-  class operator *(const ALeft: TCubicMeterQty; const ARight: TVersor123): TCLCubicMeterQty;
+  class operator *(const ALeft: TCubicMeterQty; const ARight: TTriversor123): TCLCubicMeterQty;
   class operator *(const ALeft: TTrivector; const ARight: TCubicMeterQty): TCLCubicMeterQty;
   class operator /(const ALeft: TSexticMeterQty; const ARight: TCubicMeterQty): TCubicMeterQty;
   class operator *(const ALeft: TCubicMeterQty; const ARight: TCubicMeterQty): TSexticMeterQty;
@@ -603,9 +605,9 @@ type
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TRadianQty}{$i adim.inc}
   class operator /(const ALeft: TCLNewtonMeterQty; const ARight: TRadianQty): TCLNewtonMeterPerRadianQty;
-  class operator *(const ALeft: TRadianQty; const ARight: TVersor31): TCLRadianQty;
-  class operator *(const ALeft: TRadianQty; const ARight: TVersor23): TCLRadianQty;
-  class operator *(const ALeft: TRadianQty; const ARight: TVersor12): TCLRadianQty;
+  class operator *(const ALeft: TRadianQty; const ARight: TBiversor31): TCLRadianQty;
+  class operator *(const ALeft: TRadianQty; const ARight: TBiversor23): TCLRadianQty;
+  class operator *(const ALeft: TRadianQty; const ARight: TBiversor12): TCLRadianQty;
   class operator *(const ALeft: TBivector; const ARight: TRadianQty): TCLRadianQty;
   class operator /(const ALeft: TRadianQty; const ARight: TRadianPerMeterQty): TMeterQty;
   class operator /(const ALeft: TRadianQty; const ARight: TMeterQty): TRadianPerMeterQty;
@@ -614,9 +616,9 @@ type
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TTeslaQty}{$i adim.inc}
-  class operator *(const ALeft: TTeslaQty; const ARight: TVersor31): TCLTeslaQty;
-  class operator *(const ALeft: TTeslaQty; const ARight: TVersor23): TCLTeslaQty;
-  class operator *(const ALeft: TTeslaQty; const ARight: TVersor12): TCLTeslaQty;
+  class operator *(const ALeft: TTeslaQty; const ARight: TBiversor31): TCLTeslaQty;
+  class operator *(const ALeft: TTeslaQty; const ARight: TBiversor23): TCLTeslaQty;
+  class operator *(const ALeft: TTeslaQty; const ARight: TBiversor12): TCLTeslaQty;
   class operator *(const ALeft: TBivector; const ARight: TTeslaQty): TCLTeslaQty;
   class operator /(const ALeft: TTeslaMeterQty; const ARight: TTeslaQty): TMeterQty;
   class operator *(const ALeft: TMeterQty; const ARight: TTeslaQty): TTeslaMeterQty;
@@ -705,7 +707,7 @@ type
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TPascalQty}{$i adim.inc}
-  class operator *(const ALeft: TPascalQty; const ARight: TVersor123): TCLPascalQty;
+  class operator *(const ALeft: TPascalQty; const ARight: TTriversor123): TCLPascalQty;
   class operator *(const ALeft: TTrivector; const ARight: TPascalQty): TCLPascalQty;
   class operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TPascalQty): TQuarticMeterQty;
   class operator *(const ALeft: TQuarticMeterQty; const ARight: TPascalQty): TNewtonSquareMeterQty;
@@ -6243,11 +6245,6 @@ type
 
   TCLOhmHelper = record helper for TCLOhmQty
     function Norm: TOhmQty;
-    function Reciprocal: TCLSiemensQty;
-  end;
-
-  TCLSiemensHelper = record helper for TCLSiemensQty
-    function Reciprocal: TCLOhmQty;
   end;
 
   TCLVoltHelper = record helper for TCLVoltQty
@@ -7940,17 +7937,17 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-class operator TRadianQty.*(const ALeft: TRadianQty; const ARight: TVersor31): TCLRadianQty;
+class operator TRadianQty.*(const ALeft: TRadianQty; const ARight: TBiversor31): TCLRadianQty;
 begin
   result.FValue := ALeft.FValue * ARight;
 end;
 
-class operator TRadianQty.*(const ALeft: TRadianQty; const ARight: TVersor23): TCLRadianQty;
+class operator TRadianQty.*(const ALeft: TRadianQty; const ARight: TBiversor23): TCLRadianQty;
 begin
   result.FValue := ALeft.FValue * ARight;
 end;
 
-class operator TRadianQty.*(const ALeft: TRadianQty; const ARight: TVersor12): TCLRadianQty;
+class operator TRadianQty.*(const ALeft: TRadianQty; const ARight: TBiversor12): TCLRadianQty;
 begin
   result.FValue := ALeft.FValue * ARight;
 end;
@@ -7987,17 +7984,17 @@ end;
 {$DEFINE CEXPONENTS:=cTeslaExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TTeslaQty}{$i adim.inc}
 
-class operator TTeslaQty.*(const ALeft: TTeslaQty; const ARight: TVersor31): TCLTeslaQty;
+class operator TTeslaQty.*(const ALeft: TTeslaQty; const ARight: TBiversor31): TCLTeslaQty;
 begin
   result.FValue := ALeft.FValue * ARight;
 end;
 
-class operator TTeslaQty.*(const ALeft: TTeslaQty; const ARight: TVersor23): TCLTeslaQty;
+class operator TTeslaQty.*(const ALeft: TTeslaQty; const ARight: TBiversor23): TCLTeslaQty;
 begin
   result.FValue := ALeft.FValue * ARight;
 end;
 
-class operator TTeslaQty.*(const ALeft: TTeslaQty; const ARight: TVersor12): TCLTeslaQty;
+class operator TTeslaQty.*(const ALeft: TTeslaQty; const ARight: TBiversor12): TCLTeslaQty;
 begin
   result.FValue := ALeft.FValue * ARight;
 end;
@@ -8261,7 +8258,7 @@ end;
 {$DEFINE CEXPONENTS:=cCubicMeterExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCubicMeterQty}{$i adim.inc}
 
-class operator TCubicMeterQty.*(const ALeft: TCubicMeterQty; const ARight: TVersor123): TCLCubicMeterQty;
+class operator TCubicMeterQty.*(const ALeft: TCubicMeterQty; const ARight: TTriversor123): TCLCubicMeterQty;
 begin
   result.FValue := ALeft.FValue * ARight;
 end;
@@ -8310,7 +8307,7 @@ end;
 {$DEFINE CEXPONENTS:=cWeberExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TWeberQty}{$i adim.inc}
 
-class operator TWeberQty.*(const ALeft: TWeberQty; const ARight: TVersor123): TCLWeberQty;
+class operator TWeberQty.*(const ALeft: TWeberQty; const ARight: TTriversor123): TCLWeberQty;
 begin
   result.FValue := ALeft.FValue * ARight;
 end;
@@ -8433,7 +8430,7 @@ end;
 {$DEFINE CEXPONENTS:=cPascalExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TPascalQty}{$i adim.inc}
 
-class operator TPascalQty.*(const ALeft: TPascalQty; const ARight: TVersor123): TCLPascalQty;
+class operator TPascalQty.*(const ALeft: TPascalQty; const ARight: TTriversor123): TCLPascalQty;
 begin
   result.FValue := ALeft.FValue * ARight;
 end;
@@ -10045,17 +10042,17 @@ end;
 {$DEFINE CEXPONENTS:=cSquareMeterExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareMeterQty}{$i adim.inc}
 
-class operator TSquareMeterQty.*(const ALeft: TSquareMeterQty; const ARight: TVersor31): TCLSquareMeterQty;
+class operator TSquareMeterQty.*(const ALeft: TSquareMeterQty; const ARight: TBiversor31): TCLSquareMeterQty;
 begin
   result.FValue := ALeft.FValue * ARight;
 end;
 
-class operator TSquareMeterQty.*(const ALeft: TSquareMeterQty; const ARight: TVersor23): TCLSquareMeterQty;
+class operator TSquareMeterQty.*(const ALeft: TSquareMeterQty; const ARight: TBiversor23): TCLSquareMeterQty;
 begin
   result.FValue := ALeft.FValue * ARight;
 end;
 
-class operator TSquareMeterQty.*(const ALeft: TSquareMeterQty; const ARight: TVersor12): TCLSquareMeterQty;
+class operator TSquareMeterQty.*(const ALeft: TSquareMeterQty; const ARight: TBiversor12): TCLSquareMeterQty;
 begin
   result.FValue := ALeft.FValue * ARight;
 end;
@@ -11575,6 +11572,16 @@ end;
 class operator TCLOhmQty./(const ALeft: double; const ARight: TCLOhmQty): TCLSiemensQty;
 begin
   result.FValue := ALeft  / ARight.FValue;
+end;
+
+class operator TCLOhmQty.*(const ALeft: TCLSiemensQty; const ARight: TCLOhmQty): double;
+begin
+  result := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TCLOhmQty.*(const ALeft: TCLOhmQty; const ARight: TCLSiemensQty): double;
+begin
+  result := ALeft.FValue * ARight.FValue;
 end;
 
 {$DEFINE CSYMBOL:=rsCLSiemensSymbol}
@@ -14458,19 +14465,9 @@ begin
   result.FValue := FValue.Norm;
 end;
 
-function TCLOhmHelper.Reciprocal: TCLSiemensQty;
-begin
-  result.FValue := FValue.Reciprocal;
-end;
-
 function TCLOhmHelper.Norm: TOhmQty;
 begin
   result.FValue := FValue.Norm;
-end;
-
-function TCLSiemensHelper.Reciprocal: TCLOhmQty;
-begin
-  result.FValue := FValue.Reciprocal;
 end;
 
 function TCLVoltHelper.Norm: TVoltQty;

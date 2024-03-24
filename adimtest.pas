@@ -1016,7 +1016,7 @@ begin
   capacitance      := 1*F;
   inductance       := 2*H;
   impedance        := resistance - (1/(omegavec*capacitance) + omegavec*inductance);         writeln('Z = ', impedance.ToVerboseString);
-  currentvec       := impedance.Reciprocal * potentialvec;                                   writeln('I = ', currentvec.ToVerboseString);
+  currentvec       := (1/impedance) * potentialvec;                                   writeln('I = ', currentvec.ToVerboseString);
   powervec         := currentvec * potentialvec;                                             writeln('P = ', powervec.ToVerboseString);
 
   writeln(potentialvec.Norm.ToString);

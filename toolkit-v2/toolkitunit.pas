@@ -27,9 +27,7 @@ uses
   Classes, SimulatedAnnealing, StrUtils, SysUtils;
 
 type
-  TProductOption  = (poDual1, poToMultivector1, poToTrivector1, poToBivector1, poToVector1, poToScalar1, poReciprocal1,
-                     poDual2, poToMultivector2, poToTrivector2, poToBivector2, poToVector2, poToScalar2, poReciprocal2,
-                     poDual3, poToMultivector3, poToTrivector3, poToBivector3, poToVector3, poToScalar3);
+  TProductOption  = (poDual1, poReciprocal1, poDual2, poReciprocal2, poDual3);
 
   TProductOptions = set of TProductOption;
 
@@ -134,9 +132,6 @@ type
     procedure AddHelperDOT         (const ABaseUnit, ABaseQuantity, AInputQuantity, AResultQuantity: string; Option: TProductOptions);
     procedure AddHelperWEDGE       (const ABaseUnit, ABaseQuantity, AInputQuantity, AResultQuantity: string; Option: TProductOptions);
     procedure AddHelperGEOMETRIC   (const ABaseUnit, ABaseQuantity, AInputQuantity, AResultQuantity: string; Option: TProductOptions);
-
-    procedure AddHelperReciprocal(const ABaseUnit, ABaseQuantity, AResultQuantity: string; Options: TProductOptions);
-    procedure AddHelperAssign(const ABaseUnit, ABaseQuantity, AInputQuantity, ABaseVectorClass: string);
 
     procedure AddEquivalence(AClassName, ABaseClass: string);
 
@@ -584,35 +579,17 @@ begin
       if Pos('OP2', AItem.FFactor) > 0 then AddUnitOperator('*', GetQuantityType(AItem.FClassParent2), GetUnitType(AItem.FClassParent1), GetQuantityType(AItem.FClassName));
 
       Options := [];
-      if Pos('DUAL1',          AItem.FOptions) > 0 then Include(Options, poDual1);
-      if Pos('DUAL2',          AItem.FOptions) > 0 then Include(Options, poDual2);
-      if Pos('DUAL3',          AItem.FOptions) > 0 then Include(Options, poDual3);
+      if Pos('DUAL1', AItem.FOptions) > 0 then Include(Options, poDual1);
+      if Pos('DUAL2', AItem.FOptions) > 0 then Include(Options, poDual2);
+      if Pos('DUAL3', AItem.FOptions) > 0 then Include(Options, poDual3);
 
-      if Pos('TOMULTIVECTOR1', AItem.FOptions) > 0 then Include(Options, poToMultivector1);
-      if Pos('TOTRIVECTOR1',   AItem.FOptions) > 0 then Include(Options, poToTrivector1);
-      if Pos('TOBIVECTOR1',    AItem.FOptions) > 0 then Include(Options, poToBivector1);
-      if Pos('TOVECTOR1',      AItem.FOptions) > 0 then Include(Options, poToVector1);
-
-      if Pos('TOMULTIVECTOR2', AItem.FOptions) > 0 then Include(Options, poToMultivector2);
-      if Pos('TOTRIVECTOR2',   AItem.FOptions) > 0 then Include(Options, poToTrivector2);
-      if Pos('TOBIVECTOR2',    AItem.FOptions) > 0 then Include(Options, poToBivector2);
-      if Pos('TOVECTOR2',      AItem.FOptions) > 0 then Include(Options, poToVector2);
       AddQuantityOperator('*', GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName), Options);
 
       Options := [];
-      if Pos('DUAL1',          AItem.FOptions) > 0 then Include(Options, poDual2);
-      if Pos('DUAL2',          AItem.FOptions) > 0 then Include(Options, poDual1);
-      if Pos('DUAL3',          AItem.FOptions) > 0 then Include(Options, poDual3);
+      if Pos('DUAL1', AItem.FOptions) > 0 then Include(Options, poDual2);
+      if Pos('DUAL2', AItem.FOptions) > 0 then Include(Options, poDual1);
+      if Pos('DUAL3', AItem.FOptions) > 0 then Include(Options, poDual3);
 
-      if Pos('TOMULTIVECTOR1', AItem.FOptions) > 0 then Include(Options, poToMultivector2);
-      if Pos('TOTRIVECTOR1',   AItem.FOptions) > 0 then Include(Options, poToTrivector2);
-      if Pos('TOBIVECTOR1',    AItem.FOptions) > 0 then Include(Options, poToBivector2);
-      if Pos('TOVECTOR1',      AItem.FOptions) > 0 then Include(Options, poToVector2);
-
-      if Pos('TOMULTIVECTOR2', AItem.FOptions) > 0 then Include(Options, poToMultivector1);
-      if Pos('TOTRIVECTOR2',   AItem.FOptions) > 0 then Include(Options, poToTrivector1);
-      if Pos('TOBIVECTOR2',    AItem.FOptions) > 0 then Include(Options, poToBivector1);
-      if Pos('TOVECTOR2',      AItem.FOptions) > 0 then Include(Options, poToVector1);
       AddQuantityOperator('*', GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassName), Options);
 
     end else
@@ -621,19 +598,10 @@ begin
       if Pos('OP1', AItem.FFactor) > 0 then AddUnitOperator('/', GetQuantityType(AItem.FClassParent1), GetUnitType(AItem.FClassParent2), GetQuantityType(AItem.FClassName));
 
       Options := [];
-      if Pos('DUAL1',          AItem.FOptions) > 0 then Include(Options, poDual1);
-      if Pos('DUAL2',          AItem.FOptions) > 0 then Include(Options, poDual2);
-      if Pos('DUAL3',          AItem.FOptions) > 0 then Include(Options, poDual3);
+      if Pos('DUAL1', AItem.FOptions) > 0 then Include(Options, poDual1);
+      if Pos('DUAL2', AItem.FOptions) > 0 then Include(Options, poDual2);
+      if Pos('DUAL3', AItem.FOptions) > 0 then Include(Options, poDual3);
 
-      if Pos('TOMULTIVECTOR1', AItem.FOptions) > 0 then Include(Options, poToMultivector1);
-      if Pos('TOTRIVECTOR1',   AItem.FOptions) > 0 then Include(Options, poToTrivector1);
-      if Pos('TOBIVECTOR1',    AItem.FOptions) > 0 then Include(Options, poToBivector1);
-      if Pos('TOVECTOR1',      AItem.FOptions) > 0 then Include(Options, poToVector1);
-
-      if Pos('TOMULTIVECTOR2', AItem.FOptions) > 0 then Include(Options, poToMultivector2);
-      if Pos('TOTRIVECTOR2',   AItem.FOptions) > 0 then Include(Options, poToTrivector2);
-      if Pos('TOBIVECTOR2',    AItem.FOptions) > 0 then Include(Options, poToBivector2);
-      if Pos('TOVECTOR2',      AItem.FOptions) > 0 then Include(Options, poToVector2);
       AddQuantityOperator('/', GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName   ), Options);
 
     end else
@@ -648,17 +616,6 @@ begin
     if AItem.FOperator = 'DUAL' then
     begin
       AddHelperDual(AItem);
-    end else
-    if AItem.FOperator = 'RECIPROCAL' then
-    begin
-      Options := [];
-      if Pos('TOMULTIVECTOR1', AItem.FOptions) > 0 then Include(Options, poToMultivector1);
-      if Pos('TOTRIVECTOR1',   AItem.FOptions) > 0 then Include(Options, poToTrivector1);
-      if Pos('TOBIVECTOR1',    AItem.FOptions) > 0 then Include(Options, poToBivector1);
-      if Pos('TOVECTOR1',      AItem.FOptions) > 0 then Include(Options, poToVector1);
-      AddHelperReciprocal(GetUnitTypeHelper(AItem.FClassName), GetQuantityType(AItem.FClassName), GetQuantityType(AItem.FClassParent2), Options);
-
-      AddQuantityOperator('/', GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName), Options);
     end else
     if AItem.FOperator = 'DOT' then
     begin
@@ -720,13 +677,13 @@ begin
 
       if AItem.FOptions = '' then
       begin
-        if AItem.FVecClass = 'TTrivector' then  AddQuantityOperator('*', GetQuantityType(AItem.FClassParent2), 'TVersor123', GetQuantityType(AItem.FClassName), []);
-        if AItem.FVecClass = 'TBivector'  then  AddQuantityOperator('*', GetQuantityType(AItem.FClassParent2), 'TVersor12',  GetQuantityType(AItem.FClassName), []);
-        if AItem.FVecClass = 'TBivector'  then  AddQuantityOperator('*', GetQuantityType(AItem.FClassParent2), 'TVersor23',  GetQuantityType(AItem.FClassName), []);
-        if AItem.FVecClass = 'TBivector'  then  AddQuantityOperator('*', GetQuantityType(AItem.FClassParent2), 'TVersor31',  GetQuantityType(AItem.FClassName), []);
-        if AItem.FVecClass = 'TVector'    then  AddQuantityOperator('*', GetQuantityType(AItem.FClassParent2), 'TVersor1',   GetQuantityType(AItem.FClassName), []);
-        if AItem.FVecClass = 'TVector'    then  AddQuantityOperator('*', GetQuantityType(AItem.FClassParent2), 'TVersor2',   GetQuantityType(AItem.FClassName), []);
-        if AItem.FVecClass = 'TVector'    then  AddQuantityOperator('*', GetQuantityType(AItem.FClassParent2), 'TVersor3',   GetQuantityType(AItem.FClassName), []);
+        if AItem.FVecClass = 'TTrivector' then  AddQuantityOperator('*', GetQuantityType(AItem.FClassParent2), 'TTriversor123', GetQuantityType(AItem.FClassName), []);
+        if AItem.FVecClass = 'TBivector'  then  AddQuantityOperator('*', GetQuantityType(AItem.FClassParent2), 'TBiversor12',   GetQuantityType(AItem.FClassName), []);
+        if AItem.FVecClass = 'TBivector'  then  AddQuantityOperator('*', GetQuantityType(AItem.FClassParent2), 'TBiversor23',   GetQuantityType(AItem.FClassName), []);
+        if AItem.FVecClass = 'TBivector'  then  AddQuantityOperator('*', GetQuantityType(AItem.FClassParent2), 'TBiversor31',   GetQuantityType(AItem.FClassName), []);
+        if AItem.FVecClass = 'TVector'    then  AddQuantityOperator('*', GetQuantityType(AItem.FClassParent2), 'TVersor1',      GetQuantityType(AItem.FClassName), []);
+        if AItem.FVecClass = 'TVector'    then  AddQuantityOperator('*', GetQuantityType(AItem.FClassParent2), 'TVersor2',      GetQuantityType(AItem.FClassName), []);
+        if AItem.FVecClass = 'TVector'    then  AddQuantityOperator('*', GetQuantityType(AItem.FClassParent2), 'TVersor3',      GetQuantityType(AItem.FClassName), []);
       end;
 
     end else
@@ -797,12 +754,8 @@ begin
     else
       S := S + ' ALeft.FValue';
 
-    if poDual1          in Options then S := S + '.Dual';
-    if poToMultivector1 in Options then S := S + '.ToMultivector';
-    if poToTriVector1   in Options then S := S + '.ToTrivector';
-    if poToBivector1    in Options then S := S + '.ToBivector';
-    if poToVector1      in Options then S := S + '.ToVector';
-    if poReciprocal1    in Options then S := S + '.Reciprocal';
+    if poDual1       in Options then S := S + '.Dual';
+    if poReciprocal1 in Options then S := S + '.Reciprocal';
 
     S := S + ' ' + AOperator;
 
@@ -812,10 +765,6 @@ begin
       S := S + ' ARight.FValue';
 
     if poDual2          in Options then S := S + '.Dual';
-    if poToMultivector2 in Options then S := S + '.ToMultivector';
-    if poToTriVector2   in Options then S := S + '.ToTrivector';
-    if poToBivector2    in Options then S := S + '.ToBivector';
-    if poToVector2      in Options then S := S + '.ToVector';
     if poReciprocal2    in Options then S := S + '.Reciprocal';
     if poDual3          in Options then S := S + '.Dual';
 
@@ -1110,29 +1059,17 @@ begin
     begin
       FuncLine := '  result.FValue := (FValue';
 
-      if (poToMultivector1 in Option) then FuncLine := FuncLine + '.ToMultivector';
-      if (poToBivector1    in Option) then FuncLine := FuncLine + '.ToBivector';
-      if (poToVector1      in Option) then FuncLine := FuncLine + '.ToVector';
-      if (poToScalar1      in Option) then FuncLine := FuncLine + '.ToScalar';
-      if (poDual1          in Option) then FuncLine := FuncLine + '.Dual';
-      if (poReciprocal1    in Option) then FuncLine := FuncLine + '/FValue.SquaredNorm';
+      if (poDual1       in Option) then FuncLine := FuncLine + '.Dual';
+      if (poReciprocal1 in Option) then FuncLine := FuncLine + '/FValue.SquaredNorm';
 
       FuncLine := FuncLine + ').dot(AValue.FValue';
 
-      if (poToMultivector2 in Option) then FuncLine := FuncLine + '.ToMultivector';
-      if (poToBivector2    in Option) then FuncLine := FuncLine + '.ToBivector';
-      if (poToVector2      in Option) then FuncLine := FuncLine + '.ToVector';
-      if (poToScalar2      in Option) then FuncLine := FuncLine + '.ToScalar';
-      if (poDual2          in Option) then FuncLine := FuncLine + '.Dual';
-      if (poReciprocal2    in Option) then FuncLine := FuncLine + '/AValue.FValue.SquaredNorm';
+      if (poDual2       in Option) then FuncLine := FuncLine + '.Dual';
+      if (poReciprocal2 in Option) then FuncLine := FuncLine + '/AValue.FValue.SquaredNorm';
 
       FuncLine := FuncLine + ')';
 
-      if (poToMultivector3 in Option) then FuncLine := FuncLine + '.ToMultivector';
-      if (poToBivector3    in Option) then FuncLine := FuncLine + '.ToBivector';
-      if (poToVector3      in Option) then FuncLine := FuncLine + '.ToVector';
-      if (poToScalar3      in Option) then FuncLine := FuncLine + '.ToScalar';
-      if (poDual3          in Option) then FuncLine := FuncLine + '.Dual';
+      if (poDual3       in Option) then FuncLine := FuncLine + '.Dual';
 
       FuncLine := FuncLine + ';';
 
@@ -1141,12 +1078,8 @@ begin
     begin
       FuncLine := '  result.FValue := (FValue';
 
-      if (poToMultivector1 in Option) then FuncLine := FuncLine + '.ToMultivector';
-      if (poToBivector1    in Option) then FuncLine := FuncLine + '.ToBivector';
-      if (poToVector1      in Option) then FuncLine := FuncLine + '.ToVector';
-      if (poToScalar1      in Option) then FuncLine := FuncLine + '.ToScalar';
-      if (poDual1          in Option) then FuncLine := FuncLine + '.Dual';
-      if (poReciprocal1    in Option) then FuncLine := FuncLine + '/FValue.SquaredNorm';
+      if (poDual1       in Option) then FuncLine := FuncLine + '.Dual';
+      if (poReciprocal1 in Option) then FuncLine := FuncLine + '/FValue.SquaredNorm';
 
       FuncLine := FuncLine + ') * AValue.FValue;';
 
@@ -1155,20 +1088,12 @@ begin
     begin
       FuncLine := '  result.FValue := FValue * (AValue.FValue';
 
-      if (poToMultivector2 in Option) then FuncLine := FuncLine + '.ToMultivector';
-      if (poToBivector2    in Option) then FuncLine := FuncLine + '.ToBivector';
-      if (poToVector2      in Option) then FuncLine := FuncLine + '.ToVector';
-      if (poToScalar2      in Option) then FuncLine := FuncLine + '.ToScalar';
-      if (poDual2          in Option) then FuncLine := FuncLine + '.Dual';
-      if (poReciprocal2    in Option) then FuncLine := FuncLine + '/AValue.FValue.SquaredNorm';
+      if (poDual2       in Option) then FuncLine := FuncLine + '.Dual';
+      if (poReciprocal2 in Option) then FuncLine := FuncLine + '/AValue.FValue.SquaredNorm';
 
       FuncLine := FuncLine + ')';
 
-      if (poToMultivector3 in Option) then FuncLine := FuncLine + '.ToMultivector';
-      if (poToBivector3    in Option) then FuncLine := FuncLine + '.ToBivector';
-      if (poToVector3      in Option) then FuncLine := FuncLine + '.ToVector';
-      if (poToScalar3      in Option) then FuncLine := FuncLine + '.ToScalar';
-      if (poDual3          in Option) then FuncLine := FuncLine + '.Dual';
+      if (poDual3       in Option) then FuncLine := FuncLine + '.Dual';
 
       FuncLine := FuncLine + ';';
 
@@ -1321,92 +1246,6 @@ begin
     end;
 
     SectionB8.Append(FuncLine);
-    SectionB8.Append('end;');
-    SectionB8.Append('');
-  end;
-end;
-
-procedure TToolkitList.AddHelperReciprocal(const ABaseUnit, ABaseQuantity, AResultQuantity: string; Options: TProductOptions);
-var
-  Index: longint;
-  FuncLine: string;
-begin
-  if ClassList.IndexOf(Format('function %s.Reciprocal: %s;', [ABaseUnit, AResultQuantity])) = -1 then
-  begin
-    ClassList.Add(Format('function %s.Reciprocal: %s;', [ABaseUnit, AResultQuantity]));
-
-    Index := SectionA8.IndexOf('  ' + ABaseUnit + ' = record helper for ' + ABaseQuantity);
-    if Index = -1 then
-    begin
-      SectionA8.Append(Format('  %s = record helper for %s', [ABaseUnit, ABaseQuantity]));
-      SectionA8.Append(Format('    function Reciprocal: %s;', [AResultQuantity]));
-      SectionA8.Append('  end;');
-      SectionA8.Append('');
-    end else
-    begin
-      SectionA8.Insert(Index + 1, Format('    function Reciprocal: %s;', [AResultQuantity]));
-    end;
-
-    SectionB8.Append('');
-    SectionB8.Append(Format('function %s.Reciprocal: %s;', [ABaseUnit, AResultQuantity]));
-    SectionB8.Append('begin');
-
-    FuncLine := '  result.FValue := FValue';
-    if poToMultivector1 in Options then FuncLine := FuncLine + '.ToMultivector';
-    if poToTrivector1   in Options then FuncLine := FuncLine + '.ExtractTrivector';
-    if poToBivector1    in Options then FuncLine := FuncLine + '.ExtractBivector';
-    if poToVector1      in Options then FuncLine := FuncLine + '.ExtractVector';
-    FuncLine := FuncLine + '.Reciprocal;';
-
-    SectionB8.Append(FuncLine);
-    SectionB8.Append('end;');
-    SectionB8.Append('');
-  end;
-end;
-
-procedure TToolkitList.AddHelperAssign(const ABaseUnit, ABaseQuantity, AInputQuantity, ABaseVectorClass: string);
-var
-  Index: longint;
-  FuncLine1: string;
-  FuncLine2: string;
-begin
-  FuncLine1 := '';
-  if ABaseVectorClass = 'TVector'      then FuncLine1 := Format('procedure %s.Assign(const AValue: array[0, 2] of %s);', [ABaseUnit, AInputQuantity]);
-  if ABaseVectorClass = 'TBivector'    then FuncLine1 := Format('procedure %s.Assign(const AValue: array[0..2] of %s);', [ABaseUnit, AInputQuantity]);
-  if ABaseVectorClass = 'TTrivector'   then FuncLine1 := Format('procedure %s.Assign(const AValue: %s);',                [ABaseUnit, AInputQuantity]);
-  if ABaseVectorClass = 'TMultivector' then FuncLine1 := Format('procedure %s.Assign(const Avalue: array[0..7] of %s);', [ABaseUnit, AInputQuantity]);
-
-  FuncLine2 := '';
-  if ABaseVectorClass = 'TVector'      then FuncLine2 := Format('    procedure Assign(const AValue: array[0, 2] of %s);', [AInputQuantity]);
-  if ABaseVectorClass = 'TBivector'    then FuncLine2 := Format('    procedure Assign(const AValue: array[0, 2] of %s);', [AInputQuantity]);
-  if ABaseVectorClass = 'TTrivector'   then FuncLine2 := Format('    procedure Assign(const AValue: %s);',                [AInputQuantity]);
-  if ABaseVectorClass = 'TMultivector' then FuncLine2 := Format('    procedure Assign(const Avalue: array[0..7] of %s);', [AInputQuantity]);
-
-  if ClassList.IndexOf(FuncLine1) = -1 then
-  begin
-    ClassList.Add(FuncLine1);
-
-    Index := SectionA8.IndexOf('  ' + ABaseUnit + ' = record helper for ' + ABaseQuantity);
-    if Index = -1 then
-    begin
-      SectionA8.Append(Format('  %s = record helper for %s', [ABaseUnit, ABaseQuantity]));
-      SectionA8.Append(FuncLine2);
-      SectionA8.Append('  end;');
-      SectionA8.Append('');
-    end else
-    begin
-      SectionA8.Insert(Index + 1, FuncLine2);
-    end;
-
-    SectionB8.Append('');
-    SectionB8.Append(FuncLine1);
-    SectionB8.Append('begin');
-
-    if ABaseVectorClass = 'TVector'      then SectionB8.Append('  Result.FValue := NullVector;');
-    if ABaseVectorClass = 'TBivector'    then SectionB8.Append('  Result.FValue := NullBivector;');
-    if ABaseVectorClass = 'TTrivector'   then SectionB8.Append('  Result.FValue := FValue*e123;');
-    if ABaseVectorClass = 'TMultivector' then SectionB8.Append('  Result.FValue := FValue');
-
     SectionB8.Append('end;');
     SectionB8.Append('');
   end;
