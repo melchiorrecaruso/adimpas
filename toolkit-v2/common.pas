@@ -66,9 +66,6 @@ function GetQuantityType(const S: string): string;
 function GetQuantity(const S: string): string;
 function GetUnitType(const S: string): string;
 
-function GetBaseUnitType(const S: string): string;
-
-
 function GetUnitID(const S: string): string;
 
 function GetUnitTypeHelper(const S: string): string;
@@ -83,6 +80,7 @@ function  CleanUnitSymbol(const S: string): string;
 procedure CleanDocument(S: TStringList);
 
 function IsASpecialKey(const AKey: string): boolean;
+function IsAVersorKey(const AKey: string): boolean;
 function IsAVector(const AClassName: string): boolean;
 
 implementation
@@ -98,6 +96,17 @@ begin
             (UpperCase(AKey) = 'TTRIVECTOR'   ) or
             (UpperCase(AKey) = 'TMULTIVECTOR' ) or
             (UpperCase(AKey) = 'TTRIVERSOR123') or
+            (UpperCase(AKey) = 'TBIVERSOR12'  ) or
+            (UpperCase(AKey) = 'TBIVERSOR23'  ) or
+            (UpperCase(AKey) = 'TBIVERSOR31'  ) or
+            (UpperCase(AKey) = 'TVERSOR1'     ) or
+            (UpperCase(AKey) = 'TVERSOR2'     ) or
+            (UpperCase(AKey) = 'TVERSOR3'     );
+end;
+
+function IsAVersorKey(const AKey: string): boolean;
+begin
+  Result := (UpperCase(AKey) = 'TTRIVERSOR123') or
             (UpperCase(AKey) = 'TBIVERSOR12'  ) or
             (UpperCase(AKey) = 'TBIVERSOR23'  ) or
             (UpperCase(AKey) = 'TBIVERSOR31'  ) or
@@ -266,18 +275,10 @@ begin
   Result := StringReplace(Result, '!',  '', [rfReplaceAll]);
   Result := StringReplace(Result, '?',  '', [rfReplaceAll]);
   Result := StringReplace(Result, ' ',  '', [rfReplaceAll]);
+  Result := StringReplace(Result, 'T' + VECPrefix, 'T', [rfReplaceAll]);
 
   if Result = 'double' then Result := '';
   if Result <> ''      then Result := Result + 'Unit';
-end;
-
-function GetBaseUnitType(const S: string): string;
-begin
-  Result := GetUnitType(S);
-  if Pos('T' + VECPrefix, Result ) = 1 then
-  begin
-    Delete(Result, Pos(VECPrefix, Result), Length(VECPrefix));
-  end;
 end;
 
 function GetUnitTypeHelper(const S: string): string;
@@ -311,7 +312,6 @@ begin
 
 
   if Result = 'TSiemens' then Exit;
-
 
   if Result[Length(Result)] = 's' then
     Result[Length(Result)] := '?';
