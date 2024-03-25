@@ -18,11 +18,11 @@
 }
 
 {
-  ADimPas library built on 24/03/2024.
+  ADimPas library built on 25/03/2024.
 
-  Number of base units: 149
+  Number of base units: 164
   Number of factored units: 76
-  Number of operators: 1126 (248 external, 878 internal)
+  Number of operators: 1205 (285 external, 920 internal)
 }
 
 unit ADim;
@@ -50,11 +50,44 @@ type
 
 { TQuantity classes }
 
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCLReciprocalWeberQty}{$i adimTVEC.inc}
+{$DEFINE INTF_END}{$i adimTVEC.inc}
+
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCLReciprocalPascalQty}{$i adimTVEC.inc}
+{$DEFINE INTF_END}{$i adimTVEC.inc}
+
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCLReciprocalNewtonQty}{$i adimVEC.inc}
+{$DEFINE INTF_END}{$i adimVEC.inc}
+
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCLSecondPerKilogramPerMeterQty}{$i adimVEC.inc}
+{$DEFINE INTF_END}{$i adimVEC.inc}
+
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCLReciprocalKilogramMeterQty}{$i adimVEC.inc}
+{$DEFINE INTF_END}{$i adimVEC.inc}
+
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCLMeterPerVoltQty}{$i adimVEC.inc}
+{$DEFINE INTF_END}{$i adimVEC.inc}
+
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCLReciprocalRadianQty}{$i adimBVEC.inc}
+{$DEFINE INTF_END}{$i adimBVEC.inc}
+
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCLSecondPerRadianQty}{$i adimBVEC.inc}
+{$DEFINE INTF_END}{$i adimBVEC.inc}
+
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCLReciprocalSquareMeterQty}{$i adimBVEC.inc}
+{$DEFINE INTF_END}{$i adimBVEC.inc}
+
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCLReciprocalMeterQty}{$i adimVEC.inc}
+{$DEFINE INTF_END}{$i adimVEC.inc}
+
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCLWeberQty}{$i adimTVEC.inc}
 {$DEFINE INTF_END}{$i adimTVEC.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCLTeslaQty}{$i adimBVEC.inc}
 {$DEFINE INTF_END}{$i adimBVEC.inc}
+
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCLDualTeslaQty}{$i adimVEC.inc}
+{$DEFINE INTF_END}{$i adimVEC.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCLVoltPerMeterQty}{$i adimVEC.inc}
 {$DEFINE INTF_END}{$i adimVEC.inc}
@@ -95,6 +128,9 @@ type
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCLKilogramMeterPerSecondQty}{$i adimVEC.inc}
 {$DEFINE INTF_END}{$i adimVEC.inc}
 
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCLKilogramPerMeterQty}{$i adimVEC.inc}
+{$DEFINE INTF_END}{$i adimVEC.inc}
+
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCLKilogramMeterQty}{$i adimVEC.inc}
 {$DEFINE INTF_END}{$i adimVEC.inc}
 
@@ -102,6 +138,9 @@ type
 {$DEFINE INTF_END}{$i adimBVEC.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCLRadianPerSecondQty}{$i adimBVEC.inc}
+{$DEFINE INTF_END}{$i adimBVEC.inc}
+
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCLSquareMeterPerSquareSecondQty}{$i adimBVEC.inc}
 {$DEFINE INTF_END}{$i adimBVEC.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCLMeterPerSecondSquaredQty}{$i adimVEC.inc}
@@ -132,6 +171,12 @@ type
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCLMeterQty}{$i adimVEC.inc}
 {$DEFINE INTF_END}{$i adimVEC.inc}
+
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCLReservedNewtonQty}{$i adimMVEC.inc}
+{$DEFINE INTF_END}{$i adimMVEC.inc}
+
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCLReservedKilogramQty}{$i adimMVEC.inc}
+{$DEFINE INTF_END}{$i adimMVEC.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSquareKilogramSquareMeterPerSquareSecondQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
@@ -194,9 +239,20 @@ type
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSquareSecondQty}{$i adim.inc}
+  class operator *(const ALeft: TSquareSecondQty; const ARight: TCLNewtonMeterQty): TCLKilogramSquareMeterQty;
+  class operator *(const ALeft: TCLNewtonMeterQty; const ARight: TSquareSecondQty): TCLKilogramSquareMeterQty;
   class operator /(const ALeft: TCLKilogramSquareMeterQty; const ARight: TSquareSecondQty): TCLNewtonMeterQty;
+  class operator *(const ALeft: TSquareSecondQty; const ARight: TCLNewtonQty): TCLKilogramMeterQty;
+  class operator *(const ALeft: TCLNewtonQty; const ARight: TSquareSecondQty): TCLKilogramMeterQty;
   class operator /(const ALeft: TCLKilogramMeterQty; const ARight: TSquareSecondQty): TCLNewtonQty;
+  class operator *(const ALeft: TSquareSecondQty; const ARight: TCLRadianPerSecondSquaredQty): TCLRadianQty;
+  class operator *(const ALeft: TCLRadianPerSecondSquaredQty; const ARight: TSquareSecondQty): TCLRadianQty;
   class operator /(const ALeft: TCLRadianQty; const ARight: TSquareSecondQty): TCLRadianPerSecondSquaredQty;
+  class operator *(const ALeft: TSquareSecondQty; const ARight: TCLSquareMeterPerSquareSecondQty): TCLSquareMeterQty;
+  class operator *(const ALeft: TCLSquareMeterPerSquareSecondQty; const ARight: TSquareSecondQty): TCLSquareMeterQty;
+  class operator /(const ALeft: TCLSquareMeterQty; const ARight: TSquareSecondQty): TCLSquareMeterPerSquareSecondQty;
+  class operator *(const ALeft: TSquareSecondQty; const ARight: TCLMeterPerSecondSquaredQty): TCLMeterQty;
+  class operator *(const ALeft: TCLMeterPerSecondSquaredQty; const ARight: TSquareSecondQty): TCLMeterQty;
   class operator /(const ALeft: TCLMeterQty; const ARight: TSquareSecondQty): TCLMeterPerSecondSquaredQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
@@ -270,6 +326,7 @@ type
   class operator *(const ALeft: TNewtonQty; const ARight: TVersor2): TCLNewtonQty;
   class operator *(const ALeft: TNewtonQty; const ARight: TVersor1): TCLNewtonQty;
   class operator *(const ALeft: TVector; const ARight: TNewtonQty): TCLNewtonQty;
+  class operator *(const ALeft: TMultivector; const ARight: TNewtonQty): TCLReservedNewtonQty;
   class operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TNewtonQty): TSquareMeterQty;
   class operator *(const ALeft: TSquareMeterQty; const ARight: TNewtonQty): TNewtonSquareMeterQty;
   class operator *(const ALeft: TNewtonQty; const ARight: TSquareMeterQty): TNewtonSquareMeterQty;
@@ -379,13 +436,29 @@ type
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSecondQty}{$i adim.inc}
+  class operator *(const ALeft: TSecondQty; const ARight: TCLNewtonMeterQty): TCLKilogramSquareMeterPerSecondQty;
+  class operator *(const ALeft: TCLNewtonMeterQty; const ARight: TSecondQty): TCLKilogramSquareMeterPerSecondQty;
   class operator /(const ALeft: TCLKilogramSquareMeterPerSecondQty; const ARight: TSecondQty): TCLNewtonMeterQty;
+  class operator *(const ALeft: TSecondQty; const ARight: TCLKilogramSquareMeterPerSecondQty): TCLKilogramSquareMeterQty;
+  class operator *(const ALeft: TCLKilogramSquareMeterPerSecondQty; const ARight: TSecondQty): TCLKilogramSquareMeterQty;
   class operator /(const ALeft: TCLKilogramSquareMeterQty; const ARight: TSecondQty): TCLKilogramSquareMeterPerSecondQty;
+  class operator *(const ALeft: TSecondQty; const ARight: TCLNewtonQty): TCLKilogramMeterPerSecondQty;
+  class operator *(const ALeft: TCLNewtonQty; const ARight: TSecondQty): TCLKilogramMeterPerSecondQty;
   class operator /(const ALeft: TCLKilogramMeterPerSecondQty; const ARight: TSecondQty): TCLNewtonQty;
+  class operator *(const ALeft: TSecondQty; const ARight: TCLKilogramMeterPerSecondQty): TCLKilogramMeterQty;
+  class operator *(const ALeft: TCLKilogramMeterPerSecondQty; const ARight: TSecondQty): TCLKilogramMeterQty;
   class operator /(const ALeft: TCLKilogramMeterQty; const ARight: TSecondQty): TCLKilogramMeterPerSecondQty;
+  class operator *(const ALeft: TSecondQty; const ARight: TCLRadianPerSecondSquaredQty): TCLRadianPerSecondQty;
+  class operator *(const ALeft: TCLRadianPerSecondSquaredQty; const ARight: TSecondQty): TCLRadianPerSecondQty;
   class operator /(const ALeft: TCLRadianPerSecondQty; const ARight: TSecondQty): TCLRadianPerSecondSquaredQty;
+  class operator *(const ALeft: TSecondQty; const ARight: TCLRadianPerSecondQty): TCLRadianQty;
+  class operator *(const ALeft: TCLRadianPerSecondQty; const ARight: TSecondQty): TCLRadianQty;
   class operator /(const ALeft: TCLRadianQty; const ARight: TSecondQty): TCLRadianPerSecondQty;
+  class operator *(const ALeft: TSecondQty; const ARight: TCLMeterPerSecondSquaredQty): TCLMeterPerSecondQty;
+  class operator *(const ALeft: TCLMeterPerSecondSquaredQty; const ARight: TSecondQty): TCLMeterPerSecondQty;
   class operator /(const ALeft: TCLMeterPerSecondQty; const ARight: TSecondQty): TCLMeterPerSecondSquaredQty;
+  class operator *(const ALeft: TSecondQty; const ARight: TCLMeterPerSecondQty): TCLMeterQty;
+  class operator *(const ALeft: TCLMeterPerSecondQty; const ARight: TSecondQty): TCLMeterQty;
   class operator /(const ALeft: TCLMeterQty; const ARight: TSecondQty): TCLMeterPerSecondQty;
   class operator /(const ALeft: TQuarticMeterSecondQty; const ARight: TSecondQty): TQuarticMeterQty;
   class operator *(const ALeft: TSecondQty; const ARight: TQuarticMeterQty): TQuarticMeterSecondQty;
@@ -416,6 +489,7 @@ type
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=THenryQty}{$i adim.inc}
+  class operator /(const ALeft: TCLOhmQty; const ARight: THenryQty): TCLRadianPerSecondQty;
   class operator *(const ALeft: THenryQty; const ARight: TCLRadianPerSecondQty): TCLOhmQty;
   class operator *(const ALeft: TCLRadianPerSecondQty; const ARight: THenryQty): TCLOhmQty;
 {$DEFINE INTF_END}{$i adim.inc}
@@ -458,15 +532,21 @@ type
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TKilogramQty}{$i adim.inc}
-  class operator /(const ALeft: TCLNewtonQty; const ARight: TKilogramQty): TCLMeterPerSecondSquaredQty;
-  class operator *(const ALeft: TKilogramQty; const ARight: TCLSquareMeterQty): TCLKilogramSquareMeterQty;
+  class operator /(const ALeft: TCLKilogramSquareMeterQty; const ARight: TKilogramQty): TCLSquareMeterQty;
   class operator *(const ALeft: TCLSquareMeterQty; const ARight: TKilogramQty): TCLKilogramSquareMeterQty;
-  class operator *(const ALeft: TKilogramQty; const ARight: TCLMeterPerSecondSquaredQty): TCLNewtonQty;
+  class operator *(const ALeft: TKilogramQty; const ARight: TCLSquareMeterQty): TCLKilogramSquareMeterQty;
+  class operator /(const ALeft: TCLNewtonQty; const ARight: TKilogramQty): TCLMeterPerSecondSquaredQty;
   class operator *(const ALeft: TCLMeterPerSecondSquaredQty; const ARight: TKilogramQty): TCLNewtonQty;
+  class operator *(const ALeft: TKilogramQty; const ARight: TCLMeterPerSecondSquaredQty): TCLNewtonQty;
+  class operator /(const ALeft: TCLKilogramMeterPerSecondQty; const ARight: TKilogramQty): TCLMeterPerSecondQty;
   class operator *(const ALeft: TKilogramQty; const ARight: TCLMeterPerSecondQty): TCLKilogramMeterPerSecondQty;
   class operator *(const ALeft: TCLMeterPerSecondQty; const ARight: TKilogramQty): TCLKilogramMeterPerSecondQty;
-  class operator *(const ALeft: TKilogramQty; const ARight: TCLMeterQty): TCLKilogramMeterQty;
+  class operator /(const ALeft: TKilogramQty; const ARight: TCLKilogramPerMeterQty): TCLMeterQty;
+  class operator /(const ALeft: TKilogramQty; const ARight: TCLMeterQty): TCLKilogramPerMeterQty;
+  class operator /(const ALeft: TCLKilogramMeterQty; const ARight: TKilogramQty): TCLMeterQty;
   class operator *(const ALeft: TCLMeterQty; const ARight: TKilogramQty): TCLKilogramMeterQty;
+  class operator *(const ALeft: TKilogramQty; const ARight: TCLMeterQty): TCLKilogramMeterQty;
+  class operator *(const ALeft: TMultivector; const ARight: TKilogramQty): TCLReservedKilogramQty;
   class operator *(const ALeft: TNewtonSquareMeterPerSquareKilogramQty; const ARight: TKilogramQty): TCubicMeterPerSquareSecondQty;
   class operator *(const ALeft: TKilogramQty; const ARight: TNewtonSquareMeterPerSquareKilogramQty): TCubicMeterPerSquareSecondQty;
   class operator /(const ALeft: TCubicMeterPerSquareSecondQty; const ARight: TKilogramQty): TNewtonSquareMeterPerSquareKilogramQty;
@@ -604,6 +684,8 @@ type
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TRadianQty}{$i adim.inc}
+  class operator *(const ALeft: TRadianQty; const ARight: TCLNewtonMeterPerRadianQty): TCLNewtonMeterQty;
+  class operator *(const ALeft: TCLNewtonMeterPerRadianQty; const ARight: TRadianQty): TCLNewtonMeterQty;
   class operator /(const ALeft: TCLNewtonMeterQty; const ARight: TRadianQty): TCLNewtonMeterPerRadianQty;
   class operator *(const ALeft: TRadianQty; const ARight: TBiversor31): TCLRadianQty;
   class operator *(const ALeft: TRadianQty; const ARight: TBiversor23): TCLRadianQty;
@@ -620,6 +702,10 @@ type
   class operator *(const ALeft: TTeslaQty; const ARight: TBiversor23): TCLTeslaQty;
   class operator *(const ALeft: TTeslaQty; const ARight: TBiversor12): TCLTeslaQty;
   class operator *(const ALeft: TBivector; const ARight: TTeslaQty): TCLTeslaQty;
+  class operator *(const ALeft: TTeslaQty; const ARight: TVersor3): TCLDualTeslaQty;
+  class operator *(const ALeft: TTeslaQty; const ARight: TVersor2): TCLDualTeslaQty;
+  class operator *(const ALeft: TTeslaQty; const ARight: TVersor1): TCLDualTeslaQty;
+  class operator *(const ALeft: TVector; const ARight: TTeslaQty): TCLDualTeslaQty;
   class operator /(const ALeft: TTeslaMeterQty; const ARight: TTeslaQty): TMeterQty;
   class operator *(const ALeft: TMeterQty; const ARight: TTeslaQty): TTeslaMeterQty;
   class operator *(const ALeft: TTeslaQty; const ARight: TMeterQty): TTeslaMeterQty;
@@ -977,8 +1063,10 @@ type
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSquareHertzQty}{$i adim.inc}
+  class operator /(const ALeft: TCLRadianPerSecondSquaredQty; const ARight: TSquareHertzQty): TCLRadianQty;
   class operator *(const ALeft: TSquareHertzQty; const ARight: TCLRadianQty): TCLRadianPerSecondSquaredQty;
   class operator *(const ALeft: TCLRadianQty; const ARight: TSquareHertzQty): TCLRadianPerSecondSquaredQty;
+  class operator /(const ALeft: TCLMeterPerSecondSquaredQty; const ARight: TSquareHertzQty): TCLMeterQty;
   class operator *(const ALeft: TSquareHertzQty; const ARight: TCLMeterQty): TCLMeterPerSecondSquaredQty;
   class operator *(const ALeft: TCLMeterQty; const ARight: TSquareHertzQty): TCLMeterPerSecondSquaredQty;
   class operator /(const ALeft: TNewtonPerMeterQty; const ARight: TSquareHertzQty): TKilogramQty;
@@ -1000,7 +1088,6 @@ type
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TAmpereQty}{$i adim.inc}
-  class operator /(const ALeft: TCLWeberQty; const ARight: TAmpereQty): THenryQty;
   class operator *(const ALeft: TMultivector; const ARight: TAmpereQty): TCLAmpereQty;
   class operator *(const ALeft: THenryPerMeterQty; const ARight: TAmpereQty): TTeslaMeterQty;
   class operator *(const ALeft: TAmpereQty; const ARight: THenryPerMeterQty): TTeslaMeterQty;
@@ -1128,8 +1215,10 @@ type
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TKilogramPerSecondQty}{$i adim.inc}
-  class operator *(const ALeft: TKilogramPerSecondQty; const ARight: TCLMeterPerSecondQty): TCLNewtonQty;
+  class operator /(const ALeft: TCLNewtonQty; const ARight: TKilogramPerSecondQty): TCLMeterPerSecondQty;
   class operator *(const ALeft: TCLMeterPerSecondQty; const ARight: TKilogramPerSecondQty): TCLNewtonQty;
+  class operator *(const ALeft: TKilogramPerSecondQty; const ARight: TCLMeterPerSecondQty): TCLNewtonQty;
+  class operator /(const ALeft: TCLKilogramMeterPerSecondQty; const ARight: TKilogramPerSecondQty): TCLMeterQty;
   class operator *(const ALeft: TKilogramPerSecondQty; const ARight: TCLMeterQty): TCLKilogramMeterPerSecondQty;
   class operator *(const ALeft: TCLMeterQty; const ARight: TKilogramPerSecondQty): TCLKilogramMeterPerSecondQty;
   class operator /(const ALeft: TSquareKilogramPerSquareSecondQty; const ARight: TKilogramPerSecondQty): TKilogramPerSecondQty;
@@ -1170,6 +1259,7 @@ type
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TFaradQty}{$i adim.inc}
+  class operator /(const ALeft: TCLSiemensQty; const ARight: TFaradQty): TCLRadianPerSecondQty;
   class operator *(const ALeft: TFaradQty; const ARight: TCLRadianPerSecondQty): TCLSiemensQty;
   class operator *(const ALeft: TCLRadianPerSecondQty; const ARight: TFaradQty): TCLSiemensQty;
   class operator /(const ALeft: TFaradQty; const ARight: TFaradPerMeterQty): TMeterQty;
@@ -1685,17 +1775,54 @@ operator *(const ALeft: TWattPerSquareMeterPerSteradianQty; const ARight: TSquar
 operator /(const ALeft: TKatalQty; const ARight: TCubicMeterQty): TKatalPerCubicMeterQty;
 operator /(const ALeft: TCoulombQty; const ARight: TCoulombPerMoleQty): TMoleQty;
 operator /(const ALeft: TJoulePerMoleQty; const ARight: TCoulombPerMoleQty): TVoltQty;
+operator /(const ALeft: TCLMeterQty; const ARight: TCLMeterPerSecondQty): TSecondQty;
 operator *(const ALeft: TCLMeterQty; const ARight: THertzQty): TCLMeterPerSecondQty;
 operator *(const ALeft: THertzQty; const ARight: TCLMeterQty): TCLMeterPerSecondQty;
+operator /(const ALeft: TCLMeterPerSecondQty; const ARight: TCLMeterQty): THertzQty;
+operator /(const ALeft: TCLMeterPerSecondQty; const ARight: THertzQty): TCLMeterQty;
+operator /(const ALeft: TCLMeterPerSecondQty; const ARight: TCLMeterPerSecondSquaredQty): TSecondQty;
+operator /(const ALeft: TCLMeterQty; const ARight: TCLMeterPerSecondSquaredQty): TSquareSecondQty;
+operator /(const ALeft: TCLMeterPerSecondSquaredQty; const ARight: TCLMeterQty): TSquareHertzQty;
+operator /(const ALeft: TCLSquareMeterQty; const ARight: TCLSquareMeterPerSquareSecondQty): TSquareSecondQty;
+operator /(const ALeft: TCLRadianQty; const ARight: TCLRadianPerSecondQty): TSecondQty;
 operator *(const ALeft: TCLRadianQty; const ARight: THertzQty): TCLRadianPerSecondQty;
 operator *(const ALeft: THertzQty; const ARight: TCLRadianQty): TCLRadianPerSecondQty;
+operator /(const ALeft: TCLRadianPerSecondQty; const ARight: TCLRadianQty): THertzQty;
+operator /(const ALeft: TCLRadianPerSecondQty; const ARight: THertzQty): TCLRadianQty;
+operator /(const ALeft: TCLRadianPerSecondQty; const ARight: TCLRadianPerSecondSquaredQty): TSecondQty;
+operator *(const ALeft: TCLRadianPerSecondQty; const ARight: THertzQty): TCLRadianPerSecondSquaredQty;
+operator *(const ALeft: THertzQty; const ARight: TCLRadianPerSecondQty): TCLRadianPerSecondSquaredQty;
+operator /(const ALeft: TCLRadianPerSecondSquaredQty; const ARight: TCLRadianPerSecondQty): THertzQty;
+operator /(const ALeft: TCLRadianPerSecondSquaredQty; const ARight: THertzQty): TCLRadianPerSecondQty;
+operator /(const ALeft: TCLRadianQty; const ARight: TCLRadianPerSecondSquaredQty): TSquareSecondQty;
+operator /(const ALeft: TCLRadianPerSecondSquaredQty; const ARight: TCLRadianQty): TSquareHertzQty;
+operator /(const ALeft: TCLKilogramMeterQty; const ARight: TCLMeterQty): TKilogramQty;
+operator *(const ALeft: TCLKilogramPerMeterQty; const ARight: TCLMeterQty): TKilogramQty;
+operator *(const ALeft: TCLMeterQty; const ARight: TCLKilogramPerMeterQty): TKilogramQty;
+operator /(const ALeft: TCLKilogramMeterQty; const ARight: TCLKilogramMeterPerSecondQty): TSecondQty;
+operator /(const ALeft: TCLKilogramMeterPerSecondQty; const ARight: TCLMeterPerSecondQty): TKilogramQty;
+operator /(const ALeft: TCLKilogramMeterPerSecondQty; const ARight: TCLMeterQty): TKilogramPerSecondQty;
+operator /(const ALeft: TCLNewtonQty; const ARight: TCLMeterPerSecondSquaredQty): TKilogramQty;
+operator /(const ALeft: TCLNewtonQty; const ARight: TCLMeterPerSecondQty): TKilogramPerSecondQty;
+operator /(const ALeft: TCLKilogramMeterPerSecondQty; const ARight: TCLNewtonQty): TSecondQty;
+operator /(const ALeft: TCLKilogramMeterQty; const ARight: TCLNewtonQty): TSquareSecondQty;
+operator /(const ALeft: TCLKilogramSquareMeterQty; const ARight: TCLSquareMeterQty): TKilogramQty;
+operator /(const ALeft: TCLKilogramSquareMeterQty; const ARight: TCLKilogramSquareMeterPerSecondQty): TSecondQty;
 operator *(const ALeft: TCLKilogramSquareMeterQty; const ARight: THertzQty): TCLKilogramSquareMeterPerSecondQty;
 operator *(const ALeft: THertzQty; const ARight: TCLKilogramSquareMeterQty): TCLKilogramSquareMeterPerSecondQty;
+operator /(const ALeft: TCLKilogramSquareMeterPerSecondQty; const ARight: TCLKilogramSquareMeterQty): THertzQty;
+operator /(const ALeft: TCLKilogramSquareMeterPerSecondQty; const ARight: THertzQty): TCLKilogramSquareMeterQty;
+operator /(const ALeft: TCLKilogramSquareMeterQty; const ARight: TCLNewtonMeterQty): TSquareSecondQty;
+operator /(const ALeft: TCLKilogramSquareMeterPerSecondQty; const ARight: TCLNewtonMeterQty): TSecondQty;
+operator /(const ALeft: TCLNewtonMeterQty; const ARight: TCLNewtonMeterPerRadianQty): TRadianQty;
+operator /(const ALeft: TCLOhmQty; const ARight: TCLRadianPerSecondQty): THenryQty;
 operator /(const ALeft: double; const ARight: TCLSiemensQty): TCLOhmQty;
+operator /(const ALeft: TCLSiemensQty; const ARight: TCLRadianPerSecondQty): TFaradQty;
 operator *(const ALeft: TCLSiemensQty; const ARight: TCLVoltQty): TCLAmpereQty;
 operator *(const ALeft: TCLVoltQty; const ARight: TCLSiemensQty): TCLAmpereQty;
 operator /(const ALeft: TCLVoltQty; const ARight: TCLOhmQty): TCLAmpereQty;
 operator /(const ALeft: TCLWattQty; const ARight: TCLVoltQty): TCLAmpereQty;
+operator /(const ALeft: TCLNewtonQty; const ARight: TCLVoltPerMeterQty): TCoulombQty;
 
 { TUnit classes }
 
@@ -1706,7 +1833,9 @@ operator /(const ALeft: TCLWattQty; const ARight: TCLVoltQty): TCLAmpereQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TMeterQty}{$DEFINE TUnit:=TMeterUnit}{$i adim.inc}
-  class operator *(const ALeft: TCLNewtonQty; const ARight: TMeterUnit): TCLNewtonMeterQty;
+  class operator *(const ALeft: TCLReservedNewtonQty; const ARight: TMeterUnit): TCLNewtonMeterQty;
+  class operator /(const ALeft: TCLReservedKilogramQty; const ARight: TMeterUnit): TCLKilogramPerMeterQty;
+  class operator *(const ALeft: TCLReservedKilogramQty; const ARight: TMeterUnit): TCLKilogramMeterQty;
   class operator *(const ALeft: TVector; const ARight: TMeterUnit): TCLMeterQty;
   class operator /(const ALeft: double; const ARight: TMeterUnit): TReciprocalMeterQty;
   class operator /(const ALeft: TRadianQty; const ARight: TMeterUnit): TRadianPerMeterQty;
@@ -1751,9 +1880,7 @@ operator /(const ALeft: TCLWattQty; const ARight: TCLVoltQty): TCLAmpereQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=THertzQty}{$DEFINE TUnit:=THertzUnit}{$i adim.inc}
-  class operator *(const ALeft: TCLKilogramSquareMeterQty; const ARight: THertzUnit): TCLKilogramSquareMeterPerSecondQty;
   class operator *(const ALeft: TCLRadianQty; const ARight: THertzUnit): TCLRadianPerSecondQty;
-  class operator *(const ALeft: TCLMeterQty; const ARight: THertzUnit): TCLMeterPerSecondQty;
   class operator *(const ALeft: TMeterQty; const ARight: THertzUnit): TMeterPerSecondQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
@@ -1764,12 +1891,9 @@ operator /(const ALeft: TCLWattQty; const ARight: TCLVoltQty): TCLAmpereQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TSecondQty}{$DEFINE TUnit:=TSecondUnit}{$i adim.inc}
-  class operator /(const ALeft: TCLKilogramSquareMeterPerSecondQty; const ARight: TSecondUnit): TCLNewtonMeterQty;
   class operator /(const ALeft: TCLKilogramSquareMeterQty; const ARight: TSecondUnit): TCLKilogramSquareMeterPerSecondQty;
   class operator /(const ALeft: TCLKilogramMeterQty; const ARight: TSecondUnit): TCLKilogramMeterPerSecondQty;
-  class operator /(const ALeft: TCLRadianPerSecondQty; const ARight: TSecondUnit): TCLRadianPerSecondSquaredQty;
   class operator /(const ALeft: TCLRadianQty; const ARight: TSecondUnit): TCLRadianPerSecondQty;
-  class operator /(const ALeft: TCLMeterPerSecondQty; const ARight: TSecondUnit): TCLMeterPerSecondSquaredQty;
   class operator /(const ALeft: TCLMeterQty; const ARight: TSecondUnit): TCLMeterPerSecondQty;
   class operator /(const ALeft: TSquareMeterPerSquareSecondQty; const ARight: TSecondUnit): TGrayPerSecondQty;
   class operator /(const ALeft: TVoltMeterQty; const ARight: TSecondUnit): TVoltMeterPerSecondQty;
@@ -1831,10 +1955,7 @@ operator /(const ALeft: TCLWattQty; const ARight: TCLVoltQty): TCLAmpereQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TKilogramQty}{$DEFINE TUnit:=TKilogramUnit}{$i adim.inc}
-  class operator *(const ALeft: TCLSquareMeterQty; const ARight: TKilogramUnit): TCLKilogramSquareMeterQty;
-  class operator *(const ALeft: TCLMeterPerSecondSquaredQty; const ARight: TKilogramUnit): TCLNewtonQty;
-  class operator *(const ALeft: TCLMeterPerSecondQty; const ARight: TKilogramUnit): TCLKilogramMeterPerSecondQty;
-  class operator *(const ALeft: TCLMeterQty; const ARight: TKilogramUnit): TCLKilogramMeterQty;
+  class operator *(const ALeft: TMultivector; const ARight: TKilogramUnit): TCLReservedKilogramQty;
   class operator /(const ALeft: TCoulombQty; const ARight: TKilogramUnit): TCoulombPerKilogramQty;
   class operator /(const ALeft: TJoulePerKelvinQty; const ARight: TKilogramUnit): TJoulePerKilogramPerKelvinQty;
   class operator /(const ALeft: TCubicMeterQty; const ARight: TKilogramUnit): TCubicMeterPerKilogramQty;
@@ -1863,8 +1984,8 @@ operator /(const ALeft: TCLWattQty; const ARight: TCLVoltQty): TCLAmpereQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TNewtonQty}{$DEFINE TUnit:=TNewtonUnit}{$i adim.inc}
-  class operator *(const ALeft: TCLMeterQty; const ARight: TNewtonUnit): TCLNewtonMeterQty;
   class operator *(const ALeft: TVector; const ARight: TNewtonUnit): TCLNewtonQty;
+  class operator *(const ALeft: TMultivector; const ARight: TNewtonUnit): TCLReservedNewtonQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TKilogramMeterPerSecondQty}{$DEFINE TUnit:=TKilogramMeterPerSecondUnit}{$i adim.inc}
@@ -1934,6 +2055,7 @@ operator /(const ALeft: TCLWattQty; const ARight: TCLVoltQty): TCLAmpereQty;
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TTeslaQty}{$DEFINE TUnit:=TTeslaUnit}{$i adim.inc}
   class operator *(const ALeft: TBivector; const ARight: TTeslaUnit): TCLTeslaQty;
+  class operator *(const ALeft: TVector; const ARight: TTeslaUnit): TCLDualTeslaQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TVoltQty}{$DEFINE TUnit:=TVoltUnit}{$i adim.inc}
@@ -2011,6 +2133,7 @@ operator /(const ALeft: TCLWattQty; const ARight: TCLVoltQty): TCLAmpereQty;
   class operator /(const ALeft: TCLKilogramSquareMeterQty; const ARight: TSquareSecondUnit): TCLNewtonMeterQty;
   class operator /(const ALeft: TCLKilogramMeterQty; const ARight: TSquareSecondUnit): TCLNewtonQty;
   class operator /(const ALeft: TCLRadianQty; const ARight: TSquareSecondUnit): TCLRadianPerSecondSquaredQty;
+  class operator /(const ALeft: TCLSquareMeterQty; const ARight: TSquareSecondUnit): TCLSquareMeterPerSquareSecondQty;
   class operator /(const ALeft: TCLMeterQty; const ARight: TSquareSecondUnit): TCLMeterPerSecondSquaredQty;
   class operator /(const ALeft: TSquareKilogramQty; const ARight: TSquareSecondUnit): TSquareKilogramPerSquareSecondQty;
   class operator /(const ALeft: TCubicMeterQty; const ARight: TSquareSecondUnit): TCubicMeterPerSquareSecondQty;
@@ -2155,6 +2278,8 @@ operator /(const ALeft: TCLWattQty; const ARight: TCLVoltQty): TCLAmpereQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TSquareMeterQty}{$DEFINE TUnit:=TSquareMeterUnit}{$i adim.inc}
+  class operator /(const ALeft: TCLReservedNewtonQty; const ARight: TSquareMeterUnit): TCLPascalQty;
+  class operator *(const ALeft: TCLReservedKilogramQty; const ARight: TSquareMeterUnit): TCLKilogramSquareMeterQty;
   class operator *(const ALeft: TBivector; const ARight: TSquareMeterUnit): TCLSquareMeterQty;
   class operator /(const ALeft: TWattPerSteradianQty; const ARight: TSquareMeterUnit): TWattPerSquareMeterPerSteradianQty;
   class operator /(const ALeft: TCandelaQty; const ARight: TSquareMeterUnit): TCandelaPerSquareMeterQty;
@@ -2204,7 +2329,6 @@ operator /(const ALeft: TCLWattQty; const ARight: TCLVoltQty): TCLAmpereQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TKilogramPerSecondQty}{$DEFINE TUnit:=TKilogramPerSecondUnit}{$i adim.inc}
-  class operator *(const ALeft: TCLMeterQty; const ARight: TKilogramPerSecondUnit): TCLKilogramMeterPerSecondQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TQuinticMeterQty}{$DEFINE TUnit:=TQuinticMeterUnit}{$i adim.inc}
@@ -5591,6 +5715,30 @@ const
   cElettronvoltSecondFactor                 = 1.60217742320523E-019;
 
 type
+  TCLReservedKilograms = TCLReservedKilogramQty;
+
+const
+  rsCLReservedKilogramSymbol     = '%sg';
+  rsCLReservedKilogramName       = '%sgram';
+  rsCLReservedKilogramPluralName = '%sgram';
+
+const
+  cCLReservedKilogramPrefixes  : TPrefixes  = (pKilo);
+  cCLReservedKilogramExponents : TExponents = (1);
+
+type
+  TCLReservedNewtons = TCLReservedNewtonQty;
+
+const
+  rsCLReservedNewtonSymbol     = '%sN';
+  rsCLReservedNewtonName       = '%snewton';
+  rsCLReservedNewtonPluralName = '%snewton';
+
+const
+  cCLReservedNewtonPrefixes  : TPrefixes  = (pNone);
+  cCLReservedNewtonExponents : TExponents = (1);
+
+type
   TCLMeters = TCLMeterQty;
 
 const
@@ -5684,6 +5832,18 @@ const
   cCLMeterPerSecondPerSecondExponents : TExponents = (1, -1, -1);
 
 type
+  TCLSquareMetersPerSquareSecond = TCLSquareMeterPerSquareSecondQty;
+
+const
+  rsCLSquareMeterPerSquareSecondSymbol     = '%sm2/%ss';
+  rsCLSquareMeterPerSquareSecondName       = 'square %smeter per %ssquare second';
+  rsCLSquareMeterPerSquareSecondPluralName = 'square %smeters per %ssquare second';
+
+const
+  cCLSquareMeterPerSquareSecondPrefixes  : TPrefixes  = (pNone, pNone);
+  cCLSquareMeterPerSquareSecondExponents : TExponents = (2, -1);
+
+type
   TCLRadiansPerSecond = TCLRadianPerSecondQty;
 
 const
@@ -5718,6 +5878,18 @@ const
 const
   cCLKilogramMeterPrefixes  : TPrefixes  = (pKilo, pNone);
   cCLKilogramMeterExponents : TExponents = (1, 1);
+
+type
+  TCLKilogramsPerMeter = TCLKilogramPerMeterQty;
+
+const
+  rsCLKilogramPerMeterSymbol     = '%sg/%sm';
+  rsCLKilogramPerMeterName       = '%sgram per %smeter';
+  rsCLKilogramPerMeterPluralName = '%sgram per %smeters';
+
+const
+  cCLKilogramPerMeterPrefixes  : TPrefixes  = (pKilo, pNone);
+  cCLKilogramPerMeterExponents : TExponents = (1, -1);
 
 type
   TCLKilogramMetersPerSecond = TCLKilogramMeterPerSecondQty;
@@ -5873,6 +6045,18 @@ const
   cCLVoltPerMeterExponents : TExponents = (1, -1);
 
 type
+  TCLDualTeslas = TCLDualTeslaQty;
+
+const
+  rsCLDualTeslaSymbol     = '%sT';
+  rsCLDualTeslaName       = '%stesla';
+  rsCLDualTeslaPluralName = '%steslas';
+
+const
+  cCLDualTeslaPrefixes  : TPrefixes  = (pNone);
+  cCLDualTeslaExponents : TExponents = (1);
+
+type
   TCLTeslas = TCLTeslaQty;
 
 const
@@ -5895,6 +6079,126 @@ const
 const
   cCLWeberPrefixes  : TPrefixes  = (pNone);
   cCLWeberExponents : TExponents = (1);
+
+type
+  TCLReciprocalMeters = TCLReciprocalMeterQty;
+
+const
+  rsCLReciprocalMeterSymbol     = '1/%sm';
+  rsCLReciprocalMeterName       = 'reciprocal %smeter';
+  rsCLReciprocalMeterPluralName = 'reciprocal %smeter';
+
+const
+  cCLReciprocalMeterPrefixes  : TPrefixes  = (pNone);
+  cCLReciprocalMeterExponents : TExponents = (-1);
+
+type
+  TCLReciprocalSquareMeters = TCLReciprocalSquareMeterQty;
+
+const
+  rsCLReciprocalSquareMeterSymbol     = '1/%sm2';
+  rsCLReciprocalSquareMeterName       = 'reciprocal square %smeter';
+  rsCLReciprocalSquareMeterPluralName = 'reciprocal square %smeter';
+
+const
+  cCLReciprocalSquareMeterPrefixes  : TPrefixes  = (pNone);
+  cCLReciprocalSquareMeterExponents : TExponents = (-2);
+
+type
+  TCLSecondsPerRadian = TCLSecondPerRadianQty;
+
+const
+  rsCLSecondPerRadianSymbol     = '%ss/%srad';
+  rsCLSecondPerRadianName       = '%ssecond per %sradian';
+  rsCLSecondPerRadianPluralName = '%sseconds per %sradian';
+
+const
+  cCLSecondPerRadianPrefixes  : TPrefixes  = (pNone, pNone);
+  cCLSecondPerRadianExponents : TExponents = (1, -1);
+
+type
+  TCLReciprocalRadians = TCLReciprocalRadianQty;
+
+const
+  rsCLReciprocalRadianSymbol     = '1/%srad';
+  rsCLReciprocalRadianName       = 'reciprocal %sradian';
+  rsCLReciprocalRadianPluralName = 'reciprocal %sradian';
+
+const
+  cCLReciprocalRadianPrefixes  : TPrefixes  = (pNone);
+  cCLReciprocalRadianExponents : TExponents = (-1);
+
+type
+  TCLMetersPerVolt = TCLMeterPerVoltQty;
+
+const
+  rsCLMeterPerVoltSymbol     = '%sm/%sv';
+  rsCLMeterPerVoltName       = '%smeter per %svolt';
+  rsCLMeterPerVoltPluralName = '%smeters per %svolt';
+
+const
+  cCLMeterPerVoltPrefixes  : TPrefixes  = (pNone, pNone);
+  cCLMeterPerVoltExponents : TExponents = (1, -1);
+
+type
+  TCLReciprocalKilogramMeters = TCLReciprocalKilogramMeterQty;
+
+const
+  rsCLReciprocalKilogramMeterSymbol     = '1/%sg/%sm';
+  rsCLReciprocalKilogramMeterName       = 'reciprocal %sgram %smeter';
+  rsCLReciprocalKilogramMeterPluralName = 'reciprocal %sgram %smeter';
+
+const
+  cCLReciprocalKilogramMeterPrefixes  : TPrefixes  = (pKilo, pNone);
+  cCLReciprocalKilogramMeterExponents : TExponents = (-1, -1);
+
+type
+  TCLSecondsPerKilogramPerMeter = TCLSecondPerKilogramPerMeterQty;
+
+const
+  rsCLSecondPerKilogramPerMeterSymbol     = '%ss/%sg/%sm';
+  rsCLSecondPerKilogramPerMeterName       = '%ssecond per %sgram per %smeter';
+  rsCLSecondPerKilogramPerMeterPluralName = '%sseconds per %sgram per %smeter';
+
+const
+  cCLSecondPerKilogramPerMeterPrefixes  : TPrefixes  = (pNone, pKilo, pNone);
+  cCLSecondPerKilogramPerMeterExponents : TExponents = (1, -1, -1);
+
+type
+  TCLReciprocalNewtons = TCLReciprocalNewtonQty;
+
+const
+  rsCLReciprocalNewtonSymbol     = '1/%sN';
+  rsCLReciprocalNewtonName       = 'reciprocal %snewton';
+  rsCLReciprocalNewtonPluralName = 'reciprocal %snewton';
+
+const
+  cCLReciprocalNewtonPrefixes  : TPrefixes  = (pNone);
+  cCLReciprocalNewtonExponents : TExponents = (-1);
+
+type
+  TCLReciprocalPascals = TCLReciprocalPascalQty;
+
+const
+  rsCLReciprocalPascalSymbol     = '1/%sPa';
+  rsCLReciprocalPascalName       = 'reciprocal %spascal';
+  rsCLReciprocalPascalPluralName = 'reciprocal %spascal';
+
+const
+  cCLReciprocalPascalPrefixes  : TPrefixes  = (pNone);
+  cCLReciprocalPascalExponents : TExponents = (-1);
+
+type
+  TCLReciprocalWebers = TCLReciprocalWeberQty;
+
+const
+  rsCLReciprocalWeberSymbol     = '1/%sWb';
+  rsCLReciprocalWeberName       = 'reciprocal %sweber';
+  rsCLReciprocalWeberPluralName = 'reciprocal %sweber';
+
+const
+  cCLReciprocalWeberPrefixes  : TPrefixes  = (pNone);
+  cCLReciprocalWeberExponents : TExponents = (-1);
 
 { Helpers }
 
@@ -6133,17 +6437,12 @@ type
   end;
 
   TCLMeterHelper = record helper for TCLMeterQty
-    function Rdot(AValue: TCLKilogramSquareMeterPerSecondQty): TCLKilogramMeterPerSecondQty;
-    function Rdot(AValue: TCLNewtonMeterQty): TCLNewtonQty;
     function dot(AValue: TCLRadianPerSecondQty): TCLMeterPerSecondQty;
-    function Rdot(AValue: TCLCubicMeterQty): TCLSquareMeterQty;
-    function Rdot(AValue: TCLKilogramSquareMeterQty): TCLMeterQty;
-    function Rdot(AValue: TCLSquareMeterQty): TCLMeterQty;
     function dot(AValue: TCLNewtonQty): TJouleQty;
+    function Reciprocal: TCLReciprocalMeterQty;
     function wedge(AValue: TCLNewtonQty): TCLNewtonMeterQty;
     function wedge(AValue: TCLKilogramMeterPerSecondQty): TCLKilogramSquareMeterPerSecondQty;
     function wedge(AValue: TCLKilogramMeterQty): TCLKilogramSquareMeterQty;
-    function Rwedge(AValue: TCLMeterPerSecondQty): TCLRadianPerSecondQty;
     function wedge(AValue: TCLSquareMeterQty): TCLCubicMeterQty;
     function wedge(AValue: TCLMeterQty): TCLSquareMeterQty;
     function SquaredNorm: TSquareMeterQty;
@@ -6151,39 +6450,39 @@ type
   end;
 
   TCLSquareMeterHelper = record helper for TCLSquareMeterQty
-    function dotD(AValue: TCLWeberQty): TCLTeslaQty;
+    function dot(AValue: TCLWeberQty): TCLDualTeslaQty;
     function dot(AValue: TCLPascalQty): TCLNewtonQty;
-    function Rdot(AValue: TCLCubicMeterQty): TCLMeterQty;
-    function dotR(AValue: TCLMeterQty): TCLMeterQty;
-    function RwedgeD(AValue: TCLTeslaQty): TCLWeberQty;
-    function Rwedge(AValue: TCLNewtonQty): TCLPascalQty;
+    function dot(AValue: TCLReciprocalMeterQty): TCLMeterQty;
+    function Reciprocal: TCLReciprocalSquareMeterQty;
     function wedge(AValue: TCLMeterQty): TCLCubicMeterQty;
     function SquaredNorm: TQuarticMeterQty;
+    function Norm: TSquareMeterQty;
   end;
 
   TCLCubicMeterHelper = record helper for TCLCubicMeterQty
-    function dotR(AValue: TCLMeterQty): TCLSquareMeterQty;
-    function dotR(AValue: TCLSquareMeterQty): TCLMeterQty;
+    function dot(AValue: TCLReciprocalMeterQty): TCLSquareMeterQty;
+    function dot(AValue: TCLReciprocalSquareMeterQty): TCLMeterQty;
     function SquaredNorm: TSexticMeterQty;
     function Norm: TCubicMeterQty;
   end;
 
   TCLRadianHelper = record helper for TCLRadianQty
-    function Rdot(AValue: TCLRadianPerSecondQty): THertzQty;
-    function dotR(AValue: TCLRadianPerSecondQty): TSecondQty;
+    function dot(AValue: TCLSecondPerRadianQty): TSecondQty;
+    function Reciprocal: TCLReciprocalRadianQty;
     function SquaredNorm: TSteradianQty;
     function Norm: TRadianQty;
   end;
 
   TCLAmpereHelper = record helper for TCLAmpereQty
+    function SquaredNorm: TSquareAmpereQty;
     function Norm: TAmpereQty;
   end;
 
   TCLMeterPerSecondHelper = record helper for TCLMeterPerSecondQty
-    function dotR(AValue: TCLRadianPerSecondQty): TCLMeterQty;
+    function dot(AValue: TCLSecondPerRadianQty): TCLMeterQty;
     function dot(AValue: TCLNewtonQty): TWattQty;
     function dot(AValue: TCLKilogramMeterPerSecondQty): TJouleQty;
-    function wedgeR(AValue: TCLMeterQty): TCLRadianPerSecondQty;
+    function wedge(AValue: TCLReciprocalMeterQty): TCLRadianPerSecondQty;
     function SquaredNorm: TSquareMeterPerSquareSecondQty;
     function Norm: TMeterPerSecondQty;
   end;
@@ -6197,11 +6496,18 @@ type
     function ToCLMeterPerSecondSquared: TCLMeterPerSecondSquaredQty;
   end;
 
+  TCLReciprocalMeterHelper = record helper for TCLReciprocalMeterQty
+    function dot(AValue: TCLKilogramSquareMeterPerSecondQty): TCLKilogramMeterPerSecondQty;
+    function dot(AValue: TCLNewtonMeterQty): TCLNewtonQty;
+    function dot(AValue: TCLCubicMeterQty): TCLSquareMeterQty;
+    function dot(AValue: TCLSquareMeterQty): TCLMeterQty;
+    function wedge(AValue: TCLMeterPerSecondQty): TCLRadianPerSecondQty;
+  end;
+
   TCLRadianPerSecondHelper = record helper for TCLRadianPerSecondQty
     function dot(AValue: TCLMeterQty): TCLMeterPerSecondQty;
-    function Rdot(AValue: TCLMeterPerSecondQty): TCLMeterQty;
-    function dotR(AValue: TCLRadianQty): THertzQty;
-    function Rdot(AValue: TCLRadianQty): TSecondQty;
+    function dot(AValue: TCLReciprocalRadianQty): THertzQty;
+    function Reciprocal: TCLSecondPerRadianQty;
     function SquaredNorm: TSteradianPerSecondSquaredQty;
     function Norm: TRadianPerSecondQty;
   end;
@@ -6211,12 +6517,31 @@ type
   end;
 
   TCLKilogramMeterPerSecondHelper = record helper for TCLKilogramMeterPerSecondQty
-    function Rdot(AValue: TCLKilogramSquareMeterPerSecondQty): TCLMeterQty;
     function dot(AValue: TCLMeterPerSecondQty): TJouleQty;
+    function Reciprocal: TCLSecondPerKilogramPerMeterQty;
     function wedge(AValue: TCLMeterQty): TCLKilogramSquareMeterPerSecondQty;
     function ToCLNewtonSecond: TCLNewtonSecondQty;
     function SquaredNorm: TSquareKilogramSquareMeterPerSquareSecondQty;
     function Norm: TKilogramMeterPerSecondQty;
+  end;
+
+  TCLKilogramPerMeterHelper = record helper for TCLKilogramPerMeterQty
+    function dot(AValue: TCLSquareMeterPerSquareSecondQty): TCLNewtonQty;
+  end;
+
+  TCLSquareMeterPerSquareSecondHelper = record helper for TCLSquareMeterPerSquareSecondQty
+    function dot(AValue: TCLKilogramPerMeterQty): TCLNewtonQty;
+  end;
+
+  TCLNewtonHelper = record helper for TCLNewtonQty
+    function dot(AValue: TCLReciprocalPascalQty): TCLSquareMeterQty;
+    function dot(AValue: TCLMeterPerSecondQty): TWattQty;
+    function dot(AValue: TCLMeterQty): TJouleQty;
+    function dot(AValue: TCLMeterPerVoltQty): TCoulombQty;
+    function Reciprocal: TCLReciprocalNewtonQty;
+    function wedge(AValue: TCLReciprocalSquareMeterQty): TCLPascalQty;
+    function wedge(AValue: TCLMeterQty): TCLNewtonMeterQty;
+    function Norm: TNewtonQty;
   end;
 
   TCLNewtonSecondHelper = record helper for TCLNewtonSecondQty
@@ -6224,27 +6549,34 @@ type
   end;
 
   TCLKilogramMeterHelper = record helper for TCLKilogramMeterQty
+    function Reciprocal: TCLReciprocalKilogramMeterQty;
     function wedge(AValue: TCLMeterQty): TCLKilogramSquareMeterQty;
   end;
 
-  TCLNewtonHelper = record helper for TCLNewtonQty
-    function dotR(AValue: TCLPascalQty): TCLSquareMeterQty;
-    function Rdot(AValue: TCLNewtonMeterQty): TCLMeterQty;
-    function dot(AValue: TCLMeterPerSecondQty): TWattQty;
-    function dot(AValue: TCLMeterQty): TJouleQty;
-    function dotR(AValue: TCLVoltPerMeterQty): TCoulombQty;
-    function wedgeR(AValue: TCLSquareMeterQty): TCLPascalQty;
-    function wedge(AValue: TCLMeterQty): TCLNewtonMeterQty;
+  TCLKilogramSquareMeterHelper = record helper for TCLKilogramSquareMeterQty
+    function dot(AValue: TCLReciprocalKilogramMeterQty): TCLMeterQty;
+    function Norm: TKilogramSquareMeterQty;
+  end;
+
+  TCLReciprocalSquareMeterHelper = record helper for TCLReciprocalSquareMeterQty
+    function dot(AValue: TCLCubicMeterQty): TCLMeterQty;
+    function wedge(AValue: TCLDualTeslaQty): TCLWeberQty;
+    function wedge(AValue: TCLNewtonQty): TCLPascalQty;
   end;
 
   TCLPascalHelper = record helper for TCLPascalQty
     function dot(AValue: TCLSquareMeterQty): TCLNewtonQty;
-    function Rdot(AValue: TCLNewtonQty): TCLSquareMeterQty;
+    function Reciprocal: TCLReciprocalPascalQty;
+    function Dual: TPascalQty;
     function Norm: TPascalQty;
   end;
 
   TCLOhmHelper = record helper for TCLOhmQty
     function Norm: TOhmQty;
+  end;
+
+  TCLSiemensHelper = record helper for TCLSiemensQty
+    function Norm: TSiemensQty;
   end;
 
   TCLVoltHelper = record helper for TCLVoltQty
@@ -6255,34 +6587,69 @@ type
     function Norm: TWattQty;
   end;
 
+  TCLDualTeslaHelper = record helper for TCLDualTeslaQty
+    function dot(AValue: TCLReciprocalWeberQty): TCLSquareMeterQty;
+    function wedge(AValue: TCLReciprocalSquareMeterQty): TCLWeberQty;
+    function Dual: TCLTeslaQty;
+  end;
+
   TCLTeslaHelper = record helper for TCLTeslaQty
-    function DdotR(AValue: TCLWeberQty): TCLSquareMeterQty;
-    function DwedgeR(AValue: TCLSquareMeterQty): TCLWeberQty;
+    function Dual: TCLDualTeslaQty;
     function Norm: TTeslaQty;
   end;
 
   TCLWeberHelper = record helper for TCLWeberQty
-    function dotD(AValue: TCLSquareMeterQty): TCLTeslaQty;
-    function RdotD(AValue: TCLTeslaQty): TCLSquareMeterQty;
+    function dot(AValue: TCLSquareMeterQty): TCLDualTeslaQty;
+    function Reciprocal: TCLReciprocalWeberQty;
+    function Dual: TWeberQty;
     function Norm: TWeberQty;
   end;
 
   TCLVoltPerMeterHelper = record helper for TCLVoltPerMeterQty
-    function Rdot(AValue: TCLNewtonQty): TCoulombQty;
+    function Reciprocal: TCLMeterPerVoltQty;
   end;
 
-  TCLKilogramSquareMeterHelper = record helper for TCLKilogramSquareMeterQty
-    function dotR(AValue: TCLMeterQty): TCLMeterQty;
+  TCLSecondPerRadianHelper = record helper for TCLSecondPerRadianQty
+    function dot(AValue: TCLMeterPerSecondQty): TCLMeterQty;
+    function dot(AValue: TCLRadianQty): TSecondQty;
+  end;
+
+  TCLReciprocalRadianHelper = record helper for TCLReciprocalRadianQty
+    function dot(AValue: TCLRadianPerSecondQty): THertzQty;
+  end;
+
+  TCLMeterPerVoltHelper = record helper for TCLMeterPerVoltQty
+    function dot(AValue: TCLNewtonQty): TCoulombQty;
+  end;
+
+  TCLReciprocalKilogramMeterHelper = record helper for TCLReciprocalKilogramMeterQty
+    function dot(AValue: TCLKilogramSquareMeterQty): TCLMeterQty;
   end;
 
   TCLKilogramSquareMeterPerSecondHelper = record helper for TCLKilogramSquareMeterPerSecondQty
-    function dotR(AValue: TCLMeterQty): TCLKilogramMeterPerSecondQty;
-    function dotR(AValue: TCLKilogramMeterPerSecondQty): TCLMeterQty;
+    function dot(AValue: TCLReciprocalMeterQty): TCLKilogramMeterPerSecondQty;
+    function dot(AValue: TCLSecondPerKilogramPerMeterQty): TCLMeterQty;
+  end;
+
+  TCLSecondPerKilogramPerMeterHelper = record helper for TCLSecondPerKilogramPerMeterQty
+    function dot(AValue: TCLKilogramSquareMeterPerSecondQty): TCLMeterQty;
   end;
 
   TCLNewtonMeterHelper = record helper for TCLNewtonMeterQty
-    function dotR(AValue: TCLMeterQty): TCLNewtonQty;
-    function dotR(AValue: TCLNewtonQty): TCLMeterQty;
+    function dot(AValue: TCLReciprocalMeterQty): TCLNewtonQty;
+    function dot(AValue: TCLReciprocalNewtonQty): TCLMeterQty;
+  end;
+
+  TCLReciprocalNewtonHelper = record helper for TCLReciprocalNewtonQty
+    function dot(AValue: TCLNewtonMeterQty): TCLMeterQty;
+  end;
+
+  TCLReciprocalPascalHelper = record helper for TCLReciprocalPascalQty
+    function dot(AValue: TCLNewtonQty): TCLSquareMeterQty;
+  end;
+
+  TCLReciprocalWeberHelper = record helper for TCLReciprocalWeberQty
+    function dot(AValue: TCLDualTeslaQty): TCLSquareMeterQty;
   end;
 
 { Power functions }
@@ -6474,7 +6841,7 @@ end;
 
 class operator TMeterQty.*(const ALeft: TVector; const ARight: TMeterQty): TCLMeterQty;
 begin
-  result.FValue := ALeft  * ARight.FValue;
+  result.FValue := ALeft * ARight.FValue;
 end;
 
 class operator TMeterQty./(const ALeft: TNewtonSquareMeterQty; const ARight: TMeterQty): TJouleQty;
@@ -6747,9 +7114,29 @@ end;
 {$DEFINE CEXPONENTS:=cSecondExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSecondQty}{$i adim.inc}
 
+class operator TSecondQty.*(const ALeft: TSecondQty; const ARight: TCLNewtonMeterQty): TCLKilogramSquareMeterPerSecondQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TSecondQty.*(const ALeft: TCLNewtonMeterQty; const ARight: TSecondQty): TCLKilogramSquareMeterPerSecondQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
 class operator TSecondQty./(const ALeft: TCLKilogramSquareMeterPerSecondQty; const ARight: TSecondQty): TCLNewtonMeterQty;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+class operator TSecondQty.*(const ALeft: TSecondQty; const ARight: TCLKilogramSquareMeterPerSecondQty): TCLKilogramSquareMeterQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TSecondQty.*(const ALeft: TCLKilogramSquareMeterPerSecondQty; const ARight: TSecondQty): TCLKilogramSquareMeterQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
 class operator TSecondQty./(const ALeft: TCLKilogramSquareMeterQty; const ARight: TSecondQty): TCLKilogramSquareMeterPerSecondQty;
@@ -6757,9 +7144,29 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+class operator TSecondQty.*(const ALeft: TSecondQty; const ARight: TCLNewtonQty): TCLKilogramMeterPerSecondQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TSecondQty.*(const ALeft: TCLNewtonQty; const ARight: TSecondQty): TCLKilogramMeterPerSecondQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
 class operator TSecondQty./(const ALeft: TCLKilogramMeterPerSecondQty; const ARight: TSecondQty): TCLNewtonQty;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+class operator TSecondQty.*(const ALeft: TSecondQty; const ARight: TCLKilogramMeterPerSecondQty): TCLKilogramMeterQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TSecondQty.*(const ALeft: TCLKilogramMeterPerSecondQty; const ARight: TSecondQty): TCLKilogramMeterQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
 class operator TSecondQty./(const ALeft: TCLKilogramMeterQty; const ARight: TSecondQty): TCLKilogramMeterPerSecondQty;
@@ -6767,9 +7174,29 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+class operator TSecondQty.*(const ALeft: TSecondQty; const ARight: TCLRadianPerSecondSquaredQty): TCLRadianPerSecondQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TSecondQty.*(const ALeft: TCLRadianPerSecondSquaredQty; const ARight: TSecondQty): TCLRadianPerSecondQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
 class operator TSecondQty./(const ALeft: TCLRadianPerSecondQty; const ARight: TSecondQty): TCLRadianPerSecondSquaredQty;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+class operator TSecondQty.*(const ALeft: TSecondQty; const ARight: TCLRadianPerSecondQty): TCLRadianQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TSecondQty.*(const ALeft: TCLRadianPerSecondQty; const ARight: TSecondQty): TCLRadianQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
 class operator TSecondQty./(const ALeft: TCLRadianQty; const ARight: TSecondQty): TCLRadianPerSecondQty;
@@ -6777,9 +7204,29 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+class operator TSecondQty.*(const ALeft: TSecondQty; const ARight: TCLMeterPerSecondSquaredQty): TCLMeterPerSecondQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TSecondQty.*(const ALeft: TCLMeterPerSecondSquaredQty; const ARight: TSecondQty): TCLMeterPerSecondQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
 class operator TSecondQty./(const ALeft: TCLMeterPerSecondQty; const ARight: TSecondQty): TCLMeterPerSecondSquaredQty;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+class operator TSecondQty.*(const ALeft: TSecondQty; const ARight: TCLMeterPerSecondQty): TCLMeterQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TSecondQty.*(const ALeft: TCLMeterPerSecondQty; const ARight: TSecondQty): TCLMeterQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
 class operator TSecondQty./(const ALeft: TCLMeterQty; const ARight: TSecondQty): TCLMeterPerSecondQty;
@@ -6814,7 +7261,7 @@ end;
 
 class operator TSecondQty./(const ALeft: double; const ARight: TSecondQty): THertzQty;
 begin
-  result.FValue := ALeft  / ARight.FValue;
+  result.FValue := ALeft / ARight.FValue;
 end;
 
 class operator TSecondQty./(const ALeft: TSquareSecondQty; const ARight: TSecondQty): TSecondQty;
@@ -6907,6 +7354,11 @@ end;
 {$DEFINE CEXPONENTS:=cHenryExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=THenryQty}{$i adim.inc}
 
+class operator THenryQty./(const ALeft: TCLOhmQty; const ARight: THenryQty): TCLRadianPerSecondQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
 class operator THenryQty.*(const ALeft: THenryQty; const ARight: TCLRadianPerSecondQty): TCLOhmQty;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -6933,7 +7385,7 @@ end;
 
 class operator TWattQty.*(const ALeft: TMultivector; const ARight: TWattQty): TCLWattQty;
 begin
-  result.FValue := ALeft  * ARight.FValue;
+  result.FValue := ALeft * ARight.FValue;
 end;
 
 class operator TWattQty./(const ALeft: TWattQty; const ARight: THertzQty): TJouleQty;
@@ -7021,7 +7473,7 @@ end;
 
 class operator TFaradPerMeterQty./(const ALeft: double; const ARight: TFaradPerMeterQty): TNewtonSquareMeterPerSquareCoulombQty;
 begin
-  result.FValue := ALeft  / ARight.FValue;
+  result.FValue := ALeft / ARight.FValue;
 end;
 
 class operator TFaradPerMeterQty.*(const ALeft: TFaradPerMeterQty; const ARight: TNewtonSquareMeterPerSquareCoulombQty): double;
@@ -7078,9 +7530,14 @@ end;
 {$DEFINE CEXPONENTS:=cKilogramExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKilogramQty}{$i adim.inc}
 
-class operator TKilogramQty./(const ALeft: TCLNewtonQty; const ARight: TKilogramQty): TCLMeterPerSecondSquaredQty;
+class operator TKilogramQty./(const ALeft: TCLKilogramSquareMeterQty; const ARight: TKilogramQty): TCLSquareMeterQty;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+class operator TKilogramQty.*(const ALeft: TCLSquareMeterQty; const ARight: TKilogramQty): TCLKilogramSquareMeterQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
 class operator TKilogramQty.*(const ALeft: TKilogramQty; const ARight: TCLSquareMeterQty): TCLKilogramSquareMeterQty;
@@ -7088,7 +7545,12 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-class operator TKilogramQty.*(const ALeft: TCLSquareMeterQty; const ARight: TKilogramQty): TCLKilogramSquareMeterQty;
+class operator TKilogramQty./(const ALeft: TCLNewtonQty; const ARight: TKilogramQty): TCLMeterPerSecondSquaredQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+class operator TKilogramQty.*(const ALeft: TCLMeterPerSecondSquaredQty; const ARight: TKilogramQty): TCLNewtonQty;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
@@ -7098,9 +7560,9 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-class operator TKilogramQty.*(const ALeft: TCLMeterPerSecondSquaredQty; const ARight: TKilogramQty): TCLNewtonQty;
+class operator TKilogramQty./(const ALeft: TCLKilogramMeterPerSecondQty; const ARight: TKilogramQty): TCLMeterPerSecondQty;
 begin
-  result.FValue := ALeft.FValue * ARight.FValue;
+  result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
 class operator TKilogramQty.*(const ALeft: TKilogramQty; const ARight: TCLMeterPerSecondQty): TCLKilogramMeterPerSecondQty;
@@ -7113,14 +7575,34 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-class operator TKilogramQty.*(const ALeft: TKilogramQty; const ARight: TCLMeterQty): TCLKilogramMeterQty;
+class operator TKilogramQty./(const ALeft: TKilogramQty; const ARight: TCLKilogramPerMeterQty): TCLMeterQty;
 begin
-  result.FValue := ALeft.FValue * ARight.FValue;
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+class operator TKilogramQty./(const ALeft: TKilogramQty; const ARight: TCLMeterQty): TCLKilogramPerMeterQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+class operator TKilogramQty./(const ALeft: TCLKilogramMeterQty; const ARight: TKilogramQty): TCLMeterQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
 class operator TKilogramQty.*(const ALeft: TCLMeterQty; const ARight: TKilogramQty): TCLKilogramMeterQty;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TKilogramQty.*(const ALeft: TKilogramQty; const ARight: TCLMeterQty): TCLKilogramMeterQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TKilogramQty.*(const ALeft: TMultivector; const ARight: TKilogramQty): TCLReservedKilogramQty;
+begin
+  result.FValue := ALeft * ARight.FValue;
 end;
 
 class operator TKilogramQty.*(const ALeft: TNewtonSquareMeterPerSquareKilogramQty; const ARight: TKilogramQty): TCubicMeterPerSquareSecondQty;
@@ -7429,7 +7911,12 @@ end;
 
 class operator TNewtonQty.*(const ALeft: TVector; const ARight: TNewtonQty): TCLNewtonQty;
 begin
-  result.FValue := ALeft  * ARight.FValue;
+  result.FValue := ALeft * ARight.FValue;
+end;
+
+class operator TNewtonQty.*(const ALeft: TMultivector; const ARight: TNewtonQty): TCLReservedNewtonQty;
+begin
+  result.FValue := ALeft * ARight.FValue;
 end;
 
 class operator TNewtonQty./(const ALeft: TNewtonSquareMeterQty; const ARight: TNewtonQty): TSquareMeterQty;
@@ -7728,7 +8215,7 @@ end;
 
 class operator TKelvinQty./(const ALeft: double; const ARight: TKelvinQty): TReciprocalKelvinQty;
 begin
-  result.FValue := ALeft  / ARight.FValue;
+  result.FValue := ALeft / ARight.FValue;
 end;
 
 class operator TKelvinQty./(const ALeft: TQuarticKelvinQty; const ARight: TKelvinQty): TCubicKelvinQty;
@@ -7863,7 +8350,7 @@ end;
 
 class operator TSquareSecondPerSquareMeterQty./(const ALeft: double; const ARight: TSquareSecondPerSquareMeterQty): TSquareMeterPerSquareSecondQty;
 begin
-  result.FValue := ALeft  / ARight.FValue;
+  result.FValue := ALeft / ARight.FValue;
 end;
 
 class operator TSquareSecondPerSquareMeterQty.*(const ALeft: TSquareSecondPerSquareMeterQty; const ARight: TSquareMeterPerSquareSecondQty): double;
@@ -7932,6 +8419,16 @@ end;
 {$DEFINE CEXPONENTS:=cRadianExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TRadianQty}{$i adim.inc}
 
+class operator TRadianQty.*(const ALeft: TRadianQty; const ARight: TCLNewtonMeterPerRadianQty): TCLNewtonMeterQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TRadianQty.*(const ALeft: TCLNewtonMeterPerRadianQty; const ARight: TRadianQty): TCLNewtonMeterQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
 class operator TRadianQty./(const ALeft: TCLNewtonMeterQty; const ARight: TRadianQty): TCLNewtonMeterPerRadianQty;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -7954,7 +8451,7 @@ end;
 
 class operator TRadianQty.*(const ALeft: TBivector; const ARight: TRadianQty): TCLRadianQty;
 begin
-  result.FValue := ALeft  * ARight.FValue;
+  result.FValue := ALeft * ARight.FValue;
 end;
 
 class operator TRadianQty./(const ALeft: TRadianQty; const ARight: TRadianPerMeterQty): TMeterQty;
@@ -8001,7 +8498,27 @@ end;
 
 class operator TTeslaQty.*(const ALeft: TBivector; const ARight: TTeslaQty): TCLTeslaQty;
 begin
-  result.FValue := ALeft  * ARight.FValue;
+  result.FValue := ALeft * ARight.FValue;
+end;
+
+class operator TTeslaQty.*(const ALeft: TTeslaQty; const ARight: TVersor3): TCLDualTeslaQty;
+begin
+  result.FValue := ALeft.FValue * ARight;
+end;
+
+class operator TTeslaQty.*(const ALeft: TTeslaQty; const ARight: TVersor2): TCLDualTeslaQty;
+begin
+  result.FValue := ALeft.FValue * ARight;
+end;
+
+class operator TTeslaQty.*(const ALeft: TTeslaQty; const ARight: TVersor1): TCLDualTeslaQty;
+begin
+  result.FValue := ALeft.FValue * ARight;
+end;
+
+class operator TTeslaQty.*(const ALeft: TVector; const ARight: TTeslaQty): TCLDualTeslaQty;
+begin
+  result.FValue := ALeft * ARight.FValue;
 end;
 
 class operator TTeslaQty./(const ALeft: TTeslaMeterQty; const ARight: TTeslaQty): TMeterQty;
@@ -8043,7 +8560,7 @@ end;
 
 class operator TVoltQty.*(const ALeft: TMultivector; const ARight: TVoltQty): TCLVoltQty;
 begin
-  result.FValue := ALeft  * ARight.FValue;
+  result.FValue := ALeft * ARight.FValue;
 end;
 
 class operator TVoltQty.*(const ALeft: TCoulombPerMoleQty; const ARight: TVoltQty): TJoulePerMoleQty;
@@ -8265,7 +8782,7 @@ end;
 
 class operator TCubicMeterQty.*(const ALeft: TTrivector; const ARight: TCubicMeterQty): TCLCubicMeterQty;
 begin
-  result.FValue := ALeft  * ARight.FValue;
+  result.FValue := ALeft * ARight.FValue;
 end;
 
 class operator TCubicMeterQty./(const ALeft: TSexticMeterQty; const ARight: TCubicMeterQty): TCubicMeterQty;
@@ -8314,7 +8831,7 @@ end;
 
 class operator TWeberQty.*(const ALeft: TTrivector; const ARight: TWeberQty): TCLWeberQty;
 begin
-  result.FValue := ALeft  * ARight.FValue;
+  result.FValue := ALeft * ARight.FValue;
 end;
 
 {$DEFINE CSYMBOL:=rsJoulePerRadianSymbol}
@@ -8437,7 +8954,7 @@ end;
 
 class operator TPascalQty.*(const ALeft: TTrivector; const ARight: TPascalQty): TCLPascalQty;
 begin
-  result.FValue := ALeft  * ARight.FValue;
+  result.FValue := ALeft * ARight.FValue;
 end;
 
 class operator TPascalQty./(const ALeft: TNewtonSquareMeterQty; const ARight: TPascalQty): TQuarticMeterQty;
@@ -8734,9 +9251,29 @@ end;
 {$DEFINE CEXPONENTS:=cSquareSecondExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareSecondQty}{$i adim.inc}
 
+class operator TSquareSecondQty.*(const ALeft: TSquareSecondQty; const ARight: TCLNewtonMeterQty): TCLKilogramSquareMeterQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TSquareSecondQty.*(const ALeft: TCLNewtonMeterQty; const ARight: TSquareSecondQty): TCLKilogramSquareMeterQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
 class operator TSquareSecondQty./(const ALeft: TCLKilogramSquareMeterQty; const ARight: TSquareSecondQty): TCLNewtonMeterQty;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+class operator TSquareSecondQty.*(const ALeft: TSquareSecondQty; const ARight: TCLNewtonQty): TCLKilogramMeterQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TSquareSecondQty.*(const ALeft: TCLNewtonQty; const ARight: TSquareSecondQty): TCLKilogramMeterQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
 class operator TSquareSecondQty./(const ALeft: TCLKilogramMeterQty; const ARight: TSquareSecondQty): TCLNewtonQty;
@@ -8744,9 +9281,44 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+class operator TSquareSecondQty.*(const ALeft: TSquareSecondQty; const ARight: TCLRadianPerSecondSquaredQty): TCLRadianQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TSquareSecondQty.*(const ALeft: TCLRadianPerSecondSquaredQty; const ARight: TSquareSecondQty): TCLRadianQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
 class operator TSquareSecondQty./(const ALeft: TCLRadianQty; const ARight: TSquareSecondQty): TCLRadianPerSecondSquaredQty;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+class operator TSquareSecondQty.*(const ALeft: TSquareSecondQty; const ARight: TCLSquareMeterPerSquareSecondQty): TCLSquareMeterQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TSquareSecondQty.*(const ALeft: TCLSquareMeterPerSquareSecondQty; const ARight: TSquareSecondQty): TCLSquareMeterQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TSquareSecondQty./(const ALeft: TCLSquareMeterQty; const ARight: TSquareSecondQty): TCLSquareMeterPerSquareSecondQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+class operator TSquareSecondQty.*(const ALeft: TSquareSecondQty; const ARight: TCLMeterPerSecondSquaredQty): TCLMeterQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TSquareSecondQty.*(const ALeft: TCLMeterPerSecondSquaredQty; const ARight: TSquareSecondQty): TCLMeterQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
 class operator TSquareSecondQty./(const ALeft: TCLMeterQty; const ARight: TSquareSecondQty): TCLMeterPerSecondSquaredQty;
@@ -9193,7 +9765,7 @@ end;
 
 class operator TReciprocalMoleQty./(const ALeft: double; const ARight: TReciprocalMoleQty): TMoleQty;
 begin
-  result.FValue := ALeft  / ARight.FValue;
+  result.FValue := ALeft / ARight.FValue;
 end;
 
 class operator TReciprocalMoleQty.*(const ALeft: TReciprocalMoleQty; const ARight: TMoleQty): double;
@@ -9222,7 +9794,7 @@ end;
 
 class operator TReciprocalMeterQty./(const ALeft: double; const ARight: TReciprocalMeterQty): TMeterQty;
 begin
-  result.FValue := ALeft  / ARight.FValue;
+  result.FValue := ALeft / ARight.FValue;
 end;
 
 class operator TReciprocalMeterQty.*(const ALeft: TReciprocalMeterQty; const ARight: TMeterQty): double;
@@ -9692,6 +10264,11 @@ end;
 {$DEFINE CEXPONENTS:=cSquareHertzExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareHertzQty}{$i adim.inc}
 
+class operator TSquareHertzQty./(const ALeft: TCLRadianPerSecondSquaredQty; const ARight: TSquareHertzQty): TCLRadianQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
 class operator TSquareHertzQty.*(const ALeft: TSquareHertzQty; const ARight: TCLRadianQty): TCLRadianPerSecondSquaredQty;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -9700,6 +10277,11 @@ end;
 class operator TSquareHertzQty.*(const ALeft: TCLRadianQty; const ARight: TSquareHertzQty): TCLRadianPerSecondSquaredQty;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TSquareHertzQty./(const ALeft: TCLMeterPerSecondSquaredQty; const ARight: TSquareHertzQty): TCLMeterQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
 class operator TSquareHertzQty.*(const ALeft: TSquareHertzQty; const ARight: TCLMeterQty): TCLMeterPerSecondSquaredQty;
@@ -9779,7 +10361,7 @@ end;
 
 class operator TSquareHertzQty./(const ALeft: double; const ARight: TSquareHertzQty): TSquareSecondQty;
 begin
-  result.FValue := ALeft  / ARight.FValue;
+  result.FValue := ALeft / ARight.FValue;
 end;
 
 class operator TSquareHertzQty.*(const ALeft: TSquareHertzQty; const ARight: TSquareSecondQty): double;
@@ -9799,14 +10381,9 @@ end;
 {$DEFINE CEXPONENTS:=cAmpereExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TAmpereQty}{$i adim.inc}
 
-class operator TAmpereQty./(const ALeft: TCLWeberQty; const ARight: TAmpereQty): THenryQty;
-begin
-  result.FValue := ALeft.FValue.Dual / ARight.FValue;
-end;
-
 class operator TAmpereQty.*(const ALeft: TMultivector; const ARight: TAmpereQty): TCLAmpereQty;
 begin
-  result.FValue := ALeft  * ARight.FValue;
+  result.FValue := ALeft * ARight.FValue;
 end;
 
 class operator TAmpereQty.*(const ALeft: THenryPerMeterQty; const ARight: TAmpereQty): TTeslaMeterQty;
@@ -9913,7 +10490,7 @@ end;
 
 class operator TSiemensQty.*(const ALeft: TMultivector; const ARight: TSiemensQty): TCLSiemensQty;
 begin
-  result.FValue := ALeft  * ARight.FValue;
+  result.FValue := ALeft * ARight.FValue;
 end;
 
 class operator TSiemensQty./(const ALeft: TAmpereQty; const ARight: TSiemensQty): TVoltQty;
@@ -10059,7 +10636,7 @@ end;
 
 class operator TSquareMeterQty.*(const ALeft: TBivector; const ARight: TSquareMeterQty): TCLSquareMeterQty;
 begin
-  result.FValue := ALeft  * ARight.FValue;
+  result.FValue := ALeft * ARight.FValue;
 end;
 
 class operator TSquareMeterQty./(const ALeft: TQuarticMeterQty; const ARight: TSquareMeterQty): TSquareMeterQty;
@@ -10184,7 +10761,7 @@ end;
 
 class operator TOhmQty.*(const ALeft: TMultivector; const ARight: TOhmQty): TCLOhmQty;
 begin
-  result.FValue := ALeft  * ARight.FValue;
+  result.FValue := ALeft * ARight.FValue;
 end;
 
 class operator TOhmQty./(const ALeft: TOhmMeterQty; const ARight: TOhmQty): TMeterQty;
@@ -10239,7 +10816,7 @@ end;
 
 class operator TOhmQty./(const ALeft: double; const ARight: TOhmQty): TSiemensQty;
 begin
-  result.FValue := ALeft  / ARight.FValue;
+  result.FValue := ALeft / ARight.FValue;
 end;
 
 class operator TOhmQty./(const ALeft: TSquareVoltQty; const ARight: TOhmQty): TWattQty;
@@ -10328,7 +10905,7 @@ end;
 
 class operator TKilogramPerCubicMeterQty./(const ALeft: double; const ARight: TKilogramPerCubicMeterQty): TCubicMeterPerKilogramQty;
 begin
-  result.FValue := ALeft  / ARight.FValue;
+  result.FValue := ALeft / ARight.FValue;
 end;
 
 class operator TKilogramPerCubicMeterQty.*(const ALeft: TSquareMeterPerSecondQty; const ARight: TKilogramPerCubicMeterQty): TPoiseuilleQty;
@@ -10420,14 +10997,24 @@ end;
 {$DEFINE CEXPONENTS:=cKilogramPerSecondExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKilogramPerSecondQty}{$i adim.inc}
 
-class operator TKilogramPerSecondQty.*(const ALeft: TKilogramPerSecondQty; const ARight: TCLMeterPerSecondQty): TCLNewtonQty;
+class operator TKilogramPerSecondQty./(const ALeft: TCLNewtonQty; const ARight: TKilogramPerSecondQty): TCLMeterPerSecondQty;
 begin
-  result.FValue := ALeft.FValue * ARight.FValue;
+  result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
 class operator TKilogramPerSecondQty.*(const ALeft: TCLMeterPerSecondQty; const ARight: TKilogramPerSecondQty): TCLNewtonQty;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TKilogramPerSecondQty.*(const ALeft: TKilogramPerSecondQty; const ARight: TCLMeterPerSecondQty): TCLNewtonQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TKilogramPerSecondQty./(const ALeft: TCLKilogramMeterPerSecondQty; const ARight: TKilogramPerSecondQty): TCLMeterQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
 class operator TKilogramPerSecondQty.*(const ALeft: TKilogramPerSecondQty; const ARight: TCLMeterQty): TCLKilogramMeterPerSecondQty;
@@ -10620,6 +11207,11 @@ end;
 {$DEFINE CPREFIXES:=cFaradPrefixes}
 {$DEFINE CEXPONENTS:=cFaradExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TFaradQty}{$i adim.inc}
+
+class operator TFaradQty./(const ALeft: TCLSiemensQty; const ARight: TFaradQty): TCLRadianPerSecondQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
 
 class operator TFaradQty.*(const ALeft: TFaradQty; const ARight: TCLRadianPerSecondQty): TCLSiemensQty;
 begin
@@ -11321,6 +11913,20 @@ end;
 {$DEFINE CFACTOR:=cElettronvoltSecondFactor}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TElettronvoltSecondQty}{$i adim.inc}
 
+{$DEFINE CSYMBOL:=rsCLReservedKilogramSymbol}
+{$DEFINE CSINGULARNAME:=rsCLReservedKilogramName}
+{$DEFINE CPLURALNAME:=rsCLReservedKilogramPluralName}
+{$DEFINE CPREFIXES:=cCLReservedKilogramPrefixes}
+{$DEFINE CEXPONENTS:=cCLReservedKilogramExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCLReservedKilogramQty}{$i adimMVEC.inc}
+
+{$DEFINE CSYMBOL:=rsCLReservedNewtonSymbol}
+{$DEFINE CSINGULARNAME:=rsCLReservedNewtonName}
+{$DEFINE CPLURALNAME:=rsCLReservedNewtonPluralName}
+{$DEFINE CPREFIXES:=cCLReservedNewtonPrefixes}
+{$DEFINE CEXPONENTS:=cCLReservedNewtonExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCLReservedNewtonQty}{$i adimMVEC.inc}
+
 {$DEFINE CSYMBOL:=rsCLMeterSymbol}
 {$DEFINE CSINGULARNAME:=rsCLMeterName}
 {$DEFINE CPLURALNAME:=rsCLMeterPluralName}
@@ -11481,6 +12087,13 @@ end;
 {$DEFINE CFACTOR:=cMeterPerHourPerSecondFactor}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCLMeterPerHourPerSecondQty}{$i adimVEC.inc}
 
+{$DEFINE CSYMBOL:=rsCLSquareMeterPerSquareSecondSymbol}
+{$DEFINE CSINGULARNAME:=rsCLSquareMeterPerSquareSecondName}
+{$DEFINE CPLURALNAME:=rsCLSquareMeterPerSquareSecondPluralName}
+{$DEFINE CPREFIXES:=cCLSquareMeterPerSquareSecondPrefixes}
+{$DEFINE CEXPONENTS:=cCLSquareMeterPerSquareSecondExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCLSquareMeterPerSquareSecondQty}{$i adimBVEC.inc}
+
 {$DEFINE CSYMBOL:=rsCLRadianPerSecondSymbol}
 {$DEFINE CSINGULARNAME:=rsCLRadianPerSecondName}
 {$DEFINE CPLURALNAME:=rsCLRadianPerSecondPluralName}
@@ -11501,6 +12114,13 @@ end;
 {$DEFINE CPREFIXES:=cCLKilogramMeterPrefixes}
 {$DEFINE CEXPONENTS:=cCLKilogramMeterExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCLKilogramMeterQty}{$i adimVEC.inc}
+
+{$DEFINE CSYMBOL:=rsCLKilogramPerMeterSymbol}
+{$DEFINE CSINGULARNAME:=rsCLKilogramPerMeterName}
+{$DEFINE CPLURALNAME:=rsCLKilogramPerMeterPluralName}
+{$DEFINE CPREFIXES:=cCLKilogramPerMeterPrefixes}
+{$DEFINE CEXPONENTS:=cCLKilogramPerMeterExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCLKilogramPerMeterQty}{$i adimVEC.inc}
 
 {$DEFINE CSYMBOL:=rsCLKilogramMeterPerSecondSymbol}
 {$DEFINE CSINGULARNAME:=rsCLKilogramMeterPerSecondName}
@@ -11571,7 +12191,7 @@ end;
 
 class operator TCLOhmQty./(const ALeft: double; const ARight: TCLOhmQty): TCLSiemensQty;
 begin
-  result.FValue := ALeft  / ARight.FValue;
+  result.FValue := ALeft / ARight.FValue;
 end;
 
 class operator TCLOhmQty.*(const ALeft: TCLSiemensQty; const ARight: TCLOhmQty): double;
@@ -11612,6 +12232,13 @@ end;
 {$DEFINE CEXPONENTS:=cCLVoltPerMeterExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCLVoltPerMeterQty}{$i adimVEC.inc}
 
+{$DEFINE CSYMBOL:=rsCLDualTeslaSymbol}
+{$DEFINE CSINGULARNAME:=rsCLDualTeslaName}
+{$DEFINE CPLURALNAME:=rsCLDualTeslaPluralName}
+{$DEFINE CPREFIXES:=cCLDualTeslaPrefixes}
+{$DEFINE CEXPONENTS:=cCLDualTeslaExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCLDualTeslaQty}{$i adimVEC.inc}
+
 {$DEFINE CSYMBOL:=rsCLTeslaSymbol}
 {$DEFINE CSINGULARNAME:=rsCLTeslaName}
 {$DEFINE CPLURALNAME:=rsCLTeslaPluralName}
@@ -11625,6 +12252,76 @@ end;
 {$DEFINE CPREFIXES:=cCLWeberPrefixes}
 {$DEFINE CEXPONENTS:=cCLWeberExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCLWeberQty}{$i adimTVEC.inc}
+
+{$DEFINE CSYMBOL:=rsCLReciprocalMeterSymbol}
+{$DEFINE CSINGULARNAME:=rsCLReciprocalMeterName}
+{$DEFINE CPLURALNAME:=rsCLReciprocalMeterPluralName}
+{$DEFINE CPREFIXES:=cCLReciprocalMeterPrefixes}
+{$DEFINE CEXPONENTS:=cCLReciprocalMeterExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCLReciprocalMeterQty}{$i adimVEC.inc}
+
+{$DEFINE CSYMBOL:=rsCLReciprocalSquareMeterSymbol}
+{$DEFINE CSINGULARNAME:=rsCLReciprocalSquareMeterName}
+{$DEFINE CPLURALNAME:=rsCLReciprocalSquareMeterPluralName}
+{$DEFINE CPREFIXES:=cCLReciprocalSquareMeterPrefixes}
+{$DEFINE CEXPONENTS:=cCLReciprocalSquareMeterExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCLReciprocalSquareMeterQty}{$i adimBVEC.inc}
+
+{$DEFINE CSYMBOL:=rsCLSecondPerRadianSymbol}
+{$DEFINE CSINGULARNAME:=rsCLSecondPerRadianName}
+{$DEFINE CPLURALNAME:=rsCLSecondPerRadianPluralName}
+{$DEFINE CPREFIXES:=cCLSecondPerRadianPrefixes}
+{$DEFINE CEXPONENTS:=cCLSecondPerRadianExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCLSecondPerRadianQty}{$i adimBVEC.inc}
+
+{$DEFINE CSYMBOL:=rsCLReciprocalRadianSymbol}
+{$DEFINE CSINGULARNAME:=rsCLReciprocalRadianName}
+{$DEFINE CPLURALNAME:=rsCLReciprocalRadianPluralName}
+{$DEFINE CPREFIXES:=cCLReciprocalRadianPrefixes}
+{$DEFINE CEXPONENTS:=cCLReciprocalRadianExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCLReciprocalRadianQty}{$i adimBVEC.inc}
+
+{$DEFINE CSYMBOL:=rsCLMeterPerVoltSymbol}
+{$DEFINE CSINGULARNAME:=rsCLMeterPerVoltName}
+{$DEFINE CPLURALNAME:=rsCLMeterPerVoltPluralName}
+{$DEFINE CPREFIXES:=cCLMeterPerVoltPrefixes}
+{$DEFINE CEXPONENTS:=cCLMeterPerVoltExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCLMeterPerVoltQty}{$i adimVEC.inc}
+
+{$DEFINE CSYMBOL:=rsCLReciprocalKilogramMeterSymbol}
+{$DEFINE CSINGULARNAME:=rsCLReciprocalKilogramMeterName}
+{$DEFINE CPLURALNAME:=rsCLReciprocalKilogramMeterPluralName}
+{$DEFINE CPREFIXES:=cCLReciprocalKilogramMeterPrefixes}
+{$DEFINE CEXPONENTS:=cCLReciprocalKilogramMeterExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCLReciprocalKilogramMeterQty}{$i adimVEC.inc}
+
+{$DEFINE CSYMBOL:=rsCLSecondPerKilogramPerMeterSymbol}
+{$DEFINE CSINGULARNAME:=rsCLSecondPerKilogramPerMeterName}
+{$DEFINE CPLURALNAME:=rsCLSecondPerKilogramPerMeterPluralName}
+{$DEFINE CPREFIXES:=cCLSecondPerKilogramPerMeterPrefixes}
+{$DEFINE CEXPONENTS:=cCLSecondPerKilogramPerMeterExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCLSecondPerKilogramPerMeterQty}{$i adimVEC.inc}
+
+{$DEFINE CSYMBOL:=rsCLReciprocalNewtonSymbol}
+{$DEFINE CSINGULARNAME:=rsCLReciprocalNewtonName}
+{$DEFINE CPLURALNAME:=rsCLReciprocalNewtonPluralName}
+{$DEFINE CPREFIXES:=cCLReciprocalNewtonPrefixes}
+{$DEFINE CEXPONENTS:=cCLReciprocalNewtonExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCLReciprocalNewtonQty}{$i adimVEC.inc}
+
+{$DEFINE CSYMBOL:=rsCLReciprocalPascalSymbol}
+{$DEFINE CSINGULARNAME:=rsCLReciprocalPascalName}
+{$DEFINE CPLURALNAME:=rsCLReciprocalPascalPluralName}
+{$DEFINE CPREFIXES:=cCLReciprocalPascalPrefixes}
+{$DEFINE CEXPONENTS:=cCLReciprocalPascalExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCLReciprocalPascalQty}{$i adimTVEC.inc}
+
+{$DEFINE CSYMBOL:=rsCLReciprocalWeberSymbol}
+{$DEFINE CSINGULARNAME:=rsCLReciprocalWeberName}
+{$DEFINE CPLURALNAME:=rsCLReciprocalWeberPluralName}
+{$DEFINE CPREFIXES:=cCLReciprocalWeberPrefixes}
+{$DEFINE CEXPONENTS:=cCLReciprocalWeberExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCLReciprocalWeberQty}{$i adimTVEC.inc}
 
 class operator TRadianPerSecondQty.:=(const AQuantity: TRadianPerSecondQty): THertzQty;
 begin
@@ -11695,12 +12392,12 @@ end;
 
 operator /(const ALeft: double; const ARight: THertzQty): TSecondQty;
 begin
-  result.FValue := ALeft  / ARight.FValue;
+  result.FValue := ALeft / ARight.FValue;
 end;
 
 operator /(const ALeft: double; const ARight: TSquareSecondQty): TSquareHertzQty;
 begin
-  result.FValue := ALeft  / ARight.FValue;
+  result.FValue := ALeft / ARight.FValue;
 end;
 
 operator /(const ALeft: THertzQty; const ARight: TSecondQty): TSquareHertzQty;
@@ -12060,7 +12757,7 @@ end;
 
 operator /(const ALeft: double; const ARight: TSiemensQty): TOhmQty;
 begin
-  result.FValue := ALeft  / ARight.FValue;
+  result.FValue := ALeft / ARight.FValue;
 end;
 
 operator *(const ALeft: TSecondQty; const ARight: TSiemensQty): TFaradQty;
@@ -12260,7 +12957,7 @@ end;
 
 operator /(const ALeft: double; const ARight: TCubicMeterPerKilogramQty): TKilogramPerCubicMeterQty;
 begin
-  result.FValue := ALeft  / ARight.FValue;
+  result.FValue := ALeft / ARight.FValue;
 end;
 
 operator /(const ALeft: TKilogramSquareSecondQty; const ARight: TSquareSecondQty): TKilogramQty;
@@ -12360,7 +13057,7 @@ end;
 
 operator /(const ALeft: double; const ARight: TReciprocalKelvinQty): TKelvinQty;
 begin
-  result.FValue := ALeft  / ARight.FValue;
+  result.FValue := ALeft / ARight.FValue;
 end;
 
 operator /(const ALeft: TKilogramKelvinQty; const ARight: TKilogramQty): TKelvinQty;
@@ -12630,7 +13327,7 @@ end;
 
 operator /(const ALeft: double; const ARight: TNewtonSquareMeterPerSquareCoulombQty): TFaradPerMeterQty;
 begin
-  result.FValue := ALeft  / ARight.FValue;
+  result.FValue := ALeft / ARight.FValue;
 end;
 
 operator *(const ALeft: TMeterQty; const ARight: TAmperePerMeterQty): TAmpereQty;
@@ -12715,7 +13412,7 @@ end;
 
 operator /(const ALeft: double; const ARight: TMeterQty): TReciprocalMeterQty;
 begin
-  result.FValue := ALeft  / ARight.FValue;
+  result.FValue := ALeft / ARight.FValue;
 end;
 
 operator /(const ALeft: TSquareSecondQty; const ARight: TSquareMeterQty): TSquareSecondPerSquareMeterQty;
@@ -12725,7 +13422,7 @@ end;
 
 operator /(const ALeft: double; const ARight: TSquareMeterPerSquareSecondQty): TSquareSecondPerSquareMeterQty;
 begin
-  result.FValue := ALeft  / ARight.FValue;
+  result.FValue := ALeft / ARight.FValue;
 end;
 
 operator /(const ALeft: TSquareSecondPerSquareMeterQty; const ARight: TFaradPerMeterQty): THenryPerMeterQty;
@@ -12740,7 +13437,7 @@ end;
 
 operator /(const ALeft: double; const ARight: TMoleQty): TReciprocalMoleQty;
 begin
-  result.FValue := ALeft  / ARight.FValue;
+  result.FValue := ALeft / ARight.FValue;
 end;
 
 operator /(const ALeft: TAmpereQty; const ARight: TSquareMeterQty): TAmperePerSquareMeterQty;
@@ -12833,6 +13530,11 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+operator /(const ALeft: TCLMeterQty; const ARight: TCLMeterPerSecondQty): TSecondQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
 operator *(const ALeft: TCLMeterQty; const ARight: THertzQty): TCLMeterPerSecondQty;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -12841,6 +13543,41 @@ end;
 operator *(const ALeft: THertzQty; const ARight: TCLMeterQty): TCLMeterPerSecondQty;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator /(const ALeft: TCLMeterPerSecondQty; const ARight: TCLMeterQty): THertzQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TCLMeterPerSecondQty; const ARight: THertzQty): TCLMeterQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TCLMeterPerSecondQty; const ARight: TCLMeterPerSecondSquaredQty): TSecondQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TCLMeterQty; const ARight: TCLMeterPerSecondSquaredQty): TSquareSecondQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TCLMeterPerSecondSquaredQty; const ARight: TCLMeterQty): TSquareHertzQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TCLSquareMeterQty; const ARight: TCLSquareMeterPerSquareSecondQty): TSquareSecondQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TCLRadianQty; const ARight: TCLRadianPerSecondQty): TSecondQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
 operator *(const ALeft: TCLRadianQty; const ARight: THertzQty): TCLRadianPerSecondQty;
@@ -12853,6 +13590,111 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
+operator /(const ALeft: TCLRadianPerSecondQty; const ARight: TCLRadianQty): THertzQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TCLRadianPerSecondQty; const ARight: THertzQty): TCLRadianQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TCLRadianPerSecondQty; const ARight: TCLRadianPerSecondSquaredQty): TSecondQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator *(const ALeft: TCLRadianPerSecondQty; const ARight: THertzQty): TCLRadianPerSecondSquaredQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator *(const ALeft: THertzQty; const ARight: TCLRadianPerSecondQty): TCLRadianPerSecondSquaredQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator /(const ALeft: TCLRadianPerSecondSquaredQty; const ARight: TCLRadianPerSecondQty): THertzQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TCLRadianPerSecondSquaredQty; const ARight: THertzQty): TCLRadianPerSecondQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TCLRadianQty; const ARight: TCLRadianPerSecondSquaredQty): TSquareSecondQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TCLRadianPerSecondSquaredQty; const ARight: TCLRadianQty): TSquareHertzQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TCLKilogramMeterQty; const ARight: TCLMeterQty): TKilogramQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator *(const ALeft: TCLKilogramPerMeterQty; const ARight: TCLMeterQty): TKilogramQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator *(const ALeft: TCLMeterQty; const ARight: TCLKilogramPerMeterQty): TKilogramQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator /(const ALeft: TCLKilogramMeterQty; const ARight: TCLKilogramMeterPerSecondQty): TSecondQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TCLKilogramMeterPerSecondQty; const ARight: TCLMeterPerSecondQty): TKilogramQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TCLKilogramMeterPerSecondQty; const ARight: TCLMeterQty): TKilogramPerSecondQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TCLNewtonQty; const ARight: TCLMeterPerSecondSquaredQty): TKilogramQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TCLNewtonQty; const ARight: TCLMeterPerSecondQty): TKilogramPerSecondQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TCLKilogramMeterPerSecondQty; const ARight: TCLNewtonQty): TSecondQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TCLKilogramMeterQty; const ARight: TCLNewtonQty): TSquareSecondQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TCLKilogramSquareMeterQty; const ARight: TCLSquareMeterQty): TKilogramQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TCLKilogramSquareMeterQty; const ARight: TCLKilogramSquareMeterPerSecondQty): TSecondQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
 operator *(const ALeft: TCLKilogramSquareMeterQty; const ARight: THertzQty): TCLKilogramSquareMeterPerSecondQty;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -12863,9 +13705,44 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
+operator /(const ALeft: TCLKilogramSquareMeterPerSecondQty; const ARight: TCLKilogramSquareMeterQty): THertzQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TCLKilogramSquareMeterPerSecondQty; const ARight: THertzQty): TCLKilogramSquareMeterQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TCLKilogramSquareMeterQty; const ARight: TCLNewtonMeterQty): TSquareSecondQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TCLKilogramSquareMeterPerSecondQty; const ARight: TCLNewtonMeterQty): TSecondQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TCLNewtonMeterQty; const ARight: TCLNewtonMeterPerRadianQty): TRadianQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TCLOhmQty; const ARight: TCLRadianPerSecondQty): THenryQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
 operator /(const ALeft: double; const ARight: TCLSiemensQty): TCLOhmQty;
 begin
-  result.FValue := ALeft  / ARight.FValue;
+  result.FValue := ALeft / ARight.FValue;
+end;
+
+operator /(const ALeft: TCLSiemensQty; const ARight: TCLRadianPerSecondQty): TFaradQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
 operator *(const ALeft: TCLSiemensQty; const ARight: TCLVoltQty): TCLAmpereQty;
@@ -12884,6 +13761,11 @@ begin
 end;
 
 operator /(const ALeft: TCLWattQty; const ARight: TCLVoltQty): TCLAmpereQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TCLNewtonQty; const ARight: TCLVoltPerMeterQty): TCoulombQty;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
@@ -13678,6 +14560,16 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+class operator TKilogramUnit.*(const ALeft: TMultivector; const ARight: TKilogramUnit): TCLReservedKilogramQty;
+begin
+  result.FValue := ALeft;
+end;
+
+class operator TNewtonUnit.*(const ALeft: TMultivector; const ARight: TNewtonUnit): TCLReservedNewtonQty;
+begin
+  result.FValue := ALeft;
+end;
+
 class operator TMeterUnit.*(const ALeft: TVector; const ARight: TMeterUnit): TCLMeterQty;
 begin
   result.FValue := ALeft;
@@ -13708,17 +14600,12 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
-class operator THertzUnit.*(const ALeft: TCLMeterQty; const ARight: THertzUnit): TCLMeterPerSecondQty;
-begin
-  result.FValue := ALeft.FValue;
-end;
-
-class operator TSecondUnit./(const ALeft: TCLMeterPerSecondQty; const ARight: TSecondUnit): TCLMeterPerSecondSquaredQty;
-begin
-  result.FValue := ALeft.FValue;
-end;
-
 class operator TSquareSecondUnit./(const ALeft: TCLMeterQty; const ARight: TSquareSecondUnit): TCLMeterPerSecondSquaredQty;
+begin
+  result.FValue := ALeft.FValue;
+end;
+
+class operator TSquareSecondUnit./(const ALeft: TCLSquareMeterQty; const ARight: TSquareSecondUnit): TCLSquareMeterPerSquareSecondQty;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -13733,11 +14620,6 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
-class operator TSecondUnit./(const ALeft: TCLRadianPerSecondQty; const ARight: TSecondUnit): TCLRadianPerSecondSquaredQty;
-begin
-  result.FValue := ALeft.FValue;
-end;
-
 class operator TSquareSecondUnit./(const ALeft: TCLRadianQty; const ARight: TSquareSecondUnit): TCLRadianPerSecondSquaredQty;
 begin
   result.FValue := ALeft.FValue;
@@ -13748,7 +14630,12 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
-class operator TKilogramUnit.*(const ALeft: TCLMeterQty; const ARight: TKilogramUnit): TCLKilogramMeterQty;
+class operator TMeterUnit.*(const ALeft: TCLReservedKilogramQty; const ARight: TMeterUnit): TCLKilogramMeterQty;
+begin
+  result.FValue := ALeft.FValue;
+end;
+
+class operator TMeterUnit./(const ALeft: TCLReservedKilogramQty; const ARight: TMeterUnit): TCLKilogramPerMeterQty;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -13758,24 +14645,9 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
-class operator TKilogramUnit.*(const ALeft: TCLMeterPerSecondQty; const ARight: TKilogramUnit): TCLKilogramMeterPerSecondQty;
-begin
-  result.FValue := ALeft.FValue;
-end;
-
-class operator TKilogramPerSecondUnit.*(const ALeft: TCLMeterQty; const ARight: TKilogramPerSecondUnit): TCLKilogramMeterPerSecondQty;
-begin
-  result.FValue := ALeft.FValue;
-end;
-
 class operator TNewtonUnit.*(const ALeft: TVector; const ARight: TNewtonUnit): TCLNewtonQty;
 begin
   result.FValue := ALeft;
-end;
-
-class operator TKilogramUnit.*(const ALeft: TCLMeterPerSecondSquaredQty; const ARight: TKilogramUnit): TCLNewtonQty;
-begin
-  result.FValue := ALeft.FValue;
 end;
 
 class operator TSquareSecondUnit./(const ALeft: TCLKilogramMeterQty; const ARight: TSquareSecondUnit): TCLNewtonQty;
@@ -13783,7 +14655,7 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
-class operator TKilogramUnit.*(const ALeft: TCLSquareMeterQty; const ARight: TKilogramUnit): TCLKilogramSquareMeterQty;
+class operator TSquareMeterUnit.*(const ALeft: TCLReservedKilogramQty; const ARight: TSquareMeterUnit): TCLKilogramSquareMeterQty;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -13793,27 +14665,12 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
-class operator THertzUnit.*(const ALeft: TCLKilogramSquareMeterQty; const ARight: THertzUnit): TCLKilogramSquareMeterPerSecondQty;
+class operator TMeterUnit.*(const ALeft: TCLReservedNewtonQty; const ARight: TMeterUnit): TCLNewtonMeterQty;
 begin
   result.FValue := ALeft.FValue;
-end;
-
-class operator TMeterUnit.*(const ALeft: TCLNewtonQty; const ARight: TMeterUnit): TCLNewtonMeterQty;
-begin
-  result.FValue := ALeft.FValue.Dual;
-end;
-
-class operator TNewtonUnit.*(const ALeft: TCLMeterQty; const ARight: TNewtonUnit): TCLNewtonMeterQty;
-begin
-  result.FValue := ALeft.FValue.Dual;
 end;
 
 class operator TSquareSecondUnit./(const ALeft: TCLKilogramSquareMeterQty; const ARight: TSquareSecondUnit): TCLNewtonMeterQty;
-begin
-  result.FValue := ALeft.FValue;
-end;
-
-class operator TSecondUnit./(const ALeft: TCLKilogramSquareMeterPerSecondQty; const ARight: TSecondUnit): TCLNewtonMeterQty;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -13826,6 +14683,11 @@ end;
 class operator TPascalUnit.*(const ALeft: TTrivector; const ARight: TPascalUnit): TCLPascalQty;
 begin
   result.FValue := ALeft;
+end;
+
+class operator TSquareMeterUnit./(const ALeft: TCLReservedNewtonQty; const ARight: TSquareMeterUnit): TCLPascalQty;
+begin
+  result.FValue := ALeft.FValue;
 end;
 
 class operator TOhmUnit.*(const ALeft: TMultivector; const ARight: TOhmUnit): TCLOhmQty;
@@ -13851,6 +14713,11 @@ end;
 class operator TCoulombUnit./(const ALeft: TCLNewtonQty; const ARight: TCoulombUnit): TCLVoltPerMeterQty;
 begin
   result.FValue := ALeft.FValue;
+end;
+
+class operator TTeslaUnit.*(const ALeft: TVector; const ARight: TTeslaUnit): TCLDualTeslaQty;
+begin
+  result.FValue := ALeft;
 end;
 
 class operator TTeslaUnit.*(const ALeft: TBivector; const ARight: TTeslaUnit): TCLTeslaQty;
@@ -14307,7 +15174,12 @@ end;
 
 function TCLMeterHelper.wedge(AValue: TCLMeterQty): TCLSquareMeterQty;
 begin
-  result.FValue := (FValue).wedge(AValue.FValue);
+  result.FValue := FValue.wedge(AValue.FValue);
+end;
+
+function TCLSquareMeterHelper.Norm: TSquareMeterQty;
+begin
+  result.FValue := FValue.Norm;
 end;
 
 function TCLSquareMeterHelper.SquaredNorm: TQuarticMeterQty;
@@ -14315,14 +15187,14 @@ begin
   result.FValue := FValue.SquaredNorm;
 end;
 
-function TCLMeterHelper.wedge(AValue: TCLSquareMeterQty): TCLCubicMeterQty;
-begin
-  result.FValue := (FValue).wedge(AValue.FValue);
-end;
-
 function TCLSquareMeterHelper.wedge(AValue: TCLMeterQty): TCLCubicMeterQty;
 begin
-  result.FValue := (FValue).wedge(AValue.FValue);
+  result.FValue := FValue.wedge(AValue.FValue);
+end;
+
+function TCLMeterHelper.wedge(AValue: TCLSquareMeterQty): TCLCubicMeterQty;
+begin
+  result.FValue := FValue.wedge(AValue.FValue);
 end;
 
 function TCLCubicMeterHelper.Norm: TCubicMeterQty;
@@ -14350,6 +15222,11 @@ begin
   result.FValue := FValue.Norm;
 end;
 
+function TCLAmpereHelper.SquaredNorm: TSquareAmpereQty;
+begin
+  result.FValue := FValue.SquaredNorm;
+end;
+
 function TCLMeterPerSecondHelper.Norm: TMeterPerSecondQty;
 begin
   result.FValue := FValue.Norm;
@@ -14375,14 +15252,14 @@ begin
   result.FValue := FValue;
 end;
 
-function TCLMeterHelper.Rwedge(AValue: TCLMeterPerSecondQty): TCLRadianPerSecondQty;
+function TCLReciprocalMeterHelper.wedge(AValue: TCLMeterPerSecondQty): TCLRadianPerSecondQty;
 begin
-  result.FValue := (FValue/FValue.SquaredNorm).wedge(AValue.FValue);
+  result.FValue := FValue.wedge(AValue.FValue);
 end;
 
-function TCLMeterPerSecondHelper.wedgeR(AValue: TCLMeterQty): TCLRadianPerSecondQty;
+function TCLMeterPerSecondHelper.wedge(AValue: TCLReciprocalMeterQty): TCLRadianPerSecondQty;
 begin
-  result.FValue := (FValue).wedge(AValue.FValue/AValue.FValue.SquaredNorm);
+  result.FValue := FValue.wedge(AValue.FValue);
 end;
 
 function TCLRadianPerSecondHelper.Norm: TRadianPerSecondQty;
@@ -14410,6 +15287,21 @@ begin
   result.FValue := FValue.SquaredNorm;
 end;
 
+function TCLKilogramPerMeterHelper.dot(AValue: TCLSquareMeterPerSquareSecondQty): TCLNewtonQty;
+begin
+  result.FValue := FValue.dot(AValue.FValue);
+end;
+
+function TCLSquareMeterPerSquareSecondHelper.dot(AValue: TCLKilogramPerMeterQty): TCLNewtonQty;
+begin
+  result.FValue := FValue.dot(AValue.FValue);
+end;
+
+function TCLNewtonHelper.Norm: TNewtonQty;
+begin
+  result.FValue := FValue.Norm;
+end;
+
 function TCLKilogramMeterPerSecondHelper.ToCLNewtonSecond: TCLNewtonSecondQty;
 begin
   result.FValue := FValue;
@@ -14422,42 +15314,47 @@ end;
 
 function TCLKilogramMeterHelper.wedge(AValue: TCLMeterQty): TCLKilogramSquareMeterQty;
 begin
-  result.FValue := (FValue).wedge(AValue.FValue);
+  result.FValue := FValue.wedge(AValue.FValue);
 end;
 
 function TCLMeterHelper.wedge(AValue: TCLKilogramMeterQty): TCLKilogramSquareMeterQty;
 begin
-  result.FValue := (FValue).wedge(AValue.FValue);
+  result.FValue := FValue.wedge(AValue.FValue);
+end;
+
+function TCLKilogramSquareMeterHelper.Norm: TKilogramSquareMeterQty;
+begin
+  result.FValue := FValue.Norm;
 end;
 
 function TCLMeterHelper.wedge(AValue: TCLKilogramMeterPerSecondQty): TCLKilogramSquareMeterPerSecondQty;
 begin
-  result.FValue := (FValue).wedge(AValue.FValue);
+  result.FValue := FValue.wedge(AValue.FValue);
 end;
 
 function TCLKilogramMeterPerSecondHelper.wedge(AValue: TCLMeterQty): TCLKilogramSquareMeterPerSecondQty;
 begin
-  result.FValue := (FValue).wedge(AValue.FValue);
-end;
-
-function TCLMeterHelper.wedge(AValue: TCLNewtonQty): TCLNewtonMeterQty;
-begin
-  result.FValue := (FValue).wedge(AValue.FValue);
+  result.FValue := FValue.wedge(AValue.FValue);
 end;
 
 function TCLNewtonHelper.wedge(AValue: TCLMeterQty): TCLNewtonMeterQty;
 begin
-  result.FValue := (FValue).wedge(AValue.FValue);
+  result.FValue := FValue.wedge(AValue.FValue);
 end;
 
-function TCLNewtonHelper.wedgeR(AValue: TCLSquareMeterQty): TCLPascalQty;
+function TCLMeterHelper.wedge(AValue: TCLNewtonQty): TCLNewtonMeterQty;
 begin
-  result.FValue := (FValue).wedge(AValue.FValue/AValue.FValue.SquaredNorm);
+  result.FValue := FValue.wedge(AValue.FValue);
 end;
 
-function TCLSquareMeterHelper.Rwedge(AValue: TCLNewtonQty): TCLPascalQty;
+function TCLNewtonHelper.wedge(AValue: TCLReciprocalSquareMeterQty): TCLPascalQty;
 begin
-  result.FValue := (FValue/FValue.SquaredNorm).wedge(AValue.FValue);
+  result.FValue := FValue.wedge(AValue.FValue);
+end;
+
+function TCLReciprocalSquareMeterHelper.wedge(AValue: TCLNewtonQty): TCLPascalQty;
+begin
+  result.FValue := FValue.wedge(AValue.FValue);
 end;
 
 function TCLPascalHelper.Norm: TPascalQty;
@@ -14465,7 +15362,17 @@ begin
   result.FValue := FValue.Norm;
 end;
 
+function TCLPascalHelper.Dual: TPascalQty;
+begin
+  result.FValue := FValue.Dual;
+end;
+
 function TCLOhmHelper.Norm: TOhmQty;
+begin
+  result.FValue := FValue.Norm;
+end;
+
+function TCLSiemensHelper.Norm: TSiemensQty;
 begin
   result.FValue := FValue.Norm;
 end;
@@ -14480,19 +15387,29 @@ begin
   result.FValue := FValue.Norm;
 end;
 
+function TCLDualTeslaHelper.Dual: TCLTeslaQty;
+begin
+  result.FValue := FValue.Dual;
+end;
+
 function TCLTeslaHelper.Norm: TTeslaQty;
 begin
   result.FValue := FValue.Norm;
 end;
 
-function TCLTeslaHelper.DwedgeR(AValue: TCLSquareMeterQty): TCLWeberQty;
+function TCLTeslaHelper.Dual: TCLDualTeslaQty;
 begin
-  result.FValue := (FValue.Dual).wedge(AValue.FValue/AValue.FValue.SquaredNorm);
+  result.FValue := FValue.Dual;
 end;
 
-function TCLSquareMeterHelper.RwedgeD(AValue: TCLTeslaQty): TCLWeberQty;
+function TCLDualTeslaHelper.wedge(AValue: TCLReciprocalSquareMeterQty): TCLWeberQty;
 begin
-  result.FValue := (FValue/FValue.SquaredNorm).wedge(AValue.FValue.Dual);
+  result.FValue := FValue.wedge(AValue.FValue);
+end;
+
+function TCLReciprocalSquareMeterHelper.wedge(AValue: TCLDualTeslaQty): TCLWeberQty;
+begin
+  result.FValue := FValue.wedge(AValue.FValue);
 end;
 
 function TCLWeberHelper.Norm: TWeberQty;
@@ -14500,204 +15417,259 @@ begin
   result.FValue := FValue.Norm;
 end;
 
-function TCLRadianHelper.dotR(AValue: TCLRadianPerSecondQty): TSecondQty;
+function TCLWeberHelper.Dual: TWeberQty;
 begin
-  result.FValue := (FValue).dot(AValue.FValue/AValue.FValue.SquaredNorm);
+  result.FValue := FValue.Dual;
 end;
 
-function TCLRadianPerSecondHelper.Rdot(AValue: TCLRadianQty): TSecondQty;
+function TCLMeterHelper.Reciprocal: TCLReciprocalMeterQty;
 begin
-  result.FValue := (FValue/FValue.SquaredNorm).dot(AValue.FValue);
+  result.FValue := FValue.Reciprocal;
 end;
 
-function TCLRadianHelper.Rdot(AValue: TCLRadianPerSecondQty): THertzQty;
+function TCLSquareMeterHelper.Reciprocal: TCLReciprocalSquareMeterQty;
 begin
-  result.FValue := (FValue/FValue.SquaredNorm).dot(AValue.FValue);
+  result.FValue := FValue.Reciprocal;
 end;
 
-function TCLRadianPerSecondHelper.dotR(AValue: TCLRadianQty): THertzQty;
+function TCLRadianPerSecondHelper.Reciprocal: TCLSecondPerRadianQty;
 begin
-  result.FValue := (FValue).dot(AValue.FValue/AValue.FValue.SquaredNorm);
+  result.FValue := FValue.Reciprocal;
 end;
 
-function TCLNewtonHelper.dotR(AValue: TCLVoltPerMeterQty): TCoulombQty;
+function TCLRadianHelper.Reciprocal: TCLReciprocalRadianQty;
 begin
-  result.FValue := (FValue).dot(AValue.FValue/AValue.FValue.SquaredNorm);
+  result.FValue := FValue.Reciprocal;
 end;
 
-function TCLVoltPerMeterHelper.Rdot(AValue: TCLNewtonQty): TCoulombQty;
+function TCLVoltPerMeterHelper.Reciprocal: TCLMeterPerVoltQty;
 begin
-  result.FValue := (FValue/FValue.SquaredNorm).dot(AValue.FValue);
+  result.FValue := FValue.Reciprocal;
+end;
+
+function TCLKilogramMeterHelper.Reciprocal: TCLReciprocalKilogramMeterQty;
+begin
+  result.FValue := FValue.Reciprocal;
+end;
+
+function TCLKilogramMeterPerSecondHelper.Reciprocal: TCLSecondPerKilogramPerMeterQty;
+begin
+  result.FValue := FValue.Reciprocal;
+end;
+
+function TCLNewtonHelper.Reciprocal: TCLReciprocalNewtonQty;
+begin
+  result.FValue := FValue.Reciprocal;
+end;
+
+function TCLPascalHelper.Reciprocal: TCLReciprocalPascalQty;
+begin
+  result.FValue := FValue.Reciprocal;
+end;
+
+function TCLWeberHelper.Reciprocal: TCLReciprocalWeberQty;
+begin
+  result.FValue := FValue.Reciprocal;
+end;
+
+function TCLRadianHelper.dot(AValue: TCLSecondPerRadianQty): TSecondQty;
+begin
+  result.FValue := FValue.dot(AValue.FValue);
+end;
+
+function TCLSecondPerRadianHelper.dot(AValue: TCLRadianQty): TSecondQty;
+begin
+  result.FValue := FValue.dot(AValue.FValue);
+end;
+
+function TCLReciprocalRadianHelper.dot(AValue: TCLRadianPerSecondQty): THertzQty;
+begin
+  result.FValue := FValue.dot(AValue.FValue);
+end;
+
+function TCLRadianPerSecondHelper.dot(AValue: TCLReciprocalRadianQty): THertzQty;
+begin
+  result.FValue := FValue.dot(AValue.FValue);
+end;
+
+function TCLNewtonHelper.dot(AValue: TCLMeterPerVoltQty): TCoulombQty;
+begin
+  result.FValue := FValue.dot(AValue.FValue);
+end;
+
+function TCLMeterPerVoltHelper.dot(AValue: TCLNewtonQty): TCoulombQty;
+begin
+  result.FValue := FValue.dot(AValue.FValue);
 end;
 
 function TCLNewtonHelper.dot(AValue: TCLMeterQty): TJouleQty;
 begin
-  result.FValue := (FValue).dot(AValue.FValue);
+  result.FValue := FValue.dot(AValue.FValue);
 end;
 
 function TCLMeterHelper.dot(AValue: TCLNewtonQty): TJouleQty;
 begin
-  result.FValue := (FValue).dot(AValue.FValue);
+  result.FValue := FValue.dot(AValue.FValue);
 end;
 
 function TCLKilogramMeterPerSecondHelper.dot(AValue: TCLMeterPerSecondQty): TJouleQty;
 begin
-  result.FValue := (FValue).dot(AValue.FValue);
+  result.FValue := FValue.dot(AValue.FValue);
 end;
 
 function TCLMeterPerSecondHelper.dot(AValue: TCLKilogramMeterPerSecondQty): TJouleQty;
 begin
-  result.FValue := (FValue).dot(AValue.FValue);
+  result.FValue := FValue.dot(AValue.FValue);
 end;
 
 function TCLNewtonHelper.dot(AValue: TCLMeterPerSecondQty): TWattQty;
 begin
-  result.FValue := (FValue).dot(AValue.FValue);
+  result.FValue := FValue.dot(AValue.FValue);
 end;
 
 function TCLMeterPerSecondHelper.dot(AValue: TCLNewtonQty): TWattQty;
 begin
-  result.FValue := (FValue).dot(AValue.FValue);
+  result.FValue := FValue.dot(AValue.FValue);
 end;
 
-function TCLSquareMeterHelper.dotR(AValue: TCLMeterQty): TCLMeterQty;
+function TCLSquareMeterHelper.dot(AValue: TCLReciprocalMeterQty): TCLMeterQty;
 begin
-  result.FValue := (FValue).dot(AValue.FValue/AValue.FValue.SquaredNorm);
+  result.FValue := FValue.dot(AValue.FValue);
 end;
 
-function TCLMeterHelper.Rdot(AValue: TCLSquareMeterQty): TCLMeterQty;
+function TCLReciprocalMeterHelper.dot(AValue: TCLSquareMeterQty): TCLMeterQty;
 begin
-  result.FValue := (FValue/FValue.SquaredNorm).dot(AValue.FValue);
+  result.FValue := FValue.dot(AValue.FValue);
 end;
 
-function TCLCubicMeterHelper.dotR(AValue: TCLSquareMeterQty): TCLMeterQty;
+function TCLCubicMeterHelper.dot(AValue: TCLReciprocalSquareMeterQty): TCLMeterQty;
 begin
-  result.FValue := (FValue).dot(AValue.FValue/AValue.FValue.SquaredNorm);
+  result.FValue := FValue.dot(AValue.FValue);
 end;
 
-function TCLSquareMeterHelper.Rdot(AValue: TCLCubicMeterQty): TCLMeterQty;
+function TCLReciprocalSquareMeterHelper.dot(AValue: TCLCubicMeterQty): TCLMeterQty;
 begin
-  result.FValue := (FValue/FValue.SquaredNorm).dot(AValue.FValue);
+  result.FValue := FValue.dot(AValue.FValue);
 end;
 
-function TCLKilogramSquareMeterHelper.dotR(AValue: TCLMeterQty): TCLMeterQty;
+function TCLKilogramSquareMeterHelper.dot(AValue: TCLReciprocalKilogramMeterQty): TCLMeterQty;
 begin
-  result.FValue := (FValue).dot(AValue.FValue/AValue.FValue.SquaredNorm);
+  result.FValue := FValue.dot(AValue.FValue);
 end;
 
-function TCLMeterHelper.Rdot(AValue: TCLKilogramSquareMeterQty): TCLMeterQty;
+function TCLReciprocalKilogramMeterHelper.dot(AValue: TCLKilogramSquareMeterQty): TCLMeterQty;
 begin
-  result.FValue := (FValue/FValue.SquaredNorm).dot(AValue.FValue);
+  result.FValue := FValue.dot(AValue.FValue);
 end;
 
-function TCLKilogramSquareMeterPerSecondHelper.dotR(AValue: TCLKilogramMeterPerSecondQty): TCLMeterQty;
+function TCLKilogramSquareMeterPerSecondHelper.dot(AValue: TCLSecondPerKilogramPerMeterQty): TCLMeterQty;
 begin
-  result.FValue := (FValue).dot(AValue.FValue/AValue.FValue.SquaredNorm);
+  result.FValue := FValue.dot(AValue.FValue);
 end;
 
-function TCLKilogramMeterPerSecondHelper.Rdot(AValue: TCLKilogramSquareMeterPerSecondQty): TCLMeterQty;
+function TCLSecondPerKilogramPerMeterHelper.dot(AValue: TCLKilogramSquareMeterPerSecondQty): TCLMeterQty;
 begin
-  result.FValue := (FValue/FValue.SquaredNorm).dot(AValue.FValue);
+  result.FValue := FValue.dot(AValue.FValue);
 end;
 
-function TCLNewtonMeterHelper.dotR(AValue: TCLNewtonQty): TCLMeterQty;
+function TCLNewtonMeterHelper.dot(AValue: TCLReciprocalNewtonQty): TCLMeterQty;
 begin
-  result.FValue := (FValue).dot(AValue.FValue/AValue.FValue.SquaredNorm);
+  result.FValue := FValue.dot(AValue.FValue);
 end;
 
-function TCLNewtonHelper.Rdot(AValue: TCLNewtonMeterQty): TCLMeterQty;
+function TCLReciprocalNewtonHelper.dot(AValue: TCLNewtonMeterQty): TCLMeterQty;
 begin
-  result.FValue := (FValue/FValue.SquaredNorm).dot(AValue.FValue);
+  result.FValue := FValue.dot(AValue.FValue);
 end;
 
-function TCLRadianPerSecondHelper.Rdot(AValue: TCLMeterPerSecondQty): TCLMeterQty;
+function TCLSecondPerRadianHelper.dot(AValue: TCLMeterPerSecondQty): TCLMeterQty;
 begin
-  result.FValue := (FValue/FValue.SquaredNorm).dot(AValue.FValue);
+  result.FValue := FValue.dot(AValue.FValue);
 end;
 
-function TCLMeterPerSecondHelper.dotR(AValue: TCLRadianPerSecondQty): TCLMeterQty;
+function TCLMeterPerSecondHelper.dot(AValue: TCLSecondPerRadianQty): TCLMeterQty;
 begin
-  result.FValue := (FValue).dot(AValue.FValue/AValue.FValue.SquaredNorm);
+  result.FValue := FValue.dot(AValue.FValue);
 end;
 
-function TCLCubicMeterHelper.dotR(AValue: TCLMeterQty): TCLSquareMeterQty;
+function TCLCubicMeterHelper.dot(AValue: TCLReciprocalMeterQty): TCLSquareMeterQty;
 begin
-  result.FValue := (FValue).dot(AValue.FValue/AValue.FValue.SquaredNorm);
+  result.FValue := FValue.dot(AValue.FValue);
 end;
 
-function TCLMeterHelper.Rdot(AValue: TCLCubicMeterQty): TCLSquareMeterQty;
+function TCLReciprocalMeterHelper.dot(AValue: TCLCubicMeterQty): TCLSquareMeterQty;
 begin
-  result.FValue := (FValue/FValue.SquaredNorm).dot(AValue.FValue);
+  result.FValue := FValue.dot(AValue.FValue);
 end;
 
-function TCLNewtonHelper.dotR(AValue: TCLPascalQty): TCLSquareMeterQty;
+function TCLNewtonHelper.dot(AValue: TCLReciprocalPascalQty): TCLSquareMeterQty;
 begin
-  result.FValue := (FValue).dot(AValue.FValue/AValue.FValue.SquaredNorm);
+  result.FValue := FValue.dot(AValue.FValue);
 end;
 
-function TCLPascalHelper.Rdot(AValue: TCLNewtonQty): TCLSquareMeterQty;
+function TCLReciprocalPascalHelper.dot(AValue: TCLNewtonQty): TCLSquareMeterQty;
 begin
-  result.FValue := (FValue/FValue.SquaredNorm).dot(AValue.FValue);
+  result.FValue := FValue.dot(AValue.FValue);
 end;
 
-function TCLTeslaHelper.DdotR(AValue: TCLWeberQty): TCLSquareMeterQty;
+function TCLDualTeslaHelper.dot(AValue: TCLReciprocalWeberQty): TCLSquareMeterQty;
 begin
-  result.FValue := (FValue.Dual).dot(AValue.FValue/AValue.FValue.SquaredNorm);
+  result.FValue := FValue.dot(AValue.FValue);
 end;
 
-function TCLWeberHelper.RdotD(AValue: TCLTeslaQty): TCLSquareMeterQty;
+function TCLReciprocalWeberHelper.dot(AValue: TCLDualTeslaQty): TCLSquareMeterQty;
 begin
-  result.FValue := (FValue/FValue.SquaredNorm).dot(AValue.FValue.Dual);
+  result.FValue := FValue.dot(AValue.FValue);
 end;
 
 function TCLMeterHelper.dot(AValue: TCLRadianPerSecondQty): TCLMeterPerSecondQty;
 begin
-  result.FValue := (FValue).dot(AValue.FValue);
+  result.FValue := FValue.dot(AValue.FValue);
 end;
 
 function TCLRadianPerSecondHelper.dot(AValue: TCLMeterQty): TCLMeterPerSecondQty;
 begin
-  result.FValue := (FValue).dot(AValue.FValue);
+  result.FValue := FValue.dot(AValue.FValue);
 end;
 
 function TCLPascalHelper.dot(AValue: TCLSquareMeterQty): TCLNewtonQty;
 begin
-  result.FValue := (FValue).dot(AValue.FValue);
+  result.FValue := FValue.dot(AValue.FValue);
 end;
 
 function TCLSquareMeterHelper.dot(AValue: TCLPascalQty): TCLNewtonQty;
 begin
-  result.FValue := (FValue).dot(AValue.FValue);
+  result.FValue := FValue.dot(AValue.FValue);
 end;
 
-function TCLNewtonMeterHelper.dotR(AValue: TCLMeterQty): TCLNewtonQty;
+function TCLNewtonMeterHelper.dot(AValue: TCLReciprocalMeterQty): TCLNewtonQty;
 begin
-  result.FValue := (FValue).dot(AValue.FValue/AValue.FValue.SquaredNorm);
+  result.FValue := FValue.dot(AValue.FValue);
 end;
 
-function TCLMeterHelper.Rdot(AValue: TCLNewtonMeterQty): TCLNewtonQty;
+function TCLReciprocalMeterHelper.dot(AValue: TCLNewtonMeterQty): TCLNewtonQty;
 begin
-  result.FValue := (FValue/FValue.SquaredNorm).dot(AValue.FValue);
+  result.FValue := FValue.dot(AValue.FValue);
 end;
 
-function TCLKilogramSquareMeterPerSecondHelper.dotR(AValue: TCLMeterQty): TCLKilogramMeterPerSecondQty;
+function TCLKilogramSquareMeterPerSecondHelper.dot(AValue: TCLReciprocalMeterQty): TCLKilogramMeterPerSecondQty;
 begin
-  result.FValue := (FValue).dot(AValue.FValue/AValue.FValue.SquaredNorm);
+  result.FValue := FValue.dot(AValue.FValue);
 end;
 
-function TCLMeterHelper.Rdot(AValue: TCLKilogramSquareMeterPerSecondQty): TCLKilogramMeterPerSecondQty;
+function TCLReciprocalMeterHelper.dot(AValue: TCLKilogramSquareMeterPerSecondQty): TCLKilogramMeterPerSecondQty;
 begin
-  result.FValue := (FValue/FValue.SquaredNorm).dot(AValue.FValue);
+  result.FValue := FValue.dot(AValue.FValue);
 end;
 
-function TCLWeberHelper.dotD(AValue: TCLSquareMeterQty): TCLTeslaQty;
+function TCLWeberHelper.dot(AValue: TCLSquareMeterQty): TCLDualTeslaQty;
 begin
-  result.FValue := (FValue).dot(AValue.FValue).Dual;
+  result.FValue := FValue.dot(AValue.FValue);
 end;
 
-function TCLSquareMeterHelper.dotD(AValue: TCLWeberQty): TCLTeslaQty;
+function TCLSquareMeterHelper.dot(AValue: TCLWeberQty): TCLDualTeslaQty;
 begin
-  result.FValue := (FValue).dot(AValue.FValue).Dual;
+  result.FValue := FValue.dot(AValue.FValue);
 end;
 
 { Power functions }
