@@ -18,7 +18,7 @@
 }
 
 {
-  ADimPas library built on 25/03/2024.
+  ADimPas library built on 26/03/2024.
 
   Number of base units: 164
   Number of factored units: 76
@@ -1512,8 +1512,8 @@ type
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCLNauticalMileQty}{$i adimVEC.inc}
 {$DEFINE INTF_END}{$i adimVEC.inc}
 
-{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCLDegreeQty}{$i adimVEC.inc}
-{$DEFINE INTF_END}{$i adimVEC.inc}
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCLDegreeQty}{$i adimBVEC.inc}
+{$DEFINE INTF_END}{$i adimBVEC.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCLMeterPerHourQty}{$i adimVEC.inc}
 {$DEFINE INTF_END}{$i adimVEC.inc}
@@ -5714,6 +5714,8 @@ const
   cElettronvoltSecondExponents : TExponents = (1, 1);
   cElettronvoltSecondFactor                 = 1.60217742320523E-019;
 
+{ Quantity of TCLReservedKilograms }
+
 type
   TCLReservedKilograms = TCLReservedKilogramQty;
 
@@ -5725,6 +5727,8 @@ const
 const
   cCLReservedKilogramPrefixes  : TPrefixes  = (pKilo);
   cCLReservedKilogramExponents : TExponents = (1);
+
+{ Quantity of TCLReservedNewtons }
 
 type
   TCLReservedNewtons = TCLReservedNewtonQty;
@@ -5738,6 +5742,8 @@ const
   cCLReservedNewtonPrefixes  : TPrefixes  = (pNone);
   cCLReservedNewtonExponents : TExponents = (1);
 
+{ Quantity of TCLMeters }
+
 type
   TCLMeters = TCLMeterQty;
 
@@ -5749,6 +5755,98 @@ const
 const
   cCLMeterPrefixes  : TPrefixes  = (pNone);
   cCLMeterExponents : TExponents = (1);
+
+{ Quantity of TCLAstronomical }
+
+type
+  TCLAstronomical = TCLMeterQty;
+
+const
+  rsCLAstronomicalSymbol     = 'au';
+  rsCLAstronomicalName       = 'astronomical unit';
+  rsCLAstronomicalPluralName = 'astronomical units';
+
+const
+  cCLAstronomicalPrefixes  : TPrefixes  = ();
+  cCLAstronomicalExponents : TExponents = ();
+  cCLAstronomicalFactor                 = 149597870691;
+
+{ Quantity of TCLInches }
+
+type
+  TCLInches = TCLMeterQty;
+
+const
+  rsCLInchSymbol     = 'in';
+  rsCLInchName       = 'inch';
+  rsCLInchPluralName = 'inches';
+
+const
+  cCLInchPrefixes  : TPrefixes  = ();
+  cCLInchExponents : TExponents = ();
+  cCLInchFactor                 = 0.0254;
+
+{ Quantity of TCLFeet }
+
+type
+  TCLFeet = TCLMeterQty;
+
+const
+  rsCLFootSymbol     = 'ft';
+  rsCLFootName       = 'foot';
+  rsCLFootPluralName = 'feet';
+
+const
+  cCLFootPrefixes  : TPrefixes  = ();
+  cCLFootExponents : TExponents = ();
+  cCLFootFactor                 = 0.3048;
+
+{ Quantity of TCLYards }
+
+type
+  TCLYards = TCLMeterQty;
+
+const
+  rsCLYardSymbol     = 'yd';
+  rsCLYardName       = 'yard';
+  rsCLYardPluralName = 'yards';
+
+const
+  cCLYardPrefixes  : TPrefixes  = ();
+  cCLYardExponents : TExponents = ();
+  cCLYardFactor                 = 0.9144;
+
+{ Quantity of TCLMiles }
+
+type
+  TCLMiles = TCLMeterQty;
+
+const
+  rsCLMileSymbol     = 'mi';
+  rsCLMileName       = 'mile';
+  rsCLMilePluralName = 'miles';
+
+const
+  cCLMilePrefixes  : TPrefixes  = ();
+  cCLMileExponents : TExponents = ();
+  cCLMileFactor                 = 1609.344;
+
+{ Quantity of TCLNauticalMiles }
+
+type
+  TCLNauticalMiles = TCLMeterQty;
+
+const
+  rsCLNauticalMileSymbol     = 'nmi';
+  rsCLNauticalMileName       = 'nautical mile';
+  rsCLNauticalMilePluralName = 'nautical miles';
+
+const
+  cCLNauticalMilePrefixes  : TPrefixes  = ();
+  cCLNauticalMileExponents : TExponents = ();
+  cCLNauticalMileFactor                 = 1852;
+
+{ Quantity of TCLSquareMeters }
 
 type
   TCLSquareMeters = TCLSquareMeterQty;
@@ -5762,6 +5860,8 @@ const
   cCLSquareMeterPrefixes  : TPrefixes  = (pNone);
   cCLSquareMeterExponents : TExponents = (2);
 
+{ Quantity of TCLCubicMeters }
+
 type
   TCLCubicMeters = TCLCubicMeterQty;
 
@@ -5773,6 +5873,8 @@ const
 const
   cCLCubicMeterPrefixes  : TPrefixes  = (pNone);
   cCLCubicMeterExponents : TExponents = (3);
+
+{ Quantity of TCLRadians }
 
 type
   TCLRadians = TCLRadianQty;
@@ -5786,6 +5888,23 @@ const
   cCLRadianPrefixes  : TPrefixes  = ();
   cCLRadianExponents : TExponents = ();
 
+{ Quantity of TCLDegrees }
+
+type
+  TCLDegrees = TCLRadianQty;
+
+const
+  rsCLDegreeSymbol     = 'deg';
+  rsCLDegreeName       = 'degree';
+  rsCLDegreePluralName = 'degrees';
+
+const
+  cCLDegreePrefixes  : TPrefixes  = ();
+  cCLDegreeExponents : TExponents = ();
+  cCLDegreeFactor                 = Pi/180;
+
+{ Quantity of TCLAmperes }
+
 type
   TCLAmperes = TCLAmpereQty;
 
@@ -5797,6 +5916,8 @@ const
 const
   cCLAmperePrefixes  : TPrefixes  = (pNone);
   cCLAmpereExponents : TExponents = (1);
+
+{ Quantity of TCLMetersPerSecond }
 
 type
   TCLMetersPerSecond = TCLMeterPerSecondQty;
@@ -5810,6 +5931,53 @@ const
   cCLMeterPerSecondPrefixes  : TPrefixes  = (pNone, pNone);
   cCLMeterPerSecondExponents : TExponents = (1, -1);
 
+{ Quantity of TCLMetersPerHour }
+
+type
+  TCLMetersPerHour = TCLMeterPerSecondQty;
+
+const
+  rsCLMeterPerHourSymbol     = '%sm/h';
+  rsCLMeterPerHourName       = '%smeter per hour';
+  rsCLMeterPerHourPluralName = '%smeters per hour';
+
+const
+  cCLMeterPerHourPrefixes  : TPrefixes  = (pNone);
+  cCLMeterPerHourExponents : TExponents = (1);
+  cCLMeterPerHourFactor                 = 1/3600;
+
+{ Quantity of TCLMilesPerHour }
+
+type
+  TCLMilesPerHour = TCLMeterPerSecondQty;
+
+const
+  rsCLMilePerHourSymbol     = 'mi/h';
+  rsCLMilePerHourName       = 'mile per hour';
+  rsCLMilePerHourPluralName = 'miles per hour';
+
+const
+  cCLMilePerHourPrefixes  : TPrefixes  = ();
+  cCLMilePerHourExponents : TExponents = ();
+  cCLMilePerHourFactor                 = 0.44704;
+
+{ Quantity of TCLNauticalMilesPerHour }
+
+type
+  TCLNauticalMilesPerHour = TCLMeterPerSecondQty;
+
+const
+  rsCLNauticalMilePerHourSymbol     = 'nmi/h';
+  rsCLNauticalMilePerHourName       = 'nautical mile per hour';
+  rsCLNauticalMilePerHourPluralName = 'nautical miles per hour';
+
+const
+  cCLNauticalMilePerHourPrefixes  : TPrefixes  = ();
+  cCLNauticalMilePerHourExponents : TExponents = ();
+  cCLNauticalMilePerHourFactor                 = 463/900;
+
+{ Quantity of TCLMetersPerSecondSquared }
+
 type
   TCLMetersPerSecondSquared = TCLMeterPerSecondSquaredQty;
 
@@ -5822,6 +5990,11 @@ const
   cCLMeterPerSecondSquaredPrefixes  : TPrefixes  = (pNone, pNone);
   cCLMeterPerSecondSquaredExponents : TExponents = (1, -2);
 
+{ Quantity of TCLMetersPerSecondPerSecond }
+
+type
+  TCLMetersPerSecondPerSecond = TCLMeterPerSecondSquaredQty;
+
 const
   rsCLMeterPerSecondPerSecondSymbol     = '%sm/%ss/%ss';
   rsCLMeterPerSecondPerSecondName       = '%smeter per %ssecond per %ssecond';
@@ -5830,6 +6003,23 @@ const
 const
   cCLMeterPerSecondPerSecondPrefixes  : TPrefixes  = (pNone, pNone, pNone);
   cCLMeterPerSecondPerSecondExponents : TExponents = (1, -1, -1);
+
+{ Quantity of TCLMetersPerHourPerSecond }
+
+type
+  TCLMetersPerHourPerSecond = TCLMeterPerSecondSquaredQty;
+
+const
+  rsCLMeterPerHourPerSecondSymbol     = '%sm/h/%ss';
+  rsCLMeterPerHourPerSecondName       = '%smeter per hour per %ssecond';
+  rsCLMeterPerHourPerSecondPluralName = '%smeters per hour per %ssecond';
+
+const
+  cCLMeterPerHourPerSecondPrefixes  : TPrefixes  = (pNone, pNone);
+  cCLMeterPerHourPerSecondExponents : TExponents = (1, -1);
+  cCLMeterPerHourPerSecondFactor                 = 1/3600;
+
+{ Quantity of TCLSquareMetersPerSquareSecond }
 
 type
   TCLSquareMetersPerSquareSecond = TCLSquareMeterPerSquareSecondQty;
@@ -5843,6 +6033,8 @@ const
   cCLSquareMeterPerSquareSecondPrefixes  : TPrefixes  = (pNone, pNone);
   cCLSquareMeterPerSquareSecondExponents : TExponents = (2, -1);
 
+{ Quantity of TCLRadiansPerSecond }
+
 type
   TCLRadiansPerSecond = TCLRadianPerSecondQty;
 
@@ -5854,6 +6046,8 @@ const
 const
   cCLRadianPerSecondPrefixes  : TPrefixes  = (pNone);
   cCLRadianPerSecondExponents : TExponents = (-1);
+
+{ Quantity of TCLRadiansPerSecondSquared }
 
 type
   TCLRadiansPerSecondSquared = TCLRadianPerSecondSquaredQty;
@@ -5867,6 +6061,8 @@ const
   cCLRadianPerSecondSquaredPrefixes  : TPrefixes  = (pNone);
   cCLRadianPerSecondSquaredExponents : TExponents = (-2);
 
+{ Quantity of TCLKilogramMeters }
+
 type
   TCLKilogramMeters = TCLKilogramMeterQty;
 
@@ -5878,6 +6074,8 @@ const
 const
   cCLKilogramMeterPrefixes  : TPrefixes  = (pKilo, pNone);
   cCLKilogramMeterExponents : TExponents = (1, 1);
+
+{ Quantity of TCLKilogramsPerMeter }
 
 type
   TCLKilogramsPerMeter = TCLKilogramPerMeterQty;
@@ -5891,6 +6089,8 @@ const
   cCLKilogramPerMeterPrefixes  : TPrefixes  = (pKilo, pNone);
   cCLKilogramPerMeterExponents : TExponents = (1, -1);
 
+{ Quantity of TCLKilogramMetersPerSecond }
+
 type
   TCLKilogramMetersPerSecond = TCLKilogramMeterPerSecondQty;
 
@@ -5902,6 +6102,8 @@ const
 const
   cCLKilogramMeterPerSecondPrefixes  : TPrefixes  = (pKilo, pNone, pNone);
   cCLKilogramMeterPerSecondExponents : TExponents = (1, 1, -1);
+
+{ Quantity of TCLNewtons }
 
 type
   TCLNewtons = TCLNewtonQty;
@@ -5915,6 +6117,26 @@ const
   cCLNewtonPrefixes  : TPrefixes  = (pNone);
   cCLNewtonExponents : TExponents = (1);
 
+{ Quantity of TCLPoundsForce }
+
+type
+  TCLPoundsForce = TCLNewtonQty;
+
+const
+  rsCLPoundForceSymbol     = 'lbf';
+  rsCLPoundForceName       = 'pound-force';
+  rsCLPoundForcePluralName = 'pounds-force';
+
+const
+  cCLPoundForcePrefixes  : TPrefixes  = ();
+  cCLPoundForceExponents : TExponents = ();
+  cCLPoundForceFactor                 = 4.4482216152605;
+
+{ Quantity of TCLNewtonSeconds }
+
+type
+  TCLNewtonSeconds = TCLKilogramMeterPerSecondQty;
+
 const
   rsCLNewtonSecondSymbol     = '%sN·%ss';
   rsCLNewtonSecondName       = '%snewton %ssecond';
@@ -5923,6 +6145,8 @@ const
 const
   cCLNewtonSecondPrefixes  : TPrefixes  = (pNone, pNone);
   cCLNewtonSecondExponents : TExponents = (1, 1);
+
+{ Quantity of TCLKilogramSquareMeters }
 
 type
   TCLKilogramSquareMeters = TCLKilogramSquareMeterQty;
@@ -5936,6 +6160,8 @@ const
   cCLKilogramSquareMeterPrefixes  : TPrefixes  = (pKilo, pNone);
   cCLKilogramSquareMeterExponents : TExponents = (1, 2);
 
+{ Quantity of TCLKilogramSquareMetersPerSecond }
+
 type
   TCLKilogramSquareMetersPerSecond = TCLKilogramSquareMeterPerSecondQty;
 
@@ -5947,6 +6173,8 @@ const
 const
   cCLKilogramSquareMeterPerSecondPrefixes  : TPrefixes  = (pKilo, pNone, pNone);
   cCLKilogramSquareMeterPerSecondExponents : TExponents = (1, 2, -1);
+
+{ Quantity of TCLNewtonMeters }
 
 type
   TCLNewtonMeters = TCLNewtonMeterQty;
@@ -5960,6 +6188,8 @@ const
   cCLNewtonMeterPrefixes  : TPrefixes  = (pKilo, pNone, pNone);
   cCLNewtonMeterExponents : TExponents = (1, 2, -1);
 
+{ Quantity of TCLNewtonMetersPerRadian }
+
 type
   TCLNewtonMetersPerRadian = TCLNewtonMeterPerRadianQty;
 
@@ -5971,6 +6201,8 @@ const
 const
   cCLNewtonMeterPerRadianPrefixes  : TPrefixes  = (pNone, pNone);
   cCLNewtonMeterPerRadianExponents : TExponents = (1, 1);
+
+{ Quantity of TCLPascals }
 
 type
   TCLPascals = TCLPascalQty;
@@ -5984,6 +6216,8 @@ const
   cCLPascalPrefixes  : TPrefixes  = (pNone);
   cCLPascalExponents : TExponents = (1);
 
+{ Quantity of TCLOhms }
+
 type
   TCLOhms = TCLOhmQty;
 
@@ -5995,6 +6229,8 @@ const
 const
   cCLOhmPrefixes  : TPrefixes  = (pNone);
   cCLOhmExponents : TExponents = (1);
+
+{ Quantity of TCLSiemens }
 
 type
   TCLSiemens = TCLSiemensQty;
@@ -6008,6 +6244,8 @@ const
   cCLSiemensPrefixes  : TPrefixes  = (pNone);
   cCLSiemensExponents : TExponents = (1);
 
+{ Quantity of TCLVolts }
+
 type
   TCLVolts = TCLVoltQty;
 
@@ -6019,6 +6257,8 @@ const
 const
   cCLVoltPrefixes  : TPrefixes  = (pNone);
   cCLVoltExponents : TExponents = (1);
+
+{ Quantity of TCLWatts }
 
 type
   TCLWatts = TCLWattQty;
@@ -6032,6 +6272,8 @@ const
   cCLWattPrefixes  : TPrefixes  = (pNone);
   cCLWattExponents : TExponents = (1);
 
+{ Quantity of TCLVoltsPerMeter }
+
 type
   TCLVoltsPerMeter = TCLVoltPerMeterQty;
 
@@ -6043,6 +6285,8 @@ const
 const
   cCLVoltPerMeterPrefixes  : TPrefixes  = (pNone, pNone);
   cCLVoltPerMeterExponents : TExponents = (1, -1);
+
+{ Quantity of TCLDualTeslas }
 
 type
   TCLDualTeslas = TCLDualTeslaQty;
@@ -6056,6 +6300,8 @@ const
   cCLDualTeslaPrefixes  : TPrefixes  = (pNone);
   cCLDualTeslaExponents : TExponents = (1);
 
+{ Quantity of TCLTeslas }
+
 type
   TCLTeslas = TCLTeslaQty;
 
@@ -6067,6 +6313,8 @@ const
 const
   cCLTeslaPrefixes  : TPrefixes  = (pNone);
   cCLTeslaExponents : TExponents = (1);
+
+{ Quantity of TCLWebers }
 
 type
   TCLWebers = TCLWeberQty;
@@ -6080,6 +6328,8 @@ const
   cCLWeberPrefixes  : TPrefixes  = (pNone);
   cCLWeberExponents : TExponents = (1);
 
+{ Quantity of TCLReciprocalMeters }
+
 type
   TCLReciprocalMeters = TCLReciprocalMeterQty;
 
@@ -6091,6 +6341,8 @@ const
 const
   cCLReciprocalMeterPrefixes  : TPrefixes  = (pNone);
   cCLReciprocalMeterExponents : TExponents = (-1);
+
+{ Quantity of TCLReciprocalSquareMeters }
 
 type
   TCLReciprocalSquareMeters = TCLReciprocalSquareMeterQty;
@@ -6104,6 +6356,8 @@ const
   cCLReciprocalSquareMeterPrefixes  : TPrefixes  = (pNone);
   cCLReciprocalSquareMeterExponents : TExponents = (-2);
 
+{ Quantity of TCLSecondsPerRadian }
+
 type
   TCLSecondsPerRadian = TCLSecondPerRadianQty;
 
@@ -6115,6 +6369,8 @@ const
 const
   cCLSecondPerRadianPrefixes  : TPrefixes  = (pNone, pNone);
   cCLSecondPerRadianExponents : TExponents = (1, -1);
+
+{ Quantity of TCLReciprocalRadians }
 
 type
   TCLReciprocalRadians = TCLReciprocalRadianQty;
@@ -6128,6 +6384,8 @@ const
   cCLReciprocalRadianPrefixes  : TPrefixes  = (pNone);
   cCLReciprocalRadianExponents : TExponents = (-1);
 
+{ Quantity of TCLMetersPerVolt }
+
 type
   TCLMetersPerVolt = TCLMeterPerVoltQty;
 
@@ -6139,6 +6397,8 @@ const
 const
   cCLMeterPerVoltPrefixes  : TPrefixes  = (pNone, pNone);
   cCLMeterPerVoltExponents : TExponents = (1, -1);
+
+{ Quantity of TCLReciprocalKilogramMeters }
 
 type
   TCLReciprocalKilogramMeters = TCLReciprocalKilogramMeterQty;
@@ -6152,6 +6412,8 @@ const
   cCLReciprocalKilogramMeterPrefixes  : TPrefixes  = (pKilo, pNone);
   cCLReciprocalKilogramMeterExponents : TExponents = (-1, -1);
 
+{ Quantity of TCLSecondsPerKilogramPerMeter }
+
 type
   TCLSecondsPerKilogramPerMeter = TCLSecondPerKilogramPerMeterQty;
 
@@ -6163,6 +6425,8 @@ const
 const
   cCLSecondPerKilogramPerMeterPrefixes  : TPrefixes  = (pNone, pKilo, pNone);
   cCLSecondPerKilogramPerMeterExponents : TExponents = (1, -1, -1);
+
+{ Quantity of TCLReciprocalNewtons }
 
 type
   TCLReciprocalNewtons = TCLReciprocalNewtonQty;
@@ -6176,6 +6440,8 @@ const
   cCLReciprocalNewtonPrefixes  : TPrefixes  = (pNone);
   cCLReciprocalNewtonExponents : TExponents = (-1);
 
+{ Quantity of TCLReciprocalPascals }
+
 type
   TCLReciprocalPascals = TCLReciprocalPascalQty;
 
@@ -6187,6 +6453,8 @@ const
 const
   cCLReciprocalPascalPrefixes  : TPrefixes  = (pNone);
   cCLReciprocalPascalExponents : TExponents = (-1);
+
+{ Quantity of TCLReciprocalWebers }
 
 type
   TCLReciprocalWebers = TCLReciprocalWeberQty;
@@ -6445,6 +6713,12 @@ type
     function wedge(AValue: TCLKilogramMeterQty): TCLKilogramSquareMeterQty;
     function wedge(AValue: TCLSquareMeterQty): TCLCubicMeterQty;
     function wedge(AValue: TCLMeterQty): TCLSquareMeterQty;
+    function ToCLNauticalMile: TCLNauticalMileQty;
+    function ToCLMile: TCLMileQty;
+    function ToCLYard: TCLYardQty;
+    function ToCLFoot: TCLFootQty;
+    function ToCLInch: TCLInchQty;
+    function ToCLAstronomical: TCLAstronomicalQty;
     function SquaredNorm: TSquareMeterQty;
     function Norm: TMeterQty;
   end;
@@ -6469,6 +6743,7 @@ type
   TCLRadianHelper = record helper for TCLRadianQty
     function dot(AValue: TCLSecondPerRadianQty): TSecondQty;
     function Reciprocal: TCLReciprocalRadianQty;
+    function ToCLDegree: TCLDegreeQty;
     function SquaredNorm: TSteradianQty;
     function Norm: TRadianQty;
   end;
@@ -6483,11 +6758,15 @@ type
     function dot(AValue: TCLNewtonQty): TWattQty;
     function dot(AValue: TCLKilogramMeterPerSecondQty): TJouleQty;
     function wedge(AValue: TCLReciprocalMeterQty): TCLRadianPerSecondQty;
+    function ToCLNauticalMilePerHour: TCLNauticalMilePerHourQty;
+    function ToCLMilePerHour: TCLMilePerHourQty;
+    function ToCLMeterPerHour: TCLMeterPerHourQty;
     function SquaredNorm: TSquareMeterPerSquareSecondQty;
     function Norm: TMeterPerSecondQty;
   end;
 
   TCLMeterPerSecondSquaredHelper = record helper for TCLMeterPerSecondSquaredQty
+    function ToCLMeterPerHourPerSecond: TCLMeterPerHourPerSecondQty;
     function ToCLMeterPerSecondPerSecond: TCLMeterPerSecondPerSecondQty;
     function Norm: TMeterPerSecondSquaredQty;
   end;
@@ -6541,6 +6820,7 @@ type
     function Reciprocal: TCLReciprocalNewtonQty;
     function wedge(AValue: TCLReciprocalSquareMeterQty): TCLPascalQty;
     function wedge(AValue: TCLMeterQty): TCLNewtonMeterQty;
+    function ToCLPoundForce: TCLPoundForceQty;
     function Norm: TNewtonQty;
   end;
 
@@ -11934,40 +12214,52 @@ end;
 {$DEFINE CEXPONENTS:=cCLMeterExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCLMeterQty}{$i adimVEC.inc}
 
-{$DEFINE CSYMBOL:=rsAstronomicalSymbol}
-{$DEFINE CPREFIXES:=cAstronomicalPrefixes}
-{$DEFINE CEXPONENTS:=cAstronomicalExponents}
-{$DEFINE CFACTOR:=cAstronomicalFactor}
+{$DEFINE CSYMBOL:=rsCLAstronomicalSymbol}
+{$DEFINE CSINGULARNAME:=rsCLAstronomicalName}
+{$DEFINE CPLURALNAME:=rsCLAstronomicalPluralName}
+{$DEFINE CPREFIXES:=cCLAstronomicalPrefixes}
+{$DEFINE CEXPONENTS:=cCLAstronomicalExponents}
+{$DEFINE CFACTOR:=cCLAstronomicalFactor}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCLAstronomicalQty}{$i adimVEC.inc}
 
-{$DEFINE CSYMBOL:=rsInchSymbol}
-{$DEFINE CPREFIXES:=cInchPrefixes}
-{$DEFINE CEXPONENTS:=cInchExponents}
-{$DEFINE CFACTOR:=cInchFactor}
+{$DEFINE CSYMBOL:=rsCLInchSymbol}
+{$DEFINE CSINGULARNAME:=rsCLInchName}
+{$DEFINE CPLURALNAME:=rsCLInchPluralName}
+{$DEFINE CPREFIXES:=cCLInchPrefixes}
+{$DEFINE CEXPONENTS:=cCLInchExponents}
+{$DEFINE CFACTOR:=cCLInchFactor}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCLInchQty}{$i adimVEC.inc}
 
-{$DEFINE CSYMBOL:=rsFootSymbol}
-{$DEFINE CPREFIXES:=cFootPrefixes}
-{$DEFINE CEXPONENTS:=cFootExponents}
-{$DEFINE CFACTOR:=cFootFactor}
+{$DEFINE CSYMBOL:=rsCLFootSymbol}
+{$DEFINE CSINGULARNAME:=rsCLFootName}
+{$DEFINE CPLURALNAME:=rsCLFootPluralName}
+{$DEFINE CPREFIXES:=cCLFootPrefixes}
+{$DEFINE CEXPONENTS:=cCLFootExponents}
+{$DEFINE CFACTOR:=cCLFootFactor}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCLFootQty}{$i adimVEC.inc}
 
-{$DEFINE CSYMBOL:=rsYardSymbol}
-{$DEFINE CPREFIXES:=cYardPrefixes}
-{$DEFINE CEXPONENTS:=cYardExponents}
-{$DEFINE CFACTOR:=cYardFactor}
+{$DEFINE CSYMBOL:=rsCLYardSymbol}
+{$DEFINE CSINGULARNAME:=rsCLYardName}
+{$DEFINE CPLURALNAME:=rsCLYardPluralName}
+{$DEFINE CPREFIXES:=cCLYardPrefixes}
+{$DEFINE CEXPONENTS:=cCLYardExponents}
+{$DEFINE CFACTOR:=cCLYardFactor}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCLYardQty}{$i adimVEC.inc}
 
-{$DEFINE CSYMBOL:=rsMileSymbol}
-{$DEFINE CPREFIXES:=cMilePrefixes}
-{$DEFINE CEXPONENTS:=cMileExponents}
-{$DEFINE CFACTOR:=cMileFactor}
+{$DEFINE CSYMBOL:=rsCLMileSymbol}
+{$DEFINE CSINGULARNAME:=rsCLMileName}
+{$DEFINE CPLURALNAME:=rsCLMilePluralName}
+{$DEFINE CPREFIXES:=cCLMilePrefixes}
+{$DEFINE CEXPONENTS:=cCLMileExponents}
+{$DEFINE CFACTOR:=cCLMileFactor}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCLMileQty}{$i adimVEC.inc}
 
-{$DEFINE CSYMBOL:=rsNauticalMileSymbol}
-{$DEFINE CPREFIXES:=cNauticalMilePrefixes}
-{$DEFINE CEXPONENTS:=cNauticalMileExponents}
-{$DEFINE CFACTOR:=cNauticalMileFactor}
+{$DEFINE CSYMBOL:=rsCLNauticalMileSymbol}
+{$DEFINE CSINGULARNAME:=rsCLNauticalMileName}
+{$DEFINE CPLURALNAME:=rsCLNauticalMilePluralName}
+{$DEFINE CPREFIXES:=cCLNauticalMilePrefixes}
+{$DEFINE CEXPONENTS:=cCLNauticalMileExponents}
+{$DEFINE CFACTOR:=cCLNauticalMileFactor}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCLNauticalMileQty}{$i adimVEC.inc}
 
 {$DEFINE CSYMBOL:=rsCLSquareMeterSymbol}
@@ -11991,11 +12283,13 @@ end;
 {$DEFINE CEXPONENTS:=cCLRadianExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCLRadianQty}{$i adimBVEC.inc}
 
-{$DEFINE CSYMBOL:=rsDegreeSymbol}
-{$DEFINE CPREFIXES:=cDegreePrefixes}
-{$DEFINE CEXPONENTS:=cDegreeExponents}
-{$DEFINE CFACTOR:=cDegreeFactor}
-{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCLDegreeQty}{$i adimVEC.inc}
+{$DEFINE CSYMBOL:=rsCLDegreeSymbol}
+{$DEFINE CSINGULARNAME:=rsCLDegreeName}
+{$DEFINE CPLURALNAME:=rsCLDegreePluralName}
+{$DEFINE CPREFIXES:=cCLDegreePrefixes}
+{$DEFINE CEXPONENTS:=cCLDegreeExponents}
+{$DEFINE CFACTOR:=cCLDegreeFactor}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCLDegreeQty}{$i adimBVEC.inc}
 
 {$DEFINE CSYMBOL:=rsCLAmpereSymbol}
 {$DEFINE CSINGULARNAME:=rsCLAmpereName}
@@ -12051,22 +12345,28 @@ end;
 {$DEFINE CEXPONENTS:=cCLMeterPerSecondExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCLMeterPerSecondQty}{$i adimVEC.inc}
 
-{$DEFINE CSYMBOL:=rsMeterPerHourSymbol}
-{$DEFINE CPREFIXES:=cMeterPerHourPrefixes}
-{$DEFINE CEXPONENTS:=cMeterPerHourExponents}
-{$DEFINE CFACTOR:=cMeterPerHourFactor}
+{$DEFINE CSYMBOL:=rsCLMeterPerHourSymbol}
+{$DEFINE CSINGULARNAME:=rsCLMeterPerHourName}
+{$DEFINE CPLURALNAME:=rsCLMeterPerHourPluralName}
+{$DEFINE CPREFIXES:=cCLMeterPerHourPrefixes}
+{$DEFINE CEXPONENTS:=cCLMeterPerHourExponents}
+{$DEFINE CFACTOR:=cCLMeterPerHourFactor}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCLMeterPerHourQty}{$i adimVEC.inc}
 
-{$DEFINE CSYMBOL:=rsMilePerHourSymbol}
-{$DEFINE CPREFIXES:=cMilePerHourPrefixes}
-{$DEFINE CEXPONENTS:=cMilePerHourExponents}
-{$DEFINE CFACTOR:=cMilePerHourFactor}
+{$DEFINE CSYMBOL:=rsCLMilePerHourSymbol}
+{$DEFINE CSINGULARNAME:=rsCLMilePerHourName}
+{$DEFINE CPLURALNAME:=rsCLMilePerHourPluralName}
+{$DEFINE CPREFIXES:=cCLMilePerHourPrefixes}
+{$DEFINE CEXPONENTS:=cCLMilePerHourExponents}
+{$DEFINE CFACTOR:=cCLMilePerHourFactor}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCLMilePerHourQty}{$i adimVEC.inc}
 
-{$DEFINE CSYMBOL:=rsNauticalMilePerHourSymbol}
-{$DEFINE CPREFIXES:=cNauticalMilePerHourPrefixes}
-{$DEFINE CEXPONENTS:=cNauticalMilePerHourExponents}
-{$DEFINE CFACTOR:=cNauticalMilePerHourFactor}
+{$DEFINE CSYMBOL:=rsCLNauticalMilePerHourSymbol}
+{$DEFINE CSINGULARNAME:=rsCLNauticalMilePerHourName}
+{$DEFINE CPLURALNAME:=rsCLNauticalMilePerHourPluralName}
+{$DEFINE CPREFIXES:=cCLNauticalMilePerHourPrefixes}
+{$DEFINE CEXPONENTS:=cCLNauticalMilePerHourExponents}
+{$DEFINE CFACTOR:=cCLNauticalMilePerHourFactor}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCLNauticalMilePerHourQty}{$i adimVEC.inc}
 
 {$DEFINE CSYMBOL:=rsCLMeterPerSecondSquaredSymbol}
@@ -12076,15 +12376,19 @@ end;
 {$DEFINE CEXPONENTS:=cCLMeterPerSecondSquaredExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCLMeterPerSecondSquaredQty}{$i adimVEC.inc}
 
-{$DEFINE CSYMBOL:=rsMeterPerSecondPerSecondSymbol}
-{$DEFINE CPREFIXES:=cMeterPerSecondPerSecondPrefixes}
-{$DEFINE CEXPONENTS:=cMeterPerSecondPerSecondExponents}
+{$DEFINE CSYMBOL:=rsCLMeterPerSecondPerSecondSymbol}
+{$DEFINE CSINGULARNAME:=rsCLMeterPerSecondPerSecondName}
+{$DEFINE CPLURALNAME:=rsCLMeterPerSecondPerSecondPluralName}
+{$DEFINE CPREFIXES:=cCLMeterPerSecondPerSecondPrefixes}
+{$DEFINE CEXPONENTS:=cCLMeterPerSecondPerSecondExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCLMeterPerSecondPerSecondQty}{$i adimVEC.inc}
 
-{$DEFINE CSYMBOL:=rsMeterPerHourPerSecondSymbol}
-{$DEFINE CPREFIXES:=cMeterPerHourPerSecondPrefixes}
-{$DEFINE CEXPONENTS:=cMeterPerHourPerSecondExponents}
-{$DEFINE CFACTOR:=cMeterPerHourPerSecondFactor}
+{$DEFINE CSYMBOL:=rsCLMeterPerHourPerSecondSymbol}
+{$DEFINE CSINGULARNAME:=rsCLMeterPerHourPerSecondName}
+{$DEFINE CPLURALNAME:=rsCLMeterPerHourPerSecondPluralName}
+{$DEFINE CPREFIXES:=cCLMeterPerHourPerSecondPrefixes}
+{$DEFINE CEXPONENTS:=cCLMeterPerHourPerSecondExponents}
+{$DEFINE CFACTOR:=cCLMeterPerHourPerSecondFactor}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCLMeterPerHourPerSecondQty}{$i adimVEC.inc}
 
 {$DEFINE CSYMBOL:=rsCLSquareMeterPerSquareSecondSymbol}
@@ -12136,15 +12440,19 @@ end;
 {$DEFINE CEXPONENTS:=cCLNewtonExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCLNewtonQty}{$i adimVEC.inc}
 
-{$DEFINE CSYMBOL:=rsPoundForceSymbol}
-{$DEFINE CPREFIXES:=cPoundForcePrefixes}
-{$DEFINE CEXPONENTS:=cPoundForceExponents}
-{$DEFINE CFACTOR:=cPoundForceFactor}
+{$DEFINE CSYMBOL:=rsCLPoundForceSymbol}
+{$DEFINE CSINGULARNAME:=rsCLPoundForceName}
+{$DEFINE CPLURALNAME:=rsCLPoundForcePluralName}
+{$DEFINE CPREFIXES:=cCLPoundForcePrefixes}
+{$DEFINE CEXPONENTS:=cCLPoundForceExponents}
+{$DEFINE CFACTOR:=cCLPoundForceFactor}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCLPoundForceQty}{$i adimVEC.inc}
 
-{$DEFINE CSYMBOL:=rsNewtonSecondSymbol}
-{$DEFINE CPREFIXES:=cNewtonSecondPrefixes}
-{$DEFINE CEXPONENTS:=cNewtonSecondExponents}
+{$DEFINE CSYMBOL:=rsCLNewtonSecondSymbol}
+{$DEFINE CSINGULARNAME:=rsCLNewtonSecondName}
+{$DEFINE CPLURALNAME:=rsCLNewtonSecondPluralName}
+{$DEFINE CPREFIXES:=cCLNewtonSecondPrefixes}
+{$DEFINE CEXPONENTS:=cCLNewtonSecondExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCLNewtonSecondQty}{$i adimVEC.inc}
 
 {$DEFINE CSYMBOL:=rsCLKilogramSquareMeterSymbol}
@@ -15172,6 +15480,36 @@ begin
   result.FValue := FValue.SquaredNorm;
 end;
 
+function TCLMeterHelper.ToCLAstronomical: TCLAstronomicalQty;
+begin
+  result.FValue := FValue / cCLAstronomicalFactor;
+end;
+
+function TCLMeterHelper.ToCLInch: TCLInchQty;
+begin
+  result.FValue := FValue / cCLInchFactor;
+end;
+
+function TCLMeterHelper.ToCLFoot: TCLFootQty;
+begin
+  result.FValue := FValue / cCLFootFactor;
+end;
+
+function TCLMeterHelper.ToCLYard: TCLYardQty;
+begin
+  result.FValue := FValue / cCLYardFactor;
+end;
+
+function TCLMeterHelper.ToCLMile: TCLMileQty;
+begin
+  result.FValue := FValue / cCLMileFactor;
+end;
+
+function TCLMeterHelper.ToCLNauticalMile: TCLNauticalMileQty;
+begin
+  result.FValue := FValue / cCLNauticalMileFactor;
+end;
+
 function TCLMeterHelper.wedge(AValue: TCLMeterQty): TCLSquareMeterQty;
 begin
   result.FValue := FValue.wedge(AValue.FValue);
@@ -15217,6 +15555,11 @@ begin
   result.FValue := FValue.SquaredNorm;
 end;
 
+function TCLRadianHelper.ToCLDegree: TCLDegreeQty;
+begin
+  result.FValue := FValue / cCLDegreeFactor;
+end;
+
 function TCLAmpereHelper.Norm: TAmpereQty;
 begin
   result.FValue := FValue.Norm;
@@ -15237,6 +15580,21 @@ begin
   result.FValue := FValue.SquaredNorm;
 end;
 
+function TCLMeterPerSecondHelper.ToCLMeterPerHour: TCLMeterPerHourQty;
+begin
+  result.FValue := FValue / cCLMeterPerHourFactor;
+end;
+
+function TCLMeterPerSecondHelper.ToCLMilePerHour: TCLMilePerHourQty;
+begin
+  result.FValue := FValue / cCLMilePerHourFactor;
+end;
+
+function TCLMeterPerSecondHelper.ToCLNauticalMilePerHour: TCLNauticalMilePerHourQty;
+begin
+  result.FValue := FValue / cCLNauticalMilePerHourFactor;
+end;
+
 function TCLMeterPerSecondSquaredHelper.Norm: TMeterPerSecondSquaredQty;
 begin
   result.FValue := FValue.Norm;
@@ -15250,6 +15608,11 @@ end;
 function TCLMeterPerSecondPerSecondHelper.ToCLMeterPerSecondSquared: TCLMeterPerSecondSquaredQty;
 begin
   result.FValue := FValue;
+end;
+
+function TCLMeterPerSecondSquaredHelper.ToCLMeterPerHourPerSecond: TCLMeterPerHourPerSecondQty;
+begin
+  result.FValue := FValue / cCLMeterPerHourPerSecondFactor;
 end;
 
 function TCLReciprocalMeterHelper.wedge(AValue: TCLMeterPerSecondQty): TCLRadianPerSecondQty;
@@ -15300,6 +15663,11 @@ end;
 function TCLNewtonHelper.Norm: TNewtonQty;
 begin
   result.FValue := FValue.Norm;
+end;
+
+function TCLNewtonHelper.ToCLPoundForce: TCLPoundForceQty;
+begin
+  result.FValue := FValue / cCLPoundForceFactor;
 end;
 
 function TCLKilogramMeterPerSecondHelper.ToCLNewtonSecond: TCLNewtonSecondQty;
