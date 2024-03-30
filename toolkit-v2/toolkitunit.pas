@@ -28,19 +28,18 @@ uses
 
 type
   TToolKitItem = record
-    FClassName:        string;
-    FOperator:         string;
-    FClassParent1:     string;
-    FClassParent2:     string;
-    FComment:          string;
-    FLongSymbol:       string;
-    FShortSymbol:      string;
-    FIdentifierSymbol: string;
-    FBaseClass:        string;
-    FFactor:           string;
-    FPrefixes:         string;
-    FVecClass:         string;
-    FOptions:          string;
+    FClassName:            string;
+    FOperator:             string;
+    FClassParent1:         string;
+    FClassParent2:         string;
+    FComment:              string;
+    FLongSymbol:           string;
+    FShortSymbol:          string;
+    FIdentifierSymbol:     string;
+    FBaseClass:            string;
+    FFactor:               string;
+    FPrefixes:             string;
+    FVecClass:             string;
   end;
 
   TToolKitExponent = record
@@ -111,6 +110,7 @@ type
     procedure AddItemOperators(const AItem: TToolkitItem);
     procedure AddVECItemOperators(const AItem: TToolkitItem);
 
+
     procedure AddQuantityOperator(const AOperator, ALeftClass, ARightClass, AResultClass: string);
     procedure AddUnitOperator    (const AOperator, ALeftClass, ARightClass, AResultClass: string; ADual: boolean);
 
@@ -118,13 +118,17 @@ type
     procedure AddPower(AOperator, AQuantity, AResult: string);
     procedure AddHelper(AClassName, ABaseClass, AFactor: string);
 
-    procedure AddHelperReciprocal(const AItem: TToolKitItem);
+
     procedure AddHelperSquaredNorm(const AItem: TToolkitItem);
     procedure AddHelperNorm(const AItem: TToolkitItem);
     procedure AddHelperDual(const AItem: TToolkitItem);
+    procedure AddHelperReciprocal(const AItem: TToolKitItem);
 
-    procedure AddHelperDOT  (const ABaseUnit, ABaseQuantity, AInputQuantity, AResultQuantity: string);
-    procedure AddHelperWEDGE(const ABaseUnit, ABaseQuantity, AInputQuantity, AResultQuantity: string);
+    procedure AddHelperDOT      (const ABaseUnit, ABaseQuantity, AInputQuantity, AResultQuantity: string);
+    procedure AddHelperWEDGE    (const ABaseUnit, ABaseQuantity, AInputQuantity, AResultQuantity: string);
+    procedure AddHelperGEOMETRIC(const ABaseUnit, ABaseQuantity, AInputQuantity, AResultQuantity: string);
+
+
     procedure AddEquivalence(AClassName, ABaseClass: string);
 
     procedure AddItemResource(const AItem: TToolkitItem);
@@ -482,7 +486,12 @@ begin
         if Pos('OP4', AItem.FFactor) > 0 then AddUnitOperator('/', GetQuantityType(AItem.FClassParent1), GetUnitType(AItem.FClassName),    GetQuantityType(AItem.FClassParent2), FALSE);
 
       end else
-        if Pos('power', LowerCase(AItem.FOperator)) > 0 then
+        if UpperCase(AItem.FOperator) = 'RECIPROCAL' then
+        begin
+          AddQuantityOperator('/', 'double', GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassName  ));
+          AddQuantityOperator('/', 'double', GetQuantityType(AItem.FClassName   ), GetQuantityType(AItem.FClassParent1));
+        end else
+        if Pos('POWER', UpperCase(AItem.FOperator)) > 0 then
         begin
           AddPower(AItem.FOperator, AItem.FClassParent1, AItem.FClassName);
         end;
@@ -543,16 +552,59 @@ begin
     begin
       AddQuantityOperator('*', GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName   ));
       AddQuantityOperator('*', GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassName   ));
-      AddQuantityOperator('/', GetQuantityType(AItem.FClassName),    GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2));
-      AddQuantityOperator('/', GetQuantityType(AItem.FClassName),    GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1));
+
+      if IsAVector(AItem.FClassName) and IsAVector(AItem.FClassParent1) then
+        AddHelperDOT(GetUnitTypeHelper(AItem.FClassName), GetQuantityType(AItem.FClassName), GetReciprocalQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2))
+      else
+      if IsAVector(AItem.FClassParent1) then
+      begin
+        AddQuantityOperator('*', GetQuantityType          (AItem.FClassName   ), GetReciprocalQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2));
+        AddQuantityOperator('*', GetReciprocalQuantityType(AItem.FClassParent1), GetQuantityType          (AItem.FClassName   ), GetQuantityType(AItem.FClassParent2));
+      end else
+        AddQuantityOperator('/', GetQuantityType(AItem.FClassName), GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2));
+
+      if IsAVector(AItem.FClassName) and IsAVector(AItem.FClassParent2) then
+        AddHelperDOT(GetUnitTypeHelper(AItem.FClassName), GetQuantityType(AItem.FClassName), GetReciprocalQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1))
+      else
+      if IsAVector(AItem.FClassParent2) then
+      begin
+        AddQuantityOperator('*', GetQuantityType          (AItem.FClassName   ), GetReciprocalQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1));
+        AddQuantityOperator('*', GetReciprocalQuantityType(AItem.FClassParent2), GetQuantityType          (AItem.FClassName   ), GetQuantityType(AItem.FClassParent1));
+      end else
+        AddQuantityOperator('/', GetQuantityType(AItem.FClassName), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1));
+
     end else
     if AItem.FOperator = '/' then
     begin
-      AddQuantityOperator('/', GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName   ));
-      AddQuantityOperator('*', GetQuantityType(AItem.FClassName   ), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1));
-      AddQuantityOperator('*', GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName   ), GetQuantityType(AItem.FClassParent1));
-      AddQuantityOperator('/', GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassName   ), GetQuantityType(AItem.FClassParent2));
+      if IsAVector(AItem.FClassParent2) then
+      begin
+        AddQuantityOperator('*', GetQuantityType          (AItem.FClassParent1), GetReciprocalQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName));
+        AddQuantityOperator('*', GetReciprocalQuantityType(AItem.FClassParent2), GetQuantityType          (AItem.FClassParent1), GetQuantityType(AItem.FClassName));
+      end else
+        AddQuantityOperator('/', GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName));
+
+      if IsAVector(AItem.FClassName) and IsAVector(AItem.FClassParent2) then
+      begin
+        AddHelperDOT(GetUnitTypeHelper(AItem.FClassName   ), GetQuantityType(AItem.FClassName   ), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1));
+        AddHelperDOT(GetUnitTypeHelper(AItem.FClassParent2), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName   ), GetQuantityType(AItem.FClassParent1));
+      end else
+      begin
+        AddQuantityOperator('*', GetQuantityType(AItem.FClassName   ), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1));
+        AddQuantityOperator('*', GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName   ), GetQuantityType(AItem.FClassParent1));
+      end;
+
+      if IsAVector(AItem.FClassName) and IsAVector(AItem.FClassParent1) then
+      begin
+        AddHelperDOT(GetUnitTypeHelper          (AItem.FClassParent1), GetQuantityType          (AItem.FClassParent1), GetReciprocalQuantityType(AItem.FClassName   ), GetQuantityType(AItem.FClassParent2));
+        AddHelperDOT(GetReciprocalUnitTypeHelper(AItem.FClassName   ), GetReciprocalQuantityType(AItem.FClassName   ), GetQuantityType          (AItem.FClassParent1), GetQuantityType(AItem.FClassParent2));
+      end else
+      begin
+        AddQuantityOperator('*', GetQuantityType          (AItem.FClassParent1), GetReciprocalQuantityType(AItem.FClassName   ), GetQuantityType(AItem.FClassParent2));
+        AddQuantityOperator('*', GetReciprocalQuantityType(AItem.FClassName   ), GetQuantityType          (AItem.FClassParent1), GetQuantityType(AItem.FClassParent2));
+      end;
+
     end else
+
     if AItem.FOperator = 'NORM' then
     begin
       AddHelperNorm(AItem);
@@ -561,24 +613,63 @@ begin
     begin
       AddHelperSquaredNorm(AItem);
     end else
-    if AItem.FOperator = 'RECIPROCAL' then
+    if UpperCase(AItem.FOperator) = 'RECIPROCAL' then
     begin
-      AddHelperReciprocal(AItem);
+      AddQuantityOperator('/', 'double', GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassName  ));
+      AddQuantityOperator('/', 'double', GetQuantityType(AItem.FClassName   ), GetQuantityType(AItem.FClassParent1));
     end else
     if AItem.FOperator = 'DUAL' then
     begin
       AddHelperDual(AItem);
     end else
+
     if AItem.FOperator = 'DOT' then
     begin
       AddHelperDot(GetUnitTypeHelper(AItem.FClassParent1), GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName));
       AddHelperDot(GetUnitTypeHelper(AItem.FClassParent2), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassName));
+
+
+
+
     end else
-    if AItem.FOperator = 'WEDGE' then
+    if UpperCase(AItem.FOperator) = 'WEDGE *' then
     begin
-      AddHelperWEDGE(GetUnitTypeHelper(AItem.FClassParent1), GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName));
-      AddHelperWEDGE(GetUnitTypeHelper(AItem.FClassParent2), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassName));
+      AddHelperWEDGE(GetUnitTypeHelper(AItem.FClassParent1), GetQuantityType(AItem.FClassParent1), GetQuantityType          (AItem.FClassParent2), GetQuantityType(AItem.FClassName   ));
+      AddHelperWEDGE(GetUnitTypeHelper(AItem.FClassParent2), GetQuantityType(AItem.FClassParent2), GetQuantityType          (AItem.FClassParent1), GetQuantityType(AItem.FClassName   ));
+      AddHelperDot  (GetUnitTypeHelper(AItem.FClassName   ), GetQuantityType(AItem.FClassName   ), GetReciprocalQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1));
+      AddHelperDot  (GetUnitTypeHelper(AItem.FClassName   ), GetQuantityType(AItem.FClassName   ), GetReciprocalQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2));
+
+      AddHelperDot(GetReciprocalUnitTypeHelper(AItem.FClassParent2), GetReciprocalQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName   ), GetQuantityType(AItem.FClassParent1));
+      AddHelperDot(GetReciprocalUnitTypeHelper(AItem.FClassParent1), GetReciprocalQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassName   ), GetQuantityType(AItem.FClassParent2));
     end else
+    if UpperCase(AItem.FOperator) = 'WEDGE /' then
+    begin
+      AddHelperWEDGE(GetUnitTypeHelper          (AItem.FClassParent1), GetQuantityType          (AItem.FClassParent1), GetReciprocalQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName));
+      AddHelperWEDGE(GetReciprocalUnitTypeHelper(AItem.FClassParent2), GetReciprocalQuantityType(AItem.FClassParent2), GetQuantityType          (AItem.FClassParent1), GetQuantityType(AItem.FClassName));
+
+      AddHelperDot  (GetUnitTypeHelper          (AItem.FClassName   ), GetQuantityType          (AItem.FClassName   ), GetQuantityType          (AItem.FClassParent2), GetQuantityType(AItem.FClassParent1));
+      AddHelperDot  (GetUnitTypeHelper          (AItem.FClassParent2), GetQuantityType          (AItem.FClassParent2), GetQuantityType          (AItem.FClassName   ), GetQuantityType(AItem.FClassParent1));
+
+      AddHelperDot  (GetUnitTypeHelper          (AItem.FClassParent1), GetQuantityType          (AItem.FClassParent1), GetReciprocalQuantityType(AItem.FClassName   ), GetQuantityType(AItem.FClassParent2));
+      AddHelperDot  (GetReciprocalUnitTypeHelper(AItem.FClassName   ), GetReciprocalQuantityType(AItem.FClassName   ), GetReciprocalQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2));
+    end else
+
+    if UpperCase(AItem.FOperator) = 'GEOMETRIC *' then
+    begin
+      AddQuantityOperator('*', GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName   ));
+      AddQuantityOperator('*', GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassName   ));
+      AddQuantityOperator('/', GetQuantityType(AItem.FClassName   ), GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2));
+      AddQuantityOperator('/', GetQuantityType(AItem.FClassName   ), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1));
+    end else
+    if UpperCase(AItem.FOperator) = 'GEOMETRIC /' then
+    begin
+      AddQuantityOperator('/', GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName   ));
+      AddQuantityOperator('*', GetQuantityType(AItem.FClassName   ), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1));
+      AddQuantityOperator('*', GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName   ), GetQuantityType(AItem.FClassParent1));
+      AddQuantityOperator('/', GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassName   ), GetQuantityType(AItem.FClassParent2));
+    end else
+
+
     if AItem.FOperator = '*=' then
     begin
       AddUnitOperator('*', GetQuantityType(AItem.FClassParent1), GetUnitType(AItem.FClassParent2), GetQuantityType(AItem.FClassName), FALSE);
@@ -719,6 +810,8 @@ begin
     SectionB31.Append('');
     SectionB31.Append(       Format(IMPL_OP_CLASS, [ARightClass, AOperator, ALeftClass, ARightClass, AResultClass]));
     SectionB31.Append('begin');
+
+
     if AResultClass <> 'double' then
     begin
 
@@ -856,6 +949,26 @@ begin
 //SectionB8.Append('  result.FValue := FValue / FValue.SquaredNorm;');
   SectionB8.Append('end;');
   SectionB8.Append('');
+
+  Index := SectionA8.IndexOf('  ' + GetUnitTypeHelper(AItem.FClassName) + ' = record helper for ' + GetQuantityType(AItem.FClassName));
+  if Index = -1 then
+  begin
+    SectionA8.Append(Format('  %s = record helper for %s', [GetUnitTypeHelper(AItem.FClassName), GetQuantityType(AItem.FClassName)]));
+    SectionA8.Append(Format('    function Reciprocal: %s;', [GetQuantityType(AItem.FClassParent1)]));
+    SectionA8.Append('  end;');
+    SectionA8.Append('');
+  end else
+  begin
+    SectionA8.Insert(Index + 1, Format('    function Reciprocal: %s;', [GetQuantityType(AItem.FClassParent1)]));
+  end;
+
+  SectionB8.Append('');
+  SectionB8.Append(Format('function %s.Reciprocal: %s;', [GetUnitTypeHelper(AItem.FClassName), GetQuantityType(AItem.FClassParent1)]));
+  SectionB8.Append('begin');
+  SectionB8.Append('  result.FValue := FValue.Reciprocal;');
+//SectionB8.Append('  result.FValue := FValue / FValue.SquaredNorm;');
+  SectionB8.Append('end;');
+  SectionB8.Append('');
 end;
 
 procedure TToolkitList.AddHelperSquaredNorm(const AItem: TToolkitItem);
@@ -983,6 +1096,35 @@ begin
     SectionB8.Append(Format('function %s.wedge(AValue: %s): %s;', [ABaseUnit, AInputQuantity, AResultQuantity]));
     SectionB8.Append('begin');
     SectionB8.Append('  result.FValue := FValue.wedge(AValue.FValue);');
+    SectionB8.Append('end;');
+    SectionB8.Append('');
+  end;
+end;
+
+procedure TToolkitList.AddHelperGEOMETRIC(const ABaseUnit, ABaseQuantity, AInputQuantity, AResultQuantity: string);
+var
+  Index: longint;
+begin
+  if ClassList.IndexOf(Format('function %s.geometric(AValue: %s): %s;', [ABaseUnit, AInputQuantity, AResultQuantity]))= -1 then
+  begin
+    ClassList.Add(Format('function %s.geometric(AValue: %s): %s;', [ABaseUnit, AInputQuantity, AResultQuantity]));
+
+    Index := SectionA8.IndexOf('  ' + ABaseUnit + ' = record helper for ' + ABaseQuantity);
+    if Index = -1 then
+    begin
+      SectionA8.Append(Format('  %s = record helper for %s', [ABaseUnit, ABaseQuantity]));
+      SectionA8.Append(Format('    function geometric(AValue: %s): %s;', [AInputQuantity, AResultQuantity]));
+      SectionA8.Append('  end;');
+      SectionA8.Append('');
+    end else
+    begin
+      SectionA8.Insert(Index + 1, Format('    function geometric(AValue: %s): %s;', [AInputQuantity, AResultQuantity]));
+    end;
+
+    SectionB8.Append('');
+    SectionB8.Append(Format('function %s.geometric(AValue: %s): %s;', [ABaseUnit, AInputQuantity, AResultQuantity]));
+    SectionB8.Append('begin');
+    SectionB8.Append('  result.FValue := FValue * AValue.FValue;');
     SectionB8.Append('end;');
     SectionB8.Append('');
   end;
