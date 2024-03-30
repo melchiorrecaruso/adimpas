@@ -12,12 +12,12 @@ type
     function ToVerboseString: string;
     function ToVerboseString(APrecision, ADigits: longint; const APrefixes: TPrefixes): string;
     function IsSame(const AValue: TQuantity): boolean;
-    function IsZero: boolean;
+    function IsNull: boolean;
     function Inverse: TQuantity;
     function Reverse: TQuantity;
     function Conjugate: TQuantity;
-    function SquaredNorm: double;
     function Projection(const AValue: TMultivector): TQuantity;
+    function Rejection(const AValue: TMultivector): TQuantity;
     function Extract(AComponents: TMultivectorComponents): TQuantity;
     class operator + (const AValue: TQuantity): TQuantity;
     class operator - (const AValue: TQuantity): TQuantity;
@@ -100,7 +100,7 @@ begin
   result := FValue.SameValue(AValue.FValue);
 end;
 
-function TQuantity.IsZero: boolean;
+function TQuantity.IsNull: boolean;
 begin
   result := FValue.SameValue(NullMultivector);
 end;
@@ -120,14 +120,14 @@ begin
   result.FValue := FValue.Conjugate;
 end;
 
-function TQuantity.SquaredNorm: double;
-begin
-   result := FValue.SquaredNorm;
-end;
-
 function TQuantity.Projection(const AValue: TMultivector): TQuantity;
 begin
   result.FValue := FValue.Projection(AValue);
+end;
+
+function TQuantity.Rejection(const AValue: TMultivector): TQuantity;
+begin
+  result.FValue := FValue.Rejection(AValue);
 end;
 
 function TQuantity.Extract(AComponents: TMultivectorComponents): TQuantity;

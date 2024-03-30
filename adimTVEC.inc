@@ -12,8 +12,11 @@ type
     function ToVerboseString: string;
     function ToVerboseString(APrecision, ADigits: longint; const APrefixes: TPrefixes): string;
     function IsSame(const AValue: TQuantity): boolean;
-    function IsZero: boolean;
-    function Projection(const AValue: TTrivector): TQuantity;
+    function IsNull: boolean;
+    function Inverse: TQuantity;
+    function Reverse: TQuantity;
+    function Conjugate: TQuantity;
+    function Extract: TQuantity;
     class operator + (const AValue: TQuantity): TQuantity;
     class operator - (const AValue: TQuantity): TQuantity;
     class operator + (const ALeft, ARight: TQuantity): TQuantity;
@@ -95,14 +98,29 @@ begin
   result := FValue.SameValue(AValue.FValue);
 end;
 
-function TQuantity.IsZero: boolean;
+function TQuantity.IsNull: boolean;
 begin
   result := FValue.SameValue(NullTrivector);
 end;  
 
-function TQuantity.Projection(const AValue: TTrivector): TQuantity;
+function TQuantity.Inverse: TQuantity;
 begin
-  result.FValue := FValue.Projection(AValue);
+  result.FValue := FValue.Inverse;
+end;
+
+function TQuantity.Reverse: TQuantity;
+begin
+  result.FValue := FValue.Reverse;
+end;
+
+function TQuantity.Conjugate: TQuantity;
+begin
+  result.FValue := FValue.Conjugate;
+end;
+
+function TQuantity.Extract: TQuantity;
+begin
+  result.FValue := FValue.Extract;
 end;
 
 class operator TQuantity.+(const AValue: TQuantity): TQuantity;

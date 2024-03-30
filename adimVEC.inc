@@ -12,9 +12,12 @@ type
     function ToVerboseString: string;
     function ToVerboseString(APrecision, ADigits: longint; const APrefixes: TPrefixes): string;
     function IsSame(const AValue: TQuantity): boolean;
-    function IsZero: boolean;
-    function Projection(const AValue: TVector): TQuantity;
-    function Rejection(const AValue: TVector): TQuantity;
+    function IsNull: boolean;
+    function Inverse: TQuantity;
+    function Reverse: TQuantity;
+    function Conjugate: TQuantity;
+    function Projection(const AValue: TMultivector): TQuantity;
+    function Rejection(const AValue: TMultivector): TQuantity;
     function Extract(AComponents: TVectorComponents): TQuantity;
     class operator + (const AValue: TQuantity): TQuantity;
     class operator - (const AValue: TQuantity): TQuantity;
@@ -97,17 +100,32 @@ begin
   result := FValue.SameValue(AValue.FValue);
 end;
 
-function TQuantity.IsZero: boolean;
+function TQuantity.IsNull: boolean;
 begin
   result := FValue.SameValue(NullVector);
 end;
 
-function TQuantity.Projection(const AValue: TVector): TQuantity;
+function TQuantity.Inverse: TQuantity;
+begin
+  result.FValue := FValue.Inverse;
+end;
+
+function TQuantity.Reverse: TQuantity;
+begin
+  result.FValue := FValue.Reverse;
+end;
+
+function TQuantity.Conjugate: TQuantity;
+begin
+  result.FValue := FValue.Conjugate;
+end;
+
+function TQuantity.Projection(const AValue: TMultivector): TQuantity;
 begin
   result.FValue := FValue.Projection(AValue);
 end;
 
-function TQuantity.Rejection(const AValue: TVector): TQuantity;
+function TQuantity.Rejection(const AValue: TMultivector): TQuantity;
 begin
   result.FValue := FValue.Rejection(AValue);
 end;
