@@ -42,7 +42,7 @@ var
   tolerance: TMeters;
   time: TSeconds;
   speed: TMetersPerSecond;
-  acc: TMetersPerSecondSquared;
+  acc: TMetersPerSquareSecond;
   density: TKilogramsPerCubicMeter;
   specificw: TNewtonsPerCubicMeter;
   force, normal: TNewtons;
@@ -147,7 +147,7 @@ var
 
   wavelen: TMeters;
   yspeed: TMetersperSecond;
-  yacc: TMetersPerSecondSquared;
+  yacc: TMetersPerSquareSecond;
 
   lightspeed: TMetersPerSecond;
   energy: TJoules;
@@ -159,13 +159,13 @@ var
 
   displacement: TCLMeters;
   speedvec: TCLMetersPerSecond;
-  accvec: TCLMetersPerSecondSquared;
+  accvec: TCLMetersPerSquareSecond;
 
   momentum: TCLKilogramMetersPerSecond;
 
   anglevec: TCLRadians;
   angularspeedvec: TCLRadiansPerSecond;
-  angularaccvec: TCLRadiansPerSecondSquared;
+  angularaccvec: TCLRadiansPerSquareSecond;
 
   forcevec: TCLNewtons;
   areavec: TCLSquareMeters;
@@ -609,7 +609,7 @@ begin
 
   // TEST-44 - LINEAR THERMAL EXPANSION
   distance  := 10*m;
-  lambda    := 1.2E-5*(1/K);
+  lambda    := 1.2E-5/K;
   deltatemp := 100*K;
   deltadist := distance*(lambda*deltatemp);
   if deltadist.ToString(4, 2, [pMilli]) <> '12 mm' then halt(1);
@@ -927,8 +927,8 @@ begin
   side1vec := 5*e1*m;                                                           writeln(side1vec.ToVerboseString);
   side2vec := 10*e2*m;                                                          writeln(side2vec.ToVerboseString);
   areavec  := side1vec.wedge(side2vec);                                         writeln(areavec .ToVerboseString);
-  side1vec := areavec.dot(side2vec.Reciprocal);                                 writeln(side1vec.ToVerboseString);
-  side2vec := (side1vec.Reciprocal).dot(areavec);                               writeln(side2vec.ToVerboseString);
+  side1vec := areavec.dot(1/side2vec);                                          writeln(side1vec.ToVerboseString);
+  side2vec := (1/side1vec).dot(areavec);                                        writeln(side2vec.ToVerboseString);
 
   displacement := (2*e1 + 6*e2)*m;
   displacement := (2*e1 + 6*e2)*inch;
@@ -971,10 +971,9 @@ begin
   writeln;
   writeln(anglevec.ToString);
   writeln(angularspeedvec.ToString);
-  writeln((anglevec.Norm/angularspeedvec.Projection(anglevec.Value).Norm).ToString);
 
-  writeln(anglevec.dot(angularspeedvec.Reciprocal).ToString);
-  writeln(angularspeedvec.dot(anglevec.Reciprocal).ToString);
+  writeln(anglevec.dot(1/angularspeedvec).ToString);
+  writeln(angularspeedvec.dot(1/anglevec).ToString);
 
 
   writeln('TORQUE');
@@ -982,15 +981,15 @@ begin
   displacement :=  5*e1*m;                                                      writeln(displacement.ToVerboseString);
   torquevec    := 50*e12*N*m;                                                   writeln(torquevec   .ToVerboseString);
   torquevec    := displacement.wedge(forcevec);                                 writeln(torquevec   .ToVerboseString);
-  forcevec     := displacement.Reciprocal.dot(torquevec);                       writeln(forcevec    .ToVerboseString);
-  displacement := torquevec.dot(forcevec.Reciprocal);                           writeln(displacement.ToVerboseString);
+  forcevec     := (1/displacement).dot(torquevec);                              writeln(forcevec    .ToVerboseString);
+  displacement := torquevec.dot(1/forcevec);                                    writeln(displacement.ToVerboseString);
 
   writeln('WEBER');
   magneticfieldvec := (10*e12)*T;                                               writeln(magneticfieldvec.ToVerboseString);
   areavec          := ( 5*e12)*m2;                                              writeln(areavec.ToVerboseString);
-  magneticfluxvec  := magneticfieldvec.Dual.wedge(-areavec.Reciprocal);         writeln(magneticfluxvec.ToVerboseString);
+  magneticfluxvec  := magneticfieldvec.Dual.wedge(-1/areavec);                  writeln(magneticfluxvec.ToVerboseString);
   magneticfieldvec := magneticfluxvec.dot(areavec).Dual;                        writeln(magneticfieldvec.ToVerboseString);
-  areavec          := magneticfieldvec.Dual.dot(-magneticfluxvec.Reciprocal);   writeln(areavec.ToVerboseString);
+  areavec          := magneticfieldvec.Dual.dot(-1/magneticfluxvec);            writeln(areavec.ToVerboseString);
   magneticfluxvec  := (50*V*s)*e123;
   magneticfluxvec  := magneticflux*e123;
 
@@ -1000,19 +999,19 @@ begin
   writeln('PASCAL');
   forcevec    := 10*e1*N;                                                       writeln(forcevec.ToVerboseString);
   areavec     := 1*e23*m2;                                                      writeln(areavec.ToVerboseString);
-  pressurevec := forcevec.wedge(areavec.Reciprocal);                            writeln(pressurevec.ToVerboseString);
+  pressurevec := forcevec.wedge(1/areavec);                                     writeln(pressurevec.ToVerboseString);
   forcevec    := pressurevec.dot(areavec);                                      writeln(forcevec.ToVerboseString);
-  areavec     := forcevec.dot(pressurevec.Reciprocal);                          writeln(areavec.ToVerboseString);
+  areavec     := forcevec.dot(1/pressurevec);                               writeln(areavec.ToVerboseString);
 
   torquestifness := 10*e12*N*m/rad;
-//torquevec      := torquestifness.Dot(1*e12));
+  torquevec      := torquestifness * (5*rad);
 
   writeln('LORETZ FORCE');
   electricfieldvec := (10*e1)*N/C;
   charge           := 1.60217663E-19*C;
   forcevec         := charge * electricfieldvec;
   forcevec         := electricfieldvec * charge;
-  charge           := forcevec.dot(electricfieldvec.Reciprocal);
+  charge           := forcevec.dot(1/electricfieldvec);
   electricfieldvec := forcevec/charge;
 
   writeln('VOLTAGES');
