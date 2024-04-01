@@ -24,7 +24,7 @@ program adimtest;
 {$endif}
 
 uses
-  ADim, CL3, SysUtils;
+  ADim, {$ifdef VECTORIAL} CL3, {$endif} SysUtils;
 
 var
   side1, side2, side3, side4: TMeters;
@@ -545,7 +545,6 @@ begin
   // TEST-37 - MOMENTUM
   mass  := 10*kg;
   speed := 5*m/s;
-  p     := 10*5*kg*m/s;
   p     := mass*speed;
 
   p     := 50*kg*m/s;
@@ -924,7 +923,7 @@ begin
   mass       := 9.11*1E-31*kg;
   lightspeed := 299792458*m/s;
   wavelen    := plank/(mass*speed);
-
+  writeln('* TEST-99: PASSED');
 
   {$ifdef VECTORIAL}
 
