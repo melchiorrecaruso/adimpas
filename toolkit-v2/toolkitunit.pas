@@ -732,13 +732,15 @@ begin
     if ABaseClass = '' then
     begin
       SectionA22.Append(Format(INTF_OP, [AOperator, ALeftClass, ARightClass, AResultClass]));
+      SectionB22.Append('');
       SectionB22.Append(Format(IMPL_OP, [AOperator, ALeftClass, ARightClass, AResultClass]));
       Inc(ExternalOperators);
     end else
     begin
       j := Find(Format(IMPL_QUANTITY, [ABaseClass, '*']), SectionB2);
       SectionA2.Insert(i + 1, Format(INTF_OP_CLASS, [            AOperator, ALeftClass, ARightClass, AResultClass]));
-      SectionB2.Insert(j + 1, Format(IMPL_OP_CLASS, [ABaseClass, AOperator, ALeftClass, ARightClass, AResultClass]));
+      SectionB2.Insert(j + 1, '');
+      SectionB2.Insert(j + 2, Format(IMPL_OP_CLASS, [ABaseClass, AOperator, ALeftClass, ARightClass, AResultClass]));
       Inc(InternalOperators);
     end;
 
@@ -771,9 +773,9 @@ begin
       SectionB22.Append('end;');
     end else
     begin
-      SectionB2.Insert(j + 2, 'begin');
-      SectionB2.Insert(j + 3, S);
-      SectionB2.Insert(j + 4, 'end;');
+      SectionB2.Insert(j + 3, 'begin');
+      SectionB2.Insert(j + 4, S);
+      SectionB2.Insert(j + 5, 'end;');
     end;
 
   end else
@@ -797,7 +799,6 @@ begin
     SectionB31.Append('');
     SectionB31.Append(       Format(IMPL_OP_CLASS, [ARightClass, AOperator, ALeftClass, ARightClass, AResultClass]));
     SectionB31.Append('begin');
-
 
     if AResultClass <> 'double' then
     begin
