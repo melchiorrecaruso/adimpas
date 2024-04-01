@@ -33,6 +33,9 @@
     </Files>
     <RequiredPkgs>
       <Item>
+        <PackageName Value="clifford"/>
+      </Item>
+      <Item>
         <PackageName Value="FCL"/>
       </Item>
     </RequiredPkgs>

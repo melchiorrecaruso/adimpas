@@ -1,40 +1,41 @@
 object MainForm: TMainForm
-  Left = 376
-  Height = 530
-  Top = 119
-  Width = 856
+  Left = 508
+  Height = 804
+  Top = 196
+  Width = 1306
   Caption = 'ADimPas Toolkit-v2'
-  ClientHeight = 530
-  ClientWidth = 856
+  ClientHeight = 804
+  ClientWidth = 1306
+  LCLVersion = '3.99.0.0'
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
-  LCLVersion = '2.2.6.0'
   object PageControl: TPageControl
     AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = RunBtn
     AnchorSideTop.Side = asrBottom
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
     Left = 0
-    Height = 490
-    Top = 40
-    Width = 856
+    Height = 758
+    Top = 46
+    Width = 1306
     ActivePage = TabSheet2
     Anchors = [akTop, akLeft, akRight, akBottom]
-    BorderSpacing.Top = 4
+    BorderSpacing.Top = 6
     ParentFont = False
     TabIndex = 1
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = 'Unit of measurement'
-      ClientHeight = 462
-      ClientWidth = 848
+      ClientHeight = 727
+      ClientWidth = 1296
       object WorksheetGrid: TsWorksheetGrid
         Left = 4
-        Height = 454
+        Height = 719
         Top = 4
-        Width = 840
+        Width = 1288
         FrozenCols = 0
         FrozenRows = 0
         PageBreakPen.Color = clBlue
@@ -57,8 +58,8 @@ object MainForm: TMainForm
     end
     object TabSheet2: TTabSheet
       Caption = 'Unit Source Code'
-      ClientHeight = 462
-      ClientWidth = 848
+      ClientHeight = 727
+      ClientWidth = 1296
       inline SynEdit: TSynEdit
         AnchorSideLeft.Control = TabSheet2
         AnchorSideTop.Control = TabSheet2
@@ -67,9 +68,9 @@ object MainForm: TMainForm
         AnchorSideBottom.Control = TabSheet2
         AnchorSideBottom.Side = asrBottom
         Left = 4
-        Height = 454
+        Height = 719
         Top = 4
-        Width = 840
+        Width = 1288
         BorderSpacing.Left = 4
         BorderSpacing.Top = 4
         BorderSpacing.Right = 4
@@ -537,13 +538,13 @@ object MainForm: TMainForm
     end
     object TabSheet3: TTabSheet
       Caption = 'Messages'
-      ClientHeight = 462
-      ClientWidth = 848
+      ClientHeight = 727
+      ClientWidth = 1296
       object Memo: TMemo
         Left = 4
-        Height = 454
+        Height = 719
         Top = 4
-        Width = 840
+        Width = 1288
         Anchors = [akTop, akLeft, akRight, akBottom]
         BorderSpacing.Left = 4
         BorderSpacing.Top = 4
@@ -561,15 +562,16 @@ object MainForm: TMainForm
   end
   object LoadBtn: TBitBtn
     AnchorSideLeft.Control = Owner
-    AnchorSideTop.Control = Owner
+    AnchorSideTop.Control = RunBtn
     AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = RunBtn
     AnchorSideBottom.Side = asrBottom
     Left = 8
     Height = 32
-    Top = 4
+    Top = 8
     Width = 100
+    Anchors = [akTop, akLeft, akBottom]
     BorderSpacing.Left = 8
-    BorderSpacing.Top = 4
     Caption = 'Load'
     Glyph.Data = {
       36090000424D3609000000000000360000002800000018000000180000000100
@@ -647,15 +649,15 @@ object MainForm: TMainForm
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
     }
-    OnClick = LoadBtnClick
     TabOrder = 1
+    OnClick = LoadBtnClick
   end
   object RunBtn: TBitBtn
     AnchorSideTop.Control = Owner
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Side = asrBottom
-    Left = 752
+    Left = 1202
     Height = 32
     Top = 8
     Width = 100
@@ -739,23 +741,23 @@ object MainForm: TMainForm
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
     }
-    OnClick = RunBtnClick
     TabOrder = 2
+    OnClick = RunBtnClick
   end
   object ExportBtn: TBitBtn
     AnchorSideTop.Control = RunBtn
     AnchorSideRight.Control = RunBtn
     AnchorSideBottom.Control = RunBtn
     AnchorSideBottom.Side = asrBottom
-    Left = 648
+    Left = 1098
     Height = 32
     Top = 8
     Width = 100
     Anchors = [akTop, akRight, akBottom]
     BorderSpacing.Right = 4
     Caption = 'Export ...'
-    OnClick = ExportBtnClick
     TabOrder = 3
+    OnClick = ExportBtnClick
   end
   object OptimizeBox: TCheckBox
     AnchorSideLeft.Side = asrBottom
@@ -763,16 +765,14 @@ object MainForm: TMainForm
     AnchorSideRight.Control = OptimizationTime
     AnchorSideBottom.Control = OptimizationTime
     AnchorSideBottom.Side = asrBottom
-    Left = 388
+    Left = 799
     Height = 22
     Top = 13
-    Width = 170
+    Width = 209
     Anchors = [akTop, akRight, akBottom]
     BorderSpacing.Left = 20
     BorderSpacing.Right = 10
     Caption = 'Optimizer execution time (s)'
-    Checked = True
-    State = cbChecked
     TabOrder = 4
   end
   object OptimizationTime: TSpinEdit
@@ -780,7 +780,7 @@ object MainForm: TMainForm
     AnchorSideRight.Control = ExportBtn
     AnchorSideBottom.Control = ExportBtn
     AnchorSideBottom.Side = asrBottom
-    Left = 568
+    Left = 1018
     Height = 22
     Top = 13
     Width = 70
@@ -792,6 +792,20 @@ object MainForm: TMainForm
     MinValue = 1
     TabOrder = 5
     Value = 120
+  end
+  object SkipVectorialUnits: TCheckBox
+    AnchorSideTop.Control = OptimizeBox
+    AnchorSideRight.Control = OptimizeBox
+    AnchorSideBottom.Control = OptimizeBox
+    AnchorSideBottom.Side = asrBottom
+    Left = 631
+    Height = 22
+    Top = 13
+    Width = 148
+    Anchors = [akTop, akRight, akBottom]
+    BorderSpacing.Right = 10
+    Caption = 'Skip vectorial units'
+    TabOrder = 6
   end
   object SaveDialog: TSaveDialog
     Filter = 'Lazarus unit (*.pas; *.pp)|*.pas;*.pp;'
@@ -809,6 +823,7 @@ object MainForm: TMainForm
     CompilerMode = pcmFPC
     NestedComments = True
     TypeHelpers = False
+    StringMultilineMode = []
     Left = 96
     Top = 136
   end

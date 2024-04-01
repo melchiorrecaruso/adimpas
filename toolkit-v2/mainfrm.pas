@@ -32,6 +32,7 @@ type
   { TMainForm }
 
   TMainForm = class(TForm)
+    SkipVectorialUnits: TCheckBox;
     Memo: TMemo;
     OptimizationTime: TSpinEdit;
     TabSheet3: TTabSheet;
@@ -83,17 +84,18 @@ uses
 {$R *.lfm}
 
 const
-  _class_name        = 00;
-  _operator          = 01;
-  _class_parent_1    = 02;
-  _class_parent_2    = 03;
-  _comment           = 04;
-  _long_symbol       = 05;
-  _short_symbol      = 06;
-  _identifier_symbol = 07;
-  _base_class        = 08;
-  _factor            = 09;
-  _prefixes          = 10;
+  _class_name             = 00;
+  _operator               = 01;
+  _class_parent_1         = 02;
+  _class_parent_2         = 03;
+  _comment                = 04;
+  _long_symbol            = 05;
+  _short_symbol           = 06;
+  _identifier_symbol      = 07;
+  _base_class             = 08;
+  _factor                 = 09;
+  _prefixes               = 10;
+  _vectorclass            = 11;
 
 { TMainForm }
 
@@ -149,17 +151,19 @@ begin
   ToolKitManager.OnTerminate := @OnTerminate;
   for i := 0 to WorksheetGrid.Worksheet.GetLastRowIndex do
   begin
-    T.FClassName        := WorksheetGrid.Worksheet.ReadAsText(i, _class_name);
-    T.FOperator         := WorksheetGrid.Worksheet.ReadAsText(i, _operator);
-    T.FClassParent1     := WorksheetGrid.Worksheet.ReadAsText(i, _class_parent_1);
-    T.FClassParent2     := WorksheetGrid.Worksheet.ReadAsText(i, _class_parent_2);
-    T.FComment          := WorksheetGrid.Worksheet.ReadAsText(i, _comment);
-    T.FLongSymbol       := WorksheetGrid.Worksheet.ReadAsText(i, _long_symbol);
-    T.FShortSymbol      := WorksheetGrid.Worksheet.ReadAsText(i, _short_symbol);
-    T.FIdentifierSymbol := WorksheetGrid.Worksheet.ReadAsText(i, _identifier_symbol);
-    T.FBaseClass        := WorksheetGrid.Worksheet.ReadAsText(i, _base_class);
-    T.FFactor           := WorksheetGrid.Worksheet.ReadAsText(i, _factor);
-    T.FPrefixes         := WorksheetGrid.Worksheet.ReadAsText(i, _prefixes);
+    T.FClassName           := WorksheetGrid.Worksheet.ReadAsText(i, _class_name);
+    T.FOperator            := WorksheetGrid.Worksheet.ReadAsText(i, _operator);
+    T.FClassParent1        := WorksheetGrid.Worksheet.ReadAsText(i, _class_parent_1);
+    T.FClassParent2        := WorksheetGrid.Worksheet.ReadAsText(i, _class_parent_2);
+    T.FComment             := WorksheetGrid.Worksheet.ReadAsText(i, _comment);
+    T.FLongSymbol          := WorksheetGrid.Worksheet.ReadAsText(i, _long_symbol);
+    T.FShortSymbol         := WorksheetGrid.Worksheet.ReadAsText(i, _short_symbol);
+    T.FIdentifierSymbol    := WorksheetGrid.Worksheet.ReadAsText(i, _identifier_symbol);
+    T.FBaseClass           := WorksheetGrid.Worksheet.ReadAsText(i, _base_class);
+    T.FFactor              := WorksheetGrid.Worksheet.ReadAsText(i, _factor);
+    T.FPrefixes            := WorksheetGrid.Worksheet.ReadAsText(i, _prefixes);
+    T.FVecClass            := WorksheetGrid.Worksheet.ReadAsText(i, _vectorclass);
+
     T.FLongSymbol       := CleanUnitName(T.FLongSymbol);
     T.FShortSymbol      := CleanUnitSymbol(T.FShortSymbol);
     if (T.FClassName <> '') and (Pos('//', T.FClassName) = 0) then
@@ -210,6 +214,7 @@ end;
 constructor TToolKitManager.Create;
 begin
   FList := TToolkitList.Create(@MainForm.OnMessage);
+  FList.SkipVectorialUnits := Mainform.SkipVectorialUnits.Checked;
   FreeOnTerminate := True;
   inherited Create(True);
 end;

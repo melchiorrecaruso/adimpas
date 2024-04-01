@@ -27,24 +27,26 @@ uses
   Classes, SysUtils;
 
 const
-  INTF_QUANTITY      = '{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=%s}{$i adim.inc}';
-  INTF_UNIT          = '{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=%s}{$DEFINE TUnit:=%s}{$i adim.inc}';
-  INTF_END           = '{$DEFINE INTF_END}{$i adim.inc}';
+  INTF_QUANTITY       = '{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=%s}{$i %s}';
+  INTF_UNIT           = '{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=%s}{$DEFINE TUnit:=%s}{$i %s}';
+  INTF_END            = '{$DEFINE INTF_END}{$i %s}';
 
-  IMPL_QUANTITY      = '{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=%s}{$i adim.inc}';
-  IMPL_UNIT          = '{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=%s}{$DEFINE TUnit:=%s}{$i adim.inc}';
+  IMPL_QUANTITY       = '{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=%s}{$i %s}';
+  IMPL_UNIT           = '{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=%s}{$DEFINE TUnit:=%s}{$i %s}';
 
-  IMPL_CSYMBOL       = '{$DEFINE CSYMBOL:=%s}';
-  IMPL_CSINGULARNAME = '{$DEFINE CSINGULARNAME:=%s}';
-  IMPL_CPLURALNAME   = '{$DEFINE CPLURALNAME:=%s}';
-  IMPL_CPREFIXES     = '{$DEFINE CPREFIXES:=%s}';
-  IMPL_CEXPONENTS    = '{$DEFINE CEXPONENTS:=%s}';
-  IMPL_CFACTOR       = '{$DEFINE CFACTOR:=%s}';
+  IMPL_CSYMBOL        = '{$DEFINE CSYMBOL:=%s}';
+  IMPL_CSINGULARNAME  = '{$DEFINE CSINGULARNAME:=%s}';
+  IMPL_CPLURALNAME    = '{$DEFINE CPLURALNAME:=%s}';
+  IMPL_CPREFIXES      = '{$DEFINE CPREFIXES:=%s}';
+  IMPL_CEXPONENTS     = '{$DEFINE CEXPONENTS:=%s}';
+  IMPL_CFACTOR        = '{$DEFINE CFACTOR:=%s}';
 
-  INTF_OP_CLASS      = '  class operator %s(const ALeft: %s; const ARight: %s): %s;';
-  IMPL_OP_CLASS      = 'class operator %s.%s(const ALeft: %s; const ARight: %s): %s;';
-  INTF_OP            = 'operator %s(const ALeft: %s; const ARight: %s): %s;';
-  IMPL_OP            = 'operator %s(const ALeft: %s; const ARight: %s): %s;';
+  INTF_OP_CLASS       = '  class operator %s(const ALeft: %s; const ARight: %s): %s;';
+  IMPL_OP_CLASS       = 'class operator %s.%s(const ALeft: %s; const ARight: %s): %s;';
+  INTF_OP             = 'operator %s(const ALeft: %s; const ARight: %s): %s;';
+  IMPL_OP             = 'operator %s(const ALeft: %s; const ARight: %s): %s;';
+
+  VECPrefix           = 'CL';
 
 
 function GetSymbolResourceString(const AClassName: string): string;
@@ -60,25 +62,71 @@ function GetPluralName(const ALongSymbol: string): string;
 function GetPrefixes(const AShortSymbol: string): string;
 function GetExponents(const AShortSymbol: string): string;
 
+function GetReciprocalClassName(S: string): string;
+function GetReciprocalQuantityType(S: string): string;
+function GetReciprocalUnitTypeHelper(const S: string): string;
+
 function GetQuantityType(const S: string): string;
 function GetQuantity(const S: string): string;
 function GetUnitType(const S: string): string;
-
 
 function GetUnitID(const S: string): string;
 
 function GetUnitTypeHelper(const S: string): string;
 function GetUnitIdentifier(const S: string): string;
 
+function GetBaseClass(const S: string): string;
 
 function  CleanUnitName(const S: string): string;
 function  CleanUnitSymbol(const S: string): string;
 procedure CleanDocument(S: TStringList);
 
+function IsASpecialKey(const AKey: string): boolean;
+function IsAVersorKey(const AKey: string): boolean;
+function IsAVector(const AClassName: string): boolean;
+
 implementation
 
 uses
   StrUtils;
+
+function IsASpecialKey(const AKey: string): boolean;
+begin
+  Result := (UpperCase(AKey) = 'DOUBLE'       ) or
+            (UpperCase(AKey) = 'TVECTOR'      ) or
+            (UpperCase(AKey) = 'TBIVECTOR'    ) or
+            (UpperCase(AKey) = 'TTRIVECTOR'   ) or
+            (UpperCase(AKey) = 'TMULTIVECTOR' ) or
+            (UpperCase(AKey) = 'TTRIVERSOR123') or
+            (UpperCase(AKey) = 'TBIVERSOR12'  ) or
+            (UpperCase(AKey) = 'TBIVERSOR23'  ) or
+            (UpperCase(AKey) = 'TBIVERSOR31'  ) or
+            (UpperCase(AKey) = 'TVERSOR1'     ) or
+            (UpperCase(AKey) = 'TVERSOR2'     ) or
+            (UpperCase(AKey) = 'TVERSOR3'     );
+end;
+
+function IsAVersorKey(const AKey: string): boolean;
+begin
+  Result := (UpperCase(AKey) = 'TTRIVERSOR123') or
+            (UpperCase(AKey) = 'TBIVERSOR12'  ) or
+            (UpperCase(AKey) = 'TBIVERSOR23'  ) or
+            (UpperCase(AKey) = 'TBIVERSOR31'  ) or
+            (UpperCase(AKey) = 'TVERSOR1'     ) or
+            (UpperCase(AKey) = 'TVERSOR2'     ) or
+            (UpperCase(AKey) = 'TVERSOR3'     );
+end;
+
+function IsAVector(const AClassName: string): boolean;
+begin
+  Result := False;
+  if UpperCase(AClassName) = 'TVECTOR'      then Result := True;
+  if UpperCase(AClassName) = 'TBIVECTOR'    then Result := True;
+  if UpperCase(AClassName) = 'TTRIVECTOR'   then Result := True;
+  if UpperCase(AClassName) = 'TMULTIVECTOR' then Result := True;
+
+  if Pos('T' + VECPrefix, AClassName) = 1 then Result := True;
+end;
 
 function Split(const AStr: string): TStringArray;
 var
@@ -158,6 +206,62 @@ begin
   result := StringReplace(StringReplace(result, 'y!',    'ies',    [rfReplaceAll]), '?',     's',    [rfReplaceAll]);
 end;
 
+function GetReciprocalClassName(S: string): string;
+var
+  i: longint;
+  Left, Right: string;
+begin
+  if IsAVector(S) then
+    result := 'T'+ VECPrefix
+  else
+    result := 'T';
+  Delete(S, 1, Length(Result));
+
+  Right  := '';
+  i := Pos('Per', S);
+  if i > 0 then
+  begin
+    Right := Copy(S, i, Length(S) - i + 1);
+    Right := StringReplace(Right, 'Per', '', [rfReplaceAll]);
+    Delete(S, i, Length(S) - i + 1);
+  end;
+
+  if Length(S) > 0 then
+  begin
+    Left := S;
+    if Left[Length(Left)] = '?' then  SetLength(Left, Length(Left) -1);
+    if Left[Length(Left)] = '!' then  SetLength(Left, Length(Left) -1);
+
+    Left := StringReplace(Left, '?', 'Per', [rfReplaceAll]);
+    Left := StringReplace(Left, '!', 'Per', [rfReplaceAll]);
+
+    Left := StringReplace(Left, 'KilogramMeter',       'KilogramPerMeter',       [rfReplaceAll]);
+    Left := StringReplace(Left, 'KilogramSquareMeter', 'KilogramPerSquareMeter', [rfReplaceAll]);
+    Left := StringReplace(Left, 'NewtonMeter',         'NewtonPerMeter',         [rfReplaceAll]);
+  end;
+
+  if Length(Right) = 0 then
+  begin
+    Result := Result + 'Reciprocal' + Left;
+    Result := StringReplace(Result, 'Per', '', [rfReplaceAll]);
+  end else
+  begin
+    Result := Result + Right + '?Per' + Left;
+  end;
+
+  Result := StringReplace(Result, 'SecondPerFarad',         'Ohm',          [rfReplaceAll]);
+
+  Result := StringReplace(Result, 'ReciprocalOhm',          'Siemens',      [rfReplaceAll]);
+  Result := StringReplace(Result, 'ReciprocalSiemens',      'Ohm',          [rfReplaceAll]);
+  Result := StringReplace(Result, 'SecondSquared',          'SquareSecond', [rfReplaceAll]);
+  Result := StringReplace(Result, 'ReciprocalReciprocal',   '',             [rfReplaceAll]);
+end;
+
+function GetReciprocalQuantityType(S: string): string;
+begin
+  Result := GetQuantityType(GetReciprocalClassName(S));
+end;
+
 function GetQuantityType(const S: string): string;
 begin
   Result := S;
@@ -168,7 +272,11 @@ begin
     Result := StringReplace(Result, 'y!',    'y',    [rfReplaceAll]);
     Result := StringReplace(Result, '?',     '',     [rfReplaceAll]);
     Result := StringReplace(Result, ' ',     '',     [rfReplaceAll]);
-    Result := Result + 'Qty';
+
+    Result := StringReplace(Result, 'Unit',  '',     [rfReplaceAll]);
+    Result := StringReplace(Result, 'Qty',   '',     [rfReplaceAll]);
+
+    if not IsASpecialKey(Result) then Result := Result + 'Qty';
   end;
 end;
 
@@ -219,13 +327,21 @@ end;
 
 function GetUnitType(const S: string): string;
 begin
+  if IsASpecialKey(S) then Exit(S);
+
   Result := S;
   Result := StringReplace(Result, '!',  '', [rfReplaceAll]);
   Result := StringReplace(Result, '?',  '', [rfReplaceAll]);
   Result := StringReplace(Result, ' ',  '', [rfReplaceAll]);
+  Result := StringReplace(Result, 'T' + VECPrefix, 'T', [rfReplaceAll]);
 
   if Result = 'double' then Result := '';
   if Result <> ''      then Result := Result + 'Unit';
+end;
+
+function GetReciprocalUnitTypeHelper(const S: string): string;
+begin
+  Result := GetUnitTypeHelper(GetReciprocalClassName(S));
 end;
 
 function GetUnitTypeHelper(const S: string): string;
@@ -245,6 +361,25 @@ begin
   Result := StringReplace(Result, ' ',  '', [rfReplaceAll]);
   Result := Result + 'Unit';
 end;
+
+function GetBaseClass(const S: string): string;
+begin
+  Result := S;
+  Result := StringReplace(Result, 'Unit',   '',      [rfReplaceAll]);
+  Result := StringReplace(Result, 'Qty',    '',      [rfReplaceAll]);
+
+  Result := StringReplace(Result, 'Feet',   'Foot!', [rfReplaceAll]);
+  Result := StringReplace(Result, 'Inches', 'Inch!', [rfReplaceAll]);
+  Result := StringReplace(Result, 'ies',    'y!',    [rfReplaceAll]);
+  Result := StringReplace(Result, ' ',      '',      [rfReplaceAll]);
+
+
+  if Result = 'TSiemens' then Exit;
+
+  if Result[Length(Result)] = 's' then
+    Result[Length(Result)] := '?';
+end;
+
 
 function GetPrefixes(const AShortSymbol: string): string;
 var
@@ -272,8 +407,6 @@ begin
   while (Length(Result) > 0) and (Result[High(Result)] = ',') do
     Delete(Result, High(Result), 1);
 end;
-
-
 
 function GetExponents(const AShortSymbol: string): string;
 var
@@ -318,8 +451,6 @@ begin
   while (Length(Result) > 0) and (Result[High(Result)] = ',') do
     Delete(Result, High(Result), 1);
 end;
-
-
 
 function CleanUnitName(const S: string): string;
 begin

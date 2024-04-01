@@ -8,7 +8,7 @@ unit ADim;
 
 interface
 
-uses SysUtils;
+uses Cl3, SysUtils;
 
 type
   { Prefix }
