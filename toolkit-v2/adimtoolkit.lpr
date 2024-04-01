@@ -31,7 +31,9 @@ uses
   Interfaces,
   Forms,
   MainFrm,
-  toolkitunit, common, SimulatedAnnealing;
+  ToolKitUnit,
+  Common,
+  SimulatedAnnealing;
 
 {$R *.res}
 

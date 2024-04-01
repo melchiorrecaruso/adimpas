@@ -56,8 +56,8 @@ type
     procedure ExportBtnClick(Sender: TObject);
     procedure RunBtnClick(Sender: TObject);
     procedure OnTerminate(Sender: TObject);
-    procedure OnMessage(const AMessage: string);
     procedure UpdateButton(Value: boolean);
+    procedure DoMessage;
   private
   public
   end;
@@ -65,6 +65,8 @@ type
   TToolKitManager = class(TThread)
   private
     FList: TToolkitList;
+    FMessage: string;
+    procedure OnMessage(const AMessage: string);
   public
     constructor Create;
     destructor Destroy; override;
@@ -84,18 +86,18 @@ uses
 {$R *.lfm}
 
 const
-  _class_name             = 00;
-  _operator               = 01;
-  _class_parent_1         = 02;
-  _class_parent_2         = 03;
-  _comment                = 04;
-  _long_symbol            = 05;
-  _short_symbol           = 06;
-  _identifier_symbol      = 07;
-  _base_class             = 08;
-  _factor                 = 09;
-  _prefixes               = 10;
-  _vectorclass            = 11;
+  _class_name        = 00;
+  _operator          = 01;
+  _class_parent_1    = 02;
+  _class_parent_2    = 03;
+  _comment           = 04;
+  _long_symbol       = 05;
+  _short_symbol      = 06;
+  _identifier_symbol = 07;
+  _base_class        = 08;
+  _factor            = 09;
+  _prefixes          = 10;
+  _vectorclass       = 11;
 
 { TMainForm }
 
@@ -178,21 +180,20 @@ procedure TMainForm.OnTerminate(Sender: TObject);
 var
   I: longint;
 begin
-  UpdateButton(True);
   SynEdit.BeginUpdate(True);
-  SynEdit.Lines.Clear;
+  SynEdit.Clear;
   with ToolKitManager.FList do
   begin
     for I := 0 to Document.Count - 1 do SynEdit.Append(Document[I]);
     for I := 0 to Messages.Count - 1 do Memo.Lines.Add(Messages[I]);
   end;
   SynEdit.EndUpdate;
+  UpdateButton(True);
   ToolKitManager := nil;
 end;
 
 procedure TMainForm.UpdateButton(Value: boolean);
 begin
-  SynEdit.Clear;
   LoadBtn.Enabled          := Value;
   OptimizeBox.Enabled      := Value;
   OptimizationTime.Enabled := Value;
@@ -204,16 +205,16 @@ begin
   end;
 end;
 
-procedure TMainForm.OnMessage(const AMessage: string);
+procedure TMainForm.DoMessage;
 begin
-  Memo.Append(AMessage);
+  Memo.Append(ToolKitManager.FMessage);
 end;
 
 { TToolKitThread }
 
 constructor TToolKitManager.Create;
 begin
-  FList := TToolkitList.Create(@MainForm.OnMessage);
+  FList := TToolkitList.Create(@OnMessage);
   FList.SkipVectorialUnits := Mainform.SkipVectorialUnits.Checked;
   FreeOnTerminate := True;
   inherited Create(True);
@@ -234,6 +235,12 @@ begin
   FList.InitialTemperature := 1000000;
   FList.CoolingRate        := 0.1;
   FList.Run;
+end;
+
+procedure TToolKitManager.OnMessage(const AMessage: string);
+begin
+  FMessage := AMessage;
+  Synchronize(@MainForm.DoMessage);
 end;
 
 end.

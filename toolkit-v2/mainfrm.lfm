@@ -21,11 +21,11 @@ object MainForm: TMainForm
     Height = 758
     Top = 46
     Width = 1306
-    ActivePage = TabSheet2
+    ActivePage = TabSheet1
     Anchors = [akTop, akLeft, akRight, akBottom]
     BorderSpacing.Top = 6
     ParentFont = False
-    TabIndex = 1
+    TabIndex = 0
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = 'Unit of measurement'
@@ -765,10 +765,10 @@ object MainForm: TMainForm
     AnchorSideRight.Control = OptimizationTime
     AnchorSideBottom.Control = OptimizationTime
     AnchorSideBottom.Side = asrBottom
-    Left = 799
+    Left = 816
     Height = 22
     Top = 13
-    Width = 209
+    Width = 192
     Anchors = [akTop, akRight, akBottom]
     BorderSpacing.Left = 20
     BorderSpacing.Right = 10
@@ -798,10 +798,10 @@ object MainForm: TMainForm
     AnchorSideRight.Control = OptimizeBox
     AnchorSideBottom.Control = OptimizeBox
     AnchorSideBottom.Side = asrBottom
-    Left = 631
+    Left = 659
     Height = 22
     Top = 13
-    Width = 148
+    Width = 137
     Anchors = [akTop, akRight, akBottom]
     BorderSpacing.Right = 10
     Caption = 'Skip vectorial units'

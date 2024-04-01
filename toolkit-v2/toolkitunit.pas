@@ -94,6 +94,7 @@ type
 
     FList: array of TToolkitItem;
     FOnMessage: TMessageEvent;
+    FMessage: string;
 
     function GetCount: longint;
     function GetItem(Index: longint): TToolkitItem;
@@ -136,10 +137,9 @@ type
     function GetSIunit(Index: longint): string;
     function Find(const S: string; List: TStringList): longint;
 
-
     procedure Run(ASolution: TSolution);
   public
-    constructor Create(OnMessage: TMessageEvent);
+    constructor Create(OnMessageEvent: TMessageEvent);
     destructor Destroy; override;
     function CalculateEnergy(const ASolution: TSolution): double; override;
     procedure CreateSolution(var ANeighbour: TSolution); override;
@@ -150,6 +150,7 @@ type
     property Items[Index: longint]: TToolkitItem read GetItem; Default;
     property Document: TStringList read FDocument;
     property Messages: TStringList read FMessages;
+    property Message: string read FMessage;
     property Count: longint read GetCount;
   end;
 
@@ -168,10 +169,10 @@ const
 
 // TToolkitList
 
-constructor TToolkitList.Create(OnMessage: TMessageEvent);
+constructor TToolkitList.Create(OnMessageEvent: TMessageEvent);
 begin
-  inherited Create(OnMessage);
-  FOnMessage := OnMessage;
+  inherited Create(OnMessageEvent);
+  FOnMessage := OnMessageEvent;
   FList      := nil;
   ClassList  := TStringList.Create;
   CommUnits  := TStringList.Create;
@@ -1503,6 +1504,7 @@ begin
   if Assigned(FOnMessage) then
     FOnMessage('Storing backup ...');
   S := TStringList.Create;
+
   for i := Low(BestSolution) to High(BestSolution) do
     S.Add(BestSolution[i]);
   S.SaveToFile('solution.bk');

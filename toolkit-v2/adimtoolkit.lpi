@@ -92,12 +92,15 @@
     </SearchPaths>
     <CodeGeneration>
       <Optimizations>
-        <OptimizationLevel Value="0"/>
+        <OptimizationLevel Value="2"/>
       </Optimizations>
     </CodeGeneration>
     <Linking>
       <Debugging>
+        <GenerateDebugInfo Value="False"/>
+        <RunWithoutDebug Value="True"/>
         <DebugInfoType Value="dsDwarf3"/>
+        <UseLineInfoUnit Value="False"/>
       </Debugging>
       <Options>
         <Win32>
