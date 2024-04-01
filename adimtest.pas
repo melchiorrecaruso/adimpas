@@ -157,6 +157,7 @@ var
   I: TKilogramSquareMeters;
   Re: double;
 
+  {$ifdef VECTORIAL}
   displacement: TCLMeters;
   speedvec: TCLMetersPerSecond;
   accvec: TCLMetersPerSquareSecond;
@@ -190,6 +191,7 @@ var
 
   side1vec: TCLMeters;
   side2vec: TCLMeters;
+  {$endif}
 
 begin
   ExitCode := 0;
@@ -922,6 +924,10 @@ begin
   lightspeed := 299792458*m/s;
   wavelen    := plank/(mass*speed);
 
+
+  {$ifdef VECTORIAL}
+
+
   // TEST-100
 
   side1vec := 5*e1*m;                                                           writeln(side1vec.ToVerboseString);
@@ -987,9 +993,9 @@ begin
   writeln('WEBER');
   magneticfieldvec := (10*e12)*T;                                               writeln(magneticfieldvec.ToVerboseString);
   areavec          := ( 5*e12)*m2;                                              writeln(areavec.ToVerboseString);
-  magneticfluxvec  := magneticfieldvec.Dual.wedge(-1/areavec);                  writeln(magneticfluxvec.ToVerboseString);
-  magneticfieldvec := magneticfluxvec.dot(areavec).Dual;                        writeln(magneticfieldvec.ToVerboseString);
-  areavec          := magneticfieldvec.Dual.dot(-1/magneticfluxvec);            writeln(areavec.ToVerboseString);
+  magneticfluxvec  := -magneticfieldvec.Dual.wedge(areavec);                    writeln(magneticfluxvec.ToVerboseString);
+  magneticfieldvec := magneticfluxvec.dot(1/areavec).Dual;                      writeln(magneticfieldvec.ToVerboseString);
+  areavec          := -(1/magneticfieldvec.Dual).dot(magneticfluxvec);          writeln(areavec.ToVerboseString);
   magneticfluxvec  := (50*V*s)*e123;
   magneticfluxvec  := magneticflux*e123;
 
@@ -999,9 +1005,9 @@ begin
   writeln('PASCAL');
   forcevec    := 10*e1*N;                                                       writeln(forcevec.ToVerboseString);
   areavec     := 1*e23*m2;                                                      writeln(areavec.ToVerboseString);
-  pressurevec := forcevec.wedge(1/areavec);                                     writeln(pressurevec.ToVerboseString);
-  forcevec    := pressurevec.dot(areavec);                                      writeln(forcevec.ToVerboseString);
-  areavec     := forcevec.dot(1/pressurevec);                               writeln(areavec.ToVerboseString);
+  pressurevec := -forcevec.wedge(1/areavec);                                    writeln(pressurevec.ToVerboseString);
+  forcevec    := -pressurevec.dot(areavec);                                     writeln(forcevec.ToVerboseString);
+  areavec     := -forcevec.dot(1/pressurevec);                                  writeln(areavec.ToVerboseString);
 
   torquestifness := 10*e12*N*m/rad;
   torquevec      := torquestifness * (5*rad);
@@ -1031,7 +1037,7 @@ begin
 
   writeln(powervec.Extract([mc0]).Norm.ToString);
   writeln('Y = ', (1/impedance).ToVerboseString);
-
+  {$endif}
 
 
   writeln('ADIM-TEST DONE.');

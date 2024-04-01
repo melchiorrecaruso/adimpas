@@ -128,10 +128,8 @@ type
     procedure AddHelperWEDGE    (const ABaseUnit, ABaseQuantity, AInputQuantity, AResultQuantity: string);
     procedure AddHelperGEOMETRIC(const ABaseUnit, ABaseQuantity, AInputQuantity, AResultQuantity: string);
 
-
-    procedure AddEquivalence(AClassName, ABaseClass: string);
-
-    procedure AddItemResource(const AItem: TToolkitItem);
+    procedure AddEquivalence(AFromClass, AToClass: string);
+    procedure AddResources(const AItem: TToolkitItem);
 
     procedure CheckClass(AClassName, AOperator, AClassParent1, AClassParent2: string);
     function GetIndex(const AClassName: string): longint;
@@ -276,7 +274,7 @@ begin
   SectionB3.Append('');
   SectionB3.Append(Format(IMPL_UNIT, [GetQuantityType(AItem.FClassName), GetUnitType(AItem.FClassName), adiminc]));
 
-  AddItemResource(AItem);
+  AddResources(AItem);
   Inc(BaseUnitCount);
 end;
 
@@ -302,7 +300,7 @@ begin
   SectionB3.Append('');
   SectionB3.Append(Format(IMPL_UNIT, [GetQuantityType(AItem.FBaseClass), GetUnitType(AItem.FClassName), adiminc]));
 
-  AddItemResource(AItem);
+  AddResources(AItem);
   AddHelper(AItem.FClassName, AItem.FBaseClass, '');
   AddHelper(AItem.FBaseClass, AItem.FClassName, '');
   Inc(FactoredUnitCount);
@@ -331,7 +329,7 @@ begin
   SectionB3.Append('');
   SectionB3.Append(Format(IMPL_UNIT, [GetQuantityType(AItem.FClassName), GetUnitType(AItem.FClassName), adiminc]));
 
-  AddItemResource(AItem);
+  AddResources(AItem);
   if AItem.FFactor.Contains('%s') = FALSE then
   begin
     AddHelper(AItem.FClassName, AItem.FBaseClass, 'FValue / ' + GetFactorConst(AItem.FClassName));
@@ -349,10 +347,10 @@ var
 begin
   // VEC UNIT
   BaseInc := 'ERROR';
-  if Uppercase(AItem.FVecClass) = 'TVECTOR'      then BaseInc := adimVECinc;
-  if Uppercase(AItem.FVecClass) = 'TBIVECTOR'    then BaseInc := adimBVECinc;
-  if Uppercase(AItem.FVecClass) = 'TTRIVECTOR'   then BaseInc := adimTVECinc;
-  if Uppercase(AItem.FVecClass) = 'TMULTIVECTOR' then BaseInc := adimMVECinc;
+  if UpperCase(AItem.FVecClass) = 'TVECTOR'      then BaseInc := adimVECinc;
+  if UpperCase(AItem.FVecClass) = 'TBIVECTOR'    then BaseInc := adimBVECinc;
+  if UpperCase(AItem.FVecClass) = 'TTRIVECTOR'   then BaseInc := adimTVECinc;
+  if UpperCase(AItem.FVecClass) = 'TMULTIVECTOR' then BaseInc := adimMVECinc;
 
   SectionA2.Insert(3, '');
   SectionA2.Insert(4, Format(INTF_QUANTITY, [GetQuantityType(AItem.FClassName), BaseInc]));
@@ -366,7 +364,7 @@ begin
   SectionB2.Append(Format(IMPL_CEXPONENTS,    [GetExponentsConst            (AItem.FClassName)]));
   SectionB2.Append(Format(IMPL_QUANTITY,      [GetQuantityType              (AItem.FClassName), BaseInc]));
 
-  AddItemResource(AItem);
+  AddResources(AItem);
   Inc(BaseUnitCount);
 end;
 
@@ -376,10 +374,10 @@ var
 begin
   // VEC CLONED UNIT
   BaseInc := adiminc;
-  if Uppercase(AItem.FVecClass) = 'TVECTOR'      then BaseInc := adimVECinc;
-  if Uppercase(AItem.FVecClass) = 'TBIVECTOR'    then BaseInc := adimBVECinc;
-  if Uppercase(AItem.FVecClass) = 'TTRIVECTOR'   then BaseInc := adimTVECinc;
-  if Uppercase(AItem.FVecClass) = 'TMULTIVECTOR' then BaseInc := adimMVECinc;
+  if UpperCase(AItem.FVecClass) = 'TVECTOR'      then BaseInc := adimVECinc;
+  if UpperCase(AItem.FVecClass) = 'TBIVECTOR'    then BaseInc := adimBVECinc;
+  if UpperCase(AItem.FVecClass) = 'TTRIVECTOR'   then BaseInc := adimTVECinc;
+  if UpperCase(AItem.FVecClass) = 'TMULTIVECTOR' then BaseInc := adimMVECinc;
 
   SectionA2.Append('');
   SectionA2.Append(Format(INTF_QUANTITY, [GetQuantityType(AItem.FClassName), BaseInc]));
@@ -393,7 +391,7 @@ begin
   SectionB2.Append(Format(IMPL_CEXPONENTS,    [GetExponentsConst            (AItem.FClassName)]));
   SectionB2.Append(Format(IMPL_QUANTITY,      [GetQuantityType              (AItem.FClassName), BaseInc]));
 
-  AddItemResource(AItem);
+  AddResources(AItem);
   AddHelper(AItem.FClassName, AItem.FBaseClass, '');
   AddHelper(AItem.FBaseClass, AItem.FClassName, '');
   Inc(FactoredUnitCount);
@@ -405,10 +403,10 @@ var
 begin
   // VEC FACTORED UNIT
   BaseInc := adiminc;
-  if Uppercase(AItem.FVecClass) = 'TVECTOR'      then BaseInc := adimVECinc;
-  if Uppercase(AItem.FVecClass) = 'TBIVECTOR'    then BaseInc := adimBVECinc;
-  if Uppercase(AItem.FVecClass) = 'TTRIVECTOR'   then BaseInc := adimTVECinc;
-  if Uppercase(AItem.FVecClass) = 'TMULTIVECTOR' then BaseInc := adimMVECinc;
+  if UpperCase(AItem.FVecClass) = 'TVECTOR'      then BaseInc := adimVECinc;
+  if UpperCase(AItem.FVecClass) = 'TBIVECTOR'    then BaseInc := adimBVECinc;
+  if UpperCase(AItem.FVecClass) = 'TTRIVECTOR'   then BaseInc := adimTVECinc;
+  if UpperCase(AItem.FVecClass) = 'TMULTIVECTOR' then BaseInc := adimMVECinc;
 
   SectionA2.Append('');
   SectionA2.Append(Format(INTF_QUANTITY, [GetQuantityType(AItem.FClassName), BaseInc]));
@@ -423,7 +421,7 @@ begin
   SectionB2.Append(Format(IMPL_CFACTOR,       [GetFactorConst               (AItem.FClassName)]));
   SectionB2.Append(Format(IMPL_QUANTITY,      [GetQuantityType              (AItem.FClassName), BaseInc]));
 
-  AddItemResource(AItem);
+  AddResources(AItem);
   if AItem.FFactor.Contains('%s') = FALSE then
   begin
     AddHelper(AItem.FClassName, AItem.FBaseClass, 'FValue / ' + GetFactorConst(AItem.FClassName));
@@ -460,78 +458,72 @@ begin
       if Pos('OP4', AItem.FFactor) > 0 then AddUnitOperator('/', GetQuantityType(AItem.FClassName),    GetUnitType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1), FALSE);
 
     end else
-      if AItem.FOperator = '/' then
-      begin
-        AddQuantityOperator('/', GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName   ));
-        AddQuantityOperator('*', GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName),    GetQuantityType(AItem.FClassParent1));
-        AddQuantityOperator('*', GetQuantityType(AItem.FClassName),    GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1));
-        AddQuantityOperator('/', GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassName),    GetQuantityType(AItem.FClassParent2));
+    if AItem.FOperator = '/' then
+    begin
+      AddQuantityOperator('/', GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName   ));
+      AddQuantityOperator('*', GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName),    GetQuantityType(AItem.FClassParent1));
+      AddQuantityOperator('*', GetQuantityType(AItem.FClassName),    GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1));
+      AddQuantityOperator('/', GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassName),    GetQuantityType(AItem.FClassParent2));
 
-        // OP1: C=A/B
-        // OP2: B*C=A
-        // OP3: C*B=A
-        // OP4: B=A/C
+      // OP1: C=A/B
+      // OP2: B*C=A
+      // OP3: C*B=A
+      // OP4: B=A/C
 
-        if Pos('OP1', AItem.FFactor) > 0 then AddUnitOperator('/', GetQuantityType(AItem.FClassParent1), GetUnitType(AItem.FClassParent2), GetQuantityType(AItem.FClassName   ), FALSE);
-        if Pos('OP2', AItem.FFactor) > 0 then AddUnitOperator('*', GetQuantityType(AItem.FClassParent2), GetUnitType(AItem.FClassName),    GetQuantityType(AItem.FClassParent1), FALSE);
-        if Pos('OP3', AItem.FFactor) > 0 then AddUnitOperator('*', GetQuantityType(AItem.FClassName),    GetUnitType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1), FALSE);
-        if Pos('OP4', AItem.FFactor) > 0 then AddUnitOperator('/', GetQuantityType(AItem.FClassParent1), GetUnitType(AItem.FClassName),    GetQuantityType(AItem.FClassParent2), FALSE);
+      if Pos('OP1', AItem.FFactor) > 0 then AddUnitOperator('/', GetQuantityType(AItem.FClassParent1), GetUnitType(AItem.FClassParent2), GetQuantityType(AItem.FClassName   ), FALSE);
+      if Pos('OP2', AItem.FFactor) > 0 then AddUnitOperator('*', GetQuantityType(AItem.FClassParent2), GetUnitType(AItem.FClassName),    GetQuantityType(AItem.FClassParent1), FALSE);
+      if Pos('OP3', AItem.FFactor) > 0 then AddUnitOperator('*', GetQuantityType(AItem.FClassName),    GetUnitType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1), FALSE);
+      if Pos('OP4', AItem.FFactor) > 0 then AddUnitOperator('/', GetQuantityType(AItem.FClassParent1), GetUnitType(AItem.FClassName),    GetQuantityType(AItem.FClassParent2), FALSE);
 
-      end else
-        if Uppercase(AItem.FOperator) = 'RECIPROCAL' then
-        begin
-          AddQuantityOperator('/', 'double', GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassName  ));
-          AddQuantityOperator('/', 'double', GetQuantityType(AItem.FClassName   ), GetQuantityType(AItem.FClassParent1));
-        end else
-        if Pos('POWER', Uppercase(AItem.FOperator)) > 0 then
-        begin
-          AddPower(AItem.FOperator, AItem.FClassParent1, AItem.FClassName);
-        end;
+    end else
+    if UpperCase(AItem.FOperator) = 'RECIPROCAL' then
+    begin
+      AddQuantityOperator('/', 'double', GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassName  ));
+      AddQuantityOperator('/', 'double', GetQuantityType(AItem.FClassName   ), GetQuantityType(AItem.FClassParent1));
+    end else
+    if Pos('POWER', UpperCase(AItem.FOperator)) > 0 then
+    begin
+      AddPower(AItem.FOperator, AItem.FClassParent1, AItem.FClassName);
+    end;
 
   end else
-    if (AItem.FOperator = '=') then
+    if AItem.FOperator = '=' then
     begin
-
       if AItem.FBaseClass <> '' then;
         CommUnits.Add(GetQuantityType(AItem.FBaseClass));
 
       SectionA7.Append('');
       SectionB7.Append('');
-      AddEquivalence(AItem.FClassName, AItem.FBaseClass);
-      AddHelper(AItem.FClassName, AItem.FBaseClass, '');
-      SectionB7.Append('');
       AddEquivalence(AItem.FBaseClass, AItem.FClassName);
       AddHelper(AItem.FBaseClass, AItem.FClassName, '');
+      SectionB7.Append('');
+      AddEquivalence(AItem.FClassName, AItem.FBaseClass);
+      AddHelper(AItem.FClassName, AItem.FBaseClass, '');
     end else
-      if (AItem.FOperator = ':=') then
-      begin
+    if AItem.FOperator = ':=' then
+    begin
+      if AItem.FBaseClass <> '' then;
+        CommUnits.Add(GetQuantityType(AItem.FBaseClass));
 
-        if AItem.FBaseClass <> '' then;
-          CommUnits.Add(GetQuantityType(AItem.FBaseClass));
-
-        SectionA7.Append('');
-        SectionB7.Append('');
-        AddEquivalence(AItem.FClassName, AItem.FBaseClass);
-      //AddHelper(AItem.FClassName, AItem.FBaseClass, '');
-      //SectionB7.Append('');
-      //AddEquivalence(AItem.FBaseClass, AItem.FClassName);
-      //AddHelper(AItem.FBaseClass, AItem.FClassName, '');
-      end else
-      if (Uppercase(AItem.FOperator) = 'HELPER') then
-      begin
-        SectionA7.Append('');
-        SectionB7.Append('');
-        AddHelper(AItem.FClassName, AItem.FBaseClass, '');
-        SectionB7.Append('');
-        AddHelper(AItem.FBaseClass, AItem.FClassName, '');
-      end;
+      SectionA7.Append('');
+      SectionB7.Append('');
+      AddEquivalence(AItem.FBaseClass, AItem.FClassName);
+    end else
+    if (UpperCase(AItem.FOperator) = 'HELPER') then
+    begin
+      SectionA7.Append('');
+      SectionB7.Append('');
+      AddHelper(AItem.FClassName, AItem.FBaseClass, '');
+      SectionB7.Append('');
+      AddHelper(AItem.FBaseClass, AItem.FClassName, '');
+    end;
 end;
 
 procedure TToolkitList.AddVECItemOperators(const AItem: TToolkitItem);
 begin
-
   if (AItem.FBaseClass = '') then
   begin
+  //CheckClass(AItem.FClassName, AItem.FOperator, AItem.FClassParent1, AItem.FClassParent2);
 
     if AItem.FOperator = '*' then
     begin
@@ -590,34 +582,39 @@ begin
 
     end else
 
-    if Uppercase(AItem.FOperator) = 'NORM' then
+    if UpperCase(AItem.FOperator) = 'NORM' then
     begin
       AddHelperNorm(AItem);
     end else
-    if Uppercase(AItem.FOperator) = 'NORM2' then
+    if UpperCase(AItem.FOperator) = 'NORM2' then
     begin
       AddHelperSquaredNorm(AItem);
     end else
-    if Uppercase(AItem.FOperator) = 'RECIPROCAL' then
+    if UpperCase(AItem.FOperator) = 'RECIPROCAL' then
     begin
       AddQuantityOperator('/', 'double', GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassName  ));
       AddQuantityOperator('/', 'double', GetQuantityType(AItem.FClassName   ), GetQuantityType(AItem.FClassParent1));
     end else
-    if Uppercase(AItem.FOperator) = 'DUAL' then
+    if UpperCase(AItem.FOperator) = 'DUAL' then
     begin
       AddHelperDual(AItem);
     end else
 
-    if Uppercase(AItem.FOperator) = 'DOT' then
+    if UpperCase(AItem.FOperator) = 'DOT' then
     begin
       AddHelperDot(GetUnitTypeHelper(AItem.FClassParent1), GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName));
       AddHelperDot(GetUnitTypeHelper(AItem.FClassParent2), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassName));
 
 
+    end else
+    if UpperCase(AItem.FOperator) = 'DOT/' then
+    begin
+      AddHelperDot(GetUnitTypeHelper          (AItem.FClassParent1), GetQuantityType          (AItem.FClassParent1), GetReciprocalQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName));
+      AddHelperDot(GetReciprocalUnitTypeHelper(AItem.FClassParent2), GetReciprocalQuantityType(AItem.FClassParent2), GetQuantityType          (AItem.FClassParent1), GetQuantityType(AItem.FClassName));
 
 
     end else
-    if Uppercase(AItem.FOperator) = 'WEDGE *' then
+    if UpperCase(AItem.FOperator) = 'WEDGE' then
     begin
       AddHelperWEDGE(GetUnitTypeHelper(AItem.FClassParent1), GetQuantityType(AItem.FClassParent1), GetQuantityType          (AItem.FClassParent2), GetQuantityType(AItem.FClassName   ));
       AddHelperWEDGE(GetUnitTypeHelper(AItem.FClassParent2), GetQuantityType(AItem.FClassParent2), GetQuantityType          (AItem.FClassParent1), GetQuantityType(AItem.FClassName   ));
@@ -627,7 +624,7 @@ begin
       AddHelperDot(GetReciprocalUnitTypeHelper(AItem.FClassParent2), GetReciprocalQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName   ), GetQuantityType(AItem.FClassParent1));
       AddHelperDot(GetReciprocalUnitTypeHelper(AItem.FClassParent1), GetReciprocalQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassName   ), GetQuantityType(AItem.FClassParent2));
     end else
-    if Uppercase(AItem.FOperator) = 'WEDGE /' then
+    if UpperCase(AItem.FOperator) = 'WEDGE/' then
     begin
       AddHelperWEDGE(GetUnitTypeHelper          (AItem.FClassParent1), GetQuantityType          (AItem.FClassParent1), GetReciprocalQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName));
       AddHelperWEDGE(GetReciprocalUnitTypeHelper(AItem.FClassParent2), GetReciprocalQuantityType(AItem.FClassParent2), GetQuantityType          (AItem.FClassParent1), GetQuantityType(AItem.FClassName));
@@ -639,21 +636,20 @@ begin
       AddHelperDot  (GetReciprocalUnitTypeHelper(AItem.FClassName   ), GetReciprocalQuantityType(AItem.FClassName   ), GetReciprocalQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2));
     end else
 
-    if Uppercase(AItem.FOperator) = 'GEOMETRIC *' then
+    if UpperCase(AItem.FOperator) = 'GEOMETRIC' then
     begin
       AddQuantityOperator('*', GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName   ));
       AddQuantityOperator('*', GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassName   ));
       AddQuantityOperator('/', GetQuantityType(AItem.FClassName   ), GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2));
       AddQuantityOperator('/', GetQuantityType(AItem.FClassName   ), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1));
     end else
-    if Uppercase(AItem.FOperator) = 'GEOMETRIC /' then
+    if UpperCase(AItem.FOperator) = 'GEOMETRIC/' then
     begin
       AddQuantityOperator('/', GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName   ));
       AddQuantityOperator('*', GetQuantityType(AItem.FClassName   ), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1));
       AddQuantityOperator('*', GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName   ), GetQuantityType(AItem.FClassParent1));
       AddQuantityOperator('/', GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassName   ), GetQuantityType(AItem.FClassParent2));
     end else
-
 
     if AItem.FOperator = '*=' then
     begin
@@ -682,12 +678,20 @@ begin
       if AItem.FClassParent1 = 'TVector'      then  AddQuantityOperator('/', 'TVector',      GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName));
     end;
 
+
   end else
+
     if (AItem.FOperator = ':=') then
     begin
 
+      if AItem.FBaseClass <> '' then;
+        CommUnits.Add(GetQuantityType(AItem.FBaseClass));
+
+      SectionA7.Append('');
+      SectionB7.Append('');
+      AddEquivalence(AItem.FBaseClass, AItem.FClassName);
     end else
-    if (Uppercase(AItem.FOperator) = 'HELPER') then
+    if (UpperCase(AItem.FOperator) = 'HELPER') then
     begin
 
     end;
@@ -1113,27 +1117,27 @@ begin
   end;
 end;
 
-procedure TToolkitList.AddEquivalence(AClassName, ABaseClass: string);
+procedure TToolkitList.AddEquivalence(AFromClass, AToClass: string);
 var
   i, iL, iR: longint;
   S: string;
 begin
-  iL := Find(Format(INTF_QUANTITY, [GetQuantityType(AClassName), '*']), SectionA2);
-  iR := Find(Format(INTF_QUANTITY, [GetQuantityType(ABaseClass), '*']), SectionA2);
+  iL := Find(Format(INTF_QUANTITY, [GetQuantityType(AFromClass), '*']), SectionA2);
+  iR := Find(Format(INTF_QUANTITY, [GetQuantityType(AToClass), '*']), SectionA2);
 
   S := '';
   i := Max(iL, iR);
-  if i = iL then S := AClassName;
-  if i = iR then S := ABaseClass;
+  if i = iL then S := AFromClass;
+  if i = iR then S := AToClass;
 
-  SectionA2 .Insert(i + 1, '  class operator ' +                       ':=(const AQuantity: ' + GetQuantityType(AClassName) + '): ' + GetQuantityType(ABaseClass) + ';');
-  SectionB21.Append(         'class operator ' + GetQuantityType(S) + '.:=(const AQuantity: ' + GetQuantityType(AClassName) + '): ' + GetQuantityType(ABaseClass) + ';');
+  SectionA2 .Insert(i + 1, '  class operator ' +                       ':=(const AQuantity: ' + GetQuantityType(AFromClass) + '): ' + GetQuantityType(AToClass) + ';');
+  SectionB21.Append(         'class operator ' + GetQuantityType(S) + '.:=(const AQuantity: ' + GetQuantityType(AFromClass) + '): ' + GetQuantityType(AToClass) + ';');
 
   SectionB21.Append('begin');
-  if GetQuantityType(AClassName) = 'double' then
+  if GetQuantityType(AFromClass) = 'double' then
     SectionB21.Append('  result.FValue := AQuantity;')
   else
-    if GetQuantityType(ABaseClass) = 'double' then
+    if GetQuantityType(AToClass) = 'double' then
       SectionB21.Append('  result := AQuantity.FValue;')
     else
       SectionB21.Append('  result.FValue := AQuantity.FValue;');
@@ -1142,7 +1146,7 @@ begin
   Inc(InternalOperators);
 end;
 
-procedure TToolkitList.AddItemResource(const AItem: TToolkitItem);
+procedure TToolkitList.AddResources(const AItem: TToolkitItem);
 begin
   SectionA4.Append('');
   SectionA4.Append(Format('{ Quantity of %s }', [GetQuantity(AItem.FClassName)]));
@@ -1745,13 +1749,17 @@ begin
   if Index = -1 then
   begin
 
-    if (GetUnitType(AClassName) = 'TKilogramUnit') or
-       (GetUnitType(AClassName) = 'TMeterUnit'   ) or
-       (GetUnitType(AClassName) = 'TSecondUnit'  ) or
-       (GetUnitType(AClassName) = 'TKelvinUnit'  ) or
-       (GetUnitType(AClassName) = 'TAmpereUnit'  ) or
-       (GetUnitType(AClassName) = 'TMoleUnit'    ) or
-       (GetUnitType(AClassName) = 'TCandelaUnit' ) then
+    if (GetUnitType(AClassName) = 'TKilogramUnit'        ) or
+       (GetUnitType(AClassName) = 'TMeterUnit'           ) or
+       (GetUnitType(AClassName) = 'TSecondUnit'          ) or
+       (GetUnitType(AClassName) = 'TKelvinUnit'          ) or
+       (GetUnitType(AClassName) = 'TAmpereUnit'          ) or
+       (GetUnitType(AClassName) = 'TMoleUnit'            ) or
+       (GetUnitType(AClassName) = 'TCandelaUnit'         ) or
+
+       (GetUnitType(AClassName) = 'TReservedKilogramUnit') or
+       (GetUnitType(AClassName) = 'TCLMeterUnit'         ) or
+       (GetUnitType(AClassName) = 'TCLAmpereUnit'        ) then
     begin
       Index := Length(CheckList);
       SetLength(CheckList, Index + 1);
@@ -1760,13 +1768,17 @@ begin
       for I := Low(CheckList[Index].FExponents) to High(CheckList[Index].FExponents) do
         CheckList[Index].FExponents[I] := 0;
 
-      if (GetUnitType(AClassName) = 'TKilogramUnit') then CheckList[Index].FExponents[1] := 1;
-      if (GetUnitType(AClassName) = 'TMeterUnit'   ) then CheckList[Index].FExponents[2] := 1;
-      if (GetUnitType(AClassName) = 'TSecondUnit'  ) then CheckList[Index].FExponents[3] := 1;
-      if (GetUnitType(AClassName) = 'TKelvinUnit'  ) then CheckList[Index].FExponents[4] := 1;
-      if (GetUnitType(AClassName) = 'TAmpereUnit'  ) then CheckList[Index].FExponents[5] := 1;
-      if (GetUnitType(AClassName) = 'TMoleUnit'    ) then CheckList[Index].FExponents[6] := 1;
-      if (GetUnitType(AClassName) = 'TCandelaUnit' ) then CheckList[Index].FExponents[7] := 1;
+      if (GetUnitType(AClassName) = 'TKilogramUnit'        ) then CheckList[Index].FExponents[1] := 1;
+      if (GetUnitType(AClassName) = 'TMeterUnit'           ) then CheckList[Index].FExponents[2] := 1;
+      if (GetUnitType(AClassName) = 'TSecondUnit'          ) then CheckList[Index].FExponents[3] := 1;
+      if (GetUnitType(AClassName) = 'TKelvinUnit'          ) then CheckList[Index].FExponents[4] := 1;
+      if (GetUnitType(AClassName) = 'TAmpereUnit'          ) then CheckList[Index].FExponents[5] := 1;
+      if (GetUnitType(AClassName) = 'TMoleUnit'            ) then CheckList[Index].FExponents[6] := 1;
+      if (GetUnitType(AClassName) = 'TCandelaUnit'         ) then CheckList[Index].FExponents[7] := 1;
+
+      if (GetUnitType(AClassName) = 'TReservedKilogramUnit') then CheckList[Index].FExponents[1] := 1;
+      if (GetUnitType(AClassName) = 'TCLMeterUnit'         ) then CheckList[Index].FExponents[2] := 1;
+      if (GetUnitType(AClassName) = 'TCLAmpereUnit'        ) then CheckList[Index].FExponents[5] := 1;
 
     end else
     begin
@@ -1775,9 +1787,13 @@ begin
       Index2 := GetIndex(AClassParent2);
       if (Index1 = -1) and (Index2 = -1) then
       begin
-        if (GetUnitType(AClassName) <> 'TRadianUnit'   ) and
-           (GetUnitType(AClassName) <> 'TSteradianUnit') then
-          FMessages.Append('ERROR:3 ');
+        if (GetUnitType(AClassName) <> 'TRadianUnit'             ) and
+           (GetUnitType(AClassName) <> 'TReciprocalRadianUnit'   ) and
+           (GetUnitType(AClassName) <> 'TSteradianUnit'          ) and
+           (GetUnitType(AClassName) <> 'TReciprocalSteradianUnit') then
+        begin
+          FMessages.Append(Format('WARNING: Unable to find parent classes for %s unit.', [GetUnitType(AClassName)]));
+        end;
         Exit;
       end;
 

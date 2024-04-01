@@ -27,26 +27,26 @@ uses
   Classes, SysUtils;
 
 const
-  INTF_QUANTITY           = '{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=%s}{$i %s}';
-  INTF_UNIT               = '{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=%s}{$DEFINE TUnit:=%s}{$i %s}';
-  INTF_END                = '{$DEFINE INTF_END}{$i %s}';
+  INTF_QUANTITY       = '{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=%s}{$i %s}';
+  INTF_UNIT           = '{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=%s}{$DEFINE TUnit:=%s}{$i %s}';
+  INTF_END            = '{$DEFINE INTF_END}{$i %s}';
 
-  IMPL_QUANTITY           = '{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=%s}{$i %s}';
-  IMPL_UNIT               = '{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=%s}{$DEFINE TUnit:=%s}{$i %s}';
+  IMPL_QUANTITY       = '{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=%s}{$i %s}';
+  IMPL_UNIT           = '{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=%s}{$DEFINE TUnit:=%s}{$i %s}';
 
-  IMPL_CSYMBOL            = '{$DEFINE CSYMBOL:=%s}';
-  IMPL_CSINGULARNAME      = '{$DEFINE CSINGULARNAME:=%s}';
-  IMPL_CPLURALNAME        = '{$DEFINE CPLURALNAME:=%s}';
-  IMPL_CPREFIXES          = '{$DEFINE CPREFIXES:=%s}';
-  IMPL_CEXPONENTS         = '{$DEFINE CEXPONENTS:=%s}';
-  IMPL_CFACTOR            = '{$DEFINE CFACTOR:=%s}';
+  IMPL_CSYMBOL        = '{$DEFINE CSYMBOL:=%s}';
+  IMPL_CSINGULARNAME  = '{$DEFINE CSINGULARNAME:=%s}';
+  IMPL_CPLURALNAME    = '{$DEFINE CPLURALNAME:=%s}';
+  IMPL_CPREFIXES      = '{$DEFINE CPREFIXES:=%s}';
+  IMPL_CEXPONENTS     = '{$DEFINE CEXPONENTS:=%s}';
+  IMPL_CFACTOR        = '{$DEFINE CFACTOR:=%s}';
 
-  INTF_OP_CLASS           = '  class operator %s(const ALeft: %s; const ARight: %s): %s;';
-  IMPL_OP_CLASS           = 'class operator %s.%s(const ALeft: %s; const ARight: %s): %s;';
-  INTF_OP                 = 'operator %s(const ALeft: %s; const ARight: %s): %s;';
-  IMPL_OP                 = 'operator %s(const ALeft: %s; const ARight: %s): %s;';
+  INTF_OP_CLASS       = '  class operator %s(const ALeft: %s; const ARight: %s): %s;';
+  IMPL_OP_CLASS       = 'class operator %s.%s(const ALeft: %s; const ARight: %s): %s;';
+  INTF_OP             = 'operator %s(const ALeft: %s; const ARight: %s): %s;';
+  IMPL_OP             = 'operator %s(const ALeft: %s; const ARight: %s): %s;';
 
-  VECPrefix               = 'CL';
+  VECPrefix           = 'CL';
 
 
 function GetSymbolResourceString(const AClassName: string): string;
