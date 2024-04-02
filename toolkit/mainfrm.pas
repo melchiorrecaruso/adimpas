@@ -582,6 +582,11 @@ begin
         if Pos('OP4', AFactor) > 0 then AddUnitIdOperator('/', AClassParent1, AClassName, AClassParent2);
 
       end else
+        if UpperCase(AOperator) = 'RECIPROCAL' then
+        begin
+          AddQuantityOperator('/', 'double', AClassParent1, AClassName);
+          AddQuantityOperator('/', 'double', AClassName, AClassParent1);
+        end else
         if Pos('power', LowerCase(AOperator)) > 0 then
         begin
           AddPower(AOperator, AClassParent1, AClassName);
@@ -918,7 +923,8 @@ begin
   begin
     if (WorksheetGrid.Worksheet.ReadAsText(I, _class_name) <> '') then
     begin
-      if Pos('//', WorksheetGrid.Worksheet.ReadAsText(I, _class_name)) = 0 then
+      if (Pos('//',  WorksheetGrid.Worksheet.ReadAsText(I, _class_name)) = 0) and
+         (Pos('TCL', WorksheetGrid.Worksheet.ReadAsText(I, _class_name)) = 0) then
         AddClass(
                           WorksheetGrid.Worksheet.ReadAsText(I, _class_name       ),
                           WorksheetGrid.Worksheet.ReadAsText(I, _operator         ),
