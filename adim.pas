@@ -3952,7 +3952,7 @@ type
   TRydbergs = TJouleQty;
 
 const
-  Ry: TJouleQty = (FValue: 2.1798723611035E-18);
+  Ry: TJouleQty = (FValue: 2.179872361103542E-18);
 
 const
   rsRydbergSymbol     = '%sRy';
@@ -3962,7 +3962,7 @@ const
 const
   cRydbergPrefixes  : TPrefixes  = (pNone);
   cRydbergExponents : TExponents = (1);
-  cRydbergFactor                 = 2.1798723611035E-18;
+  cRydbergFactor                 = 2.179872361103542E-18;
 
 { Quantity of TJoulesPerRadian }
 
