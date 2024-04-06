@@ -1,7 +1,7 @@
 {
   Description: ADimPas library.
 
-  Copyright (C) 2023 Melchiorre Caruso <melchiorrecaruso@gmail.com>
+  Copyright (C) 2023-2024 Melchiorre Caruso <melchiorrecaruso@gmail.com>
 
   This library is free software: you can redistribute it and/or modify
   it under the terms of the GNU Lesser General Public License as published by
@@ -18,11 +18,11 @@
 }
 
 {
-  ADimPas library built on 01/04/2024.
+  ADimPas library built on 06/04/2024.
 
   Number of base units: 126
-  Number of factored units: 63
-  Number of operators: 993 (248 external, 745 internal)
+  Number of factored units: 65
+  Number of operators: 997 (249 external, 748 internal)
 }
 
 unit ADim;
@@ -320,6 +320,9 @@ type
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TNauticalMileQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TAngstromQty}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSquareInchQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
@@ -566,6 +569,9 @@ type
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TKilogramSquareMeterPerSecondQty}{$i adim.inc}
+  class operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TKilogramSquareMeterPerSecondQty): TMeterPerSecondQty;
+  class operator *(const ALeft: TMeterPerSecondQty; const ARight: TKilogramSquareMeterPerSecondQty): TNewtonSquareMeterQty;
+  class operator *(const ALeft: TKilogramSquareMeterPerSecondQty; const ARight: TMeterPerSecondQty): TNewtonSquareMeterQty;
   class operator /(const ALeft: TJouleQty; const ARight: TKilogramSquareMeterPerSecondQty): THertzQty;
   class operator *(const ALeft: THertzQty; const ARight: TKilogramSquareMeterPerSecondQty): TJouleQty;
   class operator *(const ALeft: TKilogramSquareMeterPerSecondQty; const ARight: THertzQty): TJouleQty;
@@ -663,6 +669,9 @@ type
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TPoundForceInchQty}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TRydbergQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TJoulePerRadianQty}{$i adim.inc}
@@ -1388,6 +1397,7 @@ operator *(const ALeft: TSquareMeterQty; const ARight: TMeterPerSquareSecondQty)
 operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TNewtonQty): TSquareMeterQty;
 operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TJouleQty): TMeterQty;
 operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TQuarticMeterQty): TPascalQty;
+operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TMeterPerSecondQty): TKilogramSquareMeterPerSecondQty;
 operator /(const ALeft: TNewtonQty; const ARight: TSquareKilogramQty): TNewtonPerSquareKilogramQty;
 operator /(const ALeft: TSquareKilogramQty; const ARight: TMeterQty): TSquareKilogramPerMeterQty;
 operator /(const ALeft: TSquareKilogramQty; const ARight: TSquareMeterQty): TSquareKilogramPerSquareMeterQty;
@@ -1625,6 +1635,9 @@ operator /(const ALeft: TJoulePerMoleQty; const ARight: TVoltQty): TCoulombPerMo
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TNauticalMileQty}{$DEFINE TUnit:=TNauticalMileUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TAngstromQty}{$DEFINE TUnit:=TAngstromUnit}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TSquareMeterQty}{$DEFINE TUnit:=TSquareMeterUnit}{$i adim.inc}
@@ -1891,6 +1904,9 @@ operator /(const ALeft: TJoulePerMoleQty; const ARight: TVoltQty): TCoulombPerMo
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TPoundForceInchQty}{$DEFINE TUnit:=TPoundForceInchUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TRydbergQty}{$DEFINE TUnit:=TRydbergUnit}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TJoulePerRadianQty}{$DEFINE TUnit:=TJoulePerRadianUnit}{$i adim.inc}
@@ -2645,6 +2661,24 @@ const
   cNauticalMilePrefixes  : TPrefixes  = ();
   cNauticalMileExponents : TExponents = ();
   cNauticalMileFactor                 = 1852;
+
+{ Quantity of TAngstroms }
+
+type
+  TAngstroms = TMeterQty;
+
+const
+  angstrom: TMeterQty = (FValue: 1E-10);
+
+const
+  rsAngstromSymbol     = '%sÅ';
+  rsAngstromName       = '%sangstrom';
+  rsAngstromPluralName = '%sangstroms';
+
+const
+  cAngstromPrefixes  : TPrefixes  = (pNone);
+  cAngstromExponents : TExponents = (1);
+  cAngstromFactor                 = 1E-10;
 
 { Quantity of TSquareMeters }
 
@@ -3911,6 +3945,24 @@ const
   cPoundForceInchPrefixes  : TPrefixes  = ();
   cPoundForceInchExponents : TExponents = ();
   cPoundForceInchFactor                 = 0.112984829027617;
+
+{ Quantity of TRydbergs }
+
+type
+  TRydbergs = TJouleQty;
+
+const
+  Ry: TJouleQty = (FValue: 2.1798723611035E-18);
+
+const
+  rsRydbergSymbol     = '%sRy';
+  rsRydbergName       = '%srydberg';
+  rsRydbergPluralName = '%srydbergs';
+
+const
+  cRydbergPrefixes  : TPrefixes  = (pNone);
+  cRydbergExponents : TExponents = (1);
+  cRydbergFactor                 = 2.1798723611035E-18;
 
 { Quantity of TJoulesPerRadian }
 
@@ -5399,6 +5451,7 @@ type
   end;
 
   TMeterHelper = record helper for TMeterQty
+    function ToAngstrom: TAngstromQty;
     function ToNauticalMile: TNauticalMileQty;
     function ToMile: TMileQty;
     function ToYard: TYardQty;
@@ -5525,6 +5578,7 @@ type
   end;
 
   TJouleHelper = record helper for TJouleQty
+    function ToRydberg: TRydbergQty;
     function ToPoundForceInch: TPoundForceInchQty;
     function ToNewtonMeter: TNewtonMeterQty;
     function ToElettronvolt: TElettronvoltQty;
@@ -6238,6 +6292,14 @@ end;
 {$DEFINE CEXPONENTS:=cNauticalMileExponents}
 {$DEFINE CFACTOR:=cNauticalMileFactor}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNauticalMileQty}{$i adim.inc}
+
+{$DEFINE CSYMBOL:=rsAngstromSymbol}
+{$DEFINE CSINGULARNAME:=rsAngstromName}
+{$DEFINE CPLURALNAME:=rsAngstromPluralName}
+{$DEFINE CPREFIXES:=cAngstromPrefixes}
+{$DEFINE CEXPONENTS:=cAngstromExponents}
+{$DEFINE CFACTOR:=cAngstromFactor}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TAngstromQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsSquareMeterSymbol}
 {$DEFINE CSINGULARNAME:=rsSquareMeterName}
@@ -7383,6 +7445,21 @@ end;
 {$DEFINE CEXPONENTS:=cKilogramSquareMeterPerSecondExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKilogramSquareMeterPerSecondQty}{$i adim.inc}
 
+class operator TKilogramSquareMeterPerSecondQty./(const ALeft: TNewtonSquareMeterQty; const ARight: TKilogramSquareMeterPerSecondQty): TMeterPerSecondQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+class operator TKilogramSquareMeterPerSecondQty.*(const ALeft: TMeterPerSecondQty; const ARight: TKilogramSquareMeterPerSecondQty): TNewtonSquareMeterQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TKilogramSquareMeterPerSecondQty.*(const ALeft: TKilogramSquareMeterPerSecondQty; const ARight: TMeterPerSecondQty): TNewtonSquareMeterQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
 class operator TKilogramSquareMeterPerSecondQty./(const ALeft: TJouleQty; const ARight: TKilogramSquareMeterPerSecondQty): THertzQty;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -7795,6 +7872,14 @@ end;
 {$DEFINE CEXPONENTS:=cPoundForceInchExponents}
 {$DEFINE CFACTOR:=cPoundForceInchFactor}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TPoundForceInchQty}{$i adim.inc}
+
+{$DEFINE CSYMBOL:=rsRydbergSymbol}
+{$DEFINE CSINGULARNAME:=rsRydbergName}
+{$DEFINE CPLURALNAME:=rsRydbergPluralName}
+{$DEFINE CPREFIXES:=cRydbergPrefixes}
+{$DEFINE CEXPONENTS:=cRydbergExponents}
+{$DEFINE CFACTOR:=cRydbergFactor}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TRydbergQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsJoulePerRadianSymbol}
 {$DEFINE CSINGULARNAME:=rsJoulePerRadianName}
@@ -10991,6 +11076,11 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TMeterPerSecondQty): TKilogramSquareMeterPerSecondQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
 operator /(const ALeft: TNewtonQty; const ARight: TSquareKilogramQty): TNewtonPerSquareKilogramQty;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -11590,6 +11680,8 @@ end;
 
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TNauticalMileQty}{$DEFINE TUnit:=TNauticalMileUnit}{$i adim.inc}
 
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TAngstromQty}{$DEFINE TUnit:=TAngstromUnit}{$i adim.inc}
+
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TSquareMeterQty}{$DEFINE TUnit:=TSquareMeterUnit}{$i adim.inc}
 
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TSquareInchQty}{$DEFINE TUnit:=TSquareInchUnit}{$i adim.inc}
@@ -11727,6 +11819,8 @@ end;
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TJouleQty}{$DEFINE TUnit:=TNewtonMeterUnit}{$i adim.inc}
 
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TPoundForceInchQty}{$DEFINE TUnit:=TPoundForceInchUnit}{$i adim.inc}
+
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TRydbergQty}{$DEFINE TUnit:=TRydbergUnit}{$i adim.inc}
 
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TJoulePerRadianQty}{$DEFINE TUnit:=TJoulePerRadianUnit}{$i adim.inc}
 
@@ -12553,6 +12647,11 @@ begin
   result.FValue := FValue / cNauticalMileFactor;
 end;
 
+function TMeterHelper.ToAngstrom: TAngstromQty;
+begin
+  result.FValue := FValue / cAngstromFactor;
+end;
+
 function TSquareMeterHelper.ToSquareInch: TSquareInchQty;
 begin
   result.FValue := FValue / cSquareInchFactor;
@@ -12786,6 +12885,11 @@ end;
 function TJouleHelper.ToPoundForceInch: TPoundForceInchQty;
 begin
   result.FValue := FValue / cPoundForceInchFactor;
+end;
+
+function TJouleHelper.ToRydberg: TRydbergQty;
+begin
+  result.FValue := FValue / cRydbergFactor;
 end;
 
 function TJoulePerRadianHelper.ToJoulePerDegree: TJoulePerDegreeQty;
