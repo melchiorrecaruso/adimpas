@@ -19,6 +19,8 @@
 
 program adimtest;
 
+{*$DEFINE VECTORIAL}
+
 {$if FPC_FULLVERSION >= 30301}
   {$modeswitch implicitfunctionspecialization}
 {$endif}
@@ -98,10 +100,12 @@ var
   q1: TCoulombs;
   q2: TCoulombs;
   Uel: TJoules;
+  U: TJoules;
 
   p: TKilogramMetersPerSecond;
   p2: TSquareKilogramSquareMetersPerSquareSecond;
   impulse: TKilogramMetersPerSecond;
+  Lp: TKilogramSquareMetersPerSecond;
 
   flowrate: TCubicMetersPerSecond;
 
@@ -152,10 +156,15 @@ var
   lightspeed: TMetersPerSecond;
   energy: TJoules;
   plank: TJouleSeconds;
+  plankreduced: TJouleSeconds;
   freq: THertz;
 
   I: TKilogramSquareMeters;
   Re: double;
+
+  num: integer;
+  alpha: double;
+  kk: TReciprocalMeters;
 
   {$ifdef VECTORIAL}
   displacement: TCLMeters;
@@ -546,10 +555,7 @@ begin
   mass  := 10*kg;
   speed := 5*m/s;
   p     := mass*speed;
-
   p     := 50*kg*m/s;
-
-
   p2    := p*p;
   Uc    := 0.5*p2/mass;
   if  p .ToString(4, 2, []) <> '50 kg·m/s'      then halt(1);
@@ -925,10 +931,36 @@ begin
   wavelen    := plank/(mass*speed);
   writeln('* TEST-99: PASSED');
 
+  // TEST-100 - BOHR MODEL
+  ke         := 8.987551792314E9*N*m2/C2;
+  charge     := 1.602176634E-19*C;
+  mass       := 9.1093837001528*1E-31*kg;
+  plank      := 6.62607015*1E-34*J*s;
+  num        := 1;
+  Lp         := num*plank/(2*pi);
+  speed      := SquareRoot(ke*(charge*charge)/radius/mass);
+  speed      := (ke*squarepower(charge))/(num*plank/2/pi);
+  // fine structure constant
+  alpha      := (ke*squarepower(charge))/((plank/2/pi)*lightspeed);
+  // calc Bohr radius
+  radius     := num*plank/(2*pi*mass*speed);
+  radius     := (charge*charge)/(mass*SquarePower(speed)/ke);
+  radius     := num*(plank/2/pi)/(mass*lightspeed)/alpha;
+  radius     := num*num*SquarePower(plank/2/pi)/mass/(charge*charge*ke);
+  U          := 0.5*mass*squarepower(speed) - (ke*squarepower(charge))/radius;
+  writeln('* TEST-100: PASSED');
+
+  // TEST-101 - QUANTUM MECHANICS
+  plankreduced := plank/(2*pi);
+  Energy       := plank*freq;
+  Energy       := plankreduced*omega;
+  p            := plankreduced*kk;
+  p            := plankreduced/(1/kk);
+  p            := Energy/lightspeed;
+  freq         := lightspeed/wavelen;
+
   {$ifdef VECTORIAL}
-
-
-  // TEST-100
+  // TEST-102
 
   side1vec := 5*e1*m;                                                           writeln(side1vec.ToVerboseString);
   side2vec := 10*e2*m;                                                          writeln(side2vec.ToVerboseString);
@@ -1037,6 +1069,8 @@ begin
 
   writeln(powervec.Extract([mc0]).Norm.ToString);
   writeln('Y = ', (1/impedance).ToVerboseString);
+
+  writeln('* TEST-102: PASSED');
   {$endif}
 
 

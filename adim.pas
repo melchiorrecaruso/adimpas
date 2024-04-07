@@ -18,11 +18,11 @@
 }
 
 {
-  ADimPas library built on 06/04/2024.
+  ADimPas library built on 07/04/2024.
 
-  Number of base units: 126
+  Number of base units: 128
   Number of factored units: 65
-  Number of operators: 997 (249 external, 748 internal)
+  Number of operators: 1025 (255 external, 770 internal)
 }
 
 unit ADim;
@@ -53,6 +53,9 @@ type
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSquareMeterSteradianQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSquareJouleSquareSecondQty}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSquareJouleQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
@@ -81,6 +84,9 @@ type
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TNewtonSquareMeterPerSquareKilogramQty}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TNewtonCubicMeterQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TNewtonSquareMeterQty}{$i adim.inc}
@@ -164,6 +170,9 @@ type
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCubicMeterQty}{$i adim.inc}
   class operator /(const ALeft: TCubicMeterQty; const ARight: TNewtonSquareMeterPerSquareKilogramQty): TKilogramSquareSecondQty;
   class operator /(const ALeft: TCubicMeterQty; const ARight: TKilogramSquareSecondQty): TNewtonSquareMeterPerSquareKilogramQty;
+  class operator /(const ALeft: TNewtonCubicMeterQty; const ARight: TCubicMeterQty): TNewtonQty;
+  class operator *(const ALeft: TCubicMeterQty; const ARight: TNewtonQty): TNewtonCubicMeterQty;
+  class operator *(const ALeft: TNewtonQty; const ARight: TCubicMeterQty): TNewtonCubicMeterQty;
   class operator /(const ALeft: TSexticMeterQty; const ARight: TCubicMeterQty): TCubicMeterQty;
   class operator *(const ALeft: TCubicMeterQty; const ARight: TCubicMeterQty): TSexticMeterQty;
 {$DEFINE INTF_END}{$i adim.inc}
@@ -189,6 +198,9 @@ type
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSquareSecondQty}{$i adim.inc}
+  class operator /(const ALeft: TSquareJouleSquareSecondQty; const ARight: TSquareSecondQty): TSquareJouleQty;
+  class operator *(const ALeft: TSquareSecondQty; const ARight: TSquareJouleQty): TSquareJouleSquareSecondQty;
+  class operator *(const ALeft: TSquareJouleQty; const ARight: TSquareSecondQty): TSquareJouleSquareSecondQty;
   class operator *(const ALeft: TJouleQty; const ARight: TSquareSecondQty): TKilogramSquareMeterQty;
   class operator *(const ALeft: TSquareSecondQty; const ARight: TJouleQty): TKilogramSquareMeterQty;
   class operator /(const ALeft: TKilogramSquareMeterQty; const ARight: TSquareSecondQty): TJouleQty;
@@ -215,6 +227,9 @@ type
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TMeterQty}{$i adim.inc}
+  class operator /(const ALeft: TNewtonCubicMeterQty; const ARight: TMeterQty): TNewtonSquareMeterQty;
+  class operator *(const ALeft: TMeterQty; const ARight: TNewtonSquareMeterQty): TNewtonCubicMeterQty;
+  class operator *(const ALeft: TNewtonSquareMeterQty; const ARight: TMeterQty): TNewtonCubicMeterQty;
   class operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TMeterQty): TJouleQty;
   class operator *(const ALeft: TMeterQty; const ARight: TJouleQty): TNewtonSquareMeterQty;
   class operator *(const ALeft: TJouleQty; const ARight: TMeterQty): TNewtonSquareMeterQty;
@@ -351,6 +366,9 @@ type
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TKilogramQty}{$i adim.inc}
+  class operator /(const ALeft: TSquareJouleSquareSecondQty; const ARight: TKilogramQty): TNewtonCubicMeterQty;
+  class operator *(const ALeft: TKilogramQty; const ARight: TNewtonCubicMeterQty): TSquareJouleSquareSecondQty;
+  class operator *(const ALeft: TNewtonCubicMeterQty; const ARight: TKilogramQty): TSquareJouleSquareSecondQty;
   class operator /(const ALeft: TKilogramSquareSecondQty; const ARight: TKilogramQty): TSquareSecondQty;
   class operator *(const ALeft: TSquareSecondQty; const ARight: TKilogramQty): TKilogramSquareSecondQty;
   class operator *(const ALeft: TKilogramQty; const ARight: TSquareSecondQty): TKilogramSquareSecondQty;
@@ -568,7 +586,13 @@ type
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TNewtonSecondQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TReciprocalMeterQty}{$i adim.inc}
+  class operator /(const ALeft: double; const ARight: TReciprocalMeterQty): TMeterQty;
+{$DEFINE INTF_END}{$i adim.inc}
+
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TKilogramSquareMeterPerSecondQty}{$i adim.inc}
+  class operator /(const ALeft: TSquareJouleSquareSecondQty; const ARight: TKilogramSquareMeterPerSecondQty): TKilogramSquareMeterPerSecondQty;
+  class operator *(const ALeft: TKilogramSquareMeterPerSecondQty; const ARight: TKilogramSquareMeterPerSecondQty): TSquareJouleSquareSecondQty;
   class operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TKilogramSquareMeterPerSecondQty): TMeterPerSecondQty;
   class operator *(const ALeft: TMeterPerSecondQty; const ARight: TKilogramSquareMeterPerSecondQty): TNewtonSquareMeterQty;
   class operator *(const ALeft: TKilogramSquareMeterPerSecondQty; const ARight: TMeterPerSecondQty): TNewtonSquareMeterQty;
@@ -577,6 +601,9 @@ type
   class operator *(const ALeft: TKilogramSquareMeterPerSecondQty; const ARight: THertzQty): TJouleQty;
   class operator /(const ALeft: TKilogramSquareMeterPerSecondQty; const ARight: TJouleQty): TSecondQty;
   class operator /(const ALeft: TKilogramSquareMeterPerSecondQty; const ARight: TSecondQty): TJouleQty;
+  class operator /(const ALeft: TKilogramMeterPerSecondQty; const ARight: TKilogramSquareMeterPerSecondQty): TReciprocalMeterQty;
+  class operator *(const ALeft: TKilogramSquareMeterPerSecondQty; const ARight: TReciprocalMeterQty): TKilogramMeterPerSecondQty;
+  class operator *(const ALeft: TReciprocalMeterQty; const ARight: TKilogramSquareMeterPerSecondQty): TKilogramMeterPerSecondQty;
   class operator /(const ALeft: TKilogramSquareMeterPerSecondQty; const ARight: TMeterQty): TKilogramMeterPerSecondQty;
   class operator /(const ALeft: TKilogramSquareMeterPerSecondQty; const ARight: TKilogramMeterPerSecondQty): TMeterQty;
   class operator /(const ALeft: TKilogramSquareMeterPerSecondQty; const ARight: THertzQty): TKilogramSquareMeterQty;
@@ -666,6 +693,9 @@ type
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TNewtonMeterQty}{$i adim.inc}
+  class operator /(const ALeft: TNewtonCubicMeterQty; const ARight: TNewtonMeterQty): TSquareMeterQty;
+  class operator *(const ALeft: TSquareMeterQty; const ARight: TNewtonMeterQty): TNewtonCubicMeterQty;
+  class operator *(const ALeft: TNewtonMeterQty; const ARight: TSquareMeterQty): TNewtonCubicMeterQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TPoundForceInchQty}{$i adim.inc}
@@ -1149,10 +1179,6 @@ type
   class operator *(const ALeft: TMeterQty; const ARight: TRadianPerMeterQty): TRadianQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
-{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TReciprocalMeterQty}{$i adim.inc}
-  class operator /(const ALeft: double; const ARight: TReciprocalMeterQty): TMeterQty;
-{$DEFINE INTF_END}{$i adim.inc}
-
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSquareSecondPerSquareMeterQty}{$i adim.inc}
   class operator /(const ALeft: TSquareSecondPerSquareMeterQty; const ARight: THenryPerMeterQty): TFaradPerMeterQty;
   class operator /(const ALeft: TSquareSecondPerSquareMeterQty; const ARight: TFaradPerMeterQty): THenryPerMeterQty;
@@ -1296,12 +1322,14 @@ operator *(const ALeft: TKilogramPerSecondQty; const ARight: TMeterQty): TKilogr
 operator *(const ALeft: TMeterQty; const ARight: TKilogramPerSecondQty): TKilogramMeterPerSecondQty;
 operator *(const ALeft: TKilogramQty; const ARight: TMeterPerSecondQty): TKilogramMeterPerSecondQty;
 operator *(const ALeft: TMeterPerSecondQty; const ARight: TKilogramQty): TKilogramMeterPerSecondQty;
+operator /(const ALeft: double; const ARight: TMeterQty): TReciprocalMeterQty;
 operator /(const ALeft: TKilogramSquareMeterQty; const ARight: TSquareMeterQty): TKilogramQty;
 operator /(const ALeft: TKilogramSquareMeterQty; const ARight: TSecondQty): TKilogramSquareMeterPerSecondQty;
 operator *(const ALeft: TKilogramSquareMeterQty; const ARight: THertzQty): TKilogramSquareMeterPerSecondQty;
 operator *(const ALeft: THertzQty; const ARight: TKilogramSquareMeterQty): TKilogramSquareMeterPerSecondQty;
 operator *(const ALeft: TKilogramMeterPerSecondQty; const ARight: TMeterQty): TKilogramSquareMeterPerSecondQty;
 operator *(const ALeft: TMeterQty; const ARight: TKilogramMeterPerSecondQty): TKilogramSquareMeterPerSecondQty;
+operator /(const ALeft: TKilogramMeterPerSecondQty; const ARight: TReciprocalMeterQty): TKilogramSquareMeterPerSecondQty;
 operator /(const ALeft: TSecondQty; const ARight: TMeterQty): TSecondPerMeterQty;
 operator /(const ALeft: TKilogramQty; const ARight: TMeterQty): TKilogramPerMeterQty;
 operator *(const ALeft: TKilogramPerSecondQty; const ARight: TSecondPerMeterQty): TKilogramPerMeterQty;
@@ -1398,6 +1426,9 @@ operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TNewtonQty): TSquar
 operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TJouleQty): TMeterQty;
 operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TQuarticMeterQty): TPascalQty;
 operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TMeterPerSecondQty): TKilogramSquareMeterPerSecondQty;
+operator /(const ALeft: TNewtonCubicMeterQty; const ARight: TNewtonQty): TCubicMeterQty;
+operator /(const ALeft: TNewtonCubicMeterQty; const ARight: TSquareMeterQty): TNewtonMeterQty;
+operator /(const ALeft: TNewtonCubicMeterQty; const ARight: TNewtonSquareMeterQty): TMeterQty;
 operator /(const ALeft: TNewtonQty; const ARight: TSquareKilogramQty): TNewtonPerSquareKilogramQty;
 operator /(const ALeft: TSquareKilogramQty; const ARight: TMeterQty): TSquareKilogramPerMeterQty;
 operator /(const ALeft: TSquareKilogramQty; const ARight: TSquareMeterQty): TSquareKilogramPerSquareMeterQty;
@@ -1483,11 +1514,12 @@ operator /(const ALeft: TNewtonQty; const ARight: TSquareAmpereQty): THenryPerMe
 operator /(const ALeft: TRadianQty; const ARight: TMeterQty): TRadianPerMeterQty;
 operator /(const ALeft: TSquareKilogramQty; const ARight: TSquareSecondQty): TSquareKilogramPerSquareSecondQty;
 operator /(const ALeft: TSquareKilogramPerSquareSecondQty; const ARight: TKilogramQty): TNewtonPerMeterQty;
-operator /(const ALeft: double; const ARight: TMeterQty): TReciprocalMeterQty;
 operator /(const ALeft: TSquareSecondQty; const ARight: TSquareMeterQty): TSquareSecondPerSquareMeterQty;
 operator /(const ALeft: double; const ARight: TSquareMeterPerSquareSecondQty): TSquareSecondPerSquareMeterQty;
 operator *(const ALeft: TFaradPerMeterQty; const ARight: THenryPerMeterQty): TSquareSecondPerSquareMeterQty;
 operator *(const ALeft: THenryPerMeterQty; const ARight: TFaradPerMeterQty): TSquareSecondPerSquareMeterQty;
+operator /(const ALeft: TSquareJouleSquareSecondQty; const ARight: TSquareJouleQty): TSquareSecondQty;
+operator /(const ALeft: TSquareJouleSquareSecondQty; const ARight: TNewtonCubicMeterQty): TKilogramQty;
 operator /(const ALeft: TLumenQty; const ARight: TWattQty): TLumenPerWattQty;
 operator /(const ALeft: double; const ARight: TMoleQty): TReciprocalMoleQty;
 operator /(const ALeft: TAmpereQty; const ARight: TSquareMeterQty): TAmperePerSquareMeterQty;
@@ -1601,6 +1633,7 @@ operator /(const ALeft: TJoulePerMoleQty; const ARight: TVoltQty): TCoulombPerMo
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TSquareSecondQty}{$DEFINE TUnit:=TSquareSecondUnit}{$i adim.inc}
+  class operator *(const ALeft: TSquareJouleQty; const ARight: TSquareSecondUnit): TSquareJouleSquareSecondQty;
   class operator /(const ALeft: TSquareKilogramQty; const ARight: TSquareSecondUnit): TSquareKilogramPerSquareSecondQty;
   class operator /(const ALeft: TCubicMeterQty; const ARight: TSquareSecondUnit): TCubicMeterPerSquareSecondQty;
   class operator *(const ALeft: TKilogramQty; const ARight: TSquareSecondUnit): TKilogramSquareSecondQty;
@@ -1676,6 +1709,7 @@ operator /(const ALeft: TJoulePerMoleQty; const ARight: TVoltQty): TCoulombPerMo
   class operator /(const ALeft: TKatalQty; const ARight: TCubicMeterUnit): TKatalPerCubicMeterQty;
   class operator /(const ALeft: TCoulombQty; const ARight: TCubicMeterUnit): TCoulombPerCubicMeterQty;
   class operator /(const ALeft: TMoleQty; const ARight: TCubicMeterUnit): TMolePerCubicMeterQty;
+  class operator *(const ALeft: TNewtonQty; const ARight: TCubicMeterUnit): TNewtonCubicMeterQty;
   class operator /(const ALeft: TNewtonQty; const ARight: TCubicMeterUnit): TNewtonPerCubicMeterQty;
   class operator /(const ALeft: TKilogramQty; const ARight: TCubicMeterUnit): TKilogramPerCubicMeterQty;
 {$DEFINE INTF_END}{$i adim.inc}
@@ -1844,6 +1878,9 @@ operator /(const ALeft: TJoulePerMoleQty; const ARight: TVoltQty): TCoulombPerMo
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TKilogramMeterPerSecondQty}{$DEFINE TUnit:=TNewtonSecondUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TReciprocalMeterQty}{$DEFINE TUnit:=TReciprocalMeterUnit}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TKilogramSquareMeterQty}{$DEFINE TUnit:=TKilogramSquareMeterUnit}{$i adim.inc}
@@ -2021,6 +2058,9 @@ operator /(const ALeft: TJoulePerMoleQty; const ARight: TVoltQty): TCoulombPerMo
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TNewtonSquareMeterQty}{$DEFINE TUnit:=TNewtonSquareMeterUnit}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TNewtonCubicMeterQty}{$DEFINE TUnit:=TNewtonCubicMeterUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TSquareKilogramPerMeterQty}{$DEFINE TUnit:=TSquareKilogramPerMeterUnit}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
@@ -2144,9 +2184,6 @@ operator /(const ALeft: TJoulePerMoleQty; const ARight: TVoltQty): TCoulombPerMo
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TRadianPerMeterQty}{$DEFINE TUnit:=TRadianPerMeterUnit}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
-{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TReciprocalMeterQty}{$DEFINE TUnit:=TReciprocalMeterUnit}{$i adim.inc}
-{$DEFINE INTF_END}{$i adim.inc}
-
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TSquareSecondPerSquareMeterQty}{$DEFINE TUnit:=TSquareSecondPerSquareMeterUnit}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
@@ -2157,6 +2194,9 @@ operator /(const ALeft: TJoulePerMoleQty; const ARight: TVoltQty): TCoulombPerMo
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TElettronvoltSecondQty}{$DEFINE TUnit:=TElettronvoltSecondUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TSquareJouleSquareSecondQty}{$DEFINE TUnit:=TSquareJouleSquareSecondUnit}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TLumenPerWattQty}{$DEFINE TUnit:=TLumenPerWattUnit}{$i adim.inc}
@@ -3596,6 +3636,20 @@ const
   cNewtonSecondPrefixes  : TPrefixes  = (pNone, pNone);
   cNewtonSecondExponents : TExponents = (1, 1);
 
+{ Quantity of TReciprocalMeters }
+
+type
+  TReciprocalMeters = TReciprocalMeterQty;
+
+const
+  rsReciprocalMeterSymbol     = '1/%sm';
+  rsReciprocalMeterName       = 'reciprocal %smeter';
+  rsReciprocalMeterPluralName = 'reciprocal %smeters';
+
+const
+  cReciprocalMeterPrefixes  : TPrefixes  = (pNone);
+  cReciprocalMeterExponents : TExponents = (-1);
+
 { Quantity of TKilogramSquareMeters }
 
 type
@@ -3952,7 +4006,7 @@ type
   TRydbergs = TJouleQty;
 
 const
-  Ry: TJouleQty = (FValue: 2.1798723611035E-18);
+  Ry: TJouleQty = (FValue: 2.179872361103542E-18);
 
 const
   rsRydbergSymbol     = '%sRy';
@@ -3962,7 +4016,7 @@ const
 const
   cRydbergPrefixes  : TPrefixes  = (pNone);
   cRydbergExponents : TExponents = (1);
-  cRydbergFactor                 = 2.1798723611035E-18;
+  cRydbergFactor                 = 2.179872361103542E-18;
 
 { Quantity of TJoulesPerRadian }
 
@@ -4599,6 +4653,20 @@ const
   cNewtonSquareMeterPrefixes  : TPrefixes  = (pNone, pNone);
   cNewtonSquareMeterExponents : TExponents = (1, 2);
 
+{ Quantity of TNewtonCubicMeters }
+
+type
+  TNewtonCubicMeters = TNewtonCubicMeterQty;
+
+const
+  rsNewtonCubicMeterSymbol     = '%sN·%sm3';
+  rsNewtonCubicMeterName       = '%snewton cubic %smeter';
+  rsNewtonCubicMeterPluralName = '%snewton cubic %smeters';
+
+const
+  cNewtonCubicMeterPrefixes  : TPrefixes  = (pNone, pNone);
+  cNewtonCubicMeterExponents : TExponents = (1, 3);
+
 { Quantity of TSquareKilogramsPerMeter }
 
 type
@@ -5173,20 +5241,6 @@ const
   cRadianPerMeterPrefixes  : TPrefixes  = (pNone);
   cRadianPerMeterExponents : TExponents = (-1);
 
-{ Quantity of TReciprocalMeters }
-
-type
-  TReciprocalMeters = TReciprocalMeterQty;
-
-const
-  rsReciprocalMeterSymbol     = '1/%sm';
-  rsReciprocalMeterName       = 'reciprocal %smeter';
-  rsReciprocalMeterPluralName = 'reciprocal %smeters';
-
-const
-  cReciprocalMeterPrefixes  : TPrefixes  = (pNone);
-  cReciprocalMeterExponents : TExponents = (-1);
-
 { Quantity of TSquareSecondsPerSquareMeter }
 
 type
@@ -5252,6 +5306,20 @@ const
   cElettronvoltSecondPrefixes  : TPrefixes  = (pNone, pNone);
   cElettronvoltSecondExponents : TExponents = (1, 1);
   cElettronvoltSecondFactor                 = 1.60217742320523E-019;
+
+{ Quantity of TSquareJouleSquareSeconds }
+
+type
+  TSquareJouleSquareSeconds = TSquareJouleSquareSecondQty;
+
+const
+  rsSquareJouleSquareSecondSymbol     = '%sJ2·%ss2';
+  rsSquareJouleSquareSecondName       = 'square %sjoule square %ssecond';
+  rsSquareJouleSquareSecondPluralName = 'square %sjoule square %sseconds';
+
+const
+  cSquareJouleSquareSecondPrefixes  : TPrefixes  = (pNone, pNone);
+  cSquareJouleSquareSecondExponents : TExponents = (2, 2);
 
 { Quantity of TLumensPerWatt }
 
@@ -5726,6 +5794,8 @@ function SquarePower(AQuantity: TKilogramPerSecondQty): TSquareKilogramPerSquare
 function SquareRoot(AQuantity: TSquareKilogramPerSquareSecondQty): TKilogramPerSecondQty;
 function SquarePower(AQuantity: TJouleQty): TSquareJouleQty;
 function SquareRoot(AQuantity: TSquareJouleQty): TJouleQty;
+function SquarePower(AQuantity: TKilogramSquareMeterPerSecondQty): TSquareJouleSquareSecondQty;
+function SquareRoot(AQuantity: TSquareJouleSquareSecondQty): TKilogramSquareMeterPerSecondQty;
 
 { Trigonometric functions }
 
@@ -5849,6 +5919,21 @@ end;
 {$DEFINE CPREFIXES:=cMeterPrefixes}
 {$DEFINE CEXPONENTS:=cMeterExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TMeterQty}{$i adim.inc}
+
+class operator TMeterQty./(const ALeft: TNewtonCubicMeterQty; const ARight: TMeterQty): TNewtonSquareMeterQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+class operator TMeterQty.*(const ALeft: TMeterQty; const ARight: TNewtonSquareMeterQty): TNewtonCubicMeterQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TMeterQty.*(const ALeft: TNewtonSquareMeterQty; const ARight: TMeterQty): TNewtonCubicMeterQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
 
 class operator TMeterQty./(const ALeft: TNewtonSquareMeterQty; const ARight: TMeterQty): TJouleQty;
 begin
@@ -6191,6 +6276,21 @@ end;
 {$DEFINE CEXPONENTS:=cSquareSecondExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareSecondQty}{$i adim.inc}
 
+class operator TSquareSecondQty./(const ALeft: TSquareJouleSquareSecondQty; const ARight: TSquareSecondQty): TSquareJouleQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+class operator TSquareSecondQty.*(const ALeft: TSquareSecondQty; const ARight: TSquareJouleQty): TSquareJouleSquareSecondQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TSquareSecondQty.*(const ALeft: TSquareJouleQty; const ARight: TSquareSecondQty): TSquareJouleSquareSecondQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
 class operator TSquareSecondQty.*(const ALeft: TJouleQty; const ARight: TSquareSecondQty): TKilogramSquareMeterQty;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -6442,6 +6542,21 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+class operator TCubicMeterQty./(const ALeft: TNewtonCubicMeterQty; const ARight: TCubicMeterQty): TNewtonQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+class operator TCubicMeterQty.*(const ALeft: TCubicMeterQty; const ARight: TNewtonQty): TNewtonCubicMeterQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TCubicMeterQty.*(const ALeft: TNewtonQty; const ARight: TCubicMeterQty): TNewtonCubicMeterQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
 class operator TCubicMeterQty./(const ALeft: TSexticMeterQty; const ARight: TCubicMeterQty): TCubicMeterQty;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -6519,6 +6634,21 @@ end;
 {$DEFINE CPREFIXES:=cKilogramPrefixes}
 {$DEFINE CEXPONENTS:=cKilogramExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKilogramQty}{$i adim.inc}
+
+class operator TKilogramQty./(const ALeft: TSquareJouleSquareSecondQty; const ARight: TKilogramQty): TNewtonCubicMeterQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+class operator TKilogramQty.*(const ALeft: TKilogramQty; const ARight: TNewtonCubicMeterQty): TSquareJouleSquareSecondQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TKilogramQty.*(const ALeft: TNewtonCubicMeterQty; const ARight: TKilogramQty): TSquareJouleSquareSecondQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
 
 class operator TKilogramQty./(const ALeft: TKilogramSquareSecondQty; const ARight: TKilogramQty): TSquareSecondQty;
 begin
@@ -7431,6 +7561,18 @@ end;
 {$DEFINE CEXPONENTS:=cNewtonSecondExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNewtonSecondQty}{$i adim.inc}
 
+{$DEFINE CSYMBOL:=rsReciprocalMeterSymbol}
+{$DEFINE CSINGULARNAME:=rsReciprocalMeterName}
+{$DEFINE CPLURALNAME:=rsReciprocalMeterPluralName}
+{$DEFINE CPREFIXES:=cReciprocalMeterPrefixes}
+{$DEFINE CEXPONENTS:=cReciprocalMeterExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TReciprocalMeterQty}{$i adim.inc}
+
+class operator TReciprocalMeterQty./(const ALeft: double; const ARight: TReciprocalMeterQty): TMeterQty;
+begin
+  result.FValue := ALeft / ARight.FValue;
+end;
+
 {$DEFINE CSYMBOL:=rsKilogramSquareMeterSymbol}
 {$DEFINE CSINGULARNAME:=rsKilogramSquareMeterName}
 {$DEFINE CPLURALNAME:=rsKilogramSquareMeterPluralName}
@@ -7444,6 +7586,16 @@ end;
 {$DEFINE CPREFIXES:=cKilogramSquareMeterPerSecondPrefixes}
 {$DEFINE CEXPONENTS:=cKilogramSquareMeterPerSecondExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKilogramSquareMeterPerSecondQty}{$i adim.inc}
+
+class operator TKilogramSquareMeterPerSecondQty./(const ALeft: TSquareJouleSquareSecondQty; const ARight: TKilogramSquareMeterPerSecondQty): TKilogramSquareMeterPerSecondQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+class operator TKilogramSquareMeterPerSecondQty.*(const ALeft: TKilogramSquareMeterPerSecondQty; const ARight: TKilogramSquareMeterPerSecondQty): TSquareJouleSquareSecondQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
 
 class operator TKilogramSquareMeterPerSecondQty./(const ALeft: TNewtonSquareMeterQty; const ARight: TKilogramSquareMeterPerSecondQty): TMeterPerSecondQty;
 begin
@@ -7483,6 +7635,21 @@ end;
 class operator TKilogramSquareMeterPerSecondQty./(const ALeft: TKilogramSquareMeterPerSecondQty; const ARight: TSecondQty): TJouleQty;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+class operator TKilogramSquareMeterPerSecondQty./(const ALeft: TKilogramMeterPerSecondQty; const ARight: TKilogramSquareMeterPerSecondQty): TReciprocalMeterQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+class operator TKilogramSquareMeterPerSecondQty.*(const ALeft: TKilogramSquareMeterPerSecondQty; const ARight: TReciprocalMeterQty): TKilogramMeterPerSecondQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TKilogramSquareMeterPerSecondQty.*(const ALeft: TReciprocalMeterQty; const ARight: TKilogramSquareMeterPerSecondQty): TKilogramMeterPerSecondQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
 class operator TKilogramSquareMeterPerSecondQty./(const ALeft: TKilogramSquareMeterPerSecondQty; const ARight: TMeterQty): TKilogramMeterPerSecondQty;
@@ -7864,6 +8031,21 @@ end;
 {$DEFINE CPREFIXES:=cNewtonMeterPrefixes}
 {$DEFINE CEXPONENTS:=cNewtonMeterExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNewtonMeterQty}{$i adim.inc}
+
+class operator TNewtonMeterQty./(const ALeft: TNewtonCubicMeterQty; const ARight: TNewtonMeterQty): TSquareMeterQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+class operator TNewtonMeterQty.*(const ALeft: TSquareMeterQty; const ARight: TNewtonMeterQty): TNewtonCubicMeterQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TNewtonMeterQty.*(const ALeft: TNewtonMeterQty; const ARight: TSquareMeterQty): TNewtonCubicMeterQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
 
 {$DEFINE CSYMBOL:=rsPoundForceInchSymbol}
 {$DEFINE CSINGULARNAME:=rsPoundForceInchName}
@@ -8849,6 +9031,13 @@ end;
 {$DEFINE CPREFIXES:=cNewtonSquareMeterPrefixes}
 {$DEFINE CEXPONENTS:=cNewtonSquareMeterExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNewtonSquareMeterQty}{$i adim.inc}
+
+{$DEFINE CSYMBOL:=rsNewtonCubicMeterSymbol}
+{$DEFINE CSINGULARNAME:=rsNewtonCubicMeterName}
+{$DEFINE CPLURALNAME:=rsNewtonCubicMeterPluralName}
+{$DEFINE CPREFIXES:=cNewtonCubicMeterPrefixes}
+{$DEFINE CEXPONENTS:=cNewtonCubicMeterExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNewtonCubicMeterQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsSquareKilogramPerMeterSymbol}
 {$DEFINE CSINGULARNAME:=rsSquareKilogramPerMeterName}
@@ -9947,18 +10136,6 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-{$DEFINE CSYMBOL:=rsReciprocalMeterSymbol}
-{$DEFINE CSINGULARNAME:=rsReciprocalMeterName}
-{$DEFINE CPLURALNAME:=rsReciprocalMeterPluralName}
-{$DEFINE CPREFIXES:=cReciprocalMeterPrefixes}
-{$DEFINE CEXPONENTS:=cReciprocalMeterExponents}
-{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TReciprocalMeterQty}{$i adim.inc}
-
-class operator TReciprocalMeterQty./(const ALeft: double; const ARight: TReciprocalMeterQty): TMeterQty;
-begin
-  result.FValue := ALeft / ARight.FValue;
-end;
-
 {$DEFINE CSYMBOL:=rsSquareSecondPerSquareMeterSymbol}
 {$DEFINE CSINGULARNAME:=rsSquareSecondPerSquareMeterName}
 {$DEFINE CPLURALNAME:=rsSquareSecondPerSquareMeterPluralName}
@@ -10017,6 +10194,13 @@ end;
 {$DEFINE CEXPONENTS:=cElettronvoltSecondExponents}
 {$DEFINE CFACTOR:=cElettronvoltSecondFactor}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TElettronvoltSecondQty}{$i adim.inc}
+
+{$DEFINE CSYMBOL:=rsSquareJouleSquareSecondSymbol}
+{$DEFINE CSINGULARNAME:=rsSquareJouleSquareSecondName}
+{$DEFINE CPLURALNAME:=rsSquareJouleSquareSecondPluralName}
+{$DEFINE CPREFIXES:=cSquareJouleSquareSecondPrefixes}
+{$DEFINE CEXPONENTS:=cSquareJouleSquareSecondExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareJouleSquareSecondQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsLumenPerWattSymbol}
 {$DEFINE CSINGULARNAME:=rsLumenPerWattName}
@@ -10571,6 +10755,11 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
+operator /(const ALeft: double; const ARight: TMeterQty): TReciprocalMeterQty;
+begin
+  result.FValue := ALeft / ARight.FValue;
+end;
+
 operator /(const ALeft: TKilogramSquareMeterQty; const ARight: TSquareMeterQty): TKilogramQty;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -10599,6 +10788,11 @@ end;
 operator *(const ALeft: TMeterQty; const ARight: TKilogramMeterPerSecondQty): TKilogramSquareMeterPerSecondQty;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator /(const ALeft: TKilogramMeterPerSecondQty; const ARight: TReciprocalMeterQty): TKilogramSquareMeterPerSecondQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
 operator /(const ALeft: TSecondQty; const ARight: TMeterQty): TSecondPerMeterQty;
@@ -11081,6 +11275,21 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+operator /(const ALeft: TNewtonCubicMeterQty; const ARight: TNewtonQty): TCubicMeterQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TNewtonCubicMeterQty; const ARight: TSquareMeterQty): TNewtonMeterQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TNewtonCubicMeterQty; const ARight: TNewtonSquareMeterQty): TMeterQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
 operator /(const ALeft: TNewtonQty; const ARight: TSquareKilogramQty): TNewtonPerSquareKilogramQty;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -11506,11 +11715,6 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
-operator /(const ALeft: double; const ARight: TMeterQty): TReciprocalMeterQty;
-begin
-  result.FValue := ALeft / ARight.FValue;
-end;
-
 operator /(const ALeft: TSquareSecondQty; const ARight: TSquareMeterQty): TSquareSecondPerSquareMeterQty;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -11529,6 +11733,16 @@ end;
 operator *(const ALeft: THenryPerMeterQty; const ARight: TFaradPerMeterQty): TSquareSecondPerSquareMeterQty;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator /(const ALeft: TSquareJouleSquareSecondQty; const ARight: TSquareJouleQty): TSquareSecondQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TSquareJouleSquareSecondQty; const ARight: TNewtonCubicMeterQty): TKilogramQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
 operator /(const ALeft: TLumenQty; const ARight: TWattQty): TLumenPerWattQty;
@@ -11780,6 +11994,8 @@ end;
 
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TKilogramMeterPerSecondQty}{$DEFINE TUnit:=TNewtonSecondUnit}{$i adim.inc}
 
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TReciprocalMeterQty}{$DEFINE TUnit:=TReciprocalMeterUnit}{$i adim.inc}
+
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TKilogramSquareMeterQty}{$DEFINE TUnit:=TKilogramSquareMeterUnit}{$i adim.inc}
 
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TKilogramSquareMeterPerSecondQty}{$DEFINE TUnit:=TKilogramSquareMeterPerSecondUnit}{$i adim.inc}
@@ -11892,6 +12108,8 @@ end;
 
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TNewtonSquareMeterQty}{$DEFINE TUnit:=TNewtonSquareMeterUnit}{$i adim.inc}
 
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TNewtonCubicMeterQty}{$DEFINE TUnit:=TNewtonCubicMeterUnit}{$i adim.inc}
+
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TSquareKilogramPerMeterQty}{$DEFINE TUnit:=TSquareKilogramPerMeterUnit}{$i adim.inc}
 
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TSquareKilogramPerSquareMeterQty}{$DEFINE TUnit:=TSquareKilogramPerSquareMeterUnit}{$i adim.inc}
@@ -11974,8 +12192,6 @@ end;
 
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TRadianPerMeterQty}{$DEFINE TUnit:=TRadianPerMeterUnit}{$i adim.inc}
 
-{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TReciprocalMeterQty}{$DEFINE TUnit:=TReciprocalMeterUnit}{$i adim.inc}
-
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TSquareSecondPerSquareMeterQty}{$DEFINE TUnit:=TSquareSecondPerSquareMeterUnit}{$i adim.inc}
 
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TSquareJouleQty}{$DEFINE TUnit:=TSquareJouleUnit}{$i adim.inc}
@@ -11983,6 +12199,8 @@ end;
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TKilogramSquareMeterPerSecondQty}{$DEFINE TUnit:=TJouleSecondUnit}{$i adim.inc}
 
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TElettronvoltSecondQty}{$DEFINE TUnit:=TElettronvoltSecondUnit}{$i adim.inc}
+
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TSquareJouleSquareSecondQty}{$DEFINE TUnit:=TSquareJouleSquareSecondUnit}{$i adim.inc}
 
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TLumenPerWattQty}{$DEFINE TUnit:=TLumenPerWattUnit}{$i adim.inc}
 
@@ -12255,6 +12473,11 @@ begin
   result.FValue := ALeft.FValue;
 end;
 
+class operator TCubicMeterUnit.*(const ALeft: TNewtonQty; const ARight: TCubicMeterUnit): TNewtonCubicMeterQty;
+begin
+  result.FValue := ALeft.FValue;
+end;
+
 class operator TSquareKilogramUnit./(const ALeft: TNewtonQty; const ARight: TSquareKilogramUnit): TNewtonPerSquareKilogramQty;
 begin
   result.FValue := ALeft.FValue;
@@ -12516,6 +12739,11 @@ begin
 end;
 
 class operator TSquareMeterUnit./(const ALeft: TSquareSecondQty; const ARight: TSquareMeterUnit): TSquareSecondPerSquareMeterQty;
+begin
+  result.FValue := ALeft.FValue;
+end;
+
+class operator TSquareSecondUnit.*(const ALeft: TSquareJouleQty; const ARight: TSquareSecondUnit): TSquareJouleSquareSecondQty;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -13265,6 +13493,16 @@ begin
 end;
 
 function SquareRoot(AQuantity: TSquareJouleQty): TJouleQty;
+begin
+  result.FValue := Power(AQuantity.FValue, 1/2);
+end;
+
+function SquarePower(AQuantity: TKilogramSquareMeterPerSecondQty): TSquareJouleSquareSecondQty;
+begin
+  result.FValue := IntPower(AQuantity.FValue, 2);
+end;
+
+function SquareRoot(AQuantity: TSquareJouleSquareSecondQty): TKilogramSquareMeterPerSecondQty;
 begin
   result.FValue := Power(AQuantity.FValue, 1/2);
 end;

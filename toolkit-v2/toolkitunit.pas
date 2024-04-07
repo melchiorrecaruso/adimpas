@@ -1804,8 +1804,14 @@ begin
       for I := Low(T.FExponents) to High(T.FExponents) do
       begin
         T.FExponents[I] := 0;
+
         if Index1 <> -1 then
-          T.FExponents[I] := CheckList[Index1].FExponents[I];
+        begin
+          if AOperator = 'RECIPROCAL' then
+            T.FExponents[I] := -CheckList[Index1].FExponents[I]
+          else
+            T.FExponents[I] :=  CheckList[Index1].FExponents[I];
+        end;
 
         if Index2 <> -1 then
         begin
