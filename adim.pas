@@ -21,7 +21,7 @@
   ADimPas library built on 07/04/2024.
 
   Number of base units: 128
-  Number of factored units: 65
+  Number of factored units: 66
   Number of operators: 1025 (255 external, 770 internal)
 }
 
@@ -702,6 +702,9 @@ type
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TRydbergQty}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCalorieQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TJoulePerRadianQty}{$i adim.inc}
@@ -1944,6 +1947,9 @@ operator /(const ALeft: TJoulePerMoleQty; const ARight: TVoltQty): TCoulombPerMo
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TRydbergQty}{$DEFINE TUnit:=TRydbergUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TCalorieQty}{$DEFINE TUnit:=TCalorieUnit}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TJoulePerRadianQty}{$DEFINE TUnit:=TJoulePerRadianUnit}{$i adim.inc}
@@ -4018,6 +4024,28 @@ const
   cRydbergExponents : TExponents = (1);
   cRydbergFactor                 = 2.179872361103542E-18;
 
+{ Quantity of TCalories }
+
+type
+  TCalories = TJouleQty;
+
+const
+  cal: TJouleQty = (FValue: 4.184);
+
+const
+  Mcal: TJouleQty = (FValue: 4.184 * 1E+06);
+  kcal: TJouleQty = (FValue: 4.184 * 1E+03);
+
+const
+  rsCalorieSymbol     = '%scal';
+  rsCalorieName       = '%scalorie';
+  rsCaloriePluralName = '%scalories';
+
+const
+  cCaloriePrefixes  : TPrefixes  = (pNone);
+  cCalorieExponents : TExponents = (1);
+  cCalorieFactor                 = 4.184;
+
 { Quantity of TJoulesPerRadian }
 
 type
@@ -5646,6 +5674,7 @@ type
   end;
 
   TJouleHelper = record helper for TJouleQty
+    function ToCalorie: TCalorieQty;
     function ToRydberg: TRydbergQty;
     function ToPoundForceInch: TPoundForceInchQty;
     function ToNewtonMeter: TNewtonMeterQty;
@@ -8062,6 +8091,14 @@ end;
 {$DEFINE CEXPONENTS:=cRydbergExponents}
 {$DEFINE CFACTOR:=cRydbergFactor}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TRydbergQty}{$i adim.inc}
+
+{$DEFINE CSYMBOL:=rsCalorieSymbol}
+{$DEFINE CSINGULARNAME:=rsCalorieName}
+{$DEFINE CPLURALNAME:=rsCaloriePluralName}
+{$DEFINE CPREFIXES:=cCaloriePrefixes}
+{$DEFINE CEXPONENTS:=cCalorieExponents}
+{$DEFINE CFACTOR:=cCalorieFactor}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCalorieQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsJoulePerRadianSymbol}
 {$DEFINE CSINGULARNAME:=rsJoulePerRadianName}
@@ -12038,6 +12075,8 @@ end;
 
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TRydbergQty}{$DEFINE TUnit:=TRydbergUnit}{$i adim.inc}
 
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TCalorieQty}{$DEFINE TUnit:=TCalorieUnit}{$i adim.inc}
+
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TJoulePerRadianQty}{$DEFINE TUnit:=TJoulePerRadianUnit}{$i adim.inc}
 
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TJoulePerDegreeQty}{$DEFINE TUnit:=TJoulePerDegreeUnit}{$i adim.inc}
@@ -13118,6 +13157,11 @@ end;
 function TJouleHelper.ToRydberg: TRydbergQty;
 begin
   result.FValue := FValue / cRydbergFactor;
+end;
+
+function TJouleHelper.ToCalorie: TCalorieQty;
+begin
+  result.FValue := FValue / cCalorieFactor;
 end;
 
 function TJoulePerRadianHelper.ToJoulePerDegree: TJoulePerDegreeQty;
