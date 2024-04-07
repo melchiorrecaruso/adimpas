@@ -18,6 +18,7 @@ Another unit for type checking of dimensioned quantities at compile time in Free
 - [Waves and Hearing](doc/waves.md)
 - [Light and Vision](doc/lightandvision.md)
 - [Relativity](doc/relativity.md)
+- [Quantum Mechanics](doc/quantummechanics.md)
 - [Units of measurement](doc/unitsofmeasurement.md)
 
 ## References
