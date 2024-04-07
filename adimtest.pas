@@ -951,6 +951,8 @@ begin
   writeln('* TEST-100: PASSED');
 
   // TEST-101 - QUANTUM MECHANICS
+  kk           := (2*pi)/(2.426310238916E-12*m);
+  freq         := 1.234E20*Hz;
   plankreduced := plank/(2*pi);
   Energy       := plank*freq;
   Energy       := plankreduced*omega;
