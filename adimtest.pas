@@ -157,6 +157,7 @@ var
   energy: TJoules;
   plank: TJouleSeconds;
   plankreduced: TJouleSeconds;
+  squareplank: TSquareJouleSquareSeconds;
   freq: THertz;
 
   I: TKilogramSquareMeters;
@@ -960,6 +961,9 @@ begin
   p            := plankreduced/(1/kk);
   p            := Energy/lightspeed;
   freq         := lightspeed/wavelen;
+  squareplank  := SquarePower(plankreduced);
+  squareplank  := plankreduced*plankreduced;
+  writeln('* TEST-101: PASSED');
 
   {$ifdef VECTORIAL}
   // TEST-102
