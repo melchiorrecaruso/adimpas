@@ -17,3 +17,53 @@ function ArcTan2(const x, y: double): TRadians;
 generic function Min<TQuantity>(const AValue1, AValue2: TQuantity): TQuantity;
 generic function Max<TQuantity>(const AValue1, AValue2: TQuantity): TQuantity;
 
+{ Useful routines }
+
+function GetSymbol(const ASymbol: string; const Prefixes: TPrefixes): string;
+function GetName(const AName: string; const Prefixes: TPrefixes): string;
+
+{ Constants }
+
+const
+  ElectronMass                   : TKilograms                           = (FValue: 9.1093837015E-31); 
+  ElementaryCharge               : TCoulombs                            = (FValue: 1.602176634E-19);
+  ComptonWaveLength              : TMeters                              = (FValue: 2.42631023867E-12);
+  CoulombConstant                : TNewtonSquareMetersPerSquareCoulomb  = (FValue: 8.9875517923E9);
+  NewtonianConstantOfGravitation : TNewtonSquareMetersPerSquareKilogram = (FValue: 6.67430E-11);
+  PlanckConstant                 : TJouleSeconds                        = (FValue: 6.62607015E-34);
+  StandardAccelerationOfGravity  : TMetersPerSquareSecond               = (FValue: 9.80665);
+  ReducedPlanckConstant          : TJouleSeconds                        = (FValue: 6.62607015E-34/2/pi);  
+  VacuumElectricPermittivity     : TFaradsPerMeter                      = (FValue: 8.8541878128E-12);
+  VacuumLightSpeed               : TMetersPerSecond                     = (FValue: 299792458);  
+  VacuumMagneticPermeability     : THenriesPerMeter                     = (FValue: 1.25663706212E-6);
+
+const
+  PrefixTable: array[pQuetta..pQuecto] of 
+    record  Symbol, Name: string; Exponent: longint end = (
+    (Symbol: 'Q';   Name: 'quetta';  Exponent: +30),
+    (Symbol: 'R';   Name: 'ronna';   Exponent: +27),
+    (Symbol: 'Y';   Name: 'yotta';   Exponent: +24),
+    (Symbol: 'Z';   Name: 'zetta';   Exponent: +21),
+    (Symbol: 'E';   Name: 'exa';     Exponent: +18),  
+    (Symbol: 'P';   Name: 'peta';    Exponent: +15),
+    (Symbol: 'T';   Name: 'tera';    Exponent: +12),
+    (Symbol: 'G';   Name: 'giga';    Exponent: +09),
+    (Symbol: 'M';   Name: 'mega';    Exponent: +06),
+    (Symbol: 'k';   Name: 'kilo';    Exponent: +03),
+    (Symbol: 'h';   Name: 'hecto';   Exponent: +02),
+    (Symbol: 'da';  Name: 'deca';    Exponent: +01),
+    (Symbol: '';    Name: '';        Exponent:  00),
+    (Symbol: 'd';   Name: 'deci';    Exponent: -01),
+    (Symbol: 'c';   Name: 'centi';   Exponent: -02),
+    (Symbol: 'm';   Name: 'milli';   Exponent: -03),
+    (Symbol: 'μ';   Name: 'micro';   Exponent: -06),
+    (Symbol: 'n';   Name: 'nano';    Exponent: -09),
+    (Symbol: 'p';   Name: 'pico';    Exponent: -12),
+    (Symbol: 'f';   Name: 'femto';   Exponent: -15),
+    (Symbol: 'a';   Name: 'atto';    Exponent: -18),
+    (Symbol: 'z';   Name: 'zepto';   Exponent: -21),
+    (Symbol: 'y';   Name: 'yocto';   Exponent: -24),
+    (Symbol: 'r';   Name: 'ronto';   Exponent: -27),
+    (Symbol: 'q';   Name: 'quecto';  Exponent: -30)
+  );
+

@@ -1,41 +1,4 @@
 
-{ Prefix table }
-
-const
-  PrefixTable: array[pQuetta..pQuecto] of 
-    record  Symbol, Name: string; Exponent: longint end = (
-    (Symbol: 'Q';   Name: 'quetta';  Exponent: +30),
-    (Symbol: 'R';   Name: 'ronna';   Exponent: +27),
-    (Symbol: 'Y';   Name: 'yotta';   Exponent: +24),
-    (Symbol: 'Z';   Name: 'zetta';   Exponent: +21),
-    (Symbol: 'E';   Name: 'exa';     Exponent: +18),  
-    (Symbol: 'P';   Name: 'peta';    Exponent: +15),
-    (Symbol: 'T';   Name: 'tera';    Exponent: +12),
-    (Symbol: 'G';   Name: 'giga';    Exponent: +09),
-    (Symbol: 'M';   Name: 'mega';    Exponent: +06),
-    (Symbol: 'k';   Name: 'kilo';    Exponent: +03),
-    (Symbol: 'h';   Name: 'hecto';   Exponent: +02),
-    (Symbol: 'da';  Name: 'deca';    Exponent: +01),
-    (Symbol: '';    Name: '';        Exponent:  00),
-    (Symbol: 'd';   Name: 'deci';    Exponent: -01),
-    (Symbol: 'c';   Name: 'centi';   Exponent: -02),
-    (Symbol: 'm';   Name: 'milli';   Exponent: -03),
-    (Symbol: 'μ';   Name: 'micro';   Exponent: -06),
-    (Symbol: 'n';   Name: 'nano';    Exponent: -09),
-    (Symbol: 'p';   Name: 'pico';    Exponent: -12),
-    (Symbol: 'f';   Name: 'femto';   Exponent: -15),
-    (Symbol: 'a';   Name: 'atto';    Exponent: -18),
-    (Symbol: 'z';   Name: 'zepto';   Exponent: -21),
-    (Symbol: 'y';   Name: 'yocto';   Exponent: -24),
-    (Symbol: 'r';   Name: 'ronto';   Exponent: -27),
-    (Symbol: 'q';   Name: 'quecto';  Exponent: -30)
-  );
-
-{ Useful routines }
-
-function GetSymbol(const ASymbol: string; const Prefixes: TPrefixes): string;
-function GetName(const AName: string; const Prefixes: TPrefixes): string;
-
 implementation
 
 uses Math;

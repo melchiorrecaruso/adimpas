@@ -18,7 +18,7 @@
 }
 
 {
-  ADimPas library built on 07/04/2024.
+  ADimPas library built on 13/04/2024.
 
   Number of base units: 128
   Number of factored units: 66
@@ -27,7 +27,7 @@
 
 unit ADim;
 
-{$H+}
+{$H+}{$J-}
 {$modeswitch advancedrecords}
 {$WARN 05024 OFF} // Suppress warning for unused routine parameter.
 {$WARN 05033 OFF} // Suppress warning for unassigned function's return value.
@@ -5845,7 +5845,25 @@ function ArcTan2(const x, y: double): TRadians;
 generic function Min<TQuantity>(const AValue1, AValue2: TQuantity): TQuantity;
 generic function Max<TQuantity>(const AValue1, AValue2: TQuantity): TQuantity;
 
-{ Prefix table }
+{ Useful routines }
+
+function GetSymbol(const ASymbol: string; const Prefixes: TPrefixes): string;
+function GetName(const AName: string; const Prefixes: TPrefixes): string;
+
+{ Constants }
+
+const
+  ElectronMass                   : TKilograms                           = (FValue: 9.1093837015E-31);
+  ElementaryCharge               : TCoulombs                            = (FValue: 1.602176634E-19);
+  ComptonWaveLength              : TMeters                              = (FValue: 2.42631023867E-12);
+  CoulombConstant                : TNewtonSquareMetersPerSquareCoulomb  = (FValue: 8.9875517923E9);
+  NewtonianConstantOfGravitation : TNewtonSquareMetersPerSquareKilogram = (FValue: 6.67430E-11);
+  PlanckConstant                 : TJouleSeconds                        = (FValue: 6.62607015E-34);
+  StandardAccelerationOfGravity  : TMetersPerSquareSecond               = (FValue: 9.80665);
+  ReducedPlanckConstant          : TJouleSeconds                        = (FValue: 6.62607015E-34/2/pi);
+  VacuumElectricPermittivity     : TFaradsPerMeter                      = (FValue: 8.8541878128E-12);
+  VacuumLightSpeed               : TMetersPerSecond                     = (FValue: 299792458);
+  VacuumMagneticPermeability     : THenriesPerMeter                     = (FValue: 1.25663706212E-6);
 
 const
   PrefixTable: array[pQuetta..pQuecto] of
@@ -5876,11 +5894,6 @@ const
     (Symbol: 'r';   Name: 'ronto';   Exponent: -27),
     (Symbol: 'q';   Name: 'quecto';  Exponent: -30)
   );
-
-{ Useful routines }
-
-function GetSymbol(const ASymbol: string; const Prefixes: TPrefixes): string;
-function GetName(const AName: string; const Prefixes: TPrefixes): string;
 
 implementation
 
