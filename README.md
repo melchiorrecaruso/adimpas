@@ -43,10 +43,10 @@ var
   mass:   TKilograms;
   radius: TMeters;
 begin
-  plank  := 6.62607015*1E-34*J*s;        // Planck constant
-  e0     := 8.854187812813E-12*F/m;      // vacuum permittivity
-  ke     := 1/(4*pi*e0);                 // Coulomb constant
-  mass   := 9.109383701528*1E-31*kg;     // mass of an electron
+  plank  := 6.62607015E-34*J*s;    // Planck constant
+  e0     := 8.8541878128E-12*F/m;  // vacuum permittivity
+  ke     := 1/(4*pi*e0);           // Coulomb constant
+  mass   := 9.1093837015E-31*kg;   // mass of an electron
   radius := (SquarePower(plank/2/pi)/mass)/(ke*SquarePower(charge)); 
 
   writeln('The value of the Bohr radius is ', radius.ToString(10, 10, []));      
