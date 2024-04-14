@@ -50,6 +50,38 @@ begin
   result.FValue := Math.ArcTan2(x, y);
 end;
 
+{ Override trigonometric functions }
+
+function Cos(const AQuantity: double): double;
+begin 
+  result := System.Cos(AQuantity); 
+end;
+
+function Sin(const AQuantity: double): double;
+begin 
+  result := System.Sin(AQuantity);
+end;
+
+function Tan(const AQuantity: double): double;
+begin 
+  result := Math.Tan(AQuantity);
+end;
+
+function Cotan(const AQuantity: double): double;
+begin 
+  result := Math.Cotan(AQuantity);
+end;
+
+function Secant(const AQuantity: double): double;
+begin 
+  result := Math.Secant(AQuantity);
+end;
+
+function Cosecant(const AQuantity: double): double;
+begin 
+  result := Math.Cosecant(AQuantity);
+end;
+
 { Math functions }
 
 generic function Min<T>(const AValue1, AValue2: T): T;

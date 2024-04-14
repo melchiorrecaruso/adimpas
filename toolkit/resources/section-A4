@@ -12,6 +12,15 @@ function ArcSin(const AValue: double): TRadians;
 function ArcTan(const AValue: double): TRadians;
 function ArcTan2(const x, y: double): TRadians;
 
+{ Override trigonometric functions }
+
+function Cos(const AQuantity: double): double;
+function Sin(const AQuantity: double): double;
+function Tan(const AQuantity: double): double;
+function Cotan(const AQuantity: double): double;
+function Secant(const AQuantity: double): double;
+function Cosecant(const AQuantity: double): double;
+
 { Math functions }
 
 generic function Min<T>(const AValue1, AValue2: T): T;
