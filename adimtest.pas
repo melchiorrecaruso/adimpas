@@ -150,7 +150,6 @@ var
   yacc: TMetersPerSquareSecond;
 
   energy: TJoules;
-  squareplank: TSquareJouleSquareSeconds;
   freq: THertz;
 
   I: TKilogramSquareMeters;
@@ -158,7 +157,10 @@ var
 
   num: integer;
   alpha: double;
-  kk: TReciprocalMeters;
+  kc: TReciprocalMeters;
+  BoxLen: TMeters;
+  EnergyLevels: array[1..4] of TJoules;
+  SquarePsi:    array[1..4] of TReciprocalMeters;
 
   {$ifdef VECTORIAL}
   displacement: TCLMeters;
@@ -929,28 +931,46 @@ begin
   if energy.ToRydberg     .ToString(3, 3, []) <> '-1 Ry'       then halt(5);
   writeln('* TEST-100: PASSED');
 
-
-
-
   // TEST-101 - QUANTUM MECHANICS
-  kk          := 2*pi/ComptonWaveLength;
-  freq        := 1.234E20*Hz;
-  Energy      := PlanckConstant*freq;
-  Energy      := ReducedPlanckConstant*omega;
-  Energy      := SquarePower(ReducedPlanckConstant)/(2*ElectronMass)*Sqr(pi)/SquarePower(ComptonWaveLength);
-  kk          := SquareRoot(2*ElectronMass*Energy)/ReducedPlanckConstant;
-
-
-  p           := ReducedPlanckConstant*kk;
-  p           := ReducedPlanckConstant/(1/kk);
-  p           := Energy/VacuumLightSpeed;
-  freq        := VacuumLightSpeed/wavelen;
-  squareplank := SquarePower(ReducedPlanckConstant);
-  squareplank := ReducedPlanckConstant*ReducedPlanckConstant;
+  WaveLen    := 390*nm;
+  Kc         := 2*pi/WaveLen;
+  p          := ReducedPlanckConstant*Kc;
+  p          := ReducedPlanckConstant/(1/Kc);
+  p          := Energy/VacuumLightSpeed;
+  Freq       := VacuumLightSpeed/WaveLen;
+  Omega      := Freq*2*pi;
+  Energy     := PlanckConstant*Freq;
+  Energy     := ReducedPlanckConstant*Omega;
+  Energy     := SquarePower(p)/ElectronMass;
+  Energy     := SquarePower(ReducedPlanckConstant)*SquarePower(Kc)/2/ElectronMass;
+  Kc         := SquareRoot (2*ElectronMass*Energy)/ReducedPlanckConstant;
   writeln('* TEST-101: PASSED');
 
+  // TEST-102 - QUANTUM MECHANICS: PARTICLE IN A BOX
+  BoxLen      := 0.05*m;
+  EnergyLevels[1] := SquarePower(1*pi*ReducedPlanckConstant)/2/ElectronMass/SquarePower(BoxLen);
+  EnergyLevels[2] := SquarePower(2*pi*ReducedPlanckConstant)/2/ElectronMass/SquarePower(BoxLen);
+  EnergyLevels[3] := SquarePower(3*pi*ReducedPlanckConstant)/2/ElectronMass/SquarePower(BoxLen);
+  EnergyLevels[4] := SquarePower(4*pi*ReducedPlanckConstant)/2/ElectronMass/SquarePower(BoxLen);
+
+  SquarePsi[1] := (2/BoxLen*Sqr(Sin(1*pi/BoxLen*BoxLen/2)));
+  SquarePsi[2] := (2/BoxLen*Sqr(Sin(2*pi/BoxLen*BoxLen/4)));
+  SquarePsi[3] := (2/BoxLen*Sqr(Sin(3*pi/BoxLen*BoxLen/6)));
+  SquarePsi[4] := (2/BoxLen*Sqr(Sin(4*pi/BoxLen*BoxLen/8)));
+
+  if ('|Ψ| = ' + (SquareRoot(2/BoxLen)*Sin(1*pi/BoxLen*BoxLen/2)).ToString(4, 4, [])) <> '|Ψ| = 6.325 1/√m' then halt(1);
+  if ('|Ψ| = ' + (SquareRoot(2/BoxLen)*Sin(2*pi/BoxLen*BoxLen/4)).ToString(4, 4, [])) <> '|Ψ| = 6.325 1/√m' then halt(2);
+  if ('|Ψ| = ' + (SquareRoot(2/BoxLen)*Sin(3*pi/BoxLen*BoxLen/6)).ToString(4, 4, [])) <> '|Ψ| = 6.325 1/√m' then halt(3);
+  if ('|Ψ| = ' + (SquareRoot(2/BoxLen)*Sin(4*pi/BoxLen*BoxLen/8)).ToString(4, 4, [])) <> '|Ψ| = 6.325 1/√m' then halt(4);
+
+  if ('|Ψ²| = ' + SquarePsi[1].ToString) <> '|Ψ²| = 40 1/m' then halt(5);
+  if ('|Ψ²| = ' + SquarePsi[2].ToString) <> '|Ψ²| = 40 1/m' then halt(6);
+  if ('|Ψ²| = ' + SquarePsi[3].ToString) <> '|Ψ²| = 40 1/m' then halt(7);
+  if ('|Ψ²| = ' + SquarePsi[4].ToString) <> '|Ψ²| = 40 1/m' then halt(8);
+  writeln('* TEST-102: PASSED');
+
   {$ifdef VECTORIAL}
-  // TEST-102
+  // TEST-103
 
   side1vec := 5*e1*m;                                                           writeln(side1vec.ToVerboseString);
   side2vec := 10*e2*m;                                                          writeln(side2vec.ToVerboseString);
@@ -1062,7 +1082,7 @@ begin
   writeln(powervec.Extract([mc0]).Norm.ToString);
   writeln('Y = ', (1/impedance).ToVerboseString);
 
-  writeln('* TEST-102: PASSED');
+  writeln('* TEST-103: PASSED');
   {$endif}
 
 
