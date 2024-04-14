@@ -21,6 +21,7 @@ program adimtest;
 
 {*$DEFINE VECTORIAL}
 
+{$J-}
 {$if FPC_FULLVERSION >= 30301}
   {$modeswitch implicitfunctionspecialization}
 {$endif}
@@ -84,8 +85,6 @@ var
 
   mass1: TKilograms;
   mass2: TKilograms;
-  GN: TNewtonSquareMetersPerSquareKilogram;
-
 
   cCd: double;
   angle: TRadians;
@@ -96,7 +95,6 @@ var
   Ue: TJoules;
   kx: TNewtonsPerMeter;
 
-  ke: TNewtonSquareMetersPerSquareCoulomb;
   q1: TCoulombs;
   q2: TCoulombs;
   Uel: TJoules;
@@ -127,11 +125,8 @@ var
   lambda2: TWattsPerMeterPerKelvin;
 
   E: TVoltsPerMeter;
-  e0: TFaradsPerMeter;
-  er: double;
   sigma: TCoulombsPerSquareMeter;
 
-  m0: THenriesPerMeter;
   B: TTeslas;
   len: TMeters;
   r: TMeters;
@@ -150,13 +145,11 @@ var
   phi: TRadians;
 
   wavelen: TMeters;
+  wavelenc: TMeters;
   yspeed: TMetersperSecond;
   yacc: TMetersPerSquareSecond;
 
-  lightspeed: TMetersPerSecond;
   energy: TJoules;
-  plank: TJouleSeconds;
-  plankreduced: TJouleSeconds;
   squareplank: TSquareJouleSquareSeconds;
   freq: THertz;
 
@@ -280,7 +273,7 @@ begin
   mass  := force/acc;
   acc   := force/mass;
   if mass .ToVerboseString(5, 0, []) <> '5 kilograms' then halt(1);
-  if acc  .ToString       (5, 0, []) <> '10 m/s2'    then halt(2);
+  if acc  .ToString       (5, 0, []) <> '10 m/s2'     then halt(2);
   if force.ToVerboseString(5, 0, []) <> '50 newtons'  then halt(3);
   writeln('* TEST-05: PASSED');
 
@@ -521,21 +514,18 @@ begin
   writeln('* TEST-32: PASSED');
 
   // TEST-33 - UNIVERSAL GRAVITATION LAW
-  mass1    := 5.972E24*kg;
-  mass2    := 7.348E22*kg;
+  mass1    := 5.97219E24*kg;
+  mass2    := 7.342E22*kg;
   distance := 384400*km;
-  GN       := 6.67E-11*N*m2/kg2;
-  GN       := 6.67E-11*N*m2/kg2;
-  force    := GN*(mass1*mass2)/(distance*distance);
+  force    := NewtonianConstantOfGravitation*(mass1*mass2)/(distance*distance);
   if force.ToString(4, 2, []) <> '1.981E20 N' then halt(1);
   writeln('* TEST-33: PASSED');
 
   // TEST-34 - GRAVITATIONAL POTENTIAL ENERGY
   mass     := 10*kg;
-  acc      := 9.81*m/s2;
   distance := 10*m;
-  Ug       := mass*acc*distance;
-  if Ug.ToString(4, 2, []) <> '981 J' then halt(1);
+  Ug       := mass*StandardAccelerationOfGravity*distance;
+  if Ug.ToString(4, 2, []) <> '980.7 J' then halt(1);
   writeln('* TEST-34: PASSED');
 
   // TEST-35 - KINEMATIC POTENTIAL ENERGY
@@ -573,18 +563,16 @@ begin
 
   // TEST-39 - STEVINO'S LAW
   density  := 10*kg/m3;
-  acc      := 9.81*m/s2;
   distance := 2*m;
-  pressure := density*acc*distance;
-  if pressure.ToString(4, 2, []) <> '196.2 Pa' then halt(1);
+  pressure := density*StandardAccelerationOfGravity*distance;
+  if pressure.ToString(4, 2, []) <> '196.1 Pa' then halt(1);
   writeln('* TEST-39: PASSED');
 
   // TEST-40 - ARCHIMEDE'S LAW
   density := 0.5*kg/m3;
-  acc     := 9.81*m/s2;
   volume  := 0.5*m3;
-  force   := density*acc*volume;
-  if force.ToString(4, 2, []) <> '2.453 N' then halt(1);
+  force   := density*StandardAccelerationOfGravity*volume;
+  if force.ToString(4, 2, []) <> '2.452 N' then halt(1);
   writeln('* TEST-40: PASSED');
 
   // TEST-41 - CONTINUITY EQUATION (FLUID)
@@ -600,10 +588,9 @@ begin
   pressure := 1/2*density*(speed*speed);
   if pressure.ToString(4, 2, []) <> '62.5 Pa' then halt(1);
 
-  acc      := 9.81*m/s2;
   distance := 2*m;
-  pressure := density*acc*distance;
-  if pressure.ToString(4, 2, []) <> '98.1 Pa' then halt(2);
+  pressure := density*StandardAccelerationOfGravity*distance;
+  if pressure.ToString(4, 2, []) <> '98.07 Pa' then halt(2);
   writeln('* TEST-42: PASSED');
 
   // TEST-43 - REYNOLDS NUMBER
@@ -652,75 +639,63 @@ begin
   writeln('* TEST-47: PASSED');
 
   // TEST-48 - ELECTRIC POTENTIAL ENERGY
-  ke  := 8.988E9*N*m2/C2;
   q1  := 6E-6*C;
   q2  := 9E-6*C;
-  Uel := ke*(q1*q2/distance);
-  if Uel.ToString(4, 2, [pMilli]) <> '48.54 mJ' then halt(1);
+  Uel := CoulombConstant*(q1*q2/distance);
+  if Uel.ToString(4, 2, [pMilli]) <> '48.53 mJ' then halt(1);
   writeln('* TEST-48: PASSED');
 
   // TEST-49 - ELECTROSTATIC FORCE ON A POINT CHARGE IN A ELECTRIC FIELD
   E     := 0.0015*N/C;
-  q1    := 1.602E-19*C;
+  q1    := ElementaryCharge;
   force := E*q1;
   if force.ToString(4, 2, [pYocto]) <> '240.3 yN' then halt(1);
   writeln('* TEST-49: PASSED');
 
   // TEST-50 - ELECTROSTATIC FORCE BETWEEN TWO POINT CHARGES
-  ke       := 8.988E9*N*m2/C2;
   q1       := 6E-6*C;
   q2       := 9E-6*C;
   distance := 2*m;
-  force    := ke*(q1*q2)/(distance*distance);
+  force    := CoulombConstant*(q1*q2)/(distance*distance);
   if force.ToString(4, 2, [pMilli]) <> '121.3 mN' then halt(1);
   writeln('* TEST-50: PASSED');
 
   // TEST-51 - ELECTRIC FIELD OF A SINGLE POINT CHARGE
-  e0 := 8.854187817E-12*F/m;
-  er := 1;
-  ke := 1/(4*pi*e0*er);
   q1 := 2*C;
   r  := 5*cm;
-  E  := ke*(q1/SquarePower(r));
+  E  := CoulombConstant*(q1/SquarePower(r));
   if E.ToString(4, 2, [pMega, pMilli]) <> '7190 MV/mm' then halt(1);
   writeln('* TEST-51: PASSED');
 
   // TEST-52 - ELECTRIC FIELD OF UNIFORM CHARGE SPHERE
-  e0       := 8.854187817E-12*F/m;
-  er       := 1;
-  ke       := 1/(4*pi*e0);
   q1       := 2*C;
   r        := 10*cm;
   distance := 5*cm;
-  E        := ke*(q1/ (CubicPower(r)/distance));
+  E        := CoulombConstant*(q1/ (CubicPower(r)/distance));
   if E.ToString(4, 2, [pMega, pMilli]) <> '898.8 MV/mm' then halt(1);
   writeln('* TEST-52: PASSED');
 
   // TEST-53 - ELECTRIC FIELD OF PARALLEL CONDUCTING PLATES
-  e0    := 8.854187817E-12*F/m;
-  er    := 1;
   q1    := 2*C;
   Area  := 4*cm2;
   sigma := q1/Area;
-  E     := sigma/e0/er;
+  E     := sigma/VacuumElectricPermittivity;
   if E.ToString(4, 2, [pGiga, pMilli]) <> '564.7 GV/mm' then halt(1);
   writeln('* TEST-53: PASSED');
 
   // TEST-54 - MAGNETIC FORCE FOR LIFTING A OBJECT
   mass    := 100*g;
-  acc     := 9.81*m/s2;
   len     := 20*cm;
   B       := 2.0*T;
-  current := (mass*acc)/(len*B*Sin(90*deg));
-  if current.ToString(4, 2, [pMilli]) <> '2453 mA' then halt(1);
+  current := (mass*StandardAccelerationOfGravity)/(len*B*Sin(90*deg));
+  if current.ToString(4, 2, [pMilli]) <> '2452 mA' then halt(1);
   writeln('* TEST-54: PASSED');
 
   // TEST-55 - MAGNETIC FIELD DUE TO STRAIGHT WIRE
-  m0       := 4*pi*1E-7*T*m/A;
   current  := 3.0*A;
   R        := 50*cm;
   z        := 0*cm;
-  B        := m0/(2*pi) * (current / (SquareRoot(CubicPower(SquarePower(z)+SquarePower(R)))/SquarePower(R) ));
+  B        := VacuumMagneticPermeability/(2*pi) * (current/(SquareRoot(CubicPower(SquarePower(z)+SquarePower(R)))/SquarePower(R)));
   {$IFDEF WINDOWS}
   if Utf8ToAnsi(B.ToString(4, 2, [pMicro])) <> Utf8ToAnsi('1.2 µT') then halt(1);
   {$ENDIF}
@@ -730,21 +705,19 @@ begin
   writeln('* TEST-55: PASSED');
 
   // TEST-56 - MAGNETIC FIELD PRODUCED BY A CURRENT-CARRYING SOLENOID
-  m0       := 4*pi*1E-7*T*m/A;
   current  := 1600*A;
   loops    := 2000;
   len      := 2.0*m;
-  B        := m0*loops*(current/len);
+  B        := VacuumMagneticPermeability*loops*(current/len);
   if B.ToVerboseString(4, 2, []) <> '2.011 teslas' then halt(1);
   writeln('* TEST-56: PASSED');
 
   // TEST-57 - FORCES BETWEEN PARALLEL CONDUCTORS
-  m0    := 4*pi*1E-7*T*m/A;
   i1    := 2.5*A;
   i2    := 1.5*A;
   r     := 4*cm;
   len   := 1.0*m;
-  force := (m0/(2*pi)*(len/r)) * (i1*i2);
+  force := (VacuumMagneticPermeability/(2*pi)*(len/r)) * (i1*i2);
   if force.ToVerboseString(4, 2, [pMicro]) <> '18.75 micronewtons' then halt(1);
   writeln('* TEST-57: PASSED');
 
@@ -765,10 +738,9 @@ begin
 
   // TEST-60 - DISPLACEMENT CURRENT
   Area     := 100*cm2;
-  e0       := 8.854187817E-12*F/m;
   DeltaE   := 6.0E10*N/C;
   time     := 1*s;
-  current  := (e0*DeltaE*Area)/time;
+  current  := (VacuumElectricPermittivity*DeltaE*Area)/time;
   if current.ToVerboseString(4, 2, [pMicro]) <> '5313 microamperes' then halt(1);
   writeln('* TEST-60: PASSED');
 
@@ -789,28 +761,26 @@ begin
 
   // TEST-62 - RELATIVTY: ENERGY
   mass       := 1*kg;
-  lightspeed := 299792458*m/s;
-  energy     := mass*SquarePower(lightspeed);
+  energy     := mass*SquarePower(VacuumLightSpeed);
   if energy.ToElettronvolt.ToString(4, 2, [pTera]) <> '5.61E23 TeV' then halt(1);
   if energy               .ToString(4, 2, [pTera]) <> '8.988E4 TJ'  then halt(2);
   writeln('* TEST-62: PASSED');
 
   // TEST-63 - RELATIVTY: MOMENTUM
-  mass       := 9.11*1E-31*kg;
+  mass       := ElectronMass;
   speed      := 10800000*km/hr;
   p          := mass*speed;
-  energy     := SquareRoot(SquarePower(p*lightspeed)+ SquarePower(mass*SquarePower(lightspeed)));
+  energy     := SquareRoot(SquarePower(p*VacuumLightSpeed)+ SquarePower(mass*SquarePower(VacuumLightSpeed)));
   if p                    .ToString(4, 2, [pPico, pPico, pNone]) <> '2733 pg·pm/s' then halt(1);
-  if energy.ToElettronvolt.ToString(4, 2, [pKilo])               <> '511.1 keV'    then halt(2);
+  if energy.ToElettronvolt.ToString(4, 2, [pKilo]              ) <> '511 keV'      then halt(2);
   writeln('* TEST-63: PASSED');
 
   // TEST-64 - MOMENTUM OF PHOTON
-  plank  := 6.62607015*1E-34*J*s;
   len    := 1*mim;
   freq   := 1*Hz;
-  energy := plank/(len/lightspeed);
-  p      := plank*freq/lightspeed;
-  p      := plank/len;
+  energy := PlanckConstant/(len/VacuumLightSpeed);
+  p      := PlanckConstant*freq/VacuumLightSpeed;
+  p      := PlanckConstant/len;
   speed  := len*freq;
   if energy.ToElettronvolt.ToString(4, 2, [                   ]) <> '1.24 eV'        then halt(1);
   if p                    .ToString(4, 2, [pPico, pPico, pNone]) <> '0.6626 pg·pm/s' then halt(2);
@@ -821,16 +791,14 @@ begin
   mass1    := 1.989E30*kg;
   mass2    := 5.972E24*kg;
   distance := 1*au;
-  GN       := 6.6743E-11*N*m2/kg2;
-  time     := SquareRoot( 4*Sqr(pi)*CubicPower(distance)/(GN*(mass1+mass2)));
+  time     := SquareRoot( 4*Sqr(pi)*CubicPower(distance)/(NewtonianConstantOfGravitation*(mass1+mass2)));
   if time.ToDay.toString(5, 0, []) <> '365.2 d' then halt(1);
   writeln('* TEST-65: PASSED');
 
   // TEST-66 - EARTH'S GRAVITY
   mass     := 5.972E24*kg;
-  GN       := 6.6743E-11*N*m2/kg2;
   distance := 6.373E6*m;
-  acc      := GN*mass/SquarePower(distance);
+  acc      := NewtonianConstantOfGravitation*mass/SquarePower(distance);
   if acc.ToString(3, 2, []) <> '9.81 m/s2' then halt(1);
   writeln('* TEST-66: PASSED');
 
@@ -852,10 +820,9 @@ begin
   // TEST-69 - PHYSICAL PENDULUM
   mass   := 1*kg;
   I      := 10*kg*m2;
-  acc    := 9.8*m/s2;
   radius := 20*cm;
-  time   := 2*pi*SquareRoot(1/((mass*acc*radius)/I));
-  time   := 2*pi*SquareRoot(I/(mass*acc*radius));
+  time   := 2*pi*SquareRoot(1/((mass*StandardAccelerationOfGravity*radius)/I));
+  time   := 2*pi*SquareRoot(I/(mass*StandardAccelerationOfGravity*radius));
   if time.ToString(4, 2, []) <> '14.19 s' then halt(1);
   writeln('* TEST-69: PASSED');
 
@@ -926,43 +893,60 @@ begin
   writeln('* TEST-98: PASSED');
 
   // TEST-99 - COMPTON WAVE LEGNTH
-  plank      := 6.62607015*1E-34*J*s;
-  mass       := 9.11*1E-31*kg;
-  lightspeed := 299792458*m/s;
-  wavelen    := plank/(mass*speed);
+  wavelenc := PlanckConstant/(ElectronMass*VacuumLightSpeed);
+  if wavelenc.IsSame(ComptonWaveLength) <> TRUE then halt(1);
   writeln('* TEST-99: PASSED');
 
   // TEST-100 - BOHR MODEL
-  ke         := 8.987551792314E9*N*m2/C2;
-  charge     := 1.602176634E-19*C;
-  mass       := 9.1093837001528*1E-31*kg;
-  plank      := 6.62607015*1E-34*J*s;
-  num        := 1;
-  Lp         := num*plank/(2*pi);
-  speed      := SquareRoot(ke*(charge*charge)/radius/mass);
-  speed      := (ke*squarepower(charge))/(num*plank/2/pi);
+  num    := 1;
+  // electron's speed
+  speed  := CoulombConstant*SquarePower(ElementaryCharge)/num/ReducedPlanckConstant;
+  // orbit radius
+  radius := num*ReducedPlanckConstant/ElectronMass/speed;
+  // angular momentum
+  Lp     := num*ReducedPlanckConstant;
+  Lp     := ElectronMass*speed*radius;
+  // electron's speed
+  speed  := SquareRoot(CoulombConstant*SquarePower(ElementaryCharge)/ElectronMass/radius);
+  speed  := SquareRoot(SquarePower(ElementaryCharge)/4/pi/VacuumElectricPermittivity/ElectronMass/radius);
+  // orbit radius
+  radius := Sqr(num)*SquarePower(ReducedPlanckConstant)/ElectronMass/(ElementaryCharge*ElementaryCharge*CoulombConstant);
   // fine structure constant
-  alpha      := (ke*squarepower(charge))/((plank/2/pi)*lightspeed);
-  // calc Bohr radius
-  radius     := num*plank/(2*pi*mass*speed);
-  radius     := (charge*charge)/(mass*SquarePower(speed)/ke);
-  radius     := num*(plank/2/pi)/(mass*lightspeed)/alpha;
-  radius     := num*num*SquarePower(plank/2/pi)/mass/(charge*charge*ke);
-  U          := 0.5*mass*squarepower(speed) - (ke*squarepower(charge))/radius;
+  alpha  := CoulombConstant*SquarePower(ElementaryCharge)/ReducedPlanckConstant/VacuumLightSpeed;
+  // orbit radius
+  radius := num*(ReducedPlanckConstant)/ElectronMass/VacuumLightSpeed/alpha;
+  // orbit radius
+  radius := SquarePower(ElementaryCharge)/(ElectronMass*SquarePower(speed)/CoulombConstant);
+  // orbit radius
+  radius := (SquarePower(ReducedPlanckConstant)/ElectronMass)/(CoulombConstant*SquarePower(ElementaryCharge));
+  // energy
+  energy := 0.5*ElectronMass*SquarePower(speed) - (CoulombConstant*SquarePower(ElementaryCharge))/radius;
+
+  if radius               .IsSame(BohrRadius) <> TRUE          then halt(1);
+  if radius               .ToString(4, 4, []) <> '5.292E-11 m' then halt(2);
+  if speed                .ToString(4, 4, []) <> '2.188E6 m/s' then halt(3);
+  if energy.ToElettronvolt.ToString(3, 3, []) <> '-13.6 eV'    then halt(4);
+  if energy.ToRydberg     .ToString(3, 3, []) <> '-1 Ry'       then halt(5);
   writeln('* TEST-100: PASSED');
 
+
+
+
   // TEST-101 - QUANTUM MECHANICS
-  kk           := (2*pi)/(2.426310238916E-12*m);
-  freq         := 1.234E20*Hz;
-  plankreduced := plank/(2*pi);
-  Energy       := plank*freq;
-  Energy       := plankreduced*omega;
-  p            := plankreduced*kk;
-  p            := plankreduced/(1/kk);
-  p            := Energy/lightspeed;
-  freq         := lightspeed/wavelen;
-  squareplank  := SquarePower(plankreduced);
-  squareplank  := plankreduced*plankreduced;
+  kk          := 2*pi/ComptonWaveLength;
+  freq        := 1.234E20*Hz;
+  Energy      := PlanckConstant*freq;
+  Energy      := ReducedPlanckConstant*omega;
+  Energy      := SquarePower(ReducedPlanckConstant)/(2*ElectronMass)*Sqr(pi)/SquarePower(ComptonWaveLength);
+  kk          := SquareRoot(2*ElectronMass*Energy)/ReducedPlanckConstant;
+
+
+  p           := ReducedPlanckConstant*kk;
+  p           := ReducedPlanckConstant/(1/kk);
+  p           := Energy/VacuumLightSpeed;
+  freq        := VacuumLightSpeed/wavelen;
+  squareplank := SquarePower(ReducedPlanckConstant);
+  squareplank := ReducedPlanckConstant*ReducedPlanckConstant;
   writeln('* TEST-101: PASSED');
 
   {$ifdef VECTORIAL}
@@ -992,6 +976,8 @@ begin
 
   angularspeedvec := anglevec/(2.5*s);
   angularaccvec   := angularspeedvec/(4*s);
+
+  angularmomentum := momentum.wedge(radius);
 
   mass      := 10*kg;
   accvec    := (2*e1 + 2*e2)*m/s2;
