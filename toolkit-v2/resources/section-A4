@@ -25,6 +25,7 @@ function GetName(const AName: string; const Prefixes: TPrefixes): string;
 { Constants }
 
 const
+  BohrRadius                     : TMeters                              = (FValue: 5.29177210903E-11);
   ElectronMass                   : TKilograms                           = (FValue: 9.1093837015E-31); 
   ElementaryCharge               : TCoulombs                            = (FValue: 1.602176634E-19);
   ComptonWaveLength              : TMeters                              = (FValue: 2.42631023867E-12);
