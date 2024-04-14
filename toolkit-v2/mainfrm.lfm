@@ -18,8 +18,8 @@ object MainForm: TMainForm
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
     Left = 0
-    Height = 758
-    Top = 46
+    Height = 754
+    Top = 50
     Width = 1306
     ActivePage = TabSheet1
     Anchors = [akTop, akLeft, akRight, akBottom]
@@ -29,11 +29,11 @@ object MainForm: TMainForm
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = 'Unit of measurement'
-      ClientHeight = 727
+      ClientHeight = 721
       ClientWidth = 1296
       object WorksheetGrid: TsWorksheetGrid
         Left = 4
-        Height = 719
+        Height = 713
         Top = 4
         Width = 1288
         FrozenCols = 0
@@ -58,7 +58,7 @@ object MainForm: TMainForm
     end
     object TabSheet2: TTabSheet
       Caption = 'Unit Source Code'
-      ClientHeight = 727
+      ClientHeight = 721
       ClientWidth = 1296
       inline SynEdit: TSynEdit
         AnchorSideLeft.Control = TabSheet2
@@ -68,7 +68,7 @@ object MainForm: TMainForm
         AnchorSideBottom.Control = TabSheet2
         AnchorSideBottom.Side = asrBottom
         Left = 4
-        Height = 719
+        Height = 713
         Top = 4
         Width = 1288
         BorderSpacing.Left = 4
@@ -538,11 +538,11 @@ object MainForm: TMainForm
     end
     object TabSheet3: TTabSheet
       Caption = 'Messages'
-      ClientHeight = 727
+      ClientHeight = 721
       ClientWidth = 1296
       object Memo: TMemo
         Left = 4
-        Height = 719
+        Height = 713
         Top = 4
         Width = 1288
         Anchors = [akTop, akLeft, akRight, akBottom]
@@ -567,9 +567,9 @@ object MainForm: TMainForm
     AnchorSideBottom.Control = RunBtn
     AnchorSideBottom.Side = asrBottom
     Left = 8
-    Height = 32
+    Height = 36
     Top = 8
-    Width = 100
+    Width = 120
     Anchors = [akTop, akLeft, akBottom]
     BorderSpacing.Left = 8
     Caption = 'Load'
@@ -653,16 +653,15 @@ object MainForm: TMainForm
     OnClick = LoadBtnClick
   end
   object RunBtn: TBitBtn
-    AnchorSideTop.Control = Owner
+    AnchorSideTop.Control = OptimizationTime
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Side = asrBottom
-    Left = 1202
-    Height = 32
+    Left = 1182
+    Height = 36
     Top = 8
-    Width = 100
+    Width = 120
     Anchors = [akTop, akRight]
-    BorderSpacing.Top = 8
     BorderSpacing.Right = 4
     Caption = 'Run'
     Glyph.Data = {
@@ -749,10 +748,10 @@ object MainForm: TMainForm
     AnchorSideRight.Control = RunBtn
     AnchorSideBottom.Control = RunBtn
     AnchorSideBottom.Side = asrBottom
-    Left = 1098
-    Height = 32
+    Left = 1058
+    Height = 36
     Top = 8
-    Width = 100
+    Width = 120
     Anchors = [akTop, akRight, akBottom]
     BorderSpacing.Right = 4
     Caption = 'Export ...'
@@ -765,10 +764,10 @@ object MainForm: TMainForm
     AnchorSideRight.Control = OptimizationTime
     AnchorSideBottom.Control = OptimizationTime
     AnchorSideBottom.Side = asrBottom
-    Left = 816
-    Height = 22
-    Top = 13
-    Width = 192
+    Left = 759
+    Height = 36
+    Top = 8
+    Width = 209
     Anchors = [akTop, akRight, akBottom]
     BorderSpacing.Left = 20
     BorderSpacing.Right = 10
@@ -776,19 +775,17 @@ object MainForm: TMainForm
     TabOrder = 4
   end
   object OptimizationTime: TSpinEdit
-    AnchorSideTop.Control = ExportBtn
+    AnchorSideTop.Control = Owner
     AnchorSideRight.Control = ExportBtn
-    AnchorSideBottom.Control = ExportBtn
     AnchorSideBottom.Side = asrBottom
-    Left = 1018
-    Height = 22
-    Top = 13
+    Left = 978
+    Height = 36
+    Top = 8
     Width = 70
     Alignment = taRightJustify
-    Anchors = [akTop, akRight, akBottom]
-    BorderSpacing.Top = 5
+    Anchors = [akTop, akRight]
+    BorderSpacing.Top = 8
     BorderSpacing.Right = 10
-    BorderSpacing.Bottom = 5
     MinValue = 1
     TabOrder = 5
     Value = 120
@@ -798,10 +795,10 @@ object MainForm: TMainForm
     AnchorSideRight.Control = OptimizeBox
     AnchorSideBottom.Control = OptimizeBox
     AnchorSideBottom.Side = asrBottom
-    Left = 659
-    Height = 22
-    Top = 13
-    Width = 137
+    Left = 591
+    Height = 36
+    Top = 8
+    Width = 148
     Anchors = [akTop, akRight, akBottom]
     BorderSpacing.Right = 10
     Caption = 'Skip vectorial units'

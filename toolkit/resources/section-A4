@@ -12,8 +12,33 @@ function ArcSin(const AValue: double): TRadians;
 function ArcTan(const AValue: double): TRadians;
 function ArcTan2(const x, y: double): TRadians;
 
+{ Override trigonometric functions }
+
+function Cos(const AQuantity: double): double;
+function Sin(const AQuantity: double): double;
+function Tan(const AQuantity: double): double;
+function Cotan(const AQuantity: double): double;
+function Secant(const AQuantity: double): double;
+function Cosecant(const AQuantity: double): double;
+
 { Math functions }
 
 generic function Min<T>(const AValue1, AValue2: T): T;
 generic function Max<T>(const AValue1, AValue2: T): T;
+
+{ Constants }
+
+const
+  BohrRadius                     : TMeters                              = (FValue: 5.29177210903E-11);
+  ElectronMass                   : TKilograms                           = (FValue: 9.1093837015E-31); 
+  ElementaryCharge               : TCoulombs                            = (FValue: 1.602176634E-19);
+  ComptonWaveLength              : TMeters                              = (FValue: 2.42631023867E-12);
+  CoulombConstant                : TNewtonSquareMetersPerSquareCoulomb  = (FValue: 8.9875517923E9);
+  NewtonianConstantOfGravitation : TNewtonSquareMetersPerSquareKilogram = (FValue: 6.67430E-11);
+  PlanckConstant                 : TJouleSeconds                        = (FValue: 6.62607015E-34);
+  StandardAccelerationOfGravity  : TMetersPerSquareSecond               = (FValue: 9.80665);
+  ReducedPlanckConstant          : TJouleSeconds                        = (FValue: 6.62607015E-34/2/pi);  
+  VacuumElectricPermittivity     : TFaradsPerMeter                      = (FValue: 8.8541878128E-12);
+  VacuumLightSpeed               : TMetersPerSecond                     = (FValue: 299792458);  
+  VacuumMagneticPermeability     : THenriesPerMeter                     = (FValue: 1.25663706212E-6);
 
