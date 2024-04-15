@@ -283,6 +283,7 @@ procedure TToolkitList.AddClonedItem(const AItem: TToolkitItem);
 begin
   // CLONED UNIT
   SectionA2.Append('');
+  SectionA2.Append(Format(INTF_NOP, []));
   SectionA2.Append(Format(INTF_QUANTITY, [GetQuantityType(AItem.FClassName), adiminc]));
   SectionA2.Append(Format(INTF_END, [adiminc]));
 
@@ -296,6 +297,7 @@ begin
   SectionB2.Append(Format(IMPL_CPLURALNAME,   [GetPluralNameResourceString  (AItem.FClassName)]));
   SectionB2.Append(Format(IMPL_CPREFIXES,     [GetPrefixesConst             (AItem.FClassName)]));
   SectionB2.Append(Format(IMPL_CEXPONENTS,    [GetExponentsConst            (AItem.FClassName)]));
+  SectionB2.Append(Format(IMPL_NOP, []));
   SectionB2.Append(Format(IMPL_QUANTITY,      [GetQuantityType              (AItem.FClassName), adiminc]));
 
   SectionB3.Append('');
@@ -311,6 +313,7 @@ procedure TToolkitList.AddFactoredItem(const AItem: TToolkitItem);
 begin
   // FACTORED UNIT
   SectionA2.Append('');
+  SectionA2.Append(Format(INTF_NOP, []));
   SectionA2.Append(Format(INTF_QUANTITY, [GetQuantityType(AItem.FClassName), adiminc]));
   SectionA2.Append(Format(INTF_END, [adiminc]));
 
@@ -325,6 +328,7 @@ begin
   SectionB2.Append(Format(IMPL_CPREFIXES,     [GetPrefixesConst             (AItem.FClassName)]));
   SectionB2.Append(Format(IMPL_CEXPONENTS,    [GetExponentsConst            (AItem.FClassName)]));
   SectionB2.Append(Format(IMPL_CFACTOR,       [GetFactorConst               (AItem.FClassName)]));
+  SectionB2.Append(Format(IMPL_NOP, []));
   SectionB2.Append(Format(IMPL_QUANTITY,      [GetQuantityType              (AItem.FClassName), adiminc]));
 
   SectionB3.Append('');

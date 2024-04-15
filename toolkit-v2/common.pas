@@ -27,10 +27,12 @@ uses
   Classes, SysUtils;
 
 const
+  INTF_NOP            = '{$DEFINE NOP}';
   INTF_QUANTITY       = '{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=%s}{$i %s}';
   INTF_UNIT           = '{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=%s}{$DEFINE TUnit:=%s}{$i %s}';
   INTF_END            = '{$DEFINE INTF_END}{$i %s}';
 
+  IMPL_NOP            = '{$DEFINE NOP}';
   IMPL_QUANTITY       = '{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=%s}{$i %s}';
   IMPL_UNIT           = '{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=%s}{$DEFINE TUnit:=%s}{$i %s}';
 

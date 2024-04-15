@@ -18,7 +18,7 @@
 }
 
 {
-  ADimPas library built on 14/04/2024.
+  ADimPas library built on 15/04/2024.
 
   Number of base units: 131
   Number of factored units: 66
@@ -308,69 +308,91 @@ type
   class operator *(const ALeft: TSecondQty; const ARight: TSecondQty): TSquareSecondQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TDayQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=THourQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TMinuteQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSquareDayQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSquareHourQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSquareMinuteQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TAstronomicalQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TInchQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TFootQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TYardQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TMileQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TNauticalMileQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TAngstromQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSquareInchQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSquareFootQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSquareYardQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSquareMileQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCubicInchQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCubicFootQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCubicYardQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TLitreQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TGallonQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
@@ -397,18 +419,23 @@ type
   class operator *(const ALeft: TKilogramQty; const ARight: TKilogramQty): TSquareKilogramQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TTonneQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TPoundQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TOunceQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TStoneQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TTonQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
@@ -446,9 +473,11 @@ type
   class operator *(const ALeft: TKelvinQty; const ARight: TKelvinQty): TSquareKelvinQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TDegreeCelsiusQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TDegreeFahrenheitQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
@@ -474,9 +503,11 @@ type
   class operator *(const ALeft: TRadianQty; const ARight: TRadianQty): TSteradianQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TDegreeQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSquareDegreeQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
@@ -530,12 +561,15 @@ type
   class operator *(const ALeft: TSecondQty; const ARight: TMeterPerSecondQty): TMeterQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TMeterPerHourQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TMilePerHourQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TNauticalMilePerHourQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
@@ -556,9 +590,11 @@ type
   class operator *(const ALeft: TSecondQty; const ARight: TMeterPerSquareSecondQty): TMeterPerSecondQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TMeterPerSecondPerSecondQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TMeterPerHourPerSecondQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
@@ -592,6 +628,7 @@ type
   class operator *(const ALeft: TSecondQty; const ARight: TKilogramMeterPerSecondQty): TKilogramMeterQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TNewtonSecondQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
@@ -646,6 +683,7 @@ type
   class operator *(const ALeft: TSecondQty; const ARight: TKilogramSquareMeterPerSecondQty): TKilogramSquareMeterQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TNewtonMeterSecondQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
@@ -687,9 +725,11 @@ type
   class operator *(const ALeft: TCubicMeterQty; const ARight: TKilogramPerCubicMeterQty): TKilogramQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TPoundPerCubicInchQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TPoundForceQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
@@ -710,30 +750,39 @@ type
   class operator *(const ALeft: TSquareMeterQty; const ARight: TPascalQty): TNewtonQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TBarQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TPoundPerSquareInchQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TJoulePerCubicMeterQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TWattHourQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TElettronvoltQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TNewtonMeterQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TPoundForceInchQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TRydbergQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCalorieQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
@@ -743,12 +792,15 @@ type
   class operator *(const ALeft: TRadianQty; const ARight: TJoulePerRadianQty): TJouleQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TJoulePerDegreeQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TNewtonMeterPerRadianQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TNewtonMeterPerDegreeQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
@@ -764,6 +816,7 @@ type
   class operator *(const ALeft: TSecondQty; const ARight: TWattQty): TJouleQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TAmpereHourQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
@@ -855,12 +908,15 @@ type
   class operator *(const ALeft: TSquareMeterQty; const ARight: TLuxQty): TLumenQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TBequerelQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TGrayQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSievertQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
@@ -891,6 +947,7 @@ type
   class operator *(const ALeft: TMeterQty; const ARight: TNewtonPerMeterQty): TNewtonQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TPoundForcePerInchQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
@@ -902,6 +959,7 @@ type
   class operator *(const ALeft: TSecondQty; const ARight: TCubicMeterPerSecondQty): TCubicMeterQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TPascalSecondQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
@@ -988,6 +1046,7 @@ type
   class operator *(const ALeft: TKelvinQty; const ARight: TReciprocalKelvinQty): double;
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TJoulePerKilogramQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
@@ -1098,6 +1157,7 @@ type
   class operator *(const ALeft: TMeterQty; const ARight: TVoltPerMeterQty): TVoltQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TNewtonPerCoulombQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
@@ -1148,6 +1208,7 @@ type
   class operator *(const ALeft: TSquareCoulombQty; const ARight: TNewtonPerSquareCoulombQty): TNewtonQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TNewtonSquareMeterPerCoulombQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
@@ -1185,6 +1246,7 @@ type
   class operator *(const ALeft: TAmpereQty; const ARight: TMeterPerAmpereQty): TMeterQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TNewtonPerAmpereQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
@@ -1213,9 +1275,11 @@ type
   class operator *(const ALeft: TMeterQty; const ARight: THenryPerMeterQty): THenryQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TTeslaMeterPerAmpereQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TNewtonPerSquareAmpereQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
@@ -1234,9 +1298,11 @@ type
   class operator *(const ALeft: TSquareMeterQty; const ARight: TSquareSecondPerSquareMeterQty): TSquareSecondQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TJouleSecondQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TElettronvoltSecondQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
@@ -6421,6 +6487,7 @@ end;
 {$DEFINE CPREFIXES:=cDayPrefixes}
 {$DEFINE CEXPONENTS:=cDayExponents}
 {$DEFINE CFACTOR:=cDayFactor}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TDayQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsHourSymbol}
@@ -6429,6 +6496,7 @@ end;
 {$DEFINE CPREFIXES:=cHourPrefixes}
 {$DEFINE CEXPONENTS:=cHourExponents}
 {$DEFINE CFACTOR:=cHourFactor}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=THourQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsMinuteSymbol}
@@ -6437,6 +6505,7 @@ end;
 {$DEFINE CPREFIXES:=cMinutePrefixes}
 {$DEFINE CEXPONENTS:=cMinuteExponents}
 {$DEFINE CFACTOR:=cMinuteFactor}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TMinuteQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsSquareSecondSymbol}
@@ -6497,6 +6566,7 @@ end;
 {$DEFINE CPREFIXES:=cSquareDayPrefixes}
 {$DEFINE CEXPONENTS:=cSquareDayExponents}
 {$DEFINE CFACTOR:=cSquareDayFactor}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareDayQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsSquareHourSymbol}
@@ -6505,6 +6575,7 @@ end;
 {$DEFINE CPREFIXES:=cSquareHourPrefixes}
 {$DEFINE CEXPONENTS:=cSquareHourExponents}
 {$DEFINE CFACTOR:=cSquareHourFactor}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareHourQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsSquareMinuteSymbol}
@@ -6513,6 +6584,7 @@ end;
 {$DEFINE CPREFIXES:=cSquareMinutePrefixes}
 {$DEFINE CEXPONENTS:=cSquareMinuteExponents}
 {$DEFINE CFACTOR:=cSquareMinuteFactor}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareMinuteQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsAstronomicalSymbol}
@@ -6521,6 +6593,7 @@ end;
 {$DEFINE CPREFIXES:=cAstronomicalPrefixes}
 {$DEFINE CEXPONENTS:=cAstronomicalExponents}
 {$DEFINE CFACTOR:=cAstronomicalFactor}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TAstronomicalQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsInchSymbol}
@@ -6529,6 +6602,7 @@ end;
 {$DEFINE CPREFIXES:=cInchPrefixes}
 {$DEFINE CEXPONENTS:=cInchExponents}
 {$DEFINE CFACTOR:=cInchFactor}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TInchQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsFootSymbol}
@@ -6537,6 +6611,7 @@ end;
 {$DEFINE CPREFIXES:=cFootPrefixes}
 {$DEFINE CEXPONENTS:=cFootExponents}
 {$DEFINE CFACTOR:=cFootFactor}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TFootQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsYardSymbol}
@@ -6545,6 +6620,7 @@ end;
 {$DEFINE CPREFIXES:=cYardPrefixes}
 {$DEFINE CEXPONENTS:=cYardExponents}
 {$DEFINE CFACTOR:=cYardFactor}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TYardQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsMileSymbol}
@@ -6553,6 +6629,7 @@ end;
 {$DEFINE CPREFIXES:=cMilePrefixes}
 {$DEFINE CEXPONENTS:=cMileExponents}
 {$DEFINE CFACTOR:=cMileFactor}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TMileQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsNauticalMileSymbol}
@@ -6561,6 +6638,7 @@ end;
 {$DEFINE CPREFIXES:=cNauticalMilePrefixes}
 {$DEFINE CEXPONENTS:=cNauticalMileExponents}
 {$DEFINE CFACTOR:=cNauticalMileFactor}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNauticalMileQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsAngstromSymbol}
@@ -6569,6 +6647,7 @@ end;
 {$DEFINE CPREFIXES:=cAngstromPrefixes}
 {$DEFINE CEXPONENTS:=cAngstromExponents}
 {$DEFINE CFACTOR:=cAngstromFactor}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TAngstromQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsSquareMeterSymbol}
@@ -6699,6 +6778,7 @@ end;
 {$DEFINE CPREFIXES:=cSquareInchPrefixes}
 {$DEFINE CEXPONENTS:=cSquareInchExponents}
 {$DEFINE CFACTOR:=cSquareInchFactor}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareInchQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsSquareFootSymbol}
@@ -6707,6 +6787,7 @@ end;
 {$DEFINE CPREFIXES:=cSquareFootPrefixes}
 {$DEFINE CEXPONENTS:=cSquareFootExponents}
 {$DEFINE CFACTOR:=cSquareFootFactor}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareFootQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsSquareYardSymbol}
@@ -6715,6 +6796,7 @@ end;
 {$DEFINE CPREFIXES:=cSquareYardPrefixes}
 {$DEFINE CEXPONENTS:=cSquareYardExponents}
 {$DEFINE CFACTOR:=cSquareYardFactor}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareYardQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsSquareMileSymbol}
@@ -6723,6 +6805,7 @@ end;
 {$DEFINE CPREFIXES:=cSquareMilePrefixes}
 {$DEFINE CEXPONENTS:=cSquareMileExponents}
 {$DEFINE CFACTOR:=cSquareMileFactor}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareMileQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsCubicMeterSymbol}
@@ -6773,6 +6856,7 @@ end;
 {$DEFINE CPREFIXES:=cCubicInchPrefixes}
 {$DEFINE CEXPONENTS:=cCubicInchExponents}
 {$DEFINE CFACTOR:=cCubicInchFactor}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCubicInchQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsCubicFootSymbol}
@@ -6781,6 +6865,7 @@ end;
 {$DEFINE CPREFIXES:=cCubicFootPrefixes}
 {$DEFINE CEXPONENTS:=cCubicFootExponents}
 {$DEFINE CFACTOR:=cCubicFootFactor}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCubicFootQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsCubicYardSymbol}
@@ -6789,6 +6874,7 @@ end;
 {$DEFINE CPREFIXES:=cCubicYardPrefixes}
 {$DEFINE CEXPONENTS:=cCubicYardExponents}
 {$DEFINE CFACTOR:=cCubicYardFactor}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCubicYardQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsLitreSymbol}
@@ -6797,6 +6883,7 @@ end;
 {$DEFINE CPREFIXES:=cLitrePrefixes}
 {$DEFINE CEXPONENTS:=cLitreExponents}
 {$DEFINE CFACTOR:=cLitreFactor}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TLitreQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsGallonSymbol}
@@ -6805,6 +6892,7 @@ end;
 {$DEFINE CPREFIXES:=cGallonPrefixes}
 {$DEFINE CEXPONENTS:=cGallonExponents}
 {$DEFINE CFACTOR:=cGallonFactor}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TGallonQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsQuarticMeterSymbol}
@@ -6941,6 +7029,7 @@ end;
 {$DEFINE CPREFIXES:=cTonnePrefixes}
 {$DEFINE CEXPONENTS:=cTonneExponents}
 {$DEFINE CFACTOR:=cTonneFactor}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TTonneQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsPoundSymbol}
@@ -6949,6 +7038,7 @@ end;
 {$DEFINE CPREFIXES:=cPoundPrefixes}
 {$DEFINE CEXPONENTS:=cPoundExponents}
 {$DEFINE CFACTOR:=cPoundFactor}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TPoundQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsOunceSymbol}
@@ -6957,6 +7047,7 @@ end;
 {$DEFINE CPREFIXES:=cOuncePrefixes}
 {$DEFINE CEXPONENTS:=cOunceExponents}
 {$DEFINE CFACTOR:=cOunceFactor}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TOunceQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsStoneSymbol}
@@ -6965,6 +7056,7 @@ end;
 {$DEFINE CPREFIXES:=cStonePrefixes}
 {$DEFINE CEXPONENTS:=cStoneExponents}
 {$DEFINE CFACTOR:=cStoneFactor}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TStoneQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsTonSymbol}
@@ -6973,6 +7065,7 @@ end;
 {$DEFINE CPREFIXES:=cTonPrefixes}
 {$DEFINE CEXPONENTS:=cTonExponents}
 {$DEFINE CFACTOR:=cTonFactor}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TTonQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsSquareKilogramSymbol}
@@ -7164,6 +7257,7 @@ end;
 {$DEFINE CPREFIXES:=cDegreeCelsiusPrefixes}
 {$DEFINE CEXPONENTS:=cDegreeCelsiusExponents}
 {$DEFINE CFACTOR:=cDegreeCelsiusFactor}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TDegreeCelsiusQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsDegreeFahrenheitSymbol}
@@ -7172,6 +7266,7 @@ end;
 {$DEFINE CPREFIXES:=cDegreeFahrenheitPrefixes}
 {$DEFINE CEXPONENTS:=cDegreeFahrenheitExponents}
 {$DEFINE CFACTOR:=cDegreeFahrenheitFactor}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TDegreeFahrenheitQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsQuarticKelvinSymbol}
@@ -7273,6 +7368,7 @@ end;
 {$DEFINE CPREFIXES:=cDegreePrefixes}
 {$DEFINE CEXPONENTS:=cDegreeExponents}
 {$DEFINE CFACTOR:=cDegreeFactor}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TDegreeQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsSteradianSymbol}
@@ -7288,6 +7384,7 @@ end;
 {$DEFINE CPREFIXES:=cSquareDegreePrefixes}
 {$DEFINE CEXPONENTS:=cSquareDegreeExponents}
 {$DEFINE CFACTOR:=cSquareDegreeFactor}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareDegreeQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsSquareHertzSymbol}
@@ -7496,6 +7593,7 @@ end;
 {$DEFINE CPREFIXES:=cMeterPerHourPrefixes}
 {$DEFINE CEXPONENTS:=cMeterPerHourExponents}
 {$DEFINE CFACTOR:=cMeterPerHourFactor}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TMeterPerHourQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsMilePerHourSymbol}
@@ -7504,6 +7602,7 @@ end;
 {$DEFINE CPREFIXES:=cMilePerHourPrefixes}
 {$DEFINE CEXPONENTS:=cMilePerHourExponents}
 {$DEFINE CFACTOR:=cMilePerHourFactor}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TMilePerHourQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsNauticalMilePerHourSymbol}
@@ -7512,6 +7611,7 @@ end;
 {$DEFINE CPREFIXES:=cNauticalMilePerHourPrefixes}
 {$DEFINE CEXPONENTS:=cNauticalMilePerHourExponents}
 {$DEFINE CFACTOR:=cNauticalMilePerHourFactor}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNauticalMilePerHourQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsMeterPerSquareSecondSymbol}
@@ -7596,6 +7696,7 @@ end;
 {$DEFINE CPLURALNAME:=rsMeterPerSecondPerSecondPluralName}
 {$DEFINE CPREFIXES:=cMeterPerSecondPerSecondPrefixes}
 {$DEFINE CEXPONENTS:=cMeterPerSecondPerSecondExponents}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TMeterPerSecondPerSecondQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsMeterPerHourPerSecondSymbol}
@@ -7604,6 +7705,7 @@ end;
 {$DEFINE CPREFIXES:=cMeterPerHourPerSecondPrefixes}
 {$DEFINE CEXPONENTS:=cMeterPerHourPerSecondExponents}
 {$DEFINE CFACTOR:=cMeterPerHourPerSecondFactor}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TMeterPerHourPerSecondQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsKilogramMeterSymbol}
@@ -7759,6 +7861,7 @@ end;
 {$DEFINE CPLURALNAME:=rsNewtonSecondPluralName}
 {$DEFINE CPREFIXES:=cNewtonSecondPrefixes}
 {$DEFINE CEXPONENTS:=cNewtonSecondExponents}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNewtonSecondQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsReciprocalSquareRootMeterSymbol}
@@ -8003,6 +8106,7 @@ end;
 {$DEFINE CPLURALNAME:=rsNewtonMeterSecondPluralName}
 {$DEFINE CPREFIXES:=cNewtonMeterSecondPrefixes}
 {$DEFINE CEXPONENTS:=cNewtonMeterSecondExponents}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNewtonMeterSecondQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsSecondPerMeterSymbol}
@@ -8169,6 +8273,7 @@ end;
 {$DEFINE CPREFIXES:=cPoundPerCubicInchPrefixes}
 {$DEFINE CEXPONENTS:=cPoundPerCubicInchExponents}
 {$DEFINE CFACTOR:=cPoundPerCubicInchFactor}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TPoundPerCubicInchQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsNewtonSymbol}
@@ -8194,6 +8299,7 @@ end;
 {$DEFINE CPREFIXES:=cPoundForcePrefixes}
 {$DEFINE CEXPONENTS:=cPoundForceExponents}
 {$DEFINE CFACTOR:=cPoundForceFactor}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TPoundForceQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsSquareNewtonSymbol}
@@ -8286,6 +8392,7 @@ end;
 {$DEFINE CPREFIXES:=cBarPrefixes}
 {$DEFINE CEXPONENTS:=cBarExponents}
 {$DEFINE CFACTOR:=cBarFactor}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TBarQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsPoundPerSquareInchSymbol}
@@ -8294,6 +8401,7 @@ end;
 {$DEFINE CPREFIXES:=cPoundPerSquareInchPrefixes}
 {$DEFINE CEXPONENTS:=cPoundPerSquareInchExponents}
 {$DEFINE CFACTOR:=cPoundPerSquareInchFactor}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TPoundPerSquareInchQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsJoulePerCubicMeterSymbol}
@@ -8301,6 +8409,7 @@ end;
 {$DEFINE CPLURALNAME:=rsJoulePerCubicMeterPluralName}
 {$DEFINE CPREFIXES:=cJoulePerCubicMeterPrefixes}
 {$DEFINE CEXPONENTS:=cJoulePerCubicMeterExponents}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TJoulePerCubicMeterQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsJouleSymbol}
@@ -8326,6 +8435,7 @@ end;
 {$DEFINE CPREFIXES:=cWattHourPrefixes}
 {$DEFINE CEXPONENTS:=cWattHourExponents}
 {$DEFINE CFACTOR:=cWattHourFactor}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TWattHourQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsElettronvoltSymbol}
@@ -8334,6 +8444,7 @@ end;
 {$DEFINE CPREFIXES:=cElettronvoltPrefixes}
 {$DEFINE CEXPONENTS:=cElettronvoltExponents}
 {$DEFINE CFACTOR:=cElettronvoltFactor}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TElettronvoltQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsNewtonMeterSymbol}
@@ -8341,6 +8452,7 @@ end;
 {$DEFINE CPLURALNAME:=rsNewtonMeterPluralName}
 {$DEFINE CPREFIXES:=cNewtonMeterPrefixes}
 {$DEFINE CEXPONENTS:=cNewtonMeterExponents}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNewtonMeterQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsPoundForceInchSymbol}
@@ -8349,6 +8461,7 @@ end;
 {$DEFINE CPREFIXES:=cPoundForceInchPrefixes}
 {$DEFINE CEXPONENTS:=cPoundForceInchExponents}
 {$DEFINE CFACTOR:=cPoundForceInchFactor}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TPoundForceInchQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsRydbergSymbol}
@@ -8357,6 +8470,7 @@ end;
 {$DEFINE CPREFIXES:=cRydbergPrefixes}
 {$DEFINE CEXPONENTS:=cRydbergExponents}
 {$DEFINE CFACTOR:=cRydbergFactor}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TRydbergQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsCalorieSymbol}
@@ -8365,6 +8479,7 @@ end;
 {$DEFINE CPREFIXES:=cCaloriePrefixes}
 {$DEFINE CEXPONENTS:=cCalorieExponents}
 {$DEFINE CFACTOR:=cCalorieFactor}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCalorieQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsJoulePerRadianSymbol}
@@ -8395,6 +8510,7 @@ end;
 {$DEFINE CPREFIXES:=cJoulePerDegreePrefixes}
 {$DEFINE CEXPONENTS:=cJoulePerDegreeExponents}
 {$DEFINE CFACTOR:=cJoulePerDegreeFactor}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TJoulePerDegreeQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsNewtonMeterPerRadianSymbol}
@@ -8402,6 +8518,7 @@ end;
 {$DEFINE CPLURALNAME:=rsNewtonMeterPerRadianPluralName}
 {$DEFINE CPREFIXES:=cNewtonMeterPerRadianPrefixes}
 {$DEFINE CEXPONENTS:=cNewtonMeterPerRadianExponents}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNewtonMeterPerRadianQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsNewtonMeterPerDegreeSymbol}
@@ -8410,6 +8527,7 @@ end;
 {$DEFINE CPREFIXES:=cNewtonMeterPerDegreePrefixes}
 {$DEFINE CEXPONENTS:=cNewtonMeterPerDegreeExponents}
 {$DEFINE CFACTOR:=cNewtonMeterPerDegreeFactor}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNewtonMeterPerDegreeQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsWattSymbol}
@@ -8487,6 +8605,7 @@ end;
 {$DEFINE CPREFIXES:=cAmpereHourPrefixes}
 {$DEFINE CEXPONENTS:=cAmpereHourExponents}
 {$DEFINE CFACTOR:=cAmpereHourFactor}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TAmpereHourQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsSquareCoulombSymbol}
@@ -8921,6 +9040,7 @@ end;
 {$DEFINE CPLURALNAME:=rsBequerelPluralName}
 {$DEFINE CPREFIXES:=cBequerelPrefixes}
 {$DEFINE CEXPONENTS:=cBequerelExponents}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TBequerelQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsGraySymbol}
@@ -8928,6 +9048,7 @@ end;
 {$DEFINE CPLURALNAME:=rsGrayPluralName}
 {$DEFINE CPREFIXES:=cGrayPrefixes}
 {$DEFINE CEXPONENTS:=cGrayExponents}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TGrayQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsSievertSymbol}
@@ -8935,6 +9056,7 @@ end;
 {$DEFINE CPLURALNAME:=rsSievertPluralName}
 {$DEFINE CPREFIXES:=cSievertPrefixes}
 {$DEFINE CEXPONENTS:=cSievertExponents}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSievertQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsNewtonPerCubicMeterSymbol}
@@ -9062,6 +9184,7 @@ end;
 {$DEFINE CPREFIXES:=cPoundForcePerInchPrefixes}
 {$DEFINE CEXPONENTS:=cPoundForcePerInchExponents}
 {$DEFINE CFACTOR:=cPoundForcePerInchFactor}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TPoundForcePerInchQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsCubicMeterPerSecondSymbol}
@@ -9108,6 +9231,7 @@ end;
 {$DEFINE CPLURALNAME:=rsPascalSecondPluralName}
 {$DEFINE CPREFIXES:=cPascalSecondPrefixes}
 {$DEFINE CEXPONENTS:=cPascalSecondExponents}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TPascalSecondQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsSquareMeterPerSecondSymbol}
@@ -9508,6 +9632,7 @@ end;
 {$DEFINE CPLURALNAME:=rsJoulePerKilogramPluralName}
 {$DEFINE CPREFIXES:=cJoulePerKilogramPrefixes}
 {$DEFINE CEXPONENTS:=cJoulePerKilogramExponents}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TJoulePerKilogramQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsJoulePerKilogramPerKelvinSymbol}
@@ -9990,6 +10115,7 @@ end;
 {$DEFINE CPLURALNAME:=rsNewtonPerCoulombPluralName}
 {$DEFINE CPREFIXES:=cNewtonPerCoulombPrefixes}
 {$DEFINE CEXPONENTS:=cNewtonPerCoulombExponents}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNewtonPerCoulombQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsCoulombPerMeterSymbol}
@@ -10206,6 +10332,7 @@ end;
 {$DEFINE CPLURALNAME:=rsNewtonSquareMeterPerCoulombPluralName}
 {$DEFINE CPREFIXES:=cNewtonSquareMeterPerCoulombPrefixes}
 {$DEFINE CEXPONENTS:=cNewtonSquareMeterPerCoulombExponents}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNewtonSquareMeterPerCoulombQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsVoltMeterPerSecondSymbol}
@@ -10358,6 +10485,7 @@ end;
 {$DEFINE CPLURALNAME:=rsNewtonPerAmperePluralName}
 {$DEFINE CPREFIXES:=cNewtonPerAmperePrefixes}
 {$DEFINE CEXPONENTS:=cNewtonPerAmpereExponents}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNewtonPerAmpereQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsTeslaPerAmpereSymbol}
@@ -10474,6 +10602,7 @@ end;
 {$DEFINE CPLURALNAME:=rsTeslaMeterPerAmperePluralName}
 {$DEFINE CPREFIXES:=cTeslaMeterPerAmperePrefixes}
 {$DEFINE CEXPONENTS:=cTeslaMeterPerAmpereExponents}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TTeslaMeterPerAmpereQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsNewtonPerSquareAmpereSymbol}
@@ -10481,6 +10610,7 @@ end;
 {$DEFINE CPLURALNAME:=rsNewtonPerSquareAmperePluralName}
 {$DEFINE CPREFIXES:=cNewtonPerSquareAmperePrefixes}
 {$DEFINE CEXPONENTS:=cNewtonPerSquareAmpereExponents}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNewtonPerSquareAmpereQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsRadianPerMeterSymbol}
@@ -10554,6 +10684,7 @@ end;
 {$DEFINE CPLURALNAME:=rsJouleSecondPluralName}
 {$DEFINE CPREFIXES:=cJouleSecondPrefixes}
 {$DEFINE CEXPONENTS:=cJouleSecondExponents}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TJouleSecondQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsElettronvoltSecondSymbol}
@@ -10562,6 +10693,7 @@ end;
 {$DEFINE CPREFIXES:=cElettronvoltSecondPrefixes}
 {$DEFINE CEXPONENTS:=cElettronvoltSecondExponents}
 {$DEFINE CFACTOR:=cElettronvoltSecondFactor}
+{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TElettronvoltSecondQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsSquareJouleSquareSecondSymbol}

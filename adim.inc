@@ -16,6 +16,7 @@ type
     function ToVerboseString(const ATolerance: TQuantity; APrecision, ADigits: longint; const APrefixes: TPrefixes): string;
     function IsSame(const AValue: TQuantity): boolean;
     function IsZero: boolean;
+    {$IFNDEF NOP}
     class operator +  (const AValue: TQuantity): TQuantity;
     class operator -  (const AValue: TQuantity): TQuantity;
     class operator +  (const ALeft, ARight: TQuantity): TQuantity;
@@ -30,6 +31,7 @@ type
     class operator >  (const ALeft, ARight: TQuantity): boolean;
     class operator <= (const ALeft, ARight: TQuantity): boolean;
     class operator >= (const ALeft, ARight: TQuantity): boolean;
+    {$ENDIF}{$UNDEF NOP}
 {$ENDIF}
 
 {$IFDEF INTF_END}
@@ -167,6 +169,7 @@ begin
   result := System.Abs(FValue) <= 1E-12;
 end;  
 
+{$IFNDEF NOP}
 class operator TQuantity.+(const AValue: TQuantity): TQuantity;
 begin
   result.FValue := AValue.FValue;
@@ -236,6 +239,7 @@ class operator TQuantity.>=(const ALeft, ARight: TQuantity): boolean;
 begin
   result := ALeft.FValue >= ARight.FValue;
 end;
+{$ENDIF}{$UNDEF NOP}
 {$ENDIF}
 
 {$IFDEF INTF_UNIT}
