@@ -134,7 +134,6 @@ var
   loops: longint;
 
   i1, i2: TAmperes;
-
   magneticflux: TWebers;
 
   DeltaE: TVoltsPerMeter;
@@ -162,7 +161,12 @@ var
   EnergyLevels: array[1..4] of TJoules;
   SquarePsi:    array[1..4] of TReciprocalMeters;
 
+  Iteration: longint;
+  Iterations: longint;
+  Probability: double;
+
   {$ifdef VECTORIAL}
+  radiusvec: TCLMeters;
   displacement: TCLMeters;
   speedvec: TCLMetersPerSecond;
   accvec: TCLMetersPerSquareSecond;
@@ -172,6 +176,7 @@ var
   anglevec: TCLRadians;
   angularspeedvec: TCLRadiansPerSecond;
   angularaccvec: TCLRadiansPerSquareSecond;
+  angularmomentum: TCLKilogramSquareMetersPerSecond;
 
   forcevec: TCLNewtons;
   areavec: TCLSquareMeters;
@@ -967,10 +972,22 @@ begin
   if ('|Ψ²| = ' + SquarePsi[2].ToString) <> '|Ψ²| = 40 1/m' then halt(6);
   if ('|Ψ²| = ' + SquarePsi[3].ToString) <> '|Ψ²| = 40 1/m' then halt(7);
   if ('|Ψ²| = ' + SquarePsi[4].ToString) <> '|Ψ²| = 40 1/m' then halt(8);
-  writeln('* TEST-102: PASSED');
+
+  // TEST-103 : Calculate Ψ² integral
+  Iterations  := 100;
+  for Num := 1 to 4 do
+  begin
+    Probability := 0;
+    for Iteration := 1 to Iterations do
+    begin
+      Probability := Probability + (2/BoxLen)*Sqr(Sin(Num*pi/BoxLen*(BoxLen*Iteration/Iterations)))*(BoxLen/Iterations);
+    end;
+    if Format('∫|Ψ²|dx = %0.3f', [Probability]) <> '∫|Ψ²|dx = 1.000' then halt(num);
+  end;
+  writeln('* TEST-103: PASSED');
 
   {$ifdef VECTORIAL}
-  // TEST-103
+  // TEST-104
 
   side1vec := 5*e1*m;                                                           writeln(side1vec.ToVerboseString);
   side2vec := 10*e2*m;                                                          writeln(side2vec.ToVerboseString);
@@ -985,7 +1002,7 @@ begin
   speedvec     := displacement/(10*s);
 
 
-  displacement := (6.0*e1)       *m;
+  displacement := (6.0*e1)*m;
   speedvec     := (2.0*e1 + 5*e2)*m/s;
 
   accvec   := speedvec/(5*s);
@@ -997,7 +1014,8 @@ begin
   angularspeedvec := anglevec/(2.5*s);
   angularaccvec   := angularspeedvec/(4*s);
 
-  angularmomentum := momentum.wedge(radius);
+  radiusvec       := 1*e2*m;
+  angularmomentum := momentum.wedge(radiusvec);                                 writeln(angularmomentum.ToVerboseString);
 
   mass      := 10*kg;
   accvec    := (2*e1 + 2*e2)*m/s2;
@@ -1082,7 +1100,7 @@ begin
   writeln(powervec.Extract([mc0]).Norm.ToString);
   writeln('Y = ', (1/impedance).ToVerboseString);
 
-  writeln('* TEST-103: PASSED');
+  writeln('* TEST-104: PASSED');
   {$endif}
 
 
