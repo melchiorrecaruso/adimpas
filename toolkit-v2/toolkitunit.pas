@@ -292,12 +292,12 @@ begin
   SectionA3.Append(Format(INTF_END, [adiminc]));
 
   SectionB2.Append('');
+  SectionB2.Append(Format(IMPL_NOP, []));
   SectionB2.Append(Format(IMPL_CSYMBOL,       [GetSymbolResourceString      (AItem.FClassName)]));
   SectionB2.Append(Format(IMPL_CSINGULARNAME, [GetSingularNameResourceString(AItem.FClassName)]));
   SectionB2.Append(Format(IMPL_CPLURALNAME,   [GetPluralNameResourceString  (AItem.FClassName)]));
   SectionB2.Append(Format(IMPL_CPREFIXES,     [GetPrefixesConst             (AItem.FClassName)]));
   SectionB2.Append(Format(IMPL_CEXPONENTS,    [GetExponentsConst            (AItem.FClassName)]));
-  SectionB2.Append(Format(IMPL_NOP, []));
   SectionB2.Append(Format(IMPL_QUANTITY,      [GetQuantityType              (AItem.FClassName), adiminc]));
 
   SectionB3.Append('');
@@ -322,13 +322,13 @@ begin
   SectionA3.Append(Format(INTF_END, [adiminc]));
 
   SectionB2.Append('');
+  SectionB2.Append(Format(IMPL_NOP, []));
   SectionB2.Append(Format(IMPL_CSYMBOL,       [GetSymbolResourceString      (AItem.FClassName)]));
   SectionB2.Append(Format(IMPL_CSINGULARNAME, [GetSingularNameResourceString(AItem.FClassName)]));
   SectionB2.Append(Format(IMPL_CPLURALNAME,   [GetPluralNameResourceString  (AItem.FClassName)]));
   SectionB2.Append(Format(IMPL_CPREFIXES,     [GetPrefixesConst             (AItem.FClassName)]));
   SectionB2.Append(Format(IMPL_CEXPONENTS,    [GetExponentsConst            (AItem.FClassName)]));
   SectionB2.Append(Format(IMPL_CFACTOR,       [GetFactorConst               (AItem.FClassName)]));
-  SectionB2.Append(Format(IMPL_NOP, []));
   SectionB2.Append(Format(IMPL_QUANTITY,      [GetQuantityType              (AItem.FClassName), adiminc]));
 
   SectionB3.Append('');
@@ -385,10 +385,12 @@ begin
   if UpperCase(AItem.FVecClass) = 'TMULTIVECTOR' then BaseInc := adimMVECinc;
 
   SectionA2.Append('');
+  SectionA2.Append(Format(INTF_NOP, []));
   SectionA2.Append(Format(INTF_QUANTITY, [GetQuantityType(AItem.FClassName), BaseInc]));
   SectionA2.Append(Format(INTF_END, [BaseInc]));
 
   SectionB2.Append('');
+  SectionB2.Append(Format(IMPL_NOP, []));
   SectionB2.Append(Format(IMPL_CSYMBOL,       [GetSymbolResourceString      (AItem.FClassName)]));
   SectionB2.Append(Format(IMPL_CSINGULARNAME, [GetSingularNameResourceString(AItem.FClassName)]));
   SectionB2.Append(Format(IMPL_CPLURALNAME,   [GetPluralNameResourceString  (AItem.FClassName)]));
@@ -414,10 +416,12 @@ begin
   if UpperCase(AItem.FVecClass) = 'TMULTIVECTOR' then BaseInc := adimMVECinc;
 
   SectionA2.Append('');
+  SectionA2.Append(Format(INTF_NOP, []));
   SectionA2.Append(Format(INTF_QUANTITY, [GetQuantityType(AItem.FClassName), BaseInc]));
   SectionA2.Append(Format(INTF_END, [BaseInc]));
 
   SectionB2.Append('');
+  SectionB2.Append(Format(IMPL_NOP, []));
   SectionB2.Append(Format(IMPL_CSYMBOL,       [GetSymbolResourceString      (AItem.FClassName)]));
   SectionB2.Append(Format(IMPL_CSINGULARNAME, [GetSingularNameResourceString(AItem.FClassName)]));
   SectionB2.Append(Format(IMPL_CPLURALNAME,   [GetPluralNameResourceString  (AItem.FClassName)]));

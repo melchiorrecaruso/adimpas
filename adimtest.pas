@@ -166,6 +166,7 @@ var
   Probability: double;
 
   {$ifdef VECTORIAL}
+  radiusvec: TCLMeters;
   displacement: TCLMeters;
   speedvec: TCLMetersPerSecond;
   accvec: TCLMetersPerSquareSecond;
@@ -175,6 +176,7 @@ var
   anglevec: TCLRadians;
   angularspeedvec: TCLRadiansPerSecond;
   angularaccvec: TCLRadiansPerSquareSecond;
+  angularmomentum: TCLKilogramSquareMetersPerSecond;
 
   forcevec: TCLNewtons;
   areavec: TCLSquareMeters;
@@ -1000,7 +1002,7 @@ begin
   speedvec     := displacement/(10*s);
 
 
-  displacement := (6.0*e1)       *m;
+  displacement := (6.0*e1)*m;
   speedvec     := (2.0*e1 + 5*e2)*m/s;
 
   accvec   := speedvec/(5*s);
@@ -1012,7 +1014,8 @@ begin
   angularspeedvec := anglevec/(2.5*s);
   angularaccvec   := angularspeedvec/(4*s);
 
-  angularmomentum := momentum.wedge(radius);
+  radiusvec       := 1*e2*m;
+  angularmomentum := momentum.wedge(radiusvec);                                 writeln(angularmomentum.ToVerboseString);
 
   mass      := 10*kg;
   accvec    := (2*e1 + 2*e2)*m/s2;

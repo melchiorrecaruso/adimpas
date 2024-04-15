@@ -19,6 +19,7 @@ type
     function Projection(const AValue: TMultivector): TQuantity;
     function Rejection(const AValue: TMultivector): TQuantity;
     function Extract(AComponents: TVectorComponents): TQuantity;
+    {$IFNDEF NOP}
     class operator + (const AValue: TQuantity): TQuantity;
     class operator - (const AValue: TQuantity): TQuantity;
     class operator + (const ALeft, ARight: TQuantity): TQuantity;
@@ -27,6 +28,8 @@ type
     class operator * (const ASelf: TQuantity; const AValue: double): TQuantity;
     class operator / (const ASelf: TQuantity; const AValue: double): TQuantity;
     class operator = (const ALeft, ARight: TQuantity): boolean;
+    class operator <>(const ALeft, ARight: TQuantity): boolean;
+    {$ENDIF}{$UNDEF NOP}
 {$ENDIF}
 
 {$IFDEF INTF_END}
@@ -135,6 +138,7 @@ begin
   result.FValue := FValue.Extract(AComponents);
 end;
 
+{$IFNDEF NOP}
 class operator TQuantity.+(const AValue: TQuantity): TQuantity;
 begin
   result.FValue := AValue.FValue;
@@ -147,33 +151,39 @@ end;
 
 class operator TQuantity.+(const ALeft, ARight: TQuantity): TQuantity;
 begin
-  result := ALeft + ARight;
+  result := ALeft.FValue + ARight.FValue;
 end;
 
 class operator TQuantity.-(const ALeft, ARight: TQuantity): TQuantity;
 begin
-  result := ALeft - ARight;
+  result := ALeft.FValue - ARight.FValue;
 end;
 
 class operator TQuantity.*(const AValue: double; const ASelf: TQuantity): TQuantity;
 begin
-  result := AValue * ASelf;
+  result := AValue * ASelf.FValue;
 end;
 
 class operator TQuantity.*(const ASelf: TQuantity; const AValue: double): TQuantity;
 begin
-  result := ASelf * AValue;
+  result := ASelf.FValue * AValue;
 end;
 
 class operator TQuantity./(const ASelf: TQuantity; const AValue: double): TQuantity;
 begin
-  result := ASelf / AValue;
+  result := ASelf.FValue / AValue;
 end;
 
 class operator TQuantity.=(const ALeft, ARight: TQuantity): boolean;
 begin
-  result := ALeft = ARight;
+  result := ALeft.FValue = ARight.FValue;
 end;
+
+class operator TQuantity.<>(const ALeft, ARight: TQuantity): boolean;
+begin
+  result := ALeft.FValue <> ARight.FValue;
+end;
+{$ENDIF}{$UNDEF NOP}
 {$ENDIF}
 
 {$IFDEF INTF_UNIT}
