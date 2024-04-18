@@ -18,7 +18,7 @@
 }
 
 {
-  ADimPas library built on 15/04/2024.
+  ADimPas library built on 18/04/2024.
 
   Number of base units: 131
   Number of factored units: 66
@@ -6481,31 +6481,31 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsDaySymbol}
 {$DEFINE CSINGULARNAME:=rsDayName}
 {$DEFINE CPLURALNAME:=rsDayPluralName}
 {$DEFINE CPREFIXES:=cDayPrefixes}
 {$DEFINE CEXPONENTS:=cDayExponents}
 {$DEFINE CFACTOR:=cDayFactor}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TDayQty}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsHourSymbol}
 {$DEFINE CSINGULARNAME:=rsHourName}
 {$DEFINE CPLURALNAME:=rsHourPluralName}
 {$DEFINE CPREFIXES:=cHourPrefixes}
 {$DEFINE CEXPONENTS:=cHourExponents}
 {$DEFINE CFACTOR:=cHourFactor}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=THourQty}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsMinuteSymbol}
 {$DEFINE CSINGULARNAME:=rsMinuteName}
 {$DEFINE CPLURALNAME:=rsMinutePluralName}
 {$DEFINE CPREFIXES:=cMinutePrefixes}
 {$DEFINE CEXPONENTS:=cMinuteExponents}
 {$DEFINE CFACTOR:=cMinuteFactor}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TMinuteQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsSquareSecondSymbol}
@@ -6560,94 +6560,94 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsSquareDaySymbol}
 {$DEFINE CSINGULARNAME:=rsSquareDayName}
 {$DEFINE CPLURALNAME:=rsSquareDayPluralName}
 {$DEFINE CPREFIXES:=cSquareDayPrefixes}
 {$DEFINE CEXPONENTS:=cSquareDayExponents}
 {$DEFINE CFACTOR:=cSquareDayFactor}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareDayQty}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsSquareHourSymbol}
 {$DEFINE CSINGULARNAME:=rsSquareHourName}
 {$DEFINE CPLURALNAME:=rsSquareHourPluralName}
 {$DEFINE CPREFIXES:=cSquareHourPrefixes}
 {$DEFINE CEXPONENTS:=cSquareHourExponents}
 {$DEFINE CFACTOR:=cSquareHourFactor}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareHourQty}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsSquareMinuteSymbol}
 {$DEFINE CSINGULARNAME:=rsSquareMinuteName}
 {$DEFINE CPLURALNAME:=rsSquareMinutePluralName}
 {$DEFINE CPREFIXES:=cSquareMinutePrefixes}
 {$DEFINE CEXPONENTS:=cSquareMinuteExponents}
 {$DEFINE CFACTOR:=cSquareMinuteFactor}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareMinuteQty}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsAstronomicalSymbol}
 {$DEFINE CSINGULARNAME:=rsAstronomicalName}
 {$DEFINE CPLURALNAME:=rsAstronomicalPluralName}
 {$DEFINE CPREFIXES:=cAstronomicalPrefixes}
 {$DEFINE CEXPONENTS:=cAstronomicalExponents}
 {$DEFINE CFACTOR:=cAstronomicalFactor}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TAstronomicalQty}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsInchSymbol}
 {$DEFINE CSINGULARNAME:=rsInchName}
 {$DEFINE CPLURALNAME:=rsInchPluralName}
 {$DEFINE CPREFIXES:=cInchPrefixes}
 {$DEFINE CEXPONENTS:=cInchExponents}
 {$DEFINE CFACTOR:=cInchFactor}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TInchQty}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsFootSymbol}
 {$DEFINE CSINGULARNAME:=rsFootName}
 {$DEFINE CPLURALNAME:=rsFootPluralName}
 {$DEFINE CPREFIXES:=cFootPrefixes}
 {$DEFINE CEXPONENTS:=cFootExponents}
 {$DEFINE CFACTOR:=cFootFactor}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TFootQty}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsYardSymbol}
 {$DEFINE CSINGULARNAME:=rsYardName}
 {$DEFINE CPLURALNAME:=rsYardPluralName}
 {$DEFINE CPREFIXES:=cYardPrefixes}
 {$DEFINE CEXPONENTS:=cYardExponents}
 {$DEFINE CFACTOR:=cYardFactor}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TYardQty}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsMileSymbol}
 {$DEFINE CSINGULARNAME:=rsMileName}
 {$DEFINE CPLURALNAME:=rsMilePluralName}
 {$DEFINE CPREFIXES:=cMilePrefixes}
 {$DEFINE CEXPONENTS:=cMileExponents}
 {$DEFINE CFACTOR:=cMileFactor}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TMileQty}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsNauticalMileSymbol}
 {$DEFINE CSINGULARNAME:=rsNauticalMileName}
 {$DEFINE CPLURALNAME:=rsNauticalMilePluralName}
 {$DEFINE CPREFIXES:=cNauticalMilePrefixes}
 {$DEFINE CEXPONENTS:=cNauticalMileExponents}
 {$DEFINE CFACTOR:=cNauticalMileFactor}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNauticalMileQty}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsAngstromSymbol}
 {$DEFINE CSINGULARNAME:=rsAngstromName}
 {$DEFINE CPLURALNAME:=rsAngstromPluralName}
 {$DEFINE CPREFIXES:=cAngstromPrefixes}
 {$DEFINE CEXPONENTS:=cAngstromExponents}
 {$DEFINE CFACTOR:=cAngstromFactor}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TAngstromQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsSquareMeterSymbol}
@@ -6772,40 +6772,40 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsSquareInchSymbol}
 {$DEFINE CSINGULARNAME:=rsSquareInchName}
 {$DEFINE CPLURALNAME:=rsSquareInchPluralName}
 {$DEFINE CPREFIXES:=cSquareInchPrefixes}
 {$DEFINE CEXPONENTS:=cSquareInchExponents}
 {$DEFINE CFACTOR:=cSquareInchFactor}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareInchQty}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsSquareFootSymbol}
 {$DEFINE CSINGULARNAME:=rsSquareFootName}
 {$DEFINE CPLURALNAME:=rsSquareFootPluralName}
 {$DEFINE CPREFIXES:=cSquareFootPrefixes}
 {$DEFINE CEXPONENTS:=cSquareFootExponents}
 {$DEFINE CFACTOR:=cSquareFootFactor}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareFootQty}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsSquareYardSymbol}
 {$DEFINE CSINGULARNAME:=rsSquareYardName}
 {$DEFINE CPLURALNAME:=rsSquareYardPluralName}
 {$DEFINE CPREFIXES:=cSquareYardPrefixes}
 {$DEFINE CEXPONENTS:=cSquareYardExponents}
 {$DEFINE CFACTOR:=cSquareYardFactor}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareYardQty}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsSquareMileSymbol}
 {$DEFINE CSINGULARNAME:=rsSquareMileName}
 {$DEFINE CPLURALNAME:=rsSquareMilePluralName}
 {$DEFINE CPREFIXES:=cSquareMilePrefixes}
 {$DEFINE CEXPONENTS:=cSquareMileExponents}
 {$DEFINE CFACTOR:=cSquareMileFactor}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareMileQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsCubicMeterSymbol}
@@ -6850,49 +6850,49 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsCubicInchSymbol}
 {$DEFINE CSINGULARNAME:=rsCubicInchName}
 {$DEFINE CPLURALNAME:=rsCubicInchPluralName}
 {$DEFINE CPREFIXES:=cCubicInchPrefixes}
 {$DEFINE CEXPONENTS:=cCubicInchExponents}
 {$DEFINE CFACTOR:=cCubicInchFactor}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCubicInchQty}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsCubicFootSymbol}
 {$DEFINE CSINGULARNAME:=rsCubicFootName}
 {$DEFINE CPLURALNAME:=rsCubicFootPluralName}
 {$DEFINE CPREFIXES:=cCubicFootPrefixes}
 {$DEFINE CEXPONENTS:=cCubicFootExponents}
 {$DEFINE CFACTOR:=cCubicFootFactor}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCubicFootQty}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsCubicYardSymbol}
 {$DEFINE CSINGULARNAME:=rsCubicYardName}
 {$DEFINE CPLURALNAME:=rsCubicYardPluralName}
 {$DEFINE CPREFIXES:=cCubicYardPrefixes}
 {$DEFINE CEXPONENTS:=cCubicYardExponents}
 {$DEFINE CFACTOR:=cCubicYardFactor}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCubicYardQty}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsLitreSymbol}
 {$DEFINE CSINGULARNAME:=rsLitreName}
 {$DEFINE CPLURALNAME:=rsLitrePluralName}
 {$DEFINE CPREFIXES:=cLitrePrefixes}
 {$DEFINE CEXPONENTS:=cLitreExponents}
 {$DEFINE CFACTOR:=cLitreFactor}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TLitreQty}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsGallonSymbol}
 {$DEFINE CSINGULARNAME:=rsGallonName}
 {$DEFINE CPLURALNAME:=rsGallonPluralName}
 {$DEFINE CPREFIXES:=cGallonPrefixes}
 {$DEFINE CEXPONENTS:=cGallonExponents}
 {$DEFINE CFACTOR:=cGallonFactor}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TGallonQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsQuarticMeterSymbol}
@@ -7023,49 +7023,49 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsTonneSymbol}
 {$DEFINE CSINGULARNAME:=rsTonneName}
 {$DEFINE CPLURALNAME:=rsTonnePluralName}
 {$DEFINE CPREFIXES:=cTonnePrefixes}
 {$DEFINE CEXPONENTS:=cTonneExponents}
 {$DEFINE CFACTOR:=cTonneFactor}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TTonneQty}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsPoundSymbol}
 {$DEFINE CSINGULARNAME:=rsPoundName}
 {$DEFINE CPLURALNAME:=rsPoundPluralName}
 {$DEFINE CPREFIXES:=cPoundPrefixes}
 {$DEFINE CEXPONENTS:=cPoundExponents}
 {$DEFINE CFACTOR:=cPoundFactor}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TPoundQty}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsOunceSymbol}
 {$DEFINE CSINGULARNAME:=rsOunceName}
 {$DEFINE CPLURALNAME:=rsOuncePluralName}
 {$DEFINE CPREFIXES:=cOuncePrefixes}
 {$DEFINE CEXPONENTS:=cOunceExponents}
 {$DEFINE CFACTOR:=cOunceFactor}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TOunceQty}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsStoneSymbol}
 {$DEFINE CSINGULARNAME:=rsStoneName}
 {$DEFINE CPLURALNAME:=rsStonePluralName}
 {$DEFINE CPREFIXES:=cStonePrefixes}
 {$DEFINE CEXPONENTS:=cStoneExponents}
 {$DEFINE CFACTOR:=cStoneFactor}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TStoneQty}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsTonSymbol}
 {$DEFINE CSINGULARNAME:=rsTonName}
 {$DEFINE CPLURALNAME:=rsTonPluralName}
 {$DEFINE CPREFIXES:=cTonPrefixes}
 {$DEFINE CEXPONENTS:=cTonExponents}
 {$DEFINE CFACTOR:=cTonFactor}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TTonQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsSquareKilogramSymbol}
@@ -7251,22 +7251,22 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsDegreeCelsiusSymbol}
 {$DEFINE CSINGULARNAME:=rsDegreeCelsiusName}
 {$DEFINE CPLURALNAME:=rsDegreeCelsiusPluralName}
 {$DEFINE CPREFIXES:=cDegreeCelsiusPrefixes}
 {$DEFINE CEXPONENTS:=cDegreeCelsiusExponents}
 {$DEFINE CFACTOR:=cDegreeCelsiusFactor}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TDegreeCelsiusQty}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsDegreeFahrenheitSymbol}
 {$DEFINE CSINGULARNAME:=rsDegreeFahrenheitName}
 {$DEFINE CPLURALNAME:=rsDegreeFahrenheitPluralName}
 {$DEFINE CPREFIXES:=cDegreeFahrenheitPrefixes}
 {$DEFINE CEXPONENTS:=cDegreeFahrenheitExponents}
 {$DEFINE CFACTOR:=cDegreeFahrenheitFactor}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TDegreeFahrenheitQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsQuarticKelvinSymbol}
@@ -7362,13 +7362,13 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsDegreeSymbol}
 {$DEFINE CSINGULARNAME:=rsDegreeName}
 {$DEFINE CPLURALNAME:=rsDegreePluralName}
 {$DEFINE CPREFIXES:=cDegreePrefixes}
 {$DEFINE CEXPONENTS:=cDegreeExponents}
 {$DEFINE CFACTOR:=cDegreeFactor}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TDegreeQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsSteradianSymbol}
@@ -7378,13 +7378,13 @@ end;
 {$DEFINE CEXPONENTS:=cSteradianExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSteradianQty}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsSquareDegreeSymbol}
 {$DEFINE CSINGULARNAME:=rsSquareDegreeName}
 {$DEFINE CPLURALNAME:=rsSquareDegreePluralName}
 {$DEFINE CPREFIXES:=cSquareDegreePrefixes}
 {$DEFINE CEXPONENTS:=cSquareDegreeExponents}
 {$DEFINE CFACTOR:=cSquareDegreeFactor}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareDegreeQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsSquareHertzSymbol}
@@ -7587,31 +7587,31 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsMeterPerHourSymbol}
 {$DEFINE CSINGULARNAME:=rsMeterPerHourName}
 {$DEFINE CPLURALNAME:=rsMeterPerHourPluralName}
 {$DEFINE CPREFIXES:=cMeterPerHourPrefixes}
 {$DEFINE CEXPONENTS:=cMeterPerHourExponents}
 {$DEFINE CFACTOR:=cMeterPerHourFactor}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TMeterPerHourQty}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsMilePerHourSymbol}
 {$DEFINE CSINGULARNAME:=rsMilePerHourName}
 {$DEFINE CPLURALNAME:=rsMilePerHourPluralName}
 {$DEFINE CPREFIXES:=cMilePerHourPrefixes}
 {$DEFINE CEXPONENTS:=cMilePerHourExponents}
 {$DEFINE CFACTOR:=cMilePerHourFactor}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TMilePerHourQty}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsNauticalMilePerHourSymbol}
 {$DEFINE CSINGULARNAME:=rsNauticalMilePerHourName}
 {$DEFINE CPLURALNAME:=rsNauticalMilePerHourPluralName}
 {$DEFINE CPREFIXES:=cNauticalMilePerHourPrefixes}
 {$DEFINE CEXPONENTS:=cNauticalMilePerHourExponents}
 {$DEFINE CFACTOR:=cNauticalMilePerHourFactor}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNauticalMilePerHourQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsMeterPerSquareSecondSymbol}
@@ -7691,21 +7691,21 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsMeterPerSecondPerSecondSymbol}
 {$DEFINE CSINGULARNAME:=rsMeterPerSecondPerSecondName}
 {$DEFINE CPLURALNAME:=rsMeterPerSecondPerSecondPluralName}
 {$DEFINE CPREFIXES:=cMeterPerSecondPerSecondPrefixes}
 {$DEFINE CEXPONENTS:=cMeterPerSecondPerSecondExponents}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TMeterPerSecondPerSecondQty}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsMeterPerHourPerSecondSymbol}
 {$DEFINE CSINGULARNAME:=rsMeterPerHourPerSecondName}
 {$DEFINE CPLURALNAME:=rsMeterPerHourPerSecondPluralName}
 {$DEFINE CPREFIXES:=cMeterPerHourPerSecondPrefixes}
 {$DEFINE CEXPONENTS:=cMeterPerHourPerSecondExponents}
 {$DEFINE CFACTOR:=cMeterPerHourPerSecondFactor}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TMeterPerHourPerSecondQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsKilogramMeterSymbol}
@@ -7856,12 +7856,12 @@ end;
 {$DEFINE CEXPONENTS:=cSquareKilogramSquareMeterPerSquareSecondExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareKilogramSquareMeterPerSquareSecondQty}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsNewtonSecondSymbol}
 {$DEFINE CSINGULARNAME:=rsNewtonSecondName}
 {$DEFINE CPLURALNAME:=rsNewtonSecondPluralName}
 {$DEFINE CPREFIXES:=cNewtonSecondPrefixes}
 {$DEFINE CEXPONENTS:=cNewtonSecondExponents}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNewtonSecondQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsReciprocalSquareRootMeterSymbol}
@@ -8101,12 +8101,12 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsNewtonMeterSecondSymbol}
 {$DEFINE CSINGULARNAME:=rsNewtonMeterSecondName}
 {$DEFINE CPLURALNAME:=rsNewtonMeterSecondPluralName}
 {$DEFINE CPREFIXES:=cNewtonMeterSecondPrefixes}
 {$DEFINE CEXPONENTS:=cNewtonMeterSecondExponents}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNewtonMeterSecondQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsSecondPerMeterSymbol}
@@ -8267,13 +8267,13 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsPoundPerCubicInchSymbol}
 {$DEFINE CSINGULARNAME:=rsPoundPerCubicInchName}
 {$DEFINE CPLURALNAME:=rsPoundPerCubicInchPluralName}
 {$DEFINE CPREFIXES:=cPoundPerCubicInchPrefixes}
 {$DEFINE CEXPONENTS:=cPoundPerCubicInchExponents}
 {$DEFINE CFACTOR:=cPoundPerCubicInchFactor}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TPoundPerCubicInchQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsNewtonSymbol}
@@ -8293,13 +8293,13 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsPoundForceSymbol}
 {$DEFINE CSINGULARNAME:=rsPoundForceName}
 {$DEFINE CPLURALNAME:=rsPoundForcePluralName}
 {$DEFINE CPREFIXES:=cPoundForcePrefixes}
 {$DEFINE CEXPONENTS:=cPoundForceExponents}
 {$DEFINE CFACTOR:=cPoundForceFactor}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TPoundForceQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsSquareNewtonSymbol}
@@ -8386,30 +8386,30 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsBarSymbol}
 {$DEFINE CSINGULARNAME:=rsBarName}
 {$DEFINE CPLURALNAME:=rsBarPluralName}
 {$DEFINE CPREFIXES:=cBarPrefixes}
 {$DEFINE CEXPONENTS:=cBarExponents}
 {$DEFINE CFACTOR:=cBarFactor}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TBarQty}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsPoundPerSquareInchSymbol}
 {$DEFINE CSINGULARNAME:=rsPoundPerSquareInchName}
 {$DEFINE CPLURALNAME:=rsPoundPerSquareInchPluralName}
 {$DEFINE CPREFIXES:=cPoundPerSquareInchPrefixes}
 {$DEFINE CEXPONENTS:=cPoundPerSquareInchExponents}
 {$DEFINE CFACTOR:=cPoundPerSquareInchFactor}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TPoundPerSquareInchQty}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsJoulePerCubicMeterSymbol}
 {$DEFINE CSINGULARNAME:=rsJoulePerCubicMeterName}
 {$DEFINE CPLURALNAME:=rsJoulePerCubicMeterPluralName}
 {$DEFINE CPREFIXES:=cJoulePerCubicMeterPrefixes}
 {$DEFINE CEXPONENTS:=cJoulePerCubicMeterExponents}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TJoulePerCubicMeterQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsJouleSymbol}
@@ -8429,57 +8429,57 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsWattHourSymbol}
 {$DEFINE CSINGULARNAME:=rsWattHourName}
 {$DEFINE CPLURALNAME:=rsWattHourPluralName}
 {$DEFINE CPREFIXES:=cWattHourPrefixes}
 {$DEFINE CEXPONENTS:=cWattHourExponents}
 {$DEFINE CFACTOR:=cWattHourFactor}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TWattHourQty}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsElettronvoltSymbol}
 {$DEFINE CSINGULARNAME:=rsElettronvoltName}
 {$DEFINE CPLURALNAME:=rsElettronvoltPluralName}
 {$DEFINE CPREFIXES:=cElettronvoltPrefixes}
 {$DEFINE CEXPONENTS:=cElettronvoltExponents}
 {$DEFINE CFACTOR:=cElettronvoltFactor}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TElettronvoltQty}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsNewtonMeterSymbol}
 {$DEFINE CSINGULARNAME:=rsNewtonMeterName}
 {$DEFINE CPLURALNAME:=rsNewtonMeterPluralName}
 {$DEFINE CPREFIXES:=cNewtonMeterPrefixes}
 {$DEFINE CEXPONENTS:=cNewtonMeterExponents}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNewtonMeterQty}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsPoundForceInchSymbol}
 {$DEFINE CSINGULARNAME:=rsPoundForceInchName}
 {$DEFINE CPLURALNAME:=rsPoundForceInchPluralName}
 {$DEFINE CPREFIXES:=cPoundForceInchPrefixes}
 {$DEFINE CEXPONENTS:=cPoundForceInchExponents}
 {$DEFINE CFACTOR:=cPoundForceInchFactor}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TPoundForceInchQty}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsRydbergSymbol}
 {$DEFINE CSINGULARNAME:=rsRydbergName}
 {$DEFINE CPLURALNAME:=rsRydbergPluralName}
 {$DEFINE CPREFIXES:=cRydbergPrefixes}
 {$DEFINE CEXPONENTS:=cRydbergExponents}
 {$DEFINE CFACTOR:=cRydbergFactor}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TRydbergQty}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsCalorieSymbol}
 {$DEFINE CSINGULARNAME:=rsCalorieName}
 {$DEFINE CPLURALNAME:=rsCaloriePluralName}
 {$DEFINE CPREFIXES:=cCaloriePrefixes}
 {$DEFINE CEXPONENTS:=cCalorieExponents}
 {$DEFINE CFACTOR:=cCalorieFactor}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCalorieQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsJoulePerRadianSymbol}
@@ -8504,30 +8504,30 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsJoulePerDegreeSymbol}
 {$DEFINE CSINGULARNAME:=rsJoulePerDegreeName}
 {$DEFINE CPLURALNAME:=rsJoulePerDegreePluralName}
 {$DEFINE CPREFIXES:=cJoulePerDegreePrefixes}
 {$DEFINE CEXPONENTS:=cJoulePerDegreeExponents}
 {$DEFINE CFACTOR:=cJoulePerDegreeFactor}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TJoulePerDegreeQty}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsNewtonMeterPerRadianSymbol}
 {$DEFINE CSINGULARNAME:=rsNewtonMeterPerRadianName}
 {$DEFINE CPLURALNAME:=rsNewtonMeterPerRadianPluralName}
 {$DEFINE CPREFIXES:=cNewtonMeterPerRadianPrefixes}
 {$DEFINE CEXPONENTS:=cNewtonMeterPerRadianExponents}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNewtonMeterPerRadianQty}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsNewtonMeterPerDegreeSymbol}
 {$DEFINE CSINGULARNAME:=rsNewtonMeterPerDegreeName}
 {$DEFINE CPLURALNAME:=rsNewtonMeterPerDegreePluralName}
 {$DEFINE CPREFIXES:=cNewtonMeterPerDegreePrefixes}
 {$DEFINE CEXPONENTS:=cNewtonMeterPerDegreeExponents}
 {$DEFINE CFACTOR:=cNewtonMeterPerDegreeFactor}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNewtonMeterPerDegreeQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsWattSymbol}
@@ -8599,13 +8599,13 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsAmpereHourSymbol}
 {$DEFINE CSINGULARNAME:=rsAmpereHourName}
 {$DEFINE CPLURALNAME:=rsAmpereHourPluralName}
 {$DEFINE CPREFIXES:=cAmpereHourPrefixes}
 {$DEFINE CEXPONENTS:=cAmpereHourExponents}
 {$DEFINE CFACTOR:=cAmpereHourFactor}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TAmpereHourQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsSquareCoulombSymbol}
@@ -9035,28 +9035,28 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsBequerelSymbol}
 {$DEFINE CSINGULARNAME:=rsBequerelName}
 {$DEFINE CPLURALNAME:=rsBequerelPluralName}
 {$DEFINE CPREFIXES:=cBequerelPrefixes}
 {$DEFINE CEXPONENTS:=cBequerelExponents}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TBequerelQty}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsGraySymbol}
 {$DEFINE CSINGULARNAME:=rsGrayName}
 {$DEFINE CPLURALNAME:=rsGrayPluralName}
 {$DEFINE CPREFIXES:=cGrayPrefixes}
 {$DEFINE CEXPONENTS:=cGrayExponents}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TGrayQty}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsSievertSymbol}
 {$DEFINE CSINGULARNAME:=rsSievertName}
 {$DEFINE CPLURALNAME:=rsSievertPluralName}
 {$DEFINE CPREFIXES:=cSievertPrefixes}
 {$DEFINE CEXPONENTS:=cSievertExponents}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSievertQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsNewtonPerCubicMeterSymbol}
@@ -9178,13 +9178,13 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsPoundForcePerInchSymbol}
 {$DEFINE CSINGULARNAME:=rsPoundForcePerInchName}
 {$DEFINE CPLURALNAME:=rsPoundForcePerInchPluralName}
 {$DEFINE CPREFIXES:=cPoundForcePerInchPrefixes}
 {$DEFINE CEXPONENTS:=cPoundForcePerInchExponents}
 {$DEFINE CFACTOR:=cPoundForcePerInchFactor}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TPoundForcePerInchQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsCubicMeterPerSecondSymbol}
@@ -9226,12 +9226,12 @@ end;
 {$DEFINE CEXPONENTS:=cPoiseuilleExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TPoiseuilleQty}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsPascalSecondSymbol}
 {$DEFINE CSINGULARNAME:=rsPascalSecondName}
 {$DEFINE CPLURALNAME:=rsPascalSecondPluralName}
 {$DEFINE CPREFIXES:=cPascalSecondPrefixes}
 {$DEFINE CEXPONENTS:=cPascalSecondExponents}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TPascalSecondQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsSquareMeterPerSecondSymbol}
@@ -9627,12 +9627,12 @@ end;
 {$DEFINE CEXPONENTS:=cKilogramKelvinExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKilogramKelvinQty}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsJoulePerKilogramSymbol}
 {$DEFINE CSINGULARNAME:=rsJoulePerKilogramName}
 {$DEFINE CPLURALNAME:=rsJoulePerKilogramPluralName}
 {$DEFINE CPREFIXES:=cJoulePerKilogramPrefixes}
 {$DEFINE CEXPONENTS:=cJoulePerKilogramExponents}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TJoulePerKilogramQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsJoulePerKilogramPerKelvinSymbol}
@@ -10110,12 +10110,12 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsNewtonPerCoulombSymbol}
 {$DEFINE CSINGULARNAME:=rsNewtonPerCoulombName}
 {$DEFINE CPLURALNAME:=rsNewtonPerCoulombPluralName}
 {$DEFINE CPREFIXES:=cNewtonPerCoulombPrefixes}
 {$DEFINE CEXPONENTS:=cNewtonPerCoulombExponents}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNewtonPerCoulombQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsCoulombPerMeterSymbol}
@@ -10327,12 +10327,12 @@ end;
 {$DEFINE CEXPONENTS:=cVoltMeterExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TVoltMeterQty}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsNewtonSquareMeterPerCoulombSymbol}
 {$DEFINE CSINGULARNAME:=rsNewtonSquareMeterPerCoulombName}
 {$DEFINE CPLURALNAME:=rsNewtonSquareMeterPerCoulombPluralName}
 {$DEFINE CPREFIXES:=cNewtonSquareMeterPerCoulombPrefixes}
 {$DEFINE CEXPONENTS:=cNewtonSquareMeterPerCoulombExponents}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNewtonSquareMeterPerCoulombQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsVoltMeterPerSecondSymbol}
@@ -10480,12 +10480,12 @@ end;
 {$DEFINE CEXPONENTS:=cTeslaMeterExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TTeslaMeterQty}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsNewtonPerAmpereSymbol}
 {$DEFINE CSINGULARNAME:=rsNewtonPerAmpereName}
 {$DEFINE CPLURALNAME:=rsNewtonPerAmperePluralName}
 {$DEFINE CPREFIXES:=cNewtonPerAmperePrefixes}
 {$DEFINE CEXPONENTS:=cNewtonPerAmpereExponents}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNewtonPerAmpereQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsTeslaPerAmpereSymbol}
@@ -10597,20 +10597,20 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsTeslaMeterPerAmpereSymbol}
 {$DEFINE CSINGULARNAME:=rsTeslaMeterPerAmpereName}
 {$DEFINE CPLURALNAME:=rsTeslaMeterPerAmperePluralName}
 {$DEFINE CPREFIXES:=cTeslaMeterPerAmperePrefixes}
 {$DEFINE CEXPONENTS:=cTeslaMeterPerAmpereExponents}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TTeslaMeterPerAmpereQty}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsNewtonPerSquareAmpereSymbol}
 {$DEFINE CSINGULARNAME:=rsNewtonPerSquareAmpereName}
 {$DEFINE CPLURALNAME:=rsNewtonPerSquareAmperePluralName}
 {$DEFINE CPREFIXES:=cNewtonPerSquareAmperePrefixes}
 {$DEFINE CEXPONENTS:=cNewtonPerSquareAmpereExponents}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNewtonPerSquareAmpereQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsRadianPerMeterSymbol}
@@ -10679,21 +10679,21 @@ end;
 {$DEFINE CEXPONENTS:=cSquareJouleExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareJouleQty}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsJouleSecondSymbol}
 {$DEFINE CSINGULARNAME:=rsJouleSecondName}
 {$DEFINE CPLURALNAME:=rsJouleSecondPluralName}
 {$DEFINE CPREFIXES:=cJouleSecondPrefixes}
 {$DEFINE CEXPONENTS:=cJouleSecondExponents}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TJouleSecondQty}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsElettronvoltSecondSymbol}
 {$DEFINE CSINGULARNAME:=rsElettronvoltSecondName}
 {$DEFINE CPLURALNAME:=rsElettronvoltSecondPluralName}
 {$DEFINE CPREFIXES:=cElettronvoltSecondPrefixes}
 {$DEFINE CEXPONENTS:=cElettronvoltSecondExponents}
 {$DEFINE CFACTOR:=cElettronvoltSecondFactor}
-{$DEFINE NOP}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TElettronvoltSecondQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsSquareJouleSquareSecondSymbol}
