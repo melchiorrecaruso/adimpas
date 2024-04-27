@@ -26,6 +26,9 @@ interface
 uses
   Classes, SysUtils;
 
+type
+  TExponents = array [1..7] of longint;
+
 const
   INTF_NOP            = '{$DEFINE NOP}';
   INTF_QUANTITY       = '{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=%s}{$i %s}';
@@ -49,7 +52,6 @@ const
   IMPL_OP             = 'operator %s(const ALeft: %s; const ARight: %s): %s;';
 
   VECPrefix           = 'CL';
-
 
 function GetSymbolResourceString(const AClassName: string): string;
 function GetSingularNameResourceString(const AClassName: string): string;
@@ -86,6 +88,9 @@ procedure CleanDocument(S: TStringList);
 function IsASpecialKey(const AKey: string): boolean;
 function IsAVersorKey(const AKey: string): boolean;
 function IsAVector(const AClassName: string): boolean;
+
+
+
 
 implementation
 
