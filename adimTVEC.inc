@@ -123,7 +123,7 @@ end;
 
 function TQuantity.Extract: TQuantity;
 begin
-  result.FValue := FValue.Extract;
+  result.FValue := FValue;
 end;
 
 {$IFNDEF NOP}
@@ -139,27 +139,27 @@ end;
 
 class operator TQuantity.+(const ALeft, ARight: TQuantity): TQuantity;
 begin
-  result := ALeft.FValue + ARight.FValue;
+  result.FValue := ALeft.FValue + ARight.FValue;
 end;
 
 class operator TQuantity.-(const ALeft, ARight: TQuantity): TQuantity;
 begin
-  result := ALeft.FValue - ARight.FValue;
+  result.FValue := ALeft.FValue - ARight.FValue;
 end;
 
 class operator TQuantity.*(const AValue: double; const ASelf: TQuantity): TQuantity;
 begin
-  result := AValue * ASelf.FValue;
+  result.FValue := AValue * ASelf.FValue;
 end;
 
 class operator TQuantity.*(const ASelf: TQuantity; const AValue: double): TQuantity;
 begin
-  result := ASelf.FValue * AValue;
+  result.FValue := ASelf.FValue * AValue;
 end;
 
 class operator TQuantity./(const ASelf: TQuantity; const AValue: double): TQuantity;
 begin
-  result := ASelf.FValue / AValue;
+  result.FValue := ASelf.FValue / AValue;
 end;
 
 class operator TQuantity.=(const ALeft, ARight: TQuantity): boolean;
