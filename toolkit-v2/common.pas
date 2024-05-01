@@ -81,8 +81,8 @@ function GetUnitIdentifier(const S: string): string;
 
 function GetBaseClass(const S: string): string;
 
-function  CleanUnitName(const S: string): string;
-function  CleanUnitSymbol(const S: string): string;
+function  CleanSingleSpaces(const S: string): string;
+function  CleanDoubleSpaces(const S: string): string;
 procedure CleanDocument(S: TStringList);
 
 function IsASpecialKey(const AKey: string): boolean;
@@ -103,8 +103,8 @@ begin
             (UpperCase(AKey) = 'TMULTIVECTOR' ) or
             (UpperCase(AKey) = 'TTRIVERSOR123') or
             (UpperCase(AKey) = 'TBIVERSOR12'  ) or
+            (UpperCase(AKey) = 'TBIVERSOR13'  ) or
             (UpperCase(AKey) = 'TBIVERSOR23'  ) or
-            (UpperCase(AKey) = 'TBIVERSOR31'  ) or
             (UpperCase(AKey) = 'TVERSOR1'     ) or
             (UpperCase(AKey) = 'TVERSOR2'     ) or
             (UpperCase(AKey) = 'TVERSOR3'     );
@@ -114,8 +114,8 @@ function IsAVersorKey(const AKey: string): boolean;
 begin
   Result := (UpperCase(AKey) = 'TTRIVERSOR123') or
             (UpperCase(AKey) = 'TBIVERSOR12'  ) or
+            (UpperCase(AKey) = 'TBIVERSOR13'  ) or
             (UpperCase(AKey) = 'TBIVERSOR23'  ) or
-            (UpperCase(AKey) = 'TBIVERSOR31'  ) or
             (UpperCase(AKey) = 'TVERSOR1'     ) or
             (UpperCase(AKey) = 'TVERSOR2'     ) or
             (UpperCase(AKey) = 'TVERSOR3'     );
@@ -456,7 +456,7 @@ begin
     Delete(Result, High(Result), 1);
 end;
 
-function CleanUnitName(const S: string): string;
+function CleanDoubleSpaces(const S: string): string;
 begin
   Result := S;
   while Pos('  ', Result) > 0 do
@@ -465,7 +465,7 @@ begin
   end;
 end;
 
-function CleanUnitSymbol(const S: string): string;
+function CleanSingleSpaces(const S: string): string;
 begin
   Result := S;
   while Pos(' ', Result) > 0 do
