@@ -1,7 +1,7 @@
 {
   Description: ADimPas project.
 
-  Copyright (C) 2023 Melchiorre Caruso <melchiorrecaruso@gmail.com>
+  Copyright (C) 2023-2024 Melchiorre Caruso <melchiorrecaruso@gmail.com>
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU Lesser General Public License as published by
@@ -38,6 +38,7 @@ uses
 {$R *.res}
 
 begin
+  Randomize;
   RequireDerivedFormResource:=True;
   Application.Title:='ADimPas Toolkit';
   Application.Scaled:=True;

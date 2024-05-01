@@ -12,7 +12,7 @@ where
 
 ### Fine-structure constant
 
-$\alpha = \displaystyle \frac{(k_e·e^2)}{(ℏ·c)}$ ,
+$\alpha = \displaystyle \frac{k_e·e^2}{ℏ·c}$ ,
 
 where
 
@@ -24,7 +24,7 @@ where
 
 ### Angular momentum
 
-$L = \displaystyle n·\frac{h}{2π} = n·ℏ$ ,
+$L = \displaystyle \frac{n·h}{2π} = n·ℏ = m_e·v_n·r_n$ ,
 
 where
 
@@ -34,7 +34,7 @@ where
 
 ### Orbit radius for speed $v_n$
 
-$r_n=\displaystyle \frac{n·ℏ}{(m_e·v_n)}$ ,
+$r_n=\displaystyle \frac{n·ℏ}{m_e·v_n}$ ,
 
 where
 
@@ -70,7 +70,7 @@ where
 
 ### Electron's speed at orbit $r_n$
 
-$v_n = \displaystyle \sqrt {Z·\frac{(k_e·e^2)}{r_n}·\frac{1}{m_e}}$ ,
+$v_n = \displaystyle \sqrt {\frac{Z·k_e·e^2}{r_n·m_e}}$ ,
 
 where
 
@@ -79,6 +79,19 @@ where
 - $e$ is the elementary charge, $[C]$;
 - $r_n$ is the orbit radius for n, $[m]$;
 - $m_e$ is the mass of an electron, $[kg]$.
+
+### Energy
+
+$E_n = \displaystyle \frac{n^2·π^2·ℏ^2}{2·m·a^2}$ ,
+
+where
+
+- $n$ is the principal quantum number;
+- $ℏ$ is the reduced Planck constant, $[J·s]$;
+- $m$ is the mass of an electron, $[kg]$;
+- $a$ is distance, $[m]$;
+
+
 
 
 

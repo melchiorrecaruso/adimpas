@@ -1009,7 +1009,7 @@ begin
   accvec   := (2*e1 + 6*e2)*m/s2;
   momentum := (10*kg)*speedvec;
   momentum := (10*e1)*kg*m/s;
-  anglevec := (10*e31)*deg;
+  anglevec := (10*e13)*deg;
 
   angularspeedvec := anglevec/(2.5*s);
   angularaccvec   := angularspeedvec/(4*s);

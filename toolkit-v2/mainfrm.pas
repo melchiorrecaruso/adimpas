@@ -1,7 +1,7 @@
 {
   Description: MainForm.
 
-  Copyright (C) 2023 Melchiorre Caruso <melchiorrecaruso@gmail.com>
+  Copyright (C) 2023-2024 Melchiorre Caruso <melchiorrecaruso@gmail.com>
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU Lesser General Public License as published by
@@ -62,9 +62,9 @@ type
   public
   end;
 
-  TToolKitManager = class(TThread)
+  TToolKitThread = class(TThread)
   private
-    FList: TToolkitList;
+    FList: TToolKitBuilder;
     FMessage: string;
     procedure OnMessage(const AMessage: string);
   public
@@ -76,7 +76,7 @@ type
 
 var
   MainForm: TMainForm;
-  ToolKitManager: TToolKitManager = nil;
+  ToolKitThread: TToolKitThread = nil;
 
 implementation
 
@@ -85,38 +85,24 @@ uses
 
 {$R *.lfm}
 
-const
-  _class_name        = 00;
-  _operator          = 01;
-  _class_parent_1    = 02;
-  _class_parent_2    = 03;
-  _comment           = 04;
-  _long_symbol       = 05;
-  _short_symbol      = 06;
-  _identifier_symbol = 07;
-  _base_class        = 08;
-  _factor            = 09;
-  _prefixes          = 10;
-  _vectorclass       = 11;
-
 { TMainForm }
 
 procedure TMainForm.FormCreate(Sender: TObject);
 begin
   PageControl.TabIndex          := 0;
-  WindowState                   := wsMaximized;
+  WindowState                   := wsNormal;
   WorksheetGrid.AutoFillColumns := True;
 end;
 
 procedure TMainForm.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 begin
-  CanClose := ToolKitManager = nil;
+  CanClose := ToolKitThread = nil;
   if not CanClose then
   begin
     if MessageDlg('The optimizer is still running', 'Do you want to terminate it?',
       mtConfirmation, [mbYes, mbNo], 0) = mrYes then
     begin
-      ToolKitManager.FList.ExecutionTime := 0;
+      ToolKitThread.FList.ExecutionTime := 0;
     end;
   end;
 end;
@@ -149,31 +135,33 @@ var
 begin
   Memo.Clear;
   UpdateButton(False);
-  ToolKitManager := TToolKitManager.Create;
-  ToolKitManager.OnTerminate := @OnTerminate;
+  ToolKitThread := TToolKitThread.Create;
+  ToolKitThread.OnTerminate := @OnTerminate;
   for i := 0 to WorksheetGrid.Worksheet.GetLastRowIndex do
   begin
-    T.FClassName           := WorksheetGrid.Worksheet.ReadAsText(i, _class_name);
-    T.FOperator            := WorksheetGrid.Worksheet.ReadAsText(i, _operator);
-    T.FClassParent1        := WorksheetGrid.Worksheet.ReadAsText(i, _class_parent_1);
-    T.FClassParent2        := WorksheetGrid.Worksheet.ReadAsText(i, _class_parent_2);
-    T.FComment             := WorksheetGrid.Worksheet.ReadAsText(i, _comment);
-    T.FLongSymbol          := WorksheetGrid.Worksheet.ReadAsText(i, _long_symbol);
-    T.FShortSymbol         := WorksheetGrid.Worksheet.ReadAsText(i, _short_symbol);
-    T.FIdentifierSymbol    := WorksheetGrid.Worksheet.ReadAsText(i, _identifier_symbol);
-    T.FBaseClass           := WorksheetGrid.Worksheet.ReadAsText(i, _base_class);
-    T.FFactor              := WorksheetGrid.Worksheet.ReadAsText(i, _factor);
-    T.FPrefixes            := WorksheetGrid.Worksheet.ReadAsText(i, _prefixes);
-    T.FVecClass            := WorksheetGrid.Worksheet.ReadAsText(i, _vectorclass);
+    T.FClassName        := CleanSingleSpaces(WorksheetGrid.Worksheet.ReadAsText(i, 00));
+    T.FOperator         := CleanSingleSpaces(WorksheetGrid.Worksheet.ReadAsText(i, 01));
+    T.FClassParent1     := CleanSingleSpaces(WorksheetGrid.Worksheet.ReadAsText(i, 02));
+    T.FClassParent2     := CleanSingleSpaces(WorksheetGrid.Worksheet.ReadAsText(i, 03));
+    T.FLongSymbol       := CleanDoubleSpaces(WorksheetGrid.Worksheet.ReadAsText(i, 04));
+    T.FShortSymbol      := CleanSingleSpaces(WorksheetGrid.Worksheet.ReadAsText(i, 05));
+    T.FIdentifierSymbol := CleanSingleSpaces(WorksheetGrid.Worksheet.ReadAsText(i, 06));
+    T.FBaseClass        := CleanSingleSpaces(WorksheetGrid.Worksheet.ReadAsText(i, 07));
+    T.FFactor           := CleanDoubleSpaces(WorksheetGrid.Worksheet.ReadAsText(i, 08));
+    T.FPrefixes         := CleanSingleSpaces(WorksheetGrid.Worksheet.ReadAsText(i, 09));
+    T.FClassType        := CleanSingleSpaces(WorksheetGrid.Worksheet.ReadAsText(i, 10));
 
-    T.FLongSymbol       := CleanUnitName(T.FLongSymbol);
-    T.FShortSymbol      := CleanUnitSymbol(T.FShortSymbol);
-    if (T.FClassName <> '') and (Pos('//', T.FClassName) = 0) then
+    if (T.FClassName <> '') and (T.FClassName[1] <> '/') then
     begin
-      ToolKitManager.FList.Add(T);
+      if SkipVectorialUnits.Checked then
+      begin
+        if (T.FClassType = '') then
+          ToolKitThread.FList.Add(T);
+      end else
+        ToolKitThread.FList.Add(T);
     end;
   end;
-  ToolKitManager.Start;
+  ToolKitThread.Start;
 end;
 
 procedure TMainForm.OnTerminate(Sender: TObject);
@@ -182,14 +170,14 @@ var
 begin
   SynEdit.BeginUpdate(True);
   SynEdit.Clear;
-  with ToolKitManager.FList do
+  with ToolKitThread.FList do
   begin
     for I := 0 to Document.Count - 1 do SynEdit.Append(Document[I]);
     for I := 0 to Messages.Count - 1 do Memo.Lines.Add(Messages[I]);
   end;
   SynEdit.EndUpdate;
   UpdateButton(True);
-  ToolKitManager := nil;
+  ToolKitThread := nil;
 end;
 
 procedure TMainForm.UpdateButton(Value: boolean);
@@ -207,26 +195,26 @@ end;
 
 procedure TMainForm.DoMessage;
 begin
-  Memo.Append(ToolKitManager.FMessage);
+  Memo.Append(ToolKitThread.FMessage);
 end;
 
 { TToolKitThread }
 
-constructor TToolKitManager.Create;
+constructor TToolKitThread.Create;
 begin
-  FList := TToolkitList.Create(@OnMessage);
+  FList := TToolKitBuilder.Create(@OnMessage);
   FList.SkipVectorialUnits := Mainform.SkipVectorialUnits.Checked;
   FreeOnTerminate := True;
   inherited Create(True);
 end;
 
-destructor TToolKitManager.Destroy;
+destructor TToolKitThread.Destroy;
 begin
   FList.Destroy;
   inherited Destroy;
 end;
 
-procedure TToolKitManager.Execute;
+procedure TToolKitThread.Execute;
 begin
   FList.ExecutionTime := 0;
   if MainForm.OptimizeBox.Checked then
@@ -237,7 +225,7 @@ begin
   FList.Run;
 end;
 
-procedure TToolKitManager.OnMessage(const AMessage: string);
+procedure TToolKitThread.OnMessage(const AMessage: string);
 begin
   FMessage := AMessage;
   Synchronize(@MainForm.DoMessage);

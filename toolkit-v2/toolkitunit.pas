@@ -1,7 +1,7 @@
 {
   Description: Common unit.
 
-  Copyright (C) 2024 Melchiorre Caruso <melchiorrecaruso@gmail.com>
+  Copyright (C) 2023-2024 Melchiorre Caruso <melchiorrecaruso@gmail.com>
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU Lesser General Public License as published by
@@ -28,37 +28,55 @@ uses
 
 type
   TToolKitItem = record
-    FClassName:            string;
-    FOperator:             string;
-    FClassParent1:         string;
-    FClassParent2:         string;
-    FComment:              string;
-    FLongSymbol:           string;
-    FShortSymbol:          string;
-    FIdentifierSymbol:     string;
-    FBaseClass:            string;
-    FFactor:               string;
-    FPrefixes:             string;
-    FVecClass:             string;
-  end;
-
-  TToolKitExponent = record
-    FExponents: array [1..7] of longint;
     FClassName: string;
+    FOperator: string;
+    FClassParent1: string;
+    FClassParent2: string;
+    FLongSymbol:  string;
+    FShortSymbol: string;
+    FIdentifierSymbol: string;
+    FBaseClass: string;
+    FFactor: string;
+    FPrefixes: string;
+    FClassType: string;
+    FExponents: array [1..8] of longint;
   end;
 
-  TToolKitList = class(TSimulatedAnnealing)
+  TToolKitList = class
   private
-    CheckList: array of TToolKitExponent;
-    ClassList: TStringList;
-    CommUnits: TStringList;
+    FList: array of TToolKitItem;
+    function GetClassName  (const AItem: TToolKitItem): string;
+    function GetShortSymbol(const AItem: TToolKitItem): string;
+    function GetLongSymbol (const AItem: TToolKitItem): string;
+    function GetItem(Index: longint): TToolKitItem;
+    function GetCount: longint;
+  public
+    constructor Create;
+    destructor Destroy; override;
+
+    function Add(AItem: TToolKitItem): string;
+    procedure Delete(Index: longint);
+    procedure Clear;
+
+    function Search(const AClassName: string): longint;
+  public
+    property Items[Index: longint]: TToolKitItem read GetItem; default;
+    property Count: longint read GetCount;
+  end;
+
+  TToolKitBuilder = class(TSimulatedAnnealing)
+  private
+    FList: TToolKitList;
+    FClassList: TStringList;
+    FCommUnits: TStringList;
+    FOperatorList: TStringList;
 
     BaseUnitCount:     longint;
     FactoredUnitCount: longint;
     ExternalOperators: longint;
     ForcedOperators:   longint;
     InternalOperators: longint;
-    TestingCount:      longint;
+    FTestingCount:     longint;
     FSkipVectorialunits: boolean;
 
     FDocument:  TStringList;
@@ -92,13 +110,10 @@ type
     SectionB9:  TStringList;
     SectionB10: TStringList;
 
-    FList: array of TToolkitItem;
     FOnMessage: TMessageEvent;
     FMessage: string;
 
-    function GetCount: longint;
-    function GetItem(Index: longint): TToolkitItem;
-
+    // private routines
     procedure AddItem(const AItem: TToolkitItem; AddOperator: boolean);
     procedure AddBaseItem(const AItem: TToolkitItem);
     procedure AddClonedItem(const AItem: TToolkitItem);
@@ -111,14 +126,12 @@ type
     procedure AddItemOperators(const AItem: TToolkitItem);
     procedure AddVECItemOperators(const AItem: TToolkitItem);
 
-
     procedure AddQuantityOperator(const AOperator, ALeftClass, ARightClass, AResultClass: string);
     procedure AddUnitOperator    (const AOperator, ALeftClass, ARightClass, AResultClass: string; ADual: boolean);
 
     procedure AddFactoredQuantities(ABaseClass, AIdentifierSymbol, AFactor, APrefixes: string);
     procedure AddPower(AOperator, AQuantity, AResult: string);
     procedure AddHelper(AClassName, ABaseClass, AFactor: string);
-
 
     procedure AddHelperSquaredNorm(const AItem: TToolkitItem);
     procedure AddHelperNorm(const AItem: TToolkitItem);
@@ -129,29 +142,25 @@ type
     procedure AddHelperWEDGE    (const ABaseUnit, ABaseQuantity, AInputQuantity, AResultQuantity: string);
     procedure AddHelperGEOMETRIC(const ABaseUnit, ABaseQuantity, AInputQuantity, AResultQuantity: string);
 
-    procedure AddEquivalence(AFromClass, AToClass: string);
     procedure AddResources(const AItem: TToolkitItem);
+    procedure AddEquivalence(AFromClass, AToClass: string);
 
-    procedure CheckClass(AClassName, AOperator, AClassParent1, AClassParent2: string);
-    function GetIndex(const AClassName: string): longint;
-    function GetSIunit(Index: longint): string;
-    function Find(const S: string; List: TStringList): longint;
-
+    function  SearchLine(const ALine: string; ASection: TStringList): longint;
     procedure Run(ASolution: TSolution);
   public
     constructor Create(OnMessageEvent: TMessageEvent);
     destructor Destroy; override;
-    function CalculateEnergy(const ASolution: TSolution): double; override;
+
+    function  CalculateEnergy(const ASolution: TSolution): double; override;
     procedure CreateSolution(var ANeighbour: TSolution); override;
+
     procedure Add(const AItem: TToolkitItem);
     procedure Run;
   public
     property SkipVectorialUnits: boolean read FSkipVectorialunits write FSkipVectorialunits;
-    property Items[Index: longint]: TToolkitItem read GetItem; Default;
     property Document: TStringList read FDocument;
     property Messages: TStringList read FMessages;
     property Message: string read FMessage;
-    property Count: longint read GetCount;
   end;
 
 
@@ -167,60 +176,54 @@ const
   adimTVECinc = 'adimTVEC.inc';
   adimMVECinc = 'adimMVEC.inc';
 
-// TToolkitList
+// TToolKitBuilder
 
-constructor TToolkitList.Create(OnMessageEvent: TMessageEvent);
+constructor TToolKitBuilder.Create(OnMessageEvent: TMessageEvent);
 begin
   inherited Create(OnMessageEvent);
-  FOnMessage := OnMessageEvent;
-  FList      := nil;
-  ClassList  := TStringList.Create;
-  CommUnits  := TStringList.Create;
-  FDocument  := TStringList.Create;
-  FMessages  := TStringList.Create;
+  FList         := TToolKitList.Create;
+  FDocument     := TStringList.Create;
+  FMessages     := TStringList.Create;
+  FOnMessage    := OnMessageEvent;
+  FClassList    := TStringList.Create;
+  FClassList.Sorted := TRUE;
+
+  FCommUnits    := TStringList.Create;
+  FOperatorList := TStringList.Create;
+  FOperatorList.Sorted := TRUE;
 
   FSkipVectorialunits := False;
-  TestingCount := 0;
-  ClassList.Sorted := TRUE;
-  Randomize;
+  FTestingCount := 0;
 end;
 
-destructor TToolkitList.Destroy;
+destructor TToolKitBuilder.Destroy;
 begin
-  FList := nil;
-  ClassList.Destroy;
-  CommUnits.Destroy;
+  FOperatorList.Destroy;
+  FCommUnits.Destroy;
+  FClassList.Destroy;
+
   FMessages.Destroy;
   FDocument.Destroy;
+  FList.Destroy;
   inherited Destroy;
 end;
 
-procedure TToolkitList.Add(const AItem: TToolkitItem);
-var
-  index: longint;
+procedure TToolKitBuilder.Add(const AItem: TToolkitItem);
 begin
-  index := Length(FList);
-  SetLength(FList, index + 1);
-  FList[index] := AItem;
-end;
-
-function TToolkitList.GetItem(Index: longint): TToolkitItem;
-begin
-  Result := FList[Index];
-end;
-
-function TToolkitList.GetCount: longint;
-begin
-  Result := Length(FList);
-end;
-
-procedure TToolkitList.AddItem(const AItem: TToolkitItem; AddOperator: boolean);
-begin
-  if ClassList.IndexOf(GetQuantityType(AItem.FClassName)) = -1 then
+  FMessage := FList.Add(AItem);
+  if FMessage <> '' then
   begin
-    ClassList.Append(GetQuantityType(AItem.FClassName));
+    FMessages.Append(FMessage);
+  end;
+end;
 
-    if AItem.FVecClass = '' then
+procedure TToolKitBuilder.AddItem(const AItem: TToolkitItem; AddOperator: boolean);
+begin
+  if FClassList.IndexOf(GetQuantityType(AItem.FClassName)) = -1 then
+  begin
+    FClassList.Append(GetQuantityType(AItem.FClassName));
+
+    if AItem.FClassType = '' then
     begin
       if (AItem.FBaseClass = '') then AddBaseItem  (AItem) else
       if (AItem.FFactor    = '') then AddClonedItem(AItem) else AddFactoredItem(AItem);
@@ -234,7 +237,7 @@ begin
 
   if AddOperator then
   begin
-    if AItem.FVecClass = '' then
+    if AItem.FClassType = '' then
     begin
       AddItemOperators(AItem)
     end else
@@ -245,7 +248,7 @@ begin
   end;
 end;
 
-procedure TToolkitList.AddBaseItem(const AItem: TToolkitItem);
+procedure TToolKitBuilder.AddBaseItem(const AItem: TToolkitItem);
 begin
   // BASE UNIT
   if (AItem.FOperator = '*') then
@@ -279,7 +282,7 @@ begin
   Inc(BaseUnitCount);
 end;
 
-procedure TToolkitList.AddClonedItem(const AItem: TToolkitItem);
+procedure TToolKitBuilder.AddClonedItem(const AItem: TToolkitItem);
 begin
   // CLONED UNIT
   SectionA2.Append('');
@@ -309,7 +312,7 @@ begin
   Inc(FactoredUnitCount);
 end;
 
-procedure TToolkitList.AddFactoredItem(const AItem: TToolkitItem);
+procedure TToolKitBuilder.AddFactoredItem(const AItem: TToolkitItem);
 begin
   // FACTORED UNIT
   SectionA2.Append('');
@@ -346,16 +349,16 @@ begin
   Inc(FactoredUnitCount);
 end;
 
-procedure TToolkitList.AddVECBaseItem(const AItem: TToolkitItem);
+procedure TToolKitBuilder.AddVECBaseItem(const AItem: TToolkitItem);
 var
   BaseInc: string;
 begin
   // VEC UNIT
   BaseInc := 'ERROR';
-  if UpperCase(AItem.FVecClass) = 'TVECTOR'      then BaseInc := adimVECinc;
-  if UpperCase(AItem.FVecClass) = 'TBIVECTOR'    then BaseInc := adimBVECinc;
-  if UpperCase(AItem.FVecClass) = 'TTRIVECTOR'   then BaseInc := adimTVECinc;
-  if UpperCase(AItem.FVecClass) = 'TMULTIVECTOR' then BaseInc := adimMVECinc;
+  if UpperCase(AItem.FClassType) = 'TVECTOR'      then BaseInc := adimVECinc;
+  if UpperCase(AItem.FClassType) = 'TBIVECTOR'    then BaseInc := adimBVECinc;
+  if UpperCase(AItem.FClassType) = 'TTRIVECTOR'   then BaseInc := adimTVECinc;
+  if UpperCase(AItem.FClassType) = 'TMULTIVECTOR' then BaseInc := adimMVECinc;
 
   SectionA2.Insert(3, '');
   SectionA2.Insert(4, Format(INTF_QUANTITY, [GetQuantityType(AItem.FClassName), BaseInc]));
@@ -373,16 +376,16 @@ begin
   Inc(BaseUnitCount);
 end;
 
-procedure TToolkitList.AddVECClonedItem(const AItem: TToolkitItem);
+procedure TToolKitBuilder.AddVECClonedItem(const AItem: TToolkitItem);
 var
   BaseInc: string;
 begin
   // VEC CLONED UNIT
   BaseInc := adiminc;
-  if UpperCase(AItem.FVecClass) = 'TVECTOR'      then BaseInc := adimVECinc;
-  if UpperCase(AItem.FVecClass) = 'TBIVECTOR'    then BaseInc := adimBVECinc;
-  if UpperCase(AItem.FVecClass) = 'TTRIVECTOR'   then BaseInc := adimTVECinc;
-  if UpperCase(AItem.FVecClass) = 'TMULTIVECTOR' then BaseInc := adimMVECinc;
+  if UpperCase(AItem.FClassType) = 'TVECTOR'      then BaseInc := adimVECinc;
+  if UpperCase(AItem.FClassType) = 'TBIVECTOR'    then BaseInc := adimBVECinc;
+  if UpperCase(AItem.FClassType) = 'TTRIVECTOR'   then BaseInc := adimTVECinc;
+  if UpperCase(AItem.FClassType) = 'TMULTIVECTOR' then BaseInc := adimMVECinc;
 
   SectionA2.Append('');
   SectionA2.Append(Format(INTF_NOP, []));
@@ -404,16 +407,16 @@ begin
   Inc(FactoredUnitCount);
 end;
 
-procedure TToolkitList.AddVECFactoredItem(const AItem: TToolkitItem);
+procedure TToolKitBuilder.AddVECFactoredItem(const AItem: TToolkitItem);
 var
   BaseInc: string;
 begin
   // VEC FACTORED UNIT
   BaseInc := adiminc;
-  if UpperCase(AItem.FVecClass) = 'TVECTOR'      then BaseInc := adimVECinc;
-  if UpperCase(AItem.FVecClass) = 'TBIVECTOR'    then BaseInc := adimBVECinc;
-  if UpperCase(AItem.FVecClass) = 'TTRIVECTOR'   then BaseInc := adimTVECinc;
-  if UpperCase(AItem.FVecClass) = 'TMULTIVECTOR' then BaseInc := adimMVECinc;
+  if UpperCase(AItem.FClassType) = 'TVECTOR'      then BaseInc := adimVECinc;
+  if UpperCase(AItem.FClassType) = 'TBIVECTOR'    then BaseInc := adimBVECinc;
+  if UpperCase(AItem.FClassType) = 'TTRIVECTOR'   then BaseInc := adimTVECinc;
+  if UpperCase(AItem.FClassType) = 'TMULTIVECTOR' then BaseInc := adimMVECinc;
 
   SectionA2.Append('');
   SectionA2.Append(Format(INTF_NOP, []));
@@ -442,12 +445,10 @@ begin
   Inc(FactoredUnitCount);
 end;
 
-procedure TToolkitList.AddItemOperators(const AItem: TToolkitItem);
+procedure TToolKitBuilder.AddItemOperators(const AItem: TToolkitItem);
 begin
   if (AItem.FBaseClass = '') then
   begin
-    CheckClass(AItem.FClassName, AItem.FOperator, AItem.FClassParent1, AItem.FClassParent2);
-
     if AItem.FOperator = '*' then
     begin
                                                          AddQuantityOperator('*', GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName));
@@ -469,10 +470,10 @@ begin
     end else
     if AItem.FOperator = '/' then
     begin
-      AddQuantityOperator('/', GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName   ));
-      AddQuantityOperator('*', GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName),    GetQuantityType(AItem.FClassParent1));
-      AddQuantityOperator('*', GetQuantityType(AItem.FClassName),    GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1));
-      AddQuantityOperator('/', GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassName),    GetQuantityType(AItem.FClassParent2));
+                                                      AddQuantityOperator('/', GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName   ));
+                                                      AddQuantityOperator('*', GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName),    GetQuantityType(AItem.FClassParent1));
+      if AItem.FClassName <> AItem.FClassParent2 then AddQuantityOperator('*', GetQuantityType(AItem.FClassName),    GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1));
+      if AItem.FClassName <> AItem.FClassParent2 then AddQuantityOperator('/', GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassName),    GetQuantityType(AItem.FClassParent2));
 
       // OP1: C=A/B
       // OP2: B*C=A
@@ -493,13 +494,17 @@ begin
     if Pos('POWER', UpperCase(AItem.FOperator)) > 0 then
     begin
       AddPower(AItem.FOperator, AItem.FClassParent1, AItem.FClassName);
+    end else
+    if Pos('ROOT', UpperCase(AItem.FOperator)) > 0 then
+    begin
+      AddPower(StringReplace(UpperCase(AItem.FOperator), 'ROOT', 'POWER', []), AItem.FClassName, AItem.FClassParent1);
     end;
 
   end else
     if AItem.FOperator = '=' then
     begin
       if AItem.FBaseClass <> '' then;
-        CommUnits.Add(GetQuantityType(AItem.FBaseClass));
+        FCommUnits.Add(GetQuantityType(AItem.FBaseClass));
 
       SectionA7.Append('');
       SectionB7.Append('');
@@ -512,7 +517,7 @@ begin
     if AItem.FOperator = ':=' then
     begin
       if AItem.FBaseClass <> '' then;
-        CommUnits.Add(GetQuantityType(AItem.FBaseClass));
+        FCommUnits.Add(GetQuantityType(AItem.FBaseClass));
 
       SectionA7.Append('');
       SectionB7.Append('');
@@ -528,16 +533,14 @@ begin
     end;
 end;
 
-procedure TToolkitList.AddVECItemOperators(const AItem: TToolkitItem);
+procedure TToolKitBuilder.AddVECItemOperators(const AItem: TToolkitItem);
 begin
   if (AItem.FBaseClass = '') then
   begin
-  //CheckClass(AItem.FClassName, AItem.FOperator, AItem.FClassParent1, AItem.FClassParent2);
-
     if AItem.FOperator = '*' then
     begin
-      AddQuantityOperator('*', GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName   ));
-      AddQuantityOperator('*', GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassName   ));
+      AddQuantityOperator('*', GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName));
+      AddQuantityOperator('*', GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassName));
 
       if IsAVector(AItem.FClassName) and IsAVector(AItem.FClassParent1) then
         AddHelperDOT(GetUnitTypeHelper(AItem.FClassName), GetQuantityType(AItem.FClassName), GetReciprocalQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2))
@@ -671,8 +674,8 @@ begin
 
       if AItem.FClassParent1 = 'TTrivector'   then  AddQuantityOperator('*', GetQuantityType(AItem.FClassParent2), 'TTriversor123', GetQuantityType(AItem.FClassName));
       if AItem.FClassParent1 = 'TBivector'    then  AddQuantityOperator('*', GetQuantityType(AItem.FClassParent2), 'TBiversor12',   GetQuantityType(AItem.FClassName));
+      if AItem.FClassParent1 = 'TBivector'    then  AddQuantityOperator('*', GetQuantityType(AItem.FClassParent2), 'TBiversor13',   GetQuantityType(AItem.FClassName));
       if AItem.FClassParent1 = 'TBivector'    then  AddQuantityOperator('*', GetQuantityType(AItem.FClassParent2), 'TBiversor23',   GetQuantityType(AItem.FClassName));
-      if AItem.FClassParent1 = 'TBivector'    then  AddQuantityOperator('*', GetQuantityType(AItem.FClassParent2), 'TBiversor31',   GetQuantityType(AItem.FClassName));
       if AItem.FClassParent1 = 'TVector'      then  AddQuantityOperator('*', GetQuantityType(AItem.FClassParent2), 'TVersor1',      GetQuantityType(AItem.FClassName));
       if AItem.FClassParent1 = 'TVector'      then  AddQuantityOperator('*', GetQuantityType(AItem.FClassParent2), 'TVersor2',      GetQuantityType(AItem.FClassName));
       if AItem.FClassParent1 = 'TVector'      then  AddQuantityOperator('*', GetQuantityType(AItem.FClassParent2), 'TVersor3',      GetQuantityType(AItem.FClassName));
@@ -694,7 +697,7 @@ begin
     begin
 
       if AItem.FBaseClass <> '' then;
-        CommUnits.Add(GetQuantityType(AItem.FBaseClass));
+        FCommUnits.Add(GetQuantityType(AItem.FBaseClass));
 
       SectionA7.Append('');
       SectionB7.Append('');
@@ -707,15 +710,15 @@ begin
 
 end;
 
-procedure TToolkitList.AddQuantityOperator(const AOperator, ALeftClass, ARightClass, AResultClass: string);
+procedure TToolKitBuilder.AddQuantityOperator(const AOperator, ALeftClass, ARightClass, AResultClass: string);
 var
   i, iL, iR, iX: longint;
   j: longint;
   ABaseClass, S: string;
 begin
-  iL := Find(Format(INTF_QUANTITY, [ALeftClass  , '*']), SectionA2);
-  iR := Find(Format(INTF_QUANTITY, [ARightClass , '*']), SectionA2);
-  iX := Find(Format(INTF_QUANTITY, [AResultClass, '*']), SectionA2);
+  iL := SearchLine(Format(INTF_QUANTITY, [ALeftClass  , '*']), SectionA2);
+  iR := SearchLine(Format(INTF_QUANTITY, [ARightClass , '*']), SectionA2);
+  iX := SearchLine(Format(INTF_QUANTITY, [AResultClass, '*']), SectionA2);
 
   ABaseClass := '';
   i := Max(iL, iR);
@@ -723,19 +726,19 @@ begin
   if i = iR then ABaseClass := ARightClass;
   if i < iX then ABaseClass := '';
 
-  for j := 0 to CommUnits.Count -1 do
+  for j := 0 to FCommUnits.Count -1 do
   begin
     if ABaseClass <> '' then
     begin
-      if (i = iL) and (ALeftClass  = CommUnits[j]) then ABaseClass := '';
-      if (i = iR) and (ARightClass = CommUnits[j]) then ABaseClass := '';
+      if (i = iL) and (ALeftClass  = FCommUnits[j]) then ABaseClass := '';
+      if (i = iR) and (ARightClass = FCommUnits[j]) then ABaseClass := '';
       if ABaseClass = '' then Inc(ForcedOperators);
     end;
   end;
 
-  if ClassList.IndexOf(ABaseClass + '.' + ALeftClass + AOperator + ARightClass) = -1 then
+  if FClassList.IndexOf(ABaseClass + '.' + ALeftClass + AOperator + ARightClass) = -1 then
   begin
-    ClassList.Append(ABaseClass + '.' + ALeftClass + AOperator + ARightClass);
+    FClassList.Append(ABaseClass + '.' + ALeftClass + AOperator + ARightClass);
 
     j := -1;
     if ABaseClass = '' then
@@ -746,7 +749,7 @@ begin
       Inc(ExternalOperators);
     end else
     begin
-      j := Find(Format(IMPL_QUANTITY, [ABaseClass, '*']), SectionB2);
+      j := SearchLine(Format(IMPL_QUANTITY, [ABaseClass, '*']), SectionB2);
       SectionA2.Insert(i + 1, Format(INTF_OP_CLASS, [            AOperator, ALeftClass, ARightClass, AResultClass]));
       SectionB2.Insert(j + 1, '');
       SectionB2.Insert(j + 2, Format(IMPL_OP_CLASS, [ABaseClass, AOperator, ALeftClass, ARightClass, AResultClass]));
@@ -791,18 +794,18 @@ begin
     FMessages.Append('ERROR: operator ' + AOperator + '(' + ALeftClass + '; ' + ARightClass + ') : ' + AResultClass + '; already esists.');
 end;
 
-procedure TToolkitList.AddUnitOperator(const AOperator, ALeftClass, ARightClass, AResultClass: string; ADual: boolean);
+procedure TToolKitBuilder.AddUnitOperator(const AOperator, ALeftClass, ARightClass, AResultClass: string; ADual: boolean);
 var
   i: longint;
   BaseQuantity: string;
   FuncLine: string;
 begin
   BaseQuantity := GetQuantityType(GetBaseClass(ARightClass));
-  if ClassList.IndexOf(ALeftClass + AOperator + ARightClass) = -1 then
+  if FClassList.IndexOf(ALeftClass + AOperator + ARightClass) = -1 then
   begin
-    ClassList.Append(ALeftClass + AOperator + ARightClass);
+    FClassList.Append(ALeftClass + AOperator + ARightClass);
 
-    i := Find(Format(INTF_UNIT, [BaseQuantity, ARightClass, '*']), SectionA3);
+    i := SearchLine(Format(INTF_UNIT, [BaseQuantity, ARightClass, '*']), SectionA3);
 
     SectionA3 .Insert(i + 1, Format(INTF_OP_CLASS, [             AOperator, ALeftClass, ARightClass, AResultClass]));
     SectionB31.Append('');
@@ -838,43 +841,44 @@ begin
   end;
 end;
 
-procedure TToolkitList.AddPower(AOperator, AQuantity, AResult: string);
+procedure TToolKitBuilder.AddPower(AOperator, AQuantity, AResult: string);
 var
   S1, S2, S3: string;
 begin
   S1 := '';
   S2 := '';
   S3 := '';
+
   if ('squarepower' = LowerCase(AOperator)) then
   begin
     S1 := 'Square';
     S2 := '2';
     S3 := '1/2';
   end else
-    if ('cubicpower' = LowerCase(AOperator)) then
-    begin
-      S1 := 'Cubic';
-      S2 := '3';
-      S3 := '1/3';
-    end else
-      if ('quarticpower' = LowerCase(AOperator)) then
-      begin
-        S1 := 'Quartic';
-        S2 := '4';
-        S3 := '1/4';
-      end else
-        if ('quinticpower' = LowerCase(AOperator)) then
-        begin
-          S1 := 'Quintic';
-          S2 := '5';
-          S3 := '1/5';
-        end else
-          if ('sexticpower' = LowerCase(AOperator)) then
-          begin
-            S1 := 'Sextic';
-            S2 := '6';
-            S3 := '1/6';
-          end;
+  if ('cubicpower' = LowerCase(AOperator)) then
+  begin
+    S1 := 'Cubic';
+    S2 := '3';
+    S3 := '1/3';
+  end else
+  if ('quarticpower' = LowerCase(AOperator)) then
+  begin
+    S1 := 'Quartic';
+    S2 := '4';
+    S3 := '1/4';
+  end else
+  if ('quinticpower' = LowerCase(AOperator)) then
+  begin
+    S1 := 'Quintic';
+    S2 := '5';
+    S3 := '1/5';
+  end else
+  if ('sexticpower' = LowerCase(AOperator)) then
+  begin
+    S1 := 'Sextic';
+    S2 := '6';
+    S3 := '1/6';
+  end;
 
   AQuantity := GetQuantityType(AQuantity);
   AResult   := GetQuantityType(AResult);
@@ -895,7 +899,7 @@ begin
   SectionB9.Append('');
 end;
 
-procedure TToolkitList.AddHelper(AClassName, ABaseClass, AFactor: string);
+procedure TToolKitBuilder.AddHelper(AClassName, ABaseClass, AFactor: string);
 var
   Index: longint;
 begin
@@ -923,7 +927,7 @@ begin
   SectionB8.Append('');
 end;
 
-procedure TToolkitList.AddHelperReciprocal(const AItem: TToolkitItem);
+procedure TToolKitBuilder.AddHelperReciprocal(const AItem: TToolkitItem);
 var
   Index: longint;
 begin
@@ -968,7 +972,7 @@ begin
   SectionB8.Append('');
 end;
 
-procedure TToolkitList.AddHelperSquaredNorm(const AItem: TToolkitItem);
+procedure TToolKitBuilder.AddHelperSquaredNorm(const AItem: TToolkitItem);
 var
   Index: longint;
 begin
@@ -992,7 +996,7 @@ begin
   SectionB8.Append('');
 end;
 
-procedure TToolkitList.AddHelperNorm(const AItem: TToolkitItem);
+procedure TToolKitBuilder.AddHelperNorm(const AItem: TToolkitItem);
 var
   Index: longint;
 begin
@@ -1016,7 +1020,7 @@ begin
   SectionB8.Append('');
 end;
 
-procedure TToolkitList.AddHelperDual(const AItem: TToolkitItem);
+procedure TToolKitBuilder.AddHelperDual(const AItem: TToolkitItem);
 var
   Index: longint;
 begin
@@ -1040,13 +1044,13 @@ begin
   SectionB8.Append('');
 end;
 
-procedure TToolkitList.AddHelperDOT(const ABaseUnit, ABaseQuantity, AInputQuantity, AResultQuantity: string);
+procedure TToolKitBuilder.AddHelperDOT(const ABaseUnit, ABaseQuantity, AInputQuantity, AResultQuantity: string);
 var
   Index: longint;
 begin
-  if ClassList.IndexOf(Format('function dot.%s(AValue: %s): %s;', [ABaseUnit, AInputQuantity, AResultQuantity])) = -1 then
+  if FClassList.IndexOf(Format('function dot.%s(AValue: %s): %s;', [ABaseUnit, AInputQuantity, AResultQuantity])) = -1 then
   begin
-    ClassList.Add(Format('function dot.%s(AValue: %s): %s;', [ABaseUnit, AInputQuantity, AResultQuantity]));
+    FClassList.Add(Format('function dot.%s(AValue: %s): %s;', [ABaseUnit, AInputQuantity, AResultQuantity]));
 
     Index := SectionA8.IndexOf('  ' + ABaseUnit + ' = record helper for ' + ABaseQuantity);
     if Index = -1 then
@@ -1069,13 +1073,13 @@ begin
   end;
 end;
 
-procedure TToolkitList.AddHelperWEDGE(const ABaseUnit, ABaseQuantity, AInputQuantity, AResultQuantity: string);
+procedure TToolKitBuilder.AddHelperWEDGE(const ABaseUnit, ABaseQuantity, AInputQuantity, AResultQuantity: string);
 var
   Index: longint;
 begin
-  if ClassList.IndexOf(Format('function %s.wedge(AValue: %s): %s;', [ABaseUnit, AInputQuantity, AResultQuantity]))= -1 then
+  if FClassList.IndexOf(Format('function %s.wedge(AValue: %s): %s;', [ABaseUnit, AInputQuantity, AResultQuantity]))= -1 then
   begin
-    ClassList.Add(Format('function %s.wedge(AValue: %s): %s;', [ABaseUnit, AInputQuantity, AResultQuantity]));
+    FClassList.Add(Format('function %s.wedge(AValue: %s): %s;', [ABaseUnit, AInputQuantity, AResultQuantity]));
 
     Index := SectionA8.IndexOf('  ' + ABaseUnit + ' = record helper for ' + ABaseQuantity);
     if Index = -1 then
@@ -1098,13 +1102,13 @@ begin
   end;
 end;
 
-procedure TToolkitList.AddHelperGEOMETRIC(const ABaseUnit, ABaseQuantity, AInputQuantity, AResultQuantity: string);
+procedure TToolKitBuilder.AddHelperGEOMETRIC(const ABaseUnit, ABaseQuantity, AInputQuantity, AResultQuantity: string);
 var
   Index: longint;
 begin
-  if ClassList.IndexOf(Format('function %s.geometric(AValue: %s): %s;', [ABaseUnit, AInputQuantity, AResultQuantity]))= -1 then
+  if FClassList.IndexOf(Format('function %s.geometric(AValue: %s): %s;', [ABaseUnit, AInputQuantity, AResultQuantity]))= -1 then
   begin
-    ClassList.Add(Format('function %s.geometric(AValue: %s): %s;', [ABaseUnit, AInputQuantity, AResultQuantity]));
+    FClassList.Add(Format('function %s.geometric(AValue: %s): %s;', [ABaseUnit, AInputQuantity, AResultQuantity]));
 
     Index := SectionA8.IndexOf('  ' + ABaseUnit + ' = record helper for ' + ABaseQuantity);
     if Index = -1 then
@@ -1127,13 +1131,13 @@ begin
   end;
 end;
 
-procedure TToolkitList.AddEquivalence(AFromClass, AToClass: string);
+procedure TToolKitBuilder.AddEquivalence(AFromClass, AToClass: string);
 var
   i, iL, iR: longint;
   S: string;
 begin
-  iL := Find(Format(INTF_QUANTITY, [GetQuantityType(AFromClass), '*']), SectionA2);
-  iR := Find(Format(INTF_QUANTITY, [GetQuantityType(AToClass), '*']), SectionA2);
+  iL := SearchLine(Format(INTF_QUANTITY, [GetQuantityType(AFromClass), '*']), SectionA2);
+  iR := SearchLine(Format(INTF_QUANTITY, [GetQuantityType(AToClass), '*']), SectionA2);
 
   S := '';
   i := Max(iL, iR);
@@ -1156,7 +1160,7 @@ begin
   Inc(InternalOperators);
 end;
 
-procedure TToolkitList.AddResources(const AItem: TToolkitItem);
+procedure TToolKitBuilder.AddResources(const AItem: TToolkitItem);
 begin
   SectionA4.Append('');
   SectionA4.Append(Format('{ Quantity of %s }', [GetQuantity(AItem.FClassName)]));
@@ -1241,7 +1245,7 @@ begin
   end;
 end;
 
-procedure TToolkitList.AddFactoredQuantities(ABaseClass, AIdentifierSymbol, AFactor, APrefixes: string);
+procedure TToolKitBuilder.AddFactoredQuantities(ABaseClass, AIdentifierSymbol, AFactor, APrefixes: string);
 var
   i, j: longint;
   Params: string;
@@ -1364,7 +1368,7 @@ begin
   LocList.Destroy;
 end;
 
-procedure TToolkitList.CreateSolution(var ANeighbour: TSolution);
+procedure TToolKitBuilder.CreateSolution(var ANeighbour: TSolution);
 var
   i, j: longint;
   temp: string;
@@ -1379,7 +1383,7 @@ begin
   ANeighbour[j] := temp;
 end;
 
-function TToolkitList.CalculateEnergy(const ASolution: TSolution): double;
+function TToolKitBuilder.CalculateEnergy(const ASolution: TSolution): double;
 var
   Buffer: array[0..4095] of byte;
   i, j, AIndex, ACount, ReadSize: longint;
@@ -1453,11 +1457,11 @@ begin
   AStringList.Free;
   AProcess.Free;
 
-  Inc(TestingCount);
-  FOnMessage(' -> ' + TestingCount.ToString + ' : ' + Result.ToString);
+  Inc(FTestingCount);
+  FOnMessage(' -> ' + FTestingCount.ToString + ' : ' + Result.ToString);
 end;
 
-procedure TToolkitList.Run;
+procedure TToolKitBuilder.Run;
 var
   i, j: longint;
   S: TStringList;
@@ -1484,7 +1488,7 @@ begin
   if Length(BestSolution) = 0 then
   begin
     S := TStringList.Create;
-    for i := Low(FList) to High(FList) do
+    for i := 0 to FList.Count -1 do
     begin
       if S.IndexOf(FList[i].FClassName) = -1 then
       begin
@@ -1528,17 +1532,11 @@ begin
   end;
 end;
 
-procedure TToolkitList.Run(ASolution: TSolution);
+procedure TToolKitBuilder.Run(ASolution: TSolution);
 var
   I, J: longint;
   Stream: TResourceStream;
 begin
-  CheckList := nil;
-  ClassList.Clear;
-  CommUnits.Clear;
-  FDocument.Clear;
-  FMessages.Clear;
-
   SectionA0  := TStringList.Create;
   SectionA1  := TStringList.Create;
   SectionA2  := TStringList.Create;
@@ -1660,18 +1658,18 @@ begin
   if Length(ASolution) > 0 then
   begin
     for I := Low(ASolution) to High(ASolution) do
-      for J := Low(FList) to High(FList) do
+      for J := 0 to FList.count -1 do
         if FList[J].FClassName = ASolution[I] then
         begin
           AddItem(FList[J], FALSE);
           Break;
         end;
 
-    for J := Low(FList) to High(FList) do AddItem(FList[J], TRUE);
+    for J := 0 to FList.Count -1 do AddItem(FList[J], TRUE);
   end else
   begin
-    for J := Low(FList) to High(FList) do AddItem(FList[J], FALSE);
-    for J := Low(FList) to High(FList) do AddItem(FList[J], TRUE);
+    for J := 0 to FList.Count -1 do AddItem(FList[J], FALSE);
+    for J := 0 to FList.Count -1 do AddItem(FList[J], TRUE);
   end;
 
   SectionA0.Append('');
@@ -1747,208 +1745,442 @@ begin
   SectionA2 .Destroy;
   SectionA1 .Destroy;
   SectionA0 .Destroy;
-
-  CheckList := nil;
 end;
 
-procedure TToolkitList.CheckClass(AClassName, AOperator, AClassParent1, AClassParent2: string);
-var
-  I, Index, Index1, Index2: longint;
-  T: TToolKitExponent;
-begin
-  Index := GetIndex(AClassName);
-  if Index = -1 then
-  begin
-
-    if (GetUnitType(AClassName) = 'TKilogramUnit'        ) or
-       (GetUnitType(AClassName) = 'TMeterUnit'           ) or
-       (GetUnitType(AClassName) = 'TSecondUnit'          ) or
-       (GetUnitType(AClassName) = 'TKelvinUnit'          ) or
-       (GetUnitType(AClassName) = 'TAmpereUnit'          ) or
-       (GetUnitType(AClassName) = 'TMoleUnit'            ) or
-       (GetUnitType(AClassName) = 'TCandelaUnit'         ) or
-
-       (GetUnitType(AClassName) = 'TReservedKilogramUnit') or
-       (GetUnitType(AClassName) = 'TCLMeterUnit'         ) or
-       (GetUnitType(AClassName) = 'TCLAmpereUnit'        ) then
-    begin
-      Index := Length(CheckList);
-      SetLength(CheckList, Index + 1);
-
-      CheckList[Index].FClassName := GetUnitType(AClassName);
-      for I := Low(CheckList[Index].FExponents) to High(CheckList[Index].FExponents) do
-        CheckList[Index].FExponents[I] := 0;
-
-      if (GetUnitType(AClassName) = 'TKilogramUnit'        ) then CheckList[Index].FExponents[1] := 1;
-      if (GetUnitType(AClassName) = 'TMeterUnit'           ) then CheckList[Index].FExponents[2] := 1;
-      if (GetUnitType(AClassName) = 'TSecondUnit'          ) then CheckList[Index].FExponents[3] := 1;
-      if (GetUnitType(AClassName) = 'TKelvinUnit'          ) then CheckList[Index].FExponents[4] := 1;
-      if (GetUnitType(AClassName) = 'TAmpereUnit'          ) then CheckList[Index].FExponents[5] := 1;
-      if (GetUnitType(AClassName) = 'TMoleUnit'            ) then CheckList[Index].FExponents[6] := 1;
-      if (GetUnitType(AClassName) = 'TCandelaUnit'         ) then CheckList[Index].FExponents[7] := 1;
-
-      if (GetUnitType(AClassName) = 'TReservedKilogramUnit') then CheckList[Index].FExponents[1] := 1;
-      if (GetUnitType(AClassName) = 'TCLMeterUnit'         ) then CheckList[Index].FExponents[2] := 1;
-      if (GetUnitType(AClassName) = 'TCLAmpereUnit'        ) then CheckList[Index].FExponents[5] := 1;
-
-    end else
-    begin
-
-      Index1 := GetIndex(AClassParent1);
-      Index2 := GetIndex(AClassParent2);
-      if (Index1 = -1) and (Index2 = -1) then
-      begin
-        if (GetUnitType(AClassName) <> 'TRadianUnit'             ) and
-           (GetUnitType(AClassName) <> 'TReciprocalRadianUnit'   ) and
-           (GetUnitType(AClassName) <> 'TSteradianUnit'          ) and
-           (GetUnitType(AClassName) <> 'TReciprocalSteradianUnit') then
-        begin
-          FMessages.Append(Format('WARNING: Unable to find parent classes for %s unit.', [GetUnitType(AClassName)]));
-        end;
-        Exit;
-      end;
-
-      T.FClassName := GetUnitType(AClassName);
-      for I := Low(T.FExponents) to High(T.FExponents) do
-      begin
-        T.FExponents[I] := 0;
-
-        if Index1 <> -1 then
-        begin
-          if AOperator = 'RECIPROCAL' then
-            T.FExponents[I] := -CheckList[Index1].FExponents[I]
-          else
-            T.FExponents[I] :=  CheckList[Index1].FExponents[I];
-        end;
-
-        if Index2 <> -1 then
-        begin
-          if AOperator = '*' then
-            T.FExponents[I] := T.FExponents[I] + CheckList[Index2].FExponents[I]
-          else
-            if AOperator = '/' then
-              T.FExponents[I] := T.FExponents[I] - CheckList[Index2].FExponents[I];
-        end;
-      end;
-
-      for I := Low(CheckList) to High(CheckList) do
-      begin
-        if (CheckList[I].FExponents[1] = T.FExponents[1]) and
-           (CheckList[I].FExponents[2] = T.FExponents[2]) and
-           (CheckList[I].FExponents[3] = T.FExponents[3]) and
-           (CheckList[I].FExponents[4] = T.FExponents[4]) and
-           (CheckList[I].FExponents[5] = T.FExponents[5]) and
-           (CheckList[I].FExponents[6] = T.FExponents[6]) and
-           (CheckList[I].FExponents[7] = T.FExponents[7]) then
-        begin
-          FMessages.Append('WARNING: ' + CheckList[I].FClassName + ' is equal to ' + GetUnitType(AClassName) + ' ' + GetSIUnit(I) + ';');
-        end;
-      end;
-
-      Index := Length(CheckList);
-      SetLength(CheckList, Index + 1);
-
-      CheckList[Index].FClassName := T.FClassName;
-      CheckList[Index].FExponents[1] := T.FExponents[1];
-      CheckList[Index].FExponents[2] := T.FExponents[2];
-      CheckList[Index].FExponents[3] := T.FExponents[3];
-      CheckList[Index].FExponents[4] := T.FExponents[4];
-      CheckList[Index].FExponents[5] := T.FExponents[5];
-      CheckList[Index].FExponents[6] := T.FExponents[6];
-      CheckList[Index].FExponents[7] := T.FExponents[7];
-    end;
-
-  end else
-  begin
-
-    T := CheckList[Index];
-    for I := Low(CheckList) to High(CheckList) do
-    begin
-      if (CheckList[I].FClassName = T.FClassName) then
-      begin
-        if (CheckList[I].FExponents[1] <> T.FExponents[1]) or
-           (CheckList[I].FExponents[2] <> T.FExponents[2]) or
-           (CheckList[I].FExponents[3] <> T.FExponents[3]) or
-           (CheckList[I].FExponents[4] <> T.FExponents[4]) or
-           (CheckList[I].FExponents[5] <> T.FExponents[5]) or
-           (CheckList[I].FExponents[6] <> T.FExponents[6]) or
-           (CheckList[I].FExponents[7] <> T.FExponents[7]) then
-        begin
-          FMessages.Append('ERROR:   ' + CheckList[I].FClassName + ' doesn''t match previous declaration ' + GetSIUnit(I) + ';');
-        end;
-      end;
-    end;
-
-  end;
-end;
-
-function TToolkitList.GetIndex(const AClassName: string): longint;
-var
-  I: longint;
-begin
-  Result := -1;
-  for I := Low(CheckList) to High(CheckList) do
-    if GetUnitType(AClassName) = CheckList[I].FClassName then Exit(I);
-end;
-
-function TToolkitList.GetSIunit(Index: longint): string;
-var
-  I: longint;
-begin
-  Result := '';
-  for I := Low(CheckList[Index].FExponents) to High(CheckList[Index].FExponents) do
-    if CheckList[Index].FExponents[I] > 0 then
-    begin
-      case I of
-        1: Result := Result + '.kg';
-        2: Result := Result + '.m';
-        3: Result := Result + '.s';
-        4: Result := Result + '.K';
-        5: Result := Result + '.A';
-        6: Result := Result + '.mol';
-        7: Result := Result + '.cd';
-      end;
-      if CheckList[Index].FExponents[I] > 1 then
-        Result := Result + IntToStr(CheckList[Index].FExponents[I]);
-    end;
-
-  for I := Low(CheckList[Index].FExponents) to High(CheckList[Index].FExponents) do
-    if CheckList[Index].FExponents[I] < 0 then
-    begin
-      case I of
-        1: Result := Result + '/kg';
-        2: Result := Result + '/m';
-        3: Result := Result + '/s';
-        4: Result := Result + '/K';
-        5: Result := Result + '/A';
-        6: Result := Result + '/mol';
-        7: Result := Result + '/cd';
-      end;
-      if CheckList[Index].FExponents[I] < -1 then
-        Result := Result + IntToStr(Abs(CheckList[Index].FExponents[I]));
-    end;
-
-  if Pos('.', Result) = 1 then
-  begin
-    Delete(Result, 1, 1);
-  end;
-
-  if Pos('/', Result) = 1 then
-  begin
-    Result := '1' + Result;
-  end;
-  Result := '[ ' + Result + ' ]';
-end;
-
-function TToolkitList.Find(const S: string; List: TStringList): longint;
+function TToolKitBuilder.SearchLine(const ALine: string; ASection: TStringList): longint;
 var
   i: longint;
 begin
-  for i := 0 to List.Count -1 do
+  for i := 0 to ASection.Count -1 do
   begin
-    if IsWild(List[i], S, False) then Exit(i);
+    if IsWild(ASection[i], ALine, False) then Exit(i);
   end;
   Result := -1;
+end;
+
+// TToolKitList
+
+constructor TToolKitList.Create;
+begin
+  inherited Create;
+  FList := nil;
+end;
+
+destructor TToolKitList.Destroy;
+begin
+  FList := nil;
+  inherited Destroy;
+end;
+
+function TToolKitList.GetItem(Index: longint): TToolKitItem;
+begin
+  result := FList[Index];
+end;
+
+function TToolKitList.GetCount: longint;
+begin
+  result := Length(FList);
+end;
+
+function TToolKitList.Add(AItem: TToolKitItem): string;
+var
+  i, j, k: longint;
+  T: TToolKitItem;
+  T1, T2: string;
+begin
+  result := '';
+  if (AItem.FBaseClass = '') then
+  begin
+
+    if AItem.FClassName = 'TKilogram?' then AItem.FExponents[1] := 2 else AItem.FExponents[1] := 0;
+    if AItem.FClassName = 'TMeter?'    then AItem.FExponents[2] := 2 else AItem.FExponents[2] := 0;
+    if AItem.FClassName = 'TSecond?'   then AItem.FExponents[3] := 2 else AItem.FExponents[3] := 0;
+    if AItem.FClassName = 'TKelvin?'   then AItem.FExponents[4] := 2 else AItem.FExponents[4] := 0;
+    if AItem.FClassName = 'TAmpere?'   then AItem.FExponents[5] := 2 else AItem.FExponents[5] := 0;
+    if AItem.FClassName = 'TMole?'     then AItem.FExponents[6] := 2 else AItem.FExponents[6] := 0;
+    if AItem.FClassName = 'TCandela?'  then AItem.FExponents[7] := 2 else AItem.FExponents[7] := 0;
+    if AItem.FClassName = 'TRadian?'   then AItem.FExponents[8] := 2 else AItem.FExponents[8] := 0;
+
+    i := Search(AItem.FClassParent1);
+    j := Search(AItem.FClassParent2);
+    if (i <> -1) then
+    begin
+      AItem.FExponents[1] := FList[i].FExponents[1];
+      AItem.FExponents[2] := FList[i].FExponents[2];
+      AItem.FExponents[3] := FList[i].FExponents[3];
+      AItem.FExponents[4] := FList[i].FExponents[4];
+      AItem.FExponents[5] := FList[i].FExponents[5];
+      AItem.FExponents[6] := FList[i].FExponents[6];
+      AItem.FExponents[7] := FList[i].FExponents[7];
+      AItem.FExponents[8] := FList[i].FExponents[8];
+    end;
+
+    if (j <> -1) then
+    begin
+      if (UpperCase(AItem.FOperator) = '/'         ) or
+         (UpperCase(AItem.FOperator) = '/='        ) or
+         (UpperCase(AItem.FOperator) = 'DOT/'      ) or
+         (UpperCase(AItem.FOperator) = 'WEDGE/'    ) or
+         (UpperCase(AItem.FOperator) = 'CROSS/'    ) or
+         (UpperCase(AItem.FOperator) = 'GEOMETRIC/') then
+      begin
+        AItem.FExponents[1] := AItem.FExponents[1] - FList[j].FExponents[1];
+        AItem.FExponents[2] := AItem.FExponents[2] - FList[j].FExponents[2];
+        AItem.FExponents[3] := AItem.FExponents[3] - FList[j].FExponents[3];
+        AItem.FExponents[4] := AItem.FExponents[4] - FList[j].FExponents[4];
+        AItem.FExponents[5] := AItem.FExponents[5] - FList[j].FExponents[5];
+        AItem.FExponents[6] := AItem.FExponents[6] - FList[j].FExponents[6];
+        AItem.FExponents[7] := AItem.FExponents[7] - FList[j].FExponents[7];
+        AItem.FExponents[8] := AItem.FExponents[8] - FList[j].FExponents[8];
+      end else
+      if (UpperCase(AItem.FOperator) = '*'        ) or
+         (UpperCase(AItem.FOperator) = '*='       ) or
+         (UpperCase(AItem.FOperator) = 'DOT'      ) or
+         (UpperCase(AItem.FOperator) = 'WEDGE'    ) or
+         (UpperCase(AItem.FOperator) = 'CROSS'    ) or
+         (UpperCase(AItem.FOperator) = 'GEOMETRIC') then
+      begin
+        AItem.FExponents[1] := AItem.FExponents[1] + FList[j].FExponents[1];
+        AItem.FExponents[2] := AItem.FExponents[2] + FList[j].FExponents[2];
+        AItem.FExponents[3] := AItem.FExponents[3] + FList[j].FExponents[3];
+        AItem.FExponents[4] := AItem.FExponents[4] + FList[j].FExponents[4];
+        AItem.FExponents[5] := AItem.FExponents[5] + FList[j].FExponents[5];
+        AItem.FExponents[6] := AItem.FExponents[6] + FList[j].FExponents[6];
+        AItem.FExponents[7] := AItem.FExponents[7] + FList[j].FExponents[7];
+        AItem.FExponents[8] := AItem.FExponents[8] + FList[j].FExponents[8];
+      end;
+
+    end else
+    begin
+      k := 0;
+      if UpperCase(AItem.FOperator) = 'RECIPROCAL'   then k := -1 else
+      if UpperCase(AItem.FOperator) = 'SQUAREROOT'   then k := -2 else
+      if UpperCase(AItem.FOperator) = 'CUBICROOT'    then k := -3 else
+      if UpperCase(AItem.FOperator) = 'SQUAREPOWER'  then k :=  2 else
+      if UpperCase(AItem.FOperator) = 'CUBICPOWER'   then k :=  3 else
+      if UpperCase(AItem.FOperator) = 'QUARTICPOWER' then k :=  4 else
+      if UpperCase(AItem.FOperator) = 'QUINTICPOWER' then k :=  5 else
+      if UpperCase(AItem.FOperator) = 'SEXTICPOWER'  then k :=  6 else
+      if UpperCase(AItem.FOperator) = 'NORM2'        then k := -2 else
+      if UpperCase(AItem.FOperator) = 'NORM'         then k :=  0 else
+      if UpperCase(AItem.FOperator) = 'DUAL'         then k :=  0 else
+      if UpperCase(AItem.FOperator) = 'EXTRACT'      then k :=  0 else
+      if UpperCase(AItem.FOperator) = 'EXPORT'       then k :=  0 else
+      if UpperCase(AItem.FOperator) = ''             then k :=  0;
+
+      if (k = -1) or (k > 0) then
+      begin
+        AItem.FExponents[1] := AItem.FExponents[1] * k;
+        AItem.FExponents[2] := AItem.FExponents[2] * k;
+        AItem.FExponents[3] := AItem.FExponents[3] * k;
+        AItem.FExponents[4] := AItem.FExponents[4] * k;
+        AItem.FExponents[5] := AItem.FExponents[5] * k;
+        AItem.FExponents[6] := AItem.FExponents[6] * k;
+        AItem.FExponents[7] := AItem.FExponents[7] * k;
+        AItem.FExponents[8] := AItem.FExponents[8] * k;
+      end else
+      if (k < 0) then
+      begin
+        AItem.FExponents[1] := AItem.FExponents[1] div Abs(k);
+        AItem.FExponents[2] := AItem.FExponents[2] div Abs(k);
+        AItem.FExponents[3] := AItem.FExponents[3] div Abs(k);
+        AItem.FExponents[4] := AItem.FExponents[4] div Abs(k);
+        AItem.FExponents[5] := AItem.FExponents[5] div Abs(k);
+        AItem.FExponents[6] := AItem.FExponents[6] div Abs(k);
+        AItem.FExponents[7] := AItem.FExponents[7] div Abs(k);
+        AItem.FExponents[8] := AItem.FExponents[8] div Abs(k);
+      end;
+    end;
+
+    // check
+    for i := Low(FList) to High(FList) do
+    begin
+      T  := FList[i];
+      if (T.FBaseClass = '') then
+      begin
+        T1 := StringReplace(    T.FClassName, 'T' + VECPrefix, 'T', []);
+        T2 := StringReplace(AItem.FClassName, 'T' + VECPrefix, 'T', []);
+
+        if (T1              <> T2                 ) and
+           (T.FExponents[1] =  AItem.FExponents[1]) and
+           (T.FExponents[2] =  AItem.FExponents[2]) and
+           (T.FExponents[3] =  AItem.FExponents[3]) and
+           (T.FExponents[4] =  AItem.FExponents[4]) and
+           (T.FExponents[5] =  AItem.FExponents[5]) and
+           (T.FExponents[6] =  AItem.FExponents[6]) and
+           (T.FExponents[7] =  AItem.FExponents[7]) and
+           (T.FExponents[8] =  AItem.FExponents[8]) then
+        begin
+          result := Format('WARNING (%s): %s (%s) is equal to %s (%s)', [
+            AItem.FOperator, AItem.FClassName, GetShortSymbol(AItem), T.FClassName, GetShortSymbol(T)]);
+        end; //else
+        //result := Format('CHECKING %s (%s) and %s (%s)', [
+        //  AItem.FClassName, GetShortSymbol(AItem), T.FClassName, GetShortSymbol(T)]);
+      end;
+    end;
+  end;
+
+  //if (AItem.FBaseClass = '') then
+  //  result := Format('CHECKING %s (%s)', [AItem.FClassName, GetShortSymbol(AItem)]);
+
+  SetLength(FList, Length(FList) + 1);
+  FList[High(FList)] := AItem;
+end;
+
+function TToolKitList.GetShortSymbol(const AItem: TToolKitItem): string;
+var
+  i: longint;
+  Reciprocal: boolean;
+begin
+  result := '';
+  for i := Low(AItem.FExponents) to High(AItem.FExponents) do
+  begin
+    if AItem.FExponents[i] > 0 then
+    begin
+      case i of
+        1: result := result + '.%sg';
+        2: result := result + '.%sm';
+        3: result := result + '.%ss';
+        4: result := result + '.%sK';
+        5: result := result + '.%sA';
+        6: result := result + '.%smol';
+        7: result := result + '.%scd';
+        8: result := result + '.%srad';
+      end;
+
+      case AItem.FExponents[i] of
+         1: result := '√' + result;
+         3: result := '√' + result + '3';
+         4: result :=       result + '2';
+         6: result :=       result + '3';
+         8: result :=       result + '4';
+        10: result :=       result + '5';
+        12: result :=       result + '6';
+      end;
+    end;
+  end;
+
+  Reciprocal := result = '';
+  if Reciprocal then result := '1/';
+
+  for i := Low(AItem.FExponents) to High(AItem.FExponents) do
+  begin
+    if AItem.FExponents[i] < 0 then
+    begin
+      if not Reciprocal then
+        result := result + '/';
+
+      case Abs(AItem.FExponents[i]) of
+        1: result := result + '√';
+        3: result := result + '√';
+      end;
+
+      case i of
+        1: result := result + '%sg';
+        2: result := result + '%sm';
+        3: result := result + '%ss';
+        4: result := result + '%sK';
+        5: result := result + '%sA';
+        6: result := result + '%smol';
+        7: result := result + '%scd';
+        8: result := result + '%srad';
+      end;
+
+      case Abs(AItem.FExponents[i]) of
+        3: result := result + '3';
+        4: result := result + '2';
+        6: result := result + '3';
+        8: result := result + '4';
+       10: result := result + '5';
+       12: result := result + '6';
+      end;
+    end;
+  end;
+
+  if Pos('.', result) = 1 then
+  begin
+    System.Delete(result, 1, 1);
+  end;
+  result := StringReplace(result, '%srad2',  '%ssr',  [rfReplaceAll, rfIgnoreCase]);
+  result := StringReplace(result, '%srad4',  '%ssr2', [rfReplaceAll, rfIgnoreCase]);
+  result := StringReplace(result, '%srad6',  '%ssr3', [rfReplaceAll, rfIgnoreCase]);
+end;
+
+function TToolKitList.GetLongSymbol(const AItem: TToolKitItem): string;
+var
+  i: longint;
+  Reciprocal: boolean;
+begin
+  result := '';
+  for i := Low(AItem.FExponents) to High(AItem.FExponents) do
+  begin
+    if AItem.FExponents[i] > 0 then
+    begin
+      case AItem.FExponents[i] of
+         1: result := result + ' square root ';
+         3: result := result + ' square root cubic ';
+         4: result := result + ' square ';
+         6: result := result + ' cubic ';
+         8: result := result + ' quartic ';
+        10: result := result + ' quintic ';
+        12: result := result + ' sextic ';
+      end;
+
+      case i of
+        1: result := result + ' %sgram';
+        2: result := result + ' %smeter';
+        3: result := result + ' %ssecond';
+        4: result := result + ' %skelvin';
+        5: result := result + ' %sampere';
+        6: result := result + ' %smole';
+        7: result := result + ' %scandela';
+        8: result := result + ' %sradian';
+      end;
+    end;
+  end;
+
+  Reciprocal := result = '';
+  if Reciprocal then
+    result := 'reciprocal'
+  else
+    result := result + '?';
+
+  for i := Low(AItem.FExponents) to High(AItem.FExponents) do
+  begin
+    if AItem.FExponents[i] < 0 then
+    begin
+      if not Reciprocal then
+        result := result + ' per ';
+
+      case Abs(AItem.FExponents[i]) of
+         1: result := result + ' square root ';
+         3: result := result + ' square root cubic ';
+         4: result := result + ' square ';
+         6: result := result + ' cubic ';
+         8: result := result + ' quartic ';
+        10: result := result + ' quintic ';
+        12: result := result + ' sextic ';
+      end;
+
+      case i of
+        1: result := result + ' %sgram';
+        2: result := result + ' %smeter';
+        3: result := result + ' %ssecond';
+        4: result := result + ' %skelvin';
+        5: result := result + ' %sampere';
+        6: result := result + ' %smole';
+        7: result := result + ' %scandela';
+        8: result := result + ' %sradian';
+      end;
+    end;
+  end;
+
+  if Pos(' ', result) = 1 then
+  begin
+    System.Delete(result, 1, 1);
+  end;
+  result := StringReplace(result, '  ',             ' ',                 [rfReplaceAll, rfIgnoreCase]);
+  result := StringReplace(result, 'square radian',  'steradian',         [rfReplaceAll, rfIgnoreCase]);
+  result := StringReplace(result, 'quartic radian', 'square steradian',  [rfReplaceAll, rfIgnoreCase]);
+  result := StringReplace(result, 'sextic radian',  'cubic steradian',   [rfReplaceAll, rfIgnoreCase]);
+end;
+
+function TToolKitList.GetClassName(const AItem: TToolKitItem): string;
+var
+  i: longint;
+  Reciprocal: boolean;
+begin
+  result := '';
+  for i := Low(AItem.FExponents) to High(AItem.FExponents) do
+  begin
+    if AItem.FExponents[i] > 0 then
+    begin
+      case Abs(AItem.FExponents[i]) of
+        2: result := result + 'Square';
+        3: result := result + 'Cubic';
+        4: result := result + 'Quartic';
+        5: result := result + 'Quintic';
+        6: result := result + 'Sextic';
+      end;
+
+      case i of
+        1: result := result + 'Kilogram';
+        2: result := result + 'Meter';
+        3: result := result + 'Second';
+        4: result := result + 'Kelvin';
+        5: result := result + 'Ampere';
+        6: result := result + 'Mole';
+        7: result := result + 'Candela';
+        8: result := result + 'Radian';
+      end;
+    end;
+  end;
+
+  Reciprocal := result = '';
+  if Reciprocal then
+    result := 'Reciprocal'
+  else
+    result := result + '?';
+
+  for i := Low(AItem.FExponents) to High(AItem.FExponents) do
+  begin
+    if AItem.FExponents[i] < 0 then
+    begin
+      if not Reciprocal then
+        result := result + 'Per';
+
+      case Abs(AItem.FExponents[i]) of
+        2: result := result + 'Square';
+        3: result := result + 'Cubic';
+        4: result := result + 'Quartic';
+        5: result := result + 'Quintic';
+        6: result := result + 'Sextic';
+      end;
+
+      case i of
+        1: result := result + 'Kilogram';
+        2: result := result + 'Meter';
+        3: result := result + 'Second';
+        4: result := result + 'Kelvin';
+        5: result := result + 'Ampere';
+        6: result := result + 'Mole';
+        7: result := result + 'Candela';
+        8: result := result + 'Radian';
+      end;
+    end;
+  end;
+
+  if (AItem.FClassType <>        '') and
+     (AItem.FClassType <> 'TScalar') then
+    result := 'T' + VecPrefix + result
+  else
+    result := 'T' + result;
+
+  result := StringReplace(result, 'SquareRadian',  'Steradian',       [rfReplaceAll, rfIgnoreCase]);
+  result := StringReplace(result, 'QuarticRadian', 'SquareSteradian', [rfReplaceAll, rfIgnoreCase]);
+  result := StringReplace(result, 'SexticRadian',  'CubicSteradian',  [rfReplaceAll, rfIgnoreCase]);
+end;
+
+function TToolKitList.Search(const AClassName: string): longint;
+var
+  i: longint;
+begin
+  if AClassName <> '' then
+    for i := Low(FList) to High(FList) do
+    begin
+      if CompareText(FList[i].FClassName, AClassName) = 0 then Exit(i);
+    end;
+  result := -1;
+end;
+
+procedure TToolKitList.Delete(Index: longint);
+begin
+  System.Delete(FList, Index, 1);
+end;
+
+procedure TToolKitList.Clear;
+begin
+  FList := nil;
 end;
 
 end.
