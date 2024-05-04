@@ -18,11 +18,11 @@
 }
 
 {
-  ADimPas library built on 01/05/2024.
+  ADimPas library built on 04/05/2024.
 
-  Number of base units: 132
-  Number of factored units: 66
-  Number of operators: 1083 (267 external, 816 internal)
+  Number of base units: 130
+  Number of factored units: 68
+  Number of operators: 1076 (265 external, 811 internal)
 }
 
 unit ADim;
@@ -300,8 +300,6 @@ type
   class operator /(const ALeft: TQuarticMeterSecondQty; const ARight: TSecondQty): TQuarticMeterQty;
   class operator *(const ALeft: TSecondQty; const ARight: TQuarticMeterQty): TQuarticMeterSecondQty;
   class operator *(const ALeft: TQuarticMeterQty; const ARight: TSecondQty): TQuarticMeterSecondQty;
-  class operator *(const ALeft: THertzQty; const ARight: TSecondQty): double;
-  class operator *(const ALeft: TSecondQty; const ARight: THertzQty): double;
   class operator /(const ALeft: double; const ARight: TSecondQty): THertzQty;
   class operator /(const ALeft: TSquareSecondQty; const ARight: TSecondQty): TSecondQty;
   class operator *(const ALeft: TSecondQty; const ARight: TSecondQty): TSquareSecondQty;
@@ -373,9 +371,9 @@ type
   class operator *(const ALeft: TNewtonSquareMeterPerSquareKilogramQty; const ARight: TKilogramQty): TCubicMeterPerSquareSecondQty;
   class operator *(const ALeft: TKilogramQty; const ARight: TNewtonSquareMeterPerSquareKilogramQty): TCubicMeterPerSquareSecondQty;
   class operator /(const ALeft: TCubicMeterPerSquareSecondQty; const ARight: TKilogramQty): TNewtonSquareMeterPerSquareKilogramQty;
+  class operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TKilogramQty): TCubicMeterPerSquareSecondQty;
   class operator *(const ALeft: TCubicMeterPerSquareSecondQty; const ARight: TKilogramQty): TNewtonSquareMeterQty;
   class operator *(const ALeft: TKilogramQty; const ARight: TCubicMeterPerSquareSecondQty): TNewtonSquareMeterQty;
-  class operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TKilogramQty): TCubicMeterPerSquareSecondQty;
   class operator /(const ALeft: TKilogramSquareSecondQty; const ARight: TKilogramQty): TSquareSecondQty;
   class operator *(const ALeft: TSquareSecondQty; const ARight: TKilogramQty): TKilogramSquareSecondQty;
   class operator *(const ALeft: TKilogramQty; const ARight: TSquareSecondQty): TKilogramSquareSecondQty;
@@ -510,6 +508,11 @@ type
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TRadianQty}{$i adim.inc}
   class operator /(const ALeft: TRadianQty; const ARight: TRadianPerMeterQty): TMeterQty;
   class operator /(const ALeft: TRadianQty; const ARight: TMeterQty): TRadianPerMeterQty;
+  class operator /(const ALeft: THertzQty; const ARight: TRadianQty): THertzQty;
+  class operator *(const ALeft: THertzQty; const ARight: TRadianQty): THertzQty;
+  class operator *(const ALeft: TRadianQty; const ARight: THertzQty): THertzQty;
+  class operator /(const ALeft: TRadianQty; const ARight: THertzQty): TSecondQty;
+  class operator /(const ALeft: TRadianQty; const ARight: TSecondQty): THertzQty;
   class operator /(const ALeft: TSteradianQty; const ARight: TRadianQty): TRadianQty;
   class operator *(const ALeft: TRadianQty; const ARight: TRadianQty): TSteradianQty;
 {$DEFINE INTF_END}{$i adim.inc}
@@ -540,14 +543,8 @@ type
   class operator *(const ALeft: TCoulombQty; const ARight: TVoltQty): TJouleQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TRadianPerSecondQty}{$i adim.inc}
-  class operator :=(const AQuantity: TRadianPerSecondQty): THertzQty;
-  class operator :=(const AQuantity: THertzQty): TRadianPerSecondQty;
-  class operator /(const ALeft: TRadianPerSecondQty; const ARight: THertzQty): TRadianQty;
-  class operator /(const ALeft: TRadianPerSecondQty; const ARight: TRadianQty): THertzQty;
-  class operator /(const ALeft: TRadianQty; const ARight: TRadianPerSecondQty): TSecondQty;
-  class operator *(const ALeft: TRadianPerSecondQty; const ARight: TSecondQty): TRadianQty;
-  class operator *(const ALeft: TSecondQty; const ARight: TRadianPerSecondQty): TRadianQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TKilogramPerQuarticMeterPerSecondQty}{$i adim.inc}
@@ -857,6 +854,13 @@ type
   class operator /(const ALeft: TJouleQty; const ARight: TSquareHertzQty): TKilogramSquareMeterQty;
   class operator *(const ALeft: TSquareHertzQty; const ARight: TKilogramSquareMeterQty): TJouleQty;
   class operator *(const ALeft: TKilogramSquareMeterQty; const ARight: TSquareHertzQty): TJouleQty;
+  class operator /(const ALeft: TSquareHertzQty; const ARight: TSquareHertzQty): TRadianQty;
+  class operator /(const ALeft: TSquareHertzQty; const ARight: TRadianQty): TSquareHertzQty;
+  class operator *(const ALeft: TSquareHertzQty; const ARight: TRadianQty): TSquareHertzQty;
+  class operator *(const ALeft: TRadianQty; const ARight: TSquareHertzQty): TSquareHertzQty;
+  class operator /(const ALeft: TRadianQty; const ARight: TSquareHertzQty): TSquareSecondQty;
+  class operator *(const ALeft: TSquareHertzQty; const ARight: TSquareSecondQty): TRadianQty;
+  class operator *(const ALeft: TSquareSecondQty; const ARight: TSquareHertzQty): TRadianQty;
   class operator /(const ALeft: TSquareHertzQty; const ARight: THertzQty): THertzQty;
   class operator /(const ALeft: THertzQty; const ARight: TSquareHertzQty): TSecondQty;
   class operator *(const ALeft: TSquareHertzQty; const ARight: TSecondQty): THertzQty;
@@ -1192,18 +1196,12 @@ type
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSquareDegreeQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TRadianPerSquareSecondQty}{$i adim.inc}
-  class operator /(const ALeft: TRadianPerSquareSecondQty; const ARight: TSquareHertzQty): TRadianQty;
-  class operator /(const ALeft: TRadianPerSquareSecondQty; const ARight: TRadianQty): TSquareHertzQty;
-  class operator /(const ALeft: TRadianQty; const ARight: TRadianPerSquareSecondQty): TSquareSecondQty;
-  class operator *(const ALeft: TRadianPerSquareSecondQty; const ARight: TSquareSecondQty): TRadianQty;
-  class operator *(const ALeft: TSquareSecondQty; const ARight: TRadianPerSquareSecondQty): TRadianQty;
-  class operator /(const ALeft: TRadianPerSecondQty; const ARight: TRadianPerSquareSecondQty): TSecondQty;
-  class operator *(const ALeft: TRadianPerSquareSecondQty; const ARight: TSecondQty): TRadianPerSecondQty;
-  class operator *(const ALeft: TSecondQty; const ARight: TRadianPerSquareSecondQty): TRadianPerSecondQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSteradianPerSquareSecondQty}{$i adim.inc}
+  class operator /(const ALeft: TSteradianPerSquareSecondQty; const ARight: TRadianPerSecondQty): TRadianPerSecondQty;
   class operator /(const ALeft: TSteradianPerSquareSecondQty; const ARight: TSquareHertzQty): TSteradianQty;
   class operator /(const ALeft: TSteradianPerSquareSecondQty; const ARight: TSteradianQty): TSquareHertzQty;
   class operator /(const ALeft: TSteradianQty; const ARight: TSteradianPerSquareSecondQty): TSquareSecondQty;
@@ -1419,19 +1417,17 @@ operator *(const ALeft: TSquareMeterQty; const ARight: TQuarticMeterQty): TSexti
 operator /(const ALeft: TCubicKelvinQty; const ARight: TSquareKelvinQty): TKelvinQty;
 operator /(const ALeft: TQuarticKelvinQty; const ARight: TCubicKelvinQty): TKelvinQty;
 operator /(const ALeft: double; const ARight: THertzQty): TSecondQty;
+operator *(const ALeft: TSecondQty; const ARight: THertzQty): TRadianQty;
+operator *(const ALeft: THertzQty; const ARight: TSecondQty): TRadianQty;
+operator /(const ALeft: THertzQty; const ARight: THertzQty): TRadianQty;
 operator /(const ALeft: double; const ARight: TSquareSecondQty): TSquareHertzQty;
 operator /(const ALeft: THertzQty; const ARight: TSecondQty): TSquareHertzQty;
 operator *(const ALeft: THertzQty; const ARight: THertzQty): TSquareHertzQty;
-operator /(const ALeft: TRadianQty; const ARight: TSecondQty): TRadianPerSecondQty;
-operator *(const ALeft: TRadianQty; const ARight: THertzQty): TRadianPerSecondQty;
-operator *(const ALeft: THertzQty; const ARight: TRadianQty): TRadianPerSecondQty;
-operator /(const ALeft: TRadianPerSecondQty; const ARight: TSecondQty): TRadianPerSquareSecondQty;
-operator /(const ALeft: TRadianQty; const ARight: TSquareSecondQty): TRadianPerSquareSecondQty;
-operator *(const ALeft: TRadianQty; const ARight: TSquareHertzQty): TRadianPerSquareSecondQty;
-operator *(const ALeft: TSquareHertzQty; const ARight: TRadianQty): TRadianPerSquareSecondQty;
+operator /(const ALeft: TRadianQty; const ARight: TSquareSecondQty): TSquareHertzQty;
 operator /(const ALeft: TSteradianQty; const ARight: TSquareSecondQty): TSteradianPerSquareSecondQty;
 operator *(const ALeft: TSteradianQty; const ARight: TSquareHertzQty): TSteradianPerSquareSecondQty;
 operator *(const ALeft: TSquareHertzQty; const ARight: TSteradianQty): TSteradianPerSquareSecondQty;
+operator *(const ALeft: TRadianPerSecondQty; const ARight: TRadianPerSecondQty): TSteradianPerSquareSecondQty;
 operator /(const ALeft: TMeterQty; const ARight: TSecondQty): TMeterPerSecondQty;
 operator *(const ALeft: TMeterQty; const ARight: THertzQty): TMeterPerSecondQty;
 operator *(const ALeft: THertzQty; const ARight: TMeterQty): TMeterPerSecondQty;
@@ -1556,10 +1552,10 @@ operator /(const ALeft: TCubicMeterQty; const ARight: TSquareSecondQty): TCubicM
 operator /(const ALeft: TCubicMeterPerSquareSecondQty; const ARight: TSquareMeterQty): TMeterPerSquareSecondQty;
 operator *(const ALeft: TMeterQty; const ARight: TSquareMeterPerSquareSecondQty): TCubicMeterPerSquareSecondQty;
 operator *(const ALeft: TSquareMeterPerSquareSecondQty; const ARight: TMeterQty): TCubicMeterPerSquareSecondQty;
-operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TCubicMeterPerSquareSecondQty): TKilogramQty;
 operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TSquareMeterQty): TNewtonQty;
 operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TJouleQty): TMeterQty;
 operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TQuarticMeterQty): TPascalQty;
+operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TCubicMeterPerSquareSecondQty): TKilogramQty;
 operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TMeterPerSecondQty): TKilogramSquareMeterPerSecondQty;
 operator /(const ALeft: TNewtonCubicMeterQty; const ARight: TCubicMeterQty): TNewtonQty;
 operator /(const ALeft: TNewtonCubicMeterQty; const ARight: TSquareMeterQty): TJouleQty;
@@ -1756,9 +1752,8 @@ operator /(const ALeft: TJoulePerMoleQty; const ARight: TCoulombPerMoleQty): TVo
   class operator /(const ALeft: TKilogramQty; const ARight: TSecondUnit): TKilogramPerSecondQty;
   class operator /(const ALeft: TMeterPerSecondQty; const ARight: TSecondUnit): TMeterPerSquareSecondQty;
   class operator /(const ALeft: TMeterQty; const ARight: TSecondUnit): TMeterPerSecondQty;
-  class operator /(const ALeft: TRadianPerSecondQty; const ARight: TSecondUnit): TRadianPerSquareSecondQty;
-  class operator /(const ALeft: TRadianQty; const ARight: TSecondUnit): TRadianPerSecondQty;
-  class operator /(const ALeft: double; const ARight: TSecondUnit): THertzQty;
+  class operator /(const ALeft: THertzQty; const ARight: TSecondUnit): TSquareHertzQty;
+  class operator /(const ALeft: TRadianQty; const ARight: TSecondUnit): THertzQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TCandelaQty}{$DEFINE TUnit:=TCandelaUnit}{$i adim.inc}
@@ -1898,7 +1893,7 @@ operator /(const ALeft: TJoulePerMoleQty; const ARight: TCoulombPerMoleQty): TVo
   class operator /(const ALeft: TCoulombQty; const ARight: TVoltUnit): TFaradQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
-{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TRadianPerSecondQty}{$DEFINE TUnit:=TRadianPerSecondUnit}{$i adim.inc}
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=THertzQty}{$DEFINE TUnit:=TRadianPerSecondUnit}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TKilogramPerQuarticMeterPerSecondQty}{$DEFINE TUnit:=TKilogramPerQuarticMeterPerSecondUnit}{$i adim.inc}
@@ -1966,7 +1961,7 @@ operator /(const ALeft: TJoulePerMoleQty; const ARight: TCoulombPerMoleQty): TVo
   class operator /(const ALeft: TSquareMeterQty; const ARight: TSquareSecondUnit): TSquareMeterPerSquareSecondQty;
   class operator /(const ALeft: TMeterQty; const ARight: TSquareSecondUnit): TMeterPerSquareSecondQty;
   class operator /(const ALeft: TSteradianQty; const ARight: TSquareSecondUnit): TSteradianPerSquareSecondQty;
-  class operator /(const ALeft: TRadianQty; const ARight: TSquareSecondUnit): TRadianPerSquareSecondQty;
+  class operator /(const ALeft: TRadianQty; const ARight: TSquareSecondUnit): TSquareHertzQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TWattPerMeterQty}{$DEFINE TUnit:=TWattPerMeterUnit}{$i adim.inc}
@@ -2254,7 +2249,7 @@ operator /(const ALeft: TJoulePerMoleQty; const ARight: TCoulombPerMoleQty): TVo
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TSquareDegreeQty}{$DEFINE TUnit:=TSquareDegreeUnit}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
-{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TRadianPerSquareSecondQty}{$DEFINE TUnit:=TRadianPerSquareSecondUnit}{$i adim.inc}
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TSquareHertzQty}{$DEFINE TUnit:=TRadianPerSquareSecondUnit}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TSteradianPerSquareSecondQty}{$DEFINE TUnit:=TSteradianPerSquareSecondUnit}{$i adim.inc}
@@ -3251,7 +3246,7 @@ const
 { Quantity of TRadiansPerSecond }
 
 type
-  TRadiansPerSecond = TRadianPerSecondQty;
+  TRadiansPerSecond = THertzQty;
 
 const
   rsRadianPerSecondSymbol     = 'rad/%ss';
@@ -5013,12 +5008,12 @@ const
 { Quantity of TRadiansPerSquareSecond }
 
 type
-  TRadiansPerSquareSecond = TRadianPerSquareSecondQty;
+  TRadiansPerSquareSecond = TSquareHertzQty;
 
 const
   rsRadianPerSquareSecondSymbol     = 'rad/%ss2';
-  rsRadianPerSquareSecondName       = 'radian per %ssecond squared';
-  rsRadianPerSquareSecondPluralName = 'radians per %ssecond squared';
+  rsRadianPerSquareSecondName       = 'radian per square %ssecond';
+  rsRadianPerSquareSecondPluralName = 'radians per square %ssecond';
 
 const
   cRadianPerSquareSecondPrefixes  : TPrefixes  = (pNone);
@@ -5738,6 +5733,15 @@ const
 { Helpers }
 
 type
+  THertzHelper = record helper for THertzQty
+    function ToBequerel: TBequerelQty;
+    function ToRadianPerSecond: TRadianPerSecondQty;
+  end;
+
+  TRadianPerSecondHelper = record helper for TRadianPerSecondQty
+    function ToHertz: THertzQty;
+  end;
+
   TSecondHelper = record helper for TSecondQty
     function ToMinute: TMinuteQty;
     function ToHour: THourQty;
@@ -5802,15 +5806,6 @@ type
 
   TSteradianHelper = record helper for TSteradianQty
     function ToSquareDegree: TSquareDegreeQty;
-  end;
-
-  TRadianPerSecondHelper = record helper for TRadianPerSecondQty
-    function ToHertz: THertzQty;
-  end;
-
-  THertzHelper = record helper for THertzQty
-    function ToBequerel: TBequerelQty;
-    function ToRadianPerSecond: TRadianPerSecondQty;
   end;
 
   TSquareHertzHelper = record helper for TSquareHertzQty
@@ -6484,16 +6479,6 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-class operator TSecondQty.*(const ALeft: THertzQty; const ARight: TSecondQty): double;
-begin
-  result := ALeft.FValue * ARight.FValue;
-end;
-
-class operator TSecondQty.*(const ALeft: TSecondQty; const ARight: THertzQty): double;
-begin
-  result := ALeft.FValue * ARight.FValue;
-end;
-
 class operator TSecondQty./(const ALeft: double; const ARight: TSecondQty): THertzQty;
 begin
   result.FValue := ALeft / ARight.FValue;
@@ -6790,6 +6775,11 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+class operator TKilogramQty./(const ALeft: TNewtonSquareMeterQty; const ARight: TKilogramQty): TCubicMeterPerSquareSecondQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
 class operator TKilogramQty.*(const ALeft: TCubicMeterPerSquareSecondQty; const ARight: TKilogramQty): TNewtonSquareMeterQty;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
@@ -6798,11 +6788,6 @@ end;
 class operator TKilogramQty.*(const ALeft: TKilogramQty; const ARight: TCubicMeterPerSquareSecondQty): TNewtonSquareMeterQty;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
-end;
-
-class operator TKilogramQty./(const ALeft: TNewtonSquareMeterQty; const ARight: TKilogramQty): TCubicMeterPerSquareSecondQty;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
 class operator TKilogramQty./(const ALeft: TKilogramSquareSecondQty; const ARight: TKilogramQty): TSquareSecondQty;
@@ -7594,6 +7579,31 @@ begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
 
+class operator TRadianQty./(const ALeft: THertzQty; const ARight: TRadianQty): THertzQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+class operator TRadianQty.*(const ALeft: THertzQty; const ARight: TRadianQty): THertzQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TRadianQty.*(const ALeft: TRadianQty; const ARight: THertzQty): THertzQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TRadianQty./(const ALeft: TRadianQty; const ARight: THertzQty): TSecondQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+class operator TRadianQty./(const ALeft: TRadianQty; const ARight: TSecondQty): THertzQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
 class operator TRadianQty./(const ALeft: TSteradianQty; const ARight: TRadianQty): TRadianQty;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -7718,37 +7728,13 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsRadianPerSecondSymbol}
 {$DEFINE CSINGULARNAME:=rsRadianPerSecondName}
 {$DEFINE CPLURALNAME:=rsRadianPerSecondPluralName}
 {$DEFINE CPREFIXES:=cRadianPerSecondPrefixes}
 {$DEFINE CEXPONENTS:=cRadianPerSecondExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TRadianPerSecondQty}{$i adim.inc}
-
-class operator TRadianPerSecondQty./(const ALeft: TRadianPerSecondQty; const ARight: THertzQty): TRadianQty;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
-
-class operator TRadianPerSecondQty./(const ALeft: TRadianPerSecondQty; const ARight: TRadianQty): THertzQty;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
-
-class operator TRadianPerSecondQty./(const ALeft: TRadianQty; const ARight: TRadianPerSecondQty): TSecondQty;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
-
-class operator TRadianPerSecondQty.*(const ALeft: TRadianPerSecondQty; const ARight: TSecondQty): TRadianQty;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
-
-class operator TRadianPerSecondQty.*(const ALeft: TSecondQty; const ARight: TRadianPerSecondQty): TRadianQty;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
 
 {$DEFINE CSYMBOL:=rsKilogramPerQuarticMeterPerSecondSymbol}
 {$DEFINE CSINGULARNAME:=rsKilogramPerQuarticMeterPerSecondName}
@@ -9207,6 +9193,41 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
+class operator TSquareHertzQty./(const ALeft: TSquareHertzQty; const ARight: TSquareHertzQty): TRadianQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+class operator TSquareHertzQty./(const ALeft: TSquareHertzQty; const ARight: TRadianQty): TSquareHertzQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+class operator TSquareHertzQty.*(const ALeft: TSquareHertzQty; const ARight: TRadianQty): TSquareHertzQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TSquareHertzQty.*(const ALeft: TRadianQty; const ARight: TSquareHertzQty): TSquareHertzQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TSquareHertzQty./(const ALeft: TRadianQty; const ARight: TSquareHertzQty): TSquareSecondQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+class operator TSquareHertzQty.*(const ALeft: TSquareHertzQty; const ARight: TSquareSecondQty): TRadianQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TSquareHertzQty.*(const ALeft: TSquareSecondQty; const ARight: TSquareHertzQty): TRadianQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
 class operator TSquareHertzQty./(const ALeft: TSquareHertzQty; const ARight: THertzQty): THertzQty;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -10479,6 +10500,7 @@ end;
 {$DEFINE CFACTOR:=cSquareDegreeFactor}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareDegreeQty}{$i adim.inc}
 
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsRadianPerSquareSecondSymbol}
 {$DEFINE CSINGULARNAME:=rsRadianPerSquareSecondName}
 {$DEFINE CPLURALNAME:=rsRadianPerSquareSecondPluralName}
@@ -10486,52 +10508,17 @@ end;
 {$DEFINE CEXPONENTS:=cRadianPerSquareSecondExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TRadianPerSquareSecondQty}{$i adim.inc}
 
-class operator TRadianPerSquareSecondQty./(const ALeft: TRadianPerSquareSecondQty; const ARight: TSquareHertzQty): TRadianQty;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
-
-class operator TRadianPerSquareSecondQty./(const ALeft: TRadianPerSquareSecondQty; const ARight: TRadianQty): TSquareHertzQty;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
-
-class operator TRadianPerSquareSecondQty./(const ALeft: TRadianQty; const ARight: TRadianPerSquareSecondQty): TSquareSecondQty;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
-
-class operator TRadianPerSquareSecondQty.*(const ALeft: TRadianPerSquareSecondQty; const ARight: TSquareSecondQty): TRadianQty;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
-
-class operator TRadianPerSquareSecondQty.*(const ALeft: TSquareSecondQty; const ARight: TRadianPerSquareSecondQty): TRadianQty;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
-
-class operator TRadianPerSquareSecondQty./(const ALeft: TRadianPerSecondQty; const ARight: TRadianPerSquareSecondQty): TSecondQty;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
-
-class operator TRadianPerSquareSecondQty.*(const ALeft: TRadianPerSquareSecondQty; const ARight: TSecondQty): TRadianPerSecondQty;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
-
-class operator TRadianPerSquareSecondQty.*(const ALeft: TSecondQty; const ARight: TRadianPerSquareSecondQty): TRadianPerSecondQty;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
-
 {$DEFINE CSYMBOL:=rsSteradianPerSquareSecondSymbol}
 {$DEFINE CSINGULARNAME:=rsSteradianPerSquareSecondName}
 {$DEFINE CPLURALNAME:=rsSteradianPerSquareSecondPluralName}
 {$DEFINE CPREFIXES:=cSteradianPerSquareSecondPrefixes}
 {$DEFINE CEXPONENTS:=cSteradianPerSquareSecondExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSteradianPerSquareSecondQty}{$i adim.inc}
+
+class operator TSteradianPerSquareSecondQty./(const ALeft: TSteradianPerSquareSecondQty; const ARight: TRadianPerSecondQty): TRadianPerSecondQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
 
 class operator TSteradianPerSquareSecondQty./(const ALeft: TSteradianPerSquareSecondQty; const ARight: TSquareHertzQty): TSteradianQty;
 begin
@@ -11139,16 +11126,6 @@ end;
 {$DEFINE CEXPONENTS:=cSquareJouleSquareSecondExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareJouleSquareSecondQty}{$i adim.inc}
 
-class operator TRadianPerSecondQty.:=(const AQuantity: THertzQty): TRadianPerSecondQty;
-begin
-  result.FValue := AQuantity.FValue;
-end;
-
-class operator TRadianPerSecondQty.:=(const AQuantity: TRadianPerSecondQty): THertzQty;
-begin
-  result.FValue := AQuantity.FValue;
-end;
-
 { External Operators }
 
 operator /(const ALeft: TCubicMeterQty; const ARight: TSquareMeterQty): TMeterQty;
@@ -11201,6 +11178,21 @@ begin
   result.FValue := ALeft / ARight.FValue;
 end;
 
+operator *(const ALeft: TSecondQty; const ARight: THertzQty): TRadianQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator *(const ALeft: THertzQty; const ARight: TSecondQty): TRadianQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator /(const ALeft: THertzQty; const ARight: THertzQty): TRadianQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
 operator /(const ALeft: double; const ARight: TSquareSecondQty): TSquareHertzQty;
 begin
   result.FValue := ALeft / ARight.FValue;
@@ -11216,39 +11208,9 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TRadianQty; const ARight: TSecondQty): TRadianPerSecondQty;
+operator /(const ALeft: TRadianQty; const ARight: TSquareSecondQty): TSquareHertzQty;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
-end;
-
-operator *(const ALeft: TRadianQty; const ARight: THertzQty): TRadianPerSecondQty;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
-
-operator *(const ALeft: THertzQty; const ARight: TRadianQty): TRadianPerSecondQty;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
-
-operator /(const ALeft: TRadianPerSecondQty; const ARight: TSecondQty): TRadianPerSquareSecondQty;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
-
-operator /(const ALeft: TRadianQty; const ARight: TSquareSecondQty): TRadianPerSquareSecondQty;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
-
-operator *(const ALeft: TRadianQty; const ARight: TSquareHertzQty): TRadianPerSquareSecondQty;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
-end;
-
-operator *(const ALeft: TSquareHertzQty; const ARight: TRadianQty): TRadianPerSquareSecondQty;
-begin
-  result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
 operator /(const ALeft: TSteradianQty; const ARight: TSquareSecondQty): TSteradianPerSquareSecondQty;
@@ -11262,6 +11224,11 @@ begin
 end;
 
 operator *(const ALeft: TSquareHertzQty; const ARight: TSteradianQty): TSteradianPerSquareSecondQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator *(const ALeft: TRadianPerSecondQty; const ARight: TRadianPerSecondQty): TSteradianPerSquareSecondQty;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
@@ -11886,11 +11853,6 @@ begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
 
-operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TCubicMeterPerSquareSecondQty): TKilogramQty;
-begin
-  result.FValue := ALeft.FValue / ARight.FValue;
-end;
-
 operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TSquareMeterQty): TNewtonQty;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
@@ -11902,6 +11864,11 @@ begin
 end;
 
 operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TQuarticMeterQty): TPascalQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TNewtonSquareMeterQty; const ARight: TCubicMeterPerSquareSecondQty): TKilogramQty;
 begin
   result.FValue := ALeft.FValue / ARight.FValue;
 end;
@@ -12588,7 +12555,7 @@ end;
 
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TVoltQty}{$DEFINE TUnit:=TVoltUnit}{$i adim.inc}
 
-{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TRadianPerSecondQty}{$DEFINE TUnit:=TRadianPerSecondUnit}{$i adim.inc}
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=THertzQty}{$DEFINE TUnit:=TRadianPerSecondUnit}{$i adim.inc}
 
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TKilogramPerQuarticMeterPerSecondQty}{$DEFINE TUnit:=TKilogramPerQuarticMeterPerSecondUnit}{$i adim.inc}
 
@@ -12792,7 +12759,7 @@ end;
 
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TSquareDegreeQty}{$DEFINE TUnit:=TSquareDegreeUnit}{$i adim.inc}
 
-{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TRadianPerSquareSecondQty}{$DEFINE TUnit:=TRadianPerSquareSecondUnit}{$i adim.inc}
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TSquareHertzQty}{$DEFINE TUnit:=TRadianPerSquareSecondUnit}{$i adim.inc}
 
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TSteradianPerSquareSecondQty}{$DEFINE TUnit:=TSteradianPerSquareSecondUnit}{$i adim.inc}
 
@@ -12884,22 +12851,17 @@ end;
 
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TSquareJouleSquareSecondQty}{$DEFINE TUnit:=TSquareJouleSquareSecondUnit}{$i adim.inc}
 
-class operator TSecondUnit./(const ALeft: double; const ARight: TSecondUnit): THertzQty;
-begin
-  result.FValue := ALeft;
-end;
-
-class operator TSecondUnit./(const ALeft: TRadianQty; const ARight: TSecondUnit): TRadianPerSecondQty;
+class operator TSecondUnit./(const ALeft: TRadianQty; const ARight: TSecondUnit): THertzQty;
 begin
   result.FValue := ALeft.FValue;
 end;
 
-class operator TSecondUnit./(const ALeft: TRadianPerSecondQty; const ARight: TSecondUnit): TRadianPerSquareSecondQty;
+class operator TSecondUnit./(const ALeft: THertzQty; const ARight: TSecondUnit): TSquareHertzQty;
 begin
   result.FValue := ALeft.FValue;
 end;
 
-class operator TSquareSecondUnit./(const ALeft: TRadianQty; const ARight: TSquareSecondUnit): TRadianPerSquareSecondQty;
+class operator TSquareSecondUnit./(const ALeft: TRadianQty; const ARight: TSquareSecondUnit): TSquareHertzQty;
 begin
   result.FValue := ALeft.FValue;
 end;
@@ -13481,6 +13443,16 @@ end;
 
 { Helpers }
 
+function THertzHelper.ToRadianPerSecond: TRadianPerSecondQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TRadianPerSecondHelper.ToHertz: THertzQty;
+begin
+  result.FValue := FValue;
+end;
+
 function TSecondHelper.ToDay: TDayQty;
 begin
   result.FValue := FValue / cDayFactor;
@@ -13644,16 +13616,6 @@ end;
 function TSteradianHelper.ToSquareDegree: TSquareDegreeQty;
 begin
   result.FValue := FValue / cSquareDegreeFactor;
-end;
-
-function TRadianPerSecondHelper.ToHertz: THertzQty;
-begin
-  result.FValue := FValue;
-end;
-
-function THertzHelper.ToRadianPerSecond: TRadianPerSecondQty;
-begin
-  result.FValue := FValue;
 end;
 
 function TSquareHertzHelper.ToRadianPerSquareSecond: TRadianPerSquareSecondQty;
