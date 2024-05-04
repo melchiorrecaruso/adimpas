@@ -291,8 +291,8 @@ begin
   radius       := 2*m;
   speed        := angularspeed*radius;
   angularspeed := speed/radius;
-  if angularspeed .ToVerboseString(5, 1, []) <> '2.5 radians per second' then halt(1);
-  if speed        .ToVerboseString(5, 1, []) <> '5 meters per second'    then halt(2);
+  if angularspeed.ToRadianPerSecond.ToVerboseString(5, 1, []) <> '2.5 radians per second' then halt(1);
+  if speed                         .ToVerboseString(5, 1, []) <> '5 meters per second'    then halt(2);
   writeln('* TEST-06: PASSED');
 
   // TEST-07 - CENTRIFUGAL FORCE
@@ -813,7 +813,7 @@ begin
   mass  := 1*kg;
   kx    := 10*N/m;
   omega := SquareRoot(kx/mass);
-  if omega.ToString(3, 2, []) <> '3.16 rad/s' then halt(1);
+  if omega.ToRadianPerSecond.ToString(3, 2, []) <> '3.16 rad/s' then halt(1);
   writeln('* TEST-67: PASSED');
 
   // TEST-68 - DAMPED HARMONIC OSCILLATOR
@@ -821,7 +821,7 @@ begin
   kx     := 10*N/m;
   Cb     := 10*Pa*s*m;
   omega  := SquareRoot(kx/mass);
-  if omega.ToString(3, 2, []) <> '3.16 rad/s' then halt(1);
+  if omega.ToRadianPerSecond.ToString(3, 2, []) <> '3.16 rad/s' then halt(1);
   writeln('* TEST-68: PASSED');
 
   // TEST-69 - PHYSICAL PENDULUM
@@ -866,12 +866,12 @@ begin
 
   // TEST-95
   omega := 10*rad/s;
-  omega := 10/s;
+  omega := 10*Hz;
   freq  := 10*rad/s;
-  freq  := 10/s;
+  freq  := 10*Hz;
   omega := freq;
   freq  := omega;
-  if omega.ToHertz          .ToString <> '10 Hz'    then halt(1);
+  if omega                  .ToString <> '10 Hz'    then halt(1);
   if freq .ToRadianPerSecond.ToString <> '10 rad/s' then halt(2);
   writeln('* TEST-95: PASSED');
 
