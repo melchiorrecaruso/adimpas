@@ -764,7 +764,7 @@ object MainForm: TMainForm
     AnchorSideRight.Control = OptimizationTime
     AnchorSideBottom.Control = OptimizationTime
     AnchorSideBottom.Side = asrBottom
-    Left = 759
+    Left = 729
     Height = 36
     Top = 8
     Width = 209
@@ -778,10 +778,10 @@ object MainForm: TMainForm
     AnchorSideTop.Control = Owner
     AnchorSideRight.Control = ExportBtn
     AnchorSideBottom.Side = asrBottom
-    Left = 978
+    Left = 948
     Height = 36
     Top = 8
-    Width = 70
+    Width = 100
     Alignment = taRightJustify
     Anchors = [akTop, akRight]
     BorderSpacing.Top = 8
@@ -795,7 +795,7 @@ object MainForm: TMainForm
     AnchorSideRight.Control = OptimizeBox
     AnchorSideBottom.Control = OptimizeBox
     AnchorSideBottom.Side = asrBottom
-    Left = 591
+    Left = 561
     Height = 36
     Top = 8
     Width = 148

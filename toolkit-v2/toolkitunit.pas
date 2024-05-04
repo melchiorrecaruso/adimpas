@@ -1402,13 +1402,15 @@ begin
   AProcess.Parameters.Add('-Scghi');
   AProcess.Parameters.Add('-l');
   AProcess.Parameters.Add('-vewnhibq');
-  AProcess.Parameters.Add('-Fibuild\lib');
-  AProcess.Parameters.Add('-Fubuild\i386-win32');
-  AProcess.Parameters.Add('-FuC:\fpcupdeluxe\lazarus\packager\units\i386-win32');
   AProcess.Parameters.Add('-Fu.');
-  AProcess.Parameters.Add('-FUbuild\lib');
   AProcess.Parameters.Add('-FEbuild');
+  {$IFDEF WINDOWS}
+  AProcess.Parameters.Add('-Fibuild\lib');
   AProcess.Parameters.Add('-obuild\adimtest.exe');
+  {$ELSE}
+  AProcess.Parameters.Add('-Fibuild/lib');
+  AProcess.Parameters.Add('-obuild/adimtest');
+  {$ENDIF}
   AProcess.Parameters.Add('adimtest.pas');
   AProcess.Options  := [poUsePipes, poNoConsole];
   AProcess.Priority := ppHigh;
@@ -1902,6 +1904,7 @@ begin
         T2 := StringReplace(AItem.FClassName, 'T' + VECPrefix, 'T', []);
 
         if (T1              <> T2                 ) and
+           (T.FClassType    =  AItem.FClassType   ) and
            (T.FExponents[1] =  AItem.FExponents[1]) and
            (T.FExponents[2] =  AItem.FExponents[2]) and
            (T.FExponents[3] =  AItem.FExponents[3]) and
@@ -1913,15 +1916,10 @@ begin
         begin
           result := Format('WARNING (%s): %s (%s) is equal to %s (%s)', [
             AItem.FOperator, AItem.FClassName, GetShortSymbol(AItem), T.FClassName, GetShortSymbol(T)]);
-        end; //else
-        //result := Format('CHECKING %s (%s) and %s (%s)', [
-        //  AItem.FClassName, GetShortSymbol(AItem), T.FClassName, GetShortSymbol(T)]);
+        end;
       end;
     end;
   end;
-
-  //if (AItem.FBaseClass = '') then
-  //  result := Format('CHECKING %s (%s)', [AItem.FClassName, GetShortSymbol(AItem)]);
 
   SetLength(FList, Length(FList) + 1);
   FList[High(FList)] := AItem;
