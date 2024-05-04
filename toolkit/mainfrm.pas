@@ -81,7 +81,7 @@ type
     procedure AddUnitIdOperator(AOperator, ALeftParent, ARightParent, AResult: string);
 
     procedure AddClass(const AClassName, AOperator, AClassParent1, AClassParent2,
-      AComment, ALongSymbol, AShortSymbol, AIdentifierSymbol, ABaseClass, AFactor, APrefixes: string);
+      ALongSymbol, AShortSymbol, AIdentifierSymbol, ABaseClass, AFactor, APrefixes: string);
 
     procedure AddFactoredQuantity(ABaseClass, AIdentifierSymbol, AFactor, APrefixes: string);
     procedure AddPower(AOperator, AQuantity, AResult: string);
@@ -111,13 +111,12 @@ const
   _operator          = 01;
   _class_parent_1    = 02;
   _class_parent_2    = 03;
-  _comment           = 04;
-  _long_symbol       = 05;
-  _short_symbol      = 06;
-  _identifier_symbol = 07;
-  _base_class        = 08;
-  _factor            = 09;
-  _prefixes          = 10;
+  _long_symbol       = 04;
+  _short_symbol      = 05;
+  _identifier_symbol = 06;
+  _base_class        = 07;
+  _factor            = 08;
+  _prefixes          = 09;
 
 
 function Split(const AStr: string): TStringArray;
@@ -424,7 +423,7 @@ begin
 end;
 
 procedure TMainForm.AddClass(const AClassName, AOperator, AClassParent1, AClassParent2,
-  AComment, ALongSymbol, AShortSymbol, AIdentifierSymbol, ABaseClass, AFactor, APrefixes: string);
+  ALongSymbol, AShortSymbol, AIdentifierSymbol, ABaseClass, AFactor, APrefixes: string);
 begin
   if ClassList.IndexOf(GetUnitDescription(AClassName)) = -1 then
   begin
@@ -540,9 +539,7 @@ begin
     if AOperator = '*' then
     begin
       SectionA1.Append('');
-      SectionA1.Append('// ' + AComment);
       SectionB1.Append('');
-      SectionB1.Append('// ' + AComment);
       SectionB1.Append('');
 
       AddQuantityOperator('*', AClassParent1, AClassParent2, AClassName);
@@ -566,9 +563,7 @@ begin
       if AOperator = '/' then
       begin
         SectionA1.Append('');
-        SectionA1.Append('// ' + AComment);
         SectionB1.Append('');
-        SectionB1.Append('// ' + AComment);
         SectionB1.Append('');
 
         AddQuantityOperator('/', AClassParent1, AClassParent2, AClassName);
@@ -827,7 +822,6 @@ end;
 procedure TMainForm.FormCreate(Sender: TObject);
 begin
   PageControl.TabIndex          := 0;
-  WindowState                   := wsMaximized;
   WorksheetGrid.AutoFillColumns := True;
 end;
 
@@ -930,7 +924,6 @@ begin
                           WorksheetGrid.Worksheet.ReadAsText(I, _operator         ),
                           WorksheetGrid.Worksheet.ReadAsText(I, _class_parent_1   ),
                           WorksheetGrid.Worksheet.ReadAsText(I, _class_parent_2   ),
-                          WorksheetGrid.Worksheet.ReadAsText(I, _comment          ),
           CleanUnitName  (WorksheetGrid.Worksheet.ReadAsText(I, _long_symbol      )),
           CleanUnitSymbol(WorksheetGrid.Worksheet.ReadAsText(I, _short_symbol     )),
                           WorksheetGrid.Worksheet.ReadAsText(I, _identifier_symbol),

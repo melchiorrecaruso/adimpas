@@ -1,13 +1,13 @@
 object MainForm: TMainForm
-  Left = 280
+  Left = 707
   Height = 530
-  Top = 124
+  Top = 125
   Width = 856
   Caption = 'ADimPas Toolkit'
   ClientHeight = 530
   ClientWidth = 856
+  LCLVersion = '3.99.0.0'
   OnCreate = FormCreate
-  LCLVersion = '2.2.6.0'
   object PageControl: TPageControl
     AnchorSideLeft.Control = Owner
     AnchorSideTop.Side = asrBottom
@@ -27,13 +27,13 @@ object MainForm: TMainForm
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = 'Unit of measurement'
-      ClientHeight = 462
-      ClientWidth = 848
+      ClientHeight = 457
+      ClientWidth = 846
       object WorksheetGrid: TsWorksheetGrid
         Left = 4
-        Height = 454
+        Height = 449
         Top = 4
-        Width = 840
+        Width = 838
         FrozenCols = 0
         FrozenRows = 0
         PageBreakPen.Color = clBlue
@@ -56,8 +56,8 @@ object MainForm: TMainForm
     end
     object TabSheet2: TTabSheet
       Caption = 'Unit Source Code'
-      ClientHeight = 462
-      ClientWidth = 848
+      ClientHeight = 457
+      ClientWidth = 846
       inline SynEdit: TSynEdit
         AnchorSideLeft.Control = TabSheet2
         AnchorSideTop.Control = TabSheet2
@@ -66,9 +66,9 @@ object MainForm: TMainForm
         AnchorSideBottom.Control = TabSheet2
         AnchorSideBottom.Side = asrBottom
         Left = 4
-        Height = 454
+        Height = 449
         Top = 4
-        Width = 840
+        Width = 838
         BorderSpacing.Left = 4
         BorderSpacing.Top = 4
         BorderSpacing.Right = 4
@@ -534,6 +534,8 @@ object MainForm: TMainForm
           object SynGutterMarks1: TSynGutterMarks
             Width = 24
             MouseActions = <>
+            MaxExtraMarksColums = 0
+            Options = [sgmoDeDuplicateMarksOnOverflow]
           end
           object SynGutterLineNumber1: TSynGutterLineNumber
             Width = 17
@@ -569,14 +571,14 @@ object MainForm: TMainForm
     end
     object TabSheet3: TTabSheet
       Caption = 'Messages'
-      ClientHeight = 462
-      ClientWidth = 848
+      ClientHeight = 457
+      ClientWidth = 846
       object Memo: TMemo
         AnchorSideTop.Control = TabSheet3
         Left = 4
-        Height = 454
+        Height = 449
         Top = 4
-        Width = 840
+        Width = 838
         Anchors = [akTop, akLeft, akRight, akBottom]
         BorderSpacing.Left = 4
         BorderSpacing.Top = 4
@@ -680,8 +682,8 @@ object MainForm: TMainForm
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
     }
-    OnClick = LoadBtnClick
     TabOrder = 1
+    OnClick = LoadBtnClick
   end
   object RunBtn: TBitBtn
     AnchorSideTop.Control = Owner
@@ -772,8 +774,8 @@ object MainForm: TMainForm
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
     }
-    OnClick = RunBtnClick
     TabOrder = 2
+    OnClick = RunBtnClick
   end
   object ExportBtn: TBitBtn
     AnchorSideTop.Control = RunBtn
@@ -787,8 +789,8 @@ object MainForm: TMainForm
     Anchors = [akTop, akRight, akBottom]
     BorderSpacing.Right = 4
     Caption = 'Export ...'
-    OnClick = ExportBtnClick
     TabOrder = 3
+    OnClick = ExportBtnClick
   end
   object TrigonometricCheckBox: TCheckBox
     AnchorSideLeft.Side = asrBottom
@@ -796,10 +798,10 @@ object MainForm: TMainForm
     AnchorSideRight.Control = ExportBtn
     AnchorSideBottom.Control = ExportBtn
     AnchorSideBottom.Side = asrBottom
-    Left = 467
+    Left = 431
     Height = 32
     Top = 8
-    Width = 171
+    Width = 207
     Anchors = [akTop, akRight, akBottom]
     BorderSpacing.Left = 20
     BorderSpacing.Right = 10
@@ -824,6 +826,7 @@ object MainForm: TMainForm
     CompilerMode = pcmFPC
     NestedComments = True
     TypeHelpers = False
+    StringMultilineMode = []
     Left = 104
     Top = 136
   end
