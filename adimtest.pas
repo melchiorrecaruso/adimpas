@@ -94,6 +94,7 @@ var
 
   Ue: TJoules;
   kx: TNewtonsPerMeter;
+  x: TMeters;
 
   q1: TCoulombs;
   q2: TCoulombs;
@@ -148,7 +149,8 @@ var
   yspeed: TMetersperSecond;
   yacc: TMetersPerSquareSecond;
 
-  energy: TJoules;
+  E0: TJoules;
+  Energy: TJoules;
   freq: THertz;
 
   I: TKilogramSquareMeters;
@@ -159,7 +161,12 @@ var
   kc: TReciprocalMeters;
   BoxLen: TMeters;
   EnergyLevels: array[1..4] of TJoules;
-  SquarePsi:    array[1..4] of TReciprocalMeters;
+  SquarePsi: array[1..4] of TReciprocalMeters;
+  Psi0: TReciprocalSquareRootMeters;
+  PsiValues: array [1..4] of TReciprocalMeters;
+  A0: TReciprocalSquareRootMeters;
+  y: double;
+
 
   Iteration: longint;
   Iterations: longint;
@@ -985,6 +992,27 @@ begin
     if Format('∫|Ψ²|dx = %0.3f', [Probability]) <> '∫|Ψ²|dx = 1.000' then halt(num);
   end;
   writeln('* TEST-103: PASSED');
+
+  // TEST-104 : Quantum harmonic oscillator
+  x      := 10E-6*m;
+  Kx     := 1*N/m;
+  mass   := ElectronMass;
+  omega  := SquareRoot(Kx/mass);
+  E0     := 0.5*ReducedPlanckConstant*omega;
+
+  A0     := QuarticRoot(mass*omega/pi/ReducedPlanckConstant);
+  Psi0   := A0*exp(-mass*omega/2/ReducedPlanckConstant*SquarePower(x));
+
+  EnergyLevels[1] := (1 + 0.5)*ReducedPlanckConstant*omega;
+  EnergyLevels[2] := (2 + 0.5)*ReducedPlanckConstant*omega;
+  EnergyLevels[3] := (3 + 0.5)*ReducedPlanckConstant*omega;
+  EnergyLevels[4] := (4 + 0.5)*ReducedPlanckConstant*omega;
+
+  y               := SquareRoot(mass*omega/ReducedPlanckConstant)*x;
+
+  PsiValues[1]    := A0*(  sqrt(2)*(  y         ))*QuarticRoot(mass*omega/pi/ReducedPlanckConstant);
+  PsiValues[2]    := A0*(1/sqrt(2)*(2*y*y   -1  ))*QuarticRoot(mass*omega/pi/ReducedPlanckConstant);
+  PsiValues[3]    := A0*(1/sqrt(3)*(2*y*y*y -3*y))*QuarticRoot(mass*omega/pi/ReducedPlanckConstant);
 
   {$ifdef VECTORIAL}
   // TEST-104
