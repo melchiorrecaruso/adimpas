@@ -41,20 +41,22 @@ var
   e0:     TFaradsPerMeter;
   ke:     TNewtonSquareMetersPerSquareCoulomb;  
   mass:   TKilograms;
+  charge: TCoulombs;  
   radius: TMeters;
 begin
   plank  := 6.62607015E-34*J*s;    // Planck constant
   e0     := 8.8541878128E-12*F/m;  // vacuum permittivity
   ke     := 1/(4*pi*e0);           // Coulomb constant
   mass   := 9.1093837015E-31*kg;   // mass of an electron
+  charge := 1.602176634E-19*C;     // charge of an electron   
   radius := (SquarePower(plank/2/pi)/mass)/(ke*SquarePower(charge)); 
 
-  writeln('The value of the Bohr radius is ', radius.ToString(10, 10, []));      
+  writeln('The value of the Bohr radius is ', radius.ToString(10, 10, [pNano]));      
 end;
 ```
 Output: 
 ``` 
-The value of the Bohr radius is 5.291772109E-11 m
+The value of the Bohr radius is 0.05291772109 nm
 ``` 
 
 Refer to the [adimtest](adimtest.pas) source code for additional examples.
