@@ -77,7 +77,8 @@ type
     ForcedOperators:   longint;
     InternalOperators: longint;
     FTestingCount:     longint;
-    FSkipVectorialunits: boolean;
+    FSkipVectorialUnits: boolean;
+    FUseFuncInsteadOfOperators: boolean;
 
     FDocument:  TStringList;
     FMessages:  TStringList;
@@ -138,6 +139,8 @@ type
     procedure AddHelperDual(const AItem: TToolkitItem);
     procedure AddHelperReciprocal(const AItem: TToolKitItem);
 
+    procedure AddHelperMUL      (const ABaseUnit, ABaseQuantity, AInputQuantity, AResultQuantity: string);
+    procedure AddHelperDIV      (const ABaseUnit, ABaseQuantity, AInputQuantity, AResultQuantity: string);
     procedure AddHelperDOT      (const ABaseUnit, ABaseQuantity, AInputQuantity, AResultQuantity: string);
     procedure AddHelperWEDGE    (const ABaseUnit, ABaseQuantity, AInputQuantity, AResultQuantity: string);
     procedure AddHelperGEOMETRIC(const ABaseUnit, ABaseQuantity, AInputQuantity, AResultQuantity: string);
@@ -157,7 +160,8 @@ type
     procedure Add(const AItem: TToolkitItem);
     procedure Run;
   public
-    property SkipVectorialUnits: boolean read FSkipVectorialunits write FSkipVectorialunits;
+    property UseFuncInsteadOfOperators: boolean read FUseFuncInsteadOfOperators write FUseFuncInsteadOfOperators;
+    property SkipVectorialUnits: boolean read FSkipVectorialUnits write FSkipVectorialUnits;
     property Document: TStringList read FDocument;
     property Messages: TStringList read FMessages;
     property Message: string read FMessage;
@@ -193,6 +197,7 @@ begin
   FOperatorList.Sorted := TRUE;
 
   FSkipVectorialunits := False;
+  FUseFuncInsteadOfOperators := False;
   FTestingCount := 0;
 end;
 
@@ -716,82 +721,93 @@ var
   j: longint;
   ABaseClass, S: string;
 begin
-  iL := SearchLine(Format(INTF_QUANTITY, [ALeftClass  , '*']), SectionA2);
-  iR := SearchLine(Format(INTF_QUANTITY, [ARightClass , '*']), SectionA2);
-  iX := SearchLine(Format(INTF_QUANTITY, [AResultClass, '*']), SectionA2);
-
-  ABaseClass := '';
-  i := Max(iL, iR);
-  if i = iL then ABaseClass := ALeftClass;
-  if i = iR then ABaseClass := ARightClass;
-  if i < iX then ABaseClass := '';
-
-  for j := 0 to FCommUnits.Count -1 do
+  if FUseFuncInsteadOfOperators then
   begin
-    if ABaseClass <> '' then
-    begin
-      if (i = iL) and (ALeftClass  = FCommUnits[j]) then ABaseClass := '';
-      if (i = iR) and (ARightClass = FCommUnits[j]) then ABaseClass := '';
-      if ABaseClass = '' then Inc(ForcedOperators);
-    end;
-  end;
+    if AOperator = '*' then
+      AddHelperMUL(GetUnitTypeHelper(GetBaseClass(ALeftClass)), ALeftClass, ARightClass, AResultClass)
+    else
+      if AOperator = '/' then
+        AddHelperDIV(GetUnitTypeHelper(GetBaseClass(ALeftClass)), ALeftClass, ARightClass, AResultClass);
+  end; // else
 
-  if FClassList.IndexOf(ABaseClass + '.' + ALeftClass + AOperator + ARightClass) = -1 then
   begin
-    FClassList.Append(ABaseClass + '.' + ALeftClass + AOperator + ARightClass);
+    iL := SearchLine(Format(INTF_QUANTITY, [ALeftClass  , '*']), SectionA2);
+    iR := SearchLine(Format(INTF_QUANTITY, [ARightClass , '*']), SectionA2);
+    iX := SearchLine(Format(INTF_QUANTITY, [AResultClass, '*']), SectionA2);
 
-    j := -1;
-    if ABaseClass = '' then
+    ABaseClass := '';
+    i := Max(iL, iR);
+    if i = iL then ABaseClass := ALeftClass;
+    if i = iR then ABaseClass := ARightClass;
+    if i < iX then ABaseClass := '';
+
+    for j := 0 to FCommUnits.Count -1 do
     begin
-      SectionA22.Append(Format(INTF_OP, [AOperator, ALeftClass, ARightClass, AResultClass]));
-      SectionB22.Append('');
-      SectionB22.Append(Format(IMPL_OP, [AOperator, ALeftClass, ARightClass, AResultClass]));
-      Inc(ExternalOperators);
-    end else
-    begin
-      j := SearchLine(Format(IMPL_QUANTITY, [ABaseClass, '*']), SectionB2);
-      SectionA2.Insert(i + 1, Format(INTF_OP_CLASS, [            AOperator, ALeftClass, ARightClass, AResultClass]));
-      SectionB2.Insert(j + 1, '');
-      SectionB2.Insert(j + 2, Format(IMPL_OP_CLASS, [ABaseClass, AOperator, ALeftClass, ARightClass, AResultClass]));
-      Inc(InternalOperators);
+      if ABaseClass <> '' then
+      begin
+        if (i = iL) and (ALeftClass  = FCommUnits[j]) then ABaseClass := '';
+        if (i = iR) and (ARightClass = FCommUnits[j]) then ABaseClass := '';
+        if ABaseClass = '' then Inc(ForcedOperators);
+      end;
     end;
 
-    if AResultClass = 'double' then
-      S := '  result :='
-    else
-      S := '  result.FValue :=';
-
-    if IsAspecialKey(ALeftClass) then
-      S := S + ' ALeft'
-    else
-      S := S + ' ALeft.FValue';
-
-    if IsAVersorKey(ARightClass) then
+    if FClassList.IndexOf(ABaseClass + '.' + ALeftClass + AOperator + ARightClass) = -1 then
     begin
-       S := S + ' ' + AOperator + ' ARight';
-    end else
-    begin
-      if IsAspecialKey(ARightClass) then
-        S := S + ' ' + AOperator + ' ARight'
+      FClassList.Append(ABaseClass + '.' + ALeftClass + AOperator + ARightClass);
+
+      j := -1;
+      if ABaseClass = '' then
+      begin
+        SectionA22.Append(Format(INTF_OP, [AOperator, ALeftClass, ARightClass, AResultClass]));
+        SectionB22.Append('');
+        SectionB22.Append(Format(IMPL_OP, [AOperator, ALeftClass, ARightClass, AResultClass]));
+        Inc(ExternalOperators);
+      end else
+      begin
+        j := SearchLine(Format(IMPL_QUANTITY, [ABaseClass, '*']), SectionB2);
+        SectionA2.Insert(i + 1, Format(INTF_OP_CLASS, [            AOperator, ALeftClass, ARightClass, AResultClass]));
+        SectionB2.Insert(j + 1, '');
+        SectionB2.Insert(j + 2, Format(IMPL_OP_CLASS, [ABaseClass, AOperator, ALeftClass, ARightClass, AResultClass]));
+        Inc(InternalOperators);
+      end;
+
+      if AResultClass = 'double' then
+        S := '  result :='
       else
-        S := S + ' ' + AOperator + ' ARight.FValue';
-    end;
-    S := S + ';';
+        S := '  result.FValue :=';
 
-    if ABaseClass = '' then
-    begin
-      SectionB22.Append('begin');
-      SectionB22.Append(S);
-      SectionB22.Append('end;');
+      if IsAspecialKey(ALeftClass) then
+        S := S + ' ALeft'
+      else
+        S := S + ' ALeft.FValue';
+
+      if IsAVersorKey(ARightClass) then
+      begin
+         S := S + ' ' + AOperator + ' ARight';
+      end else
+      begin
+        if IsAspecialKey(ARightClass) then
+          S := S + ' ' + AOperator + ' ARight'
+        else
+          S := S + ' ' + AOperator + ' ARight.FValue';
+      end;
+      S := S + ';';
+
+      if ABaseClass = '' then
+      begin
+        SectionB22.Append('begin');
+        SectionB22.Append(S);
+        SectionB22.Append('end;');
+      end else
+      begin
+        SectionB2.Insert(j + 3, 'begin');
+        SectionB2.Insert(j + 4, S);
+        SectionB2.Insert(j + 5, 'end;');
+      end;
+
     end else
-    begin
-      SectionB2.Insert(j + 3, 'begin');
-      SectionB2.Insert(j + 4, S);
-      SectionB2.Insert(j + 5, 'end;');
-    end;
-
-  end else
-    FMessages.Append('ERROR: operator ' + AOperator + '(' + ALeftClass + '; ' + ARightClass + ') : ' + AResultClass + '; already esists.');
+      FMessages.Append('ERROR: operator ' + AOperator + '(' + ALeftClass + '; ' + ARightClass + ') : ' + AResultClass + '; already esists.');
+  end;
 end;
 
 procedure TToolKitBuilder.AddUnitOperator(const AOperator, ALeftClass, ARightClass, AResultClass: string; ADual: boolean);
@@ -903,10 +919,10 @@ procedure TToolKitBuilder.AddHelper(AClassName, ABaseClass, AFactor: string);
 var
   Index: longint;
 begin
-  Index := SectionA8.IndexOf('  ' + GetUnitTypeHelper(ABaseClass) + ' = record helper for ' + GetQuantityType(ABaseClass));
+  Index := SectionA8.IndexOf('  ' + GetUnitTypeHelper(ABaseClass) + ' = type helper for ' + GetQuantityType(ABaseClass));
   if Index = -1 then
   begin
-    SectionA8.Append(Format('  %s = record helper for %s', [GetUnitTypeHelper(ABaseClass), GetQuantityType(ABaseClass)]));
+    SectionA8.Append(Format('  %s = type helper for %s', [GetUnitTypeHelper(ABaseClass), GetQuantityType(ABaseClass)]));
     SectionA8.Append(Format('    function To%s: %s;', [GetUnitID(AClassName), GetQuantityType(AClassName)]));
     SectionA8.Append('  end;');
     SectionA8.Append('');
@@ -931,10 +947,10 @@ procedure TToolKitBuilder.AddHelperReciprocal(const AItem: TToolkitItem);
 var
   Index: longint;
 begin
-  Index := SectionA8.IndexOf('  ' + GetUnitTypeHelper(AItem.FClassParent1) + ' = record helper for ' + GetQuantityType(AItem.FClassParent1));
+  Index := SectionA8.IndexOf('  ' + GetUnitTypeHelper(AItem.FClassParent1) + ' = type helper for ' + GetQuantityType(AItem.FClassParent1));
   if Index = -1 then
   begin
-    SectionA8.Append(Format('  %s = record helper for %s', [GetUnitTypeHelper(AItem.FClassParent1), GetQuantityType(AItem.FClassParent1)]));
+    SectionA8.Append(Format('  %s = type helper for %s', [GetUnitTypeHelper(AItem.FClassParent1), GetQuantityType(AItem.FClassParent1)]));
     SectionA8.Append(Format('    function Reciprocal: %s;', [GetQuantityType(AItem.FClassName)]));
     SectionA8.Append('  end;');
     SectionA8.Append('');
@@ -951,10 +967,10 @@ begin
   SectionB8.Append('end;');
   SectionB8.Append('');
 
-  Index := SectionA8.IndexOf('  ' + GetUnitTypeHelper(AItem.FClassName) + ' = record helper for ' + GetQuantityType(AItem.FClassName));
+  Index := SectionA8.IndexOf('  ' + GetUnitTypeHelper(AItem.FClassName) + ' = type helper for ' + GetQuantityType(AItem.FClassName));
   if Index = -1 then
   begin
-    SectionA8.Append(Format('  %s = record helper for %s', [GetUnitTypeHelper(AItem.FClassName), GetQuantityType(AItem.FClassName)]));
+    SectionA8.Append(Format('  %s = type helper for %s', [GetUnitTypeHelper(AItem.FClassName), GetQuantityType(AItem.FClassName)]));
     SectionA8.Append(Format('    function Reciprocal: %s;', [GetQuantityType(AItem.FClassParent1)]));
     SectionA8.Append('  end;');
     SectionA8.Append('');
@@ -976,10 +992,10 @@ procedure TToolKitBuilder.AddHelperSquaredNorm(const AItem: TToolkitItem);
 var
   Index: longint;
 begin
-  Index := SectionA8.IndexOf('  ' + GetUnitTypeHelper(AItem.FClassName) + ' = record helper for ' + GetQuantityType(AItem.FClassName));
+  Index := SectionA8.IndexOf('  ' + GetUnitTypeHelper(AItem.FClassName) + ' = type helper for ' + GetQuantityType(AItem.FClassName));
   if Index = -1 then
   begin
-    SectionA8.Append(Format('  %s = record helper for %s', [GetUnitTypeHelper(AItem.FClassName), GetQuantityType(AItem.FClassName)]));
+    SectionA8.Append(Format('  %s = type helper for %s', [GetUnitTypeHelper(AItem.FClassName), GetQuantityType(AItem.FClassName)]));
     SectionA8.Append(Format('    function SquaredNorm: %s;', [GetQuantityType(AItem.FClassParent1)]));
     SectionA8.Append('  end;');
     SectionA8.Append('');
@@ -1000,10 +1016,10 @@ procedure TToolKitBuilder.AddHelperNorm(const AItem: TToolkitItem);
 var
   Index: longint;
 begin
-  Index := SectionA8.IndexOf('  ' + GetUnitTypeHelper(AItem.FClassName) + ' = record helper for ' + GetQuantityType(AItem.FClassName));
+  Index := SectionA8.IndexOf('  ' + GetUnitTypeHelper(AItem.FClassName) + ' = type helper for ' + GetQuantityType(AItem.FClassName));
   if Index = -1 then
   begin
-    SectionA8.Append(Format('  %s = record helper for %s', [GetUnitTypeHelper(AItem.FClassName), GetQuantityType(AItem.FClassName)]));
+    SectionA8.Append(Format('  %s = type helper for %s', [GetUnitTypeHelper(AItem.FClassName), GetQuantityType(AItem.FClassName)]));
     SectionA8.Append(Format('    function Norm: %s;', [GetQuantityType(AItem.FClassParent1)]));
     SectionA8.Append('  end;');
     SectionA8.Append('');
@@ -1024,10 +1040,10 @@ procedure TToolKitBuilder.AddHelperDual(const AItem: TToolkitItem);
 var
   Index: longint;
 begin
-  Index := SectionA8.IndexOf('  ' + GetUnitTypeHelper(AItem.FClassName) + ' = record helper for ' + GetQuantityType(AItem.FClassName));
+  Index := SectionA8.IndexOf('  ' + GetUnitTypeHelper(AItem.FClassName) + ' = type helper for ' + GetQuantityType(AItem.FClassName));
   if Index = -1 then
   begin
-    SectionA8.Append(Format('  %s = record helper for %s', [GetUnitTypeHelper(AItem.FClassName), GetQuantityType(AItem.FClassName)]));
+    SectionA8.Append(Format('  %s = type helper for %s', [GetUnitTypeHelper(AItem.FClassName), GetQuantityType(AItem.FClassName)]));
     SectionA8.Append(Format('    function Dual: %s;', [GetQuantityType(AItem.FClassParent1)]));
     SectionA8.Append('  end;');
     SectionA8.Append('');
@@ -1044,6 +1060,97 @@ begin
   SectionB8.Append('');
 end;
 
+procedure TToolKitBuilder.AddHelperMUL(const ABaseUnit, ABaseQuantity, AInputQuantity, AResultQuantity: string);
+var
+  Index: longint;
+  Line: string;
+begin
+  if ABaseQuantity = 'double' then
+    Line := '  %s = type helper(SysUtils.TDoubleHelper) for %s'
+  else
+    Line := '  %s = type helper for %s';
+
+  if FClassList.IndexOf(Format('function %s.MUL(AValue: %s): %s;', [ABaseUnit, AInputQuantity, AResultQuantity]))= -1 then
+  begin
+    FClassList.Add(Format('function %s.MUL(AValue: %s): %s;', [ABaseUnit, AInputQuantity, AResultQuantity]));
+
+    Index := SectionA8.IndexOf(Format(Line, [ABaseUnit, ABaseQuantity]));
+    if Index = -1 then
+    begin
+      SectionA8.Append(Format(Line, [ABaseUnit, ABaseQuantity]));
+      SectionA8.Append(Format('    function MUL(AValue: %s): %s;', [AInputQuantity, AResultQuantity]));
+      SectionA8.Append('  end;');
+      SectionA8.Append('');
+    end else
+    begin
+      SectionA8.Insert(Index + 1, Format('    function MUL(AValue: %s): %s;', [AInputQuantity, AResultQuantity]));
+    end;
+
+    SectionB8.Append('');
+    SectionB8.Append(Format('function %s.MUL(AValue: %s): %s;', [ABaseUnit, AInputQuantity, AResultQuantity]));
+    SectionB8.Append('begin');
+
+    if AResultQuantity = 'double' then
+      Line := '  result := '
+    else
+      Line := '  result.FValue := ';
+
+    if ABaseQuantity = 'double' then
+      Line := Line + 'Self * AValue.FValue;'
+    else
+      Line := Line + 'FValue * AValue.FValue;';
+
+    SectionB8.Append(Line);
+    SectionB8.Append('end;');
+    SectionB8.Append('');
+  end;
+end;
+
+procedure TToolKitBuilder.AddHelperDIV(const ABaseUnit, ABaseQuantity, AInputQuantity, AResultQuantity: string);
+var
+  Index: longint;
+  Line: string;
+begin
+  if ABaseQuantity = 'double' then
+    Line := '  %s = type helper(SysUtils.TDoubleHelper) for %s'
+  else
+    Line := '  %s = type helper for %s';
+
+  if FClassList.IndexOf(Format('function %s.DIVIDE(AValue: %s): %s;', [ABaseUnit, AInputQuantity, AResultQuantity]))= -1 then
+  begin
+    FClassList.Add(Format('function %s.DIVIDE(AValue: %s): %s;', [ABaseUnit, AInputQuantity, AResultQuantity]));
+
+    Index := SectionA8.IndexOf(Format(Line, [ABaseUnit, ABaseQuantity]));
+    if Index = -1 then
+    begin
+      SectionA8.Append(Format(Line, [ABaseUnit, ABaseQuantity]));
+      SectionA8.Append(Format('    function DIVIDE(AValue: %s): %s;', [AInputQuantity, AResultQuantity]));
+      SectionA8.Append('  end;');
+      SectionA8.Append('');
+    end else
+    begin
+      SectionA8.Insert(Index + 1, Format('    function DIVIDE(AValue: %s): %s;', [AInputQuantity, AResultQuantity]));
+    end;
+
+    SectionB8.Append('');
+    SectionB8.Append(Format('function %s.DIVIDE(AValue: %s): %s;', [ABaseUnit, AInputQuantity, AResultQuantity]));
+    SectionB8.Append('begin');
+
+    if AResultQuantity = 'double' then
+      Line := '  result := '
+    else
+      Line := '  result.FValue := ';
+
+    if ABaseQuantity = 'double' then
+      Line := Line + 'Self / AValue.FValue;'
+    else
+      Line := Line + 'FValue / AValue.FValue;';
+
+    SectionB8.Append('end;');
+    SectionB8.Append('');
+  end;
+end;
+
 procedure TToolKitBuilder.AddHelperDOT(const ABaseUnit, ABaseQuantity, AInputQuantity, AResultQuantity: string);
 var
   Index: longint;
@@ -1052,10 +1159,10 @@ begin
   begin
     FClassList.Add(Format('function dot.%s(AValue: %s): %s;', [ABaseUnit, AInputQuantity, AResultQuantity]));
 
-    Index := SectionA8.IndexOf('  ' + ABaseUnit + ' = record helper for ' + ABaseQuantity);
+    Index := SectionA8.IndexOf('  ' + ABaseUnit + ' = type helper for ' + ABaseQuantity);
     if Index = -1 then
     begin
-      SectionA8.Append(Format('  %s = record helper for %s', [ABaseUnit, ABaseQuantity]));
+      SectionA8.Append(Format('  %s = type helper for %s', [ABaseUnit, ABaseQuantity]));
       SectionA8.Append(Format('    function dot(AValue: %s): %s;', [AInputQuantity, AResultQuantity]));
       SectionA8.Append('  end;');
       SectionA8.Append('');
@@ -1081,10 +1188,10 @@ begin
   begin
     FClassList.Add(Format('function %s.wedge(AValue: %s): %s;', [ABaseUnit, AInputQuantity, AResultQuantity]));
 
-    Index := SectionA8.IndexOf('  ' + ABaseUnit + ' = record helper for ' + ABaseQuantity);
+    Index := SectionA8.IndexOf('  ' + ABaseUnit + ' = type helper for ' + ABaseQuantity);
     if Index = -1 then
     begin
-      SectionA8.Append(Format('  %s = record helper for %s', [ABaseUnit, ABaseQuantity]));
+      SectionA8.Append(Format('  %s = type helper for %s', [ABaseUnit, ABaseQuantity]));
       SectionA8.Append(Format('    function wedge(AValue: %s): %s;', [AInputQuantity, AResultQuantity]));
       SectionA8.Append('  end;');
       SectionA8.Append('');
@@ -1110,10 +1217,10 @@ begin
   begin
     FClassList.Add(Format('function %s.geometric(AValue: %s): %s;', [ABaseUnit, AInputQuantity, AResultQuantity]));
 
-    Index := SectionA8.IndexOf('  ' + ABaseUnit + ' = record helper for ' + ABaseQuantity);
+    Index := SectionA8.IndexOf('  ' + ABaseUnit + ' = type helper for ' + ABaseQuantity);
     if Index = -1 then
     begin
-      SectionA8.Append(Format('  %s = record helper for %s', [ABaseUnit, ABaseQuantity]));
+      SectionA8.Append(Format('  %s = type helper for %s', [ABaseUnit, ABaseQuantity]));
       SectionA8.Append(Format('    function geometric(AValue: %s): %s;', [AInputQuantity, AResultQuantity]));
       SectionA8.Append('  end;');
       SectionA8.Append('');

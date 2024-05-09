@@ -32,6 +32,7 @@ type
   { TMainForm }
 
   TMainForm = class(TForm)
+    UseFuncInsteadOfOperators: TCheckBox;
     SkipVectorialUnits: TCheckBox;
     Memo: TMemo;
     OptimizationTime: TSpinEdit;
@@ -137,6 +138,7 @@ begin
   UpdateButton(False);
   ToolKitThread := TToolKitThread.Create;
   ToolKitThread.OnTerminate := @OnTerminate;
+  ToolKitThread.FList.UseFuncInsteadOfOperators := UseFuncInsteadOfOperators.Checked;
   for i := 0 to WorksheetGrid.Worksheet.GetLastRowIndex do
   begin
     T.FClassName        := CleanSingleSpaces(WorksheetGrid.Worksheet.ReadAsText(i, 00));

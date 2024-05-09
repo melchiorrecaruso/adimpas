@@ -804,6 +804,20 @@ object MainForm: TMainForm
     Caption = 'Skip vectorial units'
     TabOrder = 6
   end
+  object UseFuncInsteadOfOperators: TCheckBox
+    AnchorSideTop.Control = SkipVectorialUnits
+    AnchorSideRight.Control = SkipVectorialUnits
+    AnchorSideBottom.Control = SkipVectorialUnits
+    AnchorSideBottom.Side = asrBottom
+    Left = 303
+    Height = 36
+    Top = 8
+    Width = 248
+    Anchors = [akTop, akRight, akBottom]
+    BorderSpacing.Right = 10
+    Caption = 'Use functions instead of operators'
+    TabOrder = 7
+  end
   object SaveDialog: TSaveDialog
     Filter = 'Lazarus unit (*.pas; *.pp)|*.pas;*.pp;'
     Left = 96

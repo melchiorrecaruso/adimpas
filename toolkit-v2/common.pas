@@ -350,6 +350,8 @@ end;
 
 function GetUnitTypeHelper(const S: string): string;
 begin
+  if S = 'double' then Exit('TDoubleHelper');
+
   Result := S;
   Result := StringReplace(Result, '!',  '', [rfReplaceAll]);
   Result := StringReplace(Result, '?',  '', [rfReplaceAll]);
