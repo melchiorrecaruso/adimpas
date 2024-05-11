@@ -45,6 +45,7 @@ var
   tolerance: TMeters;
   time: TSeconds;
   speed: TMetersPerSecond;
+  spin: TKilogramSquareMetersPerSecond;
   acc: TMetersPerSquareSecond;
   density: TKilogramsPerCubicMeter;
   specificw: TNewtonsPerCubicMeter;
@@ -94,6 +95,7 @@ var
 
   Ue: TJoules;
   kx: TNewtonsPerMeter;
+  x: TMeters;
 
   q1: TCoulombs;
   q2: TCoulombs;
@@ -148,7 +150,8 @@ var
   yspeed: TMetersperSecond;
   yacc: TMetersPerSquareSecond;
 
-  energy: TJoules;
+  E0: TJoules;
+  Energy: TJoules;
   freq: THertz;
 
   I: TKilogramSquareMeters;
@@ -159,11 +162,17 @@ var
   kc: TReciprocalMeters;
   BoxLen: TMeters;
   EnergyLevels: array[1..4] of TJoules;
-  SquarePsi:    array[1..4] of TReciprocalMeters;
+  SquarePsi: array[1..4] of TReciprocalMeters;
+  Psi0: TReciprocalSquareRootMeters;
+  PsiValues: array [1..4] of TReciprocalMeters;
+  A0: TReciprocalSquareRootMeters;
+  y: double;
+
 
   Iteration: longint;
   Iterations: longint;
   Probability: double;
+  mu: TJoulesPerTesla;
 
   {$ifdef VECTORIAL}
   radiusvec: TCLMeters;
@@ -291,8 +300,8 @@ begin
   radius       := 2*m;
   speed        := angularspeed*radius;
   angularspeed := speed/radius;
-  if angularspeed .ToVerboseString(5, 1, []) <> '2.5 radians per second' then halt(1);
-  if speed        .ToVerboseString(5, 1, []) <> '5 meters per second'    then halt(2);
+  if angularspeed.ToRadianPerSecond.ToVerboseString(5, 1, []) <> '2.5 radians per second' then halt(1);
+  if speed                         .ToVerboseString(5, 1, []) <> '5 meters per second'    then halt(2);
   writeln('* TEST-06: PASSED');
 
   // TEST-07 - CENTRIFUGAL FORCE
@@ -813,7 +822,7 @@ begin
   mass  := 1*kg;
   kx    := 10*N/m;
   omega := SquareRoot(kx/mass);
-  if omega.ToString(3, 2, []) <> '3.16 rad/s' then halt(1);
+  if omega.ToRadianPerSecond.ToString(3, 2, []) <> '3.16 rad/s' then halt(1);
   writeln('* TEST-67: PASSED');
 
   // TEST-68 - DAMPED HARMONIC OSCILLATOR
@@ -821,7 +830,7 @@ begin
   kx     := 10*N/m;
   Cb     := 10*Pa*s*m;
   omega  := SquareRoot(kx/mass);
-  if omega.ToString(3, 2, []) <> '3.16 rad/s' then halt(1);
+  if omega.ToRadianPerSecond.ToString(3, 2, []) <> '3.16 rad/s' then halt(1);
   writeln('* TEST-68: PASSED');
 
   // TEST-69 - PHYSICAL PENDULUM
@@ -866,12 +875,12 @@ begin
 
   // TEST-95
   omega := 10*rad/s;
-  omega := 10/s;
+  omega := 10*Hz;
   freq  := 10*rad/s;
-  freq  := 10/s;
+  freq  := 10*Hz;
   omega := freq;
   freq  := omega;
-  if omega.ToHertz          .ToString <> '10 Hz'    then halt(1);
+  if omega                  .ToString <> '10 Hz'    then halt(1);
   if freq .ToRadianPerSecond.ToString <> '10 rad/s' then halt(2);
   writeln('* TEST-95: PASSED');
 
@@ -986,8 +995,40 @@ begin
   end;
   writeln('* TEST-103: PASSED');
 
+  // TEST-104 : Quantum harmonic oscillator
+  x      := 10E-6*m;
+  Kx     := 1*N/m;
+  mass   := ElectronMass;
+  omega  := SquareRoot(Kx/mass);
+  E0     := 0.5*ReducedPlanckConstant*omega;
+
+  A0     := QuarticRoot(mass*omega/pi/ReducedPlanckConstant);
+  Psi0   := A0*exp(-mass*omega/2/ReducedPlanckConstant*SquarePower(x));
+
+  EnergyLevels[1] := (1 + 0.5)*ReducedPlanckConstant*omega;
+  EnergyLevels[2] := (2 + 0.5)*ReducedPlanckConstant*omega;
+  EnergyLevels[3] := (3 + 0.5)*ReducedPlanckConstant*omega;
+  EnergyLevels[4] := (4 + 0.5)*ReducedPlanckConstant*omega;
+
+  y               := SquareRoot(mass*omega/ReducedPlanckConstant)*x;
+
+  PsiValues[1]    := A0*(  sqrt(2)*(  y         ))*QuarticRoot(mass*omega/pi/ReducedPlanckConstant);
+  PsiValues[2]    := A0*(1/sqrt(2)*(2*y*y   -1  ))*QuarticRoot(mass*omega/pi/ReducedPlanckConstant);
+  PsiValues[3]    := A0*(1/sqrt(3)*(2*y*y*y -3*y))*QuarticRoot(mass*omega/pi/ReducedPlanckConstant);
+
+  // TEST-105 : STEN-GERLACH EXPERIMENT
+  speed    := VacuumLightSpeed/2;
+  spin     := 0.5*ReducedPlanckConstant;
+  // magnetic momentum
+  mu :=  0.5*ElementaryCharge/pi/BohrRadius*speed*pi*SquarePower(BohrRadius);
+  mu :=  0.5*ElementaryCharge*(speed*BohrRadius);
+  mu :=  0.5*ElementaryCharge/ElectronMass*(ElectronMass*speed*BohrRadius);
+  mu :=  1.0*ElementaryCharge/ElectronMass*ReducedPlanckConstant;
+  mu := -2.0*BohrMagneton*(spin/ReducedPlanckConstant);
+  U  :=  mu*(10*T);
+
   {$ifdef VECTORIAL}
-  // TEST-104
+  // TEST-106
 
   side1vec := 5*e1*m;                                                           writeln(side1vec.ToVerboseString);
   side2vec := 10*e2*m;                                                          writeln(side2vec.ToVerboseString);
@@ -1100,7 +1141,7 @@ begin
   writeln(powervec.Extract([mc0]).Norm.ToString);
   writeln('Y = ', (1/impedance).ToVerboseString);
 
-  writeln('* TEST-104: PASSED');
+  writeln('* TEST-106: PASSED');
   {$endif}
 
 

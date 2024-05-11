@@ -31,11 +31,6 @@
         <UnitName Value="ADim"/>
       </Item>
     </Files>
-    <RequiredPkgs>
-      <Item>
-        <PackageName Value="FCL"/>
-      </Item>
-    </RequiredPkgs>
     <UsageOptions>
       <UnitPath Value="$(PkgOutDir)"/>
     </UsageOptions>
