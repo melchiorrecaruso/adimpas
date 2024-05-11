@@ -284,6 +284,21 @@ begin
   end;
 end;
 
+function GetQuantityTypeHelper(const S: string): string;
+begin
+  Result := S;
+  if Result <> '' then
+  begin
+    Result := StringReplace(Result, 'Foot!', 'Foot', [rfReplaceAll]);
+    Result := StringReplace(Result, 'Inch!', 'Inch', [rfReplaceAll]);
+    Result := StringReplace(Result, 'y!',    'y',    [rfReplaceAll]);
+    Result := StringReplace(Result, '?',     '',     [rfReplaceAll]);
+    Result := StringReplace(Result, ' ',     '',     [rfReplaceAll]);
+
+    Result := Result + 'Helper';
+  end;
+end;
+
 function GetQuantity(const S: string): string;
 begin
   Result := S;
@@ -350,8 +365,6 @@ end;
 
 function GetUnitTypeHelper(const S: string): string;
 begin
-  if S = 'double' then Exit('TDoubleHelper');
-
   Result := S;
   Result := StringReplace(Result, '!',  '', [rfReplaceAll]);
   Result := StringReplace(Result, '?',  '', [rfReplaceAll]);
