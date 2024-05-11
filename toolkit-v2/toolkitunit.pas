@@ -139,11 +139,11 @@ type
     procedure AddHelperDual(const AItem: TToolkitItem);
     procedure AddHelperReciprocal(const AItem: TToolKitItem);
 
-    procedure AddHelperMUL      (const ABaseUnit, ABaseQuantity, AInputQuantity, AResultQuantity: string);
-    procedure AddHelperDIV      (const ABaseUnit, ABaseQuantity, AInputQuantity, AResultQuantity: string);
-    procedure AddHelperDOT      (const ABaseUnit, ABaseQuantity, AInputQuantity, AResultQuantity: string);
-    procedure AddHelperWEDGE    (const ABaseUnit, ABaseQuantity, AInputQuantity, AResultQuantity: string);
-    procedure AddHelperGEOMETRIC(const ABaseUnit, ABaseQuantity, AInputQuantity, AResultQuantity: string);
+    procedure AddHelperMUL       (const ABaseUnit, ABaseQuantity, AInputQuantity, AResultQuantity: string);
+    procedure AddHelperDIV       (const ABaseUnit, ABaseQuantity, AInputQuantity, AResultQuantity: string);
+    procedure AddHelperDOT       (const ABaseUnit, ABaseQuantity, AInputQuantity, AResultQuantity: string);
+    procedure AddHelperWEDGE     (const ABaseUnit, ABaseQuantity, AInputQuantity, AResultQuantity: string);
+    procedure AddHelperGEOMETRIC (const ABaseUnit, ABaseQuantity, AInputQuantity, AResultQuantity: string);
 
     procedure AddResources(const AItem: TToolkitItem);
     procedure AddEquivalence(AFromClass, AToClass: string);
@@ -728,8 +728,7 @@ begin
     else
       if AOperator = '/' then
         AddHelperDIV(GetUnitTypeHelper(GetBaseClass(ALeftClass)), ALeftClass, ARightClass, AResultClass);
-  end; // else
-
+  end else
   begin
     iL := SearchLine(Format(INTF_QUANTITY, [ALeftClass  , '*']), SectionA2);
     iR := SearchLine(Format(INTF_QUANTITY, [ARightClass , '*']), SectionA2);
@@ -963,7 +962,6 @@ begin
   SectionB8.Append(Format('function %s.Reciprocal: %s;', [GetUnitTypeHelper(AItem.FClassParent1), GetQuantityType(AItem.FClassName)]));
   SectionB8.Append('begin');
   SectionB8.Append('  result.FValue := FValue.Reciprocal;');
-//SectionB8.Append('  result.FValue := FValue / FValue.SquaredNorm;');
   SectionB8.Append('end;');
   SectionB8.Append('');
 
@@ -983,12 +981,11 @@ begin
   SectionB8.Append(Format('function %s.Reciprocal: %s;', [GetUnitTypeHelper(AItem.FClassName), GetQuantityType(AItem.FClassParent1)]));
   SectionB8.Append('begin');
   SectionB8.Append('  result.FValue := FValue.Reciprocal;');
-//SectionB8.Append('  result.FValue := FValue / FValue.SquaredNorm;');
   SectionB8.Append('end;');
   SectionB8.Append('');
 end;
 
-procedure TToolKitBuilder.AddHelperSquaredNorm(const AItem: TToolkitItem);
+procedure TToolKitBuilder.AddHelperDual(const AItem: TToolkitItem);
 var
   Index: longint;
 begin
@@ -996,18 +993,18 @@ begin
   if Index = -1 then
   begin
     SectionA8.Append(Format('  %s = type helper for %s', [GetUnitTypeHelper(AItem.FClassName), GetQuantityType(AItem.FClassName)]));
-    SectionA8.Append(Format('    function SquaredNorm: %s;', [GetQuantityType(AItem.FClassParent1)]));
+    SectionA8.Append(Format('    function Dual: %s;', [GetQuantityType(AItem.FClassParent1)]));
     SectionA8.Append('  end;');
     SectionA8.Append('');
   end else
   begin
-    SectionA8.Insert(Index + 1, Format('    function SquaredNorm: %s;', [GetQuantityType(AItem.FClassParent1)]));
+    SectionA8.Insert(Index + 1, Format('    function Dual: %s;', [GetQuantityType(AItem.FClassParent1)]));
   end;
 
   SectionB8.Append('');
-  SectionB8.Append(Format('function %s.SquaredNorm: %s;', [GetUnitTypeHelper(AItem.FClassName), GetQuantityType(AItem.FClassParent1)]));
+  SectionB8.Append(Format('function %s.Dual: %s;', [GetUnitTypeHelper(AItem.FClassName), GetQuantityType(AItem.FClassParent1)]));
   SectionB8.Append('begin');
-  SectionB8.Append('  result.FValue := FValue.SquaredNorm;');
+  SectionB8.Append('  result.FValue := FValue.Dual;');
   SectionB8.Append('end;');
   SectionB8.Append('');
 end;
@@ -1036,7 +1033,7 @@ begin
   SectionB8.Append('');
 end;
 
-procedure TToolKitBuilder.AddHelperDual(const AItem: TToolkitItem);
+procedure TToolKitBuilder.AddHelperSquaredNorm(const AItem: TToolkitItem);
 var
   Index: longint;
 begin
@@ -1044,18 +1041,18 @@ begin
   if Index = -1 then
   begin
     SectionA8.Append(Format('  %s = type helper for %s', [GetUnitTypeHelper(AItem.FClassName), GetQuantityType(AItem.FClassName)]));
-    SectionA8.Append(Format('    function Dual: %s;', [GetQuantityType(AItem.FClassParent1)]));
+    SectionA8.Append(Format('    function SquaredNorm: %s;', [GetQuantityType(AItem.FClassParent1)]));
     SectionA8.Append('  end;');
     SectionA8.Append('');
   end else
   begin
-    SectionA8.Insert(Index + 1, Format('    function Dual: %s;', [GetQuantityType(AItem.FClassParent1)]));
+    SectionA8.Insert(Index + 1, Format('    function SquaredNorm: %s;', [GetQuantityType(AItem.FClassParent1)]));
   end;
 
   SectionB8.Append('');
-  SectionB8.Append(Format('function %s.Dual: %s;', [GetUnitTypeHelper(AItem.FClassName), GetQuantityType(AItem.FClassParent1)]));
+  SectionB8.Append(Format('function %s.SquaredNorm: %s;', [GetUnitTypeHelper(AItem.FClassName), GetQuantityType(AItem.FClassParent1)]));
   SectionB8.Append('begin');
-  SectionB8.Append('  result.FValue := FValue.Dual;');
+  SectionB8.Append('  result.FValue := FValue.SquaredNorm;');
   SectionB8.Append('end;');
   SectionB8.Append('');
 end;
@@ -1109,45 +1106,57 @@ end;
 procedure TToolKitBuilder.AddHelperDIV(const ABaseUnit, ABaseQuantity, AInputQuantity, AResultQuantity: string);
 var
   Index: longint;
-  Line: string;
 begin
-  if ABaseQuantity = 'double' then
-    Line := '  %s = type helper(SysUtils.TDoubleHelper) for %s'
-  else
-    Line := '  %s = type helper for %s';
-
-  if FClassList.IndexOf(Format('function %s.DIVIDE(AValue: %s): %s;', [ABaseUnit, AInputQuantity, AResultQuantity]))= -1 then
+  if ABaseQuantity <> 'double' then
   begin
-    FClassList.Add(Format('function %s.DIVIDE(AValue: %s): %s;', [ABaseUnit, AInputQuantity, AResultQuantity]));
+    if FClassList.IndexOf(Format('function %s.DIVIDE(AValue: %s): %s;', [ABaseUnit, AInputQuantity, AResultQuantity]))= -1 then
+    begin
+      FClassList.Add(Format('function %s.DIVIDE(AValue: %s): %s;', [ABaseUnit, AInputQuantity, AResultQuantity]));
 
-    Index := SectionA8.IndexOf(Format(Line, [ABaseUnit, ABaseQuantity]));
-    if Index = -1 then
-    begin
-      SectionA8.Append(Format(Line, [ABaseUnit, ABaseQuantity]));
-      SectionA8.Append(Format('    function DIVIDE(AValue: %s): %s;', [AInputQuantity, AResultQuantity]));
-      SectionA8.Append('  end;');
-      SectionA8.Append('');
-    end else
-    begin
-      SectionA8.Insert(Index + 1, Format('    function DIVIDE(AValue: %s): %s;', [AInputQuantity, AResultQuantity]));
+      Index := SectionA8.IndexOf(Format('  %s = type helper for %s', [ABaseUnit, ABaseQuantity]));
+      if Index = -1 then
+      begin
+        SectionA8.Append(Format('  %s = type helper for %s', [ABaseUnit, ABaseQuantity]));
+        SectionA8.Append(Format('    function DIVIDE(AValue: %s): %s;', [AInputQuantity, AResultQuantity]));
+        SectionA8.Append('  end;');
+        SectionA8.Append('');
+      end else
+      begin
+        SectionA8.Insert(Index + 1, Format('    function DIVIDE(AValue: %s): %s;', [AInputQuantity, AResultQuantity]));
+      end;
+
+      SectionB8.Append('');
+      SectionB8.Append(Format('function %s.DIVIDE(AValue: %s): %s;', [ABaseUnit, AInputQuantity, AResultQuantity]));
+      SectionB8.Append('begin');
+      SectionB8.Append('  result.FValue := FValue / AValue.FValue;');
+      SectionB8.Append('end;');
+      SectionB8.Append('');
     end;
+  end else
+  begin
+    if FClassList.IndexOf(Format('function %s.RECIPROCAL: %s;', [AInputQuantity, AResultQuantity]))= -1 then
+    begin
+      FClassList.Add(Format('function %s.RECIPROCAL: %s;', [AInputQuantity, AResultQuantity]));
 
-    SectionB8.Append('');
-    SectionB8.Append(Format('function %s.DIVIDE(AValue: %s): %s;', [ABaseUnit, AInputQuantity, AResultQuantity]));
-    SectionB8.Append('begin');
+      Index := SectionA8.IndexOf(Format('  %s = type helper for %s', [GetUnitTypeHelper(GetBaseClass(AInputQuantity)), AInputQuantity]));
+      if Index = -1 then
+      begin
+        SectionA8.Append(Format('  %s = type helper for %s', [GetUnitTypeHelper(GetBaseClass(AInputQuantity)), AInputQuantity]));
+        SectionA8.Append(Format('    function RECIPROCAL: %s;', [AResultQuantity]));
+        SectionA8.Append('  end;');
+        SectionA8.Append('');
+      end else
+      begin
+        SectionA8.Insert(Index + 1, Format('    function RECIPROCAL: %s;', [AResultQuantity]));
+      end;
 
-    if AResultQuantity = 'double' then
-      Line := '  result := '
-    else
-      Line := '  result.FValue := ';
-
-    if ABaseQuantity = 'double' then
-      Line := Line + 'Self / AValue.FValue;'
-    else
-      Line := Line + 'FValue / AValue.FValue;';
-
-    SectionB8.Append('end;');
-    SectionB8.Append('');
+      SectionB8.Append('');
+      SectionB8.Append(Format('function %s.RECIPROCAL: %s;', [GetUnitTypeHelper(GetBaseClass(AInputQuantity)), AResultQuantity]));
+      SectionB8.Append('begin');
+      SectionB8.Append('  result.FValue := 1 / FValue;');
+      SectionB8.Append('end;');
+      SectionB8.Append('');
+    end;
   end;
 end;
 
