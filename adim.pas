@@ -6150,16 +6150,24 @@ function GetName(const AName: string; const Prefixes: TPrefixes): string;
 { Constants }
 
 const
-  BohrRadius                     : TMeters                              = (FValue: 5.29177210903E-11);
+  AvogadroConstant               : TReciprocalMoles                     = (FValue: 6.02214076E+23);
   BohrMagneton                   : TSquareMeterAmperes                  = (FValue: 9.2740100657E-24);
+  BohrRadius                     : TMeters                              = (FValue: 5.29177210903E-11);
+  BoltzmannConstant              : TJoulesPerKelvin                     = (FValue: 1.380649E-23);
+  ComptonWaveLength              : TMeters                              = (FValue: 2.42631023867E-12);
+  CoulombConstant                : TNewtonSquareMetersPerSquareCoulomb  = (FValue: 8.9875517923E+9);
+  DeuteronMass                   : TKilograms                           = (FValue: 3.3435837768E-27);
   ElectronMass                   : TKilograms                           = (FValue: 9.1093837015E-31);
   ElementaryCharge               : TCoulombs                            = (FValue: 1.602176634E-19);
-  ComptonWaveLength              : TMeters                              = (FValue: 2.42631023867E-12);
-  CoulombConstant                : TNewtonSquareMetersPerSquareCoulomb  = (FValue: 8.9875517923E9);
+  MolarGasConstant               : TJoulesPerMolePerKelvin              = (FValue: 8.314462618);
+  NeutronMass                    : TKilograms                           = (FValue: 1.67492750056E-27);
   NewtonianConstantOfGravitation : TNewtonSquareMetersPerSquareKilogram = (FValue: 6.67430E-11);
   PlanckConstant                 : TJouleSeconds                        = (FValue: 6.62607015E-34);
+  ProtonMass                     : TKilograms                           = (FValue: 1.67262192595E-27);
+  RydbergConstant                : TREciprocalMeters                    = (FValue: 10973731.568157);
   StandardAccelerationOfGravity  : TMetersPerSquareSecond               = (FValue: 9.80665);
   ReducedPlanckConstant          : TJouleSeconds                        = (FValue: 6.62607015E-34/2/pi);
+  UnifiedAtomicMassUnit          : TKilograms                           = (FValue: 1.66053906892E-27);
   VacuumElectricPermittivity     : TFaradsPerMeter                      = (FValue: 8.8541878128E-12);
   VacuumLightSpeed               : TMetersPerSecond                     = (FValue: 299792458);
   VacuumMagneticPermeability     : THenriesPerMeter                     = (FValue: 1.25663706212E-6);
