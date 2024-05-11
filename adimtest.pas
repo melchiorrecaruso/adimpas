@@ -45,6 +45,7 @@ var
   tolerance: TMeters;
   time: TSeconds;
   speed: TMetersPerSecond;
+  spin: TKilogramSquareMetersPerSecond;
   acc: TMetersPerSquareSecond;
   density: TKilogramsPerCubicMeter;
   specificw: TNewtonsPerCubicMeter;
@@ -171,6 +172,7 @@ var
   Iteration: longint;
   Iterations: longint;
   Probability: double;
+  mu: TJoulesPerTesla;
 
   {$ifdef VECTORIAL}
   radiusvec: TCLMeters;
@@ -1014,8 +1016,19 @@ begin
   PsiValues[2]    := A0*(1/sqrt(2)*(2*y*y   -1  ))*QuarticRoot(mass*omega/pi/ReducedPlanckConstant);
   PsiValues[3]    := A0*(1/sqrt(3)*(2*y*y*y -3*y))*QuarticRoot(mass*omega/pi/ReducedPlanckConstant);
 
+  // TEST-105 : STEN-GERLACH EXPERIMENT
+  speed    := VacuumLightSpeed/2;
+  spin     := 0.5*ReducedPlanckConstant;
+  // magnetic momentum
+  mu :=  0.5*ElementaryCharge/pi/BohrRadius*speed*pi*SquarePower(BohrRadius);
+  mu :=  0.5*ElementaryCharge*(speed*BohrRadius);
+  mu :=  0.5*ElementaryCharge/ElectronMass*(ElectronMass*speed*BohrRadius);
+  mu :=  1.0*ElementaryCharge/ElectronMass*ReducedPlanckConstant;
+  mu := -2.0*BohrMagneton*(spin/ReducedPlanckConstant);
+  U  :=  mu*(10*T);
+
   {$ifdef VECTORIAL}
-  // TEST-104
+  // TEST-106
 
   side1vec := 5*e1*m;                                                           writeln(side1vec.ToVerboseString);
   side2vec := 10*e2*m;                                                          writeln(side2vec.ToVerboseString);
@@ -1128,7 +1141,7 @@ begin
   writeln(powervec.Extract([mc0]).Norm.ToString);
   writeln('Y = ', (1/impedance).ToVerboseString);
 
-  writeln('* TEST-104: PASSED');
+  writeln('* TEST-106: PASSED');
   {$endif}
 
 
