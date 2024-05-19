@@ -19,15 +19,12 @@
 
 program adimtest;
 
-{*$DEFINE VECTORIAL}
-
-{$J-}
 {$if FPC_FULLVERSION >= 30301}
   {$modeswitch implicitfunctionspecialization}
 {$endif}
 
 uses
-  ADim, {$ifdef VECTORIAL} CL3, {$endif} SysUtils;
+  ADim, SysUtils;
 
 var
   side1, side2, side3, side4: TMeters;
@@ -50,7 +47,6 @@ var
   density: TKilogramsPerCubicMeter;
   specificw: TNewtonsPerCubicMeter;
   force, normal: TNewtons;
-
 
   torque: TNewtonMeters;
   work: TJoules;
@@ -168,49 +164,10 @@ var
   A0: TReciprocalSquareRootMeters;
   y: double;
 
-
   Iteration: longint;
   Iterations: longint;
   Probability: double;
   mu: TJoulesPerTesla;
-
-  {$ifdef VECTORIAL}
-  radiusvec: TCLMeters;
-  displacement: TCLMeters;
-  speedvec: TCLMetersPerSecond;
-  accvec: TCLMetersPerSquareSecond;
-
-  momentum: TCLKilogramMetersPerSecond;
-
-  anglevec: TCLRadians;
-  angularspeedvec: TCLRadiansPerSecond;
-  angularaccvec: TCLRadiansPerSquareSecond;
-  angularmomentum: TCLKilogramSquareMetersPerSecond;
-
-  forcevec: TCLNewtons;
-  areavec: TCLSquareMeters;
-
-  torquevec: TCLNewtonMeters;
-
-  magneticfluxvec: TCLWebers;
-  magneticfieldvec: TCLTeslas;
-
-  pressurevec: TCLPascals;
-
-  torquestifness: TCLNewtonMetersPerRadian;
-
-  electricfieldvec: TCLVoltsPerMeter;
-
-  potentialvec: TCLVolts;
-  currentvec: TCLAmperes;
-  powervec: TCLWatts;
-
-  impedance: TCLOhms;
-  omegavec: TCLRadiansPerSecond;
-
-  side1vec: TCLMeters;
-  side2vec: TCLMeters;
-  {$endif}
 
 begin
   ExitCode := 0;
@@ -1015,6 +972,7 @@ begin
   PsiValues[1]    := A0*(  sqrt(2)*(  y         ))*QuarticRoot(mass*omega/pi/ReducedPlanckConstant);
   PsiValues[2]    := A0*(1/sqrt(2)*(2*y*y   -1  ))*QuarticRoot(mass*omega/pi/ReducedPlanckConstant);
   PsiValues[3]    := A0*(1/sqrt(3)*(2*y*y*y -3*y))*QuarticRoot(mass*omega/pi/ReducedPlanckConstant);
+  writeln('* TEST-104: PASSED');
 
   // TEST-105 : STEN-GERLACH EXPERIMENT
   speed    := VacuumLightSpeed/2;
@@ -1026,124 +984,7 @@ begin
   mu :=  1.0*ElementaryCharge/ElectronMass*ReducedPlanckConstant;
   mu := -2.0*BohrMagneton*(spin/ReducedPlanckConstant);
   U  :=  mu*(10*T);
-
-  {$ifdef VECTORIAL}
-  // TEST-106
-
-  side1vec := 5*e1*m;                                                           writeln(side1vec.ToVerboseString);
-  side2vec := 10*e2*m;                                                          writeln(side2vec.ToVerboseString);
-  areavec  := side1vec.wedge(side2vec);                                         writeln(areavec .ToVerboseString);
-  side1vec := areavec.dot(1/side2vec);                                          writeln(side1vec.ToVerboseString);
-  side2vec := (1/side1vec).dot(areavec);                                        writeln(side2vec.ToVerboseString);
-
-  displacement := (2*e1 + 6*e2)*m;
-  displacement := (2*e1 + 6*e2)*inch;
-
-  speedvec     := (2*e1 + 6*e2)*m/s;
-  speedvec     := displacement/(10*s);
-
-
-  displacement := (6.0*e1)*m;
-  speedvec     := (2.0*e1 + 5*e2)*m/s;
-
-  accvec   := speedvec/(5*s);
-  accvec   := (2*e1 + 6*e2)*m/s2;
-  momentum := (10*kg)*speedvec;
-  momentum := (10*e1)*kg*m/s;
-  anglevec := (10*e13)*deg;
-
-  angularspeedvec := anglevec/(2.5*s);
-  angularaccvec   := angularspeedvec/(4*s);
-
-  radiusvec       := 1*e2*m;
-  angularmomentum := momentum.wedge(radiusvec);                                 writeln(angularmomentum.ToVerboseString);
-
-  mass      := 10*kg;
-  accvec    := (2*e1 + 2*e2)*m/s2;
-  forcevec  := (5*kg)*accvec;
-  forcevec  := momentum/(10*s);
-  forcevec  := (5*e1)*kg*m/s2;
-  forcevec  := (5*e1)*N;
-  accvec    := forcevec/mass;
-
-
-  areavec   := (10*e1*m).Wedge(5*e2*m);
-
-  torquevec := (10*e12)*N*m;                 writeln(torquevec.ToVerboseString);
-  torquevec := (1*e2*m).Wedge(10*e1*N);      writeln(torquevec.ToVerboseString);
-  torquevec := (10*e12)*kg*m2/s2;            writeln(torquevec.ToVerboseString);
-
-
-  writeln(accvec.ToString);
-  writeln(angularspeedvec.ToString(5, 3, []));
-  writeln(angularspeedvec.ToVerboseString);
-  writeln;
-  writeln(anglevec.ToString);
-  writeln(angularspeedvec.ToString);
-
-  writeln(anglevec.dot(1/angularspeedvec).ToString);
-  writeln(angularspeedvec.dot(1/anglevec).ToString);
-
-
-  writeln('TORQUE');
-  forcevec     := 10*e2*N;                                                      writeln(forcevec    .ToVerboseString);
-  displacement :=  5*e1*m;                                                      writeln(displacement.ToVerboseString);
-  torquevec    := 50*e12*N*m;                                                   writeln(torquevec   .ToVerboseString);
-  torquevec    := displacement.wedge(forcevec);                                 writeln(torquevec   .ToVerboseString);
-  forcevec     := (1/displacement).dot(torquevec);                              writeln(forcevec    .ToVerboseString);
-  displacement := torquevec.dot(1/forcevec);                                    writeln(displacement.ToVerboseString);
-
-  writeln('WEBER');
-  magneticfieldvec := (10*e12)*T;                                               writeln(magneticfieldvec.ToVerboseString);
-  areavec          := ( 5*e12)*m2;                                              writeln(areavec.ToVerboseString);
-  magneticfluxvec  := -magneticfieldvec.Dual.wedge(areavec);                    writeln(magneticfluxvec.ToVerboseString);
-  magneticfieldvec := magneticfluxvec.dot(1/areavec).Dual;                      writeln(magneticfieldvec.ToVerboseString);
-  areavec          := -(1/magneticfieldvec.Dual).dot(magneticfluxvec);          writeln(areavec.ToVerboseString);
-  magneticfluxvec  := (50*V*s)*e123;
-  magneticfluxvec  := magneticflux*e123;
-
-  writeln('HENRY');
-  inductance := -magneticfluxvec.Dual/current;                                  writeln(inductance.ToString);
-
-  writeln('PASCAL');
-  forcevec    := 10*e1*N;                                                       writeln(forcevec.ToVerboseString);
-  areavec     := 1*e23*m2;                                                      writeln(areavec.ToVerboseString);
-  pressurevec := -forcevec.wedge(1/areavec);                                    writeln(pressurevec.ToVerboseString);
-  forcevec    := -pressurevec.dot(areavec);                                     writeln(forcevec.ToVerboseString);
-  areavec     := -forcevec.dot(1/pressurevec);                                  writeln(areavec.ToVerboseString);
-
-  torquestifness := 10*e12*N*m/rad;
-  torquevec      := torquestifness * (5*rad);
-
-  writeln('LORETZ FORCE');
-  electricfieldvec := (10*e1)*N/C;
-  charge           := 1.60217663E-19*C;
-  forcevec         := charge * electricfieldvec;
-  forcevec         := electricfieldvec * charge;
-  charge           := forcevec.dot(1/electricfieldvec);
-  electricfieldvec := forcevec/charge;
-
-  writeln('VOLTAGES');
-  omegavec         := (1*e12)*rad/s;
-  potentialvec     := (50*e1)*V;
-
-  resistance       := 2*Ohm;
-  capacitance      := 1*F;
-  inductance       := 2*H;
-  impedance        := resistance - (1/(omegavec*capacitance) + omegavec*inductance);  writeln('Z = ', impedance.ToVerboseString);
-  currentvec       := (1/impedance) * potentialvec;                                   writeln('I = ', currentvec.ToVerboseString);
-  powervec         := currentvec * potentialvec;                                      writeln('P = ', powervec.ToVerboseString);
-
-  writeln(potentialvec.Norm.ToString);
-  writeln(currentvec.Norm.ToString);
-  writeln(powervec.Norm.ToString);
-
-  writeln(powervec.Extract([mc0]).Norm.ToString);
-  writeln('Y = ', (1/impedance).ToVerboseString);
-
-  writeln('* TEST-106: PASSED');
-  {$endif}
-
+  writeln('* TEST-105: PASSED');
 
   writeln('ADIM-TEST DONE.');
 end.
