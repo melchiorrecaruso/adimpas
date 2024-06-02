@@ -75,8 +75,12 @@ var
   kA: double;
   kAr: TMeters;
   radius: TMeters;
+  radius1: TMeters;
+  radius2: TMeters;
 
   mass: TKilograms;
+  MassOfSun: TKilograms;
+  MassOfSagittariusAStar: TKilograms;
   eta: TPascalSeconds;
   Cb: TKilogramsPerSecond;
 
@@ -985,6 +989,15 @@ begin
   mu := -2.0*BohrMagneton*(spin/ReducedPlanckConstant);
   U  :=  mu*(10*T);
   writeln('* TEST-105: PASSED');
+
+  // TEST-106 SCHWARZSCHILD RADIUS
+  MassOfSun              := 1.9884E+30*kg;
+  MassOfSagittariusAStar := 4.297E6 * MassOfSun;
+  radius1                := 2*(MassOfSun*NewtonianConstantOfGravitation)/SquarePower(VacuumLightSpeed);
+  radius2                := 2*(MassOfSagittariusAStar*NewtonianConstantOfGravitation)/SquarePower(VacuumLightSpeed);
+  if radius1.ToString(5, 5, [pKilo]) <> '2.9532 km'  then halt(1);
+  if radius2.ToString(5, 5, [     ]) <> '1.269E10 m' then halt(2);
+  writeln('* TEST-106: PASSED');
 
   writeln('ADIM-TEST DONE.');
 end.
