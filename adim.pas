@@ -18,7 +18,7 @@
 }
 
 {
-  ADimPas library built on 11/05/2024.
+  ADimPas library built on 02/06/2024.
 
   Number of base units: 131
   Number of factored units: 69
@@ -6164,7 +6164,7 @@ const
   NewtonianConstantOfGravitation : TNewtonSquareMetersPerSquareKilogram = (FValue: 6.67430E-11);
   PlanckConstant                 : TJouleSeconds                        = (FValue: 6.62607015E-34);
   ProtonMass                     : TKilograms                           = (FValue: 1.67262192595E-27);
-  RydbergConstant                : TREciprocalMeters                    = (FValue: 10973731.568157);
+  RydbergConstant                : TReciprocalMeters                    = (FValue: 10973731.568157);
   StandardAccelerationOfGravity  : TMetersPerSquareSecond               = (FValue: 9.80665);
   ReducedPlanckConstant          : TJouleSeconds                        = (FValue: 6.62607015E-34/2/pi);
   UnifiedAtomicMassUnit          : TKilograms                           = (FValue: 1.66053906892E-27);
