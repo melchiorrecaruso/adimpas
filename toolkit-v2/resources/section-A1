@@ -3,13 +3,13 @@ unit ADim;
 {$H+}{$J-}
 {$modeswitch typehelpers} 
 {$modeswitch advancedrecords}
-{$WARN 05024 OFF} // Suppress warning for unused routine parameter.
-{$WARN 05033 OFF} // Suppress warning for unassigned function's return value.
+{$WARN 5024 OFF} // Suppress warning for unused routine parameter.
+{$WARN 5033 OFF} // Suppress warning for unassigned function's return value.
 {$MACRO ON}
 
 interface
 
-uses Cl3, SysUtils;
+uses SysUtils;
 
 type
   { Prefix }
