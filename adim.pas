@@ -18,10 +18,10 @@
 }
 
 {
-  ADimPas library built on 02/06/2024.
+  ADimPas library built on 16/06/2024.
 
   Number of base units: 131
-  Number of factored units: 69
+  Number of factored units: 93
   Number of operators: 1105 (274 external, 831 internal)
 }
 
@@ -30,8 +30,8 @@ unit ADim;
 {$H+}{$J-}
 {$modeswitch typehelpers}
 {$modeswitch advancedrecords}
-{$WARN 05024 OFF} // Suppress warning for unused routine parameter.
-{$WARN 05033 OFF} // Suppress warning for unassigned function's return value.
+{$WARN 5024 OFF} // Suppress warning for unused routine parameter.
+{$WARN 5033 OFF} // Suppress warning for unassigned function's return value.
 {$MACRO ON}
 
 interface
@@ -1217,6 +1217,14 @@ type
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE NOP}
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TReciprocalSecondQty}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TReciprocalSquareSecondQty}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TRadianPerSquareSecondQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
@@ -1325,6 +1333,14 @@ type
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE NOP}
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TKilogramMeterPerSquareSecondQty}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSquareKilogramSquareMeterPerQuarticSecondQty}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TBarQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
@@ -1334,6 +1350,10 @@ type
 
 {$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TJoulePerCubicMeterQty}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TKilogramPerMeterPerSquareSecondQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE NOP}
@@ -1361,6 +1381,10 @@ type
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE NOP}
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TKilogramSquareMeterPerSquareSecondQty}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TJoulePerDegreeQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
@@ -1373,7 +1397,63 @@ type
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE NOP}
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TKilogramSquareMeterPerSquareSecondPerRadianQty}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TKilogramSquareMeterPerCubicSecondQty}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TAmpereHourQty}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TAmpereSecondQty}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSquareAmpereSquareSecondQty}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TKilogramSquareMeterPerAmperePerCubicSecondQty}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSquareKilogramQuarticMeterPerSquareAmperePerSexticSecondQty}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSquareAmpereQuarticSecondPerKilogramPerSquareMeterQty}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TKilogramSquareMeterPerSquareAmperePerCubicSecondQty}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSquareAmpereCubicSecondPerKilogramPerSquareMeterQty}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TKilogramPerAmperePerSquareSecondQty}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TKilogramSquareMeterPerAmperePerSquareSecondQty}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TKilogramSquareMeterPerSquareAmperePerSquareSecondQty}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCandelaSteradianQty}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCandelaSteradianPerSquareMeterQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE NOP}
@@ -1389,11 +1469,27 @@ type
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE NOP}
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TMolePerSecondQty}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TKilogramPerSquareMeterPerSquareSecondQty}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TPoundForcePerInchQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE NOP}
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TKilogramPerSquareSecondQty}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TPascalSecondQty}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TKilogramPerMeterPerSecondQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE NOP}
@@ -2286,6 +2382,12 @@ operator /(const ALeft: TJoulePerMoleQty; const ARight: TCoulombPerMoleQty): TVo
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TSquareDegreeQty}{$DEFINE TUnit:=TSquareDegreeUnit}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=THertzQty}{$DEFINE TUnit:=TReciprocalSecondUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TSquareHertzQty}{$DEFINE TUnit:=TReciprocalSquareSecondUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TSquareHertzQty}{$DEFINE TUnit:=TRadianPerSquareSecondUnit}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
@@ -2313,10 +2415,10 @@ operator /(const ALeft: TJoulePerMoleQty; const ARight: TCoulombPerMoleQty): TVo
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TKilogramMeterQty}{$DEFINE TUnit:=TKilogramMeterUnit}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
-{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TSquareKilogramSquareMeterPerSquareSecondQty}{$DEFINE TUnit:=TSquareKilogramSquareMeterPerSquareSecondUnit}{$i adim.inc}
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TKilogramMeterPerSecondQty}{$DEFINE TUnit:=TNewtonSecondUnit}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
-{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TKilogramMeterPerSecondQty}{$DEFINE TUnit:=TNewtonSecondUnit}{$i adim.inc}
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TSquareKilogramSquareMeterPerSquareSecondQty}{$DEFINE TUnit:=TSquareKilogramSquareMeterPerSquareSecondUnit}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TReciprocalSquareRootMeterQty}{$DEFINE TUnit:=TReciprocalSquareRootMeterUnit}{$i adim.inc}
@@ -2340,6 +2442,12 @@ operator /(const ALeft: TJoulePerMoleQty; const ARight: TCoulombPerMoleQty): TVo
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TPoundForceQty}{$DEFINE TUnit:=TPoundForceUnit}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TNewtonQty}{$DEFINE TUnit:=TKilogramMeterPerSquareSecondUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TSquareNewtonQty}{$DEFINE TUnit:=TSquareKilogramSquareMeterPerQuarticSecondUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TBarQty}{$DEFINE TUnit:=TBarUnit}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
@@ -2347,6 +2455,9 @@ operator /(const ALeft: TJoulePerMoleQty; const ARight: TCoulombPerMoleQty): TVo
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TPascalQty}{$DEFINE TUnit:=TJoulePerCubicMeterUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TPascalQty}{$DEFINE TUnit:=TKilogramPerMeterPerSquareSecondUnit}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TWattHourQty}{$DEFINE TUnit:=TWattHourUnit}{$i adim.inc}
@@ -2367,6 +2478,9 @@ operator /(const ALeft: TJoulePerMoleQty; const ARight: TCoulombPerMoleQty): TVo
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TCalorieQty}{$DEFINE TUnit:=TCalorieUnit}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TJouleQty}{$DEFINE TUnit:=TKilogramSquareMeterPerSquareSecondUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TJoulePerDegreeQty}{$DEFINE TUnit:=TJoulePerDegreeUnit}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
@@ -2376,7 +2490,49 @@ operator /(const ALeft: TJoulePerMoleQty; const ARight: TCoulombPerMoleQty): TVo
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TNewtonMeterPerDegreeQty}{$DEFINE TUnit:=TNewtonMeterPerDegreeUnit}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TJoulePerRadianQty}{$DEFINE TUnit:=TKilogramSquareMeterPerSquareSecondPerRadianUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TWattQty}{$DEFINE TUnit:=TKilogramSquareMeterPerCubicSecondUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TAmpereHourQty}{$DEFINE TUnit:=TAmpereHourUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TCoulombQty}{$DEFINE TUnit:=TAmpereSecondUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TSquareCoulombQty}{$DEFINE TUnit:=TSquareAmpereSquareSecondUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TVoltQty}{$DEFINE TUnit:=TKilogramSquareMeterPerAmperePerCubicSecondUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TSquareVoltQty}{$DEFINE TUnit:=TSquareKilogramQuarticMeterPerSquareAmperePerSexticSecondUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TFaradQty}{$DEFINE TUnit:=TSquareAmpereQuarticSecondPerKilogramPerSquareMeterUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TOhmQty}{$DEFINE TUnit:=TKilogramSquareMeterPerSquareAmperePerCubicSecondUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TSiemensQty}{$DEFINE TUnit:=TSquareAmpereCubicSecondPerKilogramPerSquareMeterUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TTeslaQty}{$DEFINE TUnit:=TKilogramPerAmperePerSquareSecondUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TWeberQty}{$DEFINE TUnit:=TKilogramSquareMeterPerAmperePerSquareSecondUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=THenryQty}{$DEFINE TUnit:=TKilogramSquareMeterPerSquareAmperePerSquareSecondUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TLumenQty}{$DEFINE TUnit:=TCandelaSteradianUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TLuxQty}{$DEFINE TUnit:=TCandelaSteradianPerSquareMeterUnit}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=THertzQty}{$DEFINE TUnit:=TBequerelUnit}{$i adim.inc}
@@ -2388,10 +2544,22 @@ operator /(const ALeft: TJoulePerMoleQty; const ARight: TCoulombPerMoleQty): TVo
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TSquareMeterPerSquareSecondQty}{$DEFINE TUnit:=TSievertUnit}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TKatalQty}{$DEFINE TUnit:=TMolePerSecondUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TNewtonPerCubicMeterQty}{$DEFINE TUnit:=TKilogramPerSquareMeterPerSquareSecondUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TPoundForcePerInchQty}{$DEFINE TUnit:=TPoundForcePerInchUnit}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TNewtonPerMeterQty}{$DEFINE TUnit:=TKilogramPerSquareSecondUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TPoiseuilleQty}{$DEFINE TUnit:=TPascalSecondUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TPoiseuilleQty}{$DEFINE TUnit:=TKilogramPerMeterPerSecondUnit}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TNewtonCubicMeterQty}{$DEFINE TUnit:=TNewtonCubicMeterUnit}{$i adim.inc}
@@ -5048,6 +5216,34 @@ const
   cSquareDegreeExponents : TExponents = ();
   cSquareDegreeFactor                 = Pi*Pi/32400;
 
+{ Quantity of TReciprocalSeconds }
+
+type
+  TReciprocalSeconds = THertzQty;
+
+const
+  rsReciprocalSecondSymbol     = '1/%ss';
+  rsReciprocalSecondName       = 'reciprocal %ssecond';
+  rsReciprocalSecondPluralName = 'reciprocal %sseconds';
+
+const
+  cReciprocalSecondPrefixes  : TPrefixes  = (pNone);
+  cReciprocalSecondExponents : TExponents = (-1);
+
+{ Quantity of TReciprocalSquareSeconds }
+
+type
+  TReciprocalSquareSeconds = TSquareHertzQty;
+
+const
+  rsReciprocalSquareSecondSymbol     = '1/%ss2';
+  rsReciprocalSquareSecondName       = 'reciprocal square %ssecond';
+  rsReciprocalSquareSecondPluralName = 'reciprocal square %sseconds';
+
+const
+  cReciprocalSquareSecondPrefixes  : TPrefixes  = (pNone);
+  cReciprocalSquareSecondExponents : TExponents = (-2);
+
 { Quantity of TRadiansPerSquareSecond }
 
 type
@@ -5178,20 +5374,6 @@ const
   cKilogramMeterPrefixes  : TPrefixes  = (pKilo, pNone);
   cKilogramMeterExponents : TExponents = (1, 1);
 
-{ Quantity of TSquareKilogramSquareMetersPerSquareSecond }
-
-type
-  TSquareKilogramSquareMetersPerSquareSecond = TSquareKilogramSquareMeterPerSquareSecondQty;
-
-const
-  rsSquareKilogramSquareMeterPerSquareSecondSymbol     = '%sg2·%sm2/%ss2';
-  rsSquareKilogramSquareMeterPerSquareSecondName       = 'square%sgram square%smeter per square%ssecond';
-  rsSquareKilogramSquareMeterPerSquareSecondPluralName = 'square%sgram square%smeters per square%ssecond';
-
-const
-  cSquareKilogramSquareMeterPerSquareSecondPrefixes  : TPrefixes  = (pKilo, pNone, pNone);
-  cSquareKilogramSquareMeterPerSquareSecondExponents : TExponents = (2, 2, -2);
-
 { Quantity of TNewtonSeconds }
 
 type
@@ -5205,6 +5387,20 @@ const
 const
   cNewtonSecondPrefixes  : TPrefixes  = (pNone, pNone);
   cNewtonSecondExponents : TExponents = (1, 1);
+
+{ Quantity of TSquareKilogramSquareMetersPerSquareSecond }
+
+type
+  TSquareKilogramSquareMetersPerSquareSecond = TSquareKilogramSquareMeterPerSquareSecondQty;
+
+const
+  rsSquareKilogramSquareMeterPerSquareSecondSymbol     = '%sg2·%sm2/%ss2';
+  rsSquareKilogramSquareMeterPerSquareSecondName       = 'square%sgram square%smeter per square%ssecond';
+  rsSquareKilogramSquareMeterPerSquareSecondPluralName = 'square%sgram square%smeters per square%ssecond';
+
+const
+  cSquareKilogramSquareMeterPerSquareSecondPrefixes  : TPrefixes  = (pKilo, pNone, pNone);
+  cSquareKilogramSquareMeterPerSquareSecondExponents : TExponents = (2, 2, -2);
 
 { Quantity of TReciprocalSquareRootMeters }
 
@@ -5309,6 +5505,34 @@ const
   cPoundForceExponents : TExponents = ();
   cPoundForceFactor                 = 4.4482216152605;
 
+{ Quantity of TKilogramMetersPerSquareSecond }
+
+type
+  TKilogramMetersPerSquareSecond = TNewtonQty;
+
+const
+  rsKilogramMeterPerSquareSecondSymbol     = '%sg·%sm/%ss2';
+  rsKilogramMeterPerSquareSecondName       = '%sgram %smeter per square %ssecond';
+  rsKilogramMeterPerSquareSecondPluralName = '%sgram %smeters per square %ssecond';
+
+const
+  cKilogramMeterPerSquareSecondPrefixes  : TPrefixes  = (pKilo, pNone, pNone);
+  cKilogramMeterPerSquareSecondExponents : TExponents = (1, 1, -2);
+
+{ Quantity of TSquareKilogramSquareMetersPerQuarticSecond }
+
+type
+  TSquareKilogramSquareMetersPerQuarticSecond = TSquareNewtonQty;
+
+const
+  rsSquareKilogramSquareMeterPerQuarticSecondSymbol     = '%sg2·%sm2/%ss4';
+  rsSquareKilogramSquareMeterPerQuarticSecondName       = 'square %sgram square %smeter per quartic %ssecond';
+  rsSquareKilogramSquareMeterPerQuarticSecondPluralName = 'square %sgram square %smeters per quartic %ssecond';
+
+const
+  cSquareKilogramSquareMeterPerQuarticSecondPrefixes  : TPrefixes  = (pKilo, pNone, pNone);
+  cSquareKilogramSquareMeterPerQuarticSecondExponents : TExponents = (2, 2, -4);
+
 { Quantity of TBars }
 
 type
@@ -5365,6 +5589,20 @@ const
 const
   cJoulePerCubicMeterPrefixes  : TPrefixes  = (pNone, pNone);
   cJoulePerCubicMeterExponents : TExponents = (1, -3);
+
+{ Quantity of TKilogramsPerMeterPerSquareSecond }
+
+type
+  TKilogramsPerMeterPerSquareSecond = TPascalQty;
+
+const
+  rsKilogramPerMeterPerSquareSecondSymbol     = '%sg/%sm/%ss2';
+  rsKilogramPerMeterPerSquareSecondName       = '%sgram per %smeter per square %ssecond';
+  rsKilogramPerMeterPerSquareSecondPluralName = '%sgrams per %smeter per square %ssecond';
+
+const
+  cKilogramPerMeterPerSquareSecondPrefixes  : TPrefixes  = (pKilo, pNone, pNone);
+  cKilogramPerMeterPerSquareSecondExponents : TExponents = (1, -1, -2);
 
 { Quantity of TWattHours }
 
@@ -5474,6 +5712,20 @@ const
   cCalorieExponents : TExponents = (1);
   cCalorieFactor                 = 4.184;
 
+{ Quantity of TKilogramSquareMetersPerSquareSecond }
+
+type
+  TKilogramSquareMetersPerSquareSecond = TJouleQty;
+
+const
+  rsKilogramSquareMeterPerSquareSecondSymbol     = '%sg·%sm2/%ss2';
+  rsKilogramSquareMeterPerSquareSecondName       = '%sgram square %smeter per square %ssecond';
+  rsKilogramSquareMeterPerSquareSecondPluralName = '%sgram square %smeters per square %ssecond';
+
+const
+  cKilogramSquareMeterPerSquareSecondPrefixes  : TPrefixes  = (pKilo, pNone, pNone);
+  cKilogramSquareMeterPerSquareSecondExponents : TExponents = (1, 2, -2);
+
 { Quantity of TJoulesPerDegree }
 
 type
@@ -5518,6 +5770,34 @@ const
   cNewtonMeterPerDegreeExponents : TExponents = (1, 1);
   cNewtonMeterPerDegreeFactor                 = 180/Pi;
 
+{ Quantity of TKilogramSquareMetersPerSquareSecondPerRadian }
+
+type
+  TKilogramSquareMetersPerSquareSecondPerRadian = TJoulePerRadianQty;
+
+const
+  rsKilogramSquareMeterPerSquareSecondPerRadianSymbol     = '%sg·%sm2/%ss2/rad';
+  rsKilogramSquareMeterPerSquareSecondPerRadianName       = '%sgram square %smeter per square %ssecond per radian';
+  rsKilogramSquareMeterPerSquareSecondPerRadianPluralName = '%sgram square %smeters per square %ssecond per radian';
+
+const
+  cKilogramSquareMeterPerSquareSecondPerRadianPrefixes  : TPrefixes  = (pKilo, pNone, pNone);
+  cKilogramSquareMeterPerSquareSecondPerRadianExponents : TExponents = (1, 2, -2);
+
+{ Quantity of TKilogramSquareMetersPerCubicSecond }
+
+type
+  TKilogramSquareMetersPerCubicSecond = TWattQty;
+
+const
+  rsKilogramSquareMeterPerCubicSecondSymbol     = '%sg·%sm2/%ss3';
+  rsKilogramSquareMeterPerCubicSecondName       = '%sgram square %smeter per cubic %ssecond';
+  rsKilogramSquareMeterPerCubicSecondPluralName = '%sgram square %smeters per cubic %ssecond';
+
+const
+  cKilogramSquareMeterPerCubicSecondPrefixes  : TPrefixes  = (pKilo, pNone, pNone);
+  cKilogramSquareMeterPerCubicSecondExponents : TExponents = (1, 2, -3);
+
 { Quantity of TAmpereHours }
 
 type
@@ -5532,6 +5812,174 @@ const
   cAmpereHourPrefixes  : TPrefixes  = (pNone);
   cAmpereHourExponents : TExponents = (1);
   cAmpereHourFactor                 = 3600;
+
+{ Quantity of TAmpereSeconds }
+
+type
+  TAmpereSeconds = TCoulombQty;
+
+const
+  rsAmpereSecondSymbol     = '%sA·%ss';
+  rsAmpereSecondName       = '%sampere %ssecond';
+  rsAmpereSecondPluralName = '%sampere %sseconds';
+
+const
+  cAmpereSecondPrefixes  : TPrefixes  = (pNone, pNone);
+  cAmpereSecondExponents : TExponents = (1, 1);
+
+{ Quantity of TSquareAmpereSquareSeconds }
+
+type
+  TSquareAmpereSquareSeconds = TSquareCoulombQty;
+
+const
+  rsSquareAmpereSquareSecondSymbol     = '%sA2·%ss2';
+  rsSquareAmpereSquareSecondName       = 'square %sampere square %ssecond';
+  rsSquareAmpereSquareSecondPluralName = 'square %sampere square %sseconds';
+
+const
+  cSquareAmpereSquareSecondPrefixes  : TPrefixes  = (pNone, pNone);
+  cSquareAmpereSquareSecondExponents : TExponents = (2, 2);
+
+{ Quantity of TKilogramSquareMetersPerAmperePerCubicSecond }
+
+type
+  TKilogramSquareMetersPerAmperePerCubicSecond = TVoltQty;
+
+const
+  rsKilogramSquareMeterPerAmperePerCubicSecondSymbol     = '%sg·%sm2/%sA/%ss3';
+  rsKilogramSquareMeterPerAmperePerCubicSecondName       = '%sgram square %smeter per %sampere per cubic %ssecond';
+  rsKilogramSquareMeterPerAmperePerCubicSecondPluralName = '%sgram square %smeters per %sampere per cubic %ssecond';
+
+const
+  cKilogramSquareMeterPerAmperePerCubicSecondPrefixes  : TPrefixes  = (pKilo, pNone, pNone, pNone);
+  cKilogramSquareMeterPerAmperePerCubicSecondExponents : TExponents = (1, 2, -1, -3);
+
+{ Quantity of TSquareKilogramQuarticMetersPerSquareAmperePerSexticSecond }
+
+type
+  TSquareKilogramQuarticMetersPerSquareAmperePerSexticSecond = TSquareVoltQty;
+
+const
+  rsSquareKilogramQuarticMeterPerSquareAmperePerSexticSecondSymbol     = '%sg2·%sm3/%sA2/%ss6';
+  rsSquareKilogramQuarticMeterPerSquareAmperePerSexticSecondName       = 'square %sgram quartic %smeter per square %sampere per sextic %ssecond';
+  rsSquareKilogramQuarticMeterPerSquareAmperePerSexticSecondPluralName = 'square %sgram quartic %smeters per square %sampere per sextic %ssecond';
+
+const
+  cSquareKilogramQuarticMeterPerSquareAmperePerSexticSecondPrefixes  : TPrefixes  = (pKilo, pNone, pNone, pNone);
+  cSquareKilogramQuarticMeterPerSquareAmperePerSexticSecondExponents : TExponents = (2, 3, -2, -6);
+
+{ Quantity of TSquareAmpereQuarticSecondsPerKilogramPerSquareMeter }
+
+type
+  TSquareAmpereQuarticSecondsPerKilogramPerSquareMeter = TFaradQty;
+
+const
+  rsSquareAmpereQuarticSecondPerKilogramPerSquareMeterSymbol     = '%sA2·%ss4/%sg/%sm2';
+  rsSquareAmpereQuarticSecondPerKilogramPerSquareMeterName       = 'square %sampere quartic %ssecond per %sgram per square %smeter';
+  rsSquareAmpereQuarticSecondPerKilogramPerSquareMeterPluralName = 'square %sampere quartic %sseconds per %sgram per square %smeter';
+
+const
+  cSquareAmpereQuarticSecondPerKilogramPerSquareMeterPrefixes  : TPrefixes  = (pNone, pNone, pKilo, pNone);
+  cSquareAmpereQuarticSecondPerKilogramPerSquareMeterExponents : TExponents = (2, 4, -1, -2);
+
+{ Quantity of TKilogramSquareMetersPerSquareAmperePerCubicSecond }
+
+type
+  TKilogramSquareMetersPerSquareAmperePerCubicSecond = TOhmQty;
+
+const
+  rsKilogramSquareMeterPerSquareAmperePerCubicSecondSymbol     = '%sg·%sm2/%sA/%ss3';
+  rsKilogramSquareMeterPerSquareAmperePerCubicSecondName       = '%sgram square %smeter per square %sampere per cubic %ssecond';
+  rsKilogramSquareMeterPerSquareAmperePerCubicSecondPluralName = '%sgram square %smeters per square %sampere per cubic %ssecond';
+
+const
+  cKilogramSquareMeterPerSquareAmperePerCubicSecondPrefixes  : TPrefixes  = (pKilo, pNone, pNone, pNone);
+  cKilogramSquareMeterPerSquareAmperePerCubicSecondExponents : TExponents = (1, 2, -1, -3);
+
+{ Quantity of TSquareAmpereCubicSecondsPerKilogramPerSquareMeter }
+
+type
+  TSquareAmpereCubicSecondsPerKilogramPerSquareMeter = TSiemensQty;
+
+const
+  rsSquareAmpereCubicSecondPerKilogramPerSquareMeterSymbol     = '%sA2·%ss3/%sg/%sm2';
+  rsSquareAmpereCubicSecondPerKilogramPerSquareMeterName       = 'square %sampere cubic %ssecond per %sgram per square %smeter';
+  rsSquareAmpereCubicSecondPerKilogramPerSquareMeterPluralName = 'square %sampere cubic %sseconds per %sgram per square %smeter';
+
+const
+  cSquareAmpereCubicSecondPerKilogramPerSquareMeterPrefixes  : TPrefixes  = (pNone, pNone, pKilo, pNone);
+  cSquareAmpereCubicSecondPerKilogramPerSquareMeterExponents : TExponents = (2, 3, -1, -2);
+
+{ Quantity of TKilogramsPerAmperePerSquareSecond }
+
+type
+  TKilogramsPerAmperePerSquareSecond = TTeslaQty;
+
+const
+  rsKilogramPerAmperePerSquareSecondSymbol     = '%sg/%sA/%ss2';
+  rsKilogramPerAmperePerSquareSecondName       = '%sgram per %sampere per square %ssecond';
+  rsKilogramPerAmperePerSquareSecondPluralName = '%sgrams per %sampere per square %ssecond';
+
+const
+  cKilogramPerAmperePerSquareSecondPrefixes  : TPrefixes  = (pKilo, pNone, pNone);
+  cKilogramPerAmperePerSquareSecondExponents : TExponents = (1, -1, -2);
+
+{ Quantity of TKilogramSquareMetersPerAmperePerSquareSecond }
+
+type
+  TKilogramSquareMetersPerAmperePerSquareSecond = TWeberQty;
+
+const
+  rsKilogramSquareMeterPerAmperePerSquareSecondSymbol     = '%sg·%sm2/%sA/%ss2';
+  rsKilogramSquareMeterPerAmperePerSquareSecondName       = '%sgram square %smeter per %sampere per square %ssecond';
+  rsKilogramSquareMeterPerAmperePerSquareSecondPluralName = '%sgram square %smeters per %sampere per square %ssecond';
+
+const
+  cKilogramSquareMeterPerAmperePerSquareSecondPrefixes  : TPrefixes  = (pKilo, pNone, pNone, pNone);
+  cKilogramSquareMeterPerAmperePerSquareSecondExponents : TExponents = (1, 2, -1, -2);
+
+{ Quantity of TKilogramSquareMetersPerSquareAmperePerSquareSecond }
+
+type
+  TKilogramSquareMetersPerSquareAmperePerSquareSecond = THenryQty;
+
+const
+  rsKilogramSquareMeterPerSquareAmperePerSquareSecondSymbol     = '%sg·%sm2/%sA2/%ss2';
+  rsKilogramSquareMeterPerSquareAmperePerSquareSecondName       = '%sgram square %smeter per square %sampere per square %ssecond';
+  rsKilogramSquareMeterPerSquareAmperePerSquareSecondPluralName = '%sgram square %smeters per square %sampere per square %ssecond';
+
+const
+  cKilogramSquareMeterPerSquareAmperePerSquareSecondPrefixes  : TPrefixes  = (pKilo, pNone, pNone, pNone);
+  cKilogramSquareMeterPerSquareAmperePerSquareSecondExponents : TExponents = (1, 2, -2, -2);
+
+{ Quantity of TCandelaSteradians }
+
+type
+  TCandelaSteradians = TLumenQty;
+
+const
+  rsCandelaSteradianSymbol     = '%scd·%ssr';
+  rsCandelaSteradianName       = '%scandela %ssteradian';
+  rsCandelaSteradianPluralName = '%scandela %ssteradians';
+
+const
+  cCandelaSteradianPrefixes  : TPrefixes  = (pNone, pNone);
+  cCandelaSteradianExponents : TExponents = (1, 1);
+
+{ Quantity of TCandelaSteradiansPerSquareMeter }
+
+type
+  TCandelaSteradiansPerSquareMeter = TLuxQty;
+
+const
+  rsCandelaSteradianPerSquareMeterSymbol     = '%scd·%ssr/%sm2';
+  rsCandelaSteradianPerSquareMeterName       = '%scandela %ssteradian per square %smeter';
+  rsCandelaSteradianPerSquareMeterPluralName = '%scandela %ssteradians per square %smeter';
+
+const
+  cCandelaSteradianPerSquareMeterPrefixes  : TPrefixes  = (pNone, pNone, pNone);
+  cCandelaSteradianPerSquareMeterExponents : TExponents = (1, 1, -2);
 
 { Quantity of TBequerels }
 
@@ -5603,6 +6051,34 @@ const
   cSievertPrefixes  : TPrefixes  = (pNone);
   cSievertExponents : TExponents = (1);
 
+{ Quantity of TMolesPerSecond }
+
+type
+  TMolesPerSecond = TKatalQty;
+
+const
+  rsMolePerSecondSymbol     = '%smol/%ss';
+  rsMolePerSecondName       = '%smole per %ssecond';
+  rsMolePerSecondPluralName = '%smoles per %ssecond';
+
+const
+  cMolePerSecondPrefixes  : TPrefixes  = (pNone, pNone);
+  cMolePerSecondExponents : TExponents = (1, -1);
+
+{ Quantity of TKilogramsPerSquareMeterPerSquareSecond }
+
+type
+  TKilogramsPerSquareMeterPerSquareSecond = TNewtonPerCubicMeterQty;
+
+const
+  rsKilogramPerSquareMeterPerSquareSecondSymbol     = '%sg/%sm2/%ss2';
+  rsKilogramPerSquareMeterPerSquareSecondName       = '%sgram per square %smeter per square %ssecond';
+  rsKilogramPerSquareMeterPerSquareSecondPluralName = '%sgrams per square %smeter per square %ssecond';
+
+const
+  cKilogramPerSquareMeterPerSquareSecondPrefixes  : TPrefixes  = (pKilo, pNone, pNone);
+  cKilogramPerSquareMeterPerSquareSecondExponents : TExponents = (1, -2, -2);
+
 { Quantity of TPoundsForcePerInch }
 
 type
@@ -5618,6 +6094,20 @@ const
   cPoundForcePerInchExponents : TExponents = ();
   cPoundForcePerInchFactor                 = 175.126835246476;
 
+{ Quantity of TKilogramsPerSquareSecond }
+
+type
+  TKilogramsPerSquareSecond = TNewtonPerMeterQty;
+
+const
+  rsKilogramPerSquareSecondSymbol     = '%sg/%ss2';
+  rsKilogramPerSquareSecondName       = '%sgram per square %ssecond';
+  rsKilogramPerSquareSecondPluralName = '%sgrams per square %ssecond';
+
+const
+  cKilogramPerSquareSecondPrefixes  : TPrefixes  = (pKilo, pNone);
+  cKilogramPerSquareSecondExponents : TExponents = (1, -2);
+
 { Quantity of TPascalSeconds }
 
 type
@@ -5631,6 +6121,20 @@ const
 const
   cPascalSecondPrefixes  : TPrefixes  = (pNone, pNone);
   cPascalSecondExponents : TExponents = (1, 1);
+
+{ Quantity of TKilogramsPerMeterPerSecond }
+
+type
+  TKilogramsPerMeterPerSecond = TPoiseuilleQty;
+
+const
+  rsKilogramPerMeterPerSecondSymbol     = '%sg/%sm/%ss';
+  rsKilogramPerMeterPerSecondName       = '%sgram per %smeter per %ssecond';
+  rsKilogramPerMeterPerSecondPluralName = '%sgrams per %smeter per %ssecond';
+
+const
+  cKilogramPerMeterPerSecondPrefixes  : TPrefixes  = (pKilo, pNone, pNone);
+  cKilogramPerMeterPerSecondExponents : TExponents = (1, -1, -1);
 
 { Quantity of TNewtonCubicMeters }
 
@@ -5806,6 +6310,7 @@ const
 type
   THertzHelper = type helper for THertzQty
     function ToBequerel: TBequerelQty;
+    function ToReciprocalSecond: TReciprocalSecondQty;
     function ToRadianPerSecond: TRadianPerSecondQty;
   end;
 
@@ -5879,9 +6384,18 @@ type
     function ToSquareDegree: TSquareDegreeQty;
   end;
 
+  TReciprocalSecondHelper = type helper for TReciprocalSecondQty
+    function ToHertz: THertzQty;
+  end;
+
   TSquareHertzHelper = type helper for TSquareHertzQty
     function ToSteradianPerSquareSecond: TSteradianPerSquareSecondQty;
     function ToRadianPerSquareSecond: TRadianPerSquareSecondQty;
+    function ToReciprocalSquareSecond: TReciprocalSquareSecondQty;
+  end;
+
+  TReciprocalSquareSecondHelper = type helper for TReciprocalSquareSecondQty
+    function ToSquareHertz: TSquareHertzQty;
   end;
 
   TRadianPerSquareSecondHelper = type helper for TRadianPerSquareSecondQty
@@ -5930,10 +6444,24 @@ type
   end;
 
   TNewtonHelper = type helper for TNewtonQty
+    function ToKilogramMeterPerSquareSecond: TKilogramMeterPerSquareSecondQty;
     function ToPoundForce: TPoundForceQty;
   end;
 
+  TKilogramMeterPerSquareSecondHelper = type helper for TKilogramMeterPerSquareSecondQty
+    function ToNewton: TNewtonQty;
+  end;
+
+  TSquareNewtonHelper = type helper for TSquareNewtonQty
+    function ToSquareKilogramSquareMeterPerQuarticSecond: TSquareKilogramSquareMeterPerQuarticSecondQty;
+  end;
+
+  TSquareKilogramSquareMeterPerQuarticSecondHelper = type helper for TSquareKilogramSquareMeterPerQuarticSecondQty
+    function ToSquareNewton: TSquareNewtonQty;
+  end;
+
   TPascalHelper = type helper for TPascalQty
+    function ToKilogramPerMeterPerSquareSecond: TKilogramPerMeterPerSquareSecondQty;
     function ToJoulePerCubicMeter: TJoulePerCubicMeterQty;
     function ToPoundPerSquareInch: TPoundPerSquareInchQty;
     function ToBar: TBarQty;
@@ -5943,7 +6471,12 @@ type
     function ToPascal: TPascalQty;
   end;
 
+  TKilogramPerMeterPerSquareSecondHelper = type helper for TKilogramPerMeterPerSquareSecondQty
+    function ToPascal: TPascalQty;
+  end;
+
   TJouleHelper = type helper for TJouleQty
+    function ToKilogramSquareMeterPerSquareSecond: TKilogramSquareMeterPerSquareSecondQty;
     function ToCalorie: TCalorieQty;
     function ToRydberg: TRydbergQty;
     function ToPoundForceInch: TPoundForceInchQty;
@@ -5956,7 +6489,12 @@ type
     function ToJoule: TJouleQty;
   end;
 
+  TKilogramSquareMeterPerSquareSecondHelper = type helper for TKilogramSquareMeterPerSquareSecondQty
+    function ToJoule: TJouleQty;
+  end;
+
   TJoulePerRadianHelper = type helper for TJoulePerRadianQty
+    function ToKilogramSquareMeterPerSquareSecondPerRadian: TKilogramSquareMeterPerSquareSecondPerRadianQty;
     function ToNewtonMeterPerDegree: TNewtonMeterPerDegreeQty;
     function ToNewtonMeterPerRadian: TNewtonMeterPerRadianQty;
     function ToJoulePerDegree: TJoulePerDegreeQty;
@@ -5966,8 +6504,113 @@ type
     function ToJoulePerRadian: TJoulePerRadianQty;
   end;
 
+  TKilogramSquareMeterPerSquareSecondPerRadianHelper = type helper for TKilogramSquareMeterPerSquareSecondPerRadianQty
+    function ToJoulePerRadian: TJoulePerRadianQty;
+  end;
+
+  TWattHelper = type helper for TWattQty
+    function ToKilogramSquareMeterPerCubicSecond: TKilogramSquareMeterPerCubicSecondQty;
+  end;
+
+  TKilogramSquareMeterPerCubicSecondHelper = type helper for TKilogramSquareMeterPerCubicSecondQty
+    function ToWatt: TWattQty;
+  end;
+
   TCoulombHelper = type helper for TCoulombQty
+    function ToAmpereSecond: TAmpereSecondQty;
     function ToAmpereHour: TAmpereHourQty;
+  end;
+
+  TAmpereSecondHelper = type helper for TAmpereSecondQty
+    function ToCoulomb: TCoulombQty;
+  end;
+
+  TSquareCoulombHelper = type helper for TSquareCoulombQty
+    function ToSquareAmpereSquareSecond: TSquareAmpereSquareSecondQty;
+  end;
+
+  TSquareAmpereSquareSecondHelper = type helper for TSquareAmpereSquareSecondQty
+    function ToSquareCoulomb: TSquareCoulombQty;
+  end;
+
+  TVoltHelper = type helper for TVoltQty
+    function ToKilogramSquareMeterPerAmperePerCubicSecond: TKilogramSquareMeterPerAmperePerCubicSecondQty;
+  end;
+
+  TKilogramSquareMeterPerAmperePerCubicSecondHelper = type helper for TKilogramSquareMeterPerAmperePerCubicSecondQty
+    function ToVolt: TVoltQty;
+  end;
+
+  TSquareVoltHelper = type helper for TSquareVoltQty
+    function ToSquareKilogramQuarticMeterPerSquareAmperePerSexticSecond: TSquareKilogramQuarticMeterPerSquareAmperePerSexticSecondQty;
+  end;
+
+  TSquareKilogramQuarticMeterPerSquareAmperePerSexticSecondHelper = type helper for TSquareKilogramQuarticMeterPerSquareAmperePerSexticSecondQty
+    function ToSquareVolt: TSquareVoltQty;
+  end;
+
+  TFaradHelper = type helper for TFaradQty
+    function ToSquareAmpereQuarticSecondPerKilogramPerSquareMeter: TSquareAmpereQuarticSecondPerKilogramPerSquareMeterQty;
+  end;
+
+  TSquareAmpereQuarticSecondPerKilogramPerSquareMeterHelper = type helper for TSquareAmpereQuarticSecondPerKilogramPerSquareMeterQty
+    function ToFarad: TFaradQty;
+  end;
+
+  TOhmHelper = type helper for TOhmQty
+    function ToKilogramSquareMeterPerSquareAmperePerCubicSecond: TKilogramSquareMeterPerSquareAmperePerCubicSecondQty;
+  end;
+
+  TKilogramSquareMeterPerSquareAmperePerCubicSecondHelper = type helper for TKilogramSquareMeterPerSquareAmperePerCubicSecondQty
+    function ToOhm: TOhmQty;
+  end;
+
+  TSiemensHelper = type helper for TSiemensQty
+    function ToSquareAmpereCubicSecondPerKilogramPerSquareMeter: TSquareAmpereCubicSecondPerKilogramPerSquareMeterQty;
+  end;
+
+  TSquareAmpereCubicSecondPerKilogramPerSquareMeterHelper = type helper for TSquareAmpereCubicSecondPerKilogramPerSquareMeterQty
+    function ToSiemens: TSiemensQty;
+  end;
+
+  TTeslaHelper = type helper for TTeslaQty
+    function ToKilogramPerAmperePerSquareSecond: TKilogramPerAmperePerSquareSecondQty;
+  end;
+
+  TKilogramPerAmperePerSquareSecondHelper = type helper for TKilogramPerAmperePerSquareSecondQty
+    function ToTesla: TTeslaQty;
+  end;
+
+  TWeberHelper = type helper for TWeberQty
+    function ToKilogramSquareMeterPerAmperePerSquareSecond: TKilogramSquareMeterPerAmperePerSquareSecondQty;
+  end;
+
+  TKilogramSquareMeterPerAmperePerSquareSecondHelper = type helper for TKilogramSquareMeterPerAmperePerSquareSecondQty
+    function ToWeber: TWeberQty;
+  end;
+
+  THenryHelper = type helper for THenryQty
+    function ToKilogramSquareMeterPerSquareAmperePerSquareSecond: TKilogramSquareMeterPerSquareAmperePerSquareSecondQty;
+  end;
+
+  TKilogramSquareMeterPerSquareAmperePerSquareSecondHelper = type helper for TKilogramSquareMeterPerSquareAmperePerSquareSecondQty
+    function ToHenry: THenryQty;
+  end;
+
+  TLumenHelper = type helper for TLumenQty
+    function ToCandelaSteradian: TCandelaSteradianQty;
+  end;
+
+  TCandelaSteradianHelper = type helper for TCandelaSteradianQty
+    function ToLumen: TLumenQty;
+  end;
+
+  TLuxHelper = type helper for TLuxQty
+    function ToCandelaSteradianPerSquareMeter: TCandelaSteradianPerSquareMeterQty;
+  end;
+
+  TCandelaSteradianPerSquareMeterHelper = type helper for TCandelaSteradianPerSquareMeterQty
+    function ToLux: TLuxQty;
   end;
 
   TBequerelHelper = type helper for TBequerelQty
@@ -5988,15 +6631,41 @@ type
     function ToSquareMeterPerSquareSecond: TSquareMeterPerSquareSecondQty;
   end;
 
+  TKatalHelper = type helper for TKatalQty
+    function ToMolePerSecond: TMolePerSecondQty;
+  end;
+
+  TMolePerSecondHelper = type helper for TMolePerSecondQty
+    function ToKatal: TKatalQty;
+  end;
+
+  TNewtonPerCubicMeterHelper = type helper for TNewtonPerCubicMeterQty
+    function ToKilogramPerSquareMeterPerSquareSecond: TKilogramPerSquareMeterPerSquareSecondQty;
+  end;
+
+  TKilogramPerSquareMeterPerSquareSecondHelper = type helper for TKilogramPerSquareMeterPerSquareSecondQty
+    function ToNewtonPerCubicMeter: TNewtonPerCubicMeterQty;
+  end;
+
   TNewtonPerMeterHelper = type helper for TNewtonPerMeterQty
+    function ToKilogramPerSquareSecond: TKilogramPerSquareSecondQty;
     function ToPoundForcePerInch: TPoundForcePerInchQty;
   end;
 
+  TKilogramPerSquareSecondHelper = type helper for TKilogramPerSquareSecondQty
+    function ToNewtonPerMeter: TNewtonPerMeterQty;
+  end;
+
   TPoiseuilleHelper = type helper for TPoiseuilleQty
+    function ToKilogramPerMeterPerSecond: TKilogramPerMeterPerSecondQty;
     function ToPascalSecond: TPascalSecondQty;
   end;
 
   TPascalSecondHelper = type helper for TPascalSecondQty
+    function ToPoiseuille: TPoiseuilleQty;
+  end;
+
+  TKilogramPerMeterPerSecondHelper = type helper for TKilogramPerMeterPerSecondQty
     function ToPoiseuille: TPoiseuilleQty;
   end;
 
@@ -10671,6 +11340,22 @@ end;
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareDegreeQty}{$i adim.inc}
 
 {$DEFINE NOP}
+{$DEFINE CSYMBOL:=rsReciprocalSecondSymbol}
+{$DEFINE CSINGULARNAME:=rsReciprocalSecondName}
+{$DEFINE CPLURALNAME:=rsReciprocalSecondPluralName}
+{$DEFINE CPREFIXES:=cReciprocalSecondPrefixes}
+{$DEFINE CEXPONENTS:=cReciprocalSecondExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TReciprocalSecondQty}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE CSYMBOL:=rsReciprocalSquareSecondSymbol}
+{$DEFINE CSINGULARNAME:=rsReciprocalSquareSecondName}
+{$DEFINE CPLURALNAME:=rsReciprocalSquareSecondPluralName}
+{$DEFINE CPREFIXES:=cReciprocalSquareSecondPrefixes}
+{$DEFINE CEXPONENTS:=cReciprocalSquareSecondExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TReciprocalSquareSecondQty}{$i adim.inc}
+
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsRadianPerSquareSecondSymbol}
 {$DEFINE CSINGULARNAME:=rsRadianPerSquareSecondName}
 {$DEFINE CPLURALNAME:=rsRadianPerSquareSecondPluralName}
@@ -10873,13 +11558,6 @@ end;
 {$DEFINE CEXPONENTS:=cKilogramMeterExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKilogramMeterQty}{$i adim.inc}
 
-{$DEFINE CSYMBOL:=rsSquareKilogramSquareMeterPerSquareSecondSymbol}
-{$DEFINE CSINGULARNAME:=rsSquareKilogramSquareMeterPerSquareSecondName}
-{$DEFINE CPLURALNAME:=rsSquareKilogramSquareMeterPerSquareSecondPluralName}
-{$DEFINE CPREFIXES:=cSquareKilogramSquareMeterPerSquareSecondPrefixes}
-{$DEFINE CEXPONENTS:=cSquareKilogramSquareMeterPerSquareSecondExponents}
-{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareKilogramSquareMeterPerSquareSecondQty}{$i adim.inc}
-
 {$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsNewtonSecondSymbol}
 {$DEFINE CSINGULARNAME:=rsNewtonSecondName}
@@ -10887,6 +11565,13 @@ end;
 {$DEFINE CPREFIXES:=cNewtonSecondPrefixes}
 {$DEFINE CEXPONENTS:=cNewtonSecondExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNewtonSecondQty}{$i adim.inc}
+
+{$DEFINE CSYMBOL:=rsSquareKilogramSquareMeterPerSquareSecondSymbol}
+{$DEFINE CSINGULARNAME:=rsSquareKilogramSquareMeterPerSquareSecondName}
+{$DEFINE CPLURALNAME:=rsSquareKilogramSquareMeterPerSquareSecondPluralName}
+{$DEFINE CPREFIXES:=cSquareKilogramSquareMeterPerSquareSecondPrefixes}
+{$DEFINE CEXPONENTS:=cSquareKilogramSquareMeterPerSquareSecondExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareKilogramSquareMeterPerSquareSecondQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsReciprocalSquareRootMeterSymbol}
 {$DEFINE CSINGULARNAME:=rsReciprocalSquareRootMeterName}
@@ -11078,6 +11763,22 @@ end;
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TPoundForceQty}{$i adim.inc}
 
 {$DEFINE NOP}
+{$DEFINE CSYMBOL:=rsKilogramMeterPerSquareSecondSymbol}
+{$DEFINE CSINGULARNAME:=rsKilogramMeterPerSquareSecondName}
+{$DEFINE CPLURALNAME:=rsKilogramMeterPerSquareSecondPluralName}
+{$DEFINE CPREFIXES:=cKilogramMeterPerSquareSecondPrefixes}
+{$DEFINE CEXPONENTS:=cKilogramMeterPerSquareSecondExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKilogramMeterPerSquareSecondQty}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE CSYMBOL:=rsSquareKilogramSquareMeterPerQuarticSecondSymbol}
+{$DEFINE CSINGULARNAME:=rsSquareKilogramSquareMeterPerQuarticSecondName}
+{$DEFINE CPLURALNAME:=rsSquareKilogramSquareMeterPerQuarticSecondPluralName}
+{$DEFINE CPREFIXES:=cSquareKilogramSquareMeterPerQuarticSecondPrefixes}
+{$DEFINE CEXPONENTS:=cSquareKilogramSquareMeterPerQuarticSecondExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareKilogramSquareMeterPerQuarticSecondQty}{$i adim.inc}
+
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsBarSymbol}
 {$DEFINE CSINGULARNAME:=rsBarName}
 {$DEFINE CPLURALNAME:=rsBarPluralName}
@@ -11102,6 +11803,14 @@ end;
 {$DEFINE CPREFIXES:=cJoulePerCubicMeterPrefixes}
 {$DEFINE CEXPONENTS:=cJoulePerCubicMeterExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TJoulePerCubicMeterQty}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE CSYMBOL:=rsKilogramPerMeterPerSquareSecondSymbol}
+{$DEFINE CSINGULARNAME:=rsKilogramPerMeterPerSquareSecondName}
+{$DEFINE CPLURALNAME:=rsKilogramPerMeterPerSquareSecondPluralName}
+{$DEFINE CPREFIXES:=cKilogramPerMeterPerSquareSecondPrefixes}
+{$DEFINE CEXPONENTS:=cKilogramPerMeterPerSquareSecondExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKilogramPerMeterPerSquareSecondQty}{$i adim.inc}
 
 {$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsWattHourSymbol}
@@ -11157,6 +11866,14 @@ end;
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCalorieQty}{$i adim.inc}
 
 {$DEFINE NOP}
+{$DEFINE CSYMBOL:=rsKilogramSquareMeterPerSquareSecondSymbol}
+{$DEFINE CSINGULARNAME:=rsKilogramSquareMeterPerSquareSecondName}
+{$DEFINE CPLURALNAME:=rsKilogramSquareMeterPerSquareSecondPluralName}
+{$DEFINE CPREFIXES:=cKilogramSquareMeterPerSquareSecondPrefixes}
+{$DEFINE CEXPONENTS:=cKilogramSquareMeterPerSquareSecondExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKilogramSquareMeterPerSquareSecondQty}{$i adim.inc}
+
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsJoulePerDegreeSymbol}
 {$DEFINE CSINGULARNAME:=rsJoulePerDegreeName}
 {$DEFINE CPLURALNAME:=rsJoulePerDegreePluralName}
@@ -11183,6 +11900,22 @@ end;
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNewtonMeterPerDegreeQty}{$i adim.inc}
 
 {$DEFINE NOP}
+{$DEFINE CSYMBOL:=rsKilogramSquareMeterPerSquareSecondPerRadianSymbol}
+{$DEFINE CSINGULARNAME:=rsKilogramSquareMeterPerSquareSecondPerRadianName}
+{$DEFINE CPLURALNAME:=rsKilogramSquareMeterPerSquareSecondPerRadianPluralName}
+{$DEFINE CPREFIXES:=cKilogramSquareMeterPerSquareSecondPerRadianPrefixes}
+{$DEFINE CEXPONENTS:=cKilogramSquareMeterPerSquareSecondPerRadianExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKilogramSquareMeterPerSquareSecondPerRadianQty}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE CSYMBOL:=rsKilogramSquareMeterPerCubicSecondSymbol}
+{$DEFINE CSINGULARNAME:=rsKilogramSquareMeterPerCubicSecondName}
+{$DEFINE CPLURALNAME:=rsKilogramSquareMeterPerCubicSecondPluralName}
+{$DEFINE CPREFIXES:=cKilogramSquareMeterPerCubicSecondPrefixes}
+{$DEFINE CEXPONENTS:=cKilogramSquareMeterPerCubicSecondExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKilogramSquareMeterPerCubicSecondQty}{$i adim.inc}
+
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsAmpereHourSymbol}
 {$DEFINE CSINGULARNAME:=rsAmpereHourName}
 {$DEFINE CPLURALNAME:=rsAmpereHourPluralName}
@@ -11190,6 +11923,102 @@ end;
 {$DEFINE CEXPONENTS:=cAmpereHourExponents}
 {$DEFINE CFACTOR:=cAmpereHourFactor}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TAmpereHourQty}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE CSYMBOL:=rsAmpereSecondSymbol}
+{$DEFINE CSINGULARNAME:=rsAmpereSecondName}
+{$DEFINE CPLURALNAME:=rsAmpereSecondPluralName}
+{$DEFINE CPREFIXES:=cAmpereSecondPrefixes}
+{$DEFINE CEXPONENTS:=cAmpereSecondExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TAmpereSecondQty}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE CSYMBOL:=rsSquareAmpereSquareSecondSymbol}
+{$DEFINE CSINGULARNAME:=rsSquareAmpereSquareSecondName}
+{$DEFINE CPLURALNAME:=rsSquareAmpereSquareSecondPluralName}
+{$DEFINE CPREFIXES:=cSquareAmpereSquareSecondPrefixes}
+{$DEFINE CEXPONENTS:=cSquareAmpereSquareSecondExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareAmpereSquareSecondQty}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE CSYMBOL:=rsKilogramSquareMeterPerAmperePerCubicSecondSymbol}
+{$DEFINE CSINGULARNAME:=rsKilogramSquareMeterPerAmperePerCubicSecondName}
+{$DEFINE CPLURALNAME:=rsKilogramSquareMeterPerAmperePerCubicSecondPluralName}
+{$DEFINE CPREFIXES:=cKilogramSquareMeterPerAmperePerCubicSecondPrefixes}
+{$DEFINE CEXPONENTS:=cKilogramSquareMeterPerAmperePerCubicSecondExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKilogramSquareMeterPerAmperePerCubicSecondQty}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE CSYMBOL:=rsSquareKilogramQuarticMeterPerSquareAmperePerSexticSecondSymbol}
+{$DEFINE CSINGULARNAME:=rsSquareKilogramQuarticMeterPerSquareAmperePerSexticSecondName}
+{$DEFINE CPLURALNAME:=rsSquareKilogramQuarticMeterPerSquareAmperePerSexticSecondPluralName}
+{$DEFINE CPREFIXES:=cSquareKilogramQuarticMeterPerSquareAmperePerSexticSecondPrefixes}
+{$DEFINE CEXPONENTS:=cSquareKilogramQuarticMeterPerSquareAmperePerSexticSecondExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareKilogramQuarticMeterPerSquareAmperePerSexticSecondQty}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE CSYMBOL:=rsSquareAmpereQuarticSecondPerKilogramPerSquareMeterSymbol}
+{$DEFINE CSINGULARNAME:=rsSquareAmpereQuarticSecondPerKilogramPerSquareMeterName}
+{$DEFINE CPLURALNAME:=rsSquareAmpereQuarticSecondPerKilogramPerSquareMeterPluralName}
+{$DEFINE CPREFIXES:=cSquareAmpereQuarticSecondPerKilogramPerSquareMeterPrefixes}
+{$DEFINE CEXPONENTS:=cSquareAmpereQuarticSecondPerKilogramPerSquareMeterExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareAmpereQuarticSecondPerKilogramPerSquareMeterQty}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE CSYMBOL:=rsKilogramSquareMeterPerSquareAmperePerCubicSecondSymbol}
+{$DEFINE CSINGULARNAME:=rsKilogramSquareMeterPerSquareAmperePerCubicSecondName}
+{$DEFINE CPLURALNAME:=rsKilogramSquareMeterPerSquareAmperePerCubicSecondPluralName}
+{$DEFINE CPREFIXES:=cKilogramSquareMeterPerSquareAmperePerCubicSecondPrefixes}
+{$DEFINE CEXPONENTS:=cKilogramSquareMeterPerSquareAmperePerCubicSecondExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKilogramSquareMeterPerSquareAmperePerCubicSecondQty}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE CSYMBOL:=rsSquareAmpereCubicSecondPerKilogramPerSquareMeterSymbol}
+{$DEFINE CSINGULARNAME:=rsSquareAmpereCubicSecondPerKilogramPerSquareMeterName}
+{$DEFINE CPLURALNAME:=rsSquareAmpereCubicSecondPerKilogramPerSquareMeterPluralName}
+{$DEFINE CPREFIXES:=cSquareAmpereCubicSecondPerKilogramPerSquareMeterPrefixes}
+{$DEFINE CEXPONENTS:=cSquareAmpereCubicSecondPerKilogramPerSquareMeterExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareAmpereCubicSecondPerKilogramPerSquareMeterQty}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE CSYMBOL:=rsKilogramPerAmperePerSquareSecondSymbol}
+{$DEFINE CSINGULARNAME:=rsKilogramPerAmperePerSquareSecondName}
+{$DEFINE CPLURALNAME:=rsKilogramPerAmperePerSquareSecondPluralName}
+{$DEFINE CPREFIXES:=cKilogramPerAmperePerSquareSecondPrefixes}
+{$DEFINE CEXPONENTS:=cKilogramPerAmperePerSquareSecondExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKilogramPerAmperePerSquareSecondQty}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE CSYMBOL:=rsKilogramSquareMeterPerAmperePerSquareSecondSymbol}
+{$DEFINE CSINGULARNAME:=rsKilogramSquareMeterPerAmperePerSquareSecondName}
+{$DEFINE CPLURALNAME:=rsKilogramSquareMeterPerAmperePerSquareSecondPluralName}
+{$DEFINE CPREFIXES:=cKilogramSquareMeterPerAmperePerSquareSecondPrefixes}
+{$DEFINE CEXPONENTS:=cKilogramSquareMeterPerAmperePerSquareSecondExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKilogramSquareMeterPerAmperePerSquareSecondQty}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE CSYMBOL:=rsKilogramSquareMeterPerSquareAmperePerSquareSecondSymbol}
+{$DEFINE CSINGULARNAME:=rsKilogramSquareMeterPerSquareAmperePerSquareSecondName}
+{$DEFINE CPLURALNAME:=rsKilogramSquareMeterPerSquareAmperePerSquareSecondPluralName}
+{$DEFINE CPREFIXES:=cKilogramSquareMeterPerSquareAmperePerSquareSecondPrefixes}
+{$DEFINE CEXPONENTS:=cKilogramSquareMeterPerSquareAmperePerSquareSecondExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKilogramSquareMeterPerSquareAmperePerSquareSecondQty}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE CSYMBOL:=rsCandelaSteradianSymbol}
+{$DEFINE CSINGULARNAME:=rsCandelaSteradianName}
+{$DEFINE CPLURALNAME:=rsCandelaSteradianPluralName}
+{$DEFINE CPREFIXES:=cCandelaSteradianPrefixes}
+{$DEFINE CEXPONENTS:=cCandelaSteradianExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCandelaSteradianQty}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE CSYMBOL:=rsCandelaSteradianPerSquareMeterSymbol}
+{$DEFINE CSINGULARNAME:=rsCandelaSteradianPerSquareMeterName}
+{$DEFINE CPLURALNAME:=rsCandelaSteradianPerSquareMeterPluralName}
+{$DEFINE CPREFIXES:=cCandelaSteradianPerSquareMeterPrefixes}
+{$DEFINE CEXPONENTS:=cCandelaSteradianPerSquareMeterExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCandelaSteradianPerSquareMeterQty}{$i adim.inc}
 
 {$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsBequerelSymbol}
@@ -11216,6 +12045,22 @@ end;
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSievertQty}{$i adim.inc}
 
 {$DEFINE NOP}
+{$DEFINE CSYMBOL:=rsMolePerSecondSymbol}
+{$DEFINE CSINGULARNAME:=rsMolePerSecondName}
+{$DEFINE CPLURALNAME:=rsMolePerSecondPluralName}
+{$DEFINE CPREFIXES:=cMolePerSecondPrefixes}
+{$DEFINE CEXPONENTS:=cMolePerSecondExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TMolePerSecondQty}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE CSYMBOL:=rsKilogramPerSquareMeterPerSquareSecondSymbol}
+{$DEFINE CSINGULARNAME:=rsKilogramPerSquareMeterPerSquareSecondName}
+{$DEFINE CPLURALNAME:=rsKilogramPerSquareMeterPerSquareSecondPluralName}
+{$DEFINE CPREFIXES:=cKilogramPerSquareMeterPerSquareSecondPrefixes}
+{$DEFINE CEXPONENTS:=cKilogramPerSquareMeterPerSquareSecondExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKilogramPerSquareMeterPerSquareSecondQty}{$i adim.inc}
+
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsPoundForcePerInchSymbol}
 {$DEFINE CSINGULARNAME:=rsPoundForcePerInchName}
 {$DEFINE CPLURALNAME:=rsPoundForcePerInchPluralName}
@@ -11225,12 +12070,28 @@ end;
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TPoundForcePerInchQty}{$i adim.inc}
 
 {$DEFINE NOP}
+{$DEFINE CSYMBOL:=rsKilogramPerSquareSecondSymbol}
+{$DEFINE CSINGULARNAME:=rsKilogramPerSquareSecondName}
+{$DEFINE CPLURALNAME:=rsKilogramPerSquareSecondPluralName}
+{$DEFINE CPREFIXES:=cKilogramPerSquareSecondPrefixes}
+{$DEFINE CEXPONENTS:=cKilogramPerSquareSecondExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKilogramPerSquareSecondQty}{$i adim.inc}
+
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsPascalSecondSymbol}
 {$DEFINE CSINGULARNAME:=rsPascalSecondName}
 {$DEFINE CPLURALNAME:=rsPascalSecondPluralName}
 {$DEFINE CPREFIXES:=cPascalSecondPrefixes}
 {$DEFINE CEXPONENTS:=cPascalSecondExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TPascalSecondQty}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE CSYMBOL:=rsKilogramPerMeterPerSecondSymbol}
+{$DEFINE CSINGULARNAME:=rsKilogramPerMeterPerSecondName}
+{$DEFINE CPLURALNAME:=rsKilogramPerMeterPerSecondPluralName}
+{$DEFINE CPREFIXES:=cKilogramPerMeterPerSecondPrefixes}
+{$DEFINE CEXPONENTS:=cKilogramPerMeterPerSecondExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKilogramPerMeterPerSecondQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsNewtonCubicMeterSymbol}
 {$DEFINE CSINGULARNAME:=rsNewtonCubicMeterName}
@@ -13004,6 +13865,10 @@ end;
 
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TSquareDegreeQty}{$DEFINE TUnit:=TSquareDegreeUnit}{$i adim.inc}
 
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=THertzQty}{$DEFINE TUnit:=TReciprocalSecondUnit}{$i adim.inc}
+
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TSquareHertzQty}{$DEFINE TUnit:=TReciprocalSquareSecondUnit}{$i adim.inc}
+
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TSquareHertzQty}{$DEFINE TUnit:=TRadianPerSquareSecondUnit}{$i adim.inc}
 
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TSteradianPerSquareSecondQty}{$DEFINE TUnit:=TSteradianPerSquareSecondUnit}{$i adim.inc}
@@ -13022,9 +13887,9 @@ end;
 
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TKilogramMeterQty}{$DEFINE TUnit:=TKilogramMeterUnit}{$i adim.inc}
 
-{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TSquareKilogramSquareMeterPerSquareSecondQty}{$DEFINE TUnit:=TSquareKilogramSquareMeterPerSquareSecondUnit}{$i adim.inc}
-
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TKilogramMeterPerSecondQty}{$DEFINE TUnit:=TNewtonSecondUnit}{$i adim.inc}
+
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TSquareKilogramSquareMeterPerSquareSecondQty}{$DEFINE TUnit:=TSquareKilogramSquareMeterPerSquareSecondUnit}{$i adim.inc}
 
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TReciprocalSquareRootMeterQty}{$DEFINE TUnit:=TReciprocalSquareRootMeterUnit}{$i adim.inc}
 
@@ -13040,11 +13905,17 @@ end;
 
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TPoundForceQty}{$DEFINE TUnit:=TPoundForceUnit}{$i adim.inc}
 
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TNewtonQty}{$DEFINE TUnit:=TKilogramMeterPerSquareSecondUnit}{$i adim.inc}
+
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TSquareNewtonQty}{$DEFINE TUnit:=TSquareKilogramSquareMeterPerQuarticSecondUnit}{$i adim.inc}
+
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TBarQty}{$DEFINE TUnit:=TBarUnit}{$i adim.inc}
 
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TPoundPerSquareInchQty}{$DEFINE TUnit:=TPoundPerSquareInchUnit}{$i adim.inc}
 
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TPascalQty}{$DEFINE TUnit:=TJoulePerCubicMeterUnit}{$i adim.inc}
+
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TPascalQty}{$DEFINE TUnit:=TKilogramPerMeterPerSquareSecondUnit}{$i adim.inc}
 
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TWattHourQty}{$DEFINE TUnit:=TWattHourUnit}{$i adim.inc}
 
@@ -13058,13 +13929,43 @@ end;
 
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TCalorieQty}{$DEFINE TUnit:=TCalorieUnit}{$i adim.inc}
 
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TJouleQty}{$DEFINE TUnit:=TKilogramSquareMeterPerSquareSecondUnit}{$i adim.inc}
+
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TJoulePerDegreeQty}{$DEFINE TUnit:=TJoulePerDegreeUnit}{$i adim.inc}
 
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TJoulePerRadianQty}{$DEFINE TUnit:=TNewtonMeterPerRadianUnit}{$i adim.inc}
 
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TNewtonMeterPerDegreeQty}{$DEFINE TUnit:=TNewtonMeterPerDegreeUnit}{$i adim.inc}
 
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TJoulePerRadianQty}{$DEFINE TUnit:=TKilogramSquareMeterPerSquareSecondPerRadianUnit}{$i adim.inc}
+
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TWattQty}{$DEFINE TUnit:=TKilogramSquareMeterPerCubicSecondUnit}{$i adim.inc}
+
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TAmpereHourQty}{$DEFINE TUnit:=TAmpereHourUnit}{$i adim.inc}
+
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TCoulombQty}{$DEFINE TUnit:=TAmpereSecondUnit}{$i adim.inc}
+
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TSquareCoulombQty}{$DEFINE TUnit:=TSquareAmpereSquareSecondUnit}{$i adim.inc}
+
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TVoltQty}{$DEFINE TUnit:=TKilogramSquareMeterPerAmperePerCubicSecondUnit}{$i adim.inc}
+
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TSquareVoltQty}{$DEFINE TUnit:=TSquareKilogramQuarticMeterPerSquareAmperePerSexticSecondUnit}{$i adim.inc}
+
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TFaradQty}{$DEFINE TUnit:=TSquareAmpereQuarticSecondPerKilogramPerSquareMeterUnit}{$i adim.inc}
+
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TOhmQty}{$DEFINE TUnit:=TKilogramSquareMeterPerSquareAmperePerCubicSecondUnit}{$i adim.inc}
+
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TSiemensQty}{$DEFINE TUnit:=TSquareAmpereCubicSecondPerKilogramPerSquareMeterUnit}{$i adim.inc}
+
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TTeslaQty}{$DEFINE TUnit:=TKilogramPerAmperePerSquareSecondUnit}{$i adim.inc}
+
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TWeberQty}{$DEFINE TUnit:=TKilogramSquareMeterPerAmperePerSquareSecondUnit}{$i adim.inc}
+
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=THenryQty}{$DEFINE TUnit:=TKilogramSquareMeterPerSquareAmperePerSquareSecondUnit}{$i adim.inc}
+
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TLumenQty}{$DEFINE TUnit:=TCandelaSteradianUnit}{$i adim.inc}
+
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TLuxQty}{$DEFINE TUnit:=TCandelaSteradianPerSquareMeterUnit}{$i adim.inc}
 
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=THertzQty}{$DEFINE TUnit:=TBequerelUnit}{$i adim.inc}
 
@@ -13072,9 +13973,17 @@ end;
 
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TSquareMeterPerSquareSecondQty}{$DEFINE TUnit:=TSievertUnit}{$i adim.inc}
 
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TKatalQty}{$DEFINE TUnit:=TMolePerSecondUnit}{$i adim.inc}
+
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TNewtonPerCubicMeterQty}{$DEFINE TUnit:=TKilogramPerSquareMeterPerSquareSecondUnit}{$i adim.inc}
+
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TPoundForcePerInchQty}{$DEFINE TUnit:=TPoundForcePerInchUnit}{$i adim.inc}
 
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TNewtonPerMeterQty}{$DEFINE TUnit:=TKilogramPerSquareSecondUnit}{$i adim.inc}
+
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TPoiseuilleQty}{$DEFINE TUnit:=TPascalSecondUnit}{$i adim.inc}
+
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TPoiseuilleQty}{$DEFINE TUnit:=TKilogramPerMeterPerSecondUnit}{$i adim.inc}
 
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TNewtonCubicMeterQty}{$DEFINE TUnit:=TNewtonCubicMeterUnit}{$i adim.inc}
 
@@ -13872,6 +14781,26 @@ begin
   result.FValue := FValue / cSquareDegreeFactor;
 end;
 
+function THertzHelper.ToReciprocalSecond: TReciprocalSecondQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TReciprocalSecondHelper.ToHertz: THertzQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TSquareHertzHelper.ToReciprocalSquareSecond: TReciprocalSquareSecondQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TReciprocalSquareSecondHelper.ToSquareHertz: TSquareHertzQty;
+begin
+  result.FValue := FValue;
+end;
+
 function TSquareHertzHelper.ToRadianPerSquareSecond: TRadianPerSquareSecondQty;
 begin
   result.FValue := FValue;
@@ -13952,6 +14881,26 @@ begin
   result.FValue := FValue / cPoundForceFactor;
 end;
 
+function TNewtonHelper.ToKilogramMeterPerSquareSecond: TKilogramMeterPerSquareSecondQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TKilogramMeterPerSquareSecondHelper.ToNewton: TNewtonQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TSquareNewtonHelper.ToSquareKilogramSquareMeterPerQuarticSecond: TSquareKilogramSquareMeterPerQuarticSecondQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TSquareKilogramSquareMeterPerQuarticSecondHelper.ToSquareNewton: TSquareNewtonQty;
+begin
+  result.FValue := FValue;
+end;
+
 function TPascalHelper.ToBar: TBarQty;
 begin
   result.FValue := FValue / cBarFactor;
@@ -13968,6 +14917,16 @@ begin
 end;
 
 function TJoulePerCubicMeterHelper.ToPascal: TPascalQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TPascalHelper.ToKilogramPerMeterPerSquareSecond: TKilogramPerMeterPerSquareSecondQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TKilogramPerMeterPerSquareSecondHelper.ToPascal: TPascalQty;
 begin
   result.FValue := FValue;
 end;
@@ -14007,6 +14966,16 @@ begin
   result.FValue := FValue / cCalorieFactor;
 end;
 
+function TJouleHelper.ToKilogramSquareMeterPerSquareSecond: TKilogramSquareMeterPerSquareSecondQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TKilogramSquareMeterPerSquareSecondHelper.ToJoule: TJouleQty;
+begin
+  result.FValue := FValue;
+end;
+
 function TJoulePerRadianHelper.ToJoulePerDegree: TJoulePerDegreeQty;
 begin
   result.FValue := FValue / cJoulePerDegreeFactor;
@@ -14027,9 +14996,149 @@ begin
   result.FValue := FValue / cNewtonMeterPerDegreeFactor;
 end;
 
+function TJoulePerRadianHelper.ToKilogramSquareMeterPerSquareSecondPerRadian: TKilogramSquareMeterPerSquareSecondPerRadianQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TKilogramSquareMeterPerSquareSecondPerRadianHelper.ToJoulePerRadian: TJoulePerRadianQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TWattHelper.ToKilogramSquareMeterPerCubicSecond: TKilogramSquareMeterPerCubicSecondQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TKilogramSquareMeterPerCubicSecondHelper.ToWatt: TWattQty;
+begin
+  result.FValue := FValue;
+end;
+
 function TCoulombHelper.ToAmpereHour: TAmpereHourQty;
 begin
   result.FValue := FValue / cAmpereHourFactor;
+end;
+
+function TCoulombHelper.ToAmpereSecond: TAmpereSecondQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TAmpereSecondHelper.ToCoulomb: TCoulombQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TSquareCoulombHelper.ToSquareAmpereSquareSecond: TSquareAmpereSquareSecondQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TSquareAmpereSquareSecondHelper.ToSquareCoulomb: TSquareCoulombQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TVoltHelper.ToKilogramSquareMeterPerAmperePerCubicSecond: TKilogramSquareMeterPerAmperePerCubicSecondQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TKilogramSquareMeterPerAmperePerCubicSecondHelper.ToVolt: TVoltQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TSquareVoltHelper.ToSquareKilogramQuarticMeterPerSquareAmperePerSexticSecond: TSquareKilogramQuarticMeterPerSquareAmperePerSexticSecondQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TSquareKilogramQuarticMeterPerSquareAmperePerSexticSecondHelper.ToSquareVolt: TSquareVoltQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TFaradHelper.ToSquareAmpereQuarticSecondPerKilogramPerSquareMeter: TSquareAmpereQuarticSecondPerKilogramPerSquareMeterQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TSquareAmpereQuarticSecondPerKilogramPerSquareMeterHelper.ToFarad: TFaradQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TOhmHelper.ToKilogramSquareMeterPerSquareAmperePerCubicSecond: TKilogramSquareMeterPerSquareAmperePerCubicSecondQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TKilogramSquareMeterPerSquareAmperePerCubicSecondHelper.ToOhm: TOhmQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TSiemensHelper.ToSquareAmpereCubicSecondPerKilogramPerSquareMeter: TSquareAmpereCubicSecondPerKilogramPerSquareMeterQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TSquareAmpereCubicSecondPerKilogramPerSquareMeterHelper.ToSiemens: TSiemensQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TTeslaHelper.ToKilogramPerAmperePerSquareSecond: TKilogramPerAmperePerSquareSecondQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TKilogramPerAmperePerSquareSecondHelper.ToTesla: TTeslaQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TWeberHelper.ToKilogramSquareMeterPerAmperePerSquareSecond: TKilogramSquareMeterPerAmperePerSquareSecondQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TKilogramSquareMeterPerAmperePerSquareSecondHelper.ToWeber: TWeberQty;
+begin
+  result.FValue := FValue;
+end;
+
+function THenryHelper.ToKilogramSquareMeterPerSquareAmperePerSquareSecond: TKilogramSquareMeterPerSquareAmperePerSquareSecondQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TKilogramSquareMeterPerSquareAmperePerSquareSecondHelper.ToHenry: THenryQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TLumenHelper.ToCandelaSteradian: TCandelaSteradianQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TCandelaSteradianHelper.ToLumen: TLumenQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TLuxHelper.ToCandelaSteradianPerSquareMeter: TCandelaSteradianPerSquareMeterQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TCandelaSteradianPerSquareMeterHelper.ToLux: TLuxQty;
+begin
+  result.FValue := FValue;
 end;
 
 function THertzHelper.ToBequerel: TBequerelQty;
@@ -14062,9 +15171,39 @@ begin
   result.FValue := FValue;
 end;
 
+function TKatalHelper.ToMolePerSecond: TMolePerSecondQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TMolePerSecondHelper.ToKatal: TKatalQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TNewtonPerCubicMeterHelper.ToKilogramPerSquareMeterPerSquareSecond: TKilogramPerSquareMeterPerSquareSecondQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TKilogramPerSquareMeterPerSquareSecondHelper.ToNewtonPerCubicMeter: TNewtonPerCubicMeterQty;
+begin
+  result.FValue := FValue;
+end;
+
 function TNewtonPerMeterHelper.ToPoundForcePerInch: TPoundForcePerInchQty;
 begin
   result.FValue := FValue / cPoundForcePerInchFactor;
+end;
+
+function TNewtonPerMeterHelper.ToKilogramPerSquareSecond: TKilogramPerSquareSecondQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TKilogramPerSquareSecondHelper.ToNewtonPerMeter: TNewtonPerMeterQty;
+begin
+  result.FValue := FValue;
 end;
 
 function TPoiseuilleHelper.ToPascalSecond: TPascalSecondQty;
@@ -14073,6 +15212,16 @@ begin
 end;
 
 function TPascalSecondHelper.ToPoiseuille: TPoiseuilleQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TPoiseuilleHelper.ToKilogramPerMeterPerSecond: TKilogramPerMeterPerSecondQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TKilogramPerMeterPerSecondHelper.ToPoiseuille: TPoiseuilleQty;
 begin
   result.FValue := FValue;
 end;
