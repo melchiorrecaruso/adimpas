@@ -24,7 +24,7 @@ program adimtest;
 {$endif}
 
 uses
-  ADim, SysUtils;
+  ADim, Math, SysUtils;
 
 var
   side1, side2, side3, side4: TMeters;
@@ -78,7 +78,7 @@ var
   radius1: TMeters;
   radius2: TMeters;
 
-  mass: TKilograms;
+  Mass: TKilograms;
   MassOfSun: TKilograms;
   MassOfSagittariusAStar: TKilograms;
   eta: TPascalSeconds;
@@ -172,6 +172,14 @@ var
   Iterations: longint;
   Probability: double;
   mu: TJoulesPerTesla;
+
+  E1, E2: TJoules;
+  L1, L2: TMeters;
+
+  kfactor: TReciprocalMeters;
+  bfactor: TReciprocalMeters;
+  U0: TElectronVolts;
+  TunnelingProbability: double;
 
 begin
   ExitCode := 0;
@@ -656,7 +664,7 @@ begin
   q1    := 2*C;
   Area  := 4*cm2;
   sigma := q1/Area;
-  E     := sigma/VacuumElectricPermittivity;
+  E     := sigma/ElectricPermittivity;
   if E.ToString(4, 2, [pGiga, pMilli]) <> '564.7 GV/mm' then halt(1);
   writeln('* TEST-53: PASSED');
 
@@ -672,7 +680,7 @@ begin
   current  := 3.0*A;
   R        := 50*cm;
   z        := 0*cm;
-  B        := VacuumMagneticPermeability/(2*pi) * (current/(SquareRoot(CubicPower(SquarePower(z)+SquarePower(R)))/SquarePower(R)));
+  B        := MagneticPermeability/(2*pi) * (current/(SquareRoot(CubicPower(SquarePower(z)+SquarePower(R)))/SquarePower(R)));
   {$IFDEF WINDOWS}
   if Utf8ToAnsi(B.ToString(4, 2, [pMicro])) <> Utf8ToAnsi('1.2 µT') then halt(1);
   {$ENDIF}
@@ -685,7 +693,7 @@ begin
   current  := 1600*A;
   loops    := 2000;
   len      := 2.0*m;
-  B        := VacuumMagneticPermeability*loops*(current/len);
+  B        := MagneticPermeability*loops*(current/len);
   if B.ToVerboseString(4, 2, []) <> '2.011 teslas' then halt(1);
   writeln('* TEST-56: PASSED');
 
@@ -694,7 +702,7 @@ begin
   i2    := 1.5*A;
   r     := 4*cm;
   len   := 1.0*m;
-  force := (VacuumMagneticPermeability/(2*pi)*(len/r)) * (i1*i2);
+  force := (MagneticPermeability/(2*pi)*(len/r)) * (i1*i2);
   if force.ToVerboseString(4, 2, [pMicro]) <> '18.75 micronewtons' then halt(1);
   writeln('* TEST-57: PASSED');
 
@@ -717,7 +725,7 @@ begin
   Area     := 100*cm2;
   DeltaE   := 6.0E10*N/C;
   time     := 1*s;
-  current  := (VacuumElectricPermittivity*DeltaE*Area)/time;
+  current  := (ElectricPermittivity*DeltaE*Area)/time;
   if current.ToVerboseString(4, 2, [pMicro]) <> '5313 microamperes' then halt(1);
   writeln('* TEST-60: PASSED');
 
@@ -738,8 +746,8 @@ begin
 
   // TEST-62 - RELATIVTY: ENERGY
   mass       := 1*kg;
-  energy     := mass*SquarePower(VacuumLightSpeed);
-  if energy.ToElettronvolt.ToString(4, 2, [pTera]) <> '5.61E23 TeV' then halt(1);
+  energy     := mass*SquarePower(SpeedOfLight);
+  if energy.ToElectronvolt.ToString(4, 2, [pTera]) <> '5.61E23 TeV' then halt(1);
   if energy               .ToString(4, 2, [pTera]) <> '8.988E4 TJ'  then halt(2);
   writeln('* TEST-62: PASSED');
 
@@ -747,19 +755,19 @@ begin
   mass       := ElectronMass;
   speed      := 10800000*km/hr;
   p          := mass*speed;
-  energy     := SquareRoot(SquarePower(p*VacuumLightSpeed)+ SquarePower(mass*SquarePower(VacuumLightSpeed)));
+  energy     := SquareRoot(SquarePower(p*SpeedOfLight)+ SquarePower(mass*SquarePower(SpeedOfLight)));
   if p                    .ToString(4, 2, [pPico, pPico, pNone]) <> '2733 pg·pm/s' then halt(1);
-  if energy.ToElettronvolt.ToString(4, 2, [pKilo]              ) <> '511 keV'      then halt(2);
+  if energy.ToElectronvolt.ToString(4, 2, [pKilo]              ) <> '511 keV'      then halt(2);
   writeln('* TEST-63: PASSED');
 
   // TEST-64 - MOMENTUM OF PHOTON
   len    := 1*mim;
   freq   := 1*Hz;
-  energy := PlanckConstant/(len/VacuumLightSpeed);
-  p      := PlanckConstant*freq/VacuumLightSpeed;
+  energy := PlanckConstant/(len/SpeedOfLight);
+  p      := PlanckConstant*freq/SpeedOfLight;
   p      := PlanckConstant/len;
   speed  := len*freq;
-  if energy.ToElettronvolt.ToString(4, 2, [                   ]) <> '1.24 eV'        then halt(1);
+  if energy.ToElectronvolt.ToString(4, 2, [                   ]) <> '1.24 eV'        then halt(1);
   if p                    .ToString(4, 2, [pPico, pPico, pNone]) <> '0.6626 pg·pm/s' then halt(2);
   if speed                .ToString(9, 2, [pPico, pNone       ]) <> '1000000 pm/s'   then halt(3);
   writeln('* TEST-64: PASSED');
@@ -870,7 +878,7 @@ begin
   writeln('* TEST-98: PASSED');
 
   // TEST-99 - COMPTON WAVE LEGNTH
-  wavelenc := PlanckConstant/(ElectronMass*VacuumLightSpeed);
+  wavelenc := PlanckConstant/(ElectronMass*SpeedOfLight);
   if wavelenc.IsSame(ComptonWaveLength) <> TRUE then halt(1);
   writeln('* TEST-99: PASSED');
 
@@ -885,13 +893,13 @@ begin
   Lp     := ElectronMass*speed*radius;
   // electron's speed
   speed  := SquareRoot(CoulombConstant*SquarePower(ElementaryCharge)/ElectronMass/radius);
-  speed  := SquareRoot(SquarePower(ElementaryCharge)/4/pi/VacuumElectricPermittivity/ElectronMass/radius);
+  speed  := SquareRoot(SquarePower(ElementaryCharge)/4/pi/ElectricPermittivity/ElectronMass/radius);
   // orbit radius
   radius := Sqr(num)*SquarePower(ReducedPlanckConstant)/ElectronMass/(ElementaryCharge*ElementaryCharge*CoulombConstant);
   // fine structure constant
-  alpha  := CoulombConstant*SquarePower(ElementaryCharge)/ReducedPlanckConstant/VacuumLightSpeed;
+  alpha  := CoulombConstant*SquarePower(ElementaryCharge)/ReducedPlanckConstant/SpeedOfLight;
   // orbit radius
-  radius := num*(ReducedPlanckConstant)/ElectronMass/VacuumLightSpeed/alpha;
+  radius := num*(ReducedPlanckConstant)/ElectronMass/SpeedOfLight/alpha;
   // orbit radius
   radius := SquarePower(ElementaryCharge)/(ElectronMass*SquarePower(speed)/CoulombConstant);
   // orbit radius
@@ -902,7 +910,7 @@ begin
   if radius               .IsSame(BohrRadius) <> TRUE          then halt(1);
   if radius               .ToString(4, 4, []) <> '5.292E-11 m' then halt(2);
   if speed                .ToString(4, 4, []) <> '2.188E6 m/s' then halt(3);
-  if energy.ToElettronvolt.ToString(3, 3, []) <> '-13.6 eV'    then halt(4);
+  if energy.ToElectronvolt.ToString(3, 3, []) <> '-13.6 eV'    then halt(4);
   if energy.ToRydberg     .ToString(3, 3, []) <> '-1 Ry'       then halt(5);
   writeln('* TEST-100: PASSED');
 
@@ -911,8 +919,8 @@ begin
   Kc         := 2*pi/WaveLen;
   p          := ReducedPlanckConstant*Kc;
   p          := ReducedPlanckConstant/(1/Kc);
-  p          := Energy/VacuumLightSpeed;
-  Freq       := VacuumLightSpeed/WaveLen;
+  p          := Energy/SpeedOfLight;
+  Freq       := SpeedOfLight/WaveLen;
   Omega      := Freq*2*pi;
   Energy     := PlanckConstant*Freq;
   Energy     := ReducedPlanckConstant*Omega;
@@ -979,7 +987,7 @@ begin
   writeln('* TEST-104: PASSED');
 
   // TEST-105 : STEN-GERLACH EXPERIMENT
-  speed    := VacuumLightSpeed/2;
+  speed    := SpeedOfLight/2;
   spin     := 0.5*ReducedPlanckConstant;
   // magnetic momentum
   mu :=  0.5*ElementaryCharge/pi/BohrRadius*speed*pi*SquarePower(BohrRadius);
@@ -990,14 +998,39 @@ begin
   U  :=  mu*(10*T);
   writeln('* TEST-105: PASSED');
 
-  // TEST-106 SCHWARZSCHILD RADIUS
+  // TEST-106 : SCHWARZSCHILD RADIUS
   MassOfSun              := 1.9884E+30*kg;
   MassOfSagittariusAStar := 4.297E6 * MassOfSun;
-  radius1                := 2*(MassOfSun*NewtonianConstantOfGravitation)/SquarePower(VacuumLightSpeed);
-  radius2                := 2*(MassOfSagittariusAStar*NewtonianConstantOfGravitation)/SquarePower(VacuumLightSpeed);
+  radius1                := 2*(MassOfSun*NewtonianConstantOfGravitation)/SquarePower(SpeedOfLight);
+  radius2                := 2*(MassOfSagittariusAStar*NewtonianConstantOfGravitation)/SquarePower(SpeedOfLight);
   if radius1.ToString(5, 5, [pKilo]) <> '2.9532 km'  then halt(1);
   if radius2.ToString(5, 5, [     ]) <> '1.269E10 m' then halt(2);
   writeln('* TEST-106: PASSED');
+
+  // TEST-107 : QUANTUM TUNNELING
+  U0      := 10*eV;
+  Mass    := 511*keV/SquaredSpeedOfLight;
+
+  // SubCase-1
+  E1      := 7*eV;
+  L1      := 5*nm;
+  kfactor := SquareRoot(2*Mass*E1/SquarePower(ReducedPlanckConstant));
+  bfactor := SquareRoot(2*Mass*(U0 - E1))/ReducedPlanckConstant;
+  TunnelingProbability := (16*SquarePower(kfactor)*SquarePower(bfactor))/SquarePower(SquarePower(kfactor) + SquarePower(bfactor))*Exp(-2*bfactor*L1);
+
+  if bfactor.ToString(3, 3, [pNano])         <> '8.87 1/nm' then halt(1);
+  if Format('%0.3e', [TunnelingProbability]) <> '9.75E-039' then halt(2);
+
+  // SubCase-2
+  E2      := 9*eV;
+  L2      := 1*nm;
+  kfactor := SquareRoot(2*Mass*E2/SquarePower(ReducedPlanckConstant));
+  bfactor := SquareRoot(2*Mass*(U0 - E2))/ReducedPlanckConstant;
+  TunnelingProbability := (16*(E2/U0)*(1-E2/U0))*Exp(-2*bfactor*L2);
+
+  if bfactor.ToString(3, 3, [pNano])         <> '5.12 1/nm' then halt(1);
+  if Format('%0.3e', [TunnelingProbability]) <> '5.11E-005' then halt(2);
+  writeln('* TEST-107: PASSED');
 
   writeln('ADIM-TEST DONE.');
 end.
