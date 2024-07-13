@@ -18,11 +18,11 @@
 }
 
 {
-  ADimPas library built on 16/06/2024.
+  ADimPas library built on 13/07/2024.
 
-  Number of base units: 131
-  Number of factored units: 93
-  Number of operators: 1105 (274 external, 831 internal)
+  Number of base units: 133
+  Number of factored units: 106
+  Number of operators: 1145 (286 external, 859 internal)
 }
 
 unit ADim;
@@ -1201,6 +1201,10 @@ type
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE NOP}
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TElectronvoltPerSquareSpeedOfLightQty}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TDegreeCelsiusQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
@@ -1281,6 +1285,18 @@ type
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE NOP}
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TJoulePerKilogramQty}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TGrayQty}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSievertQty}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TNewtonSecondQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
@@ -1309,6 +1325,38 @@ type
   class operator /(const ALeft: double; const ARight: TReciprocalSquareMeterQty): TSquareMeterQty;
   class operator *(const ALeft: TReciprocalSquareMeterQty; const ARight: TSquareMeterQty): double;
   class operator *(const ALeft: TSquareMeterQty; const ARight: TReciprocalSquareMeterQty): double;
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TReciprocalCubicMeterQty}{$i adim.inc}
+  class operator /(const ALeft: TReciprocalCubicMeterQty; const ARight: TReciprocalMeterQty): TReciprocalSquareMeterQty;
+  class operator /(const ALeft: TReciprocalCubicMeterQty; const ARight: TReciprocalSquareMeterQty): TReciprocalMeterQty;
+  class operator /(const ALeft: TReciprocalSquareMeterQty; const ARight: TReciprocalCubicMeterQty): TMeterQty;
+  class operator *(const ALeft: TReciprocalCubicMeterQty; const ARight: TMeterQty): TReciprocalSquareMeterQty;
+  class operator *(const ALeft: TMeterQty; const ARight: TReciprocalCubicMeterQty): TReciprocalSquareMeterQty;
+  class operator /(const ALeft: TReciprocalMeterQty; const ARight: TReciprocalCubicMeterQty): TSquareMeterQty;
+  class operator *(const ALeft: TReciprocalCubicMeterQty; const ARight: TSquareMeterQty): TReciprocalMeterQty;
+  class operator *(const ALeft: TSquareMeterQty; const ARight: TReciprocalCubicMeterQty): TReciprocalMeterQty;
+  class operator /(const ALeft: double; const ARight: TReciprocalCubicMeterQty): TCubicMeterQty;
+  class operator *(const ALeft: TReciprocalCubicMeterQty; const ARight: TCubicMeterQty): double;
+  class operator *(const ALeft: TCubicMeterQty; const ARight: TReciprocalCubicMeterQty): double;
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TReciprocalQuarticMeterQty}{$i adim.inc}
+  class operator /(const ALeft: TReciprocalQuarticMeterQty; const ARight: TReciprocalSquareMeterQty): TReciprocalSquareMeterQty;
+  class operator /(const ALeft: TReciprocalQuarticMeterQty; const ARight: TReciprocalMeterQty): TReciprocalCubicMeterQty;
+  class operator /(const ALeft: TReciprocalQuarticMeterQty; const ARight: TReciprocalCubicMeterQty): TReciprocalMeterQty;
+  class operator /(const ALeft: TReciprocalCubicMeterQty; const ARight: TReciprocalQuarticMeterQty): TMeterQty;
+  class operator *(const ALeft: TReciprocalQuarticMeterQty; const ARight: TMeterQty): TReciprocalCubicMeterQty;
+  class operator *(const ALeft: TMeterQty; const ARight: TReciprocalQuarticMeterQty): TReciprocalCubicMeterQty;
+  class operator /(const ALeft: TReciprocalSquareMeterQty; const ARight: TReciprocalQuarticMeterQty): TSquareMeterQty;
+  class operator *(const ALeft: TReciprocalQuarticMeterQty; const ARight: TSquareMeterQty): TReciprocalSquareMeterQty;
+  class operator *(const ALeft: TSquareMeterQty; const ARight: TReciprocalQuarticMeterQty): TReciprocalSquareMeterQty;
+  class operator /(const ALeft: TReciprocalMeterQty; const ARight: TReciprocalQuarticMeterQty): TCubicMeterQty;
+  class operator *(const ALeft: TReciprocalQuarticMeterQty; const ARight: TCubicMeterQty): TReciprocalMeterQty;
+  class operator *(const ALeft: TCubicMeterQty; const ARight: TReciprocalQuarticMeterQty): TReciprocalMeterQty;
+  class operator /(const ALeft: double; const ARight: TReciprocalQuarticMeterQty): TQuarticMeterQty;
+  class operator *(const ALeft: TReciprocalQuarticMeterQty; const ARight: TQuarticMeterQty): double;
+  class operator *(const ALeft: TQuarticMeterQty; const ARight: TReciprocalQuarticMeterQty): double;
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE NOP}
@@ -1361,7 +1409,7 @@ type
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE NOP}
-{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TElettronvoltQty}{$i adim.inc}
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TElectronvoltQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE NOP}
@@ -1461,14 +1509,6 @@ type
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE NOP}
-{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TGrayQty}{$i adim.inc}
-{$DEFINE INTF_END}{$i adim.inc}
-
-{$DEFINE NOP}
-{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSievertQty}{$i adim.inc}
-{$DEFINE INTF_END}{$i adim.inc}
-
-{$DEFINE NOP}
 {$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TMolePerSecondQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
@@ -1493,7 +1533,47 @@ type
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE NOP}
-{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TJoulePerKilogramQty}{$i adim.inc}
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TKilogramCubicMeterPerSquareSecondQty}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TKilogramQuarticMeterPerSquareSecondQty}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TMeterPerKilogramPerSquareSecondQty}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TCubicMeterPerKilogramPerSquareSecondQty}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TKilogramSquareMeterPerSquareSecondPerKelvinQty}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TSquareMeterPerSquareSecondPerKelvinQty}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TKilogramMeterPerCubicSecondQty}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TKilogramPerCubicSecondQty}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TKilogramSquareMeterPerCubicSecondPerKelvinQty}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TKilogramMeterPerCubicSecondPerKelvinQty}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TKilogramPerCubicSecondPerKelvinQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE NOP}
@@ -1521,7 +1601,11 @@ type
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE NOP}
-{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TElettronvoltSecondQty}{$i adim.inc}
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TElectronvoltSecondQty}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE INTF_QUANTITY}{$DEFINE TQuantity:=TElectronvoltMeterPerSpeedOfLightQty}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE NOP}
@@ -1574,6 +1658,18 @@ operator /(const ALeft: TReciprocalSquareRootCubicMeterQty; const ARight: TRecip
 operator /(const ALeft: double; const ARight: TSquareMeterQty): TReciprocalSquareMeterQty;
 operator /(const ALeft: TReciprocalMeterQty; const ARight: TMeterQty): TReciprocalSquareMeterQty;
 operator *(const ALeft: TReciprocalMeterQty; const ARight: TReciprocalMeterQty): TReciprocalSquareMeterQty;
+operator /(const ALeft: double; const ARight: TCubicMeterQty): TReciprocalCubicMeterQty;
+operator /(const ALeft: TReciprocalMeterQty; const ARight: TSquareMeterQty): TReciprocalCubicMeterQty;
+operator /(const ALeft: TReciprocalSquareMeterQty; const ARight: TMeterQty): TReciprocalCubicMeterQty;
+operator *(const ALeft: TReciprocalSquareMeterQty; const ARight: TReciprocalMeterQty): TReciprocalCubicMeterQty;
+operator *(const ALeft: TReciprocalMeterQty; const ARight: TReciprocalSquareMeterQty): TReciprocalCubicMeterQty;
+operator /(const ALeft: double; const ARight: TQuarticMeterQty): TReciprocalQuarticMeterQty;
+operator /(const ALeft: TReciprocalMeterQty; const ARight: TCubicMeterQty): TReciprocalQuarticMeterQty;
+operator /(const ALeft: TReciprocalSquareMeterQty; const ARight: TSquareMeterQty): TReciprocalQuarticMeterQty;
+operator /(const ALeft: TReciprocalCubicMeterQty; const ARight: TMeterQty): TReciprocalQuarticMeterQty;
+operator *(const ALeft: TReciprocalCubicMeterQty; const ARight: TReciprocalMeterQty): TReciprocalQuarticMeterQty;
+operator *(const ALeft: TReciprocalMeterQty; const ARight: TReciprocalCubicMeterQty): TReciprocalQuarticMeterQty;
+operator *(const ALeft: TReciprocalSquareMeterQty; const ARight: TReciprocalSquareMeterQty): TReciprocalQuarticMeterQty;
 operator /(const ALeft: TKilogramSquareMeterQty; const ARight: TSquareMeterQty): TKilogramQty;
 operator /(const ALeft: TKilogramSquareMeterQty; const ARight: TSecondQty): TKilogramSquareMeterPerSecondQty;
 operator *(const ALeft: TKilogramSquareMeterQty; const ARight: THertzQty): TKilogramSquareMeterPerSecondQty;
@@ -2047,6 +2143,7 @@ operator /(const ALeft: TJoulePerMoleQty; const ARight: TCoulombPerMoleQty): TVo
   class operator *(const ALeft: TNewtonQty; const ARight: TCubicMeterUnit): TNewtonCubicMeterQty;
   class operator /(const ALeft: TNewtonQty; const ARight: TCubicMeterUnit): TNewtonPerCubicMeterQty;
   class operator /(const ALeft: TKilogramQty; const ARight: TCubicMeterUnit): TKilogramPerCubicMeterQty;
+  class operator /(const ALeft: double; const ARight: TCubicMeterUnit): TReciprocalCubicMeterQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TVoltMeterQty}{$DEFINE TUnit:=TVoltMeterUnit}{$i adim.inc}
@@ -2269,6 +2366,7 @@ operator /(const ALeft: TJoulePerMoleQty; const ARight: TCoulombPerMoleQty): TVo
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TQuarticMeterQty}{$DEFINE TUnit:=TQuarticMeterUnit}{$i adim.inc}
   class operator /(const ALeft: TKilogramPerSecondQty; const ARight: TQuarticMeterUnit): TKilogramPerQuarticMeterPerSecondQty;
   class operator /(const ALeft: TKilogramQty; const ARight: TQuarticMeterUnit): TKilogramPerQuarticMeterQty;
+  class operator /(const ALeft: double; const ARight: TQuarticMeterUnit): TReciprocalQuarticMeterQty;
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TKilogramPerSecondQty}{$DEFINE TUnit:=TKilogramPerSecondUnit}{$i adim.inc}
@@ -2370,6 +2468,9 @@ operator /(const ALeft: TJoulePerMoleQty; const ARight: TCoulombPerMoleQty): TVo
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TTonQty}{$DEFINE TUnit:=TTonUnit}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TElectronvoltPerSquareSpeedOfLightQty}{$DEFINE TUnit:=TElectronvoltPerSquareSpeedOfLightUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TDegreeCelsiusQty}{$DEFINE TUnit:=TDegreeCelsiusUnit}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
@@ -2412,6 +2513,15 @@ operator /(const ALeft: TJoulePerMoleQty; const ARight: TCoulombPerMoleQty): TVo
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TMeterPerHourPerSecondQty}{$DEFINE TUnit:=TMeterPerHourPerSecondUnit}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TSquareMeterPerSquareSecondQty}{$DEFINE TUnit:=TJoulePerKilogramUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TSquareMeterPerSquareSecondQty}{$DEFINE TUnit:=TGrayUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TSquareMeterPerSquareSecondQty}{$DEFINE TUnit:=TSievertUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TKilogramMeterQty}{$DEFINE TUnit:=TKilogramMeterUnit}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
@@ -2428,6 +2538,12 @@ operator /(const ALeft: TJoulePerMoleQty; const ARight: TCoulombPerMoleQty): TVo
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TReciprocalSquareMeterQty}{$DEFINE TUnit:=TReciprocalSquareMeterUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TReciprocalCubicMeterQty}{$DEFINE TUnit:=TReciprocalCubicMeterUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TReciprocalQuarticMeterQty}{$DEFINE TUnit:=TReciprocalQuarticMeterUnit}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TKilogramSquareMeterPerSecondQty}{$DEFINE TUnit:=TNewtonMeterSecondUnit}{$i adim.inc}
@@ -2463,7 +2579,7 @@ operator /(const ALeft: TJoulePerMoleQty; const ARight: TCoulombPerMoleQty): TVo
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TWattHourQty}{$DEFINE TUnit:=TWattHourUnit}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
-{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TElettronvoltQty}{$DEFINE TUnit:=TElettronvoltUnit}{$i adim.inc}
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TElectronvoltQty}{$DEFINE TUnit:=TElectronvoltUnit}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TJouleQty}{$DEFINE TUnit:=TNewtonMeterUnit}{$i adim.inc}
@@ -2538,12 +2654,6 @@ operator /(const ALeft: TJoulePerMoleQty; const ARight: TCoulombPerMoleQty): TVo
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=THertzQty}{$DEFINE TUnit:=TBequerelUnit}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
-{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TSquareMeterPerSquareSecondQty}{$DEFINE TUnit:=TGrayUnit}{$i adim.inc}
-{$DEFINE INTF_END}{$i adim.inc}
-
-{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TSquareMeterPerSquareSecondQty}{$DEFINE TUnit:=TSievertUnit}{$i adim.inc}
-{$DEFINE INTF_END}{$i adim.inc}
-
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TKatalQty}{$DEFINE TUnit:=TMolePerSecondUnit}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
@@ -2562,10 +2672,40 @@ operator /(const ALeft: TJoulePerMoleQty; const ARight: TCoulombPerMoleQty): TVo
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TPoiseuilleQty}{$DEFINE TUnit:=TKilogramPerMeterPerSecondUnit}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TNewtonSquareMeterQty}{$DEFINE TUnit:=TKilogramCubicMeterPerSquareSecondUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TNewtonCubicMeterQty}{$DEFINE TUnit:=TNewtonCubicMeterUnit}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
-{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TSquareMeterPerSquareSecondQty}{$DEFINE TUnit:=TJoulePerKilogramUnit}{$i adim.inc}
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TNewtonCubicMeterQty}{$DEFINE TUnit:=TKilogramQuarticMeterPerSquareSecondUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TNewtonPerSquareKilogramQty}{$DEFINE TUnit:=TMeterPerKilogramPerSquareSecondUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TNewtonSquareMeterPerSquareKilogramQty}{$DEFINE TUnit:=TCubicMeterPerKilogramPerSquareSecondUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TJoulePerKelvinQty}{$DEFINE TUnit:=TKilogramSquareMeterPerSquareSecondPerKelvinUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TJoulePerKilogramPerKelvinQty}{$DEFINE TUnit:=TSquareMeterPerSquareSecondPerKelvinUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TWattPerMeterQty}{$DEFINE TUnit:=TKilogramMeterPerCubicSecondUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TWattPerSquareMeterQty}{$DEFINE TUnit:=TKilogramPerCubicSecondUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TWattPerKelvinQty}{$DEFINE TUnit:=TKilogramSquareMeterPerCubicSecondPerKelvinUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TWattPerMeterPerKelvinQty}{$DEFINE TUnit:=TKilogramMeterPerCubicSecondPerKelvinUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TWattPerSquareMeterPerKelvinQty}{$DEFINE TUnit:=TKilogramPerCubicSecondPerKelvinUnit}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TVoltPerMeterQty}{$DEFINE TUnit:=TNewtonPerCoulombUnit}{$i adim.inc}
@@ -2586,7 +2726,10 @@ operator /(const ALeft: TJoulePerMoleQty; const ARight: TCoulombPerMoleQty): TVo
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TKilogramSquareMeterPerSecondQty}{$DEFINE TUnit:=TJouleSecondUnit}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
-{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TElettronvoltSecondQty}{$DEFINE TUnit:=TElettronvoltSecondUnit}{$i adim.inc}
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TElectronvoltSecondQty}{$DEFINE TUnit:=TElectronvoltSecondUnit}{$i adim.inc}
+{$DEFINE INTF_END}{$i adim.inc}
+
+{$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TElectronvoltMeterPerSpeedOfLightQty}{$DEFINE TUnit:=TElectronvoltMeterPerSpeedOfLightUnit}{$i adim.inc}
 {$DEFINE INTF_END}{$i adim.inc}
 
 {$DEFINE INTF_UNIT}{$DEFINE TQuantity:=TSquareJouleSquareSecondQty}{$DEFINE TUnit:=TSquareJouleSquareSecondUnit}{$i adim.inc}
@@ -5146,6 +5289,21 @@ const
   cTonExponents : TExponents = ();
   cTonFactor                 = 907.18474;
 
+{ Quantity of TElectronvoltsPerSquareSpeedOfLight }
+
+type
+  TElectronvoltsPerSquareSpeedOfLight = TKilogramQty;
+
+const
+  rsElectronvoltPerSquareSpeedOfLightSymbol     = '%seV/c2';
+  rsElectronvoltPerSquareSpeedOfLightName       = '%selectronvolt per squared speed of light';
+  rsElectronvoltPerSquareSpeedOfLightPluralName = '%selectronvolts per squared speed of light';
+
+const
+  cElectronvoltPerSquareSpeedOfLightPrefixes  : TPrefixes  = (pNone);
+  cElectronvoltPerSquareSpeedOfLightExponents : TExponents = (1);
+  cElectronvoltPerSquareSpeedOfLightFactor                 = 1.7826619216279E-36;
+
 { Quantity of TDegreesCelsius }
 
 type
@@ -5360,6 +5518,66 @@ const
   cMeterPerHourPerSecondExponents : TExponents = (1, -1);
   cMeterPerHourPerSecondFactor                 = 1/3600;
 
+{ Quantity of TJoulesPerKilogram }
+
+type
+  TJoulesPerKilogram = TSquareMeterPerSquareSecondQty;
+
+const
+  rsJoulePerKilogramSymbol     = '%sJ/%sg';
+  rsJoulePerKilogramName       = '%sjoule per %sgram';
+  rsJoulePerKilogramPluralName = '%sjoules per %sgram';
+
+const
+  cJoulePerKilogramPrefixes  : TPrefixes  = (pNone, pKilo);
+  cJoulePerKilogramExponents : TExponents = (1, -1);
+
+{ Quantity of TGrays }
+
+type
+  TGrays = TSquareMeterPerSquareSecondQty;
+
+var
+  Gy: TSquareMeterPerSquareSecondUnit;
+
+const
+   kGy: TSquareMeterPerSquareSecondQty = (FValue: 1E+03);
+   mGy: TSquareMeterPerSquareSecondQty = (FValue: 1E-03);
+  miGy: TSquareMeterPerSquareSecondQty = (FValue: 1E-06);
+   nGy: TSquareMeterPerSquareSecondQty = (FValue: 1E-09);
+
+const
+  rsGraySymbol     = '%sGy';
+  rsGrayName       = '%sgray';
+  rsGrayPluralName = '%sgrays';
+
+const
+  cGrayPrefixes  : TPrefixes  = (pNone);
+  cGrayExponents : TExponents = (1);
+
+{ Quantity of TSieverts }
+
+type
+  TSieverts = TSquareMeterPerSquareSecondQty;
+
+var
+  Sv: TSquareMeterPerSquareSecondUnit;
+
+const
+   kSv: TSquareMeterPerSquareSecondQty = (FValue: 1E+03);
+   mSv: TSquareMeterPerSquareSecondQty = (FValue: 1E-03);
+  miSv: TSquareMeterPerSquareSecondQty = (FValue: 1E-06);
+   nSv: TSquareMeterPerSquareSecondQty = (FValue: 1E-09);
+
+const
+  rsSievertSymbol     = '%sSv';
+  rsSievertName       = '%ssievert';
+  rsSievertPluralName = '%ssieverts';
+
+const
+  cSievertPrefixes  : TPrefixes  = (pNone);
+  cSievertExponents : TExponents = (1);
+
 { Quantity of TKilogramMeters }
 
 type
@@ -5443,6 +5661,34 @@ const
 const
   cReciprocalSquareMeterPrefixes  : TPrefixes  = (pNone);
   cReciprocalSquareMeterExponents : TExponents = (-2);
+
+{ Quantity of TReciprocalCubicMeters }
+
+type
+  TReciprocalCubicMeters = TReciprocalCubicMeterQty;
+
+const
+  rsReciprocalCubicMeterSymbol     = '1/%sm3';
+  rsReciprocalCubicMeterName       = 'reciprocal cubic %smeter';
+  rsReciprocalCubicMeterPluralName = 'reciprocal cubic %smeters';
+
+const
+  cReciprocalCubicMeterPrefixes  : TPrefixes  = (pNone);
+  cReciprocalCubicMeterExponents : TExponents = (-3);
+
+{ Quantity of TReciprocalQuarticMeters }
+
+type
+  TReciprocalQuarticMeters = TReciprocalQuarticMeterQty;
+
+const
+  rsReciprocalQuarticMeterSymbol     = '1/%sm4';
+  rsReciprocalQuarticMeterName       = 'reciprocal quartic %smeter';
+  rsReciprocalQuarticMeterPluralName = 'reciprocal quartic %smeters';
+
+const
+  cReciprocalQuarticMeterPrefixes  : TPrefixes  = (pNone);
+  cReciprocalQuarticMeterExponents : TExponents = (-4);
 
 { Quantity of TNewtonMeterSeconds }
 
@@ -5619,10 +5865,10 @@ const
   cWattHourExponents : TExponents = (1);
   cWattHourFactor                 = 3600;
 
-{ Quantity of TElettronvolts }
+{ Quantity of TElectronvolts }
 
 type
-  TElettronvolts = TJouleQty;
+  TElectronvolts = TJouleQty;
 
 const
   eV: TJouleQty = (FValue: 1.602176634E-019);
@@ -5634,14 +5880,14 @@ const
   keV: TJouleQty = (FValue: 1.602176634E-019 * 1E+03);
 
 const
-  rsElettronvoltSymbol     = '%seV';
-  rsElettronvoltName       = '%selettronvolt';
-  rsElettronvoltPluralName = '%selettronvolts';
+  rsElectronvoltSymbol     = '%seV';
+  rsElectronvoltName       = '%selectronvolt';
+  rsElectronvoltPluralName = '%selectronvolts';
 
 const
-  cElettronvoltPrefixes  : TPrefixes  = (pNone);
-  cElettronvoltExponents : TExponents = (1);
-  cElettronvoltFactor                 = 1.602176634E-019;
+  cElectronvoltPrefixes  : TPrefixes  = (pNone);
+  cElectronvoltExponents : TExponents = (1);
+  cElectronvoltFactor                 = 1.602176634E-019;
 
 { Quantity of TNewtonMeters }
 
@@ -6005,52 +6251,6 @@ const
   cBequerelPrefixes  : TPrefixes  = (pNone);
   cBequerelExponents : TExponents = (1);
 
-{ Quantity of TGrays }
-
-type
-  TGrays = TSquareMeterPerSquareSecondQty;
-
-var
-  Gy: TSquareMeterPerSquareSecondUnit;
-
-const
-   kGy: TSquareMeterPerSquareSecondQty = (FValue: 1E+03);
-   mGy: TSquareMeterPerSquareSecondQty = (FValue: 1E-03);
-  miGy: TSquareMeterPerSquareSecondQty = (FValue: 1E-06);
-   nGy: TSquareMeterPerSquareSecondQty = (FValue: 1E-09);
-
-const
-  rsGraySymbol     = '%sGy';
-  rsGrayName       = '%sgray';
-  rsGrayPluralName = '%sgrays';
-
-const
-  cGrayPrefixes  : TPrefixes  = (pNone);
-  cGrayExponents : TExponents = (1);
-
-{ Quantity of TSieverts }
-
-type
-  TSieverts = TSquareMeterPerSquareSecondQty;
-
-var
-  Sv: TSquareMeterPerSquareSecondUnit;
-
-const
-   kSv: TSquareMeterPerSquareSecondQty = (FValue: 1E+03);
-   mSv: TSquareMeterPerSquareSecondQty = (FValue: 1E-03);
-  miSv: TSquareMeterPerSquareSecondQty = (FValue: 1E-06);
-   nSv: TSquareMeterPerSquareSecondQty = (FValue: 1E-09);
-
-const
-  rsSievertSymbol     = '%sSv';
-  rsSievertName       = '%ssievert';
-  rsSievertPluralName = '%ssieverts';
-
-const
-  cSievertPrefixes  : TPrefixes  = (pNone);
-  cSievertExponents : TExponents = (1);
-
 { Quantity of TMolesPerSecond }
 
 type
@@ -6136,6 +6336,20 @@ const
   cKilogramPerMeterPerSecondPrefixes  : TPrefixes  = (pKilo, pNone, pNone);
   cKilogramPerMeterPerSecondExponents : TExponents = (1, -1, -1);
 
+{ Quantity of TKilogramCubicMetersPerSquareSecond }
+
+type
+  TKilogramCubicMetersPerSquareSecond = TNewtonSquareMeterQty;
+
+const
+  rsKilogramCubicMeterPerSquareSecondSymbol     = '%sg·%sm3/%ss2';
+  rsKilogramCubicMeterPerSquareSecondName       = '%sgram cubic %smeter per square %ssecond';
+  rsKilogramCubicMeterPerSquareSecondPluralName = '%sgram cubic %smeters per square %ssecond';
+
+const
+  cKilogramCubicMeterPerSquareSecondPrefixes  : TPrefixes  = (pKilo, pNone, pNone);
+  cKilogramCubicMeterPerSquareSecondExponents : TExponents = (1, 3, -2);
+
 { Quantity of TNewtonCubicMeters }
 
 type
@@ -6150,19 +6364,145 @@ const
   cNewtonCubicMeterPrefixes  : TPrefixes  = (pNone, pNone);
   cNewtonCubicMeterExponents : TExponents = (1, 3);
 
-{ Quantity of TJoulesPerKilogram }
+{ Quantity of TKilogramQuarticMetersPerSquareSecond }
 
 type
-  TJoulesPerKilogram = TSquareMeterPerSquareSecondQty;
+  TKilogramQuarticMetersPerSquareSecond = TNewtonCubicMeterQty;
 
 const
-  rsJoulePerKilogramSymbol     = '%sJ/%sg';
-  rsJoulePerKilogramName       = '%sjoule per %sgram';
-  rsJoulePerKilogramPluralName = '%sjoules per %sgram';
+  rsKilogramQuarticMeterPerSquareSecondSymbol     = '%sg·%sm4/%ss2';
+  rsKilogramQuarticMeterPerSquareSecondName       = '%sgram quartic %smeter per square %ssecond';
+  rsKilogramQuarticMeterPerSquareSecondPluralName = '%sgram quartic %smeters per square %ssecond';
 
 const
-  cJoulePerKilogramPrefixes  : TPrefixes  = (pNone, pKilo);
-  cJoulePerKilogramExponents : TExponents = (1, -1);
+  cKilogramQuarticMeterPerSquareSecondPrefixes  : TPrefixes  = (pKilo, pNone, pNone);
+  cKilogramQuarticMeterPerSquareSecondExponents : TExponents = (1, 4, -2);
+
+{ Quantity of TMetersPerKilogramPerSquareSecond }
+
+type
+  TMetersPerKilogramPerSquareSecond = TNewtonPerSquareKilogramQty;
+
+const
+  rsMeterPerKilogramPerSquareSecondSymbol     = '%sm/%sg/%ss2';
+  rsMeterPerKilogramPerSquareSecondName       = '%smeter per %sgram per square %ssecond';
+  rsMeterPerKilogramPerSquareSecondPluralName = '%smeters per %sgram per square %ssecond';
+
+const
+  cMeterPerKilogramPerSquareSecondPrefixes  : TPrefixes  = (pNone, pKilo, pNone);
+  cMeterPerKilogramPerSquareSecondExponents : TExponents = (1, -1, -2);
+
+{ Quantity of TCubicMetersPerKilogramPerSquareSecond }
+
+type
+  TCubicMetersPerKilogramPerSquareSecond = TNewtonSquareMeterPerSquareKilogramQty;
+
+const
+  rsCubicMeterPerKilogramPerSquareSecondSymbol     = '%sm3/%sg/%ss2';
+  rsCubicMeterPerKilogramPerSquareSecondName       = 'cubic %smeter per %sgram per square %ssecond';
+  rsCubicMeterPerKilogramPerSquareSecondPluralName = 'cubic %smeters per %sgram per square %ssecond';
+
+const
+  cCubicMeterPerKilogramPerSquareSecondPrefixes  : TPrefixes  = (pNone, pKilo, pNone);
+  cCubicMeterPerKilogramPerSquareSecondExponents : TExponents = (3, -1, -2);
+
+{ Quantity of TKilogramSquareMetersPerSquareSecondPerKelvin }
+
+type
+  TKilogramSquareMetersPerSquareSecondPerKelvin = TJoulePerKelvinQty;
+
+const
+  rsKilogramSquareMeterPerSquareSecondPerKelvinSymbol     = '%sg·%sm2/%ss2/%sK';
+  rsKilogramSquareMeterPerSquareSecondPerKelvinName       = '%sgram square %smeter per square %ssecond per %skelvin';
+  rsKilogramSquareMeterPerSquareSecondPerKelvinPluralName = '%sgram square %smeters per square %ssecond per %skelvin';
+
+const
+  cKilogramSquareMeterPerSquareSecondPerKelvinPrefixes  : TPrefixes  = (pKilo, pNone, pNone, pNone);
+  cKilogramSquareMeterPerSquareSecondPerKelvinExponents : TExponents = (1, 2, -2, -1);
+
+{ Quantity of TSquareMetersPerSquareSecondPerKelvin }
+
+type
+  TSquareMetersPerSquareSecondPerKelvin = TJoulePerKilogramPerKelvinQty;
+
+const
+  rsSquareMeterPerSquareSecondPerKelvinSymbol     = '%sm2/%ss2/%sK';
+  rsSquareMeterPerSquareSecondPerKelvinName       = 'square %smeter per square %ssecond per %skelvin';
+  rsSquareMeterPerSquareSecondPerKelvinPluralName = 'square %smeters per square %ssecond per %skelvin';
+
+const
+  cSquareMeterPerSquareSecondPerKelvinPrefixes  : TPrefixes  = (pNone, pNone, pNone);
+  cSquareMeterPerSquareSecondPerKelvinExponents : TExponents = (2, -2, -1);
+
+{ Quantity of TKilogramMetersPerCubicSecond }
+
+type
+  TKilogramMetersPerCubicSecond = TWattPerMeterQty;
+
+const
+  rsKilogramMeterPerCubicSecondSymbol     = '%sg·%sm/%ss3';
+  rsKilogramMeterPerCubicSecondName       = '%sgram %smeter per cubic %ssecond';
+  rsKilogramMeterPerCubicSecondPluralName = '%sgram %smeters per cubic %ssecond';
+
+const
+  cKilogramMeterPerCubicSecondPrefixes  : TPrefixes  = (pKilo, pNone, pNone);
+  cKilogramMeterPerCubicSecondExponents : TExponents = (1, 1, -3);
+
+{ Quantity of TKilogramsPerCubicSecond }
+
+type
+  TKilogramsPerCubicSecond = TWattPerSquareMeterQty;
+
+const
+  rsKilogramPerCubicSecondSymbol     = '%sg/%ss3';
+  rsKilogramPerCubicSecondName       = '%sgram per cubic %ssecond';
+  rsKilogramPerCubicSecondPluralName = '%sgrams per cubic %ssecond';
+
+const
+  cKilogramPerCubicSecondPrefixes  : TPrefixes  = (pKilo, pNone);
+  cKilogramPerCubicSecondExponents : TExponents = (1, -3);
+
+{ Quantity of TKilogramSquareMetersPerCubicSecondPerKelvin }
+
+type
+  TKilogramSquareMetersPerCubicSecondPerKelvin = TWattPerKelvinQty;
+
+const
+  rsKilogramSquareMeterPerCubicSecondPerKelvinSymbol     = '%sg·%sm2/%ss3/%sK';
+  rsKilogramSquareMeterPerCubicSecondPerKelvinName       = '%sgram square %smeter per cubic %ssecond per %skelvin';
+  rsKilogramSquareMeterPerCubicSecondPerKelvinPluralName = '%sgram square %smeters per cubic %ssecond per %skelvin';
+
+const
+  cKilogramSquareMeterPerCubicSecondPerKelvinPrefixes  : TPrefixes  = (pKilo, pNone, pNone, pNone);
+  cKilogramSquareMeterPerCubicSecondPerKelvinExponents : TExponents = (1, 2, -3, -1);
+
+{ Quantity of TKilogramMetersPerCubicSecondPerKelvin }
+
+type
+  TKilogramMetersPerCubicSecondPerKelvin = TWattPerMeterPerKelvinQty;
+
+const
+  rsKilogramMeterPerCubicSecondPerKelvinSymbol     = '%sg·%sm/%ss3/%sK';
+  rsKilogramMeterPerCubicSecondPerKelvinName       = '%sgram %smeter per cubic %ssecond per %skelvin';
+  rsKilogramMeterPerCubicSecondPerKelvinPluralName = '%sgram %smeters per cubic %ssecond per %skelvin';
+
+const
+  cKilogramMeterPerCubicSecondPerKelvinPrefixes  : TPrefixes  = (pKilo, pNone, pNone, pNone);
+  cKilogramMeterPerCubicSecondPerKelvinExponents : TExponents = (1, 1, -3, -1);
+
+{ Quantity of TKilogramsPerCubicSecondPerKelvin }
+
+type
+  TKilogramsPerCubicSecondPerKelvin = TWattPerSquareMeterPerKelvinQty;
+
+const
+  rsKilogramPerCubicSecondPerKelvinSymbol     = '%sg/%ss3/%sK';
+  rsKilogramPerCubicSecondPerKelvinName       = '%sgram per cubic %ssecond per %skelvin';
+  rsKilogramPerCubicSecondPerKelvinPluralName = '%sgrams per cubic %ssecond per %skelvin';
+
+const
+  cKilogramPerCubicSecondPerKelvinPrefixes  : TPrefixes  = (pKilo, pNone, pNone);
+  cKilogramPerCubicSecondPerKelvinExponents : TExponents = (1, -3, -1);
 
 { Quantity of TNewtonsPerCoulomb }
 
@@ -6248,20 +6588,35 @@ const
   cJouleSecondPrefixes  : TPrefixes  = (pNone, pNone);
   cJouleSecondExponents : TExponents = (1, 1);
 
-{ Quantity of TElettronvoltSeconds }
+{ Quantity of TElectronvoltSeconds }
 
 type
-  TElettronvoltSeconds = TKilogramSquareMeterPerSecondQty;
+  TElectronvoltSeconds = TKilogramSquareMeterPerSecondQty;
 
 const
-  rsElettronvoltSecondSymbol     = '%seV·%ss';
-  rsElettronvoltSecondName       = '%selettronvolt %ssecond';
-  rsElettronvoltSecondPluralName = '%selettronvolt %sseconds';
+  rsElectronvoltSecondSymbol     = '%seV·%ss';
+  rsElectronvoltSecondName       = '%selectronvolt %ssecond';
+  rsElectronvoltSecondPluralName = '%selectronvolt %sseconds';
 
 const
-  cElettronvoltSecondPrefixes  : TPrefixes  = (pNone, pNone);
-  cElettronvoltSecondExponents : TExponents = (1, 1);
-  cElettronvoltSecondFactor                 = 1.60217742320523E-019;
+  cElectronvoltSecondPrefixes  : TPrefixes  = (pNone, pNone);
+  cElectronvoltSecondExponents : TExponents = (1, 1);
+  cElectronvoltSecondFactor                 = 1.60217742320523E-019;
+
+{ Quantity of TElectronvoltMetersPerSpeedOfLight }
+
+type
+  TElectronvoltMetersPerSpeedOfLight = TKilogramSquareMeterPerSecondQty;
+
+const
+  rsElectronvoltMeterPerSpeedOfLightSymbol     = '%seV·%sm/c';
+  rsElectronvoltMeterPerSpeedOfLightName       = '%selectronvolt %smeter per speed of light';
+  rsElectronvoltMeterPerSpeedOfLightPluralName = '%selectronvolt %smeters per speed of light';
+
+const
+  cElectronvoltMeterPerSpeedOfLightPrefixes  : TPrefixes  = (pNone, pNone);
+  cElectronvoltMeterPerSpeedOfLightExponents : TExponents = (1, 1);
+  cElectronvoltMeterPerSpeedOfLightFactor                 = 1.7826619216279E-36;
 
 { Quantity of TSquareJouleSquareSeconds }
 
@@ -6356,6 +6711,7 @@ type
   end;
 
   TKilogramHelper = type helper for TKilogramQty
+    function ToElectronvoltPerSquareSpeedOfLight: TElectronvoltPerSquareSpeedOfLightQty;
     function ToTon: TTonQty;
     function ToStone: TStoneQty;
     function ToOunce: TOunceQty;
@@ -6421,6 +6777,24 @@ type
     function ToMeterPerSquareSecond: TMeterPerSquareSecondQty;
   end;
 
+  TSquareMeterPerSquareSecondHelper = type helper for TSquareMeterPerSquareSecondQty
+    function ToSievert: TSievertQty;
+    function ToGray: TGrayQty;
+    function ToJoulePerKilogram: TJoulePerKilogramQty;
+  end;
+
+  TJoulePerKilogramHelper = type helper for TJoulePerKilogramQty
+    function ToSquareMeterPerSquareSecond: TSquareMeterPerSquareSecondQty;
+  end;
+
+  TGrayHelper = type helper for TGrayQty
+    function ToSquareMeterPerSquareSecond: TSquareMeterPerSquareSecondQty;
+  end;
+
+  TSievertHelper = type helper for TSievertQty
+    function ToSquareMeterPerSquareSecond: TSquareMeterPerSquareSecondQty;
+  end;
+
   TKilogramMeterPerSecondHelper = type helper for TKilogramMeterPerSecondQty
     function ToNewtonSecond: TNewtonSecondQty;
   end;
@@ -6430,7 +6804,8 @@ type
   end;
 
   TKilogramSquareMeterPerSecondHelper = type helper for TKilogramSquareMeterPerSecondQty
-    function ToElettronvoltSecond: TElettronvoltSecondQty;
+    function ToElectronvoltMeterPerSpeedOfLight: TElectronvoltMeterPerSpeedOfLightQty;
+    function ToElectronvoltSecond: TElectronvoltSecondQty;
     function ToJouleSecond: TJouleSecondQty;
     function ToNewtonMeterSecond: TNewtonMeterSecondQty;
   end;
@@ -6481,7 +6856,7 @@ type
     function ToRydberg: TRydbergQty;
     function ToPoundForceInch: TPoundForceInchQty;
     function ToNewtonMeter: TNewtonMeterQty;
-    function ToElettronvolt: TElettronvoltQty;
+    function ToElectronvolt: TElectronvoltQty;
     function ToWattHour: TWattHourQty;
   end;
 
@@ -6617,20 +6992,6 @@ type
     function ToHertz: THertzQty;
   end;
 
-  TSquareMeterPerSquareSecondHelper = type helper for TSquareMeterPerSquareSecondQty
-    function ToJoulePerKilogram: TJoulePerKilogramQty;
-    function ToSievert: TSievertQty;
-    function ToGray: TGrayQty;
-  end;
-
-  TGrayHelper = type helper for TGrayQty
-    function ToSquareMeterPerSquareSecond: TSquareMeterPerSquareSecondQty;
-  end;
-
-  TSievertHelper = type helper for TSievertQty
-    function ToSquareMeterPerSquareSecond: TSquareMeterPerSquareSecondQty;
-  end;
-
   TKatalHelper = type helper for TKatalQty
     function ToMolePerSecond: TMolePerSecondQty;
   end;
@@ -6669,8 +7030,92 @@ type
     function ToPoiseuille: TPoiseuilleQty;
   end;
 
-  TJoulePerKilogramHelper = type helper for TJoulePerKilogramQty
-    function ToSquareMeterPerSquareSecond: TSquareMeterPerSquareSecondQty;
+  TNewtonSquareMeterHelper = type helper for TNewtonSquareMeterQty
+    function ToKilogramCubicMeterPerSquareSecond: TKilogramCubicMeterPerSquareSecondQty;
+  end;
+
+  TKilogramCubicMeterPerSquareSecondHelper = type helper for TKilogramCubicMeterPerSquareSecondQty
+    function ToNewtonSquareMeter: TNewtonSquareMeterQty;
+  end;
+
+  TNewtonCubicMeterHelper = type helper for TNewtonCubicMeterQty
+    function ToKilogramQuarticMeterPerSquareSecond: TKilogramQuarticMeterPerSquareSecondQty;
+  end;
+
+  TKilogramQuarticMeterPerSquareSecondHelper = type helper for TKilogramQuarticMeterPerSquareSecondQty
+    function ToNewtonCubicMeter: TNewtonCubicMeterQty;
+  end;
+
+  TNewtonPerSquareKilogramHelper = type helper for TNewtonPerSquareKilogramQty
+    function ToMeterPerKilogramPerSquareSecond: TMeterPerKilogramPerSquareSecondQty;
+  end;
+
+  TMeterPerKilogramPerSquareSecondHelper = type helper for TMeterPerKilogramPerSquareSecondQty
+    function ToNewtonPerSquareKilogram: TNewtonPerSquareKilogramQty;
+  end;
+
+  TNewtonSquareMeterPerSquareKilogramHelper = type helper for TNewtonSquareMeterPerSquareKilogramQty
+    function ToCubicMeterPerKilogramPerSquareSecond: TCubicMeterPerKilogramPerSquareSecondQty;
+  end;
+
+  TCubicMeterPerKilogramPerSquareSecondHelper = type helper for TCubicMeterPerKilogramPerSquareSecondQty
+    function ToNewtonSquareMeterPerSquareKilogram: TNewtonSquareMeterPerSquareKilogramQty;
+  end;
+
+  TJoulePerKelvinHelper = type helper for TJoulePerKelvinQty
+    function ToKilogramSquareMeterPerSquareSecondPerKelvin: TKilogramSquareMeterPerSquareSecondPerKelvinQty;
+  end;
+
+  TKilogramSquareMeterPerSquareSecondPerKelvinHelper = type helper for TKilogramSquareMeterPerSquareSecondPerKelvinQty
+    function ToJoulePerKelvin: TJoulePerKelvinQty;
+  end;
+
+  TJoulePerKilogramPerKelvinHelper = type helper for TJoulePerKilogramPerKelvinQty
+    function ToSquareMeterPerSquareSecondPerKelvin: TSquareMeterPerSquareSecondPerKelvinQty;
+  end;
+
+  TSquareMeterPerSquareSecondPerKelvinHelper = type helper for TSquareMeterPerSquareSecondPerKelvinQty
+    function ToJoulePerKilogramPerKelvin: TJoulePerKilogramPerKelvinQty;
+  end;
+
+  TWattPerMeterHelper = type helper for TWattPerMeterQty
+    function ToKilogramMeterPerCubicSecond: TKilogramMeterPerCubicSecondQty;
+  end;
+
+  TKilogramMeterPerCubicSecondHelper = type helper for TKilogramMeterPerCubicSecondQty
+    function ToWattPerMeter: TWattPerMeterQty;
+  end;
+
+  TWattPerSquareMeterHelper = type helper for TWattPerSquareMeterQty
+    function ToKilogramPerCubicSecond: TKilogramPerCubicSecondQty;
+  end;
+
+  TKilogramPerCubicSecondHelper = type helper for TKilogramPerCubicSecondQty
+    function ToWattPerSquareMeter: TWattPerSquareMeterQty;
+  end;
+
+  TWattPerKelvinHelper = type helper for TWattPerKelvinQty
+    function ToKilogramSquareMeterPerCubicSecondPerKelvin: TKilogramSquareMeterPerCubicSecondPerKelvinQty;
+  end;
+
+  TKilogramSquareMeterPerCubicSecondPerKelvinHelper = type helper for TKilogramSquareMeterPerCubicSecondPerKelvinQty
+    function ToWattPerKelvin: TWattPerKelvinQty;
+  end;
+
+  TWattPerMeterPerKelvinHelper = type helper for TWattPerMeterPerKelvinQty
+    function ToKilogramMeterPerCubicSecondPerKelvin: TKilogramMeterPerCubicSecondPerKelvinQty;
+  end;
+
+  TKilogramMeterPerCubicSecondPerKelvinHelper = type helper for TKilogramMeterPerCubicSecondPerKelvinQty
+    function ToWattPerMeterPerKelvin: TWattPerMeterPerKelvinQty;
+  end;
+
+  TWattPerSquareMeterPerKelvinHelper = type helper for TWattPerSquareMeterPerKelvinQty
+    function ToKilogramPerCubicSecondPerKelvin: TKilogramPerCubicSecondPerKelvinQty;
+  end;
+
+  TKilogramPerCubicSecondPerKelvinHelper = type helper for TKilogramPerCubicSecondPerKelvinQty
+    function ToWattPerSquareMeterPerKelvin: TWattPerSquareMeterPerKelvinQty;
   end;
 
   TVoltPerMeterHelper = type helper for TVoltPerMeterQty
@@ -6770,6 +7215,12 @@ function SquarePower(AQuantity: TReciprocalMeterQty): TReciprocalSquareMeterQty;
 function SquareRoot(AQuantity: TReciprocalSquareMeterQty): TReciprocalMeterQty;
 function QuarticPower(AQuantity: TReciprocalSquareRootMeterQty): TReciprocalSquareMeterQty;
 function QuarticRoot(AQuantity: TReciprocalSquareMeterQty): TReciprocalSquareRootMeterQty;
+function CubicPower(AQuantity: TReciprocalMeterQty): TReciprocalCubicMeterQty;
+function CubicRoot(AQuantity: TReciprocalCubicMeterQty): TReciprocalMeterQty;
+function SquarePower(AQuantity: TReciprocalSquareMeterQty): TReciprocalQuarticMeterQty;
+function SquareRoot(AQuantity: TReciprocalQuarticMeterQty): TReciprocalSquareMeterQty;
+function QuarticPower(AQuantity: TReciprocalMeterQty): TReciprocalQuarticMeterQty;
+function QuarticRoot(AQuantity: TReciprocalQuarticMeterQty): TReciprocalMeterQty;
 function SquarePower(AQuantity: TNewtonQty): TSquareNewtonQty;
 function SquareRoot(AQuantity: TSquareNewtonQty): TNewtonQty;
 function SquarePower(AQuantity: TCoulombQty): TSquareCoulombQty;
@@ -6826,20 +7277,22 @@ const
   ComptonWaveLength              : TMeters                              = (FValue: 2.42631023867E-12);
   CoulombConstant                : TNewtonSquareMetersPerSquareCoulomb  = (FValue: 8.9875517923E+9);
   DeuteronMass                   : TKilograms                           = (FValue: 3.3435837768E-27);
+  ElectricPermittivity           : TFaradsPerMeter                      = (FValue: 8.8541878128E-12);
   ElectronMass                   : TKilograms                           = (FValue: 9.1093837015E-31);
+  ElectronCharge                 : TCoulombs                            = (FValue: 1.602176634E-19);
   ElementaryCharge               : TCoulombs                            = (FValue: 1.602176634E-19);
+  MagneticPermeability           : THenriesPerMeter                     = (FValue: 1.25663706212E-6);
   MolarGasConstant               : TJoulesPerMolePerKelvin              = (FValue: 8.314462618);
   NeutronMass                    : TKilograms                           = (FValue: 1.67492750056E-27);
   NewtonianConstantOfGravitation : TNewtonSquareMetersPerSquareKilogram = (FValue: 6.67430E-11);
   PlanckConstant                 : TJouleSeconds                        = (FValue: 6.62607015E-34);
   ProtonMass                     : TKilograms                           = (FValue: 1.67262192595E-27);
   RydbergConstant                : TReciprocalMeters                    = (FValue: 10973731.568157);
+  SpeedOfLight                   : TMetersPerSecond                     = (FValue: 299792458);
+  SquaredSpeedOfLight            : TSquareMetersPerSquareSecond         = (FValue: 8.98755178736818E+16);
   StandardAccelerationOfGravity  : TMetersPerSquareSecond               = (FValue: 9.80665);
   ReducedPlanckConstant          : TJouleSeconds                        = (FValue: 6.62607015E-34/2/pi);
   UnifiedAtomicMassUnit          : TKilograms                           = (FValue: 1.66053906892E-27);
-  VacuumElectricPermittivity     : TFaradsPerMeter                      = (FValue: 8.8541878128E-12);
-  VacuumLightSpeed               : TMetersPerSecond                     = (FValue: 299792458);
-  VacuumMagneticPermeability     : THenriesPerMeter                     = (FValue: 1.25663706212E-6);
 
 const
   PrefixTable: array[pQuetta..pQuecto] of
@@ -11304,6 +11757,15 @@ end;
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TTonQty}{$i adim.inc}
 
 {$DEFINE NOP}
+{$DEFINE CSYMBOL:=rsElectronvoltPerSquareSpeedOfLightSymbol}
+{$DEFINE CSINGULARNAME:=rsElectronvoltPerSquareSpeedOfLightName}
+{$DEFINE CPLURALNAME:=rsElectronvoltPerSquareSpeedOfLightPluralName}
+{$DEFINE CPREFIXES:=cElectronvoltPerSquareSpeedOfLightPrefixes}
+{$DEFINE CEXPONENTS:=cElectronvoltPerSquareSpeedOfLightExponents}
+{$DEFINE CFACTOR:=cElectronvoltPerSquareSpeedOfLightFactor}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TElectronvoltPerSquareSpeedOfLightQty}{$i adim.inc}
+
+{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsDegreeCelsiusSymbol}
 {$DEFINE CSINGULARNAME:=rsDegreeCelsiusName}
 {$DEFINE CPLURALNAME:=rsDegreeCelsiusPluralName}
@@ -11551,6 +12013,30 @@ end;
 {$DEFINE CFACTOR:=cMeterPerHourPerSecondFactor}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TMeterPerHourPerSecondQty}{$i adim.inc}
 
+{$DEFINE NOP}
+{$DEFINE CSYMBOL:=rsJoulePerKilogramSymbol}
+{$DEFINE CSINGULARNAME:=rsJoulePerKilogramName}
+{$DEFINE CPLURALNAME:=rsJoulePerKilogramPluralName}
+{$DEFINE CPREFIXES:=cJoulePerKilogramPrefixes}
+{$DEFINE CEXPONENTS:=cJoulePerKilogramExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TJoulePerKilogramQty}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE CSYMBOL:=rsGraySymbol}
+{$DEFINE CSINGULARNAME:=rsGrayName}
+{$DEFINE CPLURALNAME:=rsGrayPluralName}
+{$DEFINE CPREFIXES:=cGrayPrefixes}
+{$DEFINE CEXPONENTS:=cGrayExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TGrayQty}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE CSYMBOL:=rsSievertSymbol}
+{$DEFINE CSINGULARNAME:=rsSievertName}
+{$DEFINE CPLURALNAME:=rsSievertPluralName}
+{$DEFINE CPREFIXES:=cSievertPrefixes}
+{$DEFINE CEXPONENTS:=cSievertExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSievertQty}{$i adim.inc}
+
 {$DEFINE CSYMBOL:=rsKilogramMeterSymbol}
 {$DEFINE CSINGULARNAME:=rsKilogramMeterName}
 {$DEFINE CPLURALNAME:=rsKilogramMeterPluralName}
@@ -11699,6 +12185,150 @@ begin
   result := ALeft.FValue * ARight.FValue;
 end;
 
+{$DEFINE CSYMBOL:=rsReciprocalCubicMeterSymbol}
+{$DEFINE CSINGULARNAME:=rsReciprocalCubicMeterName}
+{$DEFINE CPLURALNAME:=rsReciprocalCubicMeterPluralName}
+{$DEFINE CPREFIXES:=cReciprocalCubicMeterPrefixes}
+{$DEFINE CEXPONENTS:=cReciprocalCubicMeterExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TReciprocalCubicMeterQty}{$i adim.inc}
+
+class operator TReciprocalCubicMeterQty./(const ALeft: TReciprocalCubicMeterQty; const ARight: TReciprocalMeterQty): TReciprocalSquareMeterQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+class operator TReciprocalCubicMeterQty./(const ALeft: TReciprocalCubicMeterQty; const ARight: TReciprocalSquareMeterQty): TReciprocalMeterQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+class operator TReciprocalCubicMeterQty./(const ALeft: TReciprocalSquareMeterQty; const ARight: TReciprocalCubicMeterQty): TMeterQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+class operator TReciprocalCubicMeterQty.*(const ALeft: TReciprocalCubicMeterQty; const ARight: TMeterQty): TReciprocalSquareMeterQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TReciprocalCubicMeterQty.*(const ALeft: TMeterQty; const ARight: TReciprocalCubicMeterQty): TReciprocalSquareMeterQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TReciprocalCubicMeterQty./(const ALeft: TReciprocalMeterQty; const ARight: TReciprocalCubicMeterQty): TSquareMeterQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+class operator TReciprocalCubicMeterQty.*(const ALeft: TReciprocalCubicMeterQty; const ARight: TSquareMeterQty): TReciprocalMeterQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TReciprocalCubicMeterQty.*(const ALeft: TSquareMeterQty; const ARight: TReciprocalCubicMeterQty): TReciprocalMeterQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TReciprocalCubicMeterQty./(const ALeft: double; const ARight: TReciprocalCubicMeterQty): TCubicMeterQty;
+begin
+  result.FValue := ALeft / ARight.FValue;
+end;
+
+class operator TReciprocalCubicMeterQty.*(const ALeft: TReciprocalCubicMeterQty; const ARight: TCubicMeterQty): double;
+begin
+  result := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TReciprocalCubicMeterQty.*(const ALeft: TCubicMeterQty; const ARight: TReciprocalCubicMeterQty): double;
+begin
+  result := ALeft.FValue * ARight.FValue;
+end;
+
+{$DEFINE CSYMBOL:=rsReciprocalQuarticMeterSymbol}
+{$DEFINE CSINGULARNAME:=rsReciprocalQuarticMeterName}
+{$DEFINE CPLURALNAME:=rsReciprocalQuarticMeterPluralName}
+{$DEFINE CPREFIXES:=cReciprocalQuarticMeterPrefixes}
+{$DEFINE CEXPONENTS:=cReciprocalQuarticMeterExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TReciprocalQuarticMeterQty}{$i adim.inc}
+
+class operator TReciprocalQuarticMeterQty./(const ALeft: TReciprocalQuarticMeterQty; const ARight: TReciprocalSquareMeterQty): TReciprocalSquareMeterQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+class operator TReciprocalQuarticMeterQty./(const ALeft: TReciprocalQuarticMeterQty; const ARight: TReciprocalMeterQty): TReciprocalCubicMeterQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+class operator TReciprocalQuarticMeterQty./(const ALeft: TReciprocalQuarticMeterQty; const ARight: TReciprocalCubicMeterQty): TReciprocalMeterQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+class operator TReciprocalQuarticMeterQty./(const ALeft: TReciprocalCubicMeterQty; const ARight: TReciprocalQuarticMeterQty): TMeterQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+class operator TReciprocalQuarticMeterQty.*(const ALeft: TReciprocalQuarticMeterQty; const ARight: TMeterQty): TReciprocalCubicMeterQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TReciprocalQuarticMeterQty.*(const ALeft: TMeterQty; const ARight: TReciprocalQuarticMeterQty): TReciprocalCubicMeterQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TReciprocalQuarticMeterQty./(const ALeft: TReciprocalSquareMeterQty; const ARight: TReciprocalQuarticMeterQty): TSquareMeterQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+class operator TReciprocalQuarticMeterQty.*(const ALeft: TReciprocalQuarticMeterQty; const ARight: TSquareMeterQty): TReciprocalSquareMeterQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TReciprocalQuarticMeterQty.*(const ALeft: TSquareMeterQty; const ARight: TReciprocalQuarticMeterQty): TReciprocalSquareMeterQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TReciprocalQuarticMeterQty./(const ALeft: TReciprocalMeterQty; const ARight: TReciprocalQuarticMeterQty): TCubicMeterQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+class operator TReciprocalQuarticMeterQty.*(const ALeft: TReciprocalQuarticMeterQty; const ARight: TCubicMeterQty): TReciprocalMeterQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TReciprocalQuarticMeterQty.*(const ALeft: TCubicMeterQty; const ARight: TReciprocalQuarticMeterQty): TReciprocalMeterQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TReciprocalQuarticMeterQty./(const ALeft: double; const ARight: TReciprocalQuarticMeterQty): TQuarticMeterQty;
+begin
+  result.FValue := ALeft / ARight.FValue;
+end;
+
+class operator TReciprocalQuarticMeterQty.*(const ALeft: TReciprocalQuarticMeterQty; const ARight: TQuarticMeterQty): double;
+begin
+  result := ALeft.FValue * ARight.FValue;
+end;
+
+class operator TReciprocalQuarticMeterQty.*(const ALeft: TQuarticMeterQty; const ARight: TReciprocalQuarticMeterQty): double;
+begin
+  result := ALeft.FValue * ARight.FValue;
+end;
+
 {$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsNewtonMeterSecondSymbol}
 {$DEFINE CSINGULARNAME:=rsNewtonMeterSecondName}
@@ -11822,13 +12452,13 @@ end;
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TWattHourQty}{$i adim.inc}
 
 {$DEFINE NOP}
-{$DEFINE CSYMBOL:=rsElettronvoltSymbol}
-{$DEFINE CSINGULARNAME:=rsElettronvoltName}
-{$DEFINE CPLURALNAME:=rsElettronvoltPluralName}
-{$DEFINE CPREFIXES:=cElettronvoltPrefixes}
-{$DEFINE CEXPONENTS:=cElettronvoltExponents}
-{$DEFINE CFACTOR:=cElettronvoltFactor}
-{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TElettronvoltQty}{$i adim.inc}
+{$DEFINE CSYMBOL:=rsElectronvoltSymbol}
+{$DEFINE CSINGULARNAME:=rsElectronvoltName}
+{$DEFINE CPLURALNAME:=rsElectronvoltPluralName}
+{$DEFINE CPREFIXES:=cElectronvoltPrefixes}
+{$DEFINE CEXPONENTS:=cElectronvoltExponents}
+{$DEFINE CFACTOR:=cElectronvoltFactor}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TElectronvoltQty}{$i adim.inc}
 
 {$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsNewtonMeterSymbol}
@@ -12029,22 +12659,6 @@ end;
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TBequerelQty}{$i adim.inc}
 
 {$DEFINE NOP}
-{$DEFINE CSYMBOL:=rsGraySymbol}
-{$DEFINE CSINGULARNAME:=rsGrayName}
-{$DEFINE CPLURALNAME:=rsGrayPluralName}
-{$DEFINE CPREFIXES:=cGrayPrefixes}
-{$DEFINE CEXPONENTS:=cGrayExponents}
-{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TGrayQty}{$i adim.inc}
-
-{$DEFINE NOP}
-{$DEFINE CSYMBOL:=rsSievertSymbol}
-{$DEFINE CSINGULARNAME:=rsSievertName}
-{$DEFINE CPLURALNAME:=rsSievertPluralName}
-{$DEFINE CPREFIXES:=cSievertPrefixes}
-{$DEFINE CEXPONENTS:=cSievertExponents}
-{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSievertQty}{$i adim.inc}
-
-{$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsMolePerSecondSymbol}
 {$DEFINE CSINGULARNAME:=rsMolePerSecondName}
 {$DEFINE CPLURALNAME:=rsMolePerSecondPluralName}
@@ -12093,6 +12707,14 @@ end;
 {$DEFINE CEXPONENTS:=cKilogramPerMeterPerSecondExponents}
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKilogramPerMeterPerSecondQty}{$i adim.inc}
 
+{$DEFINE NOP}
+{$DEFINE CSYMBOL:=rsKilogramCubicMeterPerSquareSecondSymbol}
+{$DEFINE CSINGULARNAME:=rsKilogramCubicMeterPerSquareSecondName}
+{$DEFINE CPLURALNAME:=rsKilogramCubicMeterPerSquareSecondPluralName}
+{$DEFINE CPREFIXES:=cKilogramCubicMeterPerSquareSecondPrefixes}
+{$DEFINE CEXPONENTS:=cKilogramCubicMeterPerSquareSecondExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKilogramCubicMeterPerSquareSecondQty}{$i adim.inc}
+
 {$DEFINE CSYMBOL:=rsNewtonCubicMeterSymbol}
 {$DEFINE CSINGULARNAME:=rsNewtonCubicMeterName}
 {$DEFINE CPLURALNAME:=rsNewtonCubicMeterPluralName}
@@ -12101,12 +12723,84 @@ end;
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TNewtonCubicMeterQty}{$i adim.inc}
 
 {$DEFINE NOP}
-{$DEFINE CSYMBOL:=rsJoulePerKilogramSymbol}
-{$DEFINE CSINGULARNAME:=rsJoulePerKilogramName}
-{$DEFINE CPLURALNAME:=rsJoulePerKilogramPluralName}
-{$DEFINE CPREFIXES:=cJoulePerKilogramPrefixes}
-{$DEFINE CEXPONENTS:=cJoulePerKilogramExponents}
-{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TJoulePerKilogramQty}{$i adim.inc}
+{$DEFINE CSYMBOL:=rsKilogramQuarticMeterPerSquareSecondSymbol}
+{$DEFINE CSINGULARNAME:=rsKilogramQuarticMeterPerSquareSecondName}
+{$DEFINE CPLURALNAME:=rsKilogramQuarticMeterPerSquareSecondPluralName}
+{$DEFINE CPREFIXES:=cKilogramQuarticMeterPerSquareSecondPrefixes}
+{$DEFINE CEXPONENTS:=cKilogramQuarticMeterPerSquareSecondExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKilogramQuarticMeterPerSquareSecondQty}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE CSYMBOL:=rsMeterPerKilogramPerSquareSecondSymbol}
+{$DEFINE CSINGULARNAME:=rsMeterPerKilogramPerSquareSecondName}
+{$DEFINE CPLURALNAME:=rsMeterPerKilogramPerSquareSecondPluralName}
+{$DEFINE CPREFIXES:=cMeterPerKilogramPerSquareSecondPrefixes}
+{$DEFINE CEXPONENTS:=cMeterPerKilogramPerSquareSecondExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TMeterPerKilogramPerSquareSecondQty}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE CSYMBOL:=rsCubicMeterPerKilogramPerSquareSecondSymbol}
+{$DEFINE CSINGULARNAME:=rsCubicMeterPerKilogramPerSquareSecondName}
+{$DEFINE CPLURALNAME:=rsCubicMeterPerKilogramPerSquareSecondPluralName}
+{$DEFINE CPREFIXES:=cCubicMeterPerKilogramPerSquareSecondPrefixes}
+{$DEFINE CEXPONENTS:=cCubicMeterPerKilogramPerSquareSecondExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TCubicMeterPerKilogramPerSquareSecondQty}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE CSYMBOL:=rsKilogramSquareMeterPerSquareSecondPerKelvinSymbol}
+{$DEFINE CSINGULARNAME:=rsKilogramSquareMeterPerSquareSecondPerKelvinName}
+{$DEFINE CPLURALNAME:=rsKilogramSquareMeterPerSquareSecondPerKelvinPluralName}
+{$DEFINE CPREFIXES:=cKilogramSquareMeterPerSquareSecondPerKelvinPrefixes}
+{$DEFINE CEXPONENTS:=cKilogramSquareMeterPerSquareSecondPerKelvinExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKilogramSquareMeterPerSquareSecondPerKelvinQty}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE CSYMBOL:=rsSquareMeterPerSquareSecondPerKelvinSymbol}
+{$DEFINE CSINGULARNAME:=rsSquareMeterPerSquareSecondPerKelvinName}
+{$DEFINE CPLURALNAME:=rsSquareMeterPerSquareSecondPerKelvinPluralName}
+{$DEFINE CPREFIXES:=cSquareMeterPerSquareSecondPerKelvinPrefixes}
+{$DEFINE CEXPONENTS:=cSquareMeterPerSquareSecondPerKelvinExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TSquareMeterPerSquareSecondPerKelvinQty}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE CSYMBOL:=rsKilogramMeterPerCubicSecondSymbol}
+{$DEFINE CSINGULARNAME:=rsKilogramMeterPerCubicSecondName}
+{$DEFINE CPLURALNAME:=rsKilogramMeterPerCubicSecondPluralName}
+{$DEFINE CPREFIXES:=cKilogramMeterPerCubicSecondPrefixes}
+{$DEFINE CEXPONENTS:=cKilogramMeterPerCubicSecondExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKilogramMeterPerCubicSecondQty}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE CSYMBOL:=rsKilogramPerCubicSecondSymbol}
+{$DEFINE CSINGULARNAME:=rsKilogramPerCubicSecondName}
+{$DEFINE CPLURALNAME:=rsKilogramPerCubicSecondPluralName}
+{$DEFINE CPREFIXES:=cKilogramPerCubicSecondPrefixes}
+{$DEFINE CEXPONENTS:=cKilogramPerCubicSecondExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKilogramPerCubicSecondQty}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE CSYMBOL:=rsKilogramSquareMeterPerCubicSecondPerKelvinSymbol}
+{$DEFINE CSINGULARNAME:=rsKilogramSquareMeterPerCubicSecondPerKelvinName}
+{$DEFINE CPLURALNAME:=rsKilogramSquareMeterPerCubicSecondPerKelvinPluralName}
+{$DEFINE CPREFIXES:=cKilogramSquareMeterPerCubicSecondPerKelvinPrefixes}
+{$DEFINE CEXPONENTS:=cKilogramSquareMeterPerCubicSecondPerKelvinExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKilogramSquareMeterPerCubicSecondPerKelvinQty}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE CSYMBOL:=rsKilogramMeterPerCubicSecondPerKelvinSymbol}
+{$DEFINE CSINGULARNAME:=rsKilogramMeterPerCubicSecondPerKelvinName}
+{$DEFINE CPLURALNAME:=rsKilogramMeterPerCubicSecondPerKelvinPluralName}
+{$DEFINE CPREFIXES:=cKilogramMeterPerCubicSecondPerKelvinPrefixes}
+{$DEFINE CEXPONENTS:=cKilogramMeterPerCubicSecondPerKelvinExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKilogramMeterPerCubicSecondPerKelvinQty}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE CSYMBOL:=rsKilogramPerCubicSecondPerKelvinSymbol}
+{$DEFINE CSINGULARNAME:=rsKilogramPerCubicSecondPerKelvinName}
+{$DEFINE CPLURALNAME:=rsKilogramPerCubicSecondPerKelvinPluralName}
+{$DEFINE CPREFIXES:=cKilogramPerCubicSecondPerKelvinPrefixes}
+{$DEFINE CEXPONENTS:=cKilogramPerCubicSecondPerKelvinExponents}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TKilogramPerCubicSecondPerKelvinQty}{$i adim.inc}
 
 {$DEFINE NOP}
 {$DEFINE CSYMBOL:=rsNewtonPerCoulombSymbol}
@@ -12157,13 +12851,22 @@ end;
 {$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TJouleSecondQty}{$i adim.inc}
 
 {$DEFINE NOP}
-{$DEFINE CSYMBOL:=rsElettronvoltSecondSymbol}
-{$DEFINE CSINGULARNAME:=rsElettronvoltSecondName}
-{$DEFINE CPLURALNAME:=rsElettronvoltSecondPluralName}
-{$DEFINE CPREFIXES:=cElettronvoltSecondPrefixes}
-{$DEFINE CEXPONENTS:=cElettronvoltSecondExponents}
-{$DEFINE CFACTOR:=cElettronvoltSecondFactor}
-{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TElettronvoltSecondQty}{$i adim.inc}
+{$DEFINE CSYMBOL:=rsElectronvoltSecondSymbol}
+{$DEFINE CSINGULARNAME:=rsElectronvoltSecondName}
+{$DEFINE CPLURALNAME:=rsElectronvoltSecondPluralName}
+{$DEFINE CPREFIXES:=cElectronvoltSecondPrefixes}
+{$DEFINE CEXPONENTS:=cElectronvoltSecondExponents}
+{$DEFINE CFACTOR:=cElectronvoltSecondFactor}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TElectronvoltSecondQty}{$i adim.inc}
+
+{$DEFINE NOP}
+{$DEFINE CSYMBOL:=rsElectronvoltMeterPerSpeedOfLightSymbol}
+{$DEFINE CSINGULARNAME:=rsElectronvoltMeterPerSpeedOfLightName}
+{$DEFINE CPLURALNAME:=rsElectronvoltMeterPerSpeedOfLightPluralName}
+{$DEFINE CPREFIXES:=cElectronvoltMeterPerSpeedOfLightPrefixes}
+{$DEFINE CEXPONENTS:=cElectronvoltMeterPerSpeedOfLightExponents}
+{$DEFINE CFACTOR:=cElectronvoltMeterPerSpeedOfLightFactor}
+{$DEFINE IMPL_QUANTITY}{$DEFINE TQuantity:=TElectronvoltMeterPerSpeedOfLightQty}{$i adim.inc}
 
 {$DEFINE CSYMBOL:=rsSquareJouleSquareSecondSymbol}
 {$DEFINE CSINGULARNAME:=rsSquareJouleSquareSecondName}
@@ -12405,6 +13108,66 @@ begin
 end;
 
 operator *(const ALeft: TReciprocalMeterQty; const ARight: TReciprocalMeterQty): TReciprocalSquareMeterQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator /(const ALeft: double; const ARight: TCubicMeterQty): TReciprocalCubicMeterQty;
+begin
+  result.FValue := ALeft / ARight.FValue;
+end;
+
+operator /(const ALeft: TReciprocalMeterQty; const ARight: TSquareMeterQty): TReciprocalCubicMeterQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TReciprocalSquareMeterQty; const ARight: TMeterQty): TReciprocalCubicMeterQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator *(const ALeft: TReciprocalSquareMeterQty; const ARight: TReciprocalMeterQty): TReciprocalCubicMeterQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator *(const ALeft: TReciprocalMeterQty; const ARight: TReciprocalSquareMeterQty): TReciprocalCubicMeterQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator /(const ALeft: double; const ARight: TQuarticMeterQty): TReciprocalQuarticMeterQty;
+begin
+  result.FValue := ALeft / ARight.FValue;
+end;
+
+operator /(const ALeft: TReciprocalMeterQty; const ARight: TCubicMeterQty): TReciprocalQuarticMeterQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TReciprocalSquareMeterQty; const ARight: TSquareMeterQty): TReciprocalQuarticMeterQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator /(const ALeft: TReciprocalCubicMeterQty; const ARight: TMeterQty): TReciprocalQuarticMeterQty;
+begin
+  result.FValue := ALeft.FValue / ARight.FValue;
+end;
+
+operator *(const ALeft: TReciprocalCubicMeterQty; const ARight: TReciprocalMeterQty): TReciprocalQuarticMeterQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator *(const ALeft: TReciprocalMeterQty; const ARight: TReciprocalCubicMeterQty): TReciprocalQuarticMeterQty;
+begin
+  result.FValue := ALeft.FValue * ARight.FValue;
+end;
+
+operator *(const ALeft: TReciprocalSquareMeterQty; const ARight: TReciprocalSquareMeterQty): TReciprocalQuarticMeterQty;
 begin
   result.FValue := ALeft.FValue * ARight.FValue;
 end;
@@ -13857,6 +14620,8 @@ end;
 
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TTonQty}{$DEFINE TUnit:=TTonUnit}{$i adim.inc}
 
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TElectronvoltPerSquareSpeedOfLightQty}{$DEFINE TUnit:=TElectronvoltPerSquareSpeedOfLightUnit}{$i adim.inc}
+
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TDegreeCelsiusQty}{$DEFINE TUnit:=TDegreeCelsiusUnit}{$i adim.inc}
 
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TDegreeFahrenheitQty}{$DEFINE TUnit:=TDegreeFahrenheitUnit}{$i adim.inc}
@@ -13885,6 +14650,12 @@ end;
 
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TMeterPerHourPerSecondQty}{$DEFINE TUnit:=TMeterPerHourPerSecondUnit}{$i adim.inc}
 
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TSquareMeterPerSquareSecondQty}{$DEFINE TUnit:=TJoulePerKilogramUnit}{$i adim.inc}
+
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TSquareMeterPerSquareSecondQty}{$DEFINE TUnit:=TGrayUnit}{$i adim.inc}
+
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TSquareMeterPerSquareSecondQty}{$DEFINE TUnit:=TSievertUnit}{$i adim.inc}
+
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TKilogramMeterQty}{$DEFINE TUnit:=TKilogramMeterUnit}{$i adim.inc}
 
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TKilogramMeterPerSecondQty}{$DEFINE TUnit:=TNewtonSecondUnit}{$i adim.inc}
@@ -13896,6 +14667,10 @@ end;
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TReciprocalSquareRootCubicMeterQty}{$DEFINE TUnit:=TReciprocalSquareRootCubicMeterUnit}{$i adim.inc}
 
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TReciprocalSquareMeterQty}{$DEFINE TUnit:=TReciprocalSquareMeterUnit}{$i adim.inc}
+
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TReciprocalCubicMeterQty}{$DEFINE TUnit:=TReciprocalCubicMeterUnit}{$i adim.inc}
+
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TReciprocalQuarticMeterQty}{$DEFINE TUnit:=TReciprocalQuarticMeterUnit}{$i adim.inc}
 
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TKilogramSquareMeterPerSecondQty}{$DEFINE TUnit:=TNewtonMeterSecondUnit}{$i adim.inc}
 
@@ -13919,7 +14694,7 @@ end;
 
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TWattHourQty}{$DEFINE TUnit:=TWattHourUnit}{$i adim.inc}
 
-{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TElettronvoltQty}{$DEFINE TUnit:=TElettronvoltUnit}{$i adim.inc}
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TElectronvoltQty}{$DEFINE TUnit:=TElectronvoltUnit}{$i adim.inc}
 
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TJouleQty}{$DEFINE TUnit:=TNewtonMeterUnit}{$i adim.inc}
 
@@ -13969,10 +14744,6 @@ end;
 
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=THertzQty}{$DEFINE TUnit:=TBequerelUnit}{$i adim.inc}
 
-{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TSquareMeterPerSquareSecondQty}{$DEFINE TUnit:=TGrayUnit}{$i adim.inc}
-
-{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TSquareMeterPerSquareSecondQty}{$DEFINE TUnit:=TSievertUnit}{$i adim.inc}
-
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TKatalQty}{$DEFINE TUnit:=TMolePerSecondUnit}{$i adim.inc}
 
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TNewtonPerCubicMeterQty}{$DEFINE TUnit:=TKilogramPerSquareMeterPerSquareSecondUnit}{$i adim.inc}
@@ -13985,9 +14756,29 @@ end;
 
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TPoiseuilleQty}{$DEFINE TUnit:=TKilogramPerMeterPerSecondUnit}{$i adim.inc}
 
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TNewtonSquareMeterQty}{$DEFINE TUnit:=TKilogramCubicMeterPerSquareSecondUnit}{$i adim.inc}
+
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TNewtonCubicMeterQty}{$DEFINE TUnit:=TNewtonCubicMeterUnit}{$i adim.inc}
 
-{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TSquareMeterPerSquareSecondQty}{$DEFINE TUnit:=TJoulePerKilogramUnit}{$i adim.inc}
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TNewtonCubicMeterQty}{$DEFINE TUnit:=TKilogramQuarticMeterPerSquareSecondUnit}{$i adim.inc}
+
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TNewtonPerSquareKilogramQty}{$DEFINE TUnit:=TMeterPerKilogramPerSquareSecondUnit}{$i adim.inc}
+
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TNewtonSquareMeterPerSquareKilogramQty}{$DEFINE TUnit:=TCubicMeterPerKilogramPerSquareSecondUnit}{$i adim.inc}
+
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TJoulePerKelvinQty}{$DEFINE TUnit:=TKilogramSquareMeterPerSquareSecondPerKelvinUnit}{$i adim.inc}
+
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TJoulePerKilogramPerKelvinQty}{$DEFINE TUnit:=TSquareMeterPerSquareSecondPerKelvinUnit}{$i adim.inc}
+
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TWattPerMeterQty}{$DEFINE TUnit:=TKilogramMeterPerCubicSecondUnit}{$i adim.inc}
+
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TWattPerSquareMeterQty}{$DEFINE TUnit:=TKilogramPerCubicSecondUnit}{$i adim.inc}
+
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TWattPerKelvinQty}{$DEFINE TUnit:=TKilogramSquareMeterPerCubicSecondPerKelvinUnit}{$i adim.inc}
+
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TWattPerMeterPerKelvinQty}{$DEFINE TUnit:=TKilogramMeterPerCubicSecondPerKelvinUnit}{$i adim.inc}
+
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TWattPerSquareMeterPerKelvinQty}{$DEFINE TUnit:=TKilogramPerCubicSecondPerKelvinUnit}{$i adim.inc}
 
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TVoltPerMeterQty}{$DEFINE TUnit:=TNewtonPerCoulombUnit}{$i adim.inc}
 
@@ -14001,7 +14792,9 @@ end;
 
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TKilogramSquareMeterPerSecondQty}{$DEFINE TUnit:=TJouleSecondUnit}{$i adim.inc}
 
-{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TElettronvoltSecondQty}{$DEFINE TUnit:=TElettronvoltSecondUnit}{$i adim.inc}
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TElectronvoltSecondQty}{$DEFINE TUnit:=TElectronvoltSecondUnit}{$i adim.inc}
+
+{$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TElectronvoltMeterPerSpeedOfLightQty}{$DEFINE TUnit:=TElectronvoltMeterPerSpeedOfLightUnit}{$i adim.inc}
 
 {$DEFINE IMPL_UNIT}{$DEFINE TQuantity:=TSquareJouleSquareSecondQty}{$DEFINE TUnit:=TSquareJouleSquareSecondUnit}{$i adim.inc}
 
@@ -14080,6 +14873,16 @@ begin
 end;
 
 class operator TSquareMeterUnit./(const ALeft: double; const ARight: TSquareMeterUnit): TReciprocalSquareMeterQty;
+begin
+  result.FValue := ALeft;
+end;
+
+class operator TCubicMeterUnit./(const ALeft: double; const ARight: TCubicMeterUnit): TReciprocalCubicMeterQty;
+begin
+  result.FValue := ALeft;
+end;
+
+class operator TQuarticMeterUnit./(const ALeft: double; const ARight: TQuarticMeterUnit): TReciprocalQuarticMeterQty;
 begin
   result.FValue := ALeft;
 end;
@@ -14751,6 +15554,11 @@ begin
   result.FValue := FValue / cTonFactor;
 end;
 
+function TKilogramHelper.ToElectronvoltPerSquareSpeedOfLight: TElectronvoltPerSquareSpeedOfLightQty;
+begin
+  result.FValue := FValue / cElectronvoltPerSquareSpeedOfLightFactor;
+end;
+
 function TDegreeCelsiusHelper.ToKelvin: TKelvinQty;
 begin
   result.FValue := FValue + 273.15;
@@ -14851,6 +15659,36 @@ begin
   result.FValue := FValue / cMeterPerHourPerSecondFactor;
 end;
 
+function TSquareMeterPerSquareSecondHelper.ToJoulePerKilogram: TJoulePerKilogramQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TJoulePerKilogramHelper.ToSquareMeterPerSquareSecond: TSquareMeterPerSquareSecondQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TSquareMeterPerSquareSecondHelper.ToGray: TGrayQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TGrayHelper.ToSquareMeterPerSquareSecond: TSquareMeterPerSquareSecondQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TSquareMeterPerSquareSecondHelper.ToSievert: TSievertQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TSievertHelper.ToSquareMeterPerSquareSecond: TSquareMeterPerSquareSecondQty;
+begin
+  result.FValue := FValue;
+end;
+
 function TKilogramMeterPerSecondHelper.ToNewtonSecond: TNewtonSecondQty;
 begin
   result.FValue := FValue;
@@ -14936,9 +15774,9 @@ begin
   result.FValue := FValue / cWattHourFactor;
 end;
 
-function TJouleHelper.ToElettronvolt: TElettronvoltQty;
+function TJouleHelper.ToElectronvolt: TElectronvoltQty;
 begin
-  result.FValue := FValue / cElettronvoltFactor;
+  result.FValue := FValue / cElectronvoltFactor;
 end;
 
 function TJouleHelper.ToNewtonMeter: TNewtonMeterQty;
@@ -15151,26 +15989,6 @@ begin
   result.FValue := FValue;
 end;
 
-function TSquareMeterPerSquareSecondHelper.ToGray: TGrayQty;
-begin
-  result.FValue := FValue;
-end;
-
-function TGrayHelper.ToSquareMeterPerSquareSecond: TSquareMeterPerSquareSecondQty;
-begin
-  result.FValue := FValue;
-end;
-
-function TSquareMeterPerSquareSecondHelper.ToSievert: TSievertQty;
-begin
-  result.FValue := FValue;
-end;
-
-function TSievertHelper.ToSquareMeterPerSquareSecond: TSquareMeterPerSquareSecondQty;
-begin
-  result.FValue := FValue;
-end;
-
 function TKatalHelper.ToMolePerSecond: TMolePerSecondQty;
 begin
   result.FValue := FValue;
@@ -15226,12 +16044,112 @@ begin
   result.FValue := FValue;
 end;
 
-function TSquareMeterPerSquareSecondHelper.ToJoulePerKilogram: TJoulePerKilogramQty;
+function TNewtonSquareMeterHelper.ToKilogramCubicMeterPerSquareSecond: TKilogramCubicMeterPerSquareSecondQty;
 begin
   result.FValue := FValue;
 end;
 
-function TJoulePerKilogramHelper.ToSquareMeterPerSquareSecond: TSquareMeterPerSquareSecondQty;
+function TKilogramCubicMeterPerSquareSecondHelper.ToNewtonSquareMeter: TNewtonSquareMeterQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TNewtonCubicMeterHelper.ToKilogramQuarticMeterPerSquareSecond: TKilogramQuarticMeterPerSquareSecondQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TKilogramQuarticMeterPerSquareSecondHelper.ToNewtonCubicMeter: TNewtonCubicMeterQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TNewtonPerSquareKilogramHelper.ToMeterPerKilogramPerSquareSecond: TMeterPerKilogramPerSquareSecondQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TMeterPerKilogramPerSquareSecondHelper.ToNewtonPerSquareKilogram: TNewtonPerSquareKilogramQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TNewtonSquareMeterPerSquareKilogramHelper.ToCubicMeterPerKilogramPerSquareSecond: TCubicMeterPerKilogramPerSquareSecondQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TCubicMeterPerKilogramPerSquareSecondHelper.ToNewtonSquareMeterPerSquareKilogram: TNewtonSquareMeterPerSquareKilogramQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TJoulePerKelvinHelper.ToKilogramSquareMeterPerSquareSecondPerKelvin: TKilogramSquareMeterPerSquareSecondPerKelvinQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TKilogramSquareMeterPerSquareSecondPerKelvinHelper.ToJoulePerKelvin: TJoulePerKelvinQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TJoulePerKilogramPerKelvinHelper.ToSquareMeterPerSquareSecondPerKelvin: TSquareMeterPerSquareSecondPerKelvinQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TSquareMeterPerSquareSecondPerKelvinHelper.ToJoulePerKilogramPerKelvin: TJoulePerKilogramPerKelvinQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TWattPerMeterHelper.ToKilogramMeterPerCubicSecond: TKilogramMeterPerCubicSecondQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TKilogramMeterPerCubicSecondHelper.ToWattPerMeter: TWattPerMeterQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TWattPerSquareMeterHelper.ToKilogramPerCubicSecond: TKilogramPerCubicSecondQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TKilogramPerCubicSecondHelper.ToWattPerSquareMeter: TWattPerSquareMeterQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TWattPerKelvinHelper.ToKilogramSquareMeterPerCubicSecondPerKelvin: TKilogramSquareMeterPerCubicSecondPerKelvinQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TKilogramSquareMeterPerCubicSecondPerKelvinHelper.ToWattPerKelvin: TWattPerKelvinQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TWattPerMeterPerKelvinHelper.ToKilogramMeterPerCubicSecondPerKelvin: TKilogramMeterPerCubicSecondPerKelvinQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TKilogramMeterPerCubicSecondPerKelvinHelper.ToWattPerMeterPerKelvin: TWattPerMeterPerKelvinQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TWattPerSquareMeterPerKelvinHelper.ToKilogramPerCubicSecondPerKelvin: TKilogramPerCubicSecondPerKelvinQty;
+begin
+  result.FValue := FValue;
+end;
+
+function TKilogramPerCubicSecondPerKelvinHelper.ToWattPerSquareMeterPerKelvin: TWattPerSquareMeterPerKelvinQty;
 begin
   result.FValue := FValue;
 end;
@@ -15296,9 +16214,14 @@ begin
   result.FValue := FValue;
 end;
 
-function TKilogramSquareMeterPerSecondHelper.ToElettronvoltSecond: TElettronvoltSecondQty;
+function TKilogramSquareMeterPerSecondHelper.ToElectronvoltSecond: TElectronvoltSecondQty;
 begin
-  result.FValue := FValue / cElettronvoltSecondFactor;
+  result.FValue := FValue / cElectronvoltSecondFactor;
+end;
+
+function TKilogramSquareMeterPerSecondHelper.ToElectronvoltMeterPerSpeedOfLight: TElectronvoltMeterPerSpeedOfLightQty;
+begin
+  result.FValue := FValue / cElectronvoltMeterPerSpeedOfLightFactor;
 end;
 
 function TSquareMeterAmpereHelper.ToJoulePerTesla: TJoulePerTeslaQty;
@@ -15539,6 +16462,36 @@ begin
 end;
 
 function QuarticRoot(AQuantity: TReciprocalSquareMeterQty): TReciprocalSquareRootMeterQty;
+begin
+  result.FValue := Power(AQuantity.FValue, 1/4);
+end;
+
+function CubicPower(AQuantity: TReciprocalMeterQty): TReciprocalCubicMeterQty;
+begin
+  result.FValue := IntPower(AQuantity.FValue, 3);
+end;
+
+function CubicRoot(AQuantity: TReciprocalCubicMeterQty): TReciprocalMeterQty;
+begin
+  result.FValue := Power(AQuantity.FValue, 1/3);
+end;
+
+function SquarePower(AQuantity: TReciprocalSquareMeterQty): TReciprocalQuarticMeterQty;
+begin
+  result.FValue := IntPower(AQuantity.FValue, 2);
+end;
+
+function SquareRoot(AQuantity: TReciprocalQuarticMeterQty): TReciprocalSquareMeterQty;
+begin
+  result.FValue := Power(AQuantity.FValue, 1/2);
+end;
+
+function QuarticPower(AQuantity: TReciprocalMeterQty): TReciprocalQuarticMeterQty;
+begin
+  result.FValue := IntPower(AQuantity.FValue, 4);
+end;
+
+function QuarticRoot(AQuantity: TReciprocalQuarticMeterQty): TReciprocalMeterQty;
 begin
   result.FValue := Power(AQuantity.FValue, 1/4);
 end;

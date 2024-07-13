@@ -63,7 +63,7 @@ Refer to the [adimtest](adimtest.pas) source code for additional examples.
 
 ## <u>Requirements</u>
 
-- [FreePascal compiler](https://www.freepascal.org)
+- [FreePascal compiler (recommended trunk version)](https://www.freepascal.org)
 - [Lazarus IDE](https://www.lazarus-ide.org)
 
 ## <u>Supported mathematical formulae:<u>
