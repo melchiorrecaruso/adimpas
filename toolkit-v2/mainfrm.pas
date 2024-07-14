@@ -184,9 +184,12 @@ end;
 
 procedure TMainForm.UpdateButton(Value: boolean);
 begin
-  LoadBtn.Enabled          := Value;
-  OptimizeBox.Enabled      := Value;
-  OptimizationTime.Enabled := Value;
+  LoadBtn.Enabled                   := Value;
+  OptimizeBox.Enabled               := Value;
+  OptimizationTime.Enabled          := Value;
+  UseFuncInsteadOfOperators.Enabled := Value;
+  SkipVectorialUnits.Enabled        := Value;
+
   ExportBtn.Enabled        := Value;
   RunBtn.Enabled           := Value;
   case Value of
