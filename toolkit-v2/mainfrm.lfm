@@ -11,31 +11,31 @@ object MainForm: TMainForm
   OnCreate = FormCreate
   object PageControl: TPageControl
     AnchorSideLeft.Control = Owner
-    AnchorSideTop.Control = RunBtn
+    AnchorSideTop.Control = LoadBtn
     AnchorSideTop.Side = asrBottom
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
     Left = 0
-    Height = 750
-    Top = 50
+    Height = 746
+    Top = 54
     Width = 1200
-    ActivePage = TabSheet1
+    ActivePage = TabSheet3
     Anchors = [akTop, akLeft, akRight, akBottom]
-    BorderSpacing.Top = 6
+    BorderSpacing.Top = 10
     ParentFont = False
-    TabIndex = 0
+    TabIndex = 2
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = 'Unit of measurement'
-      ClientHeight = 717
+      ClientHeight = 713
       ClientWidth = 1190
       object WorksheetGrid: TsWorksheetGrid
-        Left = 4
-        Height = 709
-        Top = 4
-        Width = 1182
+        Left = 0
+        Height = 713
+        Top = 0
+        Width = 1190
         FrozenCols = 0
         FrozenRows = 0
         PageBreakPen.Color = clBlue
@@ -43,12 +43,9 @@ object MainForm: TMainForm
         ReadFormulas = False
         WorkbookSource = WorkbookSource
         Align = alClient
+        Anchors = []
         AutoAdvance = aaDown
         AutoFillColumns = True
-        BorderSpacing.Left = 4
-        BorderSpacing.Top = 4
-        BorderSpacing.Right = 4
-        BorderSpacing.Bottom = 4
         ColCount = 10
         DefaultColWidth = 64
         DefaultRowHeight = 22
@@ -58,24 +55,15 @@ object MainForm: TMainForm
     end
     object TabSheet2: TTabSheet
       Caption = 'Unit Source Code'
-      ClientHeight = 717
+      ClientHeight = 713
       ClientWidth = 1190
       inline SynEdit: TSynEdit
-        AnchorSideLeft.Control = TabSheet2
-        AnchorSideTop.Control = TabSheet2
-        AnchorSideRight.Control = TabSheet2
-        AnchorSideRight.Side = asrBottom
-        AnchorSideBottom.Control = TabSheet2
-        AnchorSideBottom.Side = asrBottom
-        Left = 4
-        Height = 709
-        Top = 4
-        Width = 1182
-        BorderSpacing.Left = 4
-        BorderSpacing.Top = 4
-        BorderSpacing.Right = 4
-        BorderSpacing.Bottom = 4
-        Anchors = [akTop, akLeft, akRight, akBottom]
+        Left = 0
+        Height = 713
+        Top = 0
+        Width = 1190
+        Align = alClient
+        Anchors = []
         Font.Height = -13
         Font.Name = 'Courier New'
         Font.Pitch = fpFixed
@@ -538,18 +526,17 @@ object MainForm: TMainForm
     end
     object TabSheet3: TTabSheet
       Caption = 'Messages'
-      ClientHeight = 717
+      ClientHeight = 713
       ClientWidth = 1190
       object Memo: TMemo
-        Left = 4
-        Height = 709
-        Top = 4
-        Width = 1182
-        Anchors = [akTop, akLeft, akRight, akBottom]
-        BorderSpacing.Left = 4
-        BorderSpacing.Top = 4
-        BorderSpacing.Right = 4
-        BorderSpacing.Bottom = 4
+        AnchorSideRight.Side = asrBottom
+        AnchorSideBottom.Side = asrBottom
+        Left = 0
+        Height = 713
+        Top = 0
+        Width = 1190
+        Align = alClient
+        Anchors = []
         Font.Height = -13
         Font.Name = 'Courier New'
         ParentFont = False

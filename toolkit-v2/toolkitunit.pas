@@ -1510,6 +1510,7 @@ var
 begin
   Result := 0;
   Run(ASolution);
+
   FDocument.SaveToFile('adim.pas');
 
   AProcess := TProcess.Create(nil);
@@ -1572,8 +1573,8 @@ begin
         FOnMessage(AStringList[i]);
 
   AMemoryStream.Destroy;
-  AStringList.Free;
-  AProcess.Free;
+  AStringList.Destroy;
+  AProcess.Destroy;
 
   Inc(FTestingCount);
   FOnMessage(' -> ' + FTestingCount.ToString + ' : ' + Result.ToString);
@@ -1766,6 +1767,10 @@ begin
   SectionB10.LoadFromStream(Stream);
   SectionB10.Insert(0, '');
   Stream.Destroy;
+
+  FClassList.Clear;
+  FCommUnits.Clear;
+  FOperatorList.Clear;
 
   BaseUnitCount     := 0;
   FactoredUnitCount := 0;
