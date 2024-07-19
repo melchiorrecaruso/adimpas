@@ -32,6 +32,7 @@ type
   { TMainForm }
 
   TMainForm = class(TForm)
+    ExpandQuantityOperators: TCheckBox;
     UseFuncInsteadOfOperators: TCheckBox;
     SkipVectorialUnits: TCheckBox;
     Memo: TMemo;
@@ -189,6 +190,7 @@ begin
   OptimizationTime.Enabled          := Value;
   UseFuncInsteadOfOperators.Enabled := Value;
   SkipVectorialUnits.Enabled        := Value;
+  ExpandQuantityOperators.Enabled   := Value;
 
   ExportBtn.Enabled        := Value;
   RunBtn.Enabled           := Value;
@@ -209,6 +211,7 @@ constructor TToolKitThread.Create;
 begin
   FList := TToolKitBuilder.Create(@OnMessage);
   FList.SkipVectorialUnits := Mainform.SkipVectorialUnits.Checked;
+  FList.ExpandQuantityOperators:= Mainform.ExpandQuantityOperators.Checked;
   FreeOnTerminate := True;
   inherited Create(True);
 end;
