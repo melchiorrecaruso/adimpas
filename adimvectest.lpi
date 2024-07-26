@@ -32,6 +32,9 @@
     </RunParams>
     <RequiredPackages>
       <Item>
+        <PackageName Value="clifford"/>
+      </Item>
+      <Item>
         <PackageName Value="adimpack"/>
       </Item>
     </RequiredPackages>

@@ -27,6 +27,8 @@ uses
   Classes, SimulatedAnnealing, StrUtils, SysUtils;
 
 type
+  TToolKitItemExponents = array [1..8] of longint;
+
   TToolKitItem = record
     FClassName: string;
     FOperator: string;
@@ -39,15 +41,12 @@ type
     FFactor: string;
     FPrefixes: string;
     FClassType: string;
-    FExponents: array [1..8] of longint;
+    FExponents: TToolKitItemExponents;
   end;
 
   TToolKitList = class
   private
     FList: array of TToolKitItem;
-    function GetClassName  (const AItem: TToolKitItem): string;
-    function GetShortSymbol(const AItem: TToolKitItem): string;
-    function GetLongSymbol (const AItem: TToolKitItem): string;
     function GetItem(Index: longint): TToolKitItem;
     function GetCount: longint;
   public
@@ -59,6 +58,7 @@ type
     procedure Clear;
 
     function Search(const AClassName: string): longint;
+    function Search(const AExponents: TToolKitItemExponents): longint;
   public
     property Items[Index: longint]: TToolKitItem read GetItem; default;
     property Count: longint read GetCount;
@@ -79,6 +79,7 @@ type
     FTestingCount:     longint;
     FSkipVectorialUnits: boolean;
     FUseFuncInsteadOfOperators: boolean;
+    FExpandQuantityOperators: boolean;
 
     FDocument:  TStringList;
     FMessages:  TStringList;
@@ -147,6 +148,7 @@ type
 
     procedure AddResources(const AItem: TToolkitItem);
     procedure AddEquivalence(AFromClass, AToClass: string);
+    procedure ExpandOperators;
 
     function  SearchLine(const ALine: string; ASection: TStringList): longint;
     procedure Run(ASolution: TSolution);
@@ -160,6 +162,7 @@ type
     procedure Add(const AItem: TToolkitItem);
     procedure Run;
   public
+    property ExpandQuantityOperators: boolean read FExpandQuantityOperators write FExpandQuantityOperators;
     property UseFuncInsteadOfOperators: boolean read FUseFuncInsteadOfOperators write FUseFuncInsteadOfOperators;
     property SkipVectorialUnits: boolean read FSkipVectorialUnits write FSkipVectorialUnits;
     property Document: TStringList read FDocument;
@@ -198,6 +201,7 @@ begin
 
   FSkipVectorialunits := False;
   FUseFuncInsteadOfOperators := False;
+  FExpandQuantityOperators := False;
   FTestingCount := 0;
 end;
 
@@ -459,18 +463,14 @@ begin
                                                          AddQuantityOperator('*', GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassName));
       if AItem.FClassParent1 <> AItem.FClassParent2 then AddQuantityOperator('*', GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassName));
 
-                                                         AddQuantityOperator('/', GetQuantityType(AItem.FClassName), GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2));
-      if AItem.FClassParent1 <> AItem.FClassParent2 then AddQuantityOperator('/', GetQuantityType(AItem.FClassName), GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1));
+                                                         AddQuantityOperator('/', GetQuantityType(AItem.FClassName),    GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2));
+      if AItem.FClassParent1 <> AItem.FClassParent2 then AddQuantityOperator('/', GetQuantityType(AItem.FClassName),    GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1));
 
-      // OP1: A*B=C
-      // OP2: B*A=C
-      // OP3: B=C/A
-      // OP4: A=C/B
+                                                         AddUnitOperator('*', GetQuantityType(AItem.FClassParent1), GetUnitType(AItem.FClassParent2), GetQuantityType(AItem.FClassName), FALSE);
+      if AItem.FClassParent1 <> AItem.FClassParent2 then AddUnitOperator('*', GetQuantityType(AItem.FClassParent2), GetUnitType(AItem.FClassParent1), GetQuantityType(AItem.FClassName), FALSE);
 
-      if Pos('OP1', AItem.FFactor) > 0 then AddUnitOperator('*', GetQuantityType(AItem.FClassParent1), GetUnitType(AItem.FClassParent2), GetQuantityType(AItem.FClassName   ), FALSE);
-      if Pos('OP2', AItem.FFactor) > 0 then AddUnitOperator('*', GetQuantityType(AItem.FClassParent2), GetUnitType(AItem.FClassParent1), GetQuantityType(AItem.FClassName   ), FALSE);
-      if Pos('OP3', AItem.FFactor) > 0 then AddUnitOperator('/', GetQuantityType(AItem.FClassName),    GetUnitType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2), FALSE);
-      if Pos('OP4', AItem.FFactor) > 0 then AddUnitOperator('/', GetQuantityType(AItem.FClassName),    GetUnitType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1), FALSE);
+                                                         AddUnitOperator('/', GetQuantityType(AItem.FClassName),    GetUnitType(AItem.FClassParent1), GetQuantityType(AItem.FClassParent2), FALSE);
+      if AItem.FClassParent1 <> AItem.FClassParent2 then AddUnitOperator('/', GetQuantityType(AItem.FClassName),    GetUnitType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1), FALSE);
 
     end else
     if AItem.FOperator = '/' then
@@ -480,15 +480,10 @@ begin
       if AItem.FClassName <> AItem.FClassParent2 then AddQuantityOperator('*', GetQuantityType(AItem.FClassName),    GetQuantityType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1));
       if AItem.FClassName <> AItem.FClassParent2 then AddQuantityOperator('/', GetQuantityType(AItem.FClassParent1), GetQuantityType(AItem.FClassName),    GetQuantityType(AItem.FClassParent2));
 
-      // OP1: C=A/B
-      // OP2: B*C=A
-      // OP3: C*B=A
-      // OP4: B=A/C
-
-      if Pos('OP1', AItem.FFactor) > 0 then AddUnitOperator('/', GetQuantityType(AItem.FClassParent1), GetUnitType(AItem.FClassParent2), GetQuantityType(AItem.FClassName   ), FALSE);
-      if Pos('OP2', AItem.FFactor) > 0 then AddUnitOperator('*', GetQuantityType(AItem.FClassParent2), GetUnitType(AItem.FClassName),    GetQuantityType(AItem.FClassParent1), FALSE);
-      if Pos('OP3', AItem.FFactor) > 0 then AddUnitOperator('*', GetQuantityType(AItem.FClassName),    GetUnitType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1), FALSE);
-      if Pos('OP4', AItem.FFactor) > 0 then AddUnitOperator('/', GetQuantityType(AItem.FClassParent1), GetUnitType(AItem.FClassName),    GetQuantityType(AItem.FClassParent2), FALSE);
+                                                      AddUnitOperator('/', GetQuantityType(AItem.FClassParent1), GetUnitType(AItem.FClassParent2), GetQuantityType(AItem.FClassName   ), FALSE);
+                                                      AddUnitOperator('*', GetQuantityType(AItem.FClassParent2), GetUnitType(AItem.FClassName),    GetQuantityType(AItem.FClassParent1), FALSE);
+      if AItem.FClassName <> AItem.FClassParent2 then AddUnitOperator('*', GetQuantityType(AItem.FClassName),    GetUnitType(AItem.FClassParent2), GetQuantityType(AItem.FClassParent1), FALSE);
+      if AItem.FClassName <> AItem.FClassParent2 then AddUnitOperator('/', GetQuantityType(AItem.FClassParent1), GetUnitType(AItem.FClassName),    GetQuantityType(AItem.FClassParent2), FALSE);
 
     end else
     if UpperCase(AItem.FOperator) = 'RECIPROCAL' then
@@ -1510,7 +1505,8 @@ var
 begin
   Result := 0;
   Run(ASolution);
-
+  Result := ExternalOperators;
+  (*
   FDocument.SaveToFile('adim.pas');
 
   AProcess := TProcess.Create(nil);
@@ -1575,7 +1571,7 @@ begin
   AMemoryStream.Destroy;
   AStringList.Destroy;
   AProcess.Destroy;
-
+  *)
   Inc(FTestingCount);
   FOnMessage(' -> ' + FTestingCount.ToString + ' : ' + Result.ToString);
 end;
@@ -1794,6 +1790,7 @@ begin
     for J := 0 to FList.Count -1 do AddItem(FList[J], FALSE);
     for J := 0 to FList.Count -1 do AddItem(FList[J], TRUE);
   end;
+  if FExpandQuantityOperators then ExpandOperators;
 
   SectionA0.Append('');
   SectionA0.Append('{');
@@ -1868,6 +1865,53 @@ begin
   SectionA2 .Destroy;
   SectionA1 .Destroy;
   SectionA0 .Destroy;
+end;
+
+procedure TToolKitBuilder.ExpandOperators;
+var
+  i, j, k: longint;
+  Item1, Item2, Item3: TToolKitItem;
+begin
+  for i := 0 to FList.Count -1 do
+  begin
+    Item1 := FList[i];
+    if Item1.FBaseClass <> '' then Continue;
+    if (i > 0) and (Item1.FClassName = FList[i -1].FClassName) then Continue;
+
+    for j := 0 to FList.Count -1 do
+    begin
+      Item2 := FList[j];
+      if Item2.FBaseClass <> '' then Continue;
+      if (j > 0) and (Item2.FClassName = FList[j -1].FClassName) then Continue;
+
+      // product
+      for k := Low(Item3.FExponents) to High(Item3.FExponents) do
+        Item3.FExponents[k] := Item1.FExponents[k] + Item2.FExponents[k];
+
+      k := FList.Search(Item3.FExponents);
+      if k <> -1 then
+      begin
+        Item3 := FList[k];
+        Item3.FOperator:= '*';
+        Item3.FClassParent1:= Item1.FClassName;
+        Item3.FClassParent2:= Item2.FClassName;
+        AddItem(Item3, TRUE);
+      end;
+      // ratio
+      for k := Low(Item3.FExponents) to High(Item3.FExponents) do
+        Item3.FExponents[k] := Item1.FExponents[k] - Item2.FExponents[k];
+
+      k := FList.Search(Item3.FExponents);
+      if k <> -1 then
+      begin
+        Item3 := FList[k];
+        Item3.FOperator:= '/';
+        Item3.FClassParent1:= Item1.FClassName;
+        Item3.FClassParent2:= Item2.FClassName;
+        AddItem(Item3, TRUE);
+      end;
+    end;
+  end;
 end;
 
 function TToolKitBuilder.SearchLine(const ALine: string; ASection: TStringList): longint;
@@ -2035,8 +2079,7 @@ begin
            (T.FExponents[7] =  AItem.FExponents[7]) and
            (T.FExponents[8] =  AItem.FExponents[8]) then
         begin
-          result := Format('WARNING (%s): %s (%s) is equal to %s (%s)', [
-            AItem.FOperator, AItem.FClassName, GetShortSymbol(AItem), T.FClassName, GetShortSymbol(T)]);
+          result := Format('WARNING (%s): %s is equal to %s', [AItem.FOperator, AItem.FClassName, T.FClassName]);
         end;
       end;
     end;
@@ -2044,240 +2087,6 @@ begin
 
   SetLength(FList, Length(FList) + 1);
   FList[High(FList)] := AItem;
-end;
-
-function TToolKitList.GetShortSymbol(const AItem: TToolKitItem): string;
-var
-  i: longint;
-  Reciprocal: boolean;
-begin
-  result := '';
-  for i := Low(AItem.FExponents) to High(AItem.FExponents) do
-  begin
-    if AItem.FExponents[i] > 0 then
-    begin
-      case i of
-        1: result := result + '.%sg';
-        2: result := result + '.%sm';
-        3: result := result + '.%ss';
-        4: result := result + '.%sK';
-        5: result := result + '.%sA';
-        6: result := result + '.%smol';
-        7: result := result + '.%scd';
-        8: result := result + '.%srad';
-      end;
-
-      case AItem.FExponents[i] of
-         1: result := '√' + result;
-         3: result := '√' + result + '3';
-         4: result :=       result + '2';
-         6: result :=       result + '3';
-         8: result :=       result + '4';
-        10: result :=       result + '5';
-        12: result :=       result + '6';
-      end;
-    end;
-  end;
-
-  Reciprocal := result = '';
-  if Reciprocal then result := '1/';
-
-  for i := Low(AItem.FExponents) to High(AItem.FExponents) do
-  begin
-    if AItem.FExponents[i] < 0 then
-    begin
-      if not Reciprocal then
-        result := result + '/';
-
-      case Abs(AItem.FExponents[i]) of
-        1: result := result + '√';
-        3: result := result + '√';
-      end;
-
-      case i of
-        1: result := result + '%sg';
-        2: result := result + '%sm';
-        3: result := result + '%ss';
-        4: result := result + '%sK';
-        5: result := result + '%sA';
-        6: result := result + '%smol';
-        7: result := result + '%scd';
-        8: result := result + '%srad';
-      end;
-
-      case Abs(AItem.FExponents[i]) of
-        3: result := result + '3';
-        4: result := result + '2';
-        6: result := result + '3';
-        8: result := result + '4';
-       10: result := result + '5';
-       12: result := result + '6';
-      end;
-    end;
-  end;
-
-  if Pos('.', result) = 1 then
-  begin
-    System.Delete(result, 1, 1);
-  end;
-  result := StringReplace(result, '%srad2',  '%ssr',  [rfReplaceAll, rfIgnoreCase]);
-  result := StringReplace(result, '%srad4',  '%ssr2', [rfReplaceAll, rfIgnoreCase]);
-  result := StringReplace(result, '%srad6',  '%ssr3', [rfReplaceAll, rfIgnoreCase]);
-end;
-
-function TToolKitList.GetLongSymbol(const AItem: TToolKitItem): string;
-var
-  i: longint;
-  Reciprocal: boolean;
-begin
-  result := '';
-  for i := Low(AItem.FExponents) to High(AItem.FExponents) do
-  begin
-    if AItem.FExponents[i] > 0 then
-    begin
-      case AItem.FExponents[i] of
-         1: result := result + ' square root ';
-         3: result := result + ' square root cubic ';
-         4: result := result + ' square ';
-         6: result := result + ' cubic ';
-         8: result := result + ' quartic ';
-        10: result := result + ' quintic ';
-        12: result := result + ' sextic ';
-      end;
-
-      case i of
-        1: result := result + ' %sgram';
-        2: result := result + ' %smeter';
-        3: result := result + ' %ssecond';
-        4: result := result + ' %skelvin';
-        5: result := result + ' %sampere';
-        6: result := result + ' %smole';
-        7: result := result + ' %scandela';
-        8: result := result + ' %sradian';
-      end;
-    end;
-  end;
-
-  Reciprocal := result = '';
-  if Reciprocal then
-    result := 'reciprocal'
-  else
-    result := result + '?';
-
-  for i := Low(AItem.FExponents) to High(AItem.FExponents) do
-  begin
-    if AItem.FExponents[i] < 0 then
-    begin
-      if not Reciprocal then
-        result := result + ' per ';
-
-      case Abs(AItem.FExponents[i]) of
-         1: result := result + ' square root ';
-         3: result := result + ' square root cubic ';
-         4: result := result + ' square ';
-         6: result := result + ' cubic ';
-         8: result := result + ' quartic ';
-        10: result := result + ' quintic ';
-        12: result := result + ' sextic ';
-      end;
-
-      case i of
-        1: result := result + ' %sgram';
-        2: result := result + ' %smeter';
-        3: result := result + ' %ssecond';
-        4: result := result + ' %skelvin';
-        5: result := result + ' %sampere';
-        6: result := result + ' %smole';
-        7: result := result + ' %scandela';
-        8: result := result + ' %sradian';
-      end;
-    end;
-  end;
-
-  if Pos(' ', result) = 1 then
-  begin
-    System.Delete(result, 1, 1);
-  end;
-  result := StringReplace(result, '  ',             ' ',                 [rfReplaceAll, rfIgnoreCase]);
-  result := StringReplace(result, 'square radian',  'steradian',         [rfReplaceAll, rfIgnoreCase]);
-  result := StringReplace(result, 'quartic radian', 'square steradian',  [rfReplaceAll, rfIgnoreCase]);
-  result := StringReplace(result, 'sextic radian',  'cubic steradian',   [rfReplaceAll, rfIgnoreCase]);
-end;
-
-function TToolKitList.GetClassName(const AItem: TToolKitItem): string;
-var
-  i: longint;
-  Reciprocal: boolean;
-begin
-  result := '';
-  for i := Low(AItem.FExponents) to High(AItem.FExponents) do
-  begin
-    if AItem.FExponents[i] > 0 then
-    begin
-      case Abs(AItem.FExponents[i]) of
-        2: result := result + 'Square';
-        3: result := result + 'Cubic';
-        4: result := result + 'Quartic';
-        5: result := result + 'Quintic';
-        6: result := result + 'Sextic';
-      end;
-
-      case i of
-        1: result := result + 'Kilogram';
-        2: result := result + 'Meter';
-        3: result := result + 'Second';
-        4: result := result + 'Kelvin';
-        5: result := result + 'Ampere';
-        6: result := result + 'Mole';
-        7: result := result + 'Candela';
-        8: result := result + 'Radian';
-      end;
-    end;
-  end;
-
-  Reciprocal := result = '';
-  if Reciprocal then
-    result := 'Reciprocal'
-  else
-    result := result + '?';
-
-  for i := Low(AItem.FExponents) to High(AItem.FExponents) do
-  begin
-    if AItem.FExponents[i] < 0 then
-    begin
-      if not Reciprocal then
-        result := result + 'Per';
-
-      case Abs(AItem.FExponents[i]) of
-        2: result := result + 'Square';
-        3: result := result + 'Cubic';
-        4: result := result + 'Quartic';
-        5: result := result + 'Quintic';
-        6: result := result + 'Sextic';
-      end;
-
-      case i of
-        1: result := result + 'Kilogram';
-        2: result := result + 'Meter';
-        3: result := result + 'Second';
-        4: result := result + 'Kelvin';
-        5: result := result + 'Ampere';
-        6: result := result + 'Mole';
-        7: result := result + 'Candela';
-        8: result := result + 'Radian';
-      end;
-    end;
-  end;
-
-  if (AItem.FClassType <>        '') and
-     (AItem.FClassType <> 'TScalar') then
-    result := 'T' + VecPrefix + result
-  else
-    result := 'T' + result;
-
-  result := StringReplace(result, 'SquareRadian',  'Steradian',       [rfReplaceAll, rfIgnoreCase]);
-  result := StringReplace(result, 'QuarticRadian', 'SquareSteradian', [rfReplaceAll, rfIgnoreCase]);
-  result := StringReplace(result, 'SexticRadian',  'CubicSteradian',  [rfReplaceAll, rfIgnoreCase]);
 end;
 
 function TToolKitList.Search(const AClassName: string): longint;
@@ -2289,6 +2098,24 @@ begin
     begin
       if CompareText(FList[i].FClassName, AClassName) = 0 then Exit(i);
     end;
+  result := -1;
+end;
+
+function TToolKitList.Search(const AExponents: TToolKitItemExponents): longint;
+var
+  i: longint;
+begin
+  for i := Low(FList) to High(FList) do
+  begin
+    if (AExponents[1] = FList[i].FExponents[1]) and
+       (AExponents[2] = FList[i].FExponents[2]) and
+       (AExponents[3] = FList[i].FExponents[3]) and
+       (AExponents[4] = FList[i].FExponents[4]) and
+       (AExponents[5] = FList[i].FExponents[5]) and
+       (AExponents[6] = FList[i].FExponents[6]) and
+       (AExponents[7] = FList[i].FExponents[7]) and
+       (AExponents[8] = FList[i].FExponents[8]) then Exit(i);
+  end;
   result := -1;
 end;
 

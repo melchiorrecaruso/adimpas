@@ -1,26 +1,26 @@
 object MainForm: TMainForm
-  Left = 607
+  Left = 574
   Height = 800
-  Top = 275
-  Width = 1200
+  Top = 308
+  Width = 1452
   Caption = 'ADimPas Toolkit-v2'
   ClientHeight = 800
-  ClientWidth = 1200
+  ClientWidth = 1452
   LCLVersion = '3.99.0.0'
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   object PageControl: TPageControl
     AnchorSideLeft.Control = Owner
-    AnchorSideTop.Control = LoadBtn
+    AnchorSideTop.Control = SkipVectorialUnits
     AnchorSideTop.Side = asrBottom
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
     Left = 0
-    Height = 746
-    Top = 54
-    Width = 1200
+    Height = 736
+    Top = 64
+    Width = 1452
     ActivePage = TabSheet3
     Anchors = [akTop, akLeft, akRight, akBottom]
     BorderSpacing.Top = 10
@@ -29,13 +29,13 @@ object MainForm: TMainForm
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = 'Unit of measurement'
-      ClientHeight = 713
-      ClientWidth = 1190
+      ClientHeight = 703
+      ClientWidth = 1442
       object WorksheetGrid: TsWorksheetGrid
         Left = 0
-        Height = 713
+        Height = 703
         Top = 0
-        Width = 1190
+        Width = 1442
         FrozenCols = 0
         FrozenRows = 0
         PageBreakPen.Color = clBlue
@@ -55,13 +55,13 @@ object MainForm: TMainForm
     end
     object TabSheet2: TTabSheet
       Caption = 'Unit Source Code'
-      ClientHeight = 713
-      ClientWidth = 1190
+      ClientHeight = 703
+      ClientWidth = 1442
       inline SynEdit: TSynEdit
         Left = 0
-        Height = 713
+        Height = 703
         Top = 0
-        Width = 1190
+        Width = 1442
         Align = alClient
         Anchors = []
         Font.Height = -13
@@ -526,15 +526,15 @@ object MainForm: TMainForm
     end
     object TabSheet3: TTabSheet
       Caption = 'Messages'
-      ClientHeight = 713
-      ClientWidth = 1190
+      ClientHeight = 703
+      ClientWidth = 1442
       object Memo: TMemo
         AnchorSideRight.Side = asrBottom
         AnchorSideBottom.Side = asrBottom
         Left = 0
-        Height = 713
+        Height = 703
         Top = 0
-        Width = 1190
+        Width = 1442
         Align = alClient
         Anchors = []
         Font.Height = -13
@@ -644,7 +644,7 @@ object MainForm: TMainForm
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Side = asrBottom
-    Left = 1076
+    Left = 1328
     Height = 36
     Top = 8
     Width = 120
@@ -735,7 +735,7 @@ object MainForm: TMainForm
     AnchorSideRight.Control = RunBtn
     AnchorSideBottom.Control = RunBtn
     AnchorSideBottom.Side = asrBottom
-    Left = 952
+    Left = 1204
     Height = 36
     Top = 8
     Width = 120
@@ -749,13 +749,12 @@ object MainForm: TMainForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = OptimizationTime
     AnchorSideRight.Control = OptimizationTime
-    AnchorSideBottom.Control = OptimizationTime
     AnchorSideBottom.Side = asrBottom
-    Left = 623
-    Height = 36
+    Left = 875
+    Height = 23
     Top = 8
     Width = 209
-    Anchors = [akTop, akRight, akBottom]
+    Anchors = [akTop, akRight]
     BorderSpacing.Left = 20
     BorderSpacing.Right = 10
     Caption = 'Optimizer execution time (s)'
@@ -765,7 +764,7 @@ object MainForm: TMainForm
     AnchorSideTop.Control = Owner
     AnchorSideRight.Control = ExportBtn
     AnchorSideBottom.Side = asrBottom
-    Left = 842
+    Left = 1094
     Height = 36
     Top = 8
     Width = 100
@@ -778,32 +777,44 @@ object MainForm: TMainForm
     Value = 120
   end
   object SkipVectorialUnits: TCheckBox
+    AnchorSideLeft.Control = OptimizeBox
     AnchorSideTop.Control = OptimizeBox
-    AnchorSideRight.Control = OptimizeBox
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = OptimizeBox
     AnchorSideBottom.Side = asrBottom
-    Left = 455
-    Height = 36
-    Top = 8
+    Left = 875
+    Height = 23
+    Top = 31
     Width = 148
-    Anchors = [akTop, akRight, akBottom]
     BorderSpacing.Right = 10
     Caption = 'Skip vectorial units'
     TabOrder = 6
   end
   object UseFuncInsteadOfOperators: TCheckBox
-    AnchorSideTop.Control = SkipVectorialUnits
+    AnchorSideTop.Control = OptimizeBox
     AnchorSideRight.Control = SkipVectorialUnits
-    AnchorSideBottom.Control = SkipVectorialUnits
+    AnchorSideBottom.Control = OptimizeBox
     AnchorSideBottom.Side = asrBottom
-    Left = 197
-    Height = 36
+    Left = 617
+    Height = 23
     Top = 8
     Width = 248
     Anchors = [akTop, akRight, akBottom]
     BorderSpacing.Right = 10
     Caption = 'Use functions instead of operators'
     TabOrder = 7
+  end
+  object ExpandQuantityOperators: TCheckBox
+    AnchorSideLeft.Control = UseFuncInsteadOfOperators
+    AnchorSideTop.Control = UseFuncInsteadOfOperators
+    AnchorSideTop.Side = asrBottom
+    Left = 617
+    Height = 23
+    Top = 31
+    Width = 141
+    Caption = 'Expand operators'
+    TabOrder = 8
   end
   object SaveDialog: TSaveDialog
     Filter = 'Lazarus unit (*.pas; *.pp)|*.pas;*.pp;'
