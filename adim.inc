@@ -17,20 +17,20 @@ type
     function IsSame(const AValue: TQuantity): boolean;
     function IsZero: boolean;
     {$IFNDEF NOP}
-    class operator +  (const AValue: TQuantity): TQuantity;
-    class operator -  (const AValue: TQuantity): TQuantity;
-    class operator +  (const ALeft, ARight: TQuantity): TQuantity;
-    class operator -  (const ALeft, ARight: TQuantity): TQuantity;
-    class operator *  (const AValue: double; const ASelf: TQuantity): TQuantity;
-    class operator *  (const ASelf: TQuantity; const AValue: double): TQuantity;
-    class operator /  (const ASelf: TQuantity; const AValue: double): TQuantity;
-    class operator /  (const ALeft, ARight: TQuantity): double;
-    class operator mod(const ALeft, ARight: TQuantity): TQuantity;
-    class operator =  (const ALeft, ARight: TQuantity): boolean;
-    class operator <  (const ALeft, ARight: TQuantity): boolean;
-    class operator >  (const ALeft, ARight: TQuantity): boolean;
-    class operator <= (const ALeft, ARight: TQuantity): boolean;
-    class operator >= (const ALeft, ARight: TQuantity): boolean;
+    class operator +  (const AValue: TQuantity): TQuantity; inline;
+    class operator -  (const AValue: TQuantity): TQuantity; inline;
+    class operator +  (const ALeft, ARight: TQuantity): TQuantity; inline;
+    class operator -  (const ALeft, ARight: TQuantity): TQuantity; inline;
+    class operator *  (const AValue: double; const ASelf: TQuantity): TQuantity; inline;
+    class operator *  (const ASelf: TQuantity; const AValue: double): TQuantity; inline;
+    class operator /  (const ASelf: TQuantity; const AValue: double): TQuantity; inline;
+    class operator /  (const ALeft, ARight: TQuantity): double; inline;
+    class operator mod(const ALeft, ARight: TQuantity): TQuantity; inline;
+    class operator =  (const ALeft, ARight: TQuantity): boolean; inline;
+    class operator <  (const ALeft, ARight: TQuantity): boolean; inline;
+    class operator >  (const ALeft, ARight: TQuantity): boolean; inline;
+    class operator <= (const ALeft, ARight: TQuantity): boolean; inline;
+    class operator >= (const ALeft, ARight: TQuantity): boolean; inline;
     {$ENDIF}{$UNDEF NOP}
 {$ENDIF}
 
@@ -170,72 +170,72 @@ begin
 end;  
 
 {$IFNDEF NOP}
-class operator TQuantity.+(const AValue: TQuantity): TQuantity;
+class operator TQuantity.+(const AValue: TQuantity): TQuantity; inline;
 begin
   result.FValue := AValue.FValue;
 end;
 
-class operator TQuantity.-(const AValue: TQuantity): TQuantity;
+class operator TQuantity.-(const AValue: TQuantity): TQuantity;  inline;
 begin
   result.FValue := -AValue.FValue;
 end;
 
-class operator TQuantity.+(const ALeft, ARight: TQuantity): TQuantity;
+class operator TQuantity.+(const ALeft, ARight: TQuantity): TQuantity; inline;
 begin
   result.FValue := ALeft.FValue + ARight.FValue;
 end;
 
-class operator TQuantity.-(const ALeft, ARight: TQuantity): TQuantity;
+class operator TQuantity.-(const ALeft, ARight: TQuantity): TQuantity; inline;
 begin
   result.FValue := ALeft.FValue - ARight.FValue;
 end;
 
-class operator TQuantity.*(const AValue: double; const ASelf: TQuantity): TQuantity;
+class operator TQuantity.*(const AValue: double; const ASelf: TQuantity): TQuantity; inline;
 begin
   result.FValue := AValue * ASelf.FValue;
 end;
 
-class operator TQuantity.*(const ASelf: TQuantity; const AValue: double): TQuantity;
+class operator TQuantity.*(const ASelf: TQuantity; const AValue: double): TQuantity; inline;
 begin
   result.FValue := ASelf.FValue * AValue;
 end;
 
-class operator TQuantity./(const ASelf: TQuantity; const AValue: double): TQuantity;
+class operator TQuantity./(const ASelf: TQuantity; const AValue: double): TQuantity; inline;
 begin
   result.FValue := ASelf.FValue / AValue;
 end;
 
-class operator TQuantity./(const ALeft, ARight: TQuantity): double;
+class operator TQuantity./(const ALeft, ARight: TQuantity): double; inline;
 begin
   result := ALeft.FValue / ARight.FValue;
 end;
 
-class operator TQuantity.mod(const ALeft, ARight: TQuantity): TQuantity;
+class operator TQuantity.mod(const ALeft, ARight: TQuantity): TQuantity; inline;
 begin
   result.FValue := ALeft.FValue mod ARight.FValue;
 end;
 
-class operator TQuantity.=(const ALeft, ARight: TQuantity): boolean;
+class operator TQuantity.=(const ALeft, ARight: TQuantity): boolean; inline;
 begin
   result := ALeft.FValue = ARight.FValue;
 end;
 
-class operator TQuantity.<(const ALeft, ARight: TQuantity): boolean;
+class operator TQuantity.<(const ALeft, ARight: TQuantity): boolean; inline;
 begin
   result := ALeft.FValue < ARight.FValue;
 end;
 
-class operator TQuantity.>(const ALeft, ARight: TQuantity): boolean;
+class operator TQuantity.>(const ALeft, ARight: TQuantity): boolean; inline;
 begin
   result := ALeft.FValue > ARight.FValue;
 end;
 
-class operator TQuantity.<=(const ALeft, ARight: TQuantity): boolean;
+class operator TQuantity.<=(const ALeft, ARight: TQuantity): boolean; inline;
 begin
   result := ALeft.FValue <= ARight.FValue;
 end;
 
-class operator TQuantity.>=(const ALeft, ARight: TQuantity): boolean;
+class operator TQuantity.>=(const ALeft, ARight: TQuantity): boolean; inline;
 begin
   result := ALeft.FValue >= ARight.FValue;
 end;
@@ -246,8 +246,8 @@ end;
 {$UNDEF INTF_UNIT}
 type
   TUnit = record
-    class function From(const AQuantity: TQuantity): TQuantity; inline; static;
-    class operator *(const AValue: double; const ASelf: TUnit): TQuantity;
+    class function From(const AQuantity: TQuantity): TQuantity; static;
+    class operator *(const AValue: double; const ASelf: TUnit): TQuantity; inline;
 {$ENDIF}
 
 {$IFDEF IMPL_UNIT}
@@ -257,7 +257,7 @@ begin
   result.FValue := AQuantity.FValue;
 end;
 
-class operator TUnit.*(const AValue: double; const ASelf: TUnit): TQuantity;
+class operator TUnit.*(const AValue: double; const ASelf: TUnit): TQuantity; inline;
 begin
   result.FValue := AValue;
 end;
