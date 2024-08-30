@@ -46,10 +46,10 @@ const
   IMPL_CEXPONENTS     = '{$DEFINE CEXPONENTS:=%s}';
   IMPL_CFACTOR        = '{$DEFINE CFACTOR:=%s}';
 
-  INTF_OP_CLASS       = '  class operator %s(const ALeft: %s; const ARight: %s): %s;';
-  IMPL_OP_CLASS       = 'class operator %s.%s(const ALeft: %s; const ARight: %s): %s;';
-  INTF_OP             = 'operator %s(const ALeft: %s; const ARight: %s): %s;';
-  IMPL_OP             = 'operator %s(const ALeft: %s; const ARight: %s): %s;';
+  INTF_OP_CLASS       = '  class operator %s(const ALeft: %s; const ARight: %s): %s; inline;';
+  IMPL_OP_CLASS       = 'class operator %s.%s(const ALeft: %s; const ARight: %s): %s; inline;';
+  INTF_OP             = 'operator %s(const ALeft: %s; const ARight: %s): %s; inline;';
+  IMPL_OP             = 'operator %s(const ALeft: %s; const ARight: %s): %s; inline;';
 
   VECPrefix           = 'CL';
 
