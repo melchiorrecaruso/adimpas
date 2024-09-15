@@ -612,6 +612,7 @@ begin
   _c2 := 7.5*J/kg/K;
   _tf := (_m1*_c1*_t1+_m2*_c2*_t2) / (_m1*_c1+_m2*_c2);
   if _tf.ToString(4, 2, []) <> '75 K' then halt(1);
+  if (_t1.ToDegreeCelsius.ToString(6, 2, [])) <> '-173.15 ºC' then halt(2);
   writeln('* TEST-46: PASSED');
 
   // TEST-47 - THERMAL FLUX
